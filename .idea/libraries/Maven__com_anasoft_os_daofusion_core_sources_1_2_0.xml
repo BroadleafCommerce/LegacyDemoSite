@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.anasoft.os:daofusion-core:sources:1.2.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/anasoft/os/daofusion-core/1.2.0/daofusion-core-1.2.0-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/anasoft/os/daofusion-core/1.2.0/daofusion-core-1.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/anasoft/os/daofusion-core/1.2.0/daofusion-core-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

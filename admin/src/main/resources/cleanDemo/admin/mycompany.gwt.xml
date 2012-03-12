@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name="com.google.gwt.user.User" />
+    <inherits name="org.broadleafcommerce.admin.merchandisingModule" />
+	<inherits name="org.broadleafcommerce.admin.customerCareModule" />
+    <inherits name="org.broadleafcommerce.openadmin.userModule" />
+    <inherits name="org.broadleafcommerce.cms.admin.contentManagementModule" />
+    <inherits name="com.google.gwt.core.CompilerParameters"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+	
+	<entry-point class="cleanDemo.admin.client.MyCompanyAdminModule" />
+	<source path="client" />
+</module>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.broadleafcommerce:integration:tests:1.5.2-GA">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/broadleafcommerce/integration/1.5.2-GA/integration-1.5.2-GA-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/broadleafcommerce/integration/1.5.2-GA/integration-1.5.2-GA-test-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/broadleafcommerce/integration/1.5.2-GA/integration-1.5.2-GA-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
