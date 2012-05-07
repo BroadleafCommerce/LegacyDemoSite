@@ -21,10 +21,10 @@
 	<aop:config/>
 	
 	<bean id="resourceBundleExtensionPoint"
-		class="org.broadleafcommerce.profile.core.util.ResourceBundleExtensionPoint" />
+		class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
 
 	<bean id="messageSource"
-		class="org.broadleafcommerce.profile.core.util.BLResourceBundleMessageSource">
+		class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
 		<constructor-arg>
 			<list>
 				<value>messages</value>
@@ -32,6 +32,15 @@
 		</constructor-arg>
 		<constructor-arg ref="resourceBundleExtensionPoint" />
 	</bean>
+
+    <!-- Configures the Tiles layout system -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles-broadleafdemo.xml</value>
+            </list>
+        </property>
+    </bean>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -42,14 +51,18 @@
 	</bean>
 
 	<bean id="store" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName" value="catalog/store" />
-	</bean>	
+		<property name="viewName" value="catalog/home" />
+	</bean>
 
-	<bean id="catalogController" class="org.broadleafcommerce.core.web.controller.catalog.CatalogController">
+    <bean id="login" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="account/login" />
+    </bean>
+
+    <bean id="catalogController" class="org.broadleafcommerce.core.web.controller.catalog.CatalogController">
 		<property name="catalogService" ref="blCatalogService"/>
 		<property name="ratingService" ref="blRatingService" />
-        <property name="defaultCategoryView" value="catalog/catalog"/>
-        <property name="defaultProductView" value="catalog/product"/>
+        <property name="defaultCategoryView" value="catalog/defaultCatalog"/>
+        <property name="defaultProductView" value="catalog/defaultProduct"/>
         <property name="rootCategoryName" value="Store" />
         <property name="categoryTemplatePrefix" value="catalog/templates/"/>
 	</bean>
@@ -62,6 +75,10 @@
         <property name="removeItemView" value="viewCart.htm"/>
         <property name="removeItemViewRedirect" value="true"/>
 	</bean>
+
+    <bean id="checkoutController" class="org.broadleafcommerce.core.web.controller.checkout.CheckoutController">
+        <property name="checkoutView" value="checkout/checkout"/>
+    </bean>
 	
 	<bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -74,10 +91,20 @@
 		</property -->
 		<property name="mappings">
 			<props>
-				<prop key="/store">catalogController</prop>
+                <prop key="/home.htm">store</prop>
+                <prop key="/store">store</prop>
+                <prop key="/store/**">catalogController</prop>
 				<prop key="/basket/**">blCartController</prop>
 				<prop key="/registerCustomer/*">blRegisterCustomerController</prop>
-				<prop key="/checkout/*">mycompanyCheckoutController</prop>
+				<!--<prop key="/checkout/*">mycompanyCheckoutController</prop>-->
+                <prop key="/checkout/*">checkoutController</prop>
+                <prop key="/login.htm">login</prop>
+                <prop key="/account/*">login</prop>
+                <prop key="/profile/*">myAccountController</prop>
+                <prop key="/orders">viewOrderController</prop>
+                <prop key="/orders/*">viewOrderController</prop>
+                <prop key="/search">compassSearchController</prop>
+                <prop key="/search/*">compassSearchController</prop>
 			</props>
 		</property>
 	</bean>

@@ -1,6 +1,6 @@
 package cleanDemo.test.common;
 
-import org.broadleafcommerce.profile.extensibility.context.MergeClassPathXMLApplicationContext;
+import org.broadleafcommerce.common.extensibility.context.MergeClassPathXMLApplicationContext;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;

@@ -20,8 +20,9 @@
         <sec:intercept-url pattern="/js/**" filters="none"/>
         <!--<sec:intercept-url pattern="/store" access="ROLE_USER"/>
     	<sec:intercept-url pattern="/basket/**" access="ROLE_USER"/>-->
-        <sec:form-login login-page='/registerCustomer/registerCustomer.htm'
-                        default-target-url='/product.htm'
+        <!--<sec:form-login login-page='/registerCustomer/registerCustomer.htm'-->
+        <sec:form-login login-page='/account/login.htm'
+                        default-target-url='/store'
                         authentication-failure-url="/registerCustomer/registerCustomer.htm?error=true"
                         login-processing-url="/login_post.htm"
                 />

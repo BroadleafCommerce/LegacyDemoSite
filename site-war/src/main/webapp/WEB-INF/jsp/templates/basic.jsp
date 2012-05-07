@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
-<jsp:include page="/WEB-INF/jsp/header.jsp" />
+<jsp:include page="/WEB-INF/layouts/header.jsp" />
 <div class="mainContentAreaFull" style="padding:8px;">
 <div id="cmsContent">
     <c:if test="${BLC_PAGE ne null}">
@@ -7,5 +7,5 @@
     </c:if>
 </div>
 </div>
-<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+<jsp:include page="/WEB-INF/layouts/footer.jsp" />
 

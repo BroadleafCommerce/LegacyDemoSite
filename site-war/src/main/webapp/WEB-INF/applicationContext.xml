@@ -21,7 +21,7 @@
     <context:component-scan base-package="org.broadleafcommerce.common"/>
 
     <bean id="blPersistenceUnitManager"
-          class="org.broadleafcommerce.profile.extensibility.jpa.MergePersistenceUnitManager">
+          class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
             <list>
                 <value>classpath*:/META-INF/persistence-mycompany.xml</value>
@@ -52,7 +52,7 @@
 	</bean>
 
     <bean id="blCacheManager"
-          class="org.broadleafcommerce.profile.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
+          class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
         <property name="configLocations">
             <list>
