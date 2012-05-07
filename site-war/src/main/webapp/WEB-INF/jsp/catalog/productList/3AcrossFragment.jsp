@@ -20,7 +20,7 @@
             <ul class="thumbnails">
 
                 <c:forEach var="product" items="${displayProducts}" varStatus="status">
-                    <li class="span2">
+                    <li class="span3">
 
                         <c:choose>
                             <c:when test="${!( empty displayProduct.promoMessage)}">
