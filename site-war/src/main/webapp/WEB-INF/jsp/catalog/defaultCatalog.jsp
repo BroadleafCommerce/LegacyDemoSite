@@ -61,7 +61,7 @@
 
                 <%--Catalog content--%>
                 <div class="span8" id="mainContent">
-                    <jsp:include page="/WEB-INF/jsp/catalog/categoryView/mainContentFragment.jsp" />
+                    <jsp:include page="/WEB-INF/jsp/catalog/categoryView/mainContent.jsp" />
                 </div>
 
             </div>

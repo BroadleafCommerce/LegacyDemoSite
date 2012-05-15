@@ -102,7 +102,7 @@
 
             <div class="row-fluid">
                 <div class="span6">
-                    <button type="submit" class="btn">Log in</button>
+                    <button type="submit" class="btn"><i class="icon-user"></i> Log in</button>
                     <%--<button id="fat-btn" data-loading-text="verifying..." class="btn">Log in</button>--%>
 
 
