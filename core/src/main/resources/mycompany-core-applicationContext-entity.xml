@@ -14,6 +14,6 @@
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
            
     <!-- Entity mappings - override for extensibility -->
-	<bean id="org.broadleafcommerce.core.catalog.domain.Product" class="cleanDemo.core.catalog.domain.MyCompanyProductImpl" scope="prototype"/>
+	<bean id="org.broadleafcommerce.core.catalog.domain.Product" class="cleanDemo.core.catalog.domain.SampleProductImpl" scope="prototype"/>
 	
 </beans>

@@ -17,7 +17,7 @@ public interface ShippingCountry extends Serializable{
 	
 	public void setCountryISO(String countryIso);
 	
-	public List<MyCompanyProduct> getProducts();
+	public List<SampleProduct> getProducts();
 
-	public void setProducts(List<MyCompanyProduct> products);
+	public void setProducts(List<SampleProduct> products);
 }

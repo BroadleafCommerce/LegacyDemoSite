@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 	<persistence-unit name="blPU" transaction-type="RESOURCE_LOCAL">
-        <class>cleanDemo.core.catalog.domain.MyCompanyProductImpl</class>
+        <class>cleanDemo.core.catalog.domain.SampleProductImpl</class>
         <class>cleanDemo.core.catalog.domain.ShippingCountryImpl</class>
         <exclude-unlisted-classes/>
         <properties>

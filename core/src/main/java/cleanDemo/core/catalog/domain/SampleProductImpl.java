@@ -24,7 +24,7 @@ import java.util.List;
     }
 )
 @AdminPresentationClass(populateToOneFields = PopulateToOneFieldsEnum.TRUE, friendlyName = "My Company Product")
-public class MyCompanyProductImpl extends ProductSkuImpl implements MyCompanyProduct {
+public class SampleProductImpl extends ProductSkuImpl implements SampleProduct {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -87,7 +87,7 @@ public class MyCompanyProductImpl extends ProductSkuImpl implements MyCompanyPro
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MyCompanyProductImpl other = (MyCompanyProductImpl) obj;
+		SampleProductImpl other = (SampleProductImpl) obj;
 		if (restricted != other.restricted)
 			return false;
 		if (shippingCountries == null) {

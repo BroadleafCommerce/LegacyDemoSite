@@ -1,11 +1,11 @@
 package cleanDemo.core.catalog.domain;
 
-import java.util.List;
-
 import org.broadleafcommerce.core.catalog.domain.ProductSku;
 import org.broadleafcommerce.core.store.domain.ZipCode;
 
-public interface MyCompanyProduct extends ProductSku {
+import java.util.List;
+
+public interface SampleProduct extends ProductSku {
 
 	public Boolean isRestricted();
 

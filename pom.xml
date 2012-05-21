@@ -7,7 +7,7 @@
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	<name>ecommerce</name>
-	<url>http://www.mycompany.com</url>
+	<url>http://www.blc-archetype.com</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

@@ -41,12 +41,12 @@ public class ShippingCountryImpl implements ShippingCountry {
     @AdminPresentation(friendlyName ="Country Iso", group ="Description", order =8)
     protected String countryIso;
     
-    @ManyToMany(targetEntity = MyCompanyProductImpl.class)
+    @ManyToMany(targetEntity = SampleProductImpl.class)
     @JoinTable(name = "PRODUCT_SHIPPING_COUNTRY_XREF", joinColumns = @JoinColumn(name = "SHIPPING_COUNTRY_ID"), inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID", nullable=true))
     @Cascade(value={org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.PERSIST})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region="blStandardElements")
     @BatchSize(size = 50)
-    protected List<MyCompanyProduct> products = new ArrayList<MyCompanyProduct>();
+    protected List<SampleProduct> products = new ArrayList<SampleProduct>();
   
     public Long getId(){
     	return id;
@@ -72,11 +72,11 @@ public class ShippingCountryImpl implements ShippingCountry {
 		this.countryIso = countryIso;
 	}
 
-	public List<MyCompanyProduct> getProducts() {
+	public List<SampleProduct> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<MyCompanyProduct> products) {
+	public void setProducts(List<SampleProduct> products) {
 		this.products = products;
 	}
 
