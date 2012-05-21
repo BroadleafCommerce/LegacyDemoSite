@@ -3,7 +3,7 @@
 <head>
 
 <!-- Blueprint Framework CSS -->
-<link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/css/blueprint/screen.css" />
+<%--<link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/css/blueprint/screen.css" />--%>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/css/bootstrap.css" />
@@ -36,16 +36,14 @@
     <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/bootstrap-button.js"></script>
     <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/bootstrap-carousel.js"></script>
 
-    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/jquery-1.3.2.js"></script>--%>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/behaviors.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/jquery.pagination.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.core.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.slider.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/thickbox-compressed.js"></script>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/behaviors.js"></script>--%>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/jquery.pagination.js"></script>--%>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.core.js"></script>--%>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.slider.js"></script>--%>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/thickbox-compressed.js"></script>--%>
     <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/product.js"></script>
     <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/checkout.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.stars.js"></script>
-    <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/catalog.js"></script>
+    <%--<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/ui.stars.js"></script>--%>
     <%--Autofill script for testing purposes--%>
     <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}"/>/js/checkout-autofill.js"></script>
 

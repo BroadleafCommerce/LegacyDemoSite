@@ -16,6 +16,13 @@
                 postData.push({name:'ajax',value:'true'});
                 $('#mainContent').load($('#refineSearch').attr('action'), postData);
             }
+
+            $(document).ready(function(){
+                $("#catalogSort").change(function () {
+                    document.sortForm.submit();
+                });
+            });
+
         </script>
 
         <div class="breadcrumb">
