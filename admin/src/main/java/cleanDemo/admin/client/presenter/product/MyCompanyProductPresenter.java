@@ -1,10 +1,8 @@
 package cleanDemo.admin.client.presenter.product;
 
-import java.util.HashMap;
-
 import cleanDemo.admin.client.datasource.ShippingCountryListDataSourceFactory;
 import cleanDemo.admin.client.datasource.ShippingCountrySearchDataSourceFactory;
-import cleanDemo.admin.client.view.product.MyCompanyProductDisplay;
+import cleanDemo.admin.client.view.product.SampleProductDisplay;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.Record;
 import org.broadleafcommerce.admin.client.presenter.catalog.product.OneToOneProductSkuPresenter;
@@ -16,6 +14,8 @@ import org.broadleafcommerce.openadmin.client.presenter.structure.SimpleSearchJo
 import org.broadleafcommerce.openadmin.client.setup.AsyncCallbackAdapter;
 import org.broadleafcommerce.openadmin.client.setup.PresenterSetupItem;
 import org.broadleafcommerce.openadmin.client.view.dynamic.dialog.EntitySearchDialog;
+
+import java.util.HashMap;
 
 public class MyCompanyProductPresenter extends OneToOneProductSkuPresenter {
 
@@ -55,7 +55,7 @@ public class MyCompanyProductPresenter extends OneToOneProductSkuPresenter {
 		getPresenterSequenceSetupManager().addOrReplaceItem(new PresenterSetupItem("shippingCountryDS", new ShippingCountryListDataSourceFactory(), null, new Object[]{}, new AsyncCallbackAdapter() {
 			public void onSetupSuccess(DataSource result) {		
 				ListGridDataSource shippingCountryDataSource = (ListGridDataSource) result;
-				shippingCountryPresenter = new SimpleSearchJoinStructurePresenter(((MyCompanyProductDisplay) getDisplay()).getShippingCountryDisplay(), (EntitySearchDialog) ganzCategoryLibrary.get("shippingCountrySearchView"), BLCMain.getMessageManager().getString("categorySearchPrompt"));
+				shippingCountryPresenter = new SimpleSearchJoinStructurePresenter(((SampleProductDisplay) getDisplay()).getShippingCountryDisplay(), (EntitySearchDialog) ganzCategoryLibrary.get("shippingCountrySearchView"), BLCMain.getMessageManager().getString("categorySearchPrompt"));
 				shippingCountryPresenter.setDataSource(shippingCountryDataSource, new String[]{"countryIso", "currencyCode"}, new Boolean[]{false, false});
 			}
 		}));

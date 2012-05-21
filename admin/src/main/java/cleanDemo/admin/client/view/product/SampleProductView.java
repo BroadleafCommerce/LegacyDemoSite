@@ -8,7 +8,7 @@ import org.broadleafcommerce.openadmin.client.view.dynamic.grid.GridStructureDis
 import org.broadleafcommerce.openadmin.client.view.dynamic.grid.GridStructureView;
 
 
-public class MyCompanyProductView extends OneToOneProductSkuView implements MyCompanyProductDisplay {
+public class SampleProductView extends OneToOneProductSkuView implements SampleProductDisplay {
 
 	protected GridStructureView shippingCountryDisplay;
 	

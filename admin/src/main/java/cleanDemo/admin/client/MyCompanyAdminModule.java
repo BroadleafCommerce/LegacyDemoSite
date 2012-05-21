@@ -12,7 +12,7 @@ public class MyCompanyAdminModule extends MerchandisingModule {
         super.onModuleLoad();
 
 		ModuleFactory moduleFactory = ModuleFactory.getInstance();
-		moduleFactory.put("product", "cleanDemo.admin.client.view.product.MyCompanyProductView");
+		moduleFactory.put("product", "cleanDemo.admin.client.view.product.SampleProductView");
 		moduleFactory.put("productPresenter", "cleanDemo.admin.client.presenter.product.MyCompanyProductPresenter");
 	}
 
