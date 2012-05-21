@@ -17,7 +17,7 @@ import org.broadleafcommerce.openadmin.client.view.dynamic.dialog.EntitySearchDi
 
 import java.util.HashMap;
 
-public class MyCompanyProductPresenter extends OneToOneProductSkuPresenter {
+public class SampleProductPresenter extends OneToOneProductSkuPresenter {
 
 	protected SubPresentable shippingCountryPresenter;
 	protected HashMap<String, Object> ganzCategoryLibrary = new HashMap<String, Object>();

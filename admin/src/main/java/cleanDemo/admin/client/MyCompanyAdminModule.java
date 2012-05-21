@@ -13,7 +13,7 @@ public class MyCompanyAdminModule extends MerchandisingModule {
 
 		ModuleFactory moduleFactory = ModuleFactory.getInstance();
 		moduleFactory.put("product", "cleanDemo.admin.client.view.product.SampleProductView");
-		moduleFactory.put("productPresenter", "cleanDemo.admin.client.presenter.product.MyCompanyProductPresenter");
+		moduleFactory.put("productPresenter", "cleanDemo.admin.client.presenter.product.SampleProductPresenter");
 	}
 
     @Override
