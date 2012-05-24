@@ -416,6 +416,5 @@
     <module>core</module>
     <module>site</module>
     <module>site-war</module>
-    <module>test</module>
   </modules>
 </project>
