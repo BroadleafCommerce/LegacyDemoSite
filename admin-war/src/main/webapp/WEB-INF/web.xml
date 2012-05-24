@@ -19,7 +19,6 @@
             classpath:/bl-admin-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             classpath:/bl-cms-contentCreator-applicationContext.xml
-            classpath:/mycompany-applicationContext.xml
             /WEB-INF/applicationContext-admin-security.xml
             /WEB-INF/applicationContext-admin.xml
         </param-value>

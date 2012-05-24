@@ -32,15 +32,6 @@
 		<constructor-arg ref="resourceBundleExtensionPoint" />
 	</bean>
 
-    <!-- Configures the Tiles layout system -->
-    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles-broadleafdemo.xml</value>
-            </list>
-        </property>
-    </bean>
-
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"

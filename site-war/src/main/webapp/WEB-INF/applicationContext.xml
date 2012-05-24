@@ -51,14 +51,5 @@
 		<property name="password" value="" />
 	</bean>
 
-    <bean id="blCacheManager"
-          class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
-        <property name="shared" value="true"/>
-        <property name="configLocations">
-            <list>
-                <value>classpath:mycompany-override-ehcache.xml</value>
-            </list>
-        </property>
-    </bean>
     
 </beans>

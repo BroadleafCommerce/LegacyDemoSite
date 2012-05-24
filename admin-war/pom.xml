@@ -58,7 +58,6 @@
 					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
 					<webApp>${webappDirectory}</webApp>
 					<contextPath>/admin</contextPath>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopPort>9967</stopPort>
 					<stopKey>foo</stopKey>
 					<connectors>

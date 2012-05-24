@@ -32,7 +32,6 @@
 				<configuration>
 					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
 					<contextPath>/mycompany</contextPath>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
 					<connectors>
