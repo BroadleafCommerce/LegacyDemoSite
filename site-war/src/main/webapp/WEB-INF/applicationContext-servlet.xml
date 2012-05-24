@@ -32,77 +32,32 @@
 		<constructor-arg ref="resourceBundleExtensionPoint" />
 	</bean>
 
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView"></property>
-		<property name="prefix" value="/WEB-INF/jsp/"></property>
-		<property name="suffix" value=".jsp"></property>
+	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
 	</bean>
 
-	<bean id="store" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName" value="catalog/home" />
-	</bean>
-
-    <bean id="login" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-        <property name="viewName" value="account/login" />
-    </bean>
-
-    <bean id="catalogController" class="org.broadleafcommerce.core.web.controller.catalog.CatalogController">
-		<property name="catalogService" ref="blCatalogService"/>
-		<property name="ratingService" ref="blRatingService" />
-        <property name="defaultCategoryView" value="catalog/defaultCatalog"/>
-        <property name="defaultProductView" value="catalog/defaultProduct"/>
-        <property name="rootCategoryName" value="Store" />
-        <property name="categoryTemplatePrefix" value="catalog/templates/"/>
-	</bean>
-	
-	<bean id="blCartController" class="org.broadleafcommerce.core.web.controller.order.CartController">
-        <property name="cartView" value="shoppingCart/cartSummary"/>
-        <property name="cartViewRedirect" value="false"/>
-        <property name="addItemView" value="viewCart.htm"/>
-        <property name="addItemViewRedirect" value="true"/>
-        <property name="removeItemView" value="viewCart.htm"/>
-        <property name="removeItemViewRedirect" value="true"/>
-	</bean>
-
-    <bean id="checkoutController" class="org.broadleafcommerce.core.web.controller.checkout.CheckoutController">
-        <property name="checkoutView" value="checkout/checkout"/>
-    </bean>
-	
-	<bean id="urlMapping"
-		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="order" value="1" />
-		<property name="alwaysUseFullPath" value="true" />
-		<!-- property name="interceptors">
-			<list>
-				<ref bean="catalogDisplayInterceptor" />
-			</list>
-		</property -->
-		<property name="mappings">
-			<props>
-                <prop key="/home.htm">store</prop>
-                <prop key="/store">store</prop>
-                <prop key="/store/**">catalogController</prop>
-				<prop key="/basket/**">blCartController</prop>
-				<prop key="/registerCustomer/*">blRegisterCustomerController</prop>
-				<!--<prop key="/checkout/*">mycompanyCheckoutController</prop>-->
-                <prop key="/checkout/*">checkoutController</prop>
-                <prop key="/login.htm">login</prop>
-                <prop key="/account/*">login</prop>
-                <prop key="/profile/*">myAccountController</prop>
-                <prop key="/orders">viewOrderController</prop>
-                <prop key="/orders/*">viewOrderController</prop>
-                <prop key="/search">compassSearchController</prop>
-                <prop key="/search/*">compassSearchController</prop>
-			</props>
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="dialects">
+			<set>
+				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
+				<bean class="org.broadleafcommerce.core.web.catalog.dialect.CatalogDialect" />
+			</set>
 		</property>
 	</bean>
-
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
-
-    <mvc:default-servlet-handler/>
+	
+	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="order" value="1" />
+	</bean>
+	
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.mycompany" />
 
 </beans>

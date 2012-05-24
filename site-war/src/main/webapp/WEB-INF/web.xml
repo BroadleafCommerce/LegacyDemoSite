@@ -102,23 +102,4 @@
 		<env-entry-value>mycompanySite</env-entry-value>
 	</env-entry>
 	
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	
-	<jsp-config>
-        <taglib>
-            <taglib-uri>/spring</taglib-uri>
-            <taglib-location>/WEB-INF/tld/spring.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>/spring-form</taglib-uri>
-            <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>/demo-store</taglib-uri>
-            <taglib-location>/WEB-INF/tld/broadleafcommerce.tld</taglib-location>
-        </taglib>
-    </jsp-config>
-
 </web-app>
