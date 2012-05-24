@@ -9,3 +9,4 @@ test-output
 .metadata
 *.ipr
 bin/
+site-war/data/
