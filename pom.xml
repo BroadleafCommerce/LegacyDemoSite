@@ -104,6 +104,22 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.3.2</version>
 				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<configuration>
+						<excludeDefaultDirectories>true</excludeDefaultDirectories>
+						<filesets>
+							<!-- delete directories that will be generated when you start the
+								develpment server/client in eclipse -->
+							<fileset>
+								<directory>target</directory>
+								<includes>
+									<include>**/*</include>
+								</includes>
+							</fileset>
+						</filesets>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
