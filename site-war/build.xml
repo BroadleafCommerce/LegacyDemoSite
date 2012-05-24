@@ -7,13 +7,15 @@
 	<path id="maven-ant-tasks.classpath" path="../lib/maven-ant-tasks-2.1.3.jar" />
 	<typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
 	
-	<property name="project.root" location="../"/>
+	<property name="project.root" location="../../"/>
 	
 	<property file="../build.properties"/>
 
 	<target name="jetty-demo" depends="start-db">
 		<delete dir="war/WEB-INF/lib"/>
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-XX:MaxPermSize=256M -Xmx512M">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
 			<arg value="compile"/>
 			<arg value="war:exploded"/>
 			<arg value="jetty:run"/>
@@ -22,7 +24,11 @@
 
 	<target name="jetty-debug" depends="start-db">
 		<delete dir="war/WEB-INF/lib"/>
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-XX:MaxPermSize=256M -Xmx512M -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
 			<arg value="compile"/>
 			<arg value="war:exploded"/>
 			<arg value="jetty:run"/>
@@ -31,7 +37,15 @@
 
     <target name="jetty-demo-jrebel" depends="start-db">
 		<delete dir="war/WEB-INF/lib"/>
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -XX:MaxPermSize=256M -Xmx512M -Drebel.root=${project.root} -Dlogs.dir=${logs.dir} -noverify -javaagent:${jrebel.path}">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+			<jvmarg value="-Drebel.root=${project.root}" />
+			<jvmarg value="-Dlogs.dir=${logs.dir}" />
+			<jvmarg value="-noverify" />
+			<jvmarg value="-javaagent:${jrebel.path}" />
 			<arg value="compile"/>
 			<arg value="war:exploded"/>
 			<arg value="jetty:run"/>
@@ -40,7 +54,12 @@
 
 	<target name="jetty-demo-yourkit">
 		<delete dir="war/WEB-INF/lib"/>
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -XX:MaxPermSize=256M -Xmx512M -agentpath:${yourkit.agent.path}libyjpagent.jnilib=builtinprobes=none,delay=10000,sessionname=Jetty">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+			<jvmarg value="-agentpath:${yourkit.agent.path}libyjpagent.jnilib=builtinprobes=none,delay=10000,sessionname=Jetty" />
 			<arg value="compile"/>
 			<arg value="war:exploded"/>
 			<arg value="jetty:run"/>
@@ -49,7 +68,16 @@
 
     <target name="jetty-demo-jrebel-yourkit">
 		<delete dir="war/WEB-INF/lib"/>
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -XX:MaxPermSize=256M -Xmx512M -Drebel.root=${project.root} -Dlogs.dir=${logs.dir} -noverify -javaagent:${jrebel.path} -agentpath:${yourkit.agent.path}libyjpagent.jnilib=builtinprobes=none,delay=10000,sessionname=Jetty">
+		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+			<jvmarg value="-Drebel.root=${project.root}" />
+			<jvmarg value="-Dlogs.dir=${logs.dir}" />
+			<jvmarg value="-noverify" />
+			<jvmarg value="-javaagent:${jrebel.path}" />
+			<jvmarg value="-agentpath:${yourkit.agent.path}libyjpagent.jnilib=builtinprobes=none,delay=10000,sessionname=Jetty" />
 			<arg value="compile"/>
 			<arg value="war:exploded"/>
 			<arg value="jetty:run"/>
@@ -57,7 +85,9 @@
 	</target>
 	
 	<target name="jetty-stop">
-		<artifact:mvn mavenHome="${maven.home}" fork="true" jvmargs="-XX:MaxPermSize=256M -Xmx512M">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<jvmarg value="-XX:MaxPermSize=256M" />
+			<jvmarg value="-Xmx512M" />
 			<arg value="jetty:stop"/>
 		</artifact:mvn>
 	</target>

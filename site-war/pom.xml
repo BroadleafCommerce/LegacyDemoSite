@@ -47,8 +47,7 @@
 				<artifactId>javarebel-maven-plugin</artifactId>
 				<configuration>
 					<packaging>war</packaging>
-					<relativePath>../../</relativePath>
-					<rootPath>${basedir}/../..</rootPath>
+					<rootPath>${basedir}</rootPath>
 				</configuration>
 				<executions>
 					<execution>
