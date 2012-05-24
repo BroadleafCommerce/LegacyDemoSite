@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>cleanDemo</artifactId>
-		<groupId>cleanDemo</groupId>
+		<groupId>com.mycompany</groupId>
+		<artifactId>ecommerce-website</artifactId>
 		<version>1.0</version>
 	</parent>
 	<artifactId>site-war</artifactId>
@@ -42,14 +43,14 @@
 					</connectors>
 				</configuration>
 			</plugin>
-            <plugin>
+			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
 				<configuration>
-    				<packaging>war</packaging>
-    				<relativePath>../../</relativePath>
+					<packaging>war</packaging>
+					<relativePath>../../</relativePath>
 					<rootPath>${basedir}/../..</rootPath>
-    			</configuration>
+				</configuration>
 				<executions>
 					<execution>
 						<id>generate-rebel-xml</id>
@@ -64,11 +65,11 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>cleanDemo</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>cleanDemo</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>site</artifactId>
 		</dependency>
 		<dependency>
@@ -84,9 +85,9 @@
 			<artifactId>broadleaf-open-admin-platform</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -107,9 +108,9 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
 	</dependencies>
 </project>

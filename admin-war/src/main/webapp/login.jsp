@@ -39,7 +39,7 @@
    </head>
    <body onload="centerObj()">
    		<form onSubmit="return setSubmitUrl(this);" method="post">
-   		<div style="position:absolute; left: 0px; top: 0px; width: 450px; height: 170px; background-image: url(cleanDemo.gwt.mycompanyAdmin/admin/images/admin_login.jpg)" id="login">
+   		<div style="position:absolute; left: 0px; top: 0px; width: 450px; height: 170px; background-image: url(com.mycompany.gwt.mycompanyAdmin/admin/images/admin_login.jpg)" id="login">
  			<div style="position: relative; left: 200px; top: 40px">
  					<c:if test="${not empty param.login_error}">
     					<p style="font-family:'Arial', Arial, sans-serif; font-style: normal; font-size: 12px; color: red"><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></p>

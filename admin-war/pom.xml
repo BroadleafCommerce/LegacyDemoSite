@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>cleanDemo</artifactId>
-    <groupId>cleanDemo</groupId>
-    <version>1.0</version>
-  </parent>
-  <artifactId>admin-war</artifactId>
-  <packaging>war</packaging>
-  <name>admin-war</name>
-  <description>Web Module For Customized Broadleaf Commerce Admin</description>
-  <properties>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mycompany</groupId>
+		<artifactId>ecommerce-website</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>admin-war</artifactId>
+	<packaging>war</packaging>
+	<name>admin-war</name>
+	<description>Web Module For Customized Broadleaf Commerce Admin</description>
+	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 	</properties>
 	<build>
@@ -22,9 +22,9 @@
 				<artifactId>gwt-maven-plugin</artifactId>
 				<executions>
 					<execution>
-                        <configuration>
-                          <extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
-                        </configuration>
+						<configuration>
+							<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
+						</configuration>
 						<goals>
 							<goal>compile</goal>
 							<goal>test</goal>
@@ -34,7 +34,7 @@
 				<configuration>
 					<style>DETAILED</style>
 					<modules>
-						<module>cleanDemo.gwt.mycompanyAdmin</module>
+						<module>com.mycompany.gwt.mycompanyAdmin</module>
 					</modules>
 					<inplace>false</inplace>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
@@ -46,9 +46,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-		        <configuration>
-		          <webappDirectory>${webappDirectory}</webappDirectory>
-		        </configuration>
+				<configuration>
+					<webappDirectory>${webappDirectory}</webappDirectory>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -56,11 +56,11 @@
 				<version>6.1.22</version>
 				<configuration>
 					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-                    <webApp>${webappDirectory}</webApp>
+					<webApp>${webappDirectory}</webApp>
 					<contextPath>/admin</contextPath>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopPort>9967</stopPort>
-          			<stopKey>foo</stopKey>
+					<stopKey>foo</stopKey>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>8081</port>
@@ -73,10 +73,10 @@
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
 				<configuration>
-    				<packaging>war</packaging>
-    				<relativePath>../../</relativePath>
+					<packaging>war</packaging>
+					<relativePath>../../</relativePath>
 					<rootPath>${basedir}/../..</rootPath>
-    			</configuration>
+				</configuration>
 				<executions>
 					<execution>
 						<id>generate-rebel-xml</id>
@@ -113,16 +113,16 @@
 			<artifactId>broadleaf-usps</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>cleanDemo</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>admin</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>cleanDemo</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>admin</artifactId>
 			<classifier>sources</classifier>
 		</dependency>
 		<dependency>
-			<groupId>cleanDemo</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>core</artifactId>
 		</dependency>
 		<dependency>
@@ -130,10 +130,10 @@
 			<artifactId>broadleaf-open-admin-platform</artifactId>
 			<classifier>sources</classifier>
 		</dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -142,9 +142,9 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
 	</dependencies>
 </project>

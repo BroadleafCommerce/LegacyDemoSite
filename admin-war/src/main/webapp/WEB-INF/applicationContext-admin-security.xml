@@ -15,8 +15,8 @@
         <sec:intercept-url pattern="/js/**" filters="none"/>
         <sec:intercept-url pattern="/utility.service" filters="none" />
         <sec:intercept-url pattern="/security.service" access="PERMISSION_OTHER_DEFAULT, PERMISSION_ANONYMOUS" />
-        <sec:intercept-url pattern="/cleanDemo.gwt.mycompanyAdmin/admin/**" filters="none" />
-        <sec:intercept-url pattern="/cleanDemo.gwt.mycompanyAdmin/**" access="PERMISSION_OTHER_DEFAULT" />
+        <sec:intercept-url pattern="/com.mycompany.gwt.mycompanyAdmin/admin/**" filters="none" />
+        <sec:intercept-url pattern="/com.mycompany.gwt.mycompanyAdmin/**" access="PERMISSION_OTHER_DEFAULT" />
         <sec:intercept-url pattern="/admin*" access="PERMISSION_OTHER_DEFAULT" />
         <sec:intercept-url pattern="/admin/*" access="PERMISSION_OTHER_DEFAULT" />
         <sec:intercept-url pattern="/*.service" access="PERMISSION_OTHER_DEFAULT" />

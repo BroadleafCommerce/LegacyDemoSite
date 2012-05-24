@@ -8,6 +8,6 @@
     <inherits name="com.google.gwt.core.CompilerParameters"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
 	
-	<entry-point class="cleanDemo.admin.client.MyCompanyAdminModule" />
+	<entry-point class="org.broadleafcommerce.admin.client.MerchandisingModule" />
 	<source path="client" />
 </module>

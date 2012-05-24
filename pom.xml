@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>cleanDemo</groupId>
-	<artifactId>cleanDemo</artifactId>
+	<groupId>com.mycompany</groupId>
+	<artifactId>ecommerce-website</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	<name>ecommerce</name>
@@ -12,7 +12,7 @@
 		<blc.version>1.6.0-GA</blc.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-    <description>Top Level Project</description>
+    <description>My Company's eCommerce Website</description>
     <repositories>
         <repository>
             <id>public releases</id>
@@ -107,28 +107,28 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>cleanDemo</groupId>
+				<groupId>com.mycompany</groupId>
 				<artifactId>core</artifactId>
 				<version>1.0</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>cleanDemo</groupId>
+				<groupId>com.mycompany</groupId>
 				<artifactId>site</artifactId>
 				<version>1.0</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>cleanDemo</groupId>
+				<groupId>com.mycompany</groupId>
 				<artifactId>admin</artifactId>
 				<version>1.0</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>cleanDemo</groupId>
+				<groupId>com.mycompany</groupId>
 				<artifactId>admin</artifactId>
 				<version>1.0</version>
 				<type>jar</type>
