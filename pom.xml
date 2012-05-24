@@ -10,7 +10,8 @@
 	<url>http://www.blc-archetype.com</url>
 	<properties>
 		<!--  <blc.version>1.7.0-SNAPSHOT</blc.version> -->
-		<blc.version>1.6.0-GA</blc.version>
+		<blc.version>1.6.1-SNAPSHOT</blc.version>
+		<blc.thirdparty.version>1.6.0-GA</blc.thirdparty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
     <description>My Company's eCommerce Website</description>
@@ -148,21 +149,21 @@
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-usps-schemas</artifactId>
-                <version>${blc.version}</version>
+                <version>${blc.thirdparty.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-usps</artifactId>
-                <version>${blc.version}</version>
+                <version>${blc.thirdparty.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-cybersource-api</artifactId>
-                <version>${blc.version}</version>
+                <version>${blc.thirdparty.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
@@ -176,7 +177,7 @@
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>broadleaf-cybersource</artifactId>
-                <version>${blc.version}</version>
+                <version>${blc.thirdparty.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
