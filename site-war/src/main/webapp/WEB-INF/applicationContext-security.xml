@@ -34,7 +34,7 @@
     <!--  bean id="passwordEncoder" class="org.springframework.security.providers.encoding.Md5PasswordEncoder"/ -->
 
     <!--=============================================================================================== -->
-    <!--  Override the authentication provider to use the JDBC authentication defined below.                                                -->
+    <!--  Override the authentication provider to use the JDBC authentication defined below.            -->
     <!--=============================================================================================== -->
     <sec:authentication-manager alias="blAuthenticationManager">
         <sec:authentication-provider user-service-ref="blUserDetailsService">
