@@ -1,0 +1,11 @@
+target/
+.classpath
+.project
+.settings
+*.swp
+test-output
+.idea
+*.iml
+.metadata
+*.ipr
+bin/
