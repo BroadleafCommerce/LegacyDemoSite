@@ -14,14 +14,28 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
+	<!-- Use controllers defined by Broadleaf -->
 	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
 	<context:component-scan base-package="org.broadleafcommerce.core.web"/>
 	
+	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
-	<bean id="resourceBundleExtensionPoint"
-		class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
-
+	<!-- Scan for custom controllers -->
+	<context:component-scan base-package="com.mycompany" />
+	
+	<!-- Tell Spring to not try to map things in these directories to controllers -->
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+	
+	<!-- Allow annotation driven controllers -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+ 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	
+	<!-- Set up Broadleaf messaging -->
+	<bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
 	<bean id="messageSource"
 		class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
 		<constructor-arg>
@@ -32,13 +46,13 @@
 		<constructor-arg ref="resourceBundleExtensionPoint" />
 	</bean>
 
+	<!-- Use Thymeleaf as the templating engine -->
 	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/templates/" />
 		<property name="suffix" value=".html" />
 		<property name="templateMode" value="HTML5" />
 		<property name="cacheable" value="false"/>
 	</bean>
-
 	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
 		<property name="dialects">
@@ -48,17 +62,8 @@
 			</set>
 		</property>
 	</bean>
-	
 	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="order" value="1" />
 	</bean>
-	
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/css/" mapping="/css/**" />
-	
-	<mvc:annotation-driven />
-	 
-	<context:component-scan base-package="com.mycompany" />
-
 </beans>
