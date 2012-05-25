@@ -10,3 +10,4 @@ test-output
 *.ipr
 bin/
 site-war/data/
+.svn
