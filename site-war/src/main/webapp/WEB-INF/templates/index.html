@@ -32,11 +32,11 @@
 </header>
 <div id="content" class="width_setter group" role="main">
 
-	<blc-catalog:categories categoryName="Nav" iterVar="navCategories" />
+	<blc-catalog:categories />
 		
 	<nav>
 		<ul th:remove="all-but-first">
-			<li th:each="category : ${navCategories}">
+			<li th:each="category : ${ccc}">
 				<a href="#" th:href="@{${category.url}}" class="home" th:text="${category.name}">Home</a>
 			</li>
 			<li><a href="hot_sauces.html">Hot Sauces</a></li>
