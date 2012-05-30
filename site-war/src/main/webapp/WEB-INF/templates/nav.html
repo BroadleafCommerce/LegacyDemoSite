@@ -1,0 +1,14 @@
+<nav>
+	<blc-catalog:categories resultVar="navCategories" parentCategory="Nav" maxResults="6" />
+	
+	<ul th:remove="all-but-first">
+		<li th:each="category : ${navCategories}">
+			<a href="#" th:href="@{${category.url}}" class="home" th:text="${category.name}">Home</a>
+		</li>
+		<li><a href="#">Hot Sauces</a></li>
+		<li><a href="#">Merchandise</a></li>
+		<li><a href="#">Clearance</a></li>
+		<li><a href="#">New to Hot Sauce?</a></li>
+		<li><a href="#">FAQs</a></li>
+	</ul>
+</nav>
