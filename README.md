@@ -16,11 +16,15 @@ We will keep a similar strategy of using "taglibs" for complex functionality in 
 
     a. Create the Dialect class (follow the catalog example)
 
-    b. Add the Dialect to the available list (`applicationContext-servlet.xml`)
+    b. Add the Dialect to the available list `applicationContext-servlet.xml`
 
 2. Add a processor that subclasses the proper AbstractProcessor. See `CategoriesProcessor` or the Thymeleaf documentation for more examples)
 
 3. Register the processor in the Dialect class
+
+### Where do things go?
+
+We should try to keep all HTML out of Processors. Although you're able to mess with the DOM in Thymeleaf processors, this is not a strategy we want to follow. Instead, use the `AbstractModelVariableModifierProcessors` to add something to the evaluation context root (AKA the `model` in Spring terms) and then use it with Thymeleaf iterations further down. (Check out the `CategoriesProcessor` and how the Nav categories render in `nav.html` for an example).
 
 ### URL Handling
 
