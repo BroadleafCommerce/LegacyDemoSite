@@ -58,7 +58,7 @@
 		<property name="dialects">
 			<set>
 				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
-				<bean class="org.broadleafcommerce.core.web.catalog.dialect.CatalogDialect" />
+				<bean class="org.broadleafcommerce.core.web.dialect.catalog.CatalogDialect" />
 			</set>
 		</property>
 	</bean>

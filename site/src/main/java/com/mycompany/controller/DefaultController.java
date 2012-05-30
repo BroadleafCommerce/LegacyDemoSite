@@ -30,7 +30,6 @@ public class DefaultController {
 
 	@RequestMapping("/")
 	public String home(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(catalogService);
 		return "index";
 	}
 
