@@ -53,12 +53,23 @@
 		<property name="templateMode" value="HTML5" />
 		<property name="cacheable" value="false"/>
 	</bean>
+	
+	<bean id="blDialect" class="org.broadleafcommerce.common.web.dialect.BLCDialect">
+	    <property name="processors">
+		  <set>
+			<bean class="org.broadleafcommerce.core.web.processor.CategoriesProcessor" />
+			<bean class="org.broadleafcommerce.cms.web.processor.ContentProcessor" />
+		  </set>
+		</property>  	
+	</bean>
+	
+	<!-- Register Dialects (e.g. similar to TagLibs) -->
 	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
 		<property name="dialects">
 			<set>
 				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
-				<bean class="org.broadleafcommerce.core.web.dialect.catalog.CatalogDialect" />
+				<ref bean="blDialect" />
 			</set>
 		</property>
 	</bean>
