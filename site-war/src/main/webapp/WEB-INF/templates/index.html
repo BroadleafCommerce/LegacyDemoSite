@@ -15,21 +15,32 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="../../css/style.css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" href="../../css/style.css" th:href="@{/css/style-extension.css}" />
 
 	<script src="../../js/libs/modernizr-2.5.3.min.js" th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
 </head>
 <body>
+
 <header>
-	<div id="notification_bar"></div>
-	<div id="cart_bar">
-		<div class="width_setter">
-			<div id="cart_info"><a href="">Login</a> &nbsp;|&nbsp; <a href="">Register</a> &nbsp;|&nbsp; <a href="cart.html"><img src="img/shopping_cart.png" alt="Shopping Cart Icon" />&nbsp; 1 Item</a></div>
+	<div id="header_content">
+		<div id="cart_info"><a class="account fancybox.iframe" href="account_modal.html">Login</a> &nbsp;|&nbsp; <a class="account fancybox.iframe" href="account_modal.html">Register</a> &nbsp;|&nbsp; <a class="various fancybox.iframe" href="cart_modal.html"><img src="img/shopping_cart.png" alt="Shopping Cart Icon" />&nbsp; 1 Item</a></div>
+		<div id="languages">
+			Choose Language: 
+			<a href=""><img src="img/flags/United-States.png" th:src="@{/img/flags/United-States.png}" alt="United States" /></a>
+			<a href=""><img src="img/flags/United-Kingdom.png" th:src="@{/img/flags/United-Kingdom.png}" alt="United Kingdom" /></a>
+			<a href=""><img src="img/flags/Mexico.png" th:src="@{/img/flags/Mexico.png}" alt="Mexico" /></a>
+		</div>
+		
+		<div id="logo"><h1><a href="index.html">The Heat Clinic Home</a></h1></div>
+		<div id="search">
+			<form action="" method="post">
+			<input type="text" class="search" name="search" />
+			<input type="submit" id="search_button" value="go" />
+			</form>
 		</div>
 	</div>
-	<div class="width_setter">
-		<div id="logo"><h1><a href="/index.html">The Heat Clinic Home</a></h1></div>
-	</div>
 </header>
+
 <div id="content" class="width_setter group" role="main">
 
 	<nav th:substituteby="partials/nav" />
