@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<blc:head pageTitle="Broadleaf Demo" />
+
+<body>
+
+	<header th:substituteby="partials/header" />
+	
+	<div id="content" class="width_setter group" role="main">
+	
+		<nav th:substituteby="partials/nav" />
+		
+		<section id="left_column">
+	
+			<header>
+				<h1>Viewing All Hot Sauces</h1>
+				<div id="sort">
+					Sort by:
+					<select id="sortby">
+						<option value="awesomeness">Awesomeness</option>
+					</select>
+				</div>
+			</header>
+			
+			<ul id="products" class="group" th:remove="all-but-first">
+				<li th:each="product : ${products}" th:object="${product}">
+					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
+					<div class="image">
+						<a href="sauce.html">
+						<img src="img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Bottle.jpg" alt="Sauce Image" />
+						<div th:text="*{sku.retailPrice}" class="price" th:classappend="*{sku.onSale}? 'has-sale'"></div>
+						<div th:text="*{sku.salePrice}" th:if="*{sku.onSale}" class="price" th:classappend="*{sku.onSale}? 'sale'"></div>
+						</a>
+					</div>
+					<div class="content">
+						<div class="title" th:text="${product.name}">Day of the Dead Chipotle Hot Sauce</div>
+						Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+					</div>
+					<div class="in_cart"><a href="cart.html">In Cart!</a></div>
+				</li>
+			</ul>
+			
+		</section>
+	
+		<section id="right_column">
+			<header>Filter your results</header>
+			<div id="options">
+				<div class="section">
+					<h3>Choose Manufacturers to Show</h3>
+					<div class="maker"><input type="checkbox" id="makers[]" name="Bull Snort" /> Bull Snort</div>
+					<div class="maker"><input type="checkbox" id="makers[]" name="Spice Exchange" /> Spice Exchange</div>
+				</div>
+				
+				<div class="section">
+					<a href=""><img src="img/bannerad.jpg" alt="The Essentials Collection" /></a>
+				</div>
+				
+				<div class="section">
+					<h3>Must Have Sauces</h3>
+					<ul id="featured_products">
+						<li>
+							<div class="image">
+								<a href="sauce.html">
+								<img src="img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Close.jpg" alt="Sauce Image" />
+								<div class="price">$6.99</div>
+								</a>
+							</div>
+							
+							<div class="content">
+							<div class="title">Day of the Dead Habanero Hot Sauce</div>
+								Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+							</div>
+							<div class="add_to_cart"><a href="">Buy Now</a></div>
+						</li>
+						
+						<li>
+							<div class="image">
+								<a href="sauce.html">
+								<img src="img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Close.jpg" alt="Sauce Image" />
+								<div class="price">$6.99</div>
+								</a>
+							</div>
+							
+							<div class="content">
+							<div class="title">Blazin' Saddle XXX Hot Habanero Pepper Sauce</div>
+								Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+							</div>
+							<div class="add_to_cart"><a href="">Buy Now</a></div>
+						</li>				
+					</ul>
+				</div>
+			</div>
+			
+		</section>
+			
+	</div>
+	
+	<footer th:substituteby="partials/footer" />
+	
+</body>
+</html>

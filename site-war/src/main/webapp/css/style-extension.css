@@ -1,3 +1,13 @@
 nav ul li a.active {
 	background-color: #E7E3E2;
 }
+
+#products li .image .has-sale {
+	text-decoration: line-through;
+	bottom: 41px;
+	padding: 10px 20px 0;
+}
+
+#products li .image .sale {
+	color: #E40037;
+}
