@@ -1,18 +1,14 @@
+<!--
+     This template displays the navigation of the site by looking up the category named "Nav"
+     and building a list of the categories sub-categories. 	         	      	    
+-->
+
 <nav>
-    <div th:remove="all">	    
-	     This template displays the navigation of the site by looking up the category named "Nav"
-	     and building a list of the categories sub-categories. 	         	      	    
-	</div>	
 	<blc:categories resultVar="navCategories" parentCategory="Nav" maxResults="6" />
 	
-	<ul th:remove="all-but-first">
-		<li th:each="category,categoryStat : ${navCategories}">
-			<a href="#" class="home" th:href="@{${category.url}}" th:class="${categoryStat.index == 0}? 'home'" th:text="${category.name}">Home</a>
+	<ul>
+		<li th:each="category : ${navCategories}">
+			<a href="#" class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
 		</li>
-		<li><a href="#">Hot Sauces</a></li>
-		<li><a href="#">Merchandise</a></li>
-		<li><a href="#">Clearance</a></li>
-		<li><a href="#">New to Hot Sauce?</a></li>
-		<li><a href="#">FAQs</a></li>
 	</ul>
 </nav>

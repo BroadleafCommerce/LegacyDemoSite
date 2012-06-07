@@ -14,21 +14,16 @@
 	
 		<nav th:substituteby="partials/nav" />
 			
+		<blc:content contentType="Homepage Banner Ad" />	   
 		<div id="banners">
-		    <blc:content contentType="Homepage Banner Ad"/>	   
-			<a href="" th:href="@{${contentItem['targetUrl']}}"><img src="img/banners/buy-one-get-one-home-banner.jpg" th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>		
+			<a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>		
 		</div>
 		
-	    <blc:content contentType="Homepage Middle Promo Snippet"/>	
-		<div id="home_feature" th:utext="${contentItem['htmlContent']}">
-	        <h2>HOT SAUCE AFICIONADO?</h2>
-			Click here to join our Heat Clinic Frequent Care Program. The place to get all the deals on burn treatment.	    	
-		</div>
+	    <blc:content contentType="Homepage Middle Promo Snippet" />	
+		<div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
 		
-		<blc:content contentType="Homepage Featured Products Title"/>    
-		<div class="title_bar" th:text="${contentItem['messageText']}">	    
-			The Heat Clinic's Top Selling Sauces
-		</div>
+		<blc:content contentType="Homepage Featured Products Title" />    
+		<div class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
 		<ul id="products" class="group">
 			<li>
