@@ -31,6 +31,16 @@
             <sec:filter-chain pattern="/api/**" 
                 filters="blRequestWrapperFilter,
                     blRestCustomerStateFilter"/>
+			<sec:filter-chain pattern="/**"
+				filters="
+                	blSecurityContextPersistenceFilterWithASCTrue,
+                	blLogoutFilter,
+                	blAuthenticationProcessingFilter,
+                	blRequestWrapperFilter,
+                	blRememberMeAuthenticationFilter,
+                	blCustomerStateFilter,
+                	blExceptionTranslationFilter,
+                	blFilterSecurityInterceptor" />
 		</sec:filter-chain-map>
 	</bean>
 
