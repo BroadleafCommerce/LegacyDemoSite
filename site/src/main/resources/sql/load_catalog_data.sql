@@ -134,44 +134,44 @@ INSERT INTO BLC_CATEGORY_PRODUCT_XREF (PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) V
 -- Load Catalog - Step 4:  Media Items used by products
 -- ========================================================
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (101,'/img/sauces/Armageddon-The-Hot-Sauce-To-End-All-Bottle.jpg','Armageddon The Hot Sauce To End All Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (102,'/img/sauces/Armageddon-The-Hot-Sauce-To-End-All-Close.jpg','Armageddon The Hot Sauce To End All Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (201,'/img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Bottle.jpg','Blazin Saddle XXX Hot Habanero Pepper Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (202,'/img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Close.jpg','Blazin Saddle XXX Hot Habanero Pepper Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (301,'/img/sauces/Bull-Snort-Cowboy-Cayenne-Pepper-Hot-Sauce-Bottle.jpg','Bull Snort Cowboy Cayenne Pepper Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (302,'/img/sauces/Bull-Snort-Cowboy-Cayenne-Pepper-Hot-Sauce-Close.jpg','Bull Snort Cowboy Cayenne Pepper Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (401,'/img/sauces/Bull-Snort-Smokin-Toncils-Hot-Sauce-Bottle.jpg','Bull Snort Smokin Toncils Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (402,'/img/sauces/Bull-Snort-Smokin-Toncils-Hot-Sauce-Close.jpg','Bull Snort Smokin Toncils Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (501,'/img/sauces/Cafe-Louisiane-Sweet-Cajun-Blackening-Sauce-Bottle.jpg','Cafe Louisiane Sweet Cajun Blackening Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (502,'/img/sauces/Cafe-Louisiane-Sweet-Cajun-Blackening-Sauce-Close.jpg','Cafe Louisiane Sweet Cajun Blackening Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (601,'/img/sauces/Cool-Cayenne-Pepper-Hot-Sauce-Bottle.jpg','Cool Cayenne Pepper Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (602,'/img/sauces/Cool-Cayenne-Pepper-Hot-Sauce-Close.jpg','Cool Cayenne Pepper Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (701,'/img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Bottle.jpg','Day of the Dead Chipotle Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (702,'/img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Close.jpg','Day of the Dead Chipotle Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (801,'/img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Bottle.jpg','Day of the Dead Habanero Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (802,'/img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Close.jpg','Day of the Dead Habanero Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (901,'/img/sauces/Day-of-the-Dead-Scotch-Bonnet-Hot-Sauce-Bottle.jpg','Day of the Dead Scotch Bonnet Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (902,'/img/sauces/Day-of-the-Dead-Scotch-Bonnet-Hot-Sauce-Close.jpg','Day of the Dead Scotch Bonnet Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (101,'/img/sauces/Sudden-Death-Sauce-Bottle.jpg','Sudden Death Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (102,'/img/sauces/Sudden-Death-Sauce-Close.jpg','Sudden Death Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (201,'/img/sauces/Sweet-Death-Sauce-Bottle.jpg','Sweet Death Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (202,'/img/sauces/Sweet-Death-Sauce-Close.jpg','Sweet Death Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (301,'/img/sauces/Hoppin-Hot-Sauce-Bottle.jpg','Hoppin Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (302,'/img/sauces/Hoppin-Hot-Sauce-Close.jpg','Hoppin Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (401,'/img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Bottle.jpg','Day of the Dead Chipotle Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (402,'/img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Close.jpg','Day of the Dead Chipotle Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (501,'/img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Bottle.jpg','Day of the Dead Habanero Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (502,'/img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Close.jpg','Day of the Dead Habanero Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (601,'/img/sauces/Day-of-the-Dead-Scotch-Bonnet-Hot-Sauce-Bottle.jpg','Day of the Dead Scotch Bonnet Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (602,'/img/sauces/Day-of-the-Dead-Scotch-Bonnet-Hot-Sauce-Close.jpg','Day of the Dead Scotch Bonnet Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (701,'/img/sauces/Green-Ghost-Bottle.jpg','Green Ghost Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (702,'/img/sauces/Green-Ghost-Close.jpg','Green Ghost Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (801,'/img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Bottle.jpg','Blazin Saddle XXX Hot Habanero Pepper Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (802,'/img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Close.jpg','Blazin Saddle XXX Hot Habanero Pepper Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (901,'/img/sauces/Armageddon-The-Hot-Sauce-To-End-All-Bottle.jpg','Armageddon The Hot Sauce To End All Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (902,'/img/sauces/Armageddon-The-Hot-Sauce-To-End-All-Close.jpg','Armageddon The Hot Sauce To End All Close-up','alt1');
 INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1001,'/img/sauces/Dr.-Chilemeisters-Insane-Hot-Sauce-Bottle.jpg','Dr. Chilemeisters Insane Hot Sauce Bottle','primary');
 INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1002,'/img/sauces/Dr.-Chilemeisters-Insane-Hot-Sauce-Close.jpg','Dr. Chilemeisters Insane Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1101,'/img/sauces/Green-Ghost-Bottle.jpg','Green Ghost Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1102,'/img/sauces/Green-Ghost-Close.jpg','Green Ghost Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1201,'/img/sauces/Hoppin-Hot-Sauce-Bottle.jpg','Hoppin Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1202,'/img/sauces/Hoppin-Hot-Sauce-Close.jpg','Hoppin Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1301,'/img/sauces/Hutin-Jalepeno-Hot-Sauce-Bottle.jpg','Hutin Jalepeno Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1302,'/img/sauces/Hutin-Jalepeno-Hot-Sauce-Close.jpg','Hutin Jalepeno Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1401,'/img/sauces/Insanity-Sauce-Bottle.jpg','Insanity Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1402,'/img/sauces/Insanity-Sauce-Close.jpg','Insanity Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1101,'/img/sauces/Bull-Snort-Cowboy-Cayenne-Pepper-Hot-Sauce-Bottle.jpg','Bull Snort Cowboy Cayenne Pepper Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1102,'/img/sauces/Bull-Snort-Cowboy-Cayenne-Pepper-Hot-Sauce-Close.jpg','Bull Snort Cowboy Cayenne Pepper Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1201,'/img/sauces/Cafe-Louisiane-Sweet-Cajun-Blackening-Sauce-Bottle.jpg','Cafe Louisiane Sweet Cajun Blackening Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1202,'/img/sauces/Cafe-Louisiane-Sweet-Cajun-Blackening-Sauce-Close.jpg','Cafe Louisiane Sweet Cajun Blackening Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1301,'/img/sauces/Bull-Snort-Smokin-Toncils-Hot-Sauce-Bottle.jpg','Bull Snort Smokin Toncils Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1302,'/img/sauces/Bull-Snort-Smokin-Toncils-Hot-Sauce-Close.jpg','Bull Snort Smokin Toncils Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1401,'/img/sauces/Cool-Cayenne-Pepper-Hot-Sauce-Bottle.jpg','Cool Cayenne Pepper Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1402,'/img/sauces/Cool-Cayenne-Pepper-Hot-Sauce-Close.jpg','Cool Cayenne Pepper Hot Sauce Close-up','alt1');
 INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1501,'/img/sauces/Roasted-Garlic-Hot-Sauce-Bottle.jpg','Roasted Garlic Hot Sauce Bottle','primary');
 INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1502,'/img/sauces/Roasted-Garlic-Hot-Sauce-Close.jpg','Roasted Garlic Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1601,'/img/sauces/Roasted-Red-Pepper-and-Chipotle-Hot-Sauce-Bottle.jpg','Roasted Red Pepper and Chipotle Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1602,'/img/sauces/Roasted-Red-Pepper-and-Chipotle-Hot-Sauce-Close.jpg','Roasted Red Pepper and Chipotle Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1701,'/img/sauces/Scotch-Bonnet-Hot-Sauce-Bottle.jpg','Scotch Bonnet Hot Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1702,'/img/sauces/Scotch-Bonnet-Hot-Sauce-Close.jpg','Scotch Bonnet Hot Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1801,'/img/sauces/Sudden-Death-Sauce-Bottle.jpg','Sudden Death Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1802,'/img/sauces/Sudden-Death-Sauce-Close.jpg','Sudden Death Sauce Close-up','alt1');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1901,'/img/sauces/Sweet-Death-Sauce-Bottle.jpg','Sweet Death Sauce Bottle','primary');
-INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1902,'/img/sauces/Sweet-Death-Sauce-Close.jpg','Sweet Death Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1601,'/img/sauces/Scotch-Bonnet-Hot-Sauce-Bottle.jpg','Scotch Bonnet Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1602,'/img/sauces/Scotch-Bonnet-Hot-Sauce-Close.jpg','Scotch Bonnet Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1701,'/img/sauces/Insanity-Sauce-Bottle.jpg','Insanity Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1702,'/img/sauces/Insanity-Sauce-Close.jpg','Insanity Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1801,'/img/sauces/Hutin-Jalepeno-Hot-Sauce-Bottle.jpg','Hutin Jalepeno Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1802,'/img/sauces/Hutin-Jalepeno-Hot-Sauce-Close.jpg','Hutin Jalepeno Hot Sauce Close-up','alt1');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1901,'/img/sauces/Roasted-Red-Pepper-and-Chipotle-Hot-Sauce-Bottle.jpg','Roasted Red Pepper and Chipotle Hot Sauce Bottle','primary');
+INSERT INTO BLC_MEDIA (MEDIA_ID, URL, NAME, LABEL) VALUES (1902,'/img/sauces/Roasted-Red-Pepper-and-Chipotle-Hot-Sauce-Close.jpg','Roasted Red Pepper and Chipotle Hot Sauce Close-up','alt1');
 
 ------------------------------------------------------------------------------------------------------------------
 -- Load Catalog - Step 5:  Mapping for product to media
