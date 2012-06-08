@@ -1591,7 +1591,7 @@ and (max-device-width : 480px) {
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../img/fancybox_sprite.png');
+	background-image: url('../img/fancybox-sprite.png');
 }
 
 #fancybox-loading {

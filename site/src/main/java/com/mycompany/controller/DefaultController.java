@@ -58,7 +58,12 @@ public class DefaultController {
 		return "category";
 	}
 	
-	@RequestMapping("/hot_sauces/{productId}")
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
+		return "modals/login";
+	}
+	
+	@RequestMapping("/hot-sauces/{productId}")
 	public String productDetail(HttpServletRequest request, HttpServletResponse response, Model model,
 			@PathVariable Long productId) throws PricingException {
 		Product product = catalogService.findProductById(productId);
