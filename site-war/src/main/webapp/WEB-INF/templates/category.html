@@ -32,13 +32,15 @@
 					<div class="image">
 						<a href="sauce.html">
 						<img th:src="@{*{productMedia['primary'].url}}" alt="Sauce Image" />
-						<div th:text="*{defaultSku.retailPrice}" class="price" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
-						<div th:text="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" class="price" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+						<div class="price">
+							<div th:text="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+							<div th:text="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+						</div>
 						</a>
 					</div>
 					<div class="content">
 						<div class="title" th:text="${product.name}">Day of the Dead Chipotle Hot Sauce</div>
-						   <p th:text="${product.longDescription}">Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+						<p th:text="${product.longDescription}">Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 					</div>
 					<div class="in_cart"><a href="cart.html">In Cart!</a></div>
 				</li>

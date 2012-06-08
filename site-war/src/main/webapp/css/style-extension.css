@@ -4,10 +4,10 @@ nav ul li a.active {
 
 #products li .image .has-sale {
 	text-decoration: line-through;
-	bottom: 41px;
-	padding: 10px 20px 0;
 }
 
 #products li .image .sale {
 	color: #E40037;
+	bottom: 41px;
+	padding: 0 0 5px 0;
 }
