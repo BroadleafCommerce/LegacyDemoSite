@@ -22,7 +22,7 @@
           class="org.broadleafcommerce.profile.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
             <list>
-                <value>classpath*:/META-INF/persistence-mycompany-admin.xml</value>
+                <value>classpath*:/META-INF/persistence-admin.xml</value>
             </list>
         </property>
         <property name="dataSources">
