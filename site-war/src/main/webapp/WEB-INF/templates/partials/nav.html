@@ -3,8 +3,8 @@
      and building a list of the categories sub-categories. 	         	      	    
 -->
 
-<nav>
-	<blc:categories resultVar="navCategories" parentCategory="Nav" maxResults="6" />
+<nav>	
+	<blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="6" />
 	
 	<ul>
 		<li th:each="category : ${navCategories}">

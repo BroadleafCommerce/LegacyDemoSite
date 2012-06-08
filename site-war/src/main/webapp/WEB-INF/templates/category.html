@@ -31,14 +31,14 @@
 					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
 					<div class="image">
 						<a href="sauce.html">
-						<img src="img/sauces/Day-of-the-Dead-Chipotle-Hot-Sauce-Bottle.jpg" alt="Sauce Image" />
-						<div th:text="*{sku.retailPrice}" class="price" th:classappend="*{sku.onSale}? 'has-sale'"></div>
-						<div th:text="*{sku.salePrice}" th:if="*{sku.onSale}" class="price" th:classappend="*{sku.onSale}? 'sale'"></div>
+						<img th:src="@{*{productMedia['primary'].url}}" alt="Sauce Image" />
+						<div th:text="*{defaultSku.retailPrice}" class="price" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+						<div th:text="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" class="price" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
 						</a>
 					</div>
 					<div class="content">
 						<div class="title" th:text="${product.name}">Day of the Dead Chipotle Hot Sauce</div>
-						Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+						   <p th:text="${product.longDescription}">Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 					</div>
 					<div class="in_cart"><a href="cart.html">In Cart!</a></div>
 				</li>
