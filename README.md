@@ -4,6 +4,10 @@ For now, this requires the develop branch of the BroadleafCommerce project.
 
 > NOTE: Do not expect that the existing controllers will work. They almost certainly will not.
 
+> To prevent changes to `build.properties` from being marked as actual changes, run the following command:
+
+    git update-index --assume-unchanged build.properties
+
 ### General Strategy
 
 For now, the homepage is being rendered by the `DefaultController` in this project. When we ship, we will not have any controllers in this project; they will all be in the actual framework. However, it is easy to test things in Thymeleaf quickly for now. The project uses [Thymeleaf](http://www.thymeleaf.org/), and it's worth going through their [introductory documentation](http://www.thymeleaf.org/doc/Tutorial%20-%20Using%20Thymeleaf%2020120517.pdf) and their [Spring documentation](http://www.thymeleaf.org/doc/Tutorial%20-%20Thymeleaf%20+%20Spring%203%2020120517.pdf) before trying to dig in.
