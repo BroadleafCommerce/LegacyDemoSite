@@ -30,17 +30,17 @@
 				<li th:each="product : ${products}" th:object="${product}">
 					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
 					<div class="image">
-						<a href="sauce.html">
+						<a th:href="@{'/hot_sauces/'+*{id}}">
 						<img th:src="@{*{productMedia['primary'].url}}" alt="Sauce Image" />
 						<div class="price">
-							<div th:text="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-							<div th:text="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+							<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+							<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 						</div>
 						</a>
 					</div>
 					<div class="content">
-						<div class="title" th:text="${product.name}"></div>
-						<p th:text="${product.longDescription}"></p>
+						<div class="title" th:text="*{name}"></div>
+						<p th:text="*{longDescription}"></p>
 					</div>
 					
 					<div th:switch="${cart.containsSku(product.defaultSku)}" th:remove="tag">

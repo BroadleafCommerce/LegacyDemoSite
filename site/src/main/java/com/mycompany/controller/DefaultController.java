@@ -17,6 +17,7 @@ import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -47,15 +48,36 @@ public class DefaultController {
 		OrderItemRequestDTO itemRequest = new OrderItemRequestDTO();
 		
 		itemRequest.setQuantity(1);
-		itemRequest.setSkuId(sku.getId());
+		itemRequest.setSkuId(sku.getId());   
 		
 		cartService.addItemToOrder(cart.getId(), itemRequest, false);
-		
 		
 		model.addAttribute("products", products);
 		model.addAttribute("cart", cart);
 		
 		return "category";
 	}
+	
+	@RequestMapping("/hot_sauces/{productId}")
+	public String productDetail(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable Long productId) throws PricingException {
+		Product product = catalogService.findProductById(productId);
+		
+		Order cart = cartService.createNewCartForCustomer(customerState.getCustomer(request));
+		
+		if (productId % 2 == 0) {
+			OrderItemRequestDTO itemRequest = new OrderItemRequestDTO();
+			itemRequest.setQuantity(1);
+			itemRequest.setProductId(product.getId());
+			
+			cartService.addItemToOrder(cart.getId(), itemRequest, false);
+		}
+		
+		model.addAttribute("product", product);
+		model.addAttribute("cart", cart);
+		
+		return "product";
+	}
+	
 
 }
