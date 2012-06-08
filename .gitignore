@@ -9,5 +9,5 @@ test-output
 .metadata
 *.ipr
 bin/
-site-war/data/
+site/data/
 .svn

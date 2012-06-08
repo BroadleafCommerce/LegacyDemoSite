@@ -97,6 +97,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
                 classpath:/applicationContext-servlet-admin.xml
+            	classpath:/applicationContext-servlet-open-admin.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 classpath:/applicationContext-servlet-cms-contentCreator.xml
                 /WEB-INF/applicationContext-servlet-admin.xml

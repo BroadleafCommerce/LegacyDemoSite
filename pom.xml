@@ -399,9 +399,7 @@
 	</dependencyManagement>
 	<modules>
 		<module>admin</module>
-		<module>admin-war</module>
 		<module>core</module>
 		<module>site</module>
-		<module>site-war</module>
 	</modules>
 </project>
