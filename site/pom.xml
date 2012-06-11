@@ -73,10 +73,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-usps</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-open-admin-platform</artifactId>
 		</dependency>
 		<dependency>

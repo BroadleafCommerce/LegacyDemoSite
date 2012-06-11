@@ -128,10 +128,6 @@
 			<classifier>sources</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-usps</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.mycompany</groupId>
 			<artifactId>admin</artifactId>
 		</dependency>
