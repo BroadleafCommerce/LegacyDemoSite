@@ -21,10 +21,6 @@
 
 	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map request-matcher="ant">
-			<!--<sec:filter-chain pattern="/wishlist/**" filters="httpSessionContextIntegrationFilter, 
-				subaccountLogoutFilter, subaccountAuthenticationProcessingFilter, securityContextHolderAwareRequestFilter, 
-				subaccountExceptionTranslationFilter, sessionFixationProtectionFilter, subaccountFilterSecurityInterceptor" 
-				/> -->
 			<sec:filter-chain pattern="/css/**" filters="none" />
 			<sec:filter-chain pattern="/images/**" filters="none" />
 			<sec:filter-chain pattern="/js/**" filters="none" />

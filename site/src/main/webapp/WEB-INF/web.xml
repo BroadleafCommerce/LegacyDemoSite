@@ -15,6 +15,7 @@
 		<param-name>patchConfigLocation</param-name>
 		<param-value>
 			classpath:/bl-open-admin-contentClient-applicationContext.xml
+			classpath:/bl-open-admin-contentCreator-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             /WEB-INF/applicationContext-security.xml
             /WEB-INF/applicationContext.xml
