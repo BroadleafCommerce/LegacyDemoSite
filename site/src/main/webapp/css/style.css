@@ -1609,7 +1609,7 @@ and (max-device-width : 480px) {
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('../img/fancybox_loading.gif') center center no-repeat;
+	background: url('../img/fancybox-loading.gif') center center no-repeat;
 }
 
 .fancybox-close {

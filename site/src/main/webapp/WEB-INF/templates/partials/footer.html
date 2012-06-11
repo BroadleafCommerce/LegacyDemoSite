@@ -10,6 +10,18 @@
 		<a href="">Customer Service</a>
 	</div>
 	
+	<div th:remove="all">
+		<!--
+			Include this template at the bottom of a page (automatically included by partials/footer.html
+			to gain access to jQuery and other plugins used throughout the site.
+			
+			We will attempt to load the jQuery library from Google's CDN, but fallback on our own provided
+			jQuery if necessary.
+			
+			Please do not inline any scripts in the demo other than this jQuery loading
+		-->
+	</div>
+	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script>
 		//<![CDATA[
@@ -19,5 +31,5 @@
 	
 	<script th:src="@{/js/plugins.js}"></script>
 	<script th:src="@{/js/script.js}"></script>
-
+	
 </footer>

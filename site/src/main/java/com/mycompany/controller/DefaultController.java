@@ -1,11 +1,5 @@
 package com.mycompany.controller;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.broadleafcommerce.core.catalog.domain.Category;
 import org.broadleafcommerce.core.catalog.domain.Product;
 import org.broadleafcommerce.core.catalog.domain.Sku;
@@ -19,6 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.List;
 
 @Controller
 public class DefaultController {
@@ -58,9 +58,14 @@ public class DefaultController {
 		return "category";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping({"/login", "/register"})
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
 		return "modals/login";
+	}
+	
+	@RequestMapping("/cart")
+	public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
+		return "modals/cart";
 	}
 	
 	@RequestMapping("/hot-sauces/{productId}")

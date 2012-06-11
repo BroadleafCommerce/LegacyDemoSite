@@ -2,16 +2,16 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title th:text="${pageTitle}">Broadleaf Demo Store - The Heat Clinic</title>
+	<title th:utext="${pageTitle}">Broadleaf Demo Store - The Heat Clinic</title>
 	<meta name="description" content="Broadleaf Demo Store" />
 	<meta name="author" content="Broadleaf Commerce" />
 
 	<meta name="viewport" content="width=device-width" />
 	
 	<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="../../css/style.css" th:href="@{/css/style.css}" />
-	<link rel="stylesheet" href="../../css/style-extension.css" th:href="@{/css/style-extension.css}" />
-	<link rel="stylesheet" href="" th:href="@{${additionalCss}}" th:unless="${#strings.isEmpty(additionalCss)}" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/style-extension.css}" />
+	<link rel="stylesheet" th:unless="${#strings.isEmpty(additionalCss)}" />
 
 	<script src="../../js/libs/modernizr-2.5.3.min.js" th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
 </head>

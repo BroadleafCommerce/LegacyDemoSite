@@ -1,81 +1,46 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<div id="account">
 
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>Broadleaf Demo Store - The Heat Clinic</title>
-	<meta name="description" content="Broadleaf Demo Store" />
-	<meta name="author" content="Broadleaf Commerce" />
-
-	<meta name="viewport" content="width=device-width" />
-	
-	<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" th:href="@{/css/modal.css}" />
-
-	<script th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
-</head>
-
-<body>
-	<div id="account">
-	
-		<div id="register">
-			<h3>Register for an Account</h3>
-			<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>
-			<form action="" method="post">
-				<div class="form50">
-					<label for="name">Name</label>
-					<input type="text" name="name" class="field50" />
-				</div>
-				<div class="form50">
-					<label for="email">Email</label>
-					<input type="text" name="email" class="field50" />
-				</div>
-				<div class="form50">
-					<label for="password">Password</label>
-					<input type="password" name="password" class="field50" />
-				</div>
-				<div class="form50">
-					<label for="password_confirm">Confirm Password</label>
-					<input type="password" name="password_confirm" class="field50" />
-				</div>
-				<div class="login_register"><a href="" target="_top">Register</a></div>
-			</form>
-		</div>
-		
-		<div id="login">
-			<h3>Login to Your Account</h3>
-			<p>Already a member? Sign in using the form below.</p>
-			<form action="" method="post">
-				<div class="form50">
-					<label for="email">Email</label>
-					<input type="text" name="email" class="field50" />
-				</div>
-				<div class="form50">
-					<label for="password">Password</label>
-					<input type="password" name="password" class="field50" />
-				</div>
-				<div class="form50">
-					<a href="">Forgot password?</a>
-				</div>
-				<div class="login_register"><a href="" target="_top">Login</a></div>
-			</form>
-		</div>
-	
+	<div id="register">
+		<h3>Register for an Account</h3>
+		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>
+		<form action="" method="post">
+			<div class="form50">
+				<label for="name">Name</label>
+				<input type="text" name="name" class="field50" />
+			</div>
+			<div class="form50">
+				<label for="email">Email</label>
+				<input type="text" name="email" class="field50" />
+			</div>
+			<div class="form50">
+				<label for="password">Password</label>
+				<input type="password" name="password" class="field50" />
+			</div>
+			<div class="form50">
+				<label for="password_confirm">Confirm Password</label>
+				<input type="password" name="password_confirm" class="field50" />
+			</div>
+			<div class="login_register"><a href="" target="_top">Register</a></div>
+		</form>
 	</div>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>
-		//<![CDATA[
-		window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')
-		//]]>
-	</script>
 	
-	<script th:src="@{/js/plugins.js}"></script>
-	<script th:src="@{/js/script.js}"></script>
-</body>
-</html>
+	<div id="login">
+		<h3>Login to Your Account</h3>
+		<p>Already a member? Sign in using the form below.</p>
+		<form action="" method="post">
+			<div class="form50">
+				<label for="email">Email</label>
+				<input type="text" name="email" class="field50" />
+			</div>
+			<div class="form50">
+				<label for="password">Password</label>
+				<input type="password" name="password" class="field50" />
+			</div>
+			<div class="form50">
+				<a href="">Forgot password?</a>
+			</div>
+			<div class="login_register"><a href="" target="_top">Login</a></div>
+		</form>
+	</div>
+	
+</div>
