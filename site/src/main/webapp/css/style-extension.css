@@ -1,79 +1,3 @@
-/* ********************************** *
- * Custom extensions to default style *
- * ********************************** */
- 
-/* GLOBAL */
-nav ul li a.active {
-	background-color: #E7E3E2;
-}
-
-/* CATEGORY BROWSING / SEARCH RESULTS */
-#products li .image .has-sale {
-	text-decoration: line-through;
-}
-
-#products li .image .sale {
-	color: #E40037;
-	bottom: 41px;
-	padding: 0 0 5px 0;
-}
-
-/* PRODUCT DETAIL */
-#product_content #price {
-	font: 28px/18px 'ProximaNovaBold', Helvetica, sans-serif;
-	color: #aea6a3;
-}
-
-#product_content #price .has-sale {
-	text-decoration: line-through;
-}
-
-#product_content #price .sale {
-	color: #E40037;
-	margin-bottom: 10px;
-}
-
-#product_content .in_cart {
-	display: block;
-}
-
-#product_content .in_cart a:link, #product_content .in_cart a:visited {
-	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-	margin: 10px auto;
-	padding: 15px 35px;
-	background-color: #BBAFAE;
-	color: white;
-	text-transform: uppercase;
-	text-decoration: none;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	color: white;
-	text-decoration: none;
-	display: inline-table;
-}
-
-#product_content .in_cart a:hover {
-	background-color: #9B8A87;
-	-webkit-transition: background-color 0.2s ease-in;  
-	-moz-transition: background-color 0.2s ease-in;  
-	-o-transition: background-color 0.2s ease-in;  
-	transition: background-color 0.2s ease-in;
-}
-	
-#product_thumbs {
-	width: 420px !important;
-}
-
-#product_thumbs li {
-	width: 85px !important;
-	height: 85px !important;
-}
-
-.fancybox-opened {
-	z-index: 10000 !important;
-}
-
 /* ************************ *
  * Default modal css styles *
  * ************************ */
@@ -229,9 +153,98 @@ nav ul li a.active {
 	transition: background-color 0.2s ease-in;
 }
 
+/* ********************************** *
+ * Custom extensions to default style *
+ * ********************************** */
+ 
+/* GLOBAL */
+nav ul li a.active {
+	background-color: #E7E3E2;
+}
+
+/* CATEGORY BROWSING / SEARCH RESULTS */
+#products li .image .has-sale {
+	text-decoration: line-through;
+}
+
+#products li .image .sale {
+	color: #E40037;
+	bottom: 41px;
+	padding: 0 0 5px 0;
+}
+
+/* PRODUCT DETAIL */
+#product_content #price {
+	font: 28px/18px 'ProximaNovaBold', Helvetica, sans-serif;
+	color: #aea6a3;
+}
+
+#product_content #price .has-sale {
+	text-decoration: line-through;
+}
+
+#product_content #price .sale {
+	color: #E40037;
+	margin-bottom: 10px;
+}
+
+#product_content .in_cart {
+	display: block;
+}
+
+#product_content .in_cart a:link, #product_content .in_cart a:visited {
+	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	margin: 10px auto;
+	padding: 15px 35px;
+	background-color: #BBAFAE;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: white;
+	text-decoration: none;
+	display: inline-table;
+}
+
+#product_content .in_cart a:hover {
+	background-color: #9B8A87;
+	-webkit-transition: background-color 0.2s ease-in;  
+	-moz-transition: background-color 0.2s ease-in;  
+	-o-transition: background-color 0.2s ease-in;  
+	transition: background-color 0.2s ease-in;
+}
+	
+#product_thumbs {
+	width: 420px !important;
+}
+
+#product_thumbs li {
+	width: 85px !important;
+	height: 85px !important;
+}
+
+.fancybox-opened {
+	z-index: 10000 !important;
+}
+
+.fancybox-inner {
+	overflow-x: hidden !important;
+}
+
+
 /* ************************************* *
  * Custom extensions to modal css styles *
  * ************************************* */
+
+#cart {
+	width: 900px !important;
+}
+
+#cart_promo {
+	width: 880px !important;
+}
 
 #cart_promo #addPromo {
 	border: none;
