@@ -31,6 +31,15 @@ public class DefaultController {
     
     @Resource(name="blCustomerState")
     protected CustomerState customerState;
+    
+    protected String ajaxRender(String modalPath, HttpServletRequest request, Model model) {
+    	if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+    		return modalPath;
+    	} else {
+    		model.addAttribute("modalPath", modalPath);
+    		return "modalContainer";
+    	}
+    }
 
 	@RequestMapping("/")
 	public String home(HttpServletRequest request, HttpServletResponse response) {
@@ -60,12 +69,12 @@ public class DefaultController {
 	
 	@RequestMapping({"/login", "/register"})
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
-		return "modals/login";
+		return ajaxRender("modals/login", request, model);
 	}
 	
 	@RequestMapping("/cart")
 	public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
-		return "modals/cart";
+		return ajaxRender("modals/cart", request, model);
 	}
 	
 	@RequestMapping("/hot-sauces/{productId}")
