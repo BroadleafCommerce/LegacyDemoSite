@@ -57,3 +57,11 @@ nav ul li a.active {
 	transition: background-color 0.2s ease-in;
 }
 	
+#product_thumbs {
+	width: 420px !important;
+}
+
+#product_thumbs li {
+	width: 85px !important;
+	height: 85px !important;
+}

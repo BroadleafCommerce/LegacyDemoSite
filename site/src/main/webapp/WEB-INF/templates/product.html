@@ -41,8 +41,18 @@
 			</div>
 			
 			<ul id="product_thumbs">
-				<li><img th:src="@{*{productMedia['primary'].url}}" alt="Bottle Closeup" /></li>
-				<li><img th:src="@{*{productMedia['alt1'].url}}" alt="Bottle on Fence" /></li>
+				<li>
+					<a th:href="@{*{productMedia['primary'].url}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{*{productMedia['primary'].url}} + ${''''}">
+						<img th:src="@{*{productMedia['primary'].url}}" alt="Bottle Closeup" />
+					</a>
+				</li>
+				
+				<li th:each="media : *{productMedia}" th:unless="${media.key == 'primary'}">
+					<a th:href="@{${media.value.url}}" class="cloud-zoom-gallery" 
+						rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{${media.value.url}} + ${''''}">
+						<img th:src="@{${media.value.url}}" />
+					</a>
+				</li>
 			</ul>
 				
 		</section>
