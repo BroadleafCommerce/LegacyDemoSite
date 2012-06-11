@@ -239,11 +239,7 @@ nav ul li a.active {
  * ************************************* */
 
 #cart {
-	width: 900px !important;
-}
-
-#cart_promo {
-	width: 880px !important;
+	margin: 0px !important;
 }
 
 #cart_promo #addPromo {
