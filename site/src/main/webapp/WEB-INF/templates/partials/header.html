@@ -5,7 +5,13 @@
 			&nbsp;|&nbsp; 
 			<a class="account fancybox.ajax" th:href="@{/register}">Register</a> 
 			&nbsp;|&nbsp; 
-			<a class="various fancybox.ajax" th:href="@{/cart}"><img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />&nbsp; 1 Item</a>
+			<a class="various fancybox.ajax" th:href="@{/cart}">
+				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
+				&nbsp; 
+				<span id="cartItemsCount" th:text="${cart.itemCount}" />
+				<span th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
+			</a>
+				
 		</div>
 		
 		<div id="languages">

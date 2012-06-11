@@ -7,7 +7,7 @@
 <blc:head pageTitle="${'Broadleaf Demo - Heat Clinic - ' + product.name}" />
 
 <body>
-
+	<div id="notification_bar"></div>
 	<header th:substituteby="partials/header" />
 	
 	<div id="content" class="width_setter group" role="main">
@@ -25,8 +25,8 @@
 				</div>
 				<div th:text="*{longDescription}" id="description"></div>
 				<div th:switch="${cart.containsSku(product.defaultSku)}" th:remove="tag">
-					<div th:case="${true}" class="in_cart"><a href="cart.html">In Cart!</a></div>
-					<div th:case="*" class="add_to_cart"><a href="cart.html">Buy Now</a></div>
+					<div th:case="${true}" class="in_cart"><a th:href="@{/cart}">In Cart!</a></div>
+					<div th:case="*" class="add_to_cart"><a th:href="@{/addToCart(productId=*{id})}">Buy Now</a></div>
 				</div>
 				<p>
 				Share this Sauce:<br />
