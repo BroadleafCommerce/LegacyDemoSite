@@ -173,6 +173,14 @@ nav ul li a.active {
 	padding: 0 0 5px 0;
 }
 
+#notification_bar {
+	position: fixed;
+	z-index: 99999;
+	height: 24px;
+	line-height: 24px !important;
+	border-bottom: 3px solid #E40037;
+}
+
 /* PRODUCT DETAIL */
 #product_content #price {
 	font: 28px/18px 'ProximaNovaBold', Helvetica, sans-serif;
