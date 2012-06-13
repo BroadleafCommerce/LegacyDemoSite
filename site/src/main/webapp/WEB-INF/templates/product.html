@@ -18,19 +18,24 @@
 		
 			<div id="product_content">
 				<h2 th:text="*{name}"></h2>
+				
 				<div id="maker" th:text="*{manufacturer}"></div>
+				
 				<div id="price">
 					<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
+				
 				<div th:text="*{longDescription}" id="description"></div>
-				<div th:switch="${cart.containsSku(product.defaultSku)}" th:remove="tag">
-					<div th:case="${true}" class="in_cart"><a class="fancycart fancybox.ajax" th:href="@{/cart}">In Cart!</a></div>
-					<div th:case="*" class="add_to_cart"><a th:href="@{/addToCart(productId=*{id})}">Buy Now</a></div>
+				
+				<div th:id="${'productActions' + product.id}">
+					<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax" th:href="@{/cart}">In Cart!</a></div>
+					<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? ' hidden'"><a th:href="@{/addToCart(productId=*{id})}">Buy Now</a></div>
 				</div>
+					
 				<p>
-				Share this Sauce:<br />
-				<img th:src="@{/img/sharethis.png}" alt="Share this Sauce" />
+					Share this Sauce:<br />
+					<img th:src="@{/img/sharethis.png}" alt="Share this Sauce" />
 				</p>
 			</div>
 		

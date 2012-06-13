@@ -8,9 +8,10 @@
 			<a id="cartLink" class="fancycart fancybox.ajax" th:href="@{/cart}">
 				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
 				&nbsp; 
-				<span id="cartItemsCount" th:text="${cart.itemCount}" />
-				<span th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
+				<span id="headerCartItemsCount" th:text="${cart.itemCount}" />
+				<span id="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
 			</a>
+			<a href="/mycompany/clearcart">clear</a>
 				
 		</div>
 		

@@ -24,15 +24,15 @@
 	<!-- Scan for custom controllers -->
 	<context:component-scan base-package="com.mycompany" />
 	
-	<!-- Tell Spring to not try to map things in these directories to controllers -->
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/fonts/" mapping="/fonts/**" />
-	
 	<!-- Allow annotation driven controllers -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
- 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<mvc:annotation-driven/>
+	
+	<!-- Tell Spring to not try to map things in these directories to controllers -->
+	<!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
+	<mvc:resources order="-10" location="/img/" mapping="/img/**" />
+	<mvc:resources order="-10" location="/css/" mapping="/css/**" />
+	<mvc:resources order="-10" location="/js/" mapping="/js/**" />
+	<mvc:resources order="-10" location="/fonts/" mapping="/fonts/**" />
 	
 	<!-- Set up Broadleaf messaging -->
 	<bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />

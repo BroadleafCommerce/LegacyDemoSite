@@ -175,7 +175,7 @@ nav ul li a.active {
 
 #notification_bar {
 	position: fixed;
-	z-index: 99999;
+	z-index: 999;
 	height: 24px;
 	line-height: 24px !important;
 	border-bottom: 3px solid #E40037;
@@ -246,7 +246,7 @@ nav ul li a.active {
  * Custom extensions to modal css styles *
  * ************************************* */
 
-#cart {
+.cart_modal {
 	margin: 0px !important;
 }
 
