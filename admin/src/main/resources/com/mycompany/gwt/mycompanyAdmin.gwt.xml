@@ -14,5 +14,5 @@
 	<entry-point class="org.broadleafcommerce.openadmin.client.BLCLaunch" />
 	
 	<!-- Uncomment this line to compile only for Firefox. It will speed up compiliation times while developing -->
-	<set-property name="user.agent" value="gecko1_8" />
+    <!-- <set-property name="user.agent" value="gecko1_8" /> -->
 </module>
