@@ -334,6 +334,7 @@ nav {
 #banners {
 	width: 940px;
 	margin: 0 0 0 20px;
+	position: relative;
 }
 
 #home_feature {
@@ -1417,7 +1418,7 @@ and (max-device-width : 480px) {
 		
 			#featured_products li .add_to_cart a:link, #featured_products li .add_to_cart a:visited {
 				font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-				margin: 10px auto;
+				margin: 10px 0;
 				padding: 10px 20px;
 				background-color: #3D0001;
 				color: white;
@@ -1591,7 +1592,7 @@ and (max-device-width : 480px) {
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../img/fancybox-sprite.png');
+	background-image: url('../img/fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -1609,7 +1610,7 @@ and (max-device-width : 480px) {
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('../img/fancybox-loading.gif') center center no-repeat;
+	background: url('../img/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
