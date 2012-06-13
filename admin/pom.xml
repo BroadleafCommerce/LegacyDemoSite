@@ -12,7 +12,6 @@
 	<description>Web Module For Customized Broadleaf Commerce Admin</description>
 	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
@@ -92,12 +91,6 @@
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-admin-module</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.gwt</groupId>
-					<artifactId>gwt-user</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
@@ -129,15 +122,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mycompany</groupId>
-			<artifactId>admin</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>admin</artifactId>
-			<classifier>sources</classifier>
-		</dependency>
-		<dependency>
-			<groupId>com.mycompany</groupId>
 			<artifactId>core</artifactId>
 		</dependency>
 		<dependency>
@@ -158,4 +142,3 @@
 		</dependency>
 	</dependencies>
 </project>
-
