@@ -1,9 +1,9 @@
 <header>
 	<div id="header_content">
 		<div id="cart_info">
-			<a class="account fancybox.ajax" th:href="@{/login}">Login</a> 
+			<a class="account fancybox.ajax" th:href="@{/account/login}">Login</a> 
 			&nbsp;|&nbsp; 
-			<a class="account fancybox.ajax" th:href="@{/register}">Register</a> 
+			<a class="account fancybox.ajax" th:href="@{/account/register}">Register</a> 
 			&nbsp;|&nbsp; 
 			<a id="cartLink" class="fancycart fancybox.ajax" th:href="@{/cart}">
 				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
@@ -11,8 +11,6 @@
 				<span id="headerCartItemsCount" th:text="${cart.itemCount}" />
 				<span id="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
 			</a>
-			<a href="/mycompany/clearcart">clear</a>
-				
 		</div>
 		
 		<div id="languages">

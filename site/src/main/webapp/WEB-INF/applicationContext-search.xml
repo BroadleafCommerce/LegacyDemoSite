@@ -34,10 +34,6 @@
 	
 	<bean class="org.compass.spring.support.CompassContextBeanPostProcessor"/>
     
-	<bean id="compassSearchController" class="org.broadleafcommerce.core.web.controller.search.SearchController">
-		<property name="searchService" ref="blcSearchService"/>
-	</bean>
-	
 	<bean id="blcSearchService" class="org.broadleafcommerce.core.search.service.SearchServiceCompassImpl">
 		<property name="catalogService" ref="blCatalogService" />
 	    <property name="searchInterceptDao" ref="blSearchInterceptDao" />

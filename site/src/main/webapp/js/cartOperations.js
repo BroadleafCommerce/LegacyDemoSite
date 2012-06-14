@@ -28,10 +28,6 @@ $(function(){
 		$('#productActions' + productId).children('.in_cart').addClass('hidden');
 	}
 	
-	function showNotification(notification) {
-		$('#notification_bar').html(notification).slideToggle('slow').delay('3500').slideToggle('slow');
-	}
-	
 	$('body').delegate('a.fancycart', 'click', function() {
 		$.fancybox.open($.extend(fancyCartOptions, { href : $(this).attr('href') }));
 		return false;
@@ -40,18 +36,21 @@ $(function(){
 	$('body').delegate('.add_to_cart a', 'click', function() {
 		var link = this;
 		$.ajax(this.href, {
+			data: {
+				quantity: 1
+			},
 			statusCode: {
 				200: function(data) {
 					updateHeaderCartItemsCount(data.cartItemCount);
 					showInCartButton(data.productId);
-					showNotification("The item has been added to the cart!");
+					HC.showNotification(data.productName + "  has been added to the cart!");
 			    }, 
 			    500: function() {
 			    	// If there is an error adding to cart for any reason, the server will return
 			    	// a 500 INTERNAL SERVER ERROR response code
-					showNotification("Error adding :( Please try again");
+					HC.showNotification("Error adding :(");
 			    }
-			  }
+			}
 		});
 		return false;
 	});

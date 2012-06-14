@@ -14,15 +14,15 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
-	<!-- Use controllers defined by Broadleaf -->
+	<!-- Scan Broadleaf defined web utility classes -->
 	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
 	<context:component-scan base-package="org.broadleafcommerce.core.web"/>
 	
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
-	<!-- Scan for custom controllers -->
-	<context:component-scan base-package="com.mycompany" />
+	<!-- Scan for controllers -->
+	<context:component-scan base-package="com.mycompany.controller" />
 	
 	<!-- Allow annotation driven controllers -->
 	<mvc:annotation-driven/>
