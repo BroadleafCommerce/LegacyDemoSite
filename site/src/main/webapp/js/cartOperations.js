@@ -35,7 +35,7 @@ $(function(){
 	
 	$('body').delegate('.add_to_cart a', 'click', function() {
 		var link = this;
-		$.ajax(this.href, {
+		$.ajax($(link).attr('href'), {
 			data: {
 				quantity: 1
 			},
@@ -55,9 +55,34 @@ $(function(){
 		return false;
 	});
 	
+	$('body').delegate('input.updateQuantity', 'click', function() {
+		var link = this;
+		$.ajax($(link).attr('href'), {
+			data: {
+				newQuantity: $(link).siblings('.quantityInput').val()
+			},
+			statusCode: {
+				200: function(data) {
+					updateHeaderCartItemsCount(data.cartItemCount);
+					
+					// Update the cart to show its new state
+					$.get($('#cartLink').attr('href'), function(cartData) {
+						$('.fancybox-inner').html(cartData);
+					});
+			    }, 
+			    500: function() {
+			    	// If there is an error adding to cart for any reason, the server will return
+			    	// a 500 INTERNAL SERVER ERROR response code
+					HC.showNotification("Error changing quantity :(");
+			    }
+			}
+		});
+		return false;
+	});
+	
 	$('body').delegate('a.remove_from_cart', 'click', function() {
 		var link = this;
-		$.ajax(this.href, {
+		$.ajax($(link).attr('href'), {
 			statusCode: {
 				200: function(data) {
 					updateHeaderCartItemsCount(data.cartItemCount);
@@ -69,7 +94,7 @@ $(function(){
 					});
 			    }, 
 			    500: function() {
-			    	$('.fancybox-inner').html('An error happened :(');
+			    	$('.fancybox-inner').html('Error removing :(');
 			    }
 			  }
 		});

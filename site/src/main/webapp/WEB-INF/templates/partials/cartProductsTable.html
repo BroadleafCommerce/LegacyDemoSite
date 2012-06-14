@@ -9,13 +9,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}">
+		<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
 			<td><img th:src="@{*{product.productMedia['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
 			<td class="name" th:text="*{product.name}"></td>
 			<td align="center">
-				<input th:id="${'rows' + itemStat.index + '.orderItem.id'}" th:name="${'rows[' + itemStat.index + '].orderItem.id'}" type="hidden" th:value="*{product.id}"/>
+				<input class="orderItemId" th:id="${'rows' + itemStat.index + '.orderItem.id'}" th:name="${'rows[' + itemStat.index + '].orderItem.id'}" type="hidden" th:value="*{id}"/>
 	            <input th:id="${'rows' + itemStat.index + '.quantity'}" th:name="${'rows[' + itemStat.index + '].quantity'}" class="quantityInput" style="width:30px" type="text" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
-	            <input type="submit" name="updateItemQuantity" id="updateQuantity" value="Update" class="cartButton" /><br />
+	            <input type="submit" name="updateItemQuantity" value="Update" class="cartButton updateQuantity" th:href="@{/cart/updateQuantity(orderItemId=*{id})}"/><br />
 			  	<a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id})}">Remove</a>
 			</td>
 			<td align="center" blc:price="*{price}"></td>

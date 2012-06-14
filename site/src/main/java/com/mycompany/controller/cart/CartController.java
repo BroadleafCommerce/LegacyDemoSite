@@ -1,5 +1,6 @@
 package com.mycompany.controller.cart;
 
+import org.broadleafcommerce.core.order.service.exception.ItemNotFoundException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.cart.DefaultCartController;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,13 @@ public class CartController extends DefaultCartController {
 			@RequestParam Long productId,
 			@RequestParam Integer quantity) throws IOException, PricingException {
 		return super.add(request, response, model, productId, quantity);
+	}
+	
+	@RequestMapping("/updateQuantity")
+	public @ResponseBody Map<String, Object> updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model,
+			@RequestParam Long orderItemId,
+			@RequestParam Integer newQuantity) throws IOException, PricingException, ItemNotFoundException {
+		return super.updateQuantity(request, response, model, orderItemId, newQuantity);
 	}
 	
 	@RequestMapping("/remove")
