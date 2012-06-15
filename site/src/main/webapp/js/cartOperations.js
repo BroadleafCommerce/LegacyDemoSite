@@ -56,14 +56,19 @@ $(function(){
 	});
 	
 	$('body').delegate('input.updateQuantity', 'click', function() {
-		var link = this;
+		var link = this,
+			newQuantity= $(link).siblings('.quantityInput').val();
 		$.ajax($(link).attr('href'), {
 			data: {
-				newQuantity: $(link).siblings('.quantityInput').val()
+				newQuantity: newQuantity
 			},
 			statusCode: {
 				200: function(data) {
 					updateHeaderCartItemsCount(data.cartItemCount);
+					
+					if (newQuantity == 0) {
+						showAddToCartButton(data.productId);
+					}
 					
 					// Update the cart to show its new state
 					$.get($('#cartLink').attr('href'), function(cartData) {

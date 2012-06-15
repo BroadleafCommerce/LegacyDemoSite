@@ -16,7 +16,7 @@
 
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.core.web.controller.account.DefaultOrderHistoryController;
+import org.broadleafcommerce.core.web.controller.account.BroadleafOrderHistoryController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/orders")
-public class OrderHistoryController extends DefaultOrderHistoryController {
+public class OrderHistoryController extends BroadleafOrderHistoryController {
 
 	@RequestMapping("")
     public String viewOrderHistory(Model model, HttpServletRequest request) {

@@ -16,7 +16,7 @@
 
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.core.web.controller.account.DefaultRegisterController;
+import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author apazzolini
  */
 @Controller
-public class RegisterController extends DefaultRegisterController {
+public class RegisterController extends BroadleafRegisterController {
 	
 	@RequestMapping("/account/register")
 	public String register(HttpServletRequest request, HttpServletResponse response, Model model) {

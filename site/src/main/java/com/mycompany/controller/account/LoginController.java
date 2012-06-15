@@ -16,7 +16,7 @@
 
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.core.web.controller.account.DefaultLoginController;
+import org.broadleafcommerce.core.web.controller.account.BroadleafLoginController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author apazzolini
  */
 @Controller
-public class LoginController extends DefaultLoginController {
+public class LoginController extends BroadleafLoginController {
 	
 	@RequestMapping("/account/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {

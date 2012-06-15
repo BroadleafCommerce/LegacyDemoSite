@@ -16,7 +16,7 @@
 
 package com.mycompany.controller.catalog;
 
-import org.broadleafcommerce.core.web.controller.catalog.DefaultSearchController;
+import org.broadleafcommerce.core.web.controller.catalog.BroadleafSearchController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/search")
-public class SearchController extends DefaultSearchController {
+public class SearchController extends BroadleafSearchController {
 
 	@RequestMapping("")
 	public String search(Model model, HttpServletRequest request,

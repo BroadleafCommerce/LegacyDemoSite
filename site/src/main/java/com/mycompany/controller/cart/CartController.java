@@ -2,7 +2,7 @@ package com.mycompany.controller.cart;
 
 import org.broadleafcommerce.core.order.service.exception.ItemNotFoundException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
-import org.broadleafcommerce.core.web.controller.cart.DefaultCartController;
+import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")
-public class CartController extends DefaultCartController {
+public class CartController extends BroadleafCartController {
 	
 	@RequestMapping("")
 	public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {

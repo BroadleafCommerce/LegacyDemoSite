@@ -24,7 +24,7 @@
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
-<!--  Checks for a URL match to a product's SEO URL.   -->
+	<!--  Checks for a URL match to a product's SEO URL.   -->
 	<bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
  	  <property name="order" value="2"/>
     </bean>
@@ -38,15 +38,6 @@
     <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
  	  <property name="order" value="4"/>
     </bean>
-
-    <!--  Controller that servers product pages -->
-    <bean id="blProductController" class="org.broadleafcommerce.core.web.controller.catalog.ProductController"/>
-
-    <!--  Controller that servers product pages -->
-    <bean id="blPageController" class="org.broadleafcommerce.cms.web.PageController"/>
-    
-    <!--  Controller that servers category pages -->
-    <bean id="blCategoryController" class="org.broadleafcommerce.core.web.controller.catalog.CategoryController"/>
 
 	<!-- Scan for custom controllers -->
 	<context:component-scan base-package="com.mycompany.controller" />

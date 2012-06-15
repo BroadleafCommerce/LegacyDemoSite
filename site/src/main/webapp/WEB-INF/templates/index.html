@@ -25,7 +25,6 @@
 		<blc:content contentType="Homepage Featured Products Title" />    
 		<div class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
-		<blc:categories parentCategory="Home" resultVar="products"/>
 		<ul id="products" class="group" th:remove="all-but-first">
 				<li th:each="product : ${products}" th:object="${product}">
 					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
