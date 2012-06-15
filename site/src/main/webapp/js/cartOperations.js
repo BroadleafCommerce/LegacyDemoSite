@@ -19,13 +19,13 @@ $(function(){
 	}
 	
 	function showInCartButton(productId) {
-		$('#productActions' + productId).children('.in_cart').removeClass('hidden');
-		$('#productActions' + productId).children('.add_to_cart').addClass('hidden');
+		$('.productActions' + productId).children('.in_cart').removeClass('hidden');
+		$('.productActions' + productId).children('.add_to_cart').addClass('hidden');
 	}
 	
 	function showAddToCartButton(productId) {
-		$('#productActions' + productId).children('.add_to_cart').removeClass('hidden');
-		$('#productActions' + productId).children('.in_cart').addClass('hidden');
+		$('.productActions' + productId).children('.add_to_cart').removeClass('hidden');
+		$('.productActions' + productId).children('.in_cart').addClass('hidden');
 	}
 	
 	$('body').delegate('a.fancycart', 'click', function() {

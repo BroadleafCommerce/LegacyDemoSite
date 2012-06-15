@@ -28,10 +28,7 @@
 				
 				<div th:text="*{longDescription}" id="description"></div>
 				
-				<div th:id="${'productActions' + product.id}">
-					<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax" th:href="@{/cart}">In Cart!</a></div>
-					<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? ' hidden'"><a th:href="@{/cart/add(productId=*{id})}">Buy Now</a></div>
-				</div>
+				<div th:substituteby="partials/productActions"></div>
 					
 				<p>
 					Share this Sauce:<br />
