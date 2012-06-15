@@ -25,66 +25,30 @@
 		<blc:content contentType="Homepage Featured Products Title" />    
 		<div class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
-		<ul id="products" class="group">
-			<li>
-				<div class="image">
-					<a href="sauce.html">
-					<img src="img/sauces/Bull-Snort-Smokin-Toncils-Hot-Sauce-Bottle.jpg" alt="Sauce Image" />
-					<div class="price">$6.99</div>
-					</a>
-				</div>
-				
-				<div class="content">
-				<div class="title">Bull Snort Smokin' Toncils Hot Sauce</div>
-					Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-				</div>
-				<div class="add_to_cart"><a href="cart.html">Buy Now</a></div>
-			</li>
-			
-			<li>
-				<div class="image">
-					<a href="sauce.html">
-					<img src="img/sauces/Cool-Cayenne-Pepper-Hot-Sauce-Bottle.jpg" alt="Sauce Image" />
-					<div class="price">$6.99</div>
-					</a>
-				</div>
-				
-				<div class="content">
-				<div class="title">Cool Cayenne Pepper Hot Sauce</div>
-					Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-				</div>
-				<div class="add_to_cart"><a href="cart.html">Buy Now</a></div>
-			</li>
-			
-			<li>
-				<div class="image">
-					<a href="sauce.html">
-					<img src="img/sauces/Armageddon-The-Hot-Sauce-To-End-All-Bottle.jpg" alt="Sauce Image" />
-					<div class="price">$6.99</div>
-					</a>
-				</div>
-				<div class="content">
-				<div class="title">Armageddon The Hot Sauce To End All</div>
-					Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-				</div>
-				<div class="add_to_cart"><a href="cart.html">Buy Now</a></div>
-			</li>
-			
-			<li>
-				<div class="image">
-					<a href="sauce.html">
-					<img src="img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Bottle.jpg" alt="Sauce Image" />
-					<div class="price">$6.99</div>
-					</a>
-				</div>
-				
-				<div class="content">
-				<div class="title">Blazin' Saddle XXX Hot Habanero Pepper Sauce</div>
-					Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-				</div>
-				<div class="add_to_cart"><a href="cart.html">Buy Now</a></div>
-			</li>
-		</ul>
+		<blc:categories parentCategory="Home" resultVar="products"/>
+		<ul id="products" class="group" th:remove="all-but-first">
+				<li th:each="product : ${products}" th:object="${product}">
+					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
+					<div class="image">
+						<a th:href="@{*{url}}">
+						<img th:src="@{*{productMedia['primary'].url}}" alt="Sauce Image" />
+						<div class="price">
+							<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+							<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+						</div>
+						</a>
+					</div>
+					<div class="content">
+						<div class="title" th:text="*{name}"></div>
+						<p th:text="*{longDescription}"></p>
+					</div>
+					
+					<div th:id="${'productActions' + product.id}">
+						<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? 'hidden'"><a class="fancycart fancybox.ajax" th:href="@{/cart}">In Cart!</a></div>
+						<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? 'hidden'"><a th:href="@{/addToCart(productId=*{id})}">Buy Now</a></div>
+					</div>
+				</li>
+			</ul>
 	</div>
 	
 	<footer th:substituteby="partials/footer" />

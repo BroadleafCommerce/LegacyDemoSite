@@ -15,13 +15,40 @@
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
 	<!-- Scan Broadleaf defined web utility classes -->
+	<!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
+	<context:component-scan base-package="org.broadleafcommerce.common.web"/>
+	<context:component-scan base-package="org.broadleafcommerce.core.web"/>	
 	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
-	<context:component-scan base-package="org.broadleafcommerce.core.web"/>
+
 	
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
-	<!-- Scan for controllers -->
+<!--  Checks for a URL match to a product's SEO URL.   -->
+	<bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
+ 	  <property name="order" value="2"/>
+    </bean>
+    
+    <!--  Checks for a URL match to a CMS managed page URL.   -->
+    <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
+ 	  <property name="order" value="3"/>
+    </bean>
+    
+    <!--  Checks for a URL match to a category's SEO URL -->
+    <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
+ 	  <property name="order" value="4"/>
+    </bean>
+
+    <!--  Controller that servers product pages -->
+    <bean id="blProductController" class="org.broadleafcommerce.core.web.controller.catalog.ProductController"/>
+
+    <!--  Controller that servers product pages -->
+    <bean id="blPageController" class="org.broadleafcommerce.cms.web.PageController"/>
+    
+    <!--  Controller that servers category pages -->
+    <bean id="blCategoryController" class="org.broadleafcommerce.core.web.controller.catalog.CategoryController"/>
+
+	<!-- Scan for custom controllers -->
 	<context:component-scan base-package="com.mycompany.controller" />
 	
 	<!-- Allow annotation driven controllers -->

@@ -30,7 +30,7 @@
 				<li th:each="product : ${products}" th:object="${product}">
 					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
 					<div class="image">
-						<a th:href="@{'/hot-sauces/'+*{id}}">
+						<a th:href="@{*{url}}">
 						<img th:src="@{*{productMedia['primary'].url}}" alt="Sauce Image" />
 						<div class="price">
 							<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>

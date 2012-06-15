@@ -35,6 +35,7 @@
                 	blRequestWrapperFilter,
                 	blRememberMeAuthenticationFilter,
                 	blCustomerStateFilter,
+                	blCartStateFilter,
                 	blExceptionTranslationFilter,
                 	blFilterSecurityInterceptor" />
 		</sec:filter-chain-map>

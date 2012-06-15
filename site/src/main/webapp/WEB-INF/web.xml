@@ -14,8 +14,7 @@
 	<context-param>
 		<param-name>patchConfigLocation</param-name>
 		<param-value>
-			classpath:/bl-open-admin-contentClient-applicationContext.xml
-			classpath:/bl-open-admin-contentCreator-applicationContext.xml
+            classpath:/bl-open-admin-contentClient-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             /WEB-INF/applicationContext-security.xml
             /WEB-INF/applicationContext.xml
@@ -27,6 +26,12 @@
 		<param-name>shutdownHookMethod</param-name>
 		<param-value>forceFlush</param-value>
 	</context-param>
+	
+    <listener>
+        <listener-class>
+             org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
 
 	<!-- Maintain a single Hibernate session for the duration of an HTTP request. 
 		Mitigates Hibernate session related exceptions -->
@@ -35,31 +40,44 @@
 		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
 	</filter>
 	
+	<!-- Sets up the Site, Locale, and Sandbox for Broadleaf operations -->
+	<filter>
+		<filter-name>blRequestFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>	
+	
+	<!-- Allows for broadleaf URL forward and redirect processing. -->
+	<filter>
+		<filter-name>blURLHandlerFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>		
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>		
 
-    <filter>
-        <filter-name>blProcessURLFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+	
     
     <filter-mapping>
 		<filter-name>entityManagerInViewFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping>	
 	
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-    <filter-mapping>
-        <filter-name>blProcessURLFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 	
+	<filter-mapping>
+		<filter-name>blRequestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	
+	<filter-mapping>
+		<filter-name>blURLHandlerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>		
 
 	<!-- enable configured logging -->
 	<context-param>
