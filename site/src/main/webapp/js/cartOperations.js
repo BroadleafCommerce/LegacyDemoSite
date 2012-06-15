@@ -57,16 +57,17 @@ $(function(){
 	
 	$('body').delegate('input.updateQuantity', 'click', function() {
 		var link = this,
-			newQuantity= $(link).siblings('.quantityInput').val();
+			quantity= $(link).siblings('.quantityInput').val();
 		$.ajax($(link).attr('href'), {
 			data: {
-				newQuantity: newQuantity
+				quantity: quantity
 			},
 			statusCode: {
 				200: function(data) {
 					updateHeaderCartItemsCount(data.cartItemCount);
+					debugger;
 					
-					if (newQuantity == 0) {
+					if (quantity == 0) {
 						showAddToCartButton(data.productId);
 					}
 					

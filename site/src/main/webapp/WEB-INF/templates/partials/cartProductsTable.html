@@ -15,8 +15,8 @@
 			<td align="center">
 				<input class="orderItemId" th:id="${'rows' + itemStat.index + '.orderItem.id'}" th:name="${'rows[' + itemStat.index + '].orderItem.id'}" type="hidden" th:value="*{id}"/>
 	            <input th:id="${'rows' + itemStat.index + '.quantity'}" th:name="${'rows[' + itemStat.index + '].quantity'}" class="quantityInput" style="width:30px" type="text" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
-	            <input type="submit" name="updateItemQuantity" value="Update" class="cartButton updateQuantity" th:href="@{/cart/updateQuantity(orderItemId=*{id})}"/><br />
-			  	<a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id})}">Remove</a>
+	            <input type="submit" name="updateItemQuantity" value="Update" class="cartButton updateQuantity" th:href="@{/cart/updateQuantity(orderItemId=*{id}, productId=*{product.id})}"/><br />
+			  	<a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
 			</td>
 			<td align="center" blc:price="*{price}"></td>
 			
