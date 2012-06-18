@@ -308,3 +308,27 @@ input#promoCode, input.quantityInput {
 	padding:3px;
 	border:1px solid #000;
 }
+
+
+/* *********************** *
+ * Product Option Grouping *
+ * *********************** */
+#product-options ul {padding: 0; list-style: none;}
+.product-option-group ul {margin: 0; padding: 0; list-style: none;}
+.product-option-group .option-name {color: #666; font-size: 11px; font-weight: bold; margin: 16px 0 0 1px;}
+.product-option-group .option-name span {color: #333; margin-left: 3px;}
+.product-option-group ul {margin: 10px 0;}
+.product-option-group li {float: left; text-align: center; font-size: 11px;}
+
+.product-option-group li div {border: 1px solid #999;  margin: 0 6px 0 0; width: 32px; height: 32px; overflow: hidden;}
+.product-option-group li.last div {margin-right: 0 !important;}
+.cf:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}.product-option-group li .option-label {font-size: 11px; font-weight: bold; position: relative; top: 2px; display: block;}
+.product-option-group li .price-adjustment {font-size: 10px; font-weight: normal; display: block; position: relative; top: -5px;}
+.product-option-group li:hover {cursor: pointer;}
+.product-option-group li.active div, .product-option-group li:hover div {background-color: #E40037; color: #fff;}

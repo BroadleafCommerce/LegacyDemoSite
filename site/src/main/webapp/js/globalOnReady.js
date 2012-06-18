@@ -15,8 +15,13 @@ $(function(){
 	};
 	
 	// Bind all links with class .account to open the login/register fancybox modal
-	$('body').delegate('a.account', 'click', function() {
+	$('body').on('click', 'a.account', function() {
 		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href') }));
 		return false;
 	});
+	
+	$('body').on('click', '.product-option-group li:not(.unavailable)', function() {
+        HC.changeProductOption($(this));
+        return false;
+    });
 });

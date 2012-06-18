@@ -28,12 +28,12 @@ $(function(){
 		$('.productActions' + productId).children('.in_cart').addClass('hidden');
 	}
 	
-	$('body').delegate('a.fancycart', 'click', function() {
+	$('body').on('click', 'a.fancycart', function() {
 		$.fancybox.open($.extend(fancyCartOptions, { href : $(this).attr('href') }));
 		return false;
 	});
 	
-	$('body').delegate('.add_to_cart a', 'click', function() {
+	$('body').on('click', '.add_to_cart a', function() {
 		var link = this;
 		$.ajax($(link).attr('href'), {
 			data: {
@@ -55,7 +55,7 @@ $(function(){
 		return false;
 	});
 	
-	$('body').delegate('input.updateQuantity', 'click', function() {
+	$('body').on('click', 'input.updateQuantity', function() {
 		var link = this,
 			quantity= $(link).siblings('.quantityInput').val();
 		$.ajax($(link).attr('href'), {
@@ -86,7 +86,7 @@ $(function(){
 		return false;
 	});
 	
-	$('body').delegate('a.remove_from_cart', 'click', function() {
+	$('body').on('click', 'a.remove_from_cart', function() {
 		var link = this;
 		$.ajax($(link).attr('href'), {
 			statusCode: {

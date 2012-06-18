@@ -26,6 +26,20 @@
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
 				
+    			<div id="product-options">
+					<ul>
+						<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf">
+							<ul class="cf">
+								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}">
+									<div>
+										<span class="option-label" th:text="*{attributeValue}"></span>
+									</div>
+								</li>
+							</ul>						
+						</li>
+					</ul>
+				</div>
+				
 				<div th:text="*{longDescription}" id="description"></div>
 				
 				<div th:substituteby="partials/productActions"></div>
