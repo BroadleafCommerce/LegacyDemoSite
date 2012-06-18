@@ -37,19 +37,19 @@
 			</div>
 		
 			<div id="product_main_image">
-				<a th:href="@{*{#strings.replace(productMedia['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='cloud-zoom' id='zoom1' rel="position: 'inside', showTitle: false, adjustX:-4, adjustY:-4">
-		            <img th:src="@{*{productMedia['primary'].url}}" alt='' align="left" />
+				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='cloud-zoom' id='zoom1' rel="position: 'inside', showTitle: false, adjustX:-4, adjustY:-4">
+		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" />
 		        </a>
 			</div>
 			
 			<ul id="product_thumbs">
 				<li>
-					<a th:href="@{*{#strings.replace(productMedia['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{*{productMedia['primary'].url}} + ${''''}">
-						<img th:src="@{*{productMedia['primary'].url}}" alt="Bottle Closeup" />
+					<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{*{media['primary'].url}} + ${''''}">
+						<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
 					</a>
 				</li>
 				
-				<li th:each="media : *{productMedia}" th:unless="${media.key == 'primary'}">
+				<li th:each="media : *{media}" th:unless="${media.key == 'primary'}">
 					<a th:href="@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}" class="cloud-zoom-gallery" 
 						rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{${media.value.url}} + ${''''}">
 						<img th:src="@{${media.value.url}}" />

@@ -10,7 +10,7 @@
 	</thead>
 	<tbody>
 		<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-			<td><img th:src="@{*{product.productMedia['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+			<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
 			<td class="name" th:text="*{product.name}"></td>
 			<td align="center">
 				<input class="orderItemId" th:id="${'rows' + itemStat.index + '.orderItem.id'}" th:name="${'rows[' + itemStat.index + '].orderItem.id'}" type="hidden" th:value="*{id}"/>
