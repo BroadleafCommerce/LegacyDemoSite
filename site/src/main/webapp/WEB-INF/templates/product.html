@@ -26,12 +26,12 @@
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
 				
-    			<div id="product-options">
+    			<div id="product-options" class="hidden">
 					<ul>
 						<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
-							<span th:text="*{type.friendlyType}"></span>
+							<span th:text="*{type.friendlyType}"></span> - <span th:id="*{type.type}" class="option-value"></span>
 							<ul class="cf">
-								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
+								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:attr="data-product-option=*{attributeValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
 									<div>
 										<span class="option-label" th:text="*{attributeValue}"></span>
 									</div>

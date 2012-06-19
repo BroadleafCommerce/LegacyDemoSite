@@ -2,7 +2,8 @@
  * used by various other areas of the site */
 var HC = (function($) {
 	
-	var redirectUrlDiv = "blc-redirect-url";
+	var redirectUrlDiv = "blc-redirect-url",
+		extraDataDiv   = "blc-extra-data";
 	
 	function adjustPrice($option) {
 	    var adjustments = 0;
@@ -47,9 +48,16 @@ var HC = (function($) {
 		return false;
 	}
 	
+	function getExtraData($data) {
+		var extraData = $.parseJSON($data.find('#' + extraDataDiv).text());
+		$data.find('#' + extraDataDiv).remove();
+		return extraData;
+	}
+	
 	return {
 		showNotification : showNotification,
 		changeProductOption : changeProductOption,
-		redirectIfNecessary : redirectIfNecessary
+		redirectIfNecessary : redirectIfNecessary,
+		getExtraData : getExtraData
 	}
 })($);

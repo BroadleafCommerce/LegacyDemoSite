@@ -291,6 +291,16 @@ nav ul li a.active {
 	transition: background-color 0.2s ease-in;
 }
 
+.product-option-nonjs {
+	padding: 10px 5px;
+}
+
+.product-option-nonjs span {
+	display: inline-block;
+	width: 50px;
+}
+
+
 /* ************************************* *
  * Custom extensions to modal css styles *
  * ************************************* */

@@ -1,5 +1,9 @@
 /* Events to trigger on every page load */
 $(function(){
+	// Show the JavaScript version of product options if the user has JavaScript enabled
+	$('#product-options').removeClass('hidden');
+	$('.product-option-nonjs').remove();
+	
 	// The options used for the login/register fancybox modal
 	var fancyAccountOptions = {
 		maxWidth	: 700,
@@ -20,6 +24,7 @@ $(function(){
 		return false;
 	});
 	
+	// Bind the JavaScript product option boxes to execute on click
 	$('body').on('click', '.product-option-group li:not(.unavailable)', function() {
         HC.changeProductOption($(this));
         return false;

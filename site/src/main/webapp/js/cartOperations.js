@@ -42,50 +42,39 @@ $(function(){
 	// This will trigger on any input with class "addToCart"
 	$('body').on('click', 'input.addToCart', function() {
 		var $form = $(this).closest('form');
-		$.ajax($form.attr('action'), {
-			type: "POST",
-			data: $form.serialize(),
-			statusCode: {
-				200: function(data) {
-					updateHeaderCartItemsCount(data.cartItemCount);
-					showInCartButton(data.productId);
-					HC.showNotification(data.productName + "  has been added to the cart!");
-			    }, 
-			    500: function() {
-			    	// If there is an error adding to cart for any reason, the server will return
-			    	// a 500 INTERNAL SERVER ERROR response code
-					HC.showNotification("Error adding :(");
-			    }
-			}
+		/*
+		var $options = $('span.option-value');
+		$options.each(function(index, element) {
+			alert($(element).val());
 		});
 		return false;
+		*/
+		$.post($form.attr('action'), $form.serialize(), function(data) {
+			if (!HC.redirectIfNecessary($(data))) {
+				updateHeaderCartItemsCount(data.cartItemCount);
+				showInCartButton(data.productId);
+				HC.showNotification(data.productName + "  has been added to the cart!");
+			}
+		}, 'json');
+		
+		return false;
 	});
+		
 	
 	// Intercept update quantity operations and perform them via AJAX instead
 	// This will trigger on any input with class "updateQuantity"
 	$('body').on('click', 'input.updateQuantity', function() {
 		var $form = $(this).closest('form');
-		$.ajax($form.attr('action'), {
-			type: "POST",
-			data: $form.serialize(),
-			statusCode: {
-				200: function(data) {
-					updateHeaderCartItemsCount(data.cartItemCount);
-					
-					if ($form.children('input.quantityInput').val() == 0) {
-						showAddToCartButton(data.productId);
-					}
-					
-					// Update the cart to show its new state
-					$.get($('#cartLink').attr('href'), function(cartData) {
-						$('.fancybox-inner').html(cartData);
-					});
-			    }, 
-			    500: function() {
-			    	// If there is an error adding to cart for any reason, the server will return
-			    	// a 500 INTERNAL SERVER ERROR response code
-					HC.showNotification("Error changing quantity :(");
-			    }
+		$.post($form.attr('action'), $form.serialize(), function(data) {
+			if (!HC.redirectIfNecessary($(data))) {
+				var extraData = HC.getExtraData($(data));
+				updateHeaderCartItemsCount(extraData.cartItemCount);
+				
+				if ($form.children('input.quantityInput').val() == 0) {
+					showAddToCartButton(extraData.productId);
+				}
+				
+				$('.fancybox-inner').html(data);
 			}
 		});
 		return false;
@@ -95,22 +84,15 @@ $(function(){
 	// This will trigger on any link with class "remove_from_cart"
 	$('body').on('click', 'a.remove_from_cart', function() {
 		var link = this;
-		$.ajax($(link).attr('href'), {
-			statusCode: {
-				200: function(data) {
-					updateHeaderCartItemsCount(data.cartItemCount);
-					showAddToCartButton(data.productId);
-					
-					// Update the cart to show its new state
-					$.get($('#cartLink').attr('href'), function(cartData) {
-						$('.fancybox-inner').html(cartData);
-					});
-			    }, 
-			    500: function() {
-			    	$('.fancybox-inner').html('Error removing :(');
-			    }
-			  }
-		});
+		$.get($(link).attr('href'), function(data) {
+			if (!HC.redirectIfNecessary($(data))) {
+				var extraData = HC.getExtraData($(data));
+				updateHeaderCartItemsCount(extraData.cartItemCount);
+				showAddToCartButton(extraData.productId);
+				
+				$('.fancybox-inner').html(cartData);
+			}
+	    });
 		return false;
 	});
 });
