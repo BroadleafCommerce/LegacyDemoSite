@@ -241,6 +241,56 @@ nav ul li a.active {
 	overflow-x: hidden !important;
 }
 
+#product_content .add_to_cart input[type="submit"] {
+	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	margin: 10px auto;
+	padding: 15px 35px;
+	background-color: #E40037;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: white;
+	text-decoration: none;
+	display: inline-table;
+	border: 0;
+}
+
+#product_content .add_to_cart input[type="submit"]:hover {
+	background-color: #a50832;
+	-webkit-transition: background-color 0.2s ease-in;  
+	-moz-transition: background-color 0.2s ease-in;  
+	-o-transition: background-color 0.2s ease-in;  
+	transition: background-color 0.2s ease-in;
+}
+
+#products li .add_to_cart input[type="submit"] {
+	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	margin: 10px auto;
+	padding: 15px 35px;
+	background-color: #E40037;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: white;
+	text-decoration: none;
+	display: inline-table;
+	border: 0;
+}
+
+#products li .add_to_cart input[type="submit"]:hover {
+	background-color: #a50832;
+	-webkit-transition: background-color 0.2s ease-in;  
+	-moz-transition: background-color 0.2s ease-in;  
+	-o-transition: background-color 0.2s ease-in;  
+	transition: background-color 0.2s ease-in;
+}
+
 /* ************************************* *
  * Custom extensions to modal css styles *
  * ************************************* */
@@ -328,7 +378,25 @@ input#promoCode, input.quantityInput {
     height: 0;
     clear: both;
     visibility: hidden;
-}.product-option-group li .option-label {font-size: 11px; font-weight: bold; position: relative; top: 2px; display: block;}
+}.product-option-group li .option-label {font-size: 11px; position: relative; top: 2px; display: block;}
 .product-option-group li .price-adjustment {font-size: 10px; font-weight: normal; display: block; position: relative; top: -5px;}
 .product-option-group li:hover {cursor: pointer;}
 .product-option-group li.active div, .product-option-group li:hover div {background-color: #E40037; color: #fff;}
+
+
+.product-option-group.colors li {width: 31px; height: 31px; margin: 0 3px 0 0;}
+.product-option-group.colors li div {width: 25px; height: 25px; margin: 2px; text-indent: -9999px;}
+.product-option-group.colors li.last {margin-right: 0 !important;}
+
+/*color option border state*/
+.product-option-group.colors li {border: 2px solid transparent;}
+.product-option-group.colors li div {border: 1px solid #999;}
+.product-option-group.colors li.active {border: 2px solid #333;}
+.product-option-group.colors li.active div {border: 1px solid transparent;}
+.product-option-group.colors li:hover {border: 2px solid #666;}
+.product-option-group.colors li:hover div {border: 1px solid transparent;}
+
+/*color option color swatches*/
+.product-option-group.colors li.Silver div   {background-color: #FFFFFF;}
+.product-option-group.colors li.Black div       {background-color: #000000;}
+.product-option-group.colors li.Red div     {background-color: #DC143C;}

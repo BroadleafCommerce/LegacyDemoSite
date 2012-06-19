@@ -28,9 +28,10 @@
 				
     			<div id="product-options">
 					<ul>
-						<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf">
+						<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
+							<span th:text="*{type.friendlyType}"></span>
 							<ul class="cf">
-								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}">
+								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
 									<div>
 										<span class="option-label" th:text="*{attributeValue}"></span>
 									</div>
