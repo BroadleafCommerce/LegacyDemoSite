@@ -2,6 +2,8 @@
  * used by various other areas of the site */
 var HC = (function($) {
 	
+	var redirectUrlDiv = "blc-redirect-url";
+	
 	function adjustPrice($option) {
 	    var adjustments = 0;
 	    $('.product-option-group li.active').each(function() {
@@ -30,14 +32,24 @@ var HC = (function($) {
 	        $option.siblings('.active').removeClass('active');
 	        $option.toggleClass('active');
 	        var selectedOption = $option.data('product-option');
-	        var $optionText = $option.parents('.product-option-group').find('h3.option-name span');
+	        var $optionText = $option.parents('.product-option-group').find('span.option-value');
 	        $optionText.text(selectedOption);
 	        //adjustPrice($option);
 	    }
 	}
 	
+	function redirectIfNecessary($data) {
+		var redirectUrl = $data.find('#' + redirectUrlDiv).text();
+		if (redirectUrl != null && redirectUrl !== "") {
+			window.location = redirectUrl;
+			return true;
+		}
+		return false;
+	}
+	
 	return {
 		showNotification : showNotification,
-		changeProductOption : changeProductOption
+		changeProductOption : changeProductOption,
+		redirectIfNecessary : redirectIfNecessary
 	}
 })($);
