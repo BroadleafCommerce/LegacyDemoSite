@@ -1,6 +1,8 @@
 package com.mycompany.controller.cart;
 
+import org.broadleafcommerce.core.catalog.domain.Product;
 import org.broadleafcommerce.core.order.service.exception.ItemNotFoundException;
+import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.CartState;
@@ -37,21 +39,39 @@ public class CartController extends BroadleafCartController {
 	@RequestMapping(value = "/add", produces = "application/json")
 	public @ResponseBody Map<String, Object> addJson(HttpServletRequest request, HttpServletResponse response, Model model,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException {
-		super.add(request, response, model, addToCartItem);
-		
 		Map<String, Object> responseMap = new HashMap<String, Object>();
-		responseMap.put("productId", addToCartItem.getProductId());
-		responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
-		responseMap.put("quantityAdded", addToCartItem.getQuantity());
-		responseMap.put("cartItemCount", String.valueOf(CartState.getCart(request).getItemCount()));
+		try {
+			super.add(request, response, model, addToCartItem);
+			
+			responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
+			responseMap.put("quantityAdded", addToCartItem.getQuantity());
+			responseMap.put("cartItemCount", String.valueOf(CartState.getCart(request).getItemCount()));
+			if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0) {
+				// We don't want to return a productId to hide actions for when it is a product that has multiple
+				// product options. The user may want the product in another version of the options as well.
+				responseMap.put("productId", addToCartItem.getProductId());
+			}
+		} catch (RequiredAttributeNotProvidedException e) {
+			responseMap.put("error", "allOptionsRequired");
+		}
 		
 		return responseMap;
 	}
 	
+	/*
+	 * The Heat Clinic does not support adding products with required product options from a category browse page
+	 * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
+	 * for the given product so that the required options may be chosen.
+	 */
 	@RequestMapping(value = "/add", produces = "text/html")
 	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException {
-		return super.add(request, response, model, addToCartItem);
+		try {
+			return super.add(request, response, model, addToCartItem);
+		} catch (RequiredAttributeNotProvidedException e) {
+			Product product = catalogService.findProductById(addToCartItem.getProductId());
+			return "redirect:" + product.getUrl();
+		}
 	}
 	
 	@RequestMapping("/updateQuantity")

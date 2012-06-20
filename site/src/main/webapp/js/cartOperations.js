@@ -14,6 +14,18 @@ $(function(){
 		type        : 'ajax'
 	};
 	
+	var fancyProductOptionsOptions = {
+		maxWidth    : 180,
+		fitToView	: false,
+		width		: '100%',
+		height		: '100%',
+		autoSize	: true,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+			
+	};
+	
 	// This will change the header "X item(s)" text to the new count and pluralization of "item"
 	function updateHeaderCartItemsCount(newCount) {
 		$('#headerCartItemsCount').html(newCount);
@@ -34,31 +46,54 @@ $(function(){
 	
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
-		$.fancybox.open($.extend(fancyCartOptions, { href : $(this).attr('href') }));
+		$.fancybox.open($.extend({ href : $(this).attr('href') }, fancyCartOptions));
 		return false;
 	});
 	
 	// Intercept add to cart operations and perform them via AJAX instead
 	// This will trigger on any input with class "addToCart"
 	$('body').on('click', 'input.addToCart', function() {
-		var $form = $(this).closest('form');
-		/*
-		var $options = $('span.option-value');
-		$options.each(function(index, element) {
-			alert($(element).val());
-		});
-		return false;
-		*/
-		BLC.ajax({url: $form.attr('action'), 
-				type: "POST",
-				dataType: "json",
-				data: $form.serialize()
-			}, function(data) {
-				updateHeaderCartItemsCount(data.cartItemCount);
-				showInCartButton(data.productId);
-				HC.showNotification(data.productName + "  has been added to the cart!");
-			}
-		);
+		var $button = $(this),
+			$form = $button.closest('form'),
+			$options = $('span.option-value'),
+			$errorSpan = $button.closest('.product-options').children('span.error'),
+			itemRequest = BLC.serializeObject($form),
+			modalClick = $button.parents('.fancybox-inner').length > 0;
+			
+		if ($errorSpan.length == 0) {
+			$errorSpan = $('.product-options').children('span.error');
+		}
+		
+		if (itemRequest.hasProductOptions == "true" && !modalClick) {
+			$.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
+		} else {
+			$options.each(function(index, element) {
+				itemRequest['itemAttributes[' + $(element).attr('id') + ']'] = $(element).text();
+			});
+			
+			BLC.ajax({url: $form.attr('action'), 
+					type: "POST",
+					dataType: "json",
+					data: itemRequest
+				}, function(data) {
+					if (data.error) {
+						$errorSpan.css('display', 'block');
+				        $errorSpan.effect('highlight', {}, 1000);
+					} else {
+						$errorSpan.css('display', 'none');
+						updateHeaderCartItemsCount(data.cartItemCount);
+						
+						if (modalClick) {
+							$.fancybox.close();
+						} else {
+							showInCartButton(data.productId);
+						}
+						
+						HC.showNotification(data.productName + "  has been added to the cart!");
+					}
+				}
+			);
+		}
 		return false;
 	});
 	
@@ -90,7 +125,7 @@ $(function(){
 		var link = this;
 		
 		BLC.ajax({url: $(link).attr('href'),
-				type: "GET",
+				type: "GET"
 			}, function(data) {
 				var extraData = BLC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);

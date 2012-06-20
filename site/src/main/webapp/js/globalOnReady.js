@@ -1,7 +1,7 @@
 /* Events to trigger on every page load */
 $(function(){
 	// Show the JavaScript version of product options if the user has JavaScript enabled
-	$('#product-options').removeClass('hidden');
+	$('.product-options').removeClass('hidden');
 	$('.product-option-nonjs').remove();
 
     // Bind the JavaScript product option boxes to execute on click

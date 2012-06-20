@@ -26,10 +26,11 @@
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
 				
-    			<div id="product-options" class="hidden">
+				
+    			<div class="product-options hidden" th:fragment="productOptions">
 					<ul>
 						<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
-							<span th:text="*{type.friendlyType}"></span> - <span th:id="*{type.type}" class="option-value"></span>
+							<label th:text="*{label}"></label>:  <span th:id="*{attributeName}" class="option-value"></span>
 							<ul class="cf">
 								<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:attr="data-product-option=*{attributeValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
 									<div>
@@ -39,11 +40,31 @@
 							</ul>						
 						</li>
 					</ul>
+					
+					<span class="error centered" style="display: none;">All options are required</span>
 				</div>
 				
-				<div th:text="*{longDescription}" id="description"></div>
-				
-				<div th:substituteby="partials/productActions"></div>
+				<form method="POST" th:action="@{/cart/add}">
+					<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
+						<div class="form50">
+							<label th:text="*{label}"></label>
+							<select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+								<option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+							</select>
+						</div>
+					</div>
+					
+					<div th:text="*{longDescription}" id="description"></div>
+					
+					<div th:class="${'productActions' + product.id}">
+						<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax" th:href="@{/cart}">In Cart!</a></div>
+						<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? ' hidden'">
+							<input type="hidden" name="productId" th:value="*{id}" />
+							<input type="hidden" name="quantity" value="1" />
+							<input type="submit" class="addToCart" value="Buy Now!"/>
+						</div>
+					</div>
+				</form>
 					
 				<p>
 					Share this Sauce:<br />

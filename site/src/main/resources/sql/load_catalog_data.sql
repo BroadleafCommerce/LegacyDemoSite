@@ -277,6 +277,16 @@ INSERT INTO BLC_PRODUCT (PRODUCT_ID, DEFAULT_SKU_ID, DEFAULT_CATEGORY_ID, URL, M
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, DEFAULT_SKU_ID, DEFAULT_CATEGORY_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (600,600,2003,'/merchandise/heat_clinic_mascot_womens','The Heat Clinic',FALSE);
 
 ------------------------------------------------------------------------------------------------------------------
+-- Link the non-default SKUs for merchandise
+------------------------------------------------------------------------------------------------------------------
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (111, 100), (112, 100), (113, 100), (114, 100), (121, 100), (122, 100), (123, 100), (124, 100), (131, 100), (132, 100), (133, 100), (134, 100);
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (211, 200), (212, 200), (213, 200), (214, 200), (221, 200), (222, 200), (223, 200), (224, 200), (231, 200), (232, 200), (233, 200), (234, 200);
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (311, 300), (312, 300), (313, 300), (314, 300), (321, 300), (322, 300), (323, 300), (324, 300), (331, 300), (332, 300), (333, 300), (334, 300);
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (411, 400), (412, 400), (413, 400), (414, 400), (421, 400), (422, 400), (423, 400), (424, 400), (431, 400), (432, 400), (433, 400), (434, 400);
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (511, 500), (512, 500), (513, 500), (514, 500), (521, 500), (522, 500), (523, 500), (524, 500), (531, 500), (532, 500), (533, 500), (534, 500);
+INSERT INTO BLC_PRODUCT_SKU_XREF (SKU_ID, PRODUCT_ID) VALUES (611, 600), (612, 600), (613, 600), (614, 600), (621, 600), (622, 600), (623, 600), (624, 600), (631, 600), (632, 600), (633, 600), (634, 600);
+
+------------------------------------------------------------------------------------------------------------------
 -- Associate the merchandise products with their appropriate available product options
 ------------------------------------------------------------------------------------------------------------------
 INSERT INTO BLC_PRODUCT_OPTION_XREF (PRODUCT_OPTION_ID, PRODUCT_ID) VALUES (1, 100);

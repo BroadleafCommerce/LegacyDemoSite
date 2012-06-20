@@ -32,9 +32,26 @@ var BLC = (function($) {
         $.ajax(options);
 	}
 	
+	function serializeObject($object) {
+	    var o = {};
+	    var a = $object.serializeArray();
+	    $.each(a, function() {
+	        if (o[this.name] !== undefined) {
+	            if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	            }
+	            o[this.name].push(this.value || '');
+	        } else {
+	            o[this.name] = this.value || '';
+	        }
+	    });
+	    return o;
+	}
+	
 	return {
 		redirectIfNecessary : redirectIfNecessary,
 		getExtraData : getExtraData,
-		ajax : ajax
+		ajax : ajax,
+		serializeObject : serializeObject
 	}
 })($);

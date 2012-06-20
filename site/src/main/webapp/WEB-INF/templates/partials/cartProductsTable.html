@@ -11,7 +11,13 @@
 	<tbody>
 		<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
 			<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-			<td class="name" th:text="*{product.name}"></td>
+			<td class="name">
+				<a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+				<br/>
+				<ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+					<li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+				</ul>
+			</td>
 			<td align="center">
 				<form method="POST" th:action="@{/cart/updateQuantity}">
 					<input type="hidden" name="productId" th:value="*{product.id}" />

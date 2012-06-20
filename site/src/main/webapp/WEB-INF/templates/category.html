@@ -26,25 +26,8 @@
 				</div>
 			</header>
 			
-			<ul id="products" class="group" th:remove="all-but-first">
-				<li th:each="product : ${products}" th:object="${product}">
-					<div th:if="*{featuredProduct}" class="new_badge">New!</div>
-					<div class="image">
-						<a th:href="@{*{url}}">
-						<img th:src="@{*{media['primary'].url}}" alt="Sauce Image" />
-						<div class="price">
-							<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-							<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
-						</div>
-						</a>
-					</div>
-					<div class="content">
-						<div class="title" th:text="*{name}"></div>
-						<p th:text="*{longDescription}"></p>
-					</div>
-					
-					<div th:substituteby="partials/productActions"></div>
-				</li>
+			<ul id="products" class="group">
+				<li th:each="product : ${products}" th:object="${product}" th:include="partials/productListItem" th:remove="tag"></li>
 			</ul>
 			
 		</section>
