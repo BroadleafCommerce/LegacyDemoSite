@@ -110,7 +110,7 @@
 					<configuration>
 						<excludeDefaultDirectories>true</excludeDefaultDirectories>
 						<filesets>
-							<!-- delete directories that will be generated when you start the
+							<!-- delete directories that will be generated when you start the 
 								develpment server/client in eclipse -->
 							<fileset>
 								<directory>target</directory>
@@ -213,13 +213,13 @@
 				<classifier>tests</classifier>
 				<scope>test</scope>
 			</dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-usps</artifactId>
-                <version>${blc.thirdparty.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
+			<dependency>
+				<groupId>org.broadleafcommerce</groupId>
+				<artifactId>broadleaf-usps</artifactId>
+				<version>${blc.thirdparty.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
 
 			<!-- Other dependencies -->
 			<dependency>
