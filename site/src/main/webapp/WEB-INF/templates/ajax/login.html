@@ -1,45 +1,26 @@
-<div id="account">
-
-	<div id="register">
-		<h3>Register for an Account</h3>
-		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>
-		<form action="" method="post">
-			<div class="form50">
-				<label for="name">Name</label>
-				<input type="text" name="name" class="field50" />
-			</div>
-			<div class="form50">
-				<label for="email">Email</label>
-				<input type="text" name="email" class="field50" />
-			</div>
-			<div class="form50">
-				<label for="password">Password</label>
-				<input type="password" name="password" class="field50" />
-			</div>
-			<div class="form50">
-				<label for="password_confirm">Confirm Password</label>
-				<input type="password" name="password_confirm" class="field50" />
-			</div>
-			<div class="login_register"><a href="" target="_top">Register</a></div>
-		</form>
-	</div>
-	
+<div id="account">	
 	<div id="login">
 		<h3>Login to Your Account</h3>
 		<p>Already a member? Sign in using the form below.</p>
-		<form action="" method="post">
+		
+		<p class="error" th:if="${param.error}">The e-mail address and/or password entered do not match our records.  Please try again</p>
+
+		<form th:action="@{/login_post.htm}" method="post">
 			<div class="form50">
-				<label for="email">Email</label>
-				<input type="text" name="email" class="field50" />
+				<label for="j_username">Email</label>
+				<input type="text" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
 			</div>
 			<div class="form50">
-				<label for="password">Password</label>
-				<input type="password" name="password" class="field50" />
+				<label for="j_password">Password</label>
+				<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+			</div>
+			<div class="login_register"><input class="login_button" type="submit" value="Login"/></div>			
+		    <div class="form50">
+			    <a class="account" th:href="@{/register}">Register</a> 
 			</div>
 			<div class="form50">
-				<a href="">Forgot password?</a>
-			</div>
-			<div class="login_register"><a href="" target="_top">Login</a></div>
+				<a class="account" th:href="@{/forgotPassword}">Forgot Password</a>
+			</div>			
 		</form>
 	</div>
 	

@@ -17,9 +17,13 @@
 package com.mycompany.controller.account;
 
 import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
+import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,13 +32,24 @@ import javax.servlet.http.HttpServletResponse;
  * The controller responsible for registering a customer
  * 
  * @author apazzolini
+ * @author bpolster
  */
 @Controller
+@RequestMapping("/register")
 public class RegisterController extends BroadleafRegisterController {
 	
-	@RequestMapping("/account/register")
-	public String register(HttpServletRequest request, HttpServletResponse response, Model model) {
+	@RequestMapping(method=RequestMethod.GET)
+	public String register(@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.register(request, response, model);
 	}
-
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String processRegister(@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors, HttpServletRequest request, HttpServletResponse response, Model model) {
+		return super.processRegister(registerCustomerForm, errors, request, response, model);
+	}
+	
+    @ModelAttribute("registrationForm")
+    public RegisterCustomerForm initCustomerRegistrationForm() {
+    	return super.initCustomerRegistrationForm();    	
+    }
 }

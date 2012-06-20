@@ -2,45 +2,41 @@
 
 	<div id="register">
 		<h3>Register for an Account</h3>
-		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>
-		<form action="" method="post">
+		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>		
+
+		<form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post">
 			<div class="form50">
-				<label for="name">Name</label>
-				<input type="text" name="name" class="field50" />
+				<label for="customer.emailAddress">Email</label>
+				<input type="email" th:field="*{customer.emailAddress}" th:class="${#fields.hasErrors('customer.emailAddress')}? 'field50 fieldError' : 'field50'" />
+				<p th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}">Incorrect Email Address</p>
 			</div>
 			<div class="form50">
-				<label for="email">Email</label>
-				<input type="text" name="email" class="field50" />
+				<label for="customer.firstName">First Name</label>
+				<input type="text" th:field="*{customer.firstName}" th:class="${#fields.hasErrors('customer.firstName')}? 'field50 fieldError' : 'field50'" />
+				<p th:if="${#fields.hasErrors('customer.firstName')}" th:errors="*{customer.firstName}">Incorrect First Name</p>
 			</div>
 			<div class="form50">
-				<label for="password">Password</label>
-				<input type="password" name="password" class="field50" />
-			</div>
-			<div class="form50">
-				<label for="password_confirm">Confirm Password</label>
-				<input type="password" name="password_confirm" class="field50" />
-			</div>
-			<div class="login_register"><a href="" target="_top">Register</a></div>
-		</form>
-	</div>
-	
-	<div id="login">
-		<h3>Login to Your Account</h3>
-		<p>Already a member? Sign in using the form below.</p>
-		<form action="" method="post">
-			<div class="form50">
-				<label for="email">Email</label>
-				<input type="text" name="email" class="field50" />
-			</div>
+				<label for="customer.lastName">Last Name</label>
+				<input type="text" th:field="*{customer.lastName}" th:class="${#fields.hasErrors('customer.lastName')}? 'field50 fieldError' : 'field50'" />
+				<p th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}">Incorrect Last Name</p>
+			</div>			
 			<div class="form50">
 				<label for="password">Password</label>
-				<input type="password" name="password" class="field50" />
+				<input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? 'field50 fieldError' : 'field50'" />
+			    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect Password</p>
 			</div>
 			<div class="form50">
-				<a href="">Forgot password?</a>
+				<label for="confirmPassword">Confirm Password</label>
+				<input type="password" th:field="*{passwordConfirm}" th:class="${#fields.hasErrors('passwordConfirm')}? 'field50 fieldError' : 'field50'" />
+			    <p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Incorrect Confirm Password</p>
+			</div>			
+			<div class="login_register"><input class="register_button" type="submit" value="Register"/></div>
+			<div class="form50">
+				<a class="account" th:href="@{/login}">Login</a>
 			</div>
-			<div class="login_register"><a href="" target="_top">Login</a></div>
+			<div class="form50">
+				<a class="account" th:href="@{/forgotPassword}">Forgot Password</a>
+			</div>
 		</form>
-	</div>
-	
+	</div>	
 </div>

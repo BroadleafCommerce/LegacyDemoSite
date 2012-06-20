@@ -102,6 +102,10 @@ textarea {
 	border: solid 1px #c4c0bc;
 }
 
+.fieldError {
+	border: solid 1px #FF0000;
+}
+
 .field100, .form100 label {
 	width: 500px;
 }

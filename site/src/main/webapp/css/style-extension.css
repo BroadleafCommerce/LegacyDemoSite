@@ -3,8 +3,6 @@
  * ************************ */
 	
 #account {
-	width: 680px;
-	padding: 10px;
 	font-size: 12px;
 	display: block;
 }
@@ -16,7 +14,7 @@
 }
 
 #account #register, #account #login {
-	width: 310px;
+	width: 282px;
 	margin: 10px;
 	float: left;
 	display: inline;

@@ -17,9 +17,13 @@
 package com.mycompany.controller.account;
 
 import org.broadleafcommerce.core.web.controller.account.BroadleafLoginController;
+import org.broadleafcommerce.core.web.controller.account.ResetPasswordForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,13 +32,33 @@ import javax.servlet.http.HttpServletResponse;
  * The controller responsible for all actions involving logging a customer in
  * 
  * @author apazzolini
+ * @author bpolster
  */
 @Controller
 public class LoginController extends BroadleafLoginController {
 	
-	@RequestMapping("/account/login")
+	@RequestMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.login(request, response, model);
 	}
+	
+	@RequestMapping(value="/forgotPassword", method=RequestMethod.GET)
+	public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return super.forgotPassword(request, response, model);
+	}
+	
+	@RequestMapping(value="/forgotPassword", method=RequestMethod.POST)
+    public String processForgotPassword(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
+    	return super.processForgotPassword(emailAddress, request, model);
+    }   
 
+	@RequestMapping(value="/resetPasswordForm", method=RequestMethod.GET)
+	public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
+		return super.resetPassword(request, response, model);
+	}	
+    
+	@RequestMapping(value="/resetPasswordForm", method=RequestMethod.POST)
+    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
+    	return super.processResetPassword(resetPasswordForm, request, response, model);
+    }	
 }
