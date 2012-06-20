@@ -118,15 +118,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-			</resource>
-		</resources>
 	</build>
 	<dependencies>
 		<dependency>
@@ -146,10 +137,6 @@
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-framework-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-usps</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>

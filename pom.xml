@@ -234,13 +234,6 @@
 				<classifier>tests</classifier>
 				<scope>test</scope>
 			</dependency>
-			<dependency>
-				<groupId>org.broadleafcommerce</groupId>
-				<artifactId>broadleaf-usps</artifactId>
-				<version>${blc.thirdparty.version}</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
 
 			<!-- Other dependencies -->
 			<dependency>
