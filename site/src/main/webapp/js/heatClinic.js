@@ -54,10 +54,24 @@ var HC = (function($) {
 		return extraData;
 	}
 	
+	function ajax(options, callback) {
+	    var defaults = {
+    		success: function(data) {
+    			if (!HC.redirectIfNecessary($(data))) {
+                    callback(data);
+                }
+            }
+        };
+	    
+        $.extend(options, defaults); 
+        $.ajax(options);
+	}
+	
 	return {
 		showNotification : showNotification,
 		changeProductOption : changeProductOption,
 		redirectIfNecessary : redirectIfNecessary,
-		getExtraData : getExtraData
+		getExtraData : getExtraData,
+		ajax : ajax
 	}
 })($);

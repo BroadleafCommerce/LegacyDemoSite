@@ -49,24 +49,28 @@ $(function(){
 		});
 		return false;
 		*/
-		$.post($form.attr('action'), $form.serialize(), function(data) {
-			if (!HC.redirectIfNecessary($(data))) {
+		HC.ajax({url: $form.attr('action'), 
+				type: "POST",
+				dataType: "json",
+				data: $form.serialize()
+			}, function(data) {
 				updateHeaderCartItemsCount(data.cartItemCount);
 				showInCartButton(data.productId);
 				HC.showNotification(data.productName + "  has been added to the cart!");
 			}
-		}, 'json');
-		
+		);
 		return false;
 	});
-		
 	
 	// Intercept update quantity operations and perform them via AJAX instead
 	// This will trigger on any input with class "updateQuantity"
 	$('body').on('click', 'input.updateQuantity', function() {
 		var $form = $(this).closest('form');
-		$.post($form.attr('action'), $form.serialize(), function(data) {
-			if (!HC.redirectIfNecessary($(data))) {
+		
+		HC.ajax({url: $form.attr('action'),
+				type: "POST", 
+				data: $form.serialize() 
+			}, function(data) {
 				var extraData = HC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				
@@ -76,7 +80,7 @@ $(function(){
 				
 				$('.fancybox-inner').html(data);
 			}
-		});
+		);
 		return false;
 	});
 	
@@ -84,15 +88,17 @@ $(function(){
 	// This will trigger on any link with class "remove_from_cart"
 	$('body').on('click', 'a.remove_from_cart', function() {
 		var link = this;
-		$.get($(link).attr('href'), function(data) {
-			if (!HC.redirectIfNecessary($(data))) {
+		
+		HC.ajax({url: $(link).attr('href'),
+				type: "GET",
+			}, function(data) {
 				var extraData = HC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				showAddToCartButton(extraData.productId);
 				
-				$('.fancybox-inner').html(cartData);
+				$('.fancybox-inner').html(data);
 			}
-	    });
+		);
 		return false;
 	});
 });
