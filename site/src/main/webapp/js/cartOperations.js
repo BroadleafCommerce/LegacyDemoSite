@@ -49,7 +49,7 @@ $(function(){
 		});
 		return false;
 		*/
-		HC.ajax({url: $form.attr('action'), 
+		BLC.ajax({url: $form.attr('action'), 
 				type: "POST",
 				dataType: "json",
 				data: $form.serialize()
@@ -67,11 +67,11 @@ $(function(){
 	$('body').on('click', 'input.updateQuantity', function() {
 		var $form = $(this).closest('form');
 		
-		HC.ajax({url: $form.attr('action'),
+		BLC.ajax({url: $form.attr('action'),
 				type: "POST", 
 				data: $form.serialize() 
 			}, function(data) {
-				var extraData = HC.getExtraData($(data));
+				var extraData = BLC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				
 				if ($form.children('input.quantityInput').val() == 0) {
@@ -89,10 +89,10 @@ $(function(){
 	$('body').on('click', 'a.remove_from_cart', function() {
 		var link = this;
 		
-		HC.ajax({url: $(link).attr('href'),
+		BLC.ajax({url: $(link).attr('href'),
 				type: "GET",
 			}, function(data) {
-				var extraData = HC.getExtraData($(data));
+				var extraData = BLC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				showAddToCartButton(extraData.productId);
 				

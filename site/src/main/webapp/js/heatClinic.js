@@ -2,9 +2,6 @@
  * used by various other areas of the site */
 var HC = (function($) {
 	
-	var redirectUrlDiv = "blc-redirect-url",
-		extraDataDiv   = "blc-extra-data";
-	
 	function adjustPrice($option) {
 	    var adjustments = 0;
 	    $('.product-option-group li.active').each(function() {
@@ -39,39 +36,8 @@ var HC = (function($) {
 	    }
 	}
 	
-	function redirectIfNecessary($data) {
-		var redirectUrl = $data.find('#' + redirectUrlDiv).text();
-		if (redirectUrl != null && redirectUrl !== "") {
-			window.location = redirectUrl;
-			return true;
-		}
-		return false;
-	}
-	
-	function getExtraData($data) {
-		var extraData = $.parseJSON($data.find('#' + extraDataDiv).text());
-		$data.find('#' + extraDataDiv).remove();
-		return extraData;
-	}
-	
-	function ajax(options, callback) {
-	    var defaults = {
-    		success: function(data) {
-    			if (!HC.redirectIfNecessary($(data))) {
-                    callback(data);
-                }
-            }
-        };
-	    
-        $.extend(options, defaults); 
-        $.ajax(options);
-	}
-	
 	return {
 		showNotification : showNotification,
-		changeProductOption : changeProductOption,
-		redirectIfNecessary : redirectIfNecessary,
-		getExtraData : getExtraData,
-		ajax : ajax
+		changeProductOption : changeProductOption
 	}
 })($);

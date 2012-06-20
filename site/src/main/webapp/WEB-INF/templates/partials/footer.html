@@ -18,7 +18,7 @@
 			We will attempt to load the jQuery library from Google's CDN, but fallback on our own provided
 			jQuery if necessary.
 			
-			Please do not inline any scripts in the demo other than this jQuery loading
+			Other than this jQuery loading script, no other scripts should be defined inline.
 		-->
 	</div>
 	
@@ -31,7 +31,17 @@
 	
 	<script th:src="@{/js/plugins.js}"></script>
 	
+	<div th:remove="all">
+		<!--
+			In a production environment, you would want to use some pre-processor (such as JAWR) to
+			collapse these JavaScript files into one for faster performance and naming the files in a
+			versioned way to avoid browser cache issues. This has the added benefit of allowing proper
+			organization of the JavaScript in the project.
+		-->
+	</div>
+	<script th:src="@{/js/BLC.js}"></script>
 	<script th:src="@{/js/heatClinic.js}"></script>
+	<script th:src="@{/js/accountOperations.js}"></script>
 	<script th:src="@{/js/cartOperations.js}"></script>
 	<script th:src="@{/js/globalOnReady.js}"></script>
 	
