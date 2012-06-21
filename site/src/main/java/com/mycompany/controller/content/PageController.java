@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This class works in combination with the CategoryHandlerMapping which finds a category based upon
+ * This class works in combination with the PageHandlerMapping which finds a category based upon
  * the passed in URL.
- *
- * @author bpolster
  */
 @Controller("blPageController")
 public class PageController extends BroadleafPageController {

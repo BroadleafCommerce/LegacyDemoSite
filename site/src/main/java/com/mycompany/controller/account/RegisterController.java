@@ -30,9 +30,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The controller responsible for registering a customer
- * 
- * @author apazzolini
- * @author bpolster
  */
 @Controller
 @RequestMapping("/register")
