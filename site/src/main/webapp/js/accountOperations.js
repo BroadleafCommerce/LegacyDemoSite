@@ -25,8 +25,8 @@ $(function(){
 	$('body').on('click','.fancybox-inner a.account',  function() {		
 		BLC.ajax({url: $(this).attr('href'),
 				type: "GET"
-			}, function(data) {
-				$('.fancybox-inner').html(accountData);			
+			}, function(responseData) {
+				$('.fancybox-inner').html(responseData);			
 			}
 		);
 		return false;
@@ -38,7 +38,7 @@ $(function(){
 		BLC.ajax({url: $form.attr('action'), 
 				type: "POST",
 				data: $form.serialize()
-			}, function(data) {
+			}, function(responseData) {
 				$('.fancybox-inner').html(responseData);
 			}
 		);

@@ -5,13 +5,15 @@ var BLC = (function($) {
 		extraDataDiv   = "blc-extra-data";
 	
 	function redirectIfNecessary($data) {
-		var redirectUrl = $data.find('#' + redirectUrlDiv).text();
-		if (redirectUrl != null && redirectUrl !== "") {
-			window.location = redirectUrl;
-			return true;
-		}
-		return false;
-	}
+        if ($data.attr('id') == redirectUrlDiv) {
+            var redirectUrl = $data.text();
+            if (redirectUrl != null && redirectUrl !== "") {
+                window.location = redirectUrl;
+                return true;
+            }
+        }
+        return false;
+    }
 	
 	function getExtraData($data) {
 		var extraData = $.parseJSON($data.find('#' + extraDataDiv).text());
