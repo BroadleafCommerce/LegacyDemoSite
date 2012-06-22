@@ -32,6 +32,10 @@ $(function(){
 		$('#headerCartItemsCountWord').html((newCount == 1) ? ' item' : ' items');
 	}
 	
+	function updateWithPromo(promo) {
+		$('#headerCartItemCount').html();
+	}
+	
 	// Hides the add to cart button and shows the in cart button
 	function showInCartButton(productId) {
 		$('.productActions' + productId).children('.in_cart').removeClass('hidden');
@@ -43,6 +47,8 @@ $(function(){
 		$('.productActions' + productId).children('.add_to_cart').removeClass('hidden');
 		$('.productActions' + productId).children('.in_cart').addClass('hidden');
 	}
+	
+	
 	
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
@@ -108,7 +114,6 @@ $(function(){
 			}, function(data) {
 				var extraData = BLC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
-				
 				if ($form.children('input.quantityInput').val() == 0) {
 					showAddToCartButton(extraData.productId);
 				}
@@ -136,4 +141,20 @@ $(function(){
 		);
 		return false;
 	});
+	
+	$('body').on('click', 'input.cart_button', function() {
+		var $form = $(this).closest('form');
+		
+		BLC.ajax({url: $form.attr('action'),
+				type: "POST", 
+				data: $form.serialize() 
+			}, function(data) {
+				$('.fancybox-inner').html(data);
+			}
+		);
+		return false;
+	});
+	
+	
+	
 });

@@ -1,6 +1,8 @@
 package com.mycompany.controller.cart;
 
+
 import org.broadleafcommerce.core.catalog.domain.Product;
+import org.broadleafcommerce.core.offer.service.exception.OfferMaxUseExceededException;
 import org.broadleafcommerce.core.order.service.exception.ItemNotFoundException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
@@ -11,14 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/cart")
@@ -89,6 +92,12 @@ public class CartController extends BroadleafCartController {
 	@RequestMapping("/empty")
 	public String empty(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
 		return super.empty(request, response, model);
+		
+	}
+	
+	@RequestMapping("/promo")
+	public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,@RequestParam("promoCode") String customerOffer) throws IOException, PricingException, ItemNotFoundException, OfferMaxUseExceededException  {
+		return super.addPromo(request, response, model, customerOffer);
 	}
 	
 }

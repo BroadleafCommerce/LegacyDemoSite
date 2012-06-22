@@ -9,11 +9,11 @@
 		<p><a th:href="@{/}" target="_top">&laquo; Continue Shopping</a></p>
 	</div>
 	
-	<div id="cart_promo">
+	<form id="cart_promo" method="POST" th:action="@{/cart/promo}">
 		<label for="promoCode">Promo Code:</label>
-		<input id="promoCode" name="promoCode" type="text" value="" maxlength="10" autocomplete="off"/>
+		<input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/>
 		<input type="submit" id="addPromo" name="addPromo" value="Apply Discount" class="cart_button" />
-	</div>
+	</form>
 	
 	<div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
 
