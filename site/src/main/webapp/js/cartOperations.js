@@ -149,6 +149,11 @@ $(function(){
 				type: "POST", 
 				data: $form.serialize() 
 			}, function(data) {
+				var extraData = BLC.getExtraData($(data));
+				
+				if(!extraData.promoAdded) {
+					HC.showNotification("Promo could not be applied");
+				}
 				$('.fancybox-inner').html(data);
 			}
 		);
