@@ -86,7 +86,7 @@ $(function(){
 						$errorSpan.css('display', 'block');
 				        $errorSpan.effect('highlight', {}, 1000);
 					} else {
-						$errorSpan.css('display', 'none');
+						$errorSpan.css('display', 'none'); 
 						updateHeaderCartItemsCount(data.cartItemCount);
 						
 						if (modalClick) {
@@ -142,7 +142,21 @@ $(function(){
 		return false;
 	});
 	
-	$('body').on('click', 'input.cart_button', function() {
+	// Intercept remove from cart operations and perform them via AJAX instead
+	// This will trigger on any link with class "remove_from_cart"
+	$('body').on('click', 'a.remove_promo', function() {
+		var link = this;
+		
+		BLC.ajax({url: $(link).attr('href'),
+				type: "GET"
+			}, function(data) {
+				$('.fancybox-inner').html(data);
+			}
+		);
+		return false;
+	});
+	
+	$('body').on('click', 'input#addPromo', function() {
 		var $form = $(this).closest('form');
 		
 		BLC.ajax({url: $form.attr('action'),
@@ -150,16 +164,13 @@ $(function(){
 				data: $form.serialize() 
 			}, function(data) {
 				var extraData = BLC.getExtraData($(data));
-				
 				if(!extraData.promoAdded) {
-					HC.showNotification("Promo could not be applied");
+					$("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
+				} else {
+					$('.fancybox-inner').html(data);
 				}
-				$('.fancybox-inner').html(data);
 			}
 		);
 		return false;
 	});
-	
-	
-	
 });

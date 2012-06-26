@@ -33,7 +33,7 @@
 			<td align="center" blc:price="*{price}"></td>
 			
 			<td align="center" th:if="*{adjustmentValue.zero}">---</td>
-			<td align="center" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+			<td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
 			
 			<td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
 		</tr>

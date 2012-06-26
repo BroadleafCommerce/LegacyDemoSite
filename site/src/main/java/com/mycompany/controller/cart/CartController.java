@@ -96,8 +96,15 @@ public class CartController extends BroadleafCartController {
 	}
 	
 	@RequestMapping("/promo")
-	public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,@RequestParam("promoCode") String customerOffer) throws IOException, PricingException, ItemNotFoundException, OfferMaxUseExceededException  {
+	public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,
+			@RequestParam("promoCode") String customerOffer) throws IOException, PricingException {
 		return super.addPromo(request, response, model, customerOffer);
+	}
+	
+	@RequestMapping("/promo/remove")
+	public String removePromo(HttpServletRequest request, HttpServletResponse response, Model model,
+			@RequestParam("offerCodeId") Long offerCodeId) throws IOException, PricingException {
+		return super.removePromo(request, response, model, offerCodeId);
 	}
 	
 }
