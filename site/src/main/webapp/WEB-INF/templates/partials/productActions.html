@@ -4,8 +4,21 @@
 		<form method="POST" th:action="@{/cart/add}">
 			<input type="hidden" name="productId" th:value="*{id}" />
 			<input type="hidden" name="quantity" value="1" />
+
 			<input type="hidden" name="hasProductOptions" th:value="${!#lists.isEmpty(product.productOptions)}" />
 			<input type="submit" class="addToCart" value="Buy Now!"/>
+
+			
+			<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
+				<span th:text="*{type.friendlyType}"></span>
+				<select th:name="*{type.type}">
+					<option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+				</select>
+			</div>
+			
+
 		</form>
+		
+		
 	</div>
 </div>

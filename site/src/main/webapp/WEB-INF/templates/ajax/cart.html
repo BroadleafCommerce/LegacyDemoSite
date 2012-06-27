@@ -1,19 +1,24 @@
 <div id="cart" class="cart_modal">
 	<table id="cart_products" th:substituteby="partials/cartProductsTable"></table>
-	
 	<div id="cart_total" class="group">
 		<h3>Your Current Subtotal</h3>
-		<div id="subtotal" blc:price="${cart.subTotal}"></div>
+		<div id="subtotal" blc:price="${cart.total}"></div>
+		<div id="orderDiscounts" th:unless="${cart.orderAdjustmentsValue.zero}">
+			Order Discount: <span blc:price="${cart.orderAdjustmentsValue}" />
+		</div>
 		<p>Subtotal does not yet include applicable tax or shipping and handling charges.</p>
 		<div id="checkout"><a th:href="@{/checkout}" target="_top">Checkout</a></div>
 		<p><a th:href="@{/}" target="_top">&laquo; Continue Shopping</a></p>
 	</div>
-	
-	<div id="cart_promo">
+	<form id="cart_promo" method="POST" th:action="@{/cart/promo}">
 		<label for="promoCode">Promo Code:</label>
-		<input id="promoCode" name="promoCode" type="text" value="" maxlength="10" autocomplete="off"/>
+		<input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/>
 		<input type="submit" id="addPromo" name="addPromo" value="Apply Discount" class="cart_button" />
-	</div>
+		<div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
+			<div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
+		</div>
+		<div id="cart_promo_error" style="display: none;"></div>
+	</form>
 	
 	<div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
 

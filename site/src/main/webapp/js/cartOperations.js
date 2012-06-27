@@ -32,6 +32,10 @@ $(function(){
 		$('#headerCartItemsCountWord').html((newCount == 1) ? ' item' : ' items');
 	}
 	
+	function updateWithPromo(promo) {
+		$('#headerCartItemCount').html();
+	}
+	
 	// Hides the add to cart button and shows the in cart button
 	function showInCartButton(productId) {
 		$('.productActions' + productId).children('.in_cart').removeClass('hidden');
@@ -43,6 +47,8 @@ $(function(){
 		$('.productActions' + productId).children('.add_to_cart').removeClass('hidden');
 		$('.productActions' + productId).children('.in_cart').addClass('hidden');
 	}
+	
+	
 	
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
@@ -80,7 +86,7 @@ $(function(){
 						$errorSpan.css('display', 'block');
 				        $errorSpan.effect('highlight', {}, 1000);
 					} else {
-						$errorSpan.css('display', 'none');
+						$errorSpan.css('display', 'none'); 
 						updateHeaderCartItemsCount(data.cartItemCount);
 						
 						if (modalClick) {
@@ -108,7 +114,6 @@ $(function(){
 			}, function(data) {
 				var extraData = BLC.getExtraData($(data));
 				updateHeaderCartItemsCount(extraData.cartItemCount);
-				
 				if ($form.children('input.quantityInput').val() == 0) {
 					showAddToCartButton(extraData.productId);
 				}
@@ -132,6 +137,38 @@ $(function(){
 				showAddToCartButton(extraData.productId);
 				
 				$('.fancybox-inner').html(data);
+			}
+		);
+		return false;
+	});
+	
+	// Intercept remove from cart operations and perform them via AJAX instead
+	// This will trigger on any link with class "remove_from_cart"
+	$('body').on('click', 'a.remove_promo', function() {
+		var link = this;
+		
+		BLC.ajax({url: $(link).attr('href'),
+				type: "GET"
+			}, function(data) {
+				$('.fancybox-inner').html(data);
+			}
+		);
+		return false;
+	});
+	
+	$('body').on('click', 'input#addPromo', function() {
+		var $form = $(this).closest('form');
+		
+		BLC.ajax({url: $form.attr('action'),
+				type: "POST", 
+				data: $form.serialize() 
+			}, function(data) {
+				var extraData = BLC.getExtraData($(data));
+				if(!extraData.promoAdded) {
+					$("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
+				} else {
+					$('.fancybox-inner').html(data);
+				}
 			}
 		);
 		return false;
