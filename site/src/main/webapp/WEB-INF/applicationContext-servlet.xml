@@ -20,7 +20,6 @@
 	<context:component-scan base-package="org.broadleafcommerce.core.web"/>	
 	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
 
-	
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
