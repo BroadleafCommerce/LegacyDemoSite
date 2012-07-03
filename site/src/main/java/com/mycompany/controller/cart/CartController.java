@@ -2,10 +2,9 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
-import org.broadleafcommerce.core.order.service.exception.AddToCartException;
-import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
+import org.broadleafcommerce.core.offer.service.exception.OfferMaxUseExceededException;
+import org.broadleafcommerce.core.order.service.exception.ItemNotFoundException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
-import org.broadleafcommerce.core.order.service.exception.UpdateCartException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.CartState;
@@ -17,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/cart")
@@ -42,7 +41,7 @@ public class CartController extends BroadleafCartController {
 	 */
 	@RequestMapping(value = "/add", produces = "application/json")
 	public @ResponseBody Map<String, Object> addJson(HttpServletRequest request, HttpServletResponse response, Model model,
-			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
+			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException {
 		Map<String, Object> responseMap = new HashMap<String, Object>();
 		try {
 			super.add(request, response, model, addToCartItem);
@@ -69,7 +68,7 @@ public class CartController extends BroadleafCartController {
 	 */
 	@RequestMapping(value = "/add", produces = "text/html")
 	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
-			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
+			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException {
 		try {
 			return super.add(request, response, model, addToCartItem);
 		} catch (RequiredAttributeNotProvidedException e) {
@@ -80,13 +79,13 @@ public class CartController extends BroadleafCartController {
 	
 	@RequestMapping("/updateQuantity")
 	public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model,
-			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
+			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, ItemNotFoundException {
 		return super.updateQuantity(request, response, model, addToCartItem);
 	}
 	
 	@RequestMapping("/remove")
 	public String remove(HttpServletRequest request, HttpServletResponse response, Model model,
-			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, RemoveFromCartException {
+			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, ItemNotFoundException {
 		return super.remove(request, response, model, addToCartItem);
 	}
 	
