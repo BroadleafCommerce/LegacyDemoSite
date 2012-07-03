@@ -65,13 +65,21 @@
 	</bean>
 
 	<!-- Use Thymeleaf as the templating engine -->
-	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+	<bean id="webTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/templates/" />
 		<property name="suffix" value=".html" />
 		<property name="templateMode" value="HTML5" />
 		<property name="cacheable" value="false"/>
 	</bean>
 	
+	<bean id="emailTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/mail-templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+	</bean>
+	
+	<!-- Register Dialects (e.g. similar to TagLibs) -->	
 	<bean id="blDialect" class="org.broadleafcommerce.common.web.dialect.BLCDialect">
 	    <property name="processors">
 		  <set>
@@ -82,10 +90,14 @@
 		  </set>
 		</property>  	
 	</bean>
-	
-	<!-- Register Dialects (e.g. similar to TagLibs) -->
+
 	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
-		<property name="templateResolver" ref="templateResolver" />
+		<property name="templateResolvers">
+			<set>
+				<ref bean="emailTemplateResolver" />
+				<ref bean="webTemplateResolver" />
+			</set>
+		</property>
 		<property name="dialects">
 			<set>
 				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
@@ -93,6 +105,7 @@
 			</set>
 		</property>
 	</bean>
+
 	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="order" value="1" />

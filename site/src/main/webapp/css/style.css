@@ -403,7 +403,7 @@ nav {
 	padding: 0;
 }
 
-#account #register, #account #login {
+#account #register, #account #login, #account #forgotPassword {
 	width: 282px;
 	margin: 10px;
 	float: left;

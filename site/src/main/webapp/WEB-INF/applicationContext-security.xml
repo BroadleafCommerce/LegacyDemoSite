@@ -140,11 +140,6 @@
 		<property name="defaultTargetUrl" value="/" />
 		<property name="alwaysUseDefaultTargetUrl" value="true" />
 	</bean>
-
-	<bean id="redirectStrategy"
-		class="org.broadleafcommerce.common.security.LocalRedirectStrategy">
-		<property name="enforcePortMatch" value="true" />
-	</bean>
   
      <!--  Sets up the filter that receives the login post.    -->
 	<bean id="blAuthenticationProcessingFilter"
