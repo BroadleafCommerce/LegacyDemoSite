@@ -9,7 +9,7 @@
 	
 	<ul>
 		<li th:each="category : ${navCategories}">
-			<a href="#" class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
+			<a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
 		</li>
 	</ul>
 </nav>
