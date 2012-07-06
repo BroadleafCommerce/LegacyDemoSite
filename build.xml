@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="!BroadleafDemoTools" default="change-identifier" basedir="."
+	xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+	xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
+	
+	<target name="change-identifier">
+		<!-- Move the required files / directories to their new homes -->
+		<move file="admin/src/main/resources/com/mycompany/gwt/mycompanyAdmin.gwt.xml" tofile="admin/src/main/resources/com/mycompany/gwt/heatclinicAdmin.gwt.xml"/>
+		<move file="admin/src/main/resources/com/mycompany" tofile="admin/src/main/resources/com/heatclinic"/>
+		<move file="site/src/main/java/com/mycompany" tofile="site/src/main/java/com/heatclinic"/>
+		
+		<!-- Rename required values -->
+		<replace dir="admin" token="com.mycompany.gwt.mycompanyAdmin" value="com.heatclinic.gwt.heatclinicAdmin" summary="yes" excludes="target/"/>
+		<replace dir="admin" token="mycompany-admin" value="heatclinic-admin" summary="yes" excludes="target/"/>
+		<replace dir="admin" token="com.mycompany" value="com.heatclinic" summary="yes" excludes="target/"/>
+		
+		<replace dir="core" token="com.mycompany" value="com.heatclinic" summary="yes" excludes="target/"/>
+		
+		<replace dir="site" token="com.mycompany" value="com.heatclinic" summary="yes" excludes="target/"/>
+		<replace dir="site" token="mycompany-site" value="heatclinic-site" summary="yes" excludes="target/"/>
+		<replace dir="site" token="target/mycompany" value="target/heatclinic" summary="yes" excludes="target/"/>
+		<replace file="site/src/main/webapp/WEB-INF/web.xml" token="mycompany" value="heatclinic" summary="yes" excludes="target/"/>
+		<replace file="pom.xml" token="com.mycompany" value="com.heatclinic" summary="yes" excludes="target/"/>	
+	</target>
+
+</project>

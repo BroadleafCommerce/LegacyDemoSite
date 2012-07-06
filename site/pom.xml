@@ -32,7 +32,7 @@
 				<version>6.1.22</version>
 				<configuration>
 					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-					<contextPath>/mycompany</contextPath>
+					<contextPath>/</contextPath>
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
 					<connectors>
