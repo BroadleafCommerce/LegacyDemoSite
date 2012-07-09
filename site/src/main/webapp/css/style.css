@@ -187,7 +187,6 @@ span.error {
 	color: #E40037;
 	font-weight: bold;
 }
-		
 
 /* ===== Primary Styles ========================================================
    Author: Ben Jordan
@@ -411,7 +410,12 @@ nav {
 }
 	
 .login_register {
-	margin: 20px 0;
+	margin: 20px 0 0;
+	float: left;
+}
+
+.login_register_alt_links {
+	margin: 35px 0 0 30px;
 	float: left;
 }
 	
@@ -718,7 +722,7 @@ nav {
 		
 .add_to_cart input[type="submit"], .in_cart a:link, .in_cart a:visited, .submitFormButton {
 	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-	margin: 10px auto;
+	margin: 10px auto 0;
 	padding: 15px 35px;
 	color: white;
 	text-transform: uppercase;

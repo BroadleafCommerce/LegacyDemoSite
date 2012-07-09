@@ -3,7 +3,9 @@
 		<h3>Login to Your Account</h3>
 		<p>Already a member? Sign in using the form below.</p>
 		
-		<p class="error" th:if="${param.error}">The e-mail address and/or password entered do not match our records.  Please try again</p>
+		<span class="error" th:if="${param.error}">
+			<p>The e-mail address and/or password entered do not match our records.  Please try again</p>
+		</span>
 
 		<form th:action="@{/login_post.htm}" method="post">
 			<div class="form50">
@@ -14,13 +16,14 @@
 				<label for="j_password">Password</label>
 				<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
 			</div>
-			<div class="login_register"><input class="login_button submitFormButton" type="submit" value="Login"/></div>			
-		    <div class="form50">
-			    <a class="account" th:href="@{/register}">Register</a> 
+			<div class="login_register">
+				<input class="login_button submitFormButton" type="submit" value="Login"/>
 			</div>
-			<div class="form50">
+			<div class="login_register_alt_links">
+			    <a class="account" th:href="@{/register}">Register</a> 
+				<br/>
 				<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
-			</div>			
+			</div>
 		</form>
 	</div>
 	

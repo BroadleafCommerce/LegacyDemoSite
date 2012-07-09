@@ -49,7 +49,7 @@ public class CartController extends BroadleafCartController {
 			
 			responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
 			responseMap.put("quantityAdded", addToCartItem.getQuantity());
-			responseMap.put("cartItemCount", String.valueOf(CartState.getCart(request).getItemCount()));
+			responseMap.put("cartItemCount", String.valueOf(CartState.getCart().getItemCount()));
 			if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0) {
 				// We don't want to return a productId to hide actions for when it is a product that has multiple
 				// product options. The user may want the product in another version of the options as well.

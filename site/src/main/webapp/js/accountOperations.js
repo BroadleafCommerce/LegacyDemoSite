@@ -3,7 +3,7 @@ $(function(){
 	// The options used for the login/register fancybox modal
 	var fancyAccountOptions = {
 		maxWidth	: 700,
-		maxHeight	: 520,	
+		maxHeight	: 560,	
 		fitToView	: false,
 		width		: '100%',
 		height		: '100%',

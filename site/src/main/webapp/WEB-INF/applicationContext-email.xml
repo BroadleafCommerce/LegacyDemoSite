@@ -10,7 +10,11 @@
        For an easy to use dev email server, download the DevNullSmtp.jar from
        http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp and run the jar.
        The configuration below will work if you set the DevNullSmtp port to 30000.
+       
+       Note that you will need to comment out the line immediately below this comment
+       to disable the null mail service
      -->
+	<bean id="blEmailService" class="org.broadleafcommerce.common.email.service.NullEmailServiceImpl" />
 	<bean id="blMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     	<property name="host"><value>0.0.0.0</value></property>
     	<property name="port"><value>30000</value></property>
