@@ -17,7 +17,10 @@ $(function(){
 	
 	// Bind all links with class .account to open the login/register fancybox modal
 	$('#header_content').on('click', 'a.account', function() {
-		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href') }));
+		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href'), afterShow: function() {
+			$('.fancybox-inner').find('form:first').find('input:first').focus();
+			return true;
+		}}));
 		return false;
 	});
 	
