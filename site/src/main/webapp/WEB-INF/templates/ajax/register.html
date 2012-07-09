@@ -30,12 +30,12 @@
 				<input type="password" th:field="*{passwordConfirm}" th:class="${#fields.hasErrors('passwordConfirm')}? 'field50 fieldError' : 'field50'" />
 			    <p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Incorrect Confirm Password</p>
 			</div>			
-			<div class="login_register"><input class="register_button" type="submit" value="Register"/></div>
+			<div class="login_register"><input class="register_button submitFormButton" type="submit" value="Register"/></div>
 			<div class="form50">
 				<a class="account" th:href="@{/login}">Login</a>
 			</div>
 			<div class="form50">
-				<a class="account" th:href="@{/forgotPassword}">Forgot Password</a>
+				<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
 			</div>
 		</form>
 	</div>	

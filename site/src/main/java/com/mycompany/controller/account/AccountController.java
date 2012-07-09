@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class AccountController extends BroadleafAccountController {
 	
-	@RequestMapping("/myaccount")
+	@RequestMapping("/account/myaccount")
 	public String myaccount(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.myaccount(request, response, model);
 	}		

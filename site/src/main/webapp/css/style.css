@@ -403,7 +403,7 @@ nav {
 	padding: 0;
 }
 
-#account #register, #account #login, #account #forgotPassword {
+#account #register, #account #login, #account #forgotPassword, #account #resetPassword {
 	width: 282px;
 	margin: 10px;
 	float: left;
@@ -716,7 +716,7 @@ nav {
 	display: block;
 }
 		
-.add_to_cart input[type="submit"], .in_cart a:link, .in_cart a:visited {
+.add_to_cart input[type="submit"], .in_cart a:link, .in_cart a:visited, .submitFormButton {
 	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
 	margin: 10px auto;
 	padding: 15px 35px;
@@ -732,7 +732,7 @@ nav {
 	display: inline-table;
 }
 
-.add_to_cart input[type="submit"] {
+.add_to_cart input[type="submit"], .submitFormButton {
 	background-color: #E40037;
 }
 
