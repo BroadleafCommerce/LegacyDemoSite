@@ -16,6 +16,7 @@
     	http://www.springframework.org/schema/util
     	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
+    <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
 
@@ -108,7 +109,6 @@
 					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
 			</list>
 		</constructor-arg>
-		<property name="filterProcessesUrl" value="/index" />
 	</bean>
 
     <!--  Sets the RememberMe Cookie name -->
@@ -130,20 +130,15 @@
 	<bean id="broadleafAuthenticationFailureHandler"
 		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
 		<constructor-arg value="/login?error=true" />
-		<property name="redirectStrategy" ref="redirectStrategy" />
+		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" />
 	</bean>
 
     <!-- Sets the login success URL -->
 	<bean id="broadleafAuthenticationSuccessHandler"
 		class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
-		<property name="redirectStrategy" ref="redirectStrategy" />
+		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
 		<property name="defaultTargetUrl" value="/" />
 		<property name="alwaysUseDefaultTargetUrl" value="true" />
-	</bean>
-
-	<bean id="redirectStrategy"
-		class="org.broadleafcommerce.common.security.LocalRedirectStrategy">
-		<property name="enforcePortMatch" value="true" />
 	</bean>
   
      <!--  Sets up the filter that receives the login post.    -->

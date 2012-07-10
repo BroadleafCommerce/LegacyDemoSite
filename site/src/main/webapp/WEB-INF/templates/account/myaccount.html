@@ -10,12 +10,16 @@
 	<div id="notification_bar"></div>
 	<header th:substituteby="partials/header" />
 	
-	<div id="content" class="width_setter group" role="main">
-	
+	<div id="content" class="width_setter group" role="main">	
 		<nav th:substituteby="partials/nav" />
 		
-		<div th:substituteby="ajax/register.html" />
-			
+		<ul id="accountMenu">
+			<li>View Orders</li>
+			<li>Account Information</li>
+			<li>Change Password</li>
+			<li>Manage Addresses</li>
+			<li>Manage Wishlist</li>			
+		</ul>			
 	</div>
 	
 	<footer th:substituteby="partials/footer" />

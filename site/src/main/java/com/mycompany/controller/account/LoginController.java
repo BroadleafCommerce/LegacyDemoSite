@@ -20,6 +20,7 @@ import org.broadleafcommerce.core.web.controller.account.BroadleafLoginControlle
 import org.broadleafcommerce.core.web.controller.account.ResetPasswordForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,28 +35,30 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController extends BroadleafLoginController {
 	
+	
+	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.login(request, response, model);
 	}
 	
-	@RequestMapping(value="/forgotPassword", method=RequestMethod.GET)
+	@RequestMapping(value="/login/forgotPassword", method=RequestMethod.GET)
 	public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.forgotPassword(request, response, model);
 	}
 	
-	@RequestMapping(value="/forgotPassword", method=RequestMethod.POST)
+	@RequestMapping(value="/login/forgotPassword", method=RequestMethod.POST)
     public String processForgotPassword(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
     	return super.processForgotPassword(emailAddress, request, model);
     }   
 
-	@RequestMapping(value="/resetPasswordForm", method=RequestMethod.GET)
+	@RequestMapping(value="/login/resetPassword", method=RequestMethod.GET)
 	public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.resetPassword(request, response, model);
 	}	
     
-	@RequestMapping(value="/resetPasswordForm", method=RequestMethod.POST)
-    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
-    	return super.processResetPassword(resetPasswordForm, request, response, model);
+	@RequestMapping(value="/login/resetPassword", method=RequestMethod.POST)
+    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) {
+    	return super.processResetPassword(resetPasswordForm, request, response, model, errors);
     }	
 }

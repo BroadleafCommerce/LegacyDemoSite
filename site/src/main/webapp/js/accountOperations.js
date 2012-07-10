@@ -3,7 +3,7 @@ $(function(){
 	// The options used for the login/register fancybox modal
 	var fancyAccountOptions = {
 		maxWidth	: 700,
-		maxHeight	: 520,	
+		maxHeight	: 560,	
 		fitToView	: false,
 		width		: '100%',
 		height		: '100%',
@@ -17,7 +17,10 @@ $(function(){
 	
 	// Bind all links with class .account to open the login/register fancybox modal
 	$('#header_content').on('click', 'a.account', function() {
-		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href') }));
+		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href'), afterShow: function() {
+			$('.fancybox-inner').find('form:first').find('input:first').focus();
+			return true;
+		}}));
 		return false;
 	});
 	
@@ -25,8 +28,8 @@ $(function(){
 	$('body').on('click','.fancybox-inner a.account',  function() {		
 		BLC.ajax({url: $(this).attr('href'),
 				type: "GET"
-			}, function(data) {
-				$('.fancybox-inner').html(accountData);			
+			}, function(responseData) {
+				$('.fancybox-inner').html(responseData);			
 			}
 		);
 		return false;
@@ -38,7 +41,7 @@ $(function(){
 		BLC.ajax({url: $form.attr('action'), 
 				type: "POST",
 				data: $form.serialize()
-			}, function(data) {
+			}, function(responseData) {
 				$('.fancybox-inner').html(responseData);
 			}
 		);

@@ -42,10 +42,11 @@ public class RegisterController extends BroadleafRegisterController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String processRegister(@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors, HttpServletRequest request, HttpServletResponse response, Model model) {
-		return super.processRegister(registerCustomerForm, errors, request, response, model);
+		String url = super.processRegister(registerCustomerForm, errors, request, response, model);
+		return url;
 	}
 	
-    @ModelAttribute("registrationForm")
+    @ModelAttribute("registrationForm") 
     public RegisterCustomerForm initCustomerRegistrationForm() {
     	return super.initCustomerRegistrationForm();    	
     }
