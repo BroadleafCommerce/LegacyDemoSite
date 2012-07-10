@@ -53,5 +53,37 @@
         <property name="assetServerUrlPrefix" value="${asset.server.url.prefix}"/>
         <property name="storeFrontWebAppPrefix" value="http://localhost:8080/"/>
     </bean>
+    
+    <bean id="blDialect" class="org.broadleafcommerce.common.web.dialect.BLCDialect">
+	    <property name="processors">
+		  <set>
+			<bean class="org.broadleafcommerce.core.web.processor.CategoriesProcessor" />
+			<bean class="org.broadleafcommerce.core.web.processor.HeadProcessor" />
+			<bean class="org.broadleafcommerce.core.web.processor.PriceTextDisplayProcessor" />
+			<bean class="org.broadleafcommerce.cms.web.processor.ContentProcessor" />
+		  </set>
+		</property>  	
+	</bean>
+	
+    <bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+		<property name="prefix" value="emailTemplates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+	</bean>
+	
+	<bean id="blEmailTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolvers">
+			<set>
+				<ref bean="blEmailTemplateResolver" />
+			</set>
+		</property>
+		<property name="dialects">
+			<set>
+				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
+				<ref bean="blDialect" />
+			</set>
+		</property>
+	</bean>
 
 </beans>

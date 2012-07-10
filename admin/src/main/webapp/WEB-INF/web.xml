@@ -21,6 +21,7 @@
             classpath:/bl-cms-contentCreator-applicationContext.xml
             /WEB-INF/applicationContext-admin-security.xml
             /WEB-INF/applicationContext-admin.xml
+  		    /WEB-INF/applicationContext-email.xml
         </param-value>
 	</context-param>
 
