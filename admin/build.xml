@@ -112,7 +112,10 @@
 	<target name="build-app">
 		<delete dir="war/WEB-INF/lib"/>
 		<artifact:mvn mavenHome="${maven.home}" fork="true">
+			<arg value="-Dgwt.logLevel=DEBUG"/>
+			<arg value="-Dgwt.compiler.strict=true"/>
 			<arg value="-Dmaven.test.skip=true"/>
+			<arg value="gwt:compile"/>
 			<arg value="install"/>
 		</artifact:mvn>
 	</target>
