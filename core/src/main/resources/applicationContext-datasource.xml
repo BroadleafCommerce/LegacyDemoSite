@@ -18,6 +18,17 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     
-    <context:component-scan base-package="org.broadleafcommerce.common"/>
-	  
+    <bean id="webDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:hsql://localhost/broadleaf;ifexists=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+    <bean id="webStorageDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:hsql://localhost/broadleaf;ifexists=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
 </beans>

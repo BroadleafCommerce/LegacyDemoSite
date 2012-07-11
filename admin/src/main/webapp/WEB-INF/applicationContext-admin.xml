@@ -18,8 +18,7 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-    <bean id="blPersistenceUnitManager"
-          class="org.broadleafcommerce.profile.extensibility.jpa.MergePersistenceUnitManager">
+    <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.profile.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
             <list>
                 <value>classpath*:/META-INF/persistence-admin.xml</value>
@@ -34,56 +33,10 @@
         </property>
         <property name="defaultDataSource" ref="webDS"/>
     </bean>
-    
-    <bean id="webDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:hsql://localhost/broadleaf;ifexists=true" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
-	</bean>
-
-    <bean id="webStorageDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:hsql://localhost/broadleaf;ifexists=true" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
-	</bean>
 
     <bean id="blUtilityRemoteService" class="org.broadleafcommerce.openadmin.server.service.UtilityRemoteService">
         <property name="assetServerUrlPrefix" value="${asset.server.url.prefix.internal}"/>
         <property name="storeFrontWebAppPrefix" value="http://localhost:8080/"/>
     </bean>
-    
-    <bean id="blDialect" class="org.broadleafcommerce.common.web.dialect.BLCDialect">
-	    <property name="processors">
-		  <set>
-			<bean class="org.broadleafcommerce.core.web.processor.CategoriesProcessor" />
-			<bean class="org.broadleafcommerce.core.web.processor.HeadProcessor" />
-			<bean class="org.broadleafcommerce.core.web.processor.PriceTextDisplayProcessor" />
-			<bean class="org.broadleafcommerce.cms.web.processor.ContentProcessor" />
-		  </set>
-		</property>  	
-	</bean>
-	
-    <bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
-		<property name="prefix" value="emailTemplates/" />
-		<property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML5" />
-		<property name="cacheable" value="false"/>
-	</bean>
-	
-	<bean id="blEmailTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
-		<property name="templateResolvers">
-			<set>
-				<ref bean="blEmailTemplateResolver" />
-			</set>
-		</property>
-		<property name="dialects">
-			<set>
-				<bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
-				<ref bean="blDialect" />
-			</set>
-		</property>
-	</bean>
 
 </beans>

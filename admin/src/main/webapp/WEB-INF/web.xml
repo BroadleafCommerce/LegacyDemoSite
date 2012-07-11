@@ -19,9 +19,10 @@
             classpath:/bl-admin-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             classpath:/bl-cms-contentCreator-applicationContext.xml
+  		    classpath:/applicationContext-email.xml
+		    classpath:/applicationContext-datasource.xml
             /WEB-INF/applicationContext-admin-security.xml
             /WEB-INF/applicationContext-admin.xml
-  		    /WEB-INF/applicationContext-email.xml
         </param-value>
 	</context-param>
 

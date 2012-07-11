@@ -19,7 +19,6 @@
 	<context:component-scan base-package="org.broadleafcommerce.common.web"/>
 	<context:component-scan base-package="org.broadleafcommerce.core.web"/>	
 	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
-
 	
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
@@ -64,6 +63,7 @@
 		<constructor-arg ref="resourceBundleExtensionPoint" />
 	</bean>
 	
+	<!-- Set up the view resolver to be used by Spring -->
 	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="blWebTemplateEngine" />
 		<property name="order" value="1" />
