@@ -48,6 +48,26 @@
         </property>
     </bean>
     -->
+    
+    <!-- This is an example of a custom dialect definition that uses a custom processor -->
+    <!-- The second bean registers the dialct to the blWebTemplateEngine -->
+	<!-- Note that the same thing could be done for the blEmailTemplateEngine -->
+    <!-- 
+	<bean id="myDialect" class="com.mycompany.common.web.dialect.MyDialect">
+	    <property name="processors">
+		  <set>
+			<bean class="com.mycompany.common.web.processor.MyProcessor" />
+		  </set>
+		</property>  	
+	</bean> 
+	<bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="dialects">
+			<set>
+				<ref bean="myDialect" />
+			</set>
+		</property>
+	</bean>	
+	-->
    
     <!--  Add your custom bean definitions here. -->   
 </beans>
