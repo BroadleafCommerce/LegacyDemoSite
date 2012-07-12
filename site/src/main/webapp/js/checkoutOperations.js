@@ -24,4 +24,32 @@ $(function(){
 		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href') }));
 		return false;
     });
+    
+    $('body').on('click', 'a.add-address-link', function() {
+		BLC.ajax({url: $(this).attr('href')}, function(data) {
+			$('#multiship-products').hide();
+			$('.fancybox-inner').append(data);
+		});
+		return false;
+    });
+    
+	// Intercept save operations and perform them via AJAX instead
+	$('body').on('click', 'input.saveAddress', function() {
+		var $form = $(this).closest('form');
+		
+		BLC.ajax({url: $form.attr('action'),
+				type: "POST", 
+				data: $form.serialize() 
+			}, function(data) {
+				var extraData = BLC.getExtraData($(data));
+				//updateHeaderCartItemsCount(extraData.cartItemCount);
+				//if ($form.children('input.quantityInput').val() == 0) {
+					//showAddToCartButton(extraData.productId);
+				//}
+				
+				$('.fancybox-inner').html(data);
+			}
+		);
+		return false;
+	});
 });

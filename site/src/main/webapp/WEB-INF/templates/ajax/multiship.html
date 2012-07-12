@@ -1,5 +1,5 @@
-<div id="multiship">	
-	<table id="cart_products" class="multiship">
+<div id="multiship-products">	
+	<table id="cart_products">
 		<thead>
 			<tr>
 				<th colspan="2">Item</th>
@@ -22,15 +22,17 @@
 		            <span th:text="*{quantity}"></span>
 				</td>
 				<td align="center">
-					<select id="address" name="address">
+					<select id="multiship-address" name="address">
 							<option value="">--</option>
-							<option value="ADD_NEW">Add new address...</option>
+							<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="*{addressName}"></option>
 							<option value="0">Andre's Apartment</option>
 							<option value="1">Andre's House</option>
 					</select>
+					<br/>
+					 <a class="add-address-link" th:href="@{/checkout/add-address}" target="_blank">(Add New)</a>
 				</td>
 				<td align="center">
-					<select id="method" name="method">
+					<select id="multiship-method" name="method">
 							<option value="">--</option>
 							<option value="FedEx-Ground">FedEx Ground</option>
 							<option value="FedEx-2Day">FedEx 2-Day</option>
@@ -40,4 +42,6 @@
 			</tr>
 		</tbody>
 	</table>
+	<input type="submit" class="saveAddress medium red" value="Save" />
+	<input type="submit" class="cancelAddress small gray" style="margin-top: 16px;" value="Cancel" />
 </div>

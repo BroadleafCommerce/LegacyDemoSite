@@ -1,0 +1,49 @@
+<div id="multiship-add-address">	
+	<div id="addAddressContainer">
+		<div id="addAddressTitle">Add a new address</div>
+		<div id="addAddress">
+			<form th:action="@{/checkout/add-address}" method="post" id="shipping_address">
+				<div class="form30">
+					<label for="name">Name</label> 
+					<input type="text" class="field30 required" name="fullName" />
+				</div>
+				<div class="form30 margin20">
+					<label for="email">Email</label> 
+					<input type="text" class="field30 required" name="address.emailAddress" />
+				</div>
+				<div class="form30 margin20">
+					<label for="phone">Phone</label> 
+					<input type="text" class="field30" name="address.primaryPhone" />
+				</div>
+	
+				<div class="form50">
+					<label for="address1">Address</label> 
+					<input type="text" class="field50 required" name="address.addressLine1" />
+				</div>
+	
+				<div class="form50 margin20">
+					<label for="address2">Address 2</label> 
+					<input type="text" class="field50" name="address.addressLine2" />
+				</div>
+	
+				<div class="form50">
+					<label for="city">City / State</label> 
+					<input type="text" class="field30 required" name="address.city" /> 
+					
+					<select id="state" name="address.state" size="1" style="width: 48px;" class="required">
+						<option value="">--</option>
+						<option th:each="state : ${states}" th:object="${state}" th:value="*{abbreviation}" th:text="*{abbreviation}"></option>
+					</select>
+				</div>
+				
+				<div class="form50 margin20">
+					<label for="postal_code">Postal Code</label> 
+					<input type="text" class="field50" name="address.postalCode" />
+				</div>
+				
+				<input type="submit" class="saveAddress medium red" value="Save" />
+				<input type="submit" class="cancelAddress small gray" style="margin-top: 16px;" value="Cancel" />
+			</form>
+		</div>
+	</div>
+</div>
