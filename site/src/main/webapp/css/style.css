@@ -99,7 +99,7 @@ textarea {
 	font-size: 14px;
 	font-weight: bold;
 	color: #666;
-	border: solid 1px #c4c0bc;
+	border: solid 1px #4D0206;
 }
 
 .fieldError {
@@ -472,7 +472,7 @@ nav {
 #cart .right_content {
 	width: 260px;
 	padding: 10px 20px;
-	background-color: #dadada;
+	background: url('../img/sidebarbg.jpg') repeat;
 	float: right;
 }
 
