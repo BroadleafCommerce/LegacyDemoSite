@@ -1,0 +1,43 @@
+<div id="multiship">	
+	<table id="cart_products" class="multiship">
+		<thead>
+			<tr>
+				<th colspan="2">Item</th>
+				<th>Quantity</th>
+				<th>Address</th>
+				<th>Method</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+				<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+				<td class="name">
+					<a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+					<br/>
+					<ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+						<li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+					</ul>
+				</td>
+				<td align="center">
+		            <span th:text="*{quantity}"></span>
+				</td>
+				<td align="center">
+					<select id="address" name="address">
+							<option value="">--</option>
+							<option value="ADD_NEW">Add new address...</option>
+							<option value="0">Andre's Apartment</option>
+							<option value="1">Andre's House</option>
+					</select>
+				</td>
+				<td align="center">
+					<select id="method" name="method">
+							<option value="">--</option>
+							<option value="FedEx-Ground">FedEx Ground</option>
+							<option value="FedEx-2Day">FedEx 2-Day</option>
+							<option value="FedEx-1Day">FedEx 1-Day</option>
+					</select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

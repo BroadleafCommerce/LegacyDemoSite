@@ -418,29 +418,7 @@ nav {
 	margin: 35px 0 0 30px;
 	float: left;
 }
-	
-.login_register a:link, .login_register a:visited {
-	font: 14px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-	padding: 8px 15px;
-	background-color: #E40037;
-	color: white;
-	text-transform: uppercase;
-	text-decoration: none;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	color: white;
-	text-decoration: none;
-}
 
-.login_register a:hover {
-	background-color: #a50832;
-	-webkit-transition: background-color 0.2s ease-in;  
-	-moz-transition: background-color 0.2s ease-in;  
-	-o-transition: background-color 0.2s ease-in;  
-	transition: background-color 0.2s ease-in;
-}
-	
 #cart {
 	width: 920px;
 	padding: 10px;
@@ -588,17 +566,6 @@ nav {
 		margin-left: 5px;
 	}
 	
-	#cart_promo #addPromo {
-		border: none;
-		padding: 5px 10px;
-		margin-left: 5px;
-		background-color: #E40037;
-		color: #fff;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-		border-radius: 10px;
-	}
-	
 	#cart_promo .promo {
 		display: inline;
 		border: none;
@@ -627,26 +594,8 @@ nav {
 	margin: 20px 0;
 }
 	
-#checkout a:link, #checkout a:visited {
-	font: 14px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-	padding: 8px 15px;
-	background-color: #E40037;
-	color: white;
-	text-transform: uppercase;
-	text-decoration: none;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	color: white;
-	text-decoration: none;
-}
-
-#checkout a:hover {
-	background-color: #a50832;
-	-webkit-transition: background-color 0.2s ease-in;  
-	-moz-transition: background-color 0.2s ease-in;  
-	-o-transition: background-color 0.2s ease-in;  
-	transition: background-color 0.2s ease-in;
+#multiship #cart_products {
+	width: 700px;
 }
 	
 #left_column {
@@ -720,49 +669,6 @@ nav {
 	display: block;
 }
 		
-.add_to_cart input[type="submit"], .in_cart a:link, .in_cart a:visited, .submitFormButton {
-	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-	margin: 10px auto 0;
-	padding: 15px 35px;
-	color: white;
-	text-transform: uppercase;
-	text-decoration: none;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border: 0;
-	border-radius: 10px;
-	color: white;
-	text-decoration: none;
-	display: inline-table;
-}
-
-.add_to_cart input[type="submit"], .submitFormButton {
-	background-color: #E40037;
-}
-
-.in_cart input[type="submit"] {
-	background-color: #BBAFAE;
-}
-
-.in_cart a:link, .in_cart a:visited {
-	background-color: #BBAFAE;
-}
-	
-.add_to_cart a:hover, .in_cart a:hover {
-	-webkit-transition: background-color 0.2s ease-in;  
-	-moz-transition: background-color 0.2s ease-in;  
-	-o-transition: background-color 0.2s ease-in;  
-	transition: background-color 0.2s ease-in;
-}
-
-.add_to_cart input[type="submit"]:hover {
-	background-color: #a50832;
-}
-
-.in_cart a:hover {
-	background-color: #9B8A87;
-}
-	
 	
 #product_content {
 	width: 280px;
@@ -1022,30 +928,6 @@ nav {
 			display: block;
 		}
 		
-			#featured_products li .add_to_cart a:link, #featured_products li .add_to_cart a:visited {
-				font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
-				margin: 10px auto;
-				padding: 10px 20px;
-				background-color: #3D0001;
-				color: white;
-				text-transform: uppercase;
-				text-decoration: none;
-				-moz-border-radius: 10px;
-				-webkit-border-radius: 10px;
-				border-radius: 10px;
-				color: white;
-				text-decoration: none;
-				display: inline-table;
-			}
-			
-			#featured_products li .add_to_cart a:hover {
-				background-color: #0f0000;
-				-webkit-transition: background-color 0.2s ease-in;  
-				-moz-transition: background-color 0.2s ease-in;  
-				-o-transition: background-color 0.2s ease-in;  
-				transition: background-color 0.2s ease-in;
-			}
-	
 footer {
 	width: 940px;
 	background: url(../img/the-heat-clinic-seal.png) top center no-repeat;
@@ -1076,6 +958,80 @@ footer {
 		float: right;
 	}	
 
+input[type="submit"].big, a.big-button {
+	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	margin: 10px auto 0;
+	padding: 15px 35px;
+	text-transform: uppercase;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 0;
+	border-radius: 10px;
+	text-decoration: none;
+	display: inline-table;
+}
+
+input[type="submit"].medium, a.medium-button {
+	font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	margin: 10px auto;
+	padding: 10px 20px;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	text-decoration: none;
+	display: inline-table;
+}
+
+input[type="submit"].small, a.small-button {
+	font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	border: none;
+	padding: 5px 10px;
+	margin-left: 5px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+input[type="submit"].red, a.red-button {
+	color: white;
+	background-color: #E40037;
+}
+
+input[type="submit"].dark, a.dark-button {
+	color: white;
+	background-color: #3D0001;
+}
+	
+input[type="submit"].gray, a.gray-button {
+	color: white;
+	background-color: #BBAFAE;
+}
+
+input[type="submit"].big:hover, a.big-button:hover, 
+input[type="submit"].medium:hover, a.medium-button:hover,
+input[type="submit"].small:hover, a.small-button:hover {
+	-webkit-transition: background-color 0.2s ease-in;  
+	-moz-transition: background-color 0.2s ease-in;  
+	-o-transition: background-color 0.2s ease-in;  
+	transition: background-color 0.2s ease-in;
+}
+
+input[type="submit"].red:hover, a.red-button:hover {
+	background-color: #a50832;
+}
+
+input[type="submit"].gray:hover, a.gray-button:hover {
+	background-color: #9B8A87;
+}
+
+input[type="submit"].dark:hover, a.dark-button:hover {
+	background-color: #0f0000;
+}
+	
 
 /* =============================================================================
    Media Queries
