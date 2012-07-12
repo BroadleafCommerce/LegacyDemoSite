@@ -21,23 +21,24 @@
 
 			<div id="cart_total" class="group">
 				<h3>Current Total</h3>
-				<div id="subtotal">$30.30</div>
+				<div id="subtotal" blc:price="${cart.total}"></div>
 				<table width="100%" id="total_table" border="0">
 					<tr>
 						<td>Subtotal</td>
-						<td>$24.99</td>
+						<td blc:price="${cart.subTotal}"></td>
 					</tr>
 					<tr>
 						<td>Promotions</td>
-						<td class="discount">-$5.00</td>
+                        <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
+                        <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="-${cart.orderAdjustmentsValue}"></td>
 					</tr>
 					<tr>
 						<td>Taxes</td>
-						<td>$2.06</td>
+						<td blc:price="${cart.totalTax}"></td>
 					</tr>
 					<tr>
 						<td>Shipping</td>
-						<td>$8.25</td>
+						<td blc:price="${cart.totalShipping}"></td>
 					</tr>
 				</table>
 				<div id="checkout">
@@ -51,19 +52,19 @@
 			<div class="cart_title">Shipping Information</div>
 
 			<div class="left_content">
-				<form action="" method="post">
+				<form action="" method="post" id="shipping_address">
 					<div class="form30">
-						<label for="name">Name</label> <input type="text" class="field30" name="name" />
+						<label for="name">Name</label> <input type="text" class="field30 required" name="name" />
 					</div>
 					<div class="form30 margin20">
-						<label for="email">Email</label> <input type="text" class="field30" name="email" />
+						<label for="email">Email</label> <input type="text" class="field30 required" name="email" />
 					</div>
 					<div class="form30 margin20">
 						<label for="phone">Phone</label> <input type="text" class="field30" name="phone" />
 					</div>
 
 					<div class="form50">
-						<label for="address1">Address</label> <input type="text" class="field50" name="address1" />
+						<label for="address1">Address</label> <input type="text" class="field50 required" name="address1" />
 					</div>
 
 					<div class="form50 margin20">
@@ -71,7 +72,7 @@
 					</div>
 
 					<div class="form50">
-						<label for="city">City / State</label> <input type="text" class="field30" name="city" /> <select id="state" name="state" size="1" style="width: 48px;" class=" ">
+						<label for="city">City / State</label> <input type="text" class="field30 required" name="city" /> <select id="state" name="state" size="1" style="width: 48px;" class="required">
 							<option value="">--</option>
 							<option value="AL">AL</option>
 							<option value="AK">AK</option>
@@ -136,7 +137,7 @@
 				<h3>Shipping Method</h3>
 				<table cellspacing="0" cellpadding="5" id="shippingoptions" class="checkoutTable">
 					<tr id="shippingMethodContainer_602">
-						<td><input type="radio" name="shippingMethod" value="602" id="shippingMethod_602" onclick="INCASE.checkout.setShipping();" class="shippingMethodRadio" checked="checked" />
+						<td><input type="radio" name="shippingMethod" value="602" id="shippingMethod_602"  class="shippingMethodRadio"  />
 						</td>
 						<td>UPS Ground ( <em>5-7 business days</em> )
 						</td>
