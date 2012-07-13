@@ -1,6 +1,5 @@
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.common.security.util.PasswordChange;
 import org.broadleafcommerce.core.web.controller.account.BroadleafChangePasswordController;
 import org.broadleafcommerce.core.web.controller.account.ChangePasswordForm;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/account/myaccount/password")
