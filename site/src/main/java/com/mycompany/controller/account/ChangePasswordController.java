@@ -2,8 +2,11 @@ package com.mycompany.controller.account;
 
 import org.broadleafcommerce.common.security.util.PasswordChange;
 import org.broadleafcommerce.core.web.controller.account.BroadleafChangePasswordController;
+import org.broadleafcommerce.core.web.controller.account.ChangePasswordForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ChangePasswordController extends BroadleafChangePasswordController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String viewChangePassword(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return super.viewChangePassword(request, response, model);
+    public String viewChangePassword(HttpServletRequest request, Model model, @ModelAttribute("changePasswordForm") ChangePasswordForm form) {
+        return super.viewChangePassword(request, model);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processChangePassword(HttpServletRequest request, HttpServletResponse response, Model model, PasswordChange passwordChange) {
-        return super.processChangePassword(request, response, model, passwordChange);
+    public String processChangePassword(HttpServletRequest request, Model model, @ModelAttribute("changePasswordForm") ChangePasswordForm form, BindingResult result) {
+        return super.processChangePassword(request, model, form, result);
     }
 
 }

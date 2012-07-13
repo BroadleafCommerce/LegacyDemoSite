@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,14 +29,13 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/orders")
 public class OrderHistoryController extends BroadleafOrderHistoryController {
 
-	@RequestMapping("")
+	@RequestMapping(method = RequestMethod.GET)
     public String viewOrderHistory(Model model, HttpServletRequest request) {
 		return super.viewOrderHistory(model, request);
     }
 
-	@RequestMapping("/{orderNumber}")
-    public String viewOrderDetails(Model model, HttpServletRequest request, 
-    		@PathVariable String orderNumber) {
+	@RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
+    public String viewOrderDetails(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
 		return super.viewOrderDetails(model, request, orderNumber);
     }
     
