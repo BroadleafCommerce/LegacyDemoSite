@@ -485,6 +485,41 @@ nav {
 	float: left;
 	display: inline;
 }
+
+.manage-account-container {
+    margin: 40px 0 0 60px;
+}
+
+/* Manage Account left-nav*/
+#account-menu {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+#account-menu li {
+    padding: 6px 0;
+}
+
+#account-menu li a {
+    font-size: 13px;
+    font-family: 'Oxygen', Helvetica, sans-serif;
+}
+
+#account-menu li a.active {
+    font-weight: bold;
+}
+
+form.manage-account {
+    width: 300px;
+    float: left;
+}
+
+form.manage-account input[type="submit"] {
+    margin-top: 35px;
+}
 	
 .login_register {
 	margin: 20px 0 0;

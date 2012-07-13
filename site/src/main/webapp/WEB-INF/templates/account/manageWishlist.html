@@ -7,18 +7,21 @@
 <blc:head pageTitle="Broadleaf Demo" />
 
 <body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">
-	
-		<nav th:substituteby="partials/nav" />
-		
-		<h1>Account Information</h1>
-			
-	</div>
-	
-	<footer th:substituteby="partials/footer" />
-	
+<div id="notification_bar"></div>
+<header th:substituteby="partials/header" />
+
+<div id="content" class="width_setter group" role="main">
+
+    <nav th:substituteby="partials/nav" />
+
+    <div class="manage-account-container clearfix">
+
+        <ul th:substituteby="partials/accountMenu" />
+
+    </div>
+</div>
+
+<footer th:substituteby="partials/footer" />
+
 </body>
 </html>
