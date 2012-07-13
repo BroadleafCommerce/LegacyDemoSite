@@ -11,18 +11,24 @@
 <body>
 	<div id="notification_bar"></div>
 
-    <div th:substituteby="partials/cartTotalScroller" />
+    <header th:substituteby="partials/headerCheckout" />
 
-    <header th:substituteby="partials/header" />
+	<div id="checkout_content" class="width_setter group" role="main">
 
-	<div id="content" class="width_setter group" role="main">
+        <div id="cart">
 
-		<div id="cart">
-
-            <table id="cart_products">
+            <div class="cart_title">
+                Order Summary
+                &nbsp;
+                <a id="cartLink" class="fancycart" th:href="@{/cart}">
+                    Edit
+                </a>
+            </div>
+            <table id="cart_summary" class="order_summary">
                 <thead>
                 <tr>
-                    <th colspan="2">Item</th>
+                    <th>&nbsp;</th>
+                    <th align="left">Item</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Discount</th>
@@ -32,24 +38,15 @@
                 <tbody>
                 <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
                     <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-                    <td class="name">
+                    <td align="left">
                         <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                         <br/>
                         <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
                             <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
                         </ul>
                     </td>
-                    <td align="center">
-                        <form method="POST" th:action="@{/cart/updateQuantity}">
-                            <input type="hidden" name="productId" th:value="*{product.id}" />
-                            <input type="hidden" name="orderItemId" th:value="*{id}" />
-                            <input type="text" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
-                            <input type="submit" class="" value="Update"/>
-                        </form>
-                        <a class="cartLinkBtn" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
-                    </td>
+                    <td align="center" th:text="*{quantity}"></td>
                     <td align="center" blc:price="*{price}"></td>
-
                     <td align="center" th:if="*{adjustmentValue.zero}">---</td>
                     <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
 
@@ -58,38 +55,7 @@
                 </tbody>
             </table>
 
-			<div id="cart_total" class="group">
-				<h3>Current Total</h3>
-				<div id="subtotal" blc:price="${cart.total}"></div>
-                <div id="show_cart_scroller"></div>
-                <table width="100%" id="total_table" border="0">
-					<tr>
-						<td>Subtotal</td>
-						<td blc:price="${cart.subTotal}"></td>
-					</tr>
-					<tr>
-						<td>Promotions</td>
-                        <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
-                        <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="-${cart.orderAdjustmentsValue}"></td>
-					</tr>
-					<tr>
-						<td>Taxes</td>
-						<td blc:price="${cart.totalTax}"></td>
-					</tr>
-					<tr>
-						<td>Shipping</td>
-						<td blc:price="${cart.totalShipping}"></td>
-					</tr>
-				</table>
-				<div class="checkout">
-					<a href="checkout.html" target="_top" class="medium-button red-button">Complete Order</a>
-				</div>
-				<p>
-					<a href="hot_sauces.html" target="_top">&laquo; Continue Shopping</a>
-				</p>
-			</div>
-
-			<div class="cart_title">Shipping Information</div>
+            <div class="cart_title">Shipping Information</div>
 
 			<div class="left_content">
 				<form action="" method="post" id="shipping_address">
@@ -288,6 +254,7 @@
 
 	<script type="text/javascript">
 		$().ready(function() {
+            $('#paymentOptions dd').css({display:"none"});
 			//$('a#multiship').click();
 		});
 	</script>

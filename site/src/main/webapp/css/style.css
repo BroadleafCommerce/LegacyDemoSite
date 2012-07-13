@@ -247,8 +247,60 @@ header {
 	margin: 0 auto;
 	position: relative;
 }
+
+#header_content_fixed {
+    border-bottom: 15px solid #E40037;
+    background: url(../img/canvas.jpg) repeat;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+#header_content_checkout {
+    width: 980px;
+    margin: 0 auto;
+}
+
+    #header_content_checkout #checkout_info {
+        width: 500px;
+        text-align: right;
+        float: right;
+        margin-top: 10px;
+    }
+
+        #header_content_checkout #checkout_info .checkout_info_right {
+            float:right;
+            margin-top: 10px;
+        }
+
+        #header_content_checkout #checkout_info .checkout_info_left {
+            float: left;
+        }
+
+        #header_content_checkout #checkout_info #checkout_total_table th {
+            border-bottom: dotted 1px #afafaf;
+            padding: 5px;
+        }
+
+        #header_content_checkout #checkout_info #checkout_total_table tr td {
+            padding: 5px;
+        }
+
+        #header_content_checkout #checkout_info #checkout_total_table tr td.discount {
+            color: #E40037;
+        }
+
+        #header_content_checkout #checkout_info h3 {
+            font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+            margin: 0 0 5px 0;
+            padding: 0;
+        }
+
+        #header_content_checkout #checkout_info #checkout_total {
+            font: 32px/28px 'Oxygen', Helvetica, sans-serif;
+        }
 	
-#header_content #logo {
+#header_content #logo, #header_content_checkout #logo {
 	width: 299px;
 	height: 101px;
 	display: block;
@@ -256,7 +308,7 @@ header {
 	position: relative;
 }
 
-	#header_content #logo h1 {
+	#header_content #logo h1, #header_content_checkout #logo h1 {
 		width: 299px;
 		height: 101px;
 		background: url('../img/the-heat-clinic-logo-internal.png') top left no-repeat;
@@ -265,7 +317,7 @@ header {
 		display: block;
 	}
 	
-	#header_content #logo h1 a:link, #logo h1 a:visited {
+	#header_content #logo h1 a:link, #header_content_checkout #logo h1 a:link,  #logo h1 a:visited {
 		width: 299px;
 		height: 101px;
 		cursor: pointer;
@@ -308,7 +360,7 @@ header {
 		color: white;
 		text-decoration: none;
 	}
-	
+
 	#header_content #languages {
 		padding: 10px 20px;
 		font: 13px/28px 'ProximaNovaRegular', Helvetica, sans-serif;
@@ -388,7 +440,7 @@ nav {
 		padding: 0;
 	}
 
-#content {
+#content, #checkout_content {
 	width: 980px;
 	margin-top: -5px;
 	background-color: #fff;
@@ -400,7 +452,7 @@ nav {
 	display: block;
 }
 
-	#content .title_bar {
+	#content .title_bar, #checkout_content .title_bar{
 		width: 940px;
 		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
 		color: #342020;
@@ -411,7 +463,10 @@ nav {
 		text-transform: uppercase;
 		padding: 10px 0;
 	}
-	
+
+#checkout_content {
+    margin-top:145px;
+}
 	
 #account {
 	font-size: 12px;
@@ -533,56 +588,13 @@ nav {
 		font-size: 12px;
 	}
 
-#cart_total_scroller {
+.order_summary {
     width: 100%;
-    padding: 10px 0;
-    background: url('../img/sidebarbg.jpg') repeat;
-    display: none;
-    border-bottom: 15px solid #E40037;
 }
 
-    #cart_total_scroller #scroller_container {
-        margin: 0 auto;
-        width: 980px;
-    }
-
-    #cart_total_scroller h3 {
-        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
-        margin: 0 0 5px 0;
-        padding: 0;
-    }
-
-    #cart_total_scroller #scroller_total {
-        font: 32px/28px 'Oxygen', Helvetica, sans-serif;
-    }
-
-    #cart_total_scroller #scroller_total_table {
-        margin-left: 10px;
-    }
-        #cart_total_scroller #scroller_total_table th {
-            border-bottom: dotted 1px #afafaf;
-            padding: 5px;
-        }
-
-        #cart_total_scroller #scroller_total_table tr td {
-            padding: 5px;
-        }
-
-        #cart_total_scroller #scroller_total_table tr td.discount {
-            color: #E40037;
-        }
-
-    #cart_total_scroller .scroller_left {
-        margin-left:30px;
-        float:left;
-    }
-
-    #cart_total_scroller .scroller_right {
-        margin-right:30px;
-        float:right;
-        text-align:right;
-    }
-
+.order_summary tbody tr td {
+    vertical-align:middle;
+}
 
 #cart_total {
 	width: 260px;
