@@ -23,17 +23,18 @@ $(function(){
 
     function moveScroller() {
         var a = function() {
-            var b = $(window).scrollTop();
-            var d = $("#show_cart_scroller").offset().top;
-            var c=$("#cart_total_scroller");
-            if (b>d) {
-                c.css({display:"block",position:"fixed",top:"0px"});
-            } else {
-                if (b<=d) {
-                    c.css({display:"none",position:"relative",top:""});
-                }
-            }
-
+        	if ($('#show_cart_scroller')[0]) {
+	            var b = $(window).scrollTop();
+	            var d = $("#show_cart_scroller").offset().top;
+	            var c=$("#cart_total_scroller");
+	            if (b>d) {
+	                c.css({display:"block",position:"fixed",top:"0px"});
+	            } else {
+	                if (b<=d) {
+	                    c.css({display:"none",position:"relative",top:""});
+	                }
+	            }
+        	}
         };
         $(window).scroll(a);a()
     }
