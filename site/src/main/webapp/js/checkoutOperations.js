@@ -1,10 +1,10 @@
 /* Operations that deal with checkout */
 $(function(){
 	// The options used for the login/register fancybox modal
-	var fancyAccountOptions = {
-		maxWidth	: 700,
+	var fancyCheckoutOptions = {
+		maxWidth	: 720,
 		maxHeight	: 560,	
-		fitToView	: false,
+		fitToView	: true,
 		width		: '100%',
 		height		: '100%',
 		autoSize	: true,
@@ -26,7 +26,26 @@ $(function(){
     });
 
     $('body').on('click', 'a#multiship', function() {
-		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href') }));
+		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href') }));
+		return false;
+    });
+    
+    $('body').on('click', '#multiship-products a.cancel', function() {
+		$.fancybox.close();
+		return false;
+    });
+    
+    $('body').on('click', '#multiship-products input.save', function() {
+		var $form = $(this).closest('form');
+		
+		BLC.ajax({url: $form.attr('action'),
+				type: "POST", 
+				data: $form.serialize() 
+			}, function(data) {
+				var extraData = BLC.getExtraData($(data));
+				$('.fancybox-inner').html(data);
+			}
+		);
 		return false;
     });
     
@@ -38,8 +57,14 @@ $(function(){
 		return false;
     });
     
+    $('body').on('click', '#multiship-add-address a.cancel', function() {
+		$('#multiship-products').show();
+		$('#multiship-add-address').remove();
+		return false;
+    });
+    
 	// Intercept save operations and perform them via AJAX instead
-	$('body').on('click', 'input.saveAddress', function() {
+	$('body').on('click', '#multiship-add-address input.save', function() {
 		var $form = $(this).closest('form');
 		
 		BLC.ajax({url: $form.attr('action'),

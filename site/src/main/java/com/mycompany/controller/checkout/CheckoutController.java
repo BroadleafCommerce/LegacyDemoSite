@@ -1,5 +1,6 @@
 package com.mycompany.controller.checkout;
 
+import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingAddressForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,9 @@ public class CheckoutController extends BroadleafCheckoutController {
     }
     
     @RequestMapping(value = "/multiship", method = RequestMethod.POST)
-    public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model) {
-    	return super.saveMultiship(request, response, model);
+    public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
+    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm) {
+    	return super.saveMultiship(request, response, model, orderMultishipOptionForm);
     }
     
     @RequestMapping(value = "/add-address", method = RequestMethod.GET)

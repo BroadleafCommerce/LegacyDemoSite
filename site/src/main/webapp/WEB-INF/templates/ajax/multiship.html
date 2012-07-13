@@ -1,47 +1,52 @@
 <div id="multiship-products">	
-	<table id="cart_products">
-		<thead>
-			<tr>
-				<th colspan="2">Item</th>
-				<th>Quantity</th>
-				<th>Address</th>
-				<th>Method</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-				<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-				<td class="name">
-					<a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
-					<br/>
-					<ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-						<li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-					</ul>
-				</td>
-				<td align="center">
-		            <span th:text="*{quantity}"></span>
-				</td>
-				<td align="center">
-					<select id="multiship-address" name="address">
-							<option value="">--</option>
-							<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="${customerAddress}"></option>
-							<option value="0">Andre's Apartment</option>
-							<option value="1">Andre's House</option>
-					</select>
-					<br/>
-					 <a class="add-address-link" th:href="@{/checkout/add-address}" target="_blank">(Add New)</a>
-				</td>
-				<td align="center">
-					<select id="multiship-method" name="method">
-							<option value="">--</option>
-							<option value="FedEx-Ground">FedEx Ground</option>
-							<option value="FedEx-2Day">FedEx 2-Day</option>
-							<option value="FedEx-1Day">FedEx 1-Day</option>
-					</select>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<input type="submit" class="saveAddress medium red" value="Save" />
-	<input type="submit" class="cancelAddress small gray" style="margin-top: 16px;" value="Cancel" />
+	<div class="multishipContainer">
+		<form th:action="@{/checkout/multiship}" method="post" id="shipping_address">
+			<table id="cart_products">
+				<thead>
+					<tr>
+						<th colspan="2">Item</th>
+						<th>Quantity</th>
+						<th>Address</th>
+						<th>Method</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="orderMultishipOption : ${orderMultishipOptions}" th:object="${orderMultishipOption.orderItem}" th:id="${'productRow' + orderMultishipOption.orderItem.id}">
+						<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+						<td class="name">
+							<a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+							<br/>
+							<ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+								<li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+							</ul>
+						</td>
+						<td align="center">
+				            <span>1</span>
+						</td>
+						<td align="center">
+							<select id="multiship-address" th:name="${'options[' + orderMultishipOptionStat.index + '].addressId'}" style="min-width: 140px;">
+									<option value="">--</option>
+									<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="${customerAddress}"></option>
+							</select>
+							<br/>
+							 <a class="add-address-link" th:href="@{/checkout/add-address}">(Add New)</a>
+						</td>
+						<td align="center">
+							<select id="multiship-method" th:name="${'options[' + orderMultishipOptionStat.index + '].fulfillmentOptionId'}">
+									<option value="">--</option>
+									<option th:each="fulfillmentOption : ${fulfillmentOptions}" th:object="${fulfillmentOption}" th:value="*{id}" th:text="*{name}"></option>
+							</select>
+						</td>
+						
+						<input type="hidden" th:name="${'options[' + orderMultishipOptionStat.index + '].orderId'}" th:value="${cart.id}" />
+						<input type="hidden" th:name="${'options[' + orderMultishipOptionStat.index + '].orderItemId'}" th:value="*{id}" />
+						
+					</tr>
+				</tbody>
+			</table>
+							
+			<input type="submit" class="save medium red" value="Save" />
+			<a th:href="@{/checkout}" class="cancel small-button gray-button" style="margin-top: 16px;">Cancel</a>
+		</form>
+	</div>
 </div>

@@ -731,13 +731,16 @@ form.manage-account input[type="submit"] {
 }
 	
 #multiship-products, #multiship-add-address {
-	width: 700px;
+	width: 720px;
 }
 
 	#multiship-products table#cart_products {
 		width: 100%;
 	}
 
+#multiship-products .multishipContainer, #multiship-add-address .multishipContainer {
+	width: 700px;
+}
 #multiship-add-address #addAddressContainer {
 	position: relative;
 	margin: 0 auto;
@@ -754,7 +757,9 @@ form.manage-account input[type="submit"] {
 }
 
 	#multiship-add-address input[type="submit"],
-	#multiship-products input[type="submit"] {
+	#multiship-products input[type="submit"],
+	#multiship-add-address a.cancel,
+	#multiship-products a.cancel {
 		float: right;
 		margin-left: 12px;
 	}
