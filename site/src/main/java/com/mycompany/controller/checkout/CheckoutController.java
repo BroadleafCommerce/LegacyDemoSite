@@ -1,5 +1,6 @@
 package com.mycompany.controller.checkout;
 
+import org.broadleafcommerce.core.web.checkout.model.ShippingAddressForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.mycompany.model.checkout.HCShippingAddressForm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,16 +37,9 @@ public class CheckoutController extends BroadleafCheckoutController {
     	return super.showMultishipAddAddress(request, response, model);
     }
     
-    /*
-     * Note that we are binding with a Heat Clinic specific  HCShippingAddressForm object.
-     * This is to support combining the first and last name fields in the UI.
-     * Also note that the Heat Clinic only supports shipping to the US and as such defaults
-     * the address to the US.
-     */
     @RequestMapping(value = "/add-address", method = RequestMethod.POST)
     public String saveMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("addressForm") HCShippingAddressForm addressForm) {
-    	addressForm.getAddress().setCountry(countryService.findCountryByAbbreviation("US"));
+    		@ModelAttribute("addressForm") ShippingAddressForm addressForm) {
     	return super.saveMultishipAddAddress(request, response, model, addressForm);
     }
     

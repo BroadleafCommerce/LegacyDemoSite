@@ -93,7 +93,7 @@ textarea {
 	display: inline;
 }
 
-.field100, .field66, .field50, .field30, .field25 {
+.field100, .field66, .field50, .field35, .field30, .field25 {
 	padding: 7px 10px;
 	background: #F5F4F1;
 	font-size: 14px;
@@ -110,8 +110,16 @@ textarea {
 	width: 500px;
 }
 
+.field66, .form66 label {
+	width: 360px;
+}
+
 .field50, .form50 label {
 	width: 260px;
+}
+
+.field35, .form35 label {
+	width: 220px;
 }
 
 .field30, .form30 label {
@@ -129,8 +137,22 @@ textarea {
 	display: inline;
 }
 
+.form66 {
+	width: 380px;
+	margin-bottom: 5px;
+	float: left;
+	display: inline;
+}
+
 .form50 {
 	width: 280px;
+	margin-bottom: 5px;
+	float: left;
+	display: inline;
+}
+
+.form35 {
+	width: 240px;
 	margin-bottom: 5px;
 	float: left;
 	display: inline;
@@ -672,7 +694,7 @@ nav {
 #multiship-add-address #addAddressContainer {
 	position: relative;
 	margin: 0 auto;
-	width: 622px;
+	width: 422px;
 }
 
 #multiship-add-address #addAddress {
@@ -698,7 +720,7 @@ nav {
 	background-color: #3e0000;
 	color: #fff;
 	float: left;
-	width: 602px;
+	width: 402px;
 }
 
 #left_column {

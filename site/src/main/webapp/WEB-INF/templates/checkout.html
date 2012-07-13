@@ -93,34 +93,47 @@
 
 			<div class="left_content">
 				<form action="" method="post" id="shipping_address">
+					<input type="hidden" name="address.country" value="US" />
+					
 					<div class="form30">
-						<label for="name">Name</label> <input type="text" class="field30 required" name="name" />
+						<label for="firstName">First Name</label> 
+						<input type="text" class="field30 required" name="address.firstName" />
 					</div>
 					<div class="form30 margin20">
-						<label for="email">Email</label> <input type="text" class="field30 required" name="email" />
+						<label for="lastName">Last Name</label> 
+						<input type="text" class="field30 required" name="address.lastName" />
 					</div>
 					<div class="form30 margin20">
-						<label for="phone">Phone</label> <input type="text" class="field30" name="phone" />
+						<label for="phone">Phone</label> 
+						<input type="text" class="field30" name="address.primaryPhone" />
 					</div>
-
+		
 					<div class="form50">
-						<label for="address1">Address</label> <input type="text" class="field50 required" name="address1" />
-					</div>
-
-					<div class="form50 margin20">
-						<label for="address2">Address 2</label> <input type="text" class="field50" name="address2" />
-					</div>
-
-					<div class="form50">
-						<label for="city">City / State</label>
-                        <input type="text" class="field25 required" name="address.city" />
-                        <select id="shipping_state" name="address.state" size="1" style="width: 48px;" class="required">
-                            <option value="">--</option>
-                            <option th:each="state : ${states}" th:object="${state}" th:value="*{abbreviation}" th:text="*{abbreviation}"></option>
-                        </select>
+						<label for="address1">Address</label> 
+						<input type="text" class="field50 required" name="address.addressLine1" />
 					</div>
 					<div class="form50 margin20">
-						<label for="postal_code">Postal Code</label> <input type="text" class="field50" name="postal_code" />
+						<label for="address2">Address 2</label> 
+						<input type="text" class="field50" name="address.addressLine2" />
+					</div>
+		
+					<div class="form30">
+						<label for="city">City / State</label> 
+						<input type="text" class="field25 required" name="address.city" /> 
+						
+						<select id="state" name="address.state" size="1" style="width: 48px;" class="required">
+							<option value="">--</option>
+							<option th:each="state : ${states}" th:object="${state}" th:value="*{abbreviation}" th:text="*{abbreviation}"></option>
+						</select>
+					</div>
+					
+					<div class="form25 margin20">
+						<label for="postal_code">Postal Code</label> 
+						<input type="text" class="field25" name="address.postalCode" />
+					</div>
+					<div class="form35 margin20">
+						<label for="email">Email</label> 
+						<input type="text" class="field35 required" name="address.emailAddress" />
 					</div>
 				</form>
 			</div>
@@ -275,7 +288,7 @@
 
 	<script type="text/javascript">
 		$().ready(function() {
-			//$('a#multiship').click();
+			$('a#multiship').click();
 		});
 	</script>
 

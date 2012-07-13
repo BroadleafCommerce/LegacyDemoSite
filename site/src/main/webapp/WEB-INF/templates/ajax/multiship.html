@@ -24,7 +24,7 @@
 				<td align="center">
 					<select id="multiship-address" name="address">
 							<option value="">--</option>
-							<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="*{addressName}"></option>
+							<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="${customerAddress}"></option>
 							<option value="0">Andre's Apartment</option>
 							<option value="1">Andre's House</option>
 					</select>
