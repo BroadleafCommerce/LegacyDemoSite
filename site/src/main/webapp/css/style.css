@@ -510,7 +510,58 @@ nav {
 		font-family: 'Georgia', serif;
 		font-size: 12px;
 	}
-	
+
+#cart_total_scroller {
+    width: 100%;
+    padding: 10px 0;
+    background: url('../img/sidebarbg.jpg') repeat;
+    display: none;
+    border-bottom: 15px solid #E40037;
+}
+
+    #cart_total_scroller #scroller_container {
+        margin: 0 auto;
+        width: 980px;
+    }
+
+    #cart_total_scroller h3 {
+        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+        margin: 0 0 5px 0;
+        padding: 0;
+    }
+
+    #cart_total_scroller #scroller_total {
+        font: 32px/28px 'Oxygen', Helvetica, sans-serif;
+    }
+
+    #cart_total_scroller #scroller_total_table {
+        margin-left: 10px;
+    }
+        #cart_total_scroller #scroller_total_table th {
+            border-bottom: dotted 1px #afafaf;
+            padding: 5px;
+        }
+
+        #cart_total_scroller #scroller_total_table tr td {
+            padding: 5px;
+        }
+
+        #cart_total_scroller #scroller_total_table tr td.discount {
+            color: #E40037;
+        }
+
+    #cart_total_scroller .scroller_left {
+        margin-left:30px;
+        float:left;
+    }
+
+    #cart_total_scroller .scroller_right {
+        margin-right:30px;
+        float:right;
+        text-align:right;
+    }
+
+
 #cart_total {
 	width: 260px;
 	padding: 10px 20px;
@@ -592,6 +643,22 @@ nav {
 	
 #checkout {
 	margin: 20px 0;
+}
+
+#paymentOptions dt {
+    margin: 10px 0;
+}
+
+    #paymentOptions dt label {
+        margin: 0px;
+        display:inline-block;
+        float: none;
+        font-style: normal;
+        padding-left: 5px;
+    }
+
+#paymentOptions dd {
+    margin: 5px;
 }
 	
 #multiship-products, #multiship-add-address {

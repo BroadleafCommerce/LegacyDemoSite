@@ -11,18 +11,58 @@
 <body>
 	<div id="notification_bar"></div>
 
-	<header th:substituteby="partials/header" />
+    <div th:substituteby="partials/cartTotalScroller" />
+
+    <header th:substituteby="partials/header" />
 
 	<div id="content" class="width_setter group" role="main">
 
 		<div id="cart">
 
-			<table th:substituteby="partials/cartProductsTable"></table>
+            <table id="cart_products">
+                <thead>
+                <tr>
+                    <th colspan="2">Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+                    <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+                    <td class="name">
+                        <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                        <br/>
+                        <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+                            <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+                        </ul>
+                    </td>
+                    <td align="center">
+                        <form method="POST" th:action="@{/cart/updateQuantity}">
+                            <input type="hidden" name="productId" th:value="*{product.id}" />
+                            <input type="hidden" name="orderItemId" th:value="*{id}" />
+                            <input type="text" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
+                            <input type="submit" class="" value="Update"/>
+                        </form>
+                        <a class="cartLinkBtn" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
+                    </td>
+                    <td align="center" blc:price="*{price}"></td>
+
+                    <td align="center" th:if="*{adjustmentValue.zero}">---</td>
+                    <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+
+                    <td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+                </tr>
+                </tbody>
+            </table>
 
 			<div id="cart_total" class="group">
 				<h3>Current Total</h3>
 				<div id="subtotal" blc:price="${cart.total}"></div>
-				<table width="100%" id="total_table" border="0">
+                <div id="show_cart_scroller"></div>
+                <table width="100%" id="total_table" border="0">
 					<tr>
 						<td>Subtotal</td>
 						<td blc:price="${cart.subTotal}"></td>
@@ -41,8 +81,8 @@
 						<td blc:price="${cart.totalShipping}"></td>
 					</tr>
 				</table>
-				<div id="checkout">
-					<a href="checkout.html" target="_top">Complete Order</a>
+				<div class="checkout">
+					<a href="checkout.html" target="_top" class="medium-button red-button">Complete Order</a>
 				</div>
 				<p>
 					<a href="hot_sauces.html" target="_top">&laquo; Continue Shopping</a>
@@ -72,60 +112,12 @@
 					</div>
 
 					<div class="form50">
-						<label for="city">City / State</label> <input type="text" class="field30 required" name="city" /> <select id="state" name="state" size="1" style="width: 48px;" class="required">
-							<option value="">--</option>
-							<option value="AL">AL</option>
-							<option value="AK">AK</option>
-							<option value="AZ">AZ</option>
-							<option value="AR">AR</option>
-							<option value="CA">CA</option>
-							<option value="CO">CO</option>
-							<option value="CT">CT</option>
-							<option value="DE">DE</option>
-							<option value="FL">FL</option>
-							<option value="GA">GA</option>
-							<option value="HI">HI</option>
-							<option value="ID">ID</option>
-							<option value="IL">IL</option>
-							<option value="IN">IN</option>
-							<option value="IA">IA</option>
-							<option value="KS">KS</option>
-							<option value="KY">KY</option>
-							<option value="LA">LA</option>
-							<option value="ME">ME</option>
-							<option value="MD">MD</option>
-							<option value="MA">MA</option>
-							<option value="MI">MI</option>
-							<option value="MN">MN</option>
-							<option value="MS">MS</option>
-							<option value="MO">MO</option>
-							<option value="MT">MT</option>
-							<option value="NE">NE</option>
-							<option value="NV">NV</option>
-							<option value="NH">NH</option>
-							<option value="NJ">NJ</option>
-							<option value="NM">NM</option>
-							<option value="NY">NY</option>
-							<option value="NC">NC</option>
-							<option value="ND">ND</option>
-							<option value="OH">OH</option>
-							<option value="OK">OK</option>
-							<option value="OR">OR</option>
-							<option value="PA">PA</option>
-							<option value="RI">RI</option>
-							<option value="SC">SC</option>
-							<option value="SD">SD</option>
-							<option value="TN">TN</option>
-							<option value="TX">TX</option>
-							<option value="UT">UT</option>
-							<option value="VT">VT</option>
-							<option value="VA">VA</option>
-							<option value="WA">WA</option>
-							<option value="DC">DC</option>
-							<option value="WV">WV</option>
-							<option value="WI">WI</option>
-							<option value="WY">WY</option>
-						</select>
+						<label for="city">City / State</label>
+                        <input type="text" class="field25 required" name="address.city" />
+                        <select id="shipping_state" name="address.state" size="1" style="width: 48px;" class="required">
+                            <option value="">--</option>
+                            <option th:each="state : ${states}" th:object="${state}" th:value="*{abbreviation}" th:text="*{abbreviation}"></option>
+                        </select>
 					</div>
 					<div class="form50 margin20">
 						<label for="postal_code">Postal Code</label> <input type="text" class="field50" name="postal_code" />
@@ -156,13 +148,13 @@
 						<input type="checkbox" name="same" /> Use Shipping Information
 					</div>
 					<div class="form30">
-						<label for="name">Name</label> <input type="text" class="field30" name="name" />
+						<label for="shipping_name">Name</label> <input type="text" class="field30" name="shipping_name" id="shipping_name" />
 					</div>
 					<div class="form30 margin20">
-						<label for="email">Email</label> <input type="text" class="field30" name="email" />
+						<label for="shipping_email">Email</label> <input type="text" class="field30" name="shipping_email" id="shipping_email"/>
 					</div>
 					<div class="form30 margin20">
-						<label for="phone">Phone</label> <input type="text" class="field30" name="phone" />
+						<label for="shipping_phone">Phone</label> <input type="text" class="field30" name="shipping_phone" id="shipping_phone"/>
 					</div>
 
 					<div class="form50">
@@ -174,60 +166,12 @@
 					</div>
 
 					<div class="form30">
-						<label for="city">City / State</label> <input type="text" class="field25" name="city" /> <select id="state" name="state" size="1" style="width: 48px;" class=" ">
-							<option value="">--</option>
-							<option value="AL">AL</option>
-							<option value="AK">AK</option>
-							<option value="AZ">AZ</option>
-							<option value="AR">AR</option>
-							<option value="CA">CA</option>
-							<option value="CO">CO</option>
-							<option value="CT">CT</option>
-							<option value="DE">DE</option>
-							<option value="FL">FL</option>
-							<option value="GA">GA</option>
-							<option value="HI">HI</option>
-							<option value="ID">ID</option>
-							<option value="IL">IL</option>
-							<option value="IN">IN</option>
-							<option value="IA">IA</option>
-							<option value="KS">KS</option>
-							<option value="KY">KY</option>
-							<option value="LA">LA</option>
-							<option value="ME">ME</option>
-							<option value="MD">MD</option>
-							<option value="MA">MA</option>
-							<option value="MI">MI</option>
-							<option value="MN">MN</option>
-							<option value="MS">MS</option>
-							<option value="MO">MO</option>
-							<option value="MT">MT</option>
-							<option value="NE">NE</option>
-							<option value="NV">NV</option>
-							<option value="NH">NH</option>
-							<option value="NJ">NJ</option>
-							<option value="NM">NM</option>
-							<option value="NY">NY</option>
-							<option value="NC">NC</option>
-							<option value="ND">ND</option>
-							<option value="OH">OH</option>
-							<option value="OK">OK</option>
-							<option value="OR">OR</option>
-							<option value="PA">PA</option>
-							<option value="RI">RI</option>
-							<option value="SC">SC</option>
-							<option value="SD">SD</option>
-							<option value="TN">TN</option>
-							<option value="TX">TX</option>
-							<option value="UT">UT</option>
-							<option value="VT">VT</option>
-							<option value="VA">VA</option>
-							<option value="WA">WA</option>
-							<option value="DC">DC</option>
-							<option value="WV">WV</option>
-							<option value="WI">WI</option>
-							<option value="WY">WY</option>
-						</select>
+						<label for="city">City / State</label>
+                        <input type="text" class="field25 required" name="address.city" />
+                        <select id="billing_state" name="address.state" size="1" style="width: 48px;" class="required">
+                            <option value="">--</option>
+                            <option th:each="state : ${states}" th:object="${state}" th:value="*{abbreviation}" th:text="*{abbreviation}"></option>
+                        </select>
 					</div>
 					<div class="form30 margin20">
 						<label for="postal_code">Postal Code</label> <input type="text" class="field30" name="postal_code" />
@@ -240,66 +184,86 @@
 
 			<div class="right_content">
 				<h3>Payment Information</h3>
-				<div id="creditCardFields">
 
-					<div class="form25" style="width: 94%;">
-						<div style="float: left; width: 70%;">
-							<label for="cardNumber" class="prompt">Card Number</label>
-							<div class="element">
-								<input type="text" name="cardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" />
-							</div>
-						</div>
-						<div style="float: right; padding-right: 2%; width: 16%">
-							<label class="prompt">CSC</label>
-							<div class="element">
-								<input type="text" name="securityCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%" />
-							</div>
-						</div>
-					</div>
+                <dl id="paymentOptions">
+                    <dt>
+                        <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
+                        <label for="paymentMethod_cc">Credit Card</label>
+                    </dt>
+                    <dd>
+                        <div id="creditCardFields">
 
-					<div class="form25">
-						<label for="nameOnCard" class="prompt"> Name on the Card </label>
-						<div class="form100">
-							<input type="text" name="nameOnCard" value="" id="nameOnCard" class="field30" />
-						</div>
-					</div>
+                            <div class="form25" style="width: 94%;">
+                                <div style="float: left; width: 70%;">
+                                    <label for="cardNumber" class="prompt">Card Number</label>
+                                    <div class="element">
+                                        <input type="text" name="cardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" />
+                                    </div>
+                                </div>
+                                <div style="float: right; padding-right: 2%; width: 16%">
+                                    <label class="prompt">CSC</label>
+                                    <div class="element">
+                                        <input type="text" name="securityCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%" />
+                                    </div>
+                                </div>
+                            </div>
 
-					<div class="form50">
-						<label for="expirationMonth" class="prompt"> Expiration Date </label>
-						<div class="element">
-							<select name="expirationMonth" id="expirationMonth" class=" ">
-								<option value=""></option>
-								<option value="01">01 - January</option>
-								<option value="02">02 - February</option>
-								<option value="03">03 - March</option>
-								<option value="04">04 - April</option>
-								<option value="05" selected="true">05 - May</option>
-								<option value="06">06 - June</option>
-								<option value="07">07 - July</option>
-								<option value="08">08 - August</option>
-								<option value="09">09 - September</option>
-								<option value="10">10 - October</option>
-								<option value="11">11 - November</option>
-								<option value="12">12 - December</option>
-							</select> <select name="expirationYear" id="expirationYear" class=" ">
-								<option value=""></option>
-								<option value="2012" selected="selected">2012</option>
-								<option value="2013">2013</option>
-								<option value="2014">2014</option>
-								<option value="2015">2015</option>
-								<option value="2016">2016</option>
-								<option value="2017">2017</option>
-								<option value="2018">2018</option>
-								<option value="2019">2019</option>
-								<option value="2020">2020</option>
-								<option value="2021">2021</option>
-							</select>
-						</div>
-					</div>
-					<div class="form100">
-						<img src="img/paypal.gif" alt="Pay with Paypal" width="100" />
-					</div>
-				</div>
+                            <div class="form25">
+                                <label for="nameOnCard" class="prompt"> Name on the Card </label>
+                                <div class="form100">
+                                    <input type="text" name="nameOnCard" value="" id="nameOnCard" class="field30" />
+                                </div>
+                            </div>
+
+                            <div class="form50">
+                                <label for="expirationMonth" class="prompt"> Expiration Date </label>
+                                <div class="element">
+                                    <select name="expirationMonth" id="expirationMonth" class=" ">
+                                        <option value=""></option>
+                                        <option value="01">01 - January</option>
+                                        <option value="02">02 - February</option>
+                                        <option value="03">03 - March</option>
+                                        <option value="04">04 - April</option>
+                                        <option value="05" selected="true">05 - May</option>
+                                        <option value="06">06 - June</option>
+                                        <option value="07">07 - July</option>
+                                        <option value="08">08 - August</option>
+                                        <option value="09">09 - September</option>
+                                        <option value="10">10 - October</option>
+                                        <option value="11">11 - November</option>
+                                        <option value="12">12 - December</option>
+                                    </select> <select name="expirationYear" id="expirationYear" class=" ">
+                                    <option value=""></option>
+                                    <option value="2012" selected="selected">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </dd>
+                    <dt>
+                        <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
+                        <label for="paymentMethod_paypal">PayPal</label>
+                    </dt>
+                    <dd>
+                        <div id="paypalfields">
+                            <div class="form100">
+                                <img src="img/paypal.gif" alt="Pay with Paypal" width="100" />
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+
 			</div>
 
 		</div>
@@ -308,13 +272,12 @@
 
 
 	<footer th:substituteby="partials/footer" />
-	
+
 	<script type="text/javascript">
 		$().ready(function() {
-			$('a#multiship').click();
+			//$('a#multiship').click();
 		});
 	</script>
-
 
 </body>
 </html>

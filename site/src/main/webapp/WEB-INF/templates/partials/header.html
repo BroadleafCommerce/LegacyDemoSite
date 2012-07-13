@@ -16,8 +16,8 @@
 			<a id="cartLink" class="fancycart" th:href="@{/cart}">
 				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
 				&nbsp; 
-				<span id="headerCartItemsCount" th:text="${cart.itemCount}" />
-				<span id="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
+				<span class="headerCartItemsCount" th:text="${cart.itemCount}" />
+				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
 			</a>
 		</div>
 		

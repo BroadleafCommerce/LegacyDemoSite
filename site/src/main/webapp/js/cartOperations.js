@@ -28,12 +28,12 @@ $(function(){
 	
 	// This will change the header "X item(s)" text to the new count and pluralization of "item"
 	function updateHeaderCartItemsCount(newCount) {
-		$('#headerCartItemsCount').html(newCount);
-		$('#headerCartItemsCountWord').html((newCount == 1) ? ' item' : ' items');
+		$('.headerCartItemsCount').html(newCount);
+		$('.headerCartItemsCountWord').html((newCount == 1) ? ' item' : ' items');
 	}
 	
 	function updateWithPromo(promo) {
-		$('#headerCartItemCount').html();
+		$('.headerCartItemCount').html();
 	}
 	
 	// Hides the add to cart button and shows the in cart button

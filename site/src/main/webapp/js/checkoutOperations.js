@@ -15,6 +15,34 @@ $(function(){
 		type        : 'ajax'
 	};
 
+    //Page load functions
+    $(function() {
+        moveScroller();
+        $('#paymentOptions dd').css({display:"none"});
+    });
+
+    function moveScroller() {
+        var a = function() {
+            var b = $(window).scrollTop();
+            var d = $("#show_cart_scroller").offset().top;
+            var c=$("#cart_total_scroller");
+            if (b>d) {
+                c.css({display:"block",position:"fixed",top:"0px"});
+            } else {
+                if (b<=d) {
+                    c.css({display:"none",position:"relative",top:""});
+                }
+            }
+
+        };
+        $(window).scroll(a);a()
+    }
+
+    $('body').on('click', 'input#paymentMethod_cc, input#paymentMethod_paypal', function() {
+        $('#paymentOptions dd').css({display:"none"});
+        $(this).closest('dt').next().css({display:"block"});
+    });
+
     $('body').on('click', 'input#shippingMethod_602', function() {
         console.log('validate!');
         $("#shipping_address").validate();
