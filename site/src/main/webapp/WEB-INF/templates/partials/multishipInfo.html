@@ -1,0 +1,38 @@
+<div id="multiship_info">
+    <div class="left_content wide">
+		<table class="multiship_summary">
+			<thead>
+				<tr>
+					<th align="left">Item</th>
+					<th>Quantity</th>
+					<th>Address</th>
+					<th>Method</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+				<tr th:each="orderMultishipOption : ${orderMultishipOptions}" th:object="${orderMultishipOption.orderItem}" th:id="${'productRow' + orderMultishipOption.orderItem.id}">
+		        	<td align="left">
+		            	<span th:text="*{product.name}"></span>
+		                <br/>
+		                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+		                   <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+		                </ul>
+		            </td>
+		            <td align="center">1</td>
+		            <td align="left" th:text="${orderMultishipOption.address.firstName + ' - ' + orderMultishipOption.address.addressLine1}"></td>
+		            <td align="left" th:text="${orderMultishipOption.fulfillmentOption.name}"></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div>
+	
+	<div class="right_content">
+	    <h3>Shipping Method</h3>
+	    <p>
+	        <a id="multiship" th:href="@{/checkout/multiship}">Ship to Single Address</a>
+	    </p>
+	    <p>
+	        <a id="multiship" th:href="@{/checkout/multiship}">Edit Multiple Address Shipping</a>
+	    </p>
+	</div>
+</div>

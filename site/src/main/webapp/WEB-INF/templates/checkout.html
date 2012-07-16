@@ -56,8 +56,13 @@
             </table>
 
             <div class="cart_title">1 &raquo; Shipping Information</div>
-
-            <div th:substituteby="partials/shippingInfoForm" />
+            
+            <div th:if="${#lists.size(cart.fulfillmentGroups) > 1}">
+            	<table th:substituteby="partials/multishipInfo"></table>
+            </div>
+            <div th:unless="${#lists.size(cart.fulfillmentGroups) > 1}">
+            	<div th:substituteby="partials/shippingInfoForm"></div>
+            </div> 
 
             <div class="cart_title">2 &raquo; Billing Information</div>
 

@@ -561,6 +561,10 @@ form.manage-account input[type="submit"] {
 	float: left;
 }
 
+#cart .left_content.wide {
+	width: 615px;
+}
+
 #cart .right_content {
 	width: 260px;
 	padding: 10px 20px;
@@ -625,11 +629,11 @@ form.manage-account input[type="submit"] {
 		font-size: 12px;
 	}
 
-.order_summary {
+.order_summary, .multiship_summary {
     width: 100%;
 }
 
-.order_summary tbody tr td {
+.order_summary tbody tr td, .multiship_summary tbody tr td {
     vertical-align:middle;
 }
 

@@ -36,7 +36,7 @@ public class CheckoutController extends BroadleafCheckoutController {
                            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             HttpServletRequest request, HttpServletResponse response, Model model) {
         Order cart = CartState.getCart();
-        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().get(0).getAddress() != null) {
+        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && cart.getFulfillmentGroups().get(0).getAddress() != null) {
             shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
             shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
         }
@@ -92,7 +92,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     
     @RequestMapping(value = "/multiship", method = RequestMethod.POST)
     public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm) {
+    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm) throws PricingException {
     	return super.saveMultiship(request, response, model, orderMultishipOptionForm);
     }
     
