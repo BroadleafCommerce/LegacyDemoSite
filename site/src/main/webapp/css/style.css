@@ -208,6 +208,9 @@ span.error {
 	color: #E40037;
 	font-weight: bold;
 }
+span.error_spacer {
+    visibility:hidden;
+}
 
 /* ===== Primary Styles ========================================================
    Author: Ben Jordan
@@ -261,7 +264,7 @@ header {
 }
 
     #header_content_checkout #checkout_info {
-        width: 500px;
+        width: 450px;
         text-align: right;
         float: right;
         margin-top: 10px;
@@ -464,7 +467,7 @@ nav {
 	}
 
 #checkout_content {
-    margin-top:145px;
+    margin-top:120px;
 }
 	
 #account {
