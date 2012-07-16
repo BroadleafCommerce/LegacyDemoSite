@@ -157,7 +157,9 @@
 		<property name="authenticationEntryPoint">
 			<bean
 				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-				<property name="loginFormUrl" value="/login" />
+				<property name="loginFormUrl" value="/login"  />
+				<property name="forceHttps" value="true"  />
+<!-- 				<property name="useForward" value="true" /> -->
 			</bean>
 		</property>
 	</bean>
@@ -177,7 +179,9 @@
 		<property name="authenticationManager" ref="blAuthenticationManager" />
 		<property name="securityMetadataSource">
 			<sec:filter-security-metadata-source>
-				<sec:intercept-url pattern="/account/**" access="ROLE_USER" />
+<!-- 				<sec:intercept-url pattern="/login" access="ROLE_USER"  /> -->
+<!-- 				<sec:intercept-url pattern="/register" access="ROLE_USER"  /> -->
+				<sec:intercept-url pattern="/account/**" access="ROLE_USER"  />
 			</sec:filter-security-metadata-source>
 		</property>
 	</bean>
@@ -192,7 +196,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!--  Enforces method annotation security.   -->
 	<sec:global-method-security access-decision-manager-ref="blAccessDecisionManager" secured-annotations="enabled" />
 		
