@@ -15,14 +15,24 @@ $(function(){
 		type        : 'ajax'
 	};
 
+    function copyShippingForm() {
+        $('.cloneable').each(function() {
+            $("#billing_info input[name='" + $(this).attr('name') + "']").val($(this).val());
+            $("#billing_info select[name='" + $(this).attr('name') + "']").val($(this).val());
+        })
+    }
+
     $('body').on('click', 'input#paymentMethod_cc, input#paymentMethod_paypal', function() {
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
     });
 
-    $('body').on('click', 'input#shippingMethod_602', function() {
-        console.log('validate!');
-        $("#shipping_address").validate();
+    $('body').on('click', 'input#use_shipping_address', function() {
+        if ($(this).is(':checked')) {
+            copyShippingForm();
+        } else {
+            $(this).closest('form').find(".clearable").val("");
+        }
     });
 
     $('body').on('click', 'a#multiship', function() {

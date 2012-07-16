@@ -58,7 +58,7 @@ legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
 button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
 button, input { line-height: normal; }
 button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
-button[disabled], input[disabled] { cursor: default; }
+button[disabled], input[disabled] { cursor: default; background-color:#d9d9d9; }
 input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
 input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
@@ -301,7 +301,7 @@ header {
         #header_content_checkout #checkout_info #checkout_total {
             font: 32px/28px 'Oxygen', Helvetica, sans-serif;
         }
-	
+
 #header_content #logo, #header_content_checkout #logo {
 	width: 299px;
 	height: 101px;
@@ -468,6 +468,35 @@ nav {
 
 #checkout_content {
     margin-top:120px;
+}
+
+#checkout_warning {
+    width: 880px;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    color: #342020;
+    font: 15px/28px 'Oxygen', Helvetica, sans-serif;
+    text-align: center;
+    background-color: #E7E3E2;
+}
+
+#order_confirmation h2 {
+    font: 30px/30px 'Oxygen', Helvetica, sans-serif;
+    color: #262322;
+    margin: 30px 0px 10px 30px;
+    display: block;
+}
+
+#order_confirmation h3 {
+    font: 20px/20px 'Oxygen', Helvetica, sans-serif;
+    color: #262322;
+    margin-left: 30px;
+    display: block;
+}
+
+.fulfillment_option, .payment_method {
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 	
 #account {
@@ -718,6 +747,29 @@ form.manage-account input[type="submit"] {
 	
 #checkout {
 	margin: 20px 0;
+}
+
+#shipping_total {
+    font: 30px/26px 'Oxygen', Helvetica, sans-serif;
+    margin-bottom: 20px;
+}
+.payment_info {
+    background: #FFFFF2;
+    border: 1px solid #E5E5E5;
+}
+
+ul#payment_methods,
+ul#payment_methods li {
+      margin: 0;
+      padding: 0;
+}
+
+ul#payment_methods li {
+      display: inline-block;
+}
+
+#payment_methods ul{
+    display: inline;
 }
 
 #paymentOptions dt {

@@ -1,35 +1,41 @@
 <form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info">
+
     <div class="left_content">
-        <div class="form100">
-            <input type="checkbox" name="same" /> Use Shipping Information
-        </div>
+
         <input type="hidden" name="address.country" value="US" />
+
+        <div class="form100">
+            <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> Use Shipping Information
+        </div>
 
         <div class="form30">
             <label for="firstName">First Name</label>
             <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
-            <input type="text" th:field="*{address.firstName}" class="field30 required" th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" />
+            <input type="text" th:field="*{address.firstName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
+
         <div class="form30 margin20">
             <label for="lastName">Last Name</label>
             <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
-            <input type="text" th:field="*{address.lastName}" class="field30 required" th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" />
+            <input type="text" th:field="*{address.lastName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
+
         <div class="form30 margin20">
             <label for="phone">Phone</label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-            <input type="text" th:field="*{address.primaryPhone}" class="field30" />
+            <input type="text" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
         </div>
 
         <div class="form50">
             <label for="address1">Address</label>
             <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
-            <input type="text" th:field="*{address.addressLine1}" class="field50 required" th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" />
+            <input type="text" th:field="*{address.addressLine1}" class="field50 required clearable" th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
+
         <div class="form50 margin20">
             <label for="address2">Address 2</label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
-            <input type="text" th:field="*{address.addressLine2}" class="field50" />
+            <input type="text" th:field="*{address.addressLine2}" class="field50 clearable" th:disabled="${!validShipping}" />
         </div>
 
         <div class="form30">
@@ -37,9 +43,9 @@
             <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
             <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
             <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
-            <input type="text" th:field="*{address.city}" class="field25 required" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
+            <input type="text" th:field="*{address.city}" class="field25 required clearable" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" th:disabled="${!validShipping}" />
 
-            <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
+            <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required clearable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'" th:disabled="${!validShipping}">
                 <option value="">--</option>
                 <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
             </select>
@@ -48,18 +54,25 @@
         <div class="form25 margin20">
             <label for="postal_code">Postal Code</label>
             <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
-            <input type="text" th:field="*{address.postalCode}" class="field25" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
+            <input type="text" th:field="*{address.postalCode}" class="field25 clearable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div class="form35 margin20">
             <label for="email">Email</label>
             <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span>
-            <input type="text" th:field="*{address.emailAddress}" class="field35 required" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" />
+            <input type="text" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
     </div>
 
-    <div class="right_content">
+    <div class="right_content payment_info">
         <h3>Payment Information</h3>
+
+        <ul id="payment_methods">
+            <li><img src="img/payment/american-express-curved-32px.png"/></li>
+            <li><img src="img/payment/mastercard-curved-32px.png"/></li>
+            <li><img src="img/payment/visa-curved-32px.png"/></li>
+            <li><img src="img/payment/paypal-curved-32px.png"/></li>
+        </ul>
 
         <dl id="paymentOptions">
             <dt>
@@ -69,65 +82,53 @@
             <dd>
                 <div id="creditCardFields">
 
+                    <div class="error" th:if="${paymentException}" th:text="#{payment.exception}"></div>
+
                     <div class="form25" style="width: 94%;">
                         <div style="float: left; width: 70%;">
                             <label for="cardNumber" class="prompt">Card Number</label>
+                            <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
                             <div class="element">
-                                <input type="text" name="cardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" />
+                                <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
                             </div>
                         </div>
                         <div style="float: right; padding-right: 2%; width: 16%">
                             <label class="prompt">CSC</label>
+                            <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardNumber}"></span>
                             <div class="element">
-                                <input type="text" name="securityCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%" />
+                                <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
                             </div>
                         </div>
                     </div>
 
                     <div class="form25">
                         <label for="nameOnCard" class="prompt"> Name on the Card </label>
+                        <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
                         <div class="form100">
-                            <input type="text" name="nameOnCard" value="" id="nameOnCard" class="field30" />
+                            <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
                         </div>
                     </div>
 
                     <div class="form50">
                         <label for="expirationMonth" class="prompt"> Expiration Date </label>
+                        <span class="error" th:if="${#fields.hasErrors('creditCardExpMonth')}" th:errors="*{creditCardExpMonth}"></span>
+                        <br th:if="${#fields.hasErrors('creditCardExpMonth')} and ${#fields.hasErrors('creditCardExpYear')}"/>
+                        <span class="error" th:if="${#fields.hasErrors('creditCardExpYear')}" th:errors="*{creditCardExpYear}"></span>
                         <div class="element">
-                            <select name="expirationMonth" id="expirationMonth" class=" ">
-                                <option value=""></option>
-                                <option value="01">01 - January</option>
-                                <option value="02">02 - February</option>
-                                <option value="03">03 - March</option>
-                                <option value="04">04 - April</option>
-                                <option value="05" selected="true">05 - May</option>
-                                <option value="06">06 - June</option>
-                                <option value="07">07 - July</option>
-                                <option value="08">08 - August</option>
-                                <option value="09">09 - September</option>
-                                <option value="10">10 - October</option>
-                                <option value="11">11 - November</option>
-                                <option value="12">12 - December</option>
-                            </select> <select name="expirationYear" id="expirationYear" class=" ">
-                            <option value=""></option>
-                            <option value="2012" selected="selected">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                        </select>
+                            <select th:field="*{creditCardExpMonth}" id="expirationMonth" class=" " th:disabled="${!validShipping}">
+                                <option th:each="month,itr : ${expirationMonths}" th:value="${itr.count}" th:text="${month}"></option>
+                            </select>
+                            <select th:field="*{creditCardExpYear}" id="expirationYear" class=" " th:disabled="${!validShipping}">
+                                <option th:each="year,itr : ${expirationYears}" th:value="${year}" th:text="${year}"></option>
+                            </select>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <p>
-                    <a class="medium-button red-button" href="#">Complete Order</a>
-                </p>
+
+                <div>
+                    <input type="submit" class="medium" value="Complete Order" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
+                </div>
 
             </dd>
             <dt>

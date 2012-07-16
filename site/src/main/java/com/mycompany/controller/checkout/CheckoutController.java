@@ -1,6 +1,7 @@
 package com.mycompany.controller.checkout;
 
 import org.apache.commons.validator.GenericValidator;
+import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
@@ -10,6 +11,7 @@ import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/checkout")
@@ -48,6 +55,9 @@ public class CheckoutController extends BroadleafCheckoutController {
 	            }
 	        }
         }
+
+        model.addAttribute("expirationMonths", populateExpirationMonths());
+        model.addAttribute("expirationYears", populateExpirationYears());
 
         return super.checkout(request, response, model);
 	}
@@ -105,6 +115,32 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String saveMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
     		@ModelAttribute("addressForm") ShippingInfoForm addressForm) {
     	return super.saveMultishipAddAddress(request, response, model, addressForm);
+    }
+
+    @RequestMapping(value = "/complete", method = RequestMethod.POST)
+    public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            BindingResult result) throws CheckoutException {
+        return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+    }
+
+    private List<String> populateExpirationMonths() {
+        List<String> expirationMonths = new ArrayList<String>();
+        NumberFormat formatter = new DecimalFormat("00");
+        String[] months = new DateFormatSymbols().getMonths();
+        for (int i=1; i<months.length; i++) {
+            expirationMonths.add(formatter.format(i) + " - " + months[i-1]);
+        }
+        return expirationMonths;
+    }
+
+    private List<String> populateExpirationYears() {
+        List<String> expirationYears = new ArrayList<String>();
+        DateTime dateTime = new DateTime();
+        for (int i=0; i<10; i++){
+            expirationYears.add(dateTime.plusYears(i).getYear()+"");
+        }
+        return expirationYears;
     }
     
     @InitBinder

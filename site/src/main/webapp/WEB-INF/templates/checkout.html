@@ -66,6 +66,12 @@
 
             <div class="cart_title">2 &raquo; Billing Information</div>
 
+            <div class="clearfix"></div>
+
+            <div id="checkout_warning" th:if="!${validShipping}">
+                Please fill out a shipping address and pick a shipping method to complete purchase
+            </div>
+
             <div th:substituteby="partials/billingInfoForm" />
 
         </div>
@@ -78,7 +84,7 @@
 	<script type="text/javascript">
 		$().ready(function() {
             $('#paymentOptions dd').css({display:"none"});
-			//$('a#multiship').click();
+            $('#paymentMethod_cc').click();
 		});
 	</script>
 
