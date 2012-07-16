@@ -81,8 +81,6 @@
 			<keyalg>RSA</keyalg>
 		</configuration>
 	</plugin>
-
-
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>
 				<artifactId>javarebel-maven-plugin</artifactId>
