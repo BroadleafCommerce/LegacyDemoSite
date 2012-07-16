@@ -26,7 +26,11 @@
 						<td align="center">
 							<select id="multiship-address" th:name="${'options[' + orderMultishipOptionStat.index + '].addressId'}" style="min-width: 140px;">
 									<option value="">--</option>
-									<option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="*{id}" th:text="${customerAddress}"></option>
+									<option th:each="customerAddress : ${customerAddresses}" 
+											th:object="${customerAddress}" 
+											th:value="*{id}" 
+											th:text="${customerAddress}"
+											th:selected="${customerAddress.address.equals(orderMultishipOption.address)}"></option>
 							</select>
 							<br/>
 							 <a class="add-address-link" th:href="@{/checkout/add-address}">(Add New)</a>
@@ -34,11 +38,14 @@
 						<td align="center">
 							<select id="multiship-method" th:name="${'options[' + orderMultishipOptionStat.index + '].fulfillmentOptionId'}">
 									<option value="">--</option>
-									<option th:each="fulfillmentOption : ${fulfillmentOptions}" th:object="${fulfillmentOption}" th:value="*{id}" th:text="*{name}"></option>
+									<option th:each="fulfillmentOption : ${fulfillmentOptions}" 
+											th:object="${fulfillmentOption}" 
+											th:value="*{id}" 
+											th:text="*{name}"
+											th:selected="${fulfillmentOption.equals(orderMultishipOption.fulfillmentOption)}"></option>
 							</select>
 						</td>
 						
-						<input type="hidden" th:name="${'options[' + orderMultishipOptionStat.index + '].orderId'}" th:value="${cart.id}" />
 						<input type="hidden" th:name="${'options[' + orderMultishipOptionStat.index + '].orderItemId'}" th:value="*{id}" />
 						
 					</tr>

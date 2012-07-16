@@ -4,9 +4,9 @@ import org.apache.commons.validator.GenericValidator;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
+import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
-import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
@@ -36,15 +36,17 @@ public class CheckoutController extends BroadleafCheckoutController {
                            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             HttpServletRequest request, HttpServletResponse response, Model model) {
         Order cart = CartState.getCart();
-        if (cart.getFulfillmentGroups().get(0).getAddress() != null) {
+        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().get(0).getAddress() != null) {
             shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
             shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
         }
 
-        for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
-            if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
-                billingForm.setAddress(paymentInfo.getAddress());
-            }
+        if (cart.getPaymentInfos() != null) {
+	        for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
+	            if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
+	                billingForm.setAddress(paymentInfo.getAddress());
+	            }
+	        }
         }
 
         return super.checkout(request, response, model);
