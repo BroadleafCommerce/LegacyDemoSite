@@ -10,7 +10,6 @@ import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,12 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.text.DateFormatSymbols;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/checkout")
@@ -43,20 +36,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 	public String checkout(@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
                            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             HttpServletRequest request, HttpServletResponse response, Model model) {
-        Order cart = CartState.getCart();
-        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && cart.getFulfillmentGroups().get(0).getAddress() != null) {
-            shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
-            shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
-        }
-
-        if (cart.getPaymentInfos() != null) {
-	        for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
-	            if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
-	                billingForm.setAddress(paymentInfo.getAddress());
-	            }
-	        }
-        }
-
+        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.checkout(request, response, model);
 	}
 
@@ -64,7 +44,6 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, BindingResult result) throws PricingException {
-        checkout(shippingForm, billingForm, request, response, model);
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -97,9 +76,23 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException {
-        checkout(shippingForm, billingForm, request, response, model);
-
+        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+    }
+
+    private void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
+        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && cart.getFulfillmentGroups().get(0).getAddress() != null) {
+            shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
+            shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
+        }
+
+        if (cart.getPaymentInfos() != null) {
+            for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
+                if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
+                    billingForm.setAddress(paymentInfo.getAddress());
+                }
+            }
+        }
     }
 
     @InitBinder
