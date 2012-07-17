@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/account/myaccount/addresses")
+@RequestMapping("/account/addresses")
 public class ManageAddressesController extends BroadleafManageAddressesController {
 
     @RequestMapping(method = RequestMethod.GET)

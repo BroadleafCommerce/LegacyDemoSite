@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/account/myaccount/password")
+@RequestMapping("/account/password")
 public class ChangePasswordController extends BroadleafChangePasswordController {
 
     @RequestMapping(method = RequestMethod.GET)

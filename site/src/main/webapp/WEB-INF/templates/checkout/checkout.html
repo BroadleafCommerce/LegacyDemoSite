@@ -1,64 +1,91 @@
-<div id="checkout_content" class="width_setter group" role="main">
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 
-    <div id="cart">
+<blc:head pageTitle="Broadleaf Demo - Heat Clinic - Checkout" />
 
-        <div class="cart_title">
-            Order Summary
-            &nbsp;
-            <a id="cartLink" class="fancycart" th:href="@{/cart}">
-                Edit
-            </a>
-        </div>
-        <table id="cart_summary" class="order_summary">
-            <thead>
-            <tr>
-                <th>&nbsp;</th>
-                <th align="left">Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Discount</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-                <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-                <td align="left">
-                    <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
-                    <br/>
-                    <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                        <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                    </ul>
-                </td>
-                <td align="center" th:text="*{quantity}"></td>
-                <td align="center" blc:price="*{price}"></td>
-                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+<body>
+	<div id="notification_bar"></div>
 
-                <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
-            </tr>
-            </tbody>
-        </table>
+    <header th:substituteby="layout/partials/headerCheckout" />
+    
+	<div id="checkout_content" class="width_setter group" role="main">
+	
+	    <div id="cart">
+	
+	        <div class="cart_title">
+	            Order Summary
+	            &nbsp;
+	            <a id="cartLink" class="fancycart" th:href="@{/cart}">
+	                Edit
+	            </a>
+	        </div>
+	        <table id="cart_summary" class="order_summary">
+	            <thead>
+	            <tr>
+	                <th>&nbsp;</th>
+	                <th align="left">Item</th>
+	                <th>Quantity</th>
+	                <th>Price</th>
+	                <th>Discount</th>
+	                <th>Total</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+	                <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+	                <td align="left">
+	                    <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+	                    <br/>
+	                    <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+	                        <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+	                    </ul>
+	                </td>
+	                <td align="center" th:text="*{quantity}"></td>
+	                <td align="center" blc:price="*{price}"></td>
+	                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
+	                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+	
+	                <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
+	            </tr>
+	            </tbody>
+	        </table>
+	
+	        <div class="cart_title">1 &raquo; Shipping Information</div>
+	        
+	        <div th:if="${#lists.size(cart.fulfillmentGroups) > 1}">
+	        	<table th:substituteby="checkout/partials/multishipInfo"></table>
+	        </div>
+	        <div th:unless="${#lists.size(cart.fulfillmentGroups) > 1}">
+	        	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
+	        </div> 
+	
+	        <div class="cart_title">2 &raquo; Billing Information</div>
+	
+	        <div class="clearfix"></div>
+	
+	        <div id="checkout_warning" th:if="!${validShipping}">
+	            Please fill out a shipping address and pick a shipping method to complete purchase
+	        </div>
+	
+	        <div th:substituteby="checkout/partials/billingInfoForm" />
+	
+	    </div>
+	
+	</div>
 
-        <div class="cart_title">1 &raquo; Shipping Information</div>
-        
-        <div th:if="${#lists.size(cart.fulfillmentGroups) > 1}">
-        	<table th:substituteby="partials/multishipInfo"></table>
-        </div>
-        <div th:unless="${#lists.size(cart.fulfillmentGroups) > 1}">
-        	<div th:substituteby="partials/shippingInfoForm"></div>
-        </div> 
+	<footer th:substituteby="layout/partials/footer" />
 
-        <div class="cart_title">2 &raquo; Billing Information</div>
+	<script type="text/javascript">
+		$().ready(function() {
+            $('#paymentOptions dd').css({display:"none"});
+            $('#paymentMethod_cc').click();
+		});
+	</script>
 
-        <div class="clearfix"></div>
-
-        <div id="checkout_warning" th:if="!${validShipping}">
-            Please fill out a shipping address and pick a shipping method to complete purchase
-        </div>
-
-        <div th:substituteby="partials/billingInfoForm" />
-
-    </div>
-
-</div>
+</body>
+</html>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/account/myaccount")
+@RequestMapping("/account")
 public class UpdateAccountController extends BroadleafUpdateAccountController {
 
     @RequestMapping(method = RequestMethod.GET)

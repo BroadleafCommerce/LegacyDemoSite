@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/account/myaccount/orders")
+@RequestMapping("/account/orders")
 public class OrderHistoryController extends BroadleafOrderHistoryController {
 
 	@RequestMapping(method = RequestMethod.GET)

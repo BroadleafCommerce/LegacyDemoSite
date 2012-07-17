@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/account/myaccont/wishlist")
+@RequestMapping("/account/wishlist")
 public class AccountWishlistController extends BroadleafAccountWishlistController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String viewAccountWishlist(HttpServletRequest request, Model model) {
-        return super.ajaxRender(getAccountWishlistView(), request, model);
+    public String viewAccountWishlist(HttpServletRequest request, HttpServletResponse response, Model model) {
+    	return super.viewWishlist(request, response, model);
     }
 
 }

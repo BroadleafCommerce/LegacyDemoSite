@@ -64,8 +64,9 @@
 	</bean>
 	
 	<!-- Set up the view resolver to be used by Spring -->
-	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+	<bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
 		<property name="templateEngine" ref="blWebTemplateEngine" />
 		<property name="order" value="1" />
+		<property name="cache" value="false" />
 	</bean>
 </beans>

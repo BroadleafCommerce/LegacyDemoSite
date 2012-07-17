@@ -18,7 +18,7 @@
 
             <ul th:substituteby="account/partials/accountMenu" />
 
-            <form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
+            <form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST">
                 <div class="form50">
                     <label for="emailAddress">Email Address:</label>
                     <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>

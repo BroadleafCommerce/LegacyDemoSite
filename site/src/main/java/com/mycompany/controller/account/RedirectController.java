@@ -17,6 +17,7 @@
 package com.mycompany.controller.account;
 
 import org.broadleafcommerce.common.web.controller.BroadleafRedirectController;
+import org.broadleafcommerce.common.web.security.BroadleafAuthenticationSuccessRedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * that it is being called from an Ajax redirect process.
  * 
  * It would be unexpected for an implementor to modify this class or the corresponding view
- * blc_redirect.html.  
+ * blcRedirect.html.  
  * 
  * The purpose of this class is to support ajax redirects after a successful login. 
  * 

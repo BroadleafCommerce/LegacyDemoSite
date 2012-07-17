@@ -92,7 +92,8 @@ public class CartController extends BroadleafCartController {
 	
 	@RequestMapping("/empty")
 	public String empty(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
-		return super.empty(request, response, model);
+		//return super.empty(request, response, model);
+		return "ajaxredirect:/";
 		
 	}
 	
