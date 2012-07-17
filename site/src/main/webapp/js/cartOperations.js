@@ -22,8 +22,7 @@ $(function(){
 		autoSize	: true,
 		closeClick	: false,
 		openEffect	: 'none',
-		closeEffect	: 'none',
-			
+		closeEffect	: 'none'
 	};
 	
 	// This will change the header "X item(s)" text to the new count and pluralization of "item"

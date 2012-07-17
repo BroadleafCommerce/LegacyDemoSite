@@ -6,13 +6,13 @@ $(function(){
 		maxHeight	: 560,	
 		fitToView	: true,
 		width		: '100%',
-		height		: '100%',
 		autoSize	: true,
 		closeClick	: false,
 		topRatio	: 0,
 		openEffect	: 'none',
 		closeEffect	: 'none',
-		type        : 'ajax'
+		type        : 'ajax',
+		scrolling   : 'no'
 	};
 
     function copyShippingForm() {
@@ -45,6 +45,7 @@ $(function(){
 		return false;
     });
     
+    /*
     $('body').on('click', '#multiship-products input.save', function() {
 		var $form = $(this).closest('form');
 		
@@ -58,6 +59,7 @@ $(function(){
 		);
 		return false;
     });
+    */
     
     $('body').on('click', 'a.add-address-link', function() {
 		BLC.ajax({url: $(this).attr('href')}, function(data) {

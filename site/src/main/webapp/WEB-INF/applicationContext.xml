@@ -68,6 +68,4 @@
 		</property>
 	</bean>	
 	-->
-   
-    <!--  Add your custom bean definitions here. -->   
 </beans>

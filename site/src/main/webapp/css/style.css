@@ -788,16 +788,27 @@ ul#payment_methods li {
     margin: 5px;
 }
 	
-#multiship-products, #multiship-add-address {
+#multiship-products {
 	width: 720px;
 }
 
 	#multiship-products table#cart_products {
 		width: 100%;
 	}
+	
+	.fancybox-inner #multiship-products #multiship-actions {
+		position: absolute;
+		bottom: 0;
+		background-color: white;
+		width: 720px;
+		border-top: 1px dotted #C8C3C1;
+	}
 
-#multiship-products .multishipContainer, #multiship-add-address .multishipContainer {
-	width: 700px;
+.fancybox-inner .multishipContainer {
+	width: 720px;
+	overflow: auto;
+	max-height: 516px;
+	margin-bottom: 44px;
 }
 #multiship-add-address #addAddressContainer {
 	position: relative;
@@ -817,9 +828,17 @@ ul#payment_methods li {
 	#multiship-add-address input[type="submit"],
 	#multiship-products input[type="submit"],
 	#multiship-add-address a.cancel,
+	#multiship-products a.add-address-link,
 	#multiship-products a.cancel {
 		float: right;
 		margin-left: 12px;
+		margin-bottom: 0px;
+	}
+	
+	#multiship-add-address a.cancel,
+	#multiship-products a.add-address-link,
+	#multiship-products a.cancel {
+		margin: 16px 0 0 12px;	
 	}
 	
 	

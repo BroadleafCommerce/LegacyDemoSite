@@ -69,4 +69,8 @@
 		<property name="order" value="1" />
 		<property name="cache" value="false" />
 	</bean>
+	
+	<!-- This validator will additionally require state on shipping addresses -->
+	<bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
+	
 </beans>
