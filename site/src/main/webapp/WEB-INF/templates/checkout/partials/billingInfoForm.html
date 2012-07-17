@@ -82,19 +82,22 @@
             <dd>
                 <div id="creditCardFields">
 
-                    <div class="error" th:if="${paymentException}" th:text="#{payment.exception}"></div>
+                    <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardNumber')}"/>
+                    <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardCvvCode}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardCvvCode')}"/>
+                    <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardName')}"/>
 
                     <div class="form25" style="width: 94%;">
                         <div style="float: left; width: 70%;">
                             <label for="cardNumber" class="prompt">Card Number</label>
-                            <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
                             <div class="element">
                                 <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
                             </div>
                         </div>
                         <div style="float: right; padding-right: 2%; width: 16%">
-                            <label class="prompt">CSC</label>
-                            <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardNumber}"></span>
+                            <label class="prompt">CVV</label>
                             <div class="element">
                                 <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
                             </div>
@@ -103,7 +106,6 @@
 
                     <div class="form25">
                         <label for="nameOnCard" class="prompt"> Name on the Card </label>
-                        <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
                         <div class="form100">
                             <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
                         </div>
@@ -138,7 +140,7 @@
             <dd>
                 <div id="paypalfields">
                     <div class="form100">
-                        <img src="img/paypal.gif" alt="Pay with Paypal" width="100" />
+                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
                     </div>
                 </div>
             </dd>

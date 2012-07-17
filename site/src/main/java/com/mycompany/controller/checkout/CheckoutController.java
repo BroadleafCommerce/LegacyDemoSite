@@ -57,9 +57,6 @@ public class CheckoutController extends BroadleafCheckoutController {
 	        }
         }
 
-        model.addAttribute("expirationMonths", populateExpirationMonths());
-        model.addAttribute("expirationYears", populateExpirationYears());
-
         return super.checkout(request, response, model);
 	}
 
@@ -67,6 +64,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, BindingResult result) throws PricingException {
+        checkout(shippingForm, billingForm, request, response, model);
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -96,29 +94,14 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
     public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, BindingResult result) throws CheckoutException {
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            BindingResult result) throws CheckoutException, PricingException {
+        checkout(shippingForm, billingForm, request, response, model);
+
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
-    private List<String> populateExpirationMonths() {
-        List<String> expirationMonths = new ArrayList<String>();
-        NumberFormat formatter = new DecimalFormat("00");
-        String[] months = new DateFormatSymbols().getMonths();
-        for (int i=1; i<months.length; i++) {
-            expirationMonths.add(formatter.format(i) + " - " + months[i-1]);
-        }
-        return expirationMonths;
-    }
-
-    private List<String> populateExpirationYears() {
-        List<String> expirationYears = new ArrayList<String>();
-        DateTime dateTime = new DateTime();
-        for (int i=0; i<10; i++){
-            expirationYears.add(dateTime.plusYears(i).getYear()+"");
-        }
-        return expirationYears;
-    }
-    
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
     	super.initBinder(request, binder);
