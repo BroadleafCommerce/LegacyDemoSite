@@ -80,11 +80,21 @@
 
 	<footer th:substituteby="layout/partials/footer" />
 
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
 		$().ready(function() {
             $('#paymentOptions dd').css({display:"none"});
             $('#paymentMethod_cc').click();
+
+            var validShipping = /*[[${validShipping}]]*/ false;
+
+            if (validShipping) {
+                var stop = $('#billing_info').offset().top-120;
+                $('body').delay(400).animate({scrollTop: stop+'px'}, 1000);
+            }
+
 		});
+        /*]]>*/
 	</script>
 
 </body>
