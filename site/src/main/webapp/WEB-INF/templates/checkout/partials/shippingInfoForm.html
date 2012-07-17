@@ -64,7 +64,7 @@
                     <input type="radio" th:field="*{fulfillmentOptionId}" th:value="${fulfillmentOption.id}" />
                 </td>
                 <td>
-                    <span th:text="${fulfillmentOption.name}"/>&nbsp;(<span th:text="${fulfillmentOption.longDescription}"/>)
+                    <span th:text="${fulfillmentOption.name}"/>&nbsp;(<span th:text="${fulfillmentOption.longDescription}"/>)&nbsp;-&nbsp;<span blc:price="${fulfillmentOption.price}"/>
                 </td>
             </tr>
         </table>
@@ -75,7 +75,7 @@
         </div>
 
         <div>
-            <input type="submit" class="small dark" value="Calculate Shipping"/>
+            <input type="submit" class="small dark" value="Select Shipping"/>
         </div>
         <p>
             <a id="multiship" th:href="@{/checkout/multiship}">Ship to Multiple Addresses</a>
