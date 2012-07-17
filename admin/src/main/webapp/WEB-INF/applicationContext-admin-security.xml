@@ -115,7 +115,7 @@
 	
 	<bean id="broadleafAdminAuthenticationFailureHandler"
 		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-		<constructor-arg value="/login.jsp?login_error=true" />
+		<constructor-arg value="/blcadmin/login.jsp?login_error=true" />
 		<property name="redirectStrategy" ref="redirectStrategy" />
 	</bean>
 
@@ -143,7 +143,7 @@
 		<property name="authenticationEntryPoint">
 			<bean
 				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-				<property name="loginFormUrl" value="/login.jsp" />
+				<property name="loginFormUrl" value="/blcadmin/login.jsp" />
 			</bean>
 		</property>
 	</bean>
