@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -89,7 +90,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 
         if (result.hasErrors()) {
             checkout(request, response, model);
-            return isAjaxRequest(request) ? "ajax/checkout" : "/checkout";
+            return getCheckoutView();
         }
 
         return  path;
