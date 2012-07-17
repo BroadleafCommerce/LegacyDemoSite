@@ -8,20 +8,20 @@
 
 <body>
 <div id="notification_bar"></div>
-<header th:substituteby="partials/header" />
+<header th:substituteby="layout/partials/header" />
 
 <div id="content" class="width_setter group" role="main">
 
-    <nav th:substituteby="partials/nav" />
+    <nav th:substituteby="layout/partials/nav" />
 
     <div class="manage-account-container clearfix">
 
-        <ul th:substituteby="partials/accountMenu" />
+        <ul th:substituteby="account/partials/accountMenu" />
 
     </div>
 </div>
 
-<footer th:substituteby="partials/footer" />
+<footer th:substituteby="layout/partials/footer" />
 
 </body>
 </html>

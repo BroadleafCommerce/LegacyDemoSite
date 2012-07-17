@@ -8,11 +8,11 @@
 
 <body>
 	<div id="notification_bar"></div>
-	<header th:substituteby="partials/header" />
+	<header th:substituteby="layout/partials/header" />
 	
 	<div id="content" class="width_setter group" role="main">
 	
-		<nav th:substituteby="partials/nav" />
+		<nav th:substituteby="layout/partials/nav" />
 			
 		<blc:content contentType="Homepage Banner Ad" />	   
 		<div id="banners">
@@ -26,11 +26,11 @@
 		<div class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
 		<ul id="products" class="group">
-			<li th:each="product : ${products}" th:object="${product}" th:include="partials/productListItem" th:remove="tag"></li>
+			<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
 		</ul>
 	</div>
 	
-	<footer th:substituteby="partials/footer" />
+	<footer th:substituteby="layout/partials/footer" />
 	
 </body>
 </html>

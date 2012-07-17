@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<blc:head pageTitle="Broadleaf Demo - Heat Clinic - Browse" />
+
+<body>
+	<div id="notification_bar"></div>
+	<header th:substituteby="layout/partials/header" />
+	
+	<div id="content" class="width_setter group" role="main">
+	
+		<nav th:substituteby="layout/partials/nav" />
+		
+		<section id="left_column">
+	
+			<header>
+				<h1>Viewing All Hot Sauces</h1>
+				<div id="sort">
+					Sort by:
+					<select id="sortby">
+						<option value="awesomeness">Awesomeness</option>
+					</select>
+				</div>
+			</header>
+			
+			<ul id="products" class="group">
+				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+			</ul>
+			
+		</section>
+	
+		<section th:substituteby="catalog/partials/rightHandFeaturedProducts" />
+			
+	</div>
+	
+	<footer th:substituteby="layout/partials/footer" />
+	
+</body>
+</html>

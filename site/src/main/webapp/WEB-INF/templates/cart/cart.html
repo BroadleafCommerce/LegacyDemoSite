@@ -1,5 +1,5 @@
 <div id="cart" class="cart_modal">
-	<table id="cart_products" th:substituteby="partials/cartProductsTable"></table>
+	<table th:substituteby="cart/partials/cartProductsTable"></table>
 	<div id="cart_total" class="group">
 		<h3>Your Current Subtotal</h3>
 		<div id="subtotal" blc:price="${cart.total}"></div>

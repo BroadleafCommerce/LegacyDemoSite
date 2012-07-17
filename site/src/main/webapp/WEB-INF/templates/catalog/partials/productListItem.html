@@ -14,12 +14,12 @@
 		<p th:text="*{longDescription}"></p>
 	</div>
 	
-	<div th:substituteby="partials/productActions"></div>
+	<div th:substituteby="catalog/partials/productActions"></div>
 	
 	<div style="display: none;" th:id="${'productOptions' + product.id}" class="product-options modal">
 		<h3 th:text="*{name}"></h3>
-		<div class="product-options" th:include="product::productOptions"></div>
+		<div class="product-options" th:include="catalog/product::productOptions"></div>
 		<span class="error centered" style="display: none;">All options are required</span>
-		<div th:substituteby="partials/productActions"></div>
+		<div th:substituteby="catalog/partials/productActions"></div>
 	</div>
 </li>
