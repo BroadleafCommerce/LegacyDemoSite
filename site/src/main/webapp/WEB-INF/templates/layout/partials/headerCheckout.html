@@ -14,7 +14,7 @@
                     <tr>
                         <td blc:price="${cart.subTotal}"></td>
                         <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
-                        <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
+                        <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="-${cart.orderAdjustmentsValue}"></td>
                         <td blc:price="${cart.totalTax}"></td>
                         <td blc:price="${cart.totalShipping}"></td>
                     </tr>

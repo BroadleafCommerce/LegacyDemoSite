@@ -63,7 +63,7 @@
                 <tr>
                     <td>Promotions</td>
                     <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
-                    <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
+                    <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="-${order.orderAdjustmentsValue}"></td>
                 </tr>
                 <tr>
                     <td>Taxes</td>
