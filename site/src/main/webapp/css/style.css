@@ -674,7 +674,7 @@ form.manage-account input[type="submit"] {
         text-transform: uppercase;
         color: #333;
     }
-    
+        
     #wishlist_items tbody tr td {
         padding: 10px;
         border-bottom: 1px dotted #C8C3C1;
@@ -683,6 +683,11 @@ form.manage-account input[type="submit"] {
         #wishlist_items tbody tr td .cartLinkBtn {
             font-size: 11px;
         }
+        
+        #wishlist_items tbody tr td.checkbox {
+            text-align: center;
+        }
+        
     
     #wishlist_items tbody tr td.name {
         font: 14px/18px 'Oxygen', Helvetica, sans-serif;

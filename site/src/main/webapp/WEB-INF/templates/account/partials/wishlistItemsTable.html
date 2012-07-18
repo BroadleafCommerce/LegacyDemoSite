@@ -1,8 +1,8 @@
 <table id="wishlist_items">
     <thead>
         <tr>
-            <th><input type="checkbox" name="" /></th>
-            <th colspan="2">Item</th>
+            <th><input type="checkbox" id="select_all_wishlist_items" /></th>
+            <th>Item</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         <tr th:each="item : ${wishlist.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-            <td><input type="checkbox" name="" /></td>
+            <td class="checkbox"><input type="checkbox" name="" /></td>
             <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
