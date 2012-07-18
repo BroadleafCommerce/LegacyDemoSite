@@ -1,6 +1,6 @@
 <div id="multiship-products">	
 	<form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="multiship_address">
-	<div class="multishipContainer">
+		<div class="multishipContainer">
 			<table id="cart_products">
 				<thead>
 					<tr>
@@ -43,7 +43,7 @@
 									<option value="">--</option>
 									<option th:each="fulfillmentOption : ${fulfillmentOptions}" 
 											th:value="${fulfillmentOption.id}" 
-                    						th:text="${fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"
+	                   						th:text="${fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"
 											th:selected="${fulfillmentOption.equals(omo.fulfillmentOption)}"></option>
 							</select>
 						</td>
@@ -54,9 +54,8 @@
 					</tr>
 				</tbody>
 			</table>
-							
 		</div>
-		
+			
 		<div id="multiship-actions">
 			<input type="submit" class="save medium red" value="Save" />
 			<a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}">Add New Address</a>

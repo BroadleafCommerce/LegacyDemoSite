@@ -33,9 +33,9 @@ public class CheckoutController extends BroadleafCheckoutController {
     * credit card on the order. If so, then the billing address will be pre-populated.
     */
     @RequestMapping("")
-	public String checkout(@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-                           @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
+	    	@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm) {
         prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.checkout(request, response, model);
 	}
@@ -43,19 +43,22 @@ public class CheckoutController extends BroadleafCheckoutController {
     @RequestMapping(value="/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, BindingResult result) throws PricingException {
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, 
+            BindingResult result) throws PricingException {
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
     @RequestMapping(value = "/multiship", method = RequestMethod.GET)
     public String showMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm, BindingResult result) throws PricingException {
+    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm, 
+    		BindingResult result) throws PricingException {
     	return super.showMultiship(request, response, model);
     }
     
     @RequestMapping(value = "/multiship", method = RequestMethod.POST)
     public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm, BindingResult result) throws PricingException {
+    		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm, 
+    		BindingResult result) throws PricingException {
     	return super.saveMultiship(request, response, model, orderMultishipOptionForm, result);
     }
     
@@ -80,7 +83,7 @@ public class CheckoutController extends BroadleafCheckoutController {
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
-    private void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
+    protected void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
         if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && cart.getFulfillmentGroups().get(0).getAddress() != null) {
             shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
             shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
