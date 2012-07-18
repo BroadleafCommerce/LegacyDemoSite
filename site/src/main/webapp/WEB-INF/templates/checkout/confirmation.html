@@ -53,7 +53,7 @@
         </table>
 
         <div id="cart_total" class="group">
-            <h3>Current Total</h3>
+            <h3>Order Total</h3>
             <div id="subtotal" blc:price="${order.total}"></div>
             <table width="100%" id="total_table" border="0">
                 <tr>
@@ -80,7 +80,32 @@
 
         <div class="clearfix"></div>
 
-        <div class="fulfillment_option" th:each="fulfillmentGroup : ${order.fulfillmentGroups}" th:object="${fulfillmentGroup}" th:inline="text">
+        <div th:object="${order.fulfillmentGroups[0]}" th:if="${#lists.size(order.fulfillmentGroups) > 1}">
+	    	<div th:each="fg : ${order.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow">
+	    		<h4>
+	    			<span th:classappend="*{address == null}? 'error'"
+	    				  th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
+	    			<span>&nbsp;-&nbsp;</span>
+	    			<span th:classappend="*{fulfillmentOption == null}? 'error'"
+	    				  th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
+	    			<span blc:price="*{shippingPrice}" class="multishipGroupShippingCharge"></span>
+	    		</h4>
+	    		
+				<table class="multiship_summary">
+				    <tbody>
+						<tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
+				            <td align="center" th:text="${item.quantity}"></td>
+				        	<td align="left">
+				            	<span th:text="*{sku.name}"></span>
+				                   <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+				            </td>
+				        </tr>
+				    </tbody>
+				</table>
+	    	</div>
+        </div>
+        
+        <div class="fulfillment_option" th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
             <div class="left_content">
                 <address>
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
