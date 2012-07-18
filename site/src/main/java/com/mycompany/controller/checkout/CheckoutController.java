@@ -39,6 +39,11 @@ public class CheckoutController extends BroadleafCheckoutController {
         prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.checkout(request, response, model);
 	}
+    
+    @RequestMapping(value="/singleship", method = RequestMethod.GET)
+    public String convertToSingleship(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
+        return super.convertToSingleship(request, response, model);
+    }
 
     @RequestMapping(value="/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -84,7 +89,9 @@ public class CheckoutController extends BroadleafCheckoutController {
     }
 
     protected void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
-        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && cart.getFulfillmentGroups().get(0).getAddress() != null) {
+        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && 
+        		cart.getFulfillmentGroups().get(0).getAddress() != null && 
+        		cart.getFulfillmentGroups().get(0).getFulfillmentOption() != null) {
             shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
             shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
         }

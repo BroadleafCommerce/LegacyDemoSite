@@ -177,6 +177,10 @@ textarea {
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
+td.error {
+	color: #E40037;
+	font-weight: bold;
+}
 
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
@@ -658,8 +662,40 @@ form.manage-account input[type="submit"] {
 		font-size: 12px;
 	}
 
-.order_summary, .multiship_summary {
+.order_summary {
     width: 100%;
+}
+
+.multiship_summary {
+	width: 80%;
+	margin-left: 50px;
+}
+
+.multishipGroupRow {
+	border: 1px dotted #C8C3C1;
+	padding: 4px;
+	margin-bottom: 3px;
+}
+
+	.multishipGroupRow h4 {
+		margin: 0 0 5px;
+	}
+
+.multishipGroupShippingCharge {
+	font-weight: normal;
+	float: right;
+}
+
+.multishipGroupShippingCharge:before {
+	content: "(";
+}
+
+.multishipGroupShippingCharge:after {
+	content: ")";
+}
+
+.multishipGroupRow:nth-child(even) {
+	background-color: #F5F4F1;
 }
 
 .order_summary tbody tr td, .multiship_summary tbody tr td {
@@ -1284,6 +1320,11 @@ input[type="submit"].gray:hover, a.gray-button:hover {
 
 input[type="submit"].dark:hover, a.dark-button:hover {
 	background-color: #0f0000;
+}
+
+button[disabled]:hover, input[disabled]:hover { 
+	cursor: default; 
+	background-color: #BBAFAE !important; 
 }
 	
 

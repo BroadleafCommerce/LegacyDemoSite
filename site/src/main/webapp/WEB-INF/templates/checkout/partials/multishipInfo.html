@@ -1,35 +1,33 @@
 <div id="multiship_info">
     <div class="left_content wide">
-		<table class="multiship_summary">
-			<thead>
-				<tr>
-					<th align="left">Item</th>
-					<th>Quantity</th>
-					<th>Address</th>
-					<th>Method</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-				<tr th:each="omo : ${orderMultishipOptions}" th:object="${omo.orderItem}" th:id="${'productRow' + omo.orderItem.id}">
-		        	<td align="left">
-		            	<span th:text="*{product.name}"></span>
-		                <br/>
-		                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-		                   <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-		                </ul>
-		            </td>
-		            <td align="center">1</td>
-		            <td align="left" th:text="${omo.address == null ? '--' : omo.address.firstName + ' - ' + omo.address.addressLine1}"></td>
-		            <td align="left" th:text="${omo.fulfillmentOption == null ? '--' : omo.fulfillmentOption.name}"></td>
-		        </tr>
-		    </tbody>
-		</table>
+    	<div th:each="fg : ${cart.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow">
+    		<h4>
+    			<span th:classappend="*{address == null}? 'error'"
+    				  th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
+    			<span>&nbsp;-&nbsp;</span>
+    			<span th:classappend="*{fulfillmentOption == null}? 'error'"
+    				  th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
+    			<span blc:price="*{shippingPrice}" class="multishipGroupShippingCharge"></span>
+    		</h4>
+    		
+			<table class="multiship_summary">
+			    <tbody>
+					<tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
+			            <td align="center" th:text="${item.quantity}"></td>
+			        	<td align="left">
+			            	<span th:text="*{sku.name}"></span>
+			                   <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+			            </td>
+			        </tr>
+			    </tbody>
+			</table>
+    	</div>
 	</div>
 	
 	<div class="right_content">
 	    <h3>Shipping Method</h3>
 	    <p>
-	        <a id="multiship" th:href="@{/checkout/multiship}">Ship to Single Address</a>
+	        <a th:href="@{/checkout/singleship}">Ship to Single Address</a>
 	    </p>
 	    <p>
 	        <a id="multiship" th:href="@{/checkout/multiship}">Edit Multiple Address Shipping</a>
