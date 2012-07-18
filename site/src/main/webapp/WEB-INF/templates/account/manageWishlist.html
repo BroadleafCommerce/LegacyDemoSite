@@ -18,7 +18,17 @@
 
         <ul th:substituteby="account/partials/accountMenu" />
         
-        <table th:substituteby="account/partials/wishlistItemsTable"></table>
+        <div th:if="${wishlist}">
+	        <table th:substituteby="account/partials/wishlistItemsTable"></table>
+	        
+	        <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
+	            <input class="addToCart medium red" type="submit" value="Add Wishlist to Cart" />
+	        </form>
+        </div>
+        
+        <div th:unless="${wishlist}">
+            You do not have any items in your wishlist
+        </div>
         
     </div>
 </div>

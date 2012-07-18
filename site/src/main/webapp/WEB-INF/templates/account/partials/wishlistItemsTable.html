@@ -1,16 +1,15 @@
 <table id="wishlist_items">
     <thead>
         <tr>
-            <th><input type="checkbox" id="select_all_wishlist_items" /></th>
-            <th>Item</th>
+            <th colspan="2">Item</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="item : ${wishlist.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-            <td class="checkbox"><input type="checkbox" name="" /></td>
             <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
@@ -20,7 +19,7 @@
                 </ul>
             </td>
             <td align="center">
-                <form method="POST" th:action="@{/wishlist/updateQuantity}">
+                <form method="POST" th:action="@{/account/wishlist/updateQuantity}">
                     <input type="hidden" name="productId" th:value="*{product.id}" />
                     <input type="hidden" name="orderItemId" th:value="*{id}" />
                     <input type="text" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
@@ -31,6 +30,13 @@
             <td align="center" blc:price="*{price}"></td>
 
             <td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+            
+            <td align="center">
+                <form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
+                    <input type="hidden" name="itemId" th:value="*{id}" />
+                    <input type="submit" class="moveItemToCart" value="Add Item to Cart"/>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>

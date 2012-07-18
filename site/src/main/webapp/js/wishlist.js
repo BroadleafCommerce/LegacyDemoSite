@@ -22,11 +22,6 @@ $(function(){
 		$('.productActions' + productId).children('.in_cart').addClass('hidden');
 	}
 	
-	$('body').on('click', 'input#select_all_wishlist_items', function() {
-		var $checked = $(this).is(':checked');
-		$('#wishlist_items tbody').find(':checkbox').attr('checked', $checked);
-	});
-	
 	// Intercept add to cart operations and perform them via AJAX instead
 	// This will trigger on any input with class "addToCart"
 	$('body').on('click', 'input.addToWishlist', function() {
