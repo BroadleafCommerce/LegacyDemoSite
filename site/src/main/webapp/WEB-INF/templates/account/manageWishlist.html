@@ -18,7 +18,7 @@
 
         <ul th:substituteby="account/partials/accountMenu" />
         
-        <div th:if="${wishlist}">
+        <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
 	        <table th:substituteby="account/partials/wishlistItemsTable"></table>
 	        
 	        <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
