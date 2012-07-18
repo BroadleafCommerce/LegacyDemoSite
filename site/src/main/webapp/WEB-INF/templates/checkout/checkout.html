@@ -57,10 +57,10 @@
 	
 	        <div class="cart_title">1 &raquo; Shipping Information</div>
 	        
-	        <div th:if="${#lists.size(cart.fulfillmentGroups) > 1}">
+	        <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
 	        	<table th:substituteby="checkout/partials/multishipInfo"></table>
 	        </div>
-	        <div th:unless="${#lists.size(cart.fulfillmentGroups) > 1}">
+	        <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
 	        	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
 	        </div> 
 	
@@ -88,10 +88,10 @@
 
             var validShipping = /*[[${validShipping}]]*/ false;
 
-            if (validShipping) {
-                var stop = $('#billing_info').offset().top-120;
-                $('body').delay(400).animate({scrollTop: stop+'px'}, 1000);
-            }
+//             if (validShipping) {
+//                 var stop = $('#billing_info').offset().top-120;
+//                 $('body').delay(400).animate({scrollTop: stop+'px'}, 1000);
+//             }
 
 		});
         /*]]>*/

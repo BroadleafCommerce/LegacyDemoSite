@@ -1,5 +1,5 @@
 <div id="multiship-products">	
-	<form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="shipping_address">
+	<form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="multiship_address">
 	<div class="multishipContainer">
 			<table id="cart_products">
 				<thead>
@@ -24,20 +24,20 @@
 				            <span>1</span>
 						</td>
 						<td align="center">
-							<select id="multiship-address" 
+							<select class="multiship-address" 
 								th:name="${'options[' + omoStat.index + '].addressId'}" 
 								th:classappend="${#fields.hasErrors('options[' + omoStat.index + '].addressId')}? 'fieldError'"
 								style="min-width: 140px;">
 								
 									<option value="">--</option>
 									<option th:each="customerAddress : ${customerAddresses}" 
-											th:value="${customerAddress.id}" 
+											th:value="${customerAddress.address.id}" 
 											th:text="${customerAddress}"
 											th:selected="${customerAddress.address.equals(omo.address)}"></option>
 							</select>
 						</td>
 						<td align="center">
-							<select id="multiship-method" 
+							<select class="multiship-method" 
 							th:name="${'options[' + omoStat.index + '].fulfillmentOptionId'}"
 							th:classappend="${#fields.hasErrors('options[' + omoStat.index + '].fulfillmentOptionId')}? 'fieldError'">
 									<option value="">--</option>

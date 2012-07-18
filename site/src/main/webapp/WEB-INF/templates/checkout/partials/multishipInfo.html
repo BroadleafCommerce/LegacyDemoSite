@@ -10,7 +10,7 @@
 		        </tr>
 		    </thead>
 		    <tbody>
-				<tr th:each="orderMultishipOption : ${orderMultishipOptions}" th:object="${orderMultishipOption.orderItem}" th:id="${'productRow' + orderMultishipOption.orderItem.id}">
+				<tr th:each="omo : ${orderMultishipOptions}" th:object="${omo.orderItem}" th:id="${'productRow' + omo.orderItem.id}">
 		        	<td align="left">
 		            	<span th:text="*{product.name}"></span>
 		                <br/>
@@ -19,8 +19,8 @@
 		                </ul>
 		            </td>
 		            <td align="center">1</td>
-		            <td align="left" th:text="${orderMultishipOption.address.firstName + ' - ' + orderMultishipOption.address.addressLine1}"></td>
-		            <td align="left" th:text="${orderMultishipOption.fulfillmentOption.name}"></td>
+		            <td align="left" th:text="${omo.address == null ? '--' : omo.address.firstName + ' - ' + omo.address.addressLine1}"></td>
+		            <td align="left" th:text="${omo.fulfillmentOption == null ? '--' : omo.fulfillmentOption.name}"></td>
 		        </tr>
 		    </tbody>
 		</table>
