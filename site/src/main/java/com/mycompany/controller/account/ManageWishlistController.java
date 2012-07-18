@@ -1,6 +1,7 @@
 package com.mycompany.controller.account;
 
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
+import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafManageWishlistController;
@@ -23,8 +24,13 @@ import java.util.Map;
 @RequestMapping("/account/wishlist")
 public class ManageWishlistController extends BroadleafManageWishlistController {
 
-    public static String WISHLIST_ORDER_NAME = "wishlist";
+    public static final String WISHLIST_ORDER_NAME = "wishlist";
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String viewAccountWishlist(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return super.viewWishlist(request, response, model, WISHLIST_ORDER_NAME);
+    }
+    
     @RequestMapping(value = "/add", produces = "application/json")
     public @ResponseBody Map<String, Object> addJson(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
@@ -45,10 +51,33 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
         
         return responseMap;
     }
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public String viewAccountWishlist(HttpServletRequest request, HttpServletResponse response, Model model) {
-    	return super.viewWishlist(request, response, model, WISHLIST_ORDER_NAME);
+
+    @RequestMapping(value = "/moveItemToCart", method = RequestMethod.POST)
+    public String moveItemToCart(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException {
+        try {
+            return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
+        } catch (RemoveFromCartException e) {
+            
+        } catch (AddToCartException e) {
+            
+        }
+        
+        return getAccountWishlistView();
+    }
+
+    @RequestMapping(value = "/moveListToCart", method = RequestMethod.POST)
+    public String moveListToCart(HttpServletRequest request, HttpServletResponse response, Model model)
+            throws IOException, PricingException, AddToCartException {
+        try {
+            return super.moveListToCart(request, response, model, WISHLIST_ORDER_NAME);  
+        } catch (RemoveFromCartException e) {
+            
+        } catch (AddToCartException e) {
+            
+        }
+        
+        return getAccountWishlistView();
     }
 
 }
