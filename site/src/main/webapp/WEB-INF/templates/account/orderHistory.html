@@ -18,6 +18,25 @@
 
         <ul th:substituteby="account/partials/accountMenu" />
 
+        <ul id="order-history" th:if="${orders}">
+            <li>
+                <span class="order-number">Order Number</span>
+                <span class="submit-date">Date</span>
+                <span class="status">Status</span>
+                <span class="total">Total</span>
+            </li>
+            <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
+                <div class="order-info-row">
+	                <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
+	                <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
+	                <span class="status" th:text="*{status.friendlyType}">Processing</span>
+	                <span class="total" blc:price="*{total}"></span>
+	            </div>
+                <div class="order-details"></div>
+            </li>
+        </ul>
+
+
     </div>
 </div>
 
