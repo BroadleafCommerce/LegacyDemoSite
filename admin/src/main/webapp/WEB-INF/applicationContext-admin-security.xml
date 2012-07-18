@@ -83,10 +83,7 @@
         </constructor-arg>
 	</bean>
 
-	<bean id="redirectStrategy"
-		class="org.broadleafcommerce.common.security.LocalRedirectStrategy">
-		<property name="enforcePortMatch" value="true" />
-	</bean>
+
 
 	<bean id="blAdminAuthenticationProcessingFilter"
 		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
@@ -116,12 +113,12 @@
 	<bean id="broadleafAdminAuthenticationFailureHandler"
 		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
 		<constructor-arg value="/blcadmin/login.jsp?login_error=true" />
-		<property name="redirectStrategy" ref="redirectStrategy" />
+<!-- 		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" /> -->
 	</bean>
 
 	<bean id="springAdminAuthenticationSuccessHandler"
 		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-		<property name="redirectStrategy" ref="redirectStrategy" />
+<!-- 		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" /> -->
 		<property name="defaultTargetUrl" value="/admin.html" />
 		<property name="alwaysUseDefaultTargetUrl" value="false" />
 	</bean>
@@ -137,17 +134,28 @@
 		<property name="key" value="SPRING_SECURITY_REMEMBER_ME_COOKIE" />
 		<property name="userDetailsService" ref="userDetailsManager" />
 	</bean>
-	
+
 	<bean id="blAdminExceptionTranslationFilter"
 		class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<property name="authenticationEntryPoint">
 			<bean
 				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 				<property name="loginFormUrl" value="/blcadmin/login.jsp" />
+				<property name="forceHttps" value="true" />
+				<property name="portMapper">
+					<bean class="org.springframework.security.web.PortMapperImpl">
+						<property name="portMappings">
+							<map>
+								<entry key="8081">
+									<value>8444</value>
+								</entry>
+							</map>
+						</property>
+					</bean>
+				</property>
 			</bean>
 		</property>
 	</bean>
-	
 	<bean id="blAdminFilterSecurityInterceptor"
 		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
 		<property name="accessDecisionManager" ref="blAccessDecisionManager"/>

@@ -151,15 +151,25 @@
         <property name="rememberMeServices" ref="blRememberMeServices"/>
 	</bean>
 
-    <!--  URL a user goes to when they were unable to hit a page that requires access. -->
+	<!-- URL a user goes to when they were unable to hit a page that requires access. -->
 	<bean id="blExceptionTranslationFilter"
 		class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<property name="authenticationEntryPoint">
 			<bean
 				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-				<property name="loginFormUrl" value="/login"  />
-				<property name="forceHttps" value="true"  />
-<!-- 				<property name="useForward" value="true" /> -->
+				<property name="loginFormUrl" value="/login" />
+				<property name="forceHttps" value="true" />
+				<property name="portMapper">
+					<bean class="org.springframework.security.web.PortMapperImpl">
+						<property name="portMappings">
+							<map>
+								<entry key="8080">
+									<value>8443</value>
+								</entry>
+							</map>
+						</property>
+					</bean>
+				</property>
 			</bean>
 		</property>
 	</bean>
