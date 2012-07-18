@@ -29,6 +29,10 @@ INSERT INTO BLC_CATEGORY_XREF (SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER) VALU
 INSERT INTO BLC_CATEGORY_XREF (SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (2005,2,5);
 INSERT INTO BLC_CATEGORY_XREF (SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (2006,2,6);
 
+-- Add in any applicable search facets for the given category
+INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, FIELD_NAME, LABEL, SHOW_ON_SEARCH, SEARCH_DISPLAY_PRIORITY) VALUES (1, 'manufacturer', 'Manufacturer', 1, 1);
+INSERT INTO BLC_CATEGORY_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, POSITION) VALUES (1, 2002, 1, 1);
+
 ------------------------------------------------------------------------------------------------------------------
 -- Inserting products manually involves five steps which are outlined below.   Typically, products are loaded 
 -- up front in the project and then managed via the Broadleaf Commerce admin.   
