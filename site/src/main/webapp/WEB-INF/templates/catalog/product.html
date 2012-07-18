@@ -65,6 +65,14 @@
 						</div>
 					</div>
 				</form>
+				
+				<div th:unless="${customer.anonymous}" th:remove="tag">
+					<form method="POST" th:action="@{/account/wishlist/add}">
+					    <input type="hidden" name="productId" th:value="*{id}" />
+					    <input type="hidden" name="quantity" value="1" />
+					    <input type="submit" class="addToWishlist big red" value="Add to Wishlist" />
+					</form>
+				</div>
 					
 				<p>
 					Share this Sauce:<br />

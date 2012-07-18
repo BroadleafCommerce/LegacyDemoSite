@@ -662,6 +662,58 @@ form.manage-account input[type="submit"] {
 		font-size: 12px;
 	}
 
+#wishlist_items {
+    width: 580px;
+    float: left;
+}
+
+    #wishlist_items thead tr th {
+        padding: 5px;
+        text-align: center;
+        font: bold 10px/18px Helvetica, sans-serif;
+        text-transform: uppercase;
+        color: #333;
+    }
+    
+    #wishlist_items tbody tr td {
+        padding: 10px;
+        border-bottom: 1px dotted #C8C3C1;
+    }
+    
+        #wishlist_items tbody tr td .cartLinkBtn {
+            font-size: 11px;
+        }
+    
+    #wishlist_items tbody tr td.name {
+        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+    }
+    
+        #wishlist_items tbody tr td.name a {
+            text-decoration: none;
+        }
+    
+    #wishlist_items tbody tr td.value {
+        font-family: Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+    }
+            
+    #wishlist_items tbody tr td.discount {
+        color: #E40037;
+    }
+    
+    #wishlist_items ul.productOptions {
+        padding: 5px 0 0 10px;
+        margin: 0;
+        list-style-type: none;
+    }
+    
+    #wishlist_items ul.productOptions li {
+        font-family: 'Georgia', serif;
+        font-size: 12px;
+    }
+
+
 .order_summary {
     width: 100%;
 }
