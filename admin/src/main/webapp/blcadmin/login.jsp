@@ -45,7 +45,8 @@
         </div>
         <div id="foot" class="forgot">
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a>
+            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> -
+            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/changePassword">Change password</a>
         </div>
    </body>
 </html>
