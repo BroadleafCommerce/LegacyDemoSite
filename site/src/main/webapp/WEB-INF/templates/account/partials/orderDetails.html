@@ -28,19 +28,19 @@
 						<td class="price" blc:price="*{price}"></td>
 					</tr>
 					<tr class="shipment-summary merchandise-total">
-						<td class="label">Merchandise Total</td>
+						<td class="label">Merchandise Total:</td>
 						<td class="price" blc:price="*{merchandiseTotal}"></td>
 					</tr>
 					<tr class="shipment-summary">
-						<td class="label">Shipping Total</td>
+						<td class="label">Shipping Total:</td>
 						<td class="price" blc:price="*{shippingPrice}"></td>
 					</tr>
 					<tr class="shipment-summary taxes">
-						<td class="label">Taxes</td>
+						<td class="label">Taxes:</td>
 						<td class="price" blc:price="*{totalTax}"></td>
 					</tr>
 					<tr class="shipment-total shipment-summary">
-						<td class="label">Shipment Total</td>
+						<td class="label">Shipment Total:</td>
 						<td class="price" blc:price="*{total}"></td>
 					</tr>
 				</table>
@@ -62,6 +62,7 @@
 			        </div>
 			        <div class="payment-method">
 				        <h4>Payment Method</h4>
+				        <div>Type: <span th:text="*{type.friendlyType}"></span> </div>
 				        <span th:text="*{additionalFields['CARD_TYPE']}"/> | ****<span th:text="*{additionalFields['LAST_FOUR']}"/>
 			        </div>
 			    </div>
@@ -70,11 +71,11 @@
 				    	<th colspan="2">Order Summary</th>
 				    </tr>
 				    <tr>
-				    	<td class="label">Subtotal</td>
+				    	<td class="label">Subtotal:</td>
 				    	<td class="price" blc:price="*{subTotal}"></td>
 				    </tr>
 				    <tr th:unless="*{orderAdjustmentsValue.zero}">
-                    	<td class="label">Promotions</td>
+                    	<td class="label">Promotions:</td>
                     	<td class="discount price">(<span blc:price="*{orderAdjustmentsValue}"></span>)</td>
 				    </tr>
 				    <tr>

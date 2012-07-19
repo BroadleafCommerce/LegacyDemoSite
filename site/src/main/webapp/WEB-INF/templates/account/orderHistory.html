@@ -18,7 +18,7 @@
 
         <ul th:substituteby="account/partials/accountMenu" />
 
-        <ul id="order-history" th:if="${orders}">
+        <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
             <li>
                 <span class="order-number">Order Number</span>
                 <span class="submit-date">Date</span>
@@ -35,6 +35,8 @@
                 <div class="order-details"></div>
             </li>
         </ul>
+        
+        <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
 
 
     </div>
