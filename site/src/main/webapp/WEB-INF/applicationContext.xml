@@ -49,7 +49,7 @@
         <property name="dataSources">
             <map>
                 <entry key="jdbc/web" value-ref="webDS"/>
-                <entry key="jdbc/webSecure" value-ref="webDS"/>
+                <entry key="jdbc/webSecure" value-ref="webSecureDS"/>
                 <entry key="jdbc/cmsStorage" value-ref="webStorageDS"/>
             </map>
         </property>
@@ -71,12 +71,16 @@
         					<entry key="blCMSStorage.hibernate.hbm2ddl.auto" value="${blCMSStorage.hibernate.hbm2ddl.auto}" />
         					<entry key="blCMSStorage.hibernate.dialect" value="${blCMSStorage.hibernate.dialect}"/>
         					<entry key="blCMSStorage.hibernate.show_sql" value="${blCMSStorage.hibernate.show_sql}"/>
+        					<entry key="blCMSStorage.hibernate.cache.use_second_level_cache" value="${blCMSStorage.hibernate.cache.use_second_level_cache}"/>
+        					<entry key="blCMSStorage.hibernate.cache.use_query_cache" value="${blCMSStorage.hibernate.cache.use_query_cache}"/>
         					<entry key="blCMSStorage.hibernate.hbm2ddl.import_files" value="${blCMSStorage.hibernate.hbm2ddl.import_files}"/>
         					
         					<!-- Overrides from environment properties files for blSecure PersistenceUnit -->
         					<entry key="blSecurePU.hibernate.hbm2ddl.auto" value="${blSecurePU.hibernate.hbm2ddl.auto}" />
         					<entry key="blSecurePU.hibernate.dialect" value="${blSecurePU.hibernate.dialect}"/>
         					<entry key="blSecurePU.hibernate.show_sql" value="${blSecurePU.hibernate.show_sql}"/>
+        					<entry key="blSecurePU.hibernate.cache.use_second_level_cache" value="${blSecurePU.hibernate.cache.use_second_level_cache}"/>
+        					<entry key="blSecurePU.hibernate.cache.use_query_cache" value="${blSecurePU.hibernate.cache.use_query_cache}"/>
         					<entry key="blSecurePU.hibernate.hbm2ddl.import_files" value="${blSecurePU.hibernate.hbm2ddl.import_files}"/>
         				</map>
         			</property>
