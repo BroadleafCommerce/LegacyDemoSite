@@ -38,8 +38,17 @@
 				<div th:each="facet : ${facets}" th:object="${facet}" class="section">
 					<h3 th:text="*{facet.searchFacet.label}"></h3>
 					<div th:each="value : *{facetValues}" class="maker">
-						<input type="checkbox" th:id="${facet + '[' + value.value + ']'}" />
-						<span th:remove="tag" th:text="${value.displayValue}"></span>
+						<input type="checkbox" blc:facetvalue="${value}" />
+						
+						<span th:if="${value.value != null}" th:remove="tag"
+							th:text="${value.value}"></span>
+							
+						<span th:unless="${value.value != null}" th:remove="tag">
+							<span blc:price="${value.minValue}" th:remove="tag"></span>
+							<span th:text="${value.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
+							<span th:if="${value.maxValue != null}" blc:price="${value.maxValue}" th:remove="tag"></span>
+						</span>
+						
 						<span th:if="${facet.showQuantity}" th:text="${value.quantity}"></span>
 					</div>
 				</div>
