@@ -366,6 +366,10 @@ header {
 		color: white;
 		text-decoration: none;
 	}
+	
+	header #header_content #cart_info a.my-account {
+		text-decoration: underline;
+	}	
 
 	#header_content #languages {
 		padding: 10px 20px;
