@@ -115,35 +115,8 @@
 			<header>Featured Products</header>
 			<div id="options">
 			
-				<div class="section">
-					<ul id="featured_products">
-						<li>
-							<div class="image">
-								<img th:src="@{/img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Close.jpg}" alt="Sauce Image" />
-								<div class="price">$6.99</div>
-							</div>
-							
-							<div class="content">
-							<div class="title">Day of the Dead Habanero Hot Sauce</div>
-								Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-							</div>
-							<div class="add_to_cart"><a class="medium-button dark-button" href="cart.html">Buy Now</a></div>
-						</li>
-						
-						<li>
-							<div class="image">
-								<img th:src="@{/img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Close.jpg}" alt="Sauce Image" />
-								<div class="price">$6.99</div>
-							</div>
-							
-							<div class="content">
-							<div class="title">Blazin' Saddle XXX Hot Habanero Pepper Sauce</div>
-								Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-							</div>
-							<div class="add_to_cart"><a class="medium-button dark-button" href="cart.html">Buy Now</a></div>
-						</li>				
-					</ul>
-				</div>
+				<div th:substituteby="catalog/partials/rightHandFeaturedProducts" />
+
 			</div>
 		</section>
 				
