@@ -34,7 +34,7 @@
                     <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                     <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
                 </div>
-                <input type="submit" class="submitFormButton" value="Update Account" />
+                <input type="submit" class="medium red" value="Update Account" />
             </form>
 
         </div>
