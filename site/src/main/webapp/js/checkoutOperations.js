@@ -45,16 +45,27 @@ $(function(){
          .text('Add new address...')); 
     }
 
+    /* Toggle visibility of payment methods */
     $('body').on('click', 'input#paymentMethod_cc, input#paymentMethod_paypal', function() {
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
     });
 
+    /* Copy Shipping Form to Billing Form Checkbox */
     $('body').on('click', 'input#use_shipping_address', function() {
         if ($(this).is(':checked')) {
             copyShippingForm();
         } else {
             $(this).closest('form').find(".clearable").val("");
+        }
+    });
+
+    /* Submit Shipping Form when radio button is checked */
+    $('body').on('click', 'input.shipping_method_option', function() {
+        if (!$('#shipping_info').valid()){
+            $(this).prop('checked', false);
+        } else {
+            $('#shipping_info').submit();
         }
     });
 

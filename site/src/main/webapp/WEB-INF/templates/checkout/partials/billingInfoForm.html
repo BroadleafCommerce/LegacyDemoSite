@@ -4,7 +4,7 @@
 
         <input type="hidden" name="address.country" value="US" />
 
-        <div class="form100">
+        <div class="form100" th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
             <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> Use Shipping Information
         </div>
 
@@ -26,6 +26,8 @@
             <input type="text" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
         </div>
 
+        <div class="clearfix"></div>
+
         <div class="form50">
             <label for="address1">Address</label>
             <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
@@ -37,6 +39,8 @@
             <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
             <input type="text" th:field="*{address.addressLine2}" class="field50 clearable" th:disabled="${!validShipping}" />
         </div>
+
+        <div class="clearfix"></div>
 
         <div class="form30">
             <label for="city">City / State</label>

@@ -85,6 +85,35 @@
 		$().ready(function() {
             $('#paymentOptions dd').css({display:"none"});
             $('#paymentMethod_cc').click();
+            $('#shipping_info').validate({
+                rules: {
+                    'address.firstName': "required",
+                    'address.lastName': "required",
+                    'address.addressLine1': "required",
+                    'address.city': "required",
+                    'address.state': "required",
+                    'address.emailAddress' : "required"
+                },
+                messages: {
+                    'address.firstName': "Please enter your first name.",
+                    'address.lastName': "Please enter your last name.",
+                    'address.addressLine1': "Please enter the actual address.",
+                    'address.city': "Please enter the city." + "<br/>",
+                    'address.state': "Please enter the state." + "<br/>",
+                    'address.emailAddress' : "Please enter a valid email address."
+                },
+                errorPlacement: function(error, element) {
+                    element.parent().prepend(error);
+                },
+                highlight: function(element, errorClass) {
+                    $(element).addClass('fieldError');
+                },
+                unhighlight: function(element, errorClass) {
+                    $(element).removeClass('fieldError');
+                },
+                errorElement: "span",
+                errorClass: "error"
+            });
 
             var validShipping = /*[[${validShipping}]]*/ false;
 
