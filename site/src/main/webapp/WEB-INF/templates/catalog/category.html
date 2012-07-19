@@ -32,7 +32,21 @@
 			
 		</section>
 	
-		<section th:substituteby="catalog/partials/rightHandFeaturedProducts" />
+		<section id="right_column">
+			<header>Filter your results</header>
+			<div id="options">
+				<div class="section">
+					<h3>Choose Manufacturers to Show</h3>
+					<div class="maker"><input type="checkbox" id="makers[]" name="Bull Snort" /> Bull Snort</div>
+					<div class="maker"><input type="checkbox" id="makers[]" name="Spice Exchange" /> Spice Exchange</div>
+				</div>
+				
+				<section th:substituteby="catalog/partials/rightHandBannerAds" />
+				
+				<section th:substituteby="catalog/partials/rightHandFeaturedProducts" />
+				
+			</div>
+		</section>
 			
 	</div>
 	
