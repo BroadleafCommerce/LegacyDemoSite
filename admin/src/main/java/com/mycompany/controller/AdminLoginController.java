@@ -19,7 +19,7 @@ package com.mycompany.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.broadleafcommerce.openadmin.web.controller.AdminLoginController;
+import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminLoginController;
 import org.broadleafcommerce.openadmin.web.form.ResetPasswordForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * </ul>
  *
  */
-public class MyCompanyLoginController extends AdminLoginController {
+public class AdminLoginController extends BroadleafAdminLoginController {
 			
 		
 		@RequestMapping(value="/blcadmin")
