@@ -35,10 +35,13 @@
 		<section id="right_column">
 			<header>Filter your results</header>
 			<div id="options">
-				<div class="section">
-					<h3>Choose Manufacturers to Show</h3>
-					<div class="maker"><input type="checkbox" id="makers[]" name="Bull Snort" /> Bull Snort</div>
-					<div class="maker"><input type="checkbox" id="makers[]" name="Spice Exchange" /> Spice Exchange</div>
+				<div th:each="facet : ${facets}" th:object="${facet}" class="section">
+					<h3 th:text="*{facet.searchFacet.label}"></h3>
+					<div th:each="value : *{facetValues}" class="maker">
+						<input type="checkbox" th:id="${facet + '[' + value.value + ']'}" />
+						<span th:remove="tag" th:text="${value.displayValue}"></span>
+						<span th:if="${facet.showQuantity}" th:text="${value.quantity}"></span>
+					</div>
 				</div>
 				
 				<div th:substituteby="catalog/partials/rightHandBannerAds" />
