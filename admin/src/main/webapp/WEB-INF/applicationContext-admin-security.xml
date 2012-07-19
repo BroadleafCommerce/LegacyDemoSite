@@ -141,7 +141,7 @@
 			<bean
 				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 				<property name="loginFormUrl" value="/blcadmin/login.jsp" />
-				<property name="forceHttps" value="true" />
+				<property name="forceHttps" value="false" />
 				<property name="portMapper">
 					<bean class="org.springframework.security.web.PortMapperImpl">
 						<property name="portMappings">
