@@ -8,17 +8,17 @@
 
 <body>
 	<div id="notification_bar"></div>
-	<header th:substituteby="layout/partials/header" />
+	<header th:substituteby="partials/header" />
 	
 	<div id="content" class="width_setter group" role="main">	
 
-        <nav th:substituteby="layout/partials/nav" />
+        <nav th:substituteby="partials/nav" />
 
         <div class="manage-account-container clearfix">
 
-            <ul th:substituteby="account/partials/accountMenu" />
+            <ul th:substituteby="partials/accountMenu" />
 
-            <form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST">
+            <form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
                 <div class="form50">
                     <label for="emailAddress">Email Address:</label>
                     <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
@@ -34,13 +34,13 @@
                     <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                     <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
                 </div>
-                <input type="submit" class="medium red" value="Update Account" />
+                <input type="submit" class="submitFormButton" value="Update Account" />
             </form>
 
         </div>
 	</div>
 	
-	<footer th:substituteby="layout/partials/footer" />
+	<footer th:substituteby="partials/footer" />
 	
 </body>
 </html>

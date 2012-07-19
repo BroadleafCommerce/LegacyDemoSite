@@ -78,7 +78,7 @@ $(function(){
 					type: "POST",
 					dataType: "json",
 					data: itemRequest
-				}, function(data) {
+				}, function(data, extraData) {
 					if (data.error) {
 						$errorSpan.css('display', 'block');
 				        $errorSpan.effect('highlight', {}, 1000);
@@ -108,8 +108,7 @@ $(function(){
 		BLC.ajax({url: $form.attr('action'),
 				type: "POST", 
 				data: $form.serialize() 
-			}, function(data) {
-				var extraData = BLC.getExtraData($(data));
+			}, function(data, extraData) {
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				if ($form.children('input.quantityInput').val() == 0) {
 					showAddToCartButton(extraData.productId);
@@ -128,8 +127,7 @@ $(function(){
 		
 		BLC.ajax({url: $(link).attr('href'),
 				type: "GET"
-			}, function(data) {
-				var extraData = BLC.getExtraData($(data));
+			}, function(data, extraData) {
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				showAddToCartButton(extraData.productId);
 				
@@ -159,8 +157,7 @@ $(function(){
 		BLC.ajax({url: $form.attr('action'),
 				type: "POST", 
 				data: $form.serialize() 
-			}, function(data) {
-				var extraData = BLC.getExtraData($(data));
+			}, function(data, extraData) {
 				if(!extraData.promoAdded) {
 					$("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
 				} else {

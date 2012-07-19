@@ -19,6 +19,26 @@
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     
     <context:component-scan base-package="org.broadleafcommerce.common"/>
+    
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
+		<property name="propertyLocations">
+			<set>
+				<value>classpath:runtime-properties/</value>
+			</set>
+		</property>
+		<property name="environments">
+			<set>
+                <value>production</value>
+                <value>staging</value>
+                <value>integrationqa</value>
+                <value>integrationdev</value>
+                <value>development</value>
+                <value>local</value>
+			</set>
+		</property>
+		<property name="defaultEnvironment" value="development"/>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
 
     <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
@@ -34,6 +54,35 @@
             </map>
         </property>
         <property name="defaultDataSource" ref="webDS"/>
+        <property name="persistenceUnitPostProcessors">
+        	<list>
+        		<bean class="org.broadleafcommerce.common.extensibility.jpa.JPAPropertiesPersistenceUnitPostProcessor">
+        			<property name="persistenceUnitProperties">
+        				<map>
+        					<!-- Overrides from environment properties files for blPU PersistenceUnit -->
+        					<entry key="blPU.hibernate.hbm2ddl.auto" value="${blPU.hibernate.hbm2ddl.auto}" />
+        					<entry key="blPU.hibernate.dialect" value="${blPU.hibernate.dialect}"/>
+        					<entry key="blPU.hibernate.show_sql" value="${blPU.hibernate.show_sql}"/>
+        					<entry key="blPU.hibernate.cache.use_second_level_cache" value="${blPU.hibernate.cache.use_second_level_cache}"/>
+        					<entry key="blPU.hibernate.cache.use_query_cache" value="${blPU.hibernate.cache.use_query_cache}"/>
+        					<entry key="blPU.hibernate.hbm2ddl.import_files" value="${blPU.hibernate.hbm2ddl.import_files}"/>
+        					
+        					<!-- Overrides from environment properties files for blCMSStorage PersistenceUnit -->
+        					<entry key="blCMSStorage.hibernate.hbm2ddl.auto" value="${blCMSStorage.hibernate.hbm2ddl.auto}" />
+        					<entry key="blCMSStorage.hibernate.dialect" value="${blCMSStorage.hibernate.dialect}"/>
+        					<entry key="blCMSStorage.hibernate.show_sql" value="${blCMSStorage.hibernate.show_sql}"/>
+        					<entry key="blCMSStorage.hibernate.hbm2ddl.import_files" value="${blCMSStorage.hibernate.hbm2ddl.import_files}"/>
+        					
+        					<!-- Overrides from environment properties files for blSecure PersistenceUnit -->
+        					<entry key="blSecurePU.hibernate.hbm2ddl.auto" value="${blSecurePU.hibernate.hbm2ddl.auto}" />
+        					<entry key="blSecurePU.hibernate.dialect" value="${blSecurePU.hibernate.dialect}"/>
+        					<entry key="blSecurePU.hibernate.show_sql" value="${blSecurePU.hibernate.show_sql}"/>
+        					<entry key="blSecurePU.hibernate.hbm2ddl.import_files" value="${blSecurePU.hibernate.hbm2ddl.import_files}"/>
+        				</map>
+        			</property>
+        		</bean>
+        	</list>
+        </property>
     </bean>
     
     <!-- Uncomment this bean to disable caching -->

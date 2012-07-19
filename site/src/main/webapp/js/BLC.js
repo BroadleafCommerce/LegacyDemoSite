@@ -25,7 +25,8 @@ var BLC = (function($) {
 	    var defaults = {
     		success: function(data) {
     			if (!redirectIfNecessary($(data))) {
-                    callback(data);
+    				var extraData = getExtraData($(data));
+                    callback(data, extraData);
                 }
             }
         };

@@ -177,6 +177,10 @@ textarea {
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
+td.error {
+	color: #E40037;
+	font-weight: bold;
+}
 
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
@@ -362,6 +366,10 @@ header {
 		color: white;
 		text-decoration: none;
 	}
+	
+	header #header_content #cart_info a.my-account {
+		text-decoration: underline;
+	}	
 
 	#header_content #languages {
 		padding: 10px 20px;
@@ -551,7 +559,165 @@ form.manage-account {
 form.manage-account input[type="submit"] {
     margin-top: 35px;
 }
-	
+
+/* Manage Account / Order History */
+#order-history {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 600px;
+}
+
+#order-history h4 {
+	margin: 0;
+	padding: 0;
+	text-decoration: underline;
+}
+
+#order-history .order-info-row {
+    padding: 8px 0;
+}
+
+#order-history > li:nth-child(2n) div.order-info-row {
+    background-color: #eae3dd;
+}
+
+#order-history > li:first-child {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+#order-history > li {
+    border-bottom: 1px solid #C8C3C1;
+    padding: 0;
+}
+
+#order-history > li span {
+    display: inline-block;
+}
+
+#order-history > li .order-number {
+    padding-left: 6px;
+    width: 160px;
+}
+
+#order-history > li .submit-date {
+    width: 120px;
+}
+
+#order-history > li .status {
+    width: 120px;
+}
+
+#order-history > li .total {
+    width: 100px;
+}
+
+
+#order-history section {
+	margin: 10px;
+	padding: 5px 10px;
+	border: 1px solid #c5c8c1;
+}
+
+/* Manage Account -> Order History -> Order Details */
+#order-history .order-details {
+    display: none;
+}
+
+#order-history .order-details ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#order-history .shipping-groups > li {
+	margin: 10px 0;
+	border: 1px solid #c5c8c1;
+}
+
+#order-history .shipping-groups h3 {
+	background-color: #f3efeb;
+	border-bottom: 1px solid #c8c5c1;
+	margin: 0;
+	padding: 6px;
+}
+
+#order-history .payment-information h3 {
+	color: #fff;
+	background-color: #E40037;
+}
+
+#order-history .details {
+	padding: 12px;
+} 
+
+#order-history .payment-information .order-summary {
+	width: 360px;
+}
+
+#order-history .order-summary th, #order-history .order-items th {
+	text-decoration: underline;
+} 
+
+#order-history .shipping-information, #order-history .payment-details {
+	float: left;
+	width: 200px;
+}
+
+#order-history .shipping-type, #order-history .payment-method {
+	margin-top: 20px;
+}
+
+#order-history .shipment-total, #order-history .grand-total {
+	font-weight: bold;
+}
+
+#order-history .grand-total td {
+	font-size: 15px;
+	padding-top: 6px;
+}
+
+#order-history .order-items, #order-history .order-summary {
+	float: right;
+	width: 360px;
+}
+
+#order-history .order-items .shipment-summary.merchandise-total td {
+	border-top: 1px dotted #c8c5c1;
+	padding-top: 10px;
+}
+
+#order-history tr.taxes td {
+	border-bottom: 1px solid #c8c5c1;
+}
+
+#order-history .order-items td.label, #order-history .order-items th.label, #order-history .order-summary th.label {
+	text-align: left;
+}
+
+#order-history td.price, #order-history th.price {
+	text-align: right;
+}
+
+#order-history td.price.discount {
+	color: #E40037; 
+}
+
+#order-history .order-summary th {
+	text-align: right;
+}
+
+#order-history .shipment-summary td.label, #order-history .order-summary td.label {
+	text-align: right;
+	width: 300px;
+}
+
+#order-history .shipment-summary td:last-child {
+	text-align: right;
+}
+
 .login_register {
 	margin: 20px 0 0;
 	float: left;
@@ -658,8 +824,97 @@ form.manage-account input[type="submit"] {
 		font-size: 12px;
 	}
 
-.order_summary, .multiship_summary {
+#wishlist_items {
+    width: 580px;
+    float: left;
+}
+
+    #wishlist_items thead tr th {
+        padding: 5px;
+        text-align: center;
+        font: bold 10px/18px Helvetica, sans-serif;
+        text-transform: uppercase;
+        color: #333;
+    }
+        
+    #wishlist_items tbody tr td {
+        padding: 10px;
+        border-bottom: 1px dotted #C8C3C1;
+    }
+    
+        #wishlist_items tbody tr td .cartLinkBtn {
+            font-size: 11px;
+        }
+        
+        #wishlist_items tbody tr td.checkbox {
+            text-align: center;
+        }
+        
+    
+    #wishlist_items tbody tr td.name {
+        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+    }
+    
+        #wishlist_items tbody tr td.name a {
+            text-decoration: none;
+        }
+    
+    #wishlist_items tbody tr td.value {
+        font-family: Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+    }
+            
+    #wishlist_items tbody tr td.discount {
+        color: #E40037;
+    }
+    
+    #wishlist_items ul.productOptions {
+        padding: 5px 0 0 10px;
+        margin: 0;
+        list-style-type: none;
+    }
+    
+    #wishlist_items ul.productOptions li {
+        font-family: 'Georgia', serif;
+        font-size: 12px;
+    }
+
+
+.order_summary {
     width: 100%;
+}
+
+.multiship_summary {
+	width: 80%;
+	margin-left: 50px;
+}
+
+.multishipGroupRow {
+	border: 1px dotted #C8C3C1;
+	padding: 4px;
+	margin-bottom: 3px;
+}
+
+	.multishipGroupRow h4 {
+		margin: 0 0 5px;
+	}
+
+.multishipGroupShippingCharge {
+	font-weight: normal;
+	float: right;
+}
+
+.multishipGroupShippingCharge:before {
+	content: "(";
+}
+
+.multishipGroupShippingCharge:after {
+	content: ")";
+}
+
+.multishipGroupRow:nth-child(even) {
+	background-color: #F5F4F1;
 }
 
 .order_summary tbody tr td, .multiship_summary tbody tr td {
@@ -1284,6 +1539,11 @@ input[type="submit"].gray:hover, a.gray-button:hover {
 
 input[type="submit"].dark:hover, a.dark-button:hover {
 	background-color: #0f0000;
+}
+
+button[disabled]:hover, input[disabled]:hover { 
+	cursor: default; 
+	background-color: #BBAFAE !important; 
 }
 	
 

@@ -11,7 +11,7 @@
 	</div>
 	<div class="content">
 		<div class="title" th:text="*{name}"></div>
-		<p th:text="*{longDescription}"></p>
+		<p th:utext="*{longDescription}"></p>
 	</div>
 	
 	<div th:substituteby="catalog/partials/productActions"></div>

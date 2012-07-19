@@ -54,7 +54,7 @@
 						</div>
 					</div>
 					
-					<div th:text="*{longDescription}" id="description"></div>
+					<div th:utext="*{longDescription}" id="description"></div>
 					
 					<div th:class="${'productActions' + product.id}">
 						<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
@@ -65,11 +65,27 @@
 						</div>
 					</div>
 				</form>
+				
+				<div th:unless="${customer.anonymous}" th:remove="tag">
+					<form method="POST" th:action="@{/account/wishlist/add}">
+					    <input type="hidden" name="productId" th:value="*{id}" />
+					    <input type="hidden" name="quantity" value="1" />
+					    <input type="submit" class="addToWishlist big red" value="Add to Wishlist" />
+					</form>
+				</div>
 					
 				<p>
-					Share this Sauce:<br />
-					<img th:src="@{/img/sharethis.png}" alt="Share this Sauce" />
-				</p>
+					Share this Sauce:
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                        <a class="addthis_button_preferred_1"></a>
+                        <a class="addthis_button_preferred_2"></a>
+                        <a class="addthis_button_preferred_3"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
+                </p>
 			</div>
 		
 			<div id="product_main_image">
