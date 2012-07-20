@@ -15,7 +15,7 @@
     <nav th:substituteby="layout/partials/nav" />
 
     <div class="manage-account-container clearfix">
-
+		<h1>Account Options</h1>
         <ul th:substituteby="account/partials/accountMenu" />
         
         <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
