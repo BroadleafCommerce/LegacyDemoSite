@@ -529,6 +529,18 @@ nav {
     margin: 40px 0 0 60px;
 }
 
+.manage-account-container h1 {
+	font: bold 18px/24px Helvetica, sans-serif;
+	color: #262322;
+	margin-top: 0;
+}
+
+.address-book-options {
+	background: #eae3dd;
+	margin: 0 100px 30px 200px;
+	padding: 10px 5px;
+}
+
 /* Manage Account left-nav*/
 #account-menu {
     float: left;
@@ -551,13 +563,29 @@ nav {
     font-weight: bold;
 }
 
+.manage-account-form-wrapper {
+	background: url('../img/sidebarbg.jpg') repeat;
+	margin-left: 200px;
+	width: 600px;
+}
+
+.manage-account-form-wrapper h2 {
+	background-color: #342020;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px 10px;
+}
+
 form.manage-account {
-    width: 300px;
-    float: left;
+	padding: 0 10px 10px;
+}
+
+form.manage-account .customer-addresses {
+	margin-bottom: 35px;
 }
 
 form.manage-account input[type="submit"] {
-    margin-top: 35px;
+    margin-top: 25px;
 }
 
 /* Manage Account / Order History */

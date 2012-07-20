@@ -16,7 +16,10 @@
 
     <div class="manage-account-container clearfix">
 
+		<h1>Account Options</h1>
+
         <ul th:substituteby="account/partials/accountMenu" />
+
 
         <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
             <li>
@@ -36,7 +39,7 @@
             </li>
         </ul>
         
-        <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
+        <p th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</p>
 
 
     </div>
