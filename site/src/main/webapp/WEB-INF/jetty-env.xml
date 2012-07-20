@@ -14,7 +14,7 @@ A PRODUCTION ENVIRONMENT.
 		<Arg type="boolean">true</Arg>
 	</New>
 	
-	<New id="webDS" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+	<New id="webDS" class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg>jdbc/web</Arg>
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
@@ -26,7 +26,7 @@ A PRODUCTION ENVIRONMENT.
 		</Arg>
 	</New>
 	
-	<New id="webSecureDS" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+	<New id="webSecureDS" class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg>jdbc/webSecure</Arg>
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
@@ -38,7 +38,7 @@ A PRODUCTION ENVIRONMENT.
 		</Arg>
 	</New>
 	
-	<New id="cmsStorageDS" class="org.eclipse.jetty.plus.jndi.EnvEntry">
+	<New id="cmsStorageDS" class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg>jdbc/cmsStorage</Arg>
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
