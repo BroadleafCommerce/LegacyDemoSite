@@ -1398,11 +1398,22 @@ ul#payment_methods li {
 		color: #7d7c76;
 	}
 	
+	#right_column #options ul {
+		list-style-type: none;
+		padding-left: 0;
+	}
+	
 	#right_column #options .maker {
 		width: 200px;
 		padding: 5px 10px;
 		background: url(../img/darker.jpg) repeat;
 		margin-bottom: 5px;
+		display: block;
+		color: #655C5A;
+	}
+		
+	#right_column #options .maker:hover {
+		color: #E40037;
 	}
 	
 	#featured_products {

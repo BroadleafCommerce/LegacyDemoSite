@@ -37,20 +37,24 @@
 			<div id="options">
 				<div th:each="facet : ${facets}" th:object="${facet}" class="section">
 					<h3 th:text="*{facet.searchFacet.label}"></h3>
-					<div th:each="value : *{facetValues}" class="maker">
-						<input type="checkbox" blc:facetvalue="${value}" />
-						
-						<span th:if="${value.value != null}" th:remove="tag"
-							th:text="${value.value}"></span>
+					<ul>
+						<li th:each="facetValue : *{facetValues}">
+							<a th:href="@{${category.url}(a=${category.url})}" class="maker">
+								<span th:if="${facetValue.value != null}" th:remove="tag"
+									th:text="${facetValue.value}"></span>
+									
+								<span th:unless="${facetValue.value != null}" th:remove="tag">
+									<span blc:price="${facetValue.minValue}" th:remove="tag"></span>
+									<span th:text="${facetValue.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
+									<span th:if="${facetValue.maxValue != null}" blc:price="${facetValue.maxValue}" th:remove="tag"></span>
+								</span>
+							</a>
+<!-- 							<input type="checkbox" blc:facetvalue="${facetValue}" /> -->
 							
-						<span th:unless="${value.value != null}" th:remove="tag">
-							<span blc:price="${value.minValue}" th:remove="tag"></span>
-							<span th:text="${value.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
-							<span th:if="${value.maxValue != null}" blc:price="${value.maxValue}" th:remove="tag"></span>
-						</span>
-						
-						<span th:if="${facet.showQuantity}" th:text="${value.quantity}"></span>
-					</div>
+							
+							<span th:if="${facet.showQuantity}" th:text="${facetValue.quantity}"></span>
+						</li>
+					</ul>
 				</div>
 				
 				<div th:substituteby="catalog/partials/rightHandBannerAds" />
