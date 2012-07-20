@@ -52,6 +52,12 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
         return responseMap;
     }
 
+    @RequestMapping(value = "/remove", method = RequestMethod.GET)
+    public String removeItemFromWishlist(HttpServletRequest request, HttpServletResponse response, Model model,
+                                         String wishlistName,  @ModelAttribute("orderItemId") Long itemId) throws RemoveFromCartException {
+        return super.removeItemFromWishlist(request, response, model, WISHLIST_ORDER_NAME, itemId);
+    }
+
     @RequestMapping(value = "/moveItemToCart", method = RequestMethod.POST)
     public String moveItemToCart(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException {

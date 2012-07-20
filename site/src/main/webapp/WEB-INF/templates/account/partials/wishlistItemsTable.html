@@ -19,13 +19,8 @@
                 </ul>
             </td>
             <td align="center">
-                <form method="POST" th:action="@{/account/wishlist/updateQuantity}">
-                    <input type="hidden" name="productId" th:value="*{product.id}" />
-                    <input type="hidden" name="orderItemId" th:value="*{id}" />
-                    <input type="text" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
-                    <input type="submit" class="updateQuantityWishlist" value="Update"/>
-                </form>
-                <a class="cartLinkBtn remove_from_wishlist" th:href="@{/wishlist/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
+                <div th:text="*{quantity}"></div>
+                <a class="cartLinkBtn remove_from_wishlist" th:href="@{/account/wishlist/remove(orderItemId=*{id})}">Remove</a>
             </td>
             <td align="center" blc:price="*{price}"></td>
 
@@ -35,6 +30,13 @@
                 <form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
                     <input type="hidden" name="itemId" th:value="*{id}" />
                     <input type="submit" class="moveItemToCart" value="Add Item to Cart"/>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="right" class="last">
+                <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
+                    <input class="medium red" type="submit" value="Add Wishlist to Cart" />
                 </form>
             </td>
         </tr>

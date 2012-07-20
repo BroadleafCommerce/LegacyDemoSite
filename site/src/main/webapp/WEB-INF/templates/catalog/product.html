@@ -9,7 +9,7 @@
 <body>
 	<div id="notification_bar"></div>
 	<header th:substituteby="layout/partials/header" />
-	
+
 	<div id="content" class="width_setter group" role="main">
 	
 		<nav th:substituteby="layout/partials/nav" />
@@ -67,11 +67,30 @@
 				</form>
 				
 				<div th:unless="${customer.anonymous}" th:remove="tag">
-					<form method="POST" th:action="@{/account/wishlist/add}">
-					    <input type="hidden" name="productId" th:value="*{id}" />
-					    <input type="hidden" name="quantity" value="1" />
-					    <input type="submit" class="addToWishlist big red" value="Add to Wishlist" />
-					</form>
+                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
+                        <div class="form50">
+                            <label th:text="*{label}"></label>
+                            <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+                                <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <form method="POST" th:action="@{/account/wishlist/add}">
+                        <div th:class="${'productActions' + product.id}">
+
+                            <blc:named_order orderVar="wishlist" orderName="wishlist" />
+
+                            <div class="in_wishlist" th:classappend="${!wishlist.containsSku(product.defaultSku)}? ' hidden'">
+                                <a class="inWishlist small-button gray-button" th:href="@{/account/wishlist}">In Wishlist!</a>
+                            </div>
+                            <div class="add_to_wishlist" th:classappend="${wishlist.containsSku(product.defaultSku)}? ' hidden'">
+                                <input type="hidden" name="productId" th:value="*{id}" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="submit" class="addToWishlist small dark" value="+ Add to Wishlist" />
+                            </div>
+                        </div>
+                    </form>
 				</div>
 					
 				<p>

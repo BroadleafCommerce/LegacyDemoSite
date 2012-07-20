@@ -35,18 +35,20 @@ $(function(){
 		$('.headerCartItemCount').html();
 	}
 	
-	// Hides the add to cart button and shows the in cart button
-	function showInCartButton(productId) {
-		$('.productActions' + productId).children('.in_cart').removeClass('hidden');
-		$('.productActions' + productId).children('.add_to_cart').addClass('hidden');
+	// Hides the add to cart/add to wishlist button and shows the in cart/in wishlist button
+    // orderType can either be 'cart' or 'wishlist'
+	function showInCartButton(productId, orderType) {
+		$('.productActions' + productId).children('.in_'+orderType).removeClass('hidden');
+		$('.productActions' + productId).children('.add_to_'+orderType).addClass('hidden');
 	}
 	
-	// Hides the in cart button and shows the add to cart button
-	function showAddToCartButton(productId) {
-		$('.productActions' + productId).children('.add_to_cart').removeClass('hidden');
-		$('.productActions' + productId).children('.in_cart').addClass('hidden');
+	// Hides the in cart/in wishlist button and shows the add to cart/add to wishlist button
+    // orderType can either be 'cart' or 'wishlist'
+	function showAddToCartButton(productId, orderType) {
+		$('.productActions' + productId).children('.add_to_'+orderType).removeClass('hidden');
+		$('.productActions' + productId).children('.in_'+orderType).addClass('hidden');
 	}
-	
+
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
 		$.fancybox.open($.extend({ href : $(this).attr('href') }, fancyCartOptions));
@@ -89,7 +91,7 @@ $(function(){
 						if (modalClick) {
 							$.fancybox.close();
 						} else {
-							showInCartButton(data.productId);
+							showInCartButton(data.productId, 'cart');
 						}
 						
 						HC.showNotification(data.productName + "  has been added to the cart!");
@@ -99,8 +101,54 @@ $(function(){
 		}
 		return false;
 	});
-	
-	// Intercept update quantity operations and perform them via AJAX instead
+
+    // Intercept add to wishlist operations and perform them via AJAX instead
+    // This will trigger on any input with class "addToWishlist"
+    $('body').on('click', 'input.addToWishlist', function() {
+        var $button = $(this),
+            $form = $button.closest('form'),
+            $options = $('span.option-value'),
+            $errorSpan = $button.closest('.product-options').children('span.error'),
+            itemRequest = BLC.serializeObject($form),
+            modalClick = $button.parents('.fancybox-inner').length > 0;
+
+        if ($errorSpan.length == 0) {
+            $errorSpan = $('.product-options').children('span.error');
+        }
+
+        if (itemRequest.hasProductOptions == "true" && !modalClick) {
+            $.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
+        } else {
+            $options.each(function(index, element) {
+                itemRequest['itemAttributes[' + $(element).attr('id') + ']'] = $(element).text();
+            });
+
+            BLC.ajax({url: $form.attr('action'),
+                    type: "POST",
+                    dataType: "json",
+                    data: itemRequest
+                }, function(data, extraData) {
+                    if (data.error) {
+                        $errorSpan.css('display', 'block');
+                        $errorSpan.effect('highlight', {}, 1000);
+                    } else {
+                        $errorSpan.css('display', 'none');
+
+                        if (modalClick) {
+                            $.fancybox.close();
+                        } else {
+                            showInCartButton(data.productId, 'wishlist');
+                        }
+
+                        HC.showNotification(data.productName + "  has been added to your wishlist!");
+                    }
+                }
+            );
+        }
+        return false;
+    });
+
+    // Intercept update quantity operations and perform them via AJAX instead
 	// This will trigger on any input with class "updateQuantity"
 	$('body').on('click', 'input.updateQuantity', function() {
 		var $form = $(this).closest('form');
@@ -111,7 +159,7 @@ $(function(){
 			}, function(data, extraData) {
 				updateHeaderCartItemsCount(extraData.cartItemCount);
 				if ($form.children('input.quantityInput').val() == 0) {
-					showAddToCartButton(extraData.productId);
+					showAddToCartButton(extraData.productId, 'cart');
 				}
 				
 				$('.fancybox-inner').html(data);
@@ -129,7 +177,7 @@ $(function(){
 				type: "GET"
 			}, function(data, extraData) {
 				updateHeaderCartItemsCount(extraData.cartItemCount);
-				showAddToCartButton(extraData.productId);
+				showAddToCartButton(extraData.productId, 'cart');
 				
 				$('.fancybox-inner').html(data);
 			}

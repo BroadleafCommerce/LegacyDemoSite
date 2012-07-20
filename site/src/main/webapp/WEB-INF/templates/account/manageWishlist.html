@@ -20,14 +20,10 @@
         
         <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
 	        <table th:substituteby="account/partials/wishlistItemsTable"></table>
-	        
-	        <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
-	            <input class="addToCart medium red" type="submit" value="Add Wishlist to Cart" />
-	        </form>
         </div>
         
-        <div th:unless="${wishlist}">
-            You do not have any items in your wishlist
+        <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
+            <h3>You do not have any items in your wishlist</h3>
         </div>
         
     </div>

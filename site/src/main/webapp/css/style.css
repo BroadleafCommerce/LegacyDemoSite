@@ -849,8 +849,11 @@ form.manage-account input[type="submit"] {
         #wishlist_items tbody tr td.checkbox {
             text-align: center;
         }
-        
-    
+
+        #wishlist_items tbody tr td.last {
+            border: none;
+        }
+
     #wishlist_items tbody tr td.name {
         font: 14px/18px 'Oxygen', Helvetica, sans-serif;
     }
@@ -1177,8 +1180,7 @@ ul#payment_methods li {
 .add_to_cart, .in_cart {
 	display: block;
 }
-		
-	
+
 #product_content {
 	width: 280px;
 	margin-right: 20px;
@@ -1234,6 +1236,10 @@ ul#payment_methods li {
 		display: inline-block;
 		width: 50px;
 	}
+
+    #product_content .addToWishlist, #product_content .inWishlist {
+        margin: 10px 0 0 0;
+    }
 	
 #products {
 	width: 100%;
