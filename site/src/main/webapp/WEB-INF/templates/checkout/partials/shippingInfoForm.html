@@ -61,6 +61,8 @@
 
     <div class="right_content">
         <h3>Shipping Method</h3>
+        <h3 id="loading_shipping" style="display:none;"><img src="/img/loading.gif"/> Shipping Method</h3>
+
         <span class="error" th:if="${#fields.hasErrors('fulfillmentOptionId')}" th:errors="*{fulfillmentOptionId}"></span>
         <table cellspacing="0" cellpadding="5" id="shippingoptions" class="checkoutTable">
             <tr th:each="fulfillmentOption : ${fulfillmentOptions}" >

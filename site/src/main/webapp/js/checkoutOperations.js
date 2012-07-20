@@ -65,6 +65,7 @@ $(function(){
         if (!$('#shipping_info').valid()){
             $(this).prop('checked', false);
         } else {
+            $('#loading_shipping').show().prev().hide();
             $('#shipping_info').submit();
         }
     });
