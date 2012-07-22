@@ -62,7 +62,17 @@
 				
 				<div th:substituteby="catalog/partials/rightHandBannerAds" />
 				
-				<div th:substituteby="catalog/partials/rightHandFeaturedProducts" />
+				<section id="right_column">
+					<header>Featured Products</header>
+					<div id="options">
+						<div class="section" th:object="${category}">
+							 <blc:related_products categoryId="*{id}" quantity="3"/>	 
+							 <ul id="featured_products" class="group">
+								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+							 </ul>
+						</div>									
+					</div>
+				</section>	
 				
 			</div>
 		</section>

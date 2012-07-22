@@ -1,4 +1,4 @@
-<div th:class="${'productActions productActions' + product.id}">
+<div th:class="*{'productActions productActions' + id}">
 	<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
 	<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? ' hidden'">
 		<form method="POST" th:action="@{/cart/add}">
