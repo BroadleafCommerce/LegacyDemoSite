@@ -188,26 +188,6 @@ td.error {
 .group:after { clear:both; }
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
-@font-face {
-    font-family: 'ProximaNovaRegular';
-    src: url('../fonts/proximanova-reg-webfont.eot');
-    src: url('../fonts/proximanova-reg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-reg-webfont.woff') format('woff'),
-         url('../fonts/proximanova-reg-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'ProximaNovaBold';
-    src: url('../fonts/proximanova-sbold-webfont.eot');
-    src: url('../fonts/proximanova-sbold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-sbold-webfont.woff') format('woff'),
-         url('../fonts/proximanova-sbold-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 span.error {
 	color: #E40037;
 	font-weight: bold;
@@ -233,7 +213,8 @@ span.error_spacer {
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
-	font: 16px/40px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 15px/40px Helvetica, sans-serif;
+	font-weight: bold;
 	display: none;
 	position: fixed;
 	z-index: 999;
@@ -244,7 +225,7 @@ span.error_spacer {
 header {
 	width: 100%;
 	color: #342020;
-	font: 15px/28px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 15px/28px Helvetica, sans-serif;
 	border-top: 15px solid #E40037;
 }
 
@@ -373,7 +354,7 @@ header {
 
 	#header_content #languages {
 		padding: 10px 20px;
-		font: 13px/28px 'ProximaNovaRegular', Helvetica, sans-serif;
+		font: 13px/28px Helvetica, sans-serif;
 		color: #262322;
 		text-align: right;
 		float: right;
@@ -403,9 +384,10 @@ nav {
 	}
 	
 	nav ul li a {
-		font: 16px/70px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 15px/70px Helvetica, sans-serif;
+		font-weight: 800;
 		color: #342020;
-		padding: 25px 31px;
+		padding: 25px 30px;
 		background: url('../img/nav-divider.png') top left no-repeat;
 	}
 	
@@ -444,7 +426,8 @@ nav {
 }
 
 	#home_feature h2 {
-		font: 19px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 19px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #E40037;
 		margin: 0;
 		padding: 0;
@@ -464,7 +447,8 @@ nav {
 
 	#content .title_bar, #checkout_content .title_bar{
 		width: 940px;
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #342020;
 		text-align: center;
 		margin: 10px 20px;
@@ -513,7 +497,8 @@ nav {
 }
 	
 #account h3 {
-	font: 16px/18px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 16px/18px Helvetica, sans-serif;
+	font-weight: bold;
 	margin: 0 0 5px 0;
 	padding: 0;
 }
@@ -1237,7 +1222,8 @@ ul#payment_methods li {
 	}
 	
 	#product_content #price {
-		font: 28px/18px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 28px/18px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #aea6a3;
 	}
 	
@@ -1322,7 +1308,8 @@ ul#payment_methods li {
 				color: white;
 				opacity: 0.8;
 				padding: 10px 20px;
-				font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+				font: 16px/16px Helvetica, sans-serif;
+				font-weight: bold;
 				bottom: 5px;
 				right: 5px;
 			}
@@ -1370,7 +1357,8 @@ ul#payment_methods li {
 
 	#right_column header {
 		width: 220px;
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #342020;
 		text-transform: uppercase;
 		padding: 10px 20px;
@@ -1384,7 +1372,8 @@ ul#payment_methods li {
 	}
 	
 	#right_column #options h3 {
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #262322;
 		margin: 0 0 10px 0;
 	}
@@ -1453,7 +1442,8 @@ ul#payment_methods li {
 			opacity: 0.8;
 			padding: 5px 10px;
 			text-align: center;
-			font: 14px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+			font: 14px/16px Helvetica, sans-serif;
+			font-weight: bold;
 			bottom: 0px;
 			right: 0px;
 		}
@@ -1494,7 +1484,8 @@ footer {
 }
 
 	footer #left_content h4, footer #right_content h4 {
-		font: 12px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 12px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		letter-spacing: 5px;
 		margin-bottom: 0;
 		text-transform: uppercase;
@@ -1530,21 +1521,21 @@ input[type="submit"].small, a.small-button {
 }
 
 input[type="submit"].big, a.big-button {
-	font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 16px/16px Helvetica, sans-serif;
 	margin: 10px auto 0;
 	padding: 15px 35px;
 	display: inline-table;
 }
 
 input[type="submit"].medium, a.medium-button {
-	font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 12px/16px Helvetica, sans-serif;
 	margin: 10px auto;
 	padding: 10px 20px;
 	display: inline-table;
 }
 
 input[type="submit"].small, a.small-button {
-	font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+	font: 12px/16px Helvetica, sans-serif;
 	padding: 5px 10px;
 	margin-left: 5px;
 	display: inline-table;
@@ -1669,7 +1660,8 @@ and (max-device-width : 480px) {
 		
 		nav ul li a {
 			width: 148px;
-			font: 12px/18px 'ProximaNovaBold', Helvetica, sans-serif;
+			font: 12px/18px Helvetica, sans-serif;
+			font-weight: bold;
 			color: #342020;
 			margin: 0;
 			padding: 5px 0;
@@ -1702,7 +1694,8 @@ and (max-device-width : 480px) {
 	
 	#content .title_bar {
 		width: 100%;
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #fff;
 		background-color: #3E0000;
 		text-align: center;
@@ -1800,7 +1793,8 @@ and (max-device-width : 480px) {
 		}
 		
 		#product_content #price {
-			font: 28px/18px 'ProximaNovaBold', Helvetica, sans-serif;
+			font: 28px/18px Helvetica, sans-serif;
+			font-weight: bold;
 			color: #aea6a3;
 		}
 		
@@ -1815,7 +1809,8 @@ and (max-device-width : 480px) {
 		}
 			
 		#product_content .add_to_cart a:link, #product_content .add_to_cart a:visited {
-			font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+			font: 16px/16px Helvetica, sans-serif;
+			font-weight: bold;
 			margin: 10px auto;
 			padding: 15px 35px;
 			background-color: #E40037;
@@ -1874,7 +1869,8 @@ and (max-device-width : 480px) {
 				color: white;
 				opacity: 0.8;
 				padding: 10px 20px;
-				font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+				font: 16px/16px Helvetica, sans-serif;
+				font-weight: bold;
 				bottom: 5px;
 				right: 5px;
 			}
@@ -1910,7 +1906,8 @@ and (max-device-width : 480px) {
 		}
 		
 			#products li .add_to_cart a:link, #products li .add_to_cart a:visited {
-				font: 16px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+				font: 16px/16px Helvetica, sans-serif;
+				font-weight: bold;
 				margin: 10px auto;
 				padding: 15px 35px;
 				background-color: #E40037;
@@ -1945,7 +1942,8 @@ and (max-device-width : 480px) {
 
 	#right_column header {
 		width: 300px;
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #342020;
 		text-transform: uppercase;
 		padding: 10px;
@@ -1960,7 +1958,8 @@ and (max-device-width : 480px) {
 	}
 	
 	#right_column #options h3 {
-		font: 14px/17px 'ProximaNovaBold', Helvetica, sans-serif;
+		font: 14px/17px Helvetica, sans-serif;
+		font-weight: bold;
 		color: #262322;
 		margin: 0 0 10px 0;
 	}
@@ -2017,7 +2016,8 @@ and (max-device-width : 480px) {
 			opacity: 0.8;
 			padding: 5px 10px;
 			text-align: center;
-			font: 14px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+			font: 14px/16px Helvetica, sans-serif;
+			font-weight: bold;
 			bottom: 0px;
 			right: 0px;
 		}
@@ -2048,7 +2048,8 @@ and (max-device-width : 480px) {
 		}
 		
 			#featured_products li .add_to_cart a:link, #featured_products li .add_to_cart a:visited {
-				font: 12px/16px 'ProximaNovaBold', Helvetica, sans-serif;
+				font: 12px/16px Helvetica, sans-serif;
+				font-weight: bold;
 				margin: 10px 0;
 				padding: 10px 20px;
 				background-color: #3D0001;
