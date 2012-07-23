@@ -20,25 +20,7 @@
     
     <context:component-scan base-package="org.broadleafcommerce.common"/>
     
-    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
-		<property name="propertyLocations">
-			<set>
-				<value>classpath:runtime-properties/</value>
-			</set>
-		</property>
-		<property name="environments">
-			<set>
-                <value>production</value>
-                <value>staging</value>
-                <value>integrationqa</value>
-                <value>integrationdev</value>
-                <value>development</value>
-                <value>local</value>
-			</set>
-		</property>
-		<property name="defaultEnvironment" value="development"/>
-		<property name="ignoreUnresolvablePlaceholders" value="true"/>
-	</bean>
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
@@ -90,7 +72,6 @@
     </bean>
     
     <!-- Uncomment this bean to disable caching -->
-    <!-- 
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
@@ -100,7 +81,6 @@
             </list>
         </property>
     </bean>
-    -->
     
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
@@ -121,4 +101,5 @@
 		</property>
 	</bean>	
 	-->
+	
 </beans>

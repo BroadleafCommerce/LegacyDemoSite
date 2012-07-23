@@ -93,7 +93,7 @@
 		
 			<div id="product_main_image">
 				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='cloud-zoom' id='zoom1' rel="position: 'inside', showTitle: false, adjustX:-4, adjustY:-4">
-		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" />
+		            <img blc:src="@{*{media['primary'].url}}" alt='' align="left" />
 		        </a>
 			</div>
 			
@@ -121,7 +121,7 @@
 				<div class="section">
 					 <blc:related_products productId="${product.id}"/>	 
 					<ul id="featured_products" class="group">
-						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/featuredProductListItem" th:remove="tag"></li>
 					</ul>
 				</div>									
 			</div>

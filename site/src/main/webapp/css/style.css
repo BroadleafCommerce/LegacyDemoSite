@@ -1426,6 +1426,7 @@ ul#payment_methods li {
 	#featured_products li {
 		width: 220px;
 		display: block;
+		margin-bottom: 20px;
 	}
 	
 	#featured_products li .image {
