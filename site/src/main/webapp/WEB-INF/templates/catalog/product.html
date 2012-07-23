@@ -93,7 +93,7 @@
 		
 			<div id="product_main_image">
 				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='cloud-zoom' id='zoom1' rel="position: 'inside', showTitle: false, adjustX:-4, adjustY:-4">
-		            <img blc:src="@{*{media['primary'].url}}" alt='' align="left" />
+		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" />
 		        </a>
 			</div>
 			
