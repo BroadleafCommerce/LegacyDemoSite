@@ -1,6 +1,86 @@
 <form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info">
 
-    <div class="left_content">
+    <div class="left_content_billing payment_info">
+        <h3>Payment Information</h3>
+
+        <ul id="payment_methods">
+            <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+        </ul>
+
+        <dl id="paymentOptions">
+            <dt>
+                <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
+                <label for="paymentMethod_cc">Credit Card</label>
+            </dt>
+            <dd>
+                <div id="creditCardFields">
+
+                    <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardNumber')}"/>
+                    <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardCvvCode}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardCvvCode')}"/>
+                    <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
+                    <br th:if="${#fields.hasErrors('creditCardName')}"/>
+
+                    <div class="form25" style="width: 94%;">
+                        <div style="float: left; width: 70%;">
+                            <label for="cardNumber" class="prompt">Card Number</label>
+                            <div class="element">
+                                <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
+                            </div>
+                        </div>
+                        <div style="float: right; padding-right: 2%; width: 16%">
+                            <label class="prompt">CVV</label>
+                            <div class="element">
+                                <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form25">
+                        <label for="nameOnCard" class="prompt"> Name on the Card </label>
+                        <div class="form100">
+                            <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
+                        </div>
+                    </div>
+
+                    <div class="form50">
+                        <label for="expirationMonth" class="prompt"> Expiration Date </label>
+                        <span class="error" th:if="${#fields.hasErrors('creditCardExpMonth')}" th:errors="*{creditCardExpMonth}"></span>
+                        <br th:if="${#fields.hasErrors('creditCardExpMonth')} and ${#fields.hasErrors('creditCardExpYear')}"/>
+                        <span class="error" th:if="${#fields.hasErrors('creditCardExpYear')}" th:errors="*{creditCardExpYear}"></span>
+                        <div class="element">
+                            <select th:field="*{creditCardExpMonth}" id="expirationMonth" class=" " th:disabled="${!validShipping}">
+                                <option th:each="month,itr : ${expirationMonths}" th:value="${itr.count}" th:text="${month}"></option>
+                            </select>
+                            <select th:field="*{creditCardExpYear}" id="expirationYear" class=" " th:disabled="${!validShipping}">
+                                <option th:each="year,itr : ${expirationYears}" th:value="${year}" th:text="${year}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </dd>
+            <dt>
+                <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
+                <label for="paymentMethod_paypal">PayPal</label>
+            </dt>
+            <dd>
+                <div id="paypalfields">
+                    <div class="form100">
+                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
+                    </div>
+                </div>
+            </dd>
+        </dl>
+
+    </div>
+
+    <div id="billing_info_form" class="right_content_billing">
 
         <input type="hidden" name="address.country" value="US" />
 
@@ -66,89 +146,10 @@
             <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span>
             <input type="text" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
-    </div>
 
-    <div class="right_content payment_info">
-        <h3>Payment Information</h3>
-
-        <ul id="payment_methods">
-            <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
-        </ul>
-
-        <dl id="paymentOptions">
-            <dt>
-                <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
-                <label for="paymentMethod_cc">Credit Card</label>
-            </dt>
-            <dd>
-                <div id="creditCardFields">
-
-                    <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardNumber')}"/>
-                    <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardCvvCode}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardCvvCode')}"/>
-                    <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardName')}"/>
-
-                    <div class="form25" style="width: 94%;">
-                        <div style="float: left; width: 70%;">
-                            <label for="cardNumber" class="prompt">Card Number</label>
-                            <div class="element">
-                                <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
-                            </div>
-                        </div>
-                        <div style="float: right; padding-right: 2%; width: 16%">
-                            <label class="prompt">CVV</label>
-                            <div class="element">
-                                <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form25">
-                        <label for="nameOnCard" class="prompt"> Name on the Card </label>
-                        <div class="form100">
-                            <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
-                        </div>
-                    </div>
-
-                    <div class="form50">
-                        <label for="expirationMonth" class="prompt"> Expiration Date </label>
-                        <span class="error" th:if="${#fields.hasErrors('creditCardExpMonth')}" th:errors="*{creditCardExpMonth}"></span>
-                        <br th:if="${#fields.hasErrors('creditCardExpMonth')} and ${#fields.hasErrors('creditCardExpYear')}"/>
-                        <span class="error" th:if="${#fields.hasErrors('creditCardExpYear')}" th:errors="*{creditCardExpYear}"></span>
-                        <div class="element">
-                            <select th:field="*{creditCardExpMonth}" id="expirationMonth" class=" " th:disabled="${!validShipping}">
-                                <option th:each="month,itr : ${expirationMonths}" th:value="${itr.count}" th:text="${month}"></option>
-                            </select>
-                            <select th:field="*{creditCardExpYear}" id="expirationYear" class=" " th:disabled="${!validShipping}">
-                                <option th:each="year,itr : ${expirationYears}" th:value="${year}" th:text="${year}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-                <div>
-                    <input type="submit" class="medium" value="Complete Order" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
-                </div>
-
-            </dd>
-            <dt>
-                <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
-                <label for="paymentMethod_paypal">PayPal</label>
-            </dt>
-            <dd>
-                <div id="paypalfields">
-                    <div class="form100">
-                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
-                    </div>
-                </div>
-            </dd>
-        </dl>
+        <div style="float:right;">
+            <input type="submit" class="medium" value="Complete Order" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
+        </div>
 
     </div>
 </form>

@@ -17,8 +17,8 @@ $(function(){
 	
     function copyShippingForm() {
         $('.cloneable').each(function() {
-            $("#billing_info input[name='" + $(this).attr('name') + "']").val($(this).val());
-            $("#billing_info select[name='" + $(this).attr('name') + "']").val($(this).val());
+            $("#billing_info input[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
+            $("#billing_info select[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
         })
     }
     
@@ -46,9 +46,16 @@ $(function(){
     }
 
     /* Toggle visibility of payment methods */
-    $('body').on('click', 'input#paymentMethod_cc, input#paymentMethod_paypal', function() {
+    $('body').on('click', 'input#paymentMethod_cc', function() {
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
+        $('#billing_info_form').css({display:"block"});
+    });
+
+    $('body').on('click', 'input#paymentMethod_paypal', function() {
+        $('#paymentOptions dd').css({display:"none"});
+        $(this).closest('dt').next().css({display:"block"});
+        $('#billing_info_form').css({display:"none"});
     });
 
     /* Copy Shipping Form to Billing Form Checkbox */
@@ -56,7 +63,7 @@ $(function(){
         if ($(this).is(':checked')) {
             copyShippingForm();
         } else {
-            $(this).closest('form').find(".clearable").val("");
+            $(this).closest('form').find(".clearable").val("").removeAttr("disabled");
         }
     });
 

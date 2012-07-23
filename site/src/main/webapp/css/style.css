@@ -764,10 +764,23 @@ form.manage-account input[type="submit"] {
 	display: block;
 }
 
-#cart .left_content {
+#cart .left_content  {
 	width: 580px;
 	float: left;
 }
+
+#cart .left_content_billing {
+    width: 260px;
+    padding: 10px 20px;
+    background: url('../img/sidebarbg.jpg') repeat;
+    float: left;
+}
+
+    #cart .left_content_billing h3 {
+        font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+        margin: 0 0 5px 0;
+        padding: 0;
+    }
 
 #cart .left_content.wide {
 	width: 615px;
@@ -785,6 +798,12 @@ form.manage-account input[type="submit"] {
 		margin: 0 0 5px 0;
 		padding: 0;
 	}
+
+#cart .right_content_billing {
+    width: 580px;
+    float: right;
+}
+
 
 #cart_products {
 	width: 580px;
