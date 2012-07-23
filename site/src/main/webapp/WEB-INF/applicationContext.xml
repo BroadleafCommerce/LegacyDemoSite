@@ -89,8 +89,7 @@
         </property>
     </bean>
     
-    <!-- Uncomment this bean to disable caching -->
-    <!-- 
+    <!-- Uncomment this bean to enable caching -->    
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
@@ -99,8 +98,7 @@
                 <value>classpath:bl-override-ehcache.xml</value>
             </list>
         </property>
-    </bean>
-    -->
+    </bean>    
     
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
