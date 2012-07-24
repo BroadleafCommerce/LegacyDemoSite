@@ -1420,6 +1420,15 @@ ul#payment_methods li {
 		display: block;
 		color: #655C5A;
 	}
+	
+	#right_column #options li.active .maker {
+		background: #3E0000;
+		color: white;
+	}
+	#right_column #options li.active a.maker i {
+		float: right;
+		margin-top: 2px;
+	}
 		
 	#right_column #options .maker:hover {
 		color: #E40037;
