@@ -1468,6 +1468,16 @@ ul#payment_methods li {
 			right: 0px;
 		}
 		
+		#featured_products li .image .has-sale {
+			text-decoration: line-through;
+		}
+		
+		#featured_products li .image .sale {
+			color: #E40037;
+			bottom: 41px;
+			padding: 0 0 5px 0;
+		}
+		
 		#featured_products li .content {
 			width: 130px;
 			font: 12px/18px 'Georgia',serif;
