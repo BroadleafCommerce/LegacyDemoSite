@@ -29,14 +29,14 @@
             <td align="center">
                 <form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
                     <input type="hidden" name="itemId" th:value="*{id}" />
-                    <input type="submit" class="moveItemToCart" value="Add Item to Cart"/>
+                    <input type="submit" class="small red" value="Move Item to Cart"/>
                 </form>
             </td>
         </tr>
         <tr>
             <td colspan="6" align="right" class="last">
                 <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
-                    <input class="medium red" type="submit" value="Add Wishlist to Cart" />
+                    <input class="medium red" type="submit" value="Move Wishlist to Cart" />
                 </form>
             </td>
         </tr>
