@@ -1612,8 +1612,8 @@ button[disabled]:hover, input[disabled]:hover {
    ========================================================================== */
 
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+and (min-width : 320px)
+and (max-width : 480px) {
 /* Styles */
 
 	header, #header_content, .width_setter, #home_feature, #content, #left_column, #right_column {
