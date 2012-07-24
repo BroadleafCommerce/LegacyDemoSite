@@ -24,8 +24,8 @@
 		<div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
 		
 		<div id="search">
-			<form action="" method="post">
-			<input type="text" class="search" name="search" />
+			<form th:action="@{/search}" method="GET">
+			<input type="text" class="search" name="q" th:value="${originalQuery}" />
 			<input type="submit" id="search_button" value="go" />
 			</form>
 		</div>

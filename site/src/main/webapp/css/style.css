@@ -385,7 +385,7 @@ nav {
 	}
 	
 	nav ul li a {
-		font: 16px/70px 'Open Sans', Helvetica, sans-serif;
+		font: 16px/76px 'Open Sans', Helvetica, sans-serif;
 		font-weight: 600;
 		color: #342020;
 		padding: 25px 30px;
@@ -1412,28 +1412,44 @@ ul#payment_methods li {
 		padding-left: 0;
 	}
 	
+	#right_column #options .maker, #right_column #options .maker:hover {
+		-webkit-transition: background-color 0.2s ease-in;  
+		-moz-transition: background-color 0.2s ease-in;  
+		-o-transition: background-color 0.2s ease-in;  
+		transition: background-color 0.2s ease-in;
+	}
+	
 	#right_column #options .maker {
 		width: 200px;
 		padding: 5px 10px;
-		background: url(../img/darker.jpg) repeat;
+		background: #EAEBE3;
 		margin-bottom: 5px;
 		display: block;
 		color: #655C5A;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+	}
+	
+	#right_column #options .maker:hover {
+		color: #655C5A;
+		background: #E6E9D4;
 	}
 	
 	#right_column #options li.active .maker {
-		background: #3E0000;
-		color: white;
+		background: #D4D8C1;
 	}
+	
+	#right_column #options li.active .maker:hover {
+		color: #655C5A;
+		background: #E6E9D4;
+	}
+	
 	#right_column #options li.active a.maker i {
 		float: right;
 		margin-top: 2px;
 	}
 		
-	#right_column #options .maker:hover {
-		color: #E40037;
-	}
-	
 	#featured_products {
 		width: 220px;
 		list-style: none;

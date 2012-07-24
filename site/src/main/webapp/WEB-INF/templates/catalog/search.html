@@ -1,3 +1,82 @@
-<div id="search">
-Not implemented
-</div>
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<blc:head pageTitle="Broadleaf Demo - Heat Clinic - Search" />
+
+<body>
+	<div id="notification_bar"></div>
+	<header th:substituteby="layout/partials/header" />
+	
+	<div id="content" class="width_setter group" role="main">
+	
+		<nav th:substituteby="layout/partials/nav" />
+		
+		<section id="left_column">
+	
+			<header>
+				<h1>Viewing All Hot Sauces</h1>
+				<div id="sort">
+					Sort by:
+					<select id="sortby">
+						<option value="awesomeness">Awesomeness</option>
+					</select>
+				</div>
+			</header>
+			
+			<ul id="products" class="group">
+				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+			</ul>
+			
+		</section>
+	
+		<section id="right_column">
+			<header>Filter your search</header>
+			<div id="options">
+				<div th:each="facetDto : ${facets}" class="section">
+					<h3 th:text="${facetDto.facet.searchFacet.label}"></h3>
+					<ul>
+						<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
+							<a blc:togglecriterialink="${facetValue}" class="maker">
+								<span th:if="${facetValue.value != null}" th:remove="tag"
+									th:text="${facetValue.value}"></span>
+									
+								<span th:unless="${facetValue.value != null}" th:remove="tag">
+									<span blc:price="${facetValue.minValue}" th:remove="tag"></span>
+									<span th:text="${facetValue.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
+									<span th:if="${facetValue.maxValue != null}" blc:price="${facetValue.maxValue}" th:remove="tag"></span>
+								</span>
+                
+								    <span th:if="${facetDto.showQuantity}" th:text="${facetValue.quantity}"></span>
+                    
+                                  <i th:if="${facetValue.active}" class="icon-remove"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div th:substituteby="catalog/partials/rightHandBannerAds" />
+				
+				<section id="right_column" th:unless="${#lists.isEmpty(products)}">
+					<header>Featured Products</header>
+					<div id="options">
+						<div class="section" th:object="${category}">
+					         <blc:related_products productId="${products[0].id}"/>	 
+							 <ul id="featured_products" class="group">
+								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/featuredProductListItem" th:remove="tag"></li>
+							 </ul>
+						</div>									
+					</div>
+				</section>	
+				
+			</div>
+		</section>
+			
+	</div>
+	
+	<footer th:substituteby="layout/partials/footer" />
+	
+</body>
+</html>

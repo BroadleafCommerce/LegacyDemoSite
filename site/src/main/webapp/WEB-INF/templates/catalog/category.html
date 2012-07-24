@@ -35,29 +35,27 @@
 		<section id="right_column">
 			<header>Filter your results</header>
 			<div id="options">
-				<form th:object="${searchCriteriaForm}" th:action="@{${category.url}}" method="POST" id="search_criteria">
-					<div th:each="facetDto : ${facets}" class="section">
-						<h3 th:text="${facetDto.facet.searchFacet.label}"></h3>
-						<ul>
-							<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
-								<a blc:togglecriterialink="${facetValue}" class="maker">
-									<span th:if="${facetValue.value != null}" th:remove="tag"
-										th:text="${facetValue.value}"></span>
-										
-									<span th:unless="${facetValue.value != null}" th:remove="tag">
-										<span blc:price="${facetValue.minValue}" th:remove="tag"></span>
-										<span th:text="${facetValue.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
-										<span th:if="${facetValue.maxValue != null}" blc:price="${facetValue.maxValue}" th:remove="tag"></span>
-									</span>
-                  
-  								    <span th:if="${facetDto.showQuantity}" th:text="${facetValue.quantity}"></span>
-                      
-                                    <i th:if="${facetValue.active}" class="icon-remove icon-white"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</form>
+				<div th:each="facetDto : ${facets}" class="section">
+					<h3 th:text="${facetDto.facet.searchFacet.label}"></h3>
+					<ul>
+						<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
+							<a blc:togglecriterialink="${facetValue}" class="maker">
+								<span th:if="${facetValue.value != null}" th:remove="tag"
+									th:text="${facetValue.value}"></span>
+									
+								<span th:unless="${facetValue.value != null}" th:remove="tag">
+									<span blc:price="${facetValue.minValue}" th:remove="tag"></span>
+									<span th:text="${facetValue.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
+									<span th:if="${facetValue.maxValue != null}" blc:price="${facetValue.maxValue}" th:remove="tag"></span>
+								</span>
+                
+								    <span th:if="${facetDto.showQuantity}" th:text="${facetValue.quantity}"></span>
+                    
+                                  <i th:if="${facetValue.active}" class="icon-remove"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
 				
 				
 				<div th:substituteby="catalog/partials/rightHandBannerAds" />

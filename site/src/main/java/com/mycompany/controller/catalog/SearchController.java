@@ -29,10 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 public class SearchController extends BroadleafSearchController {
 
 	@RequestMapping("")
-	public String search(Model model, HttpServletRequest request,
-            @RequestParam(required = true) String queryString,
-            @RequestParam(required = false) String originalQueryString) {
-		return super.search(model, request, queryString, originalQueryString);
+	public String search(Model model, HttpServletRequest request, 
+			@RequestParam String q) {
+		return super.search(model, request, q);
     }
 
 }
