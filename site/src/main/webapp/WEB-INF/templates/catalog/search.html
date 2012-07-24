@@ -17,13 +17,10 @@
 		<section id="left_column">
 	
 			<header>
-				<h1>Viewing All Hot Sauces</h1>
-				<div id="sort">
-					Sort by:
-					<select id="sortby">
-						<option value="awesomeness">Awesomeness</option>
-					</select>
-				</div>
+				<h1 th:inline="text">
+                    Search Results for [[${originalQuery}]] ([[${#lists.size(products)}]])
+                </h1>
+				<div th:substituteby="catalog/partials/productSortOptions"></div>
 			</header>
 			
 			<ul id="products" class="group">
@@ -39,7 +36,7 @@
 					<h3 th:text="${facetDto.facet.searchFacet.label}"></h3>
 					<ul>
 						<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
-							<a blc:togglecriterialink="${facetValue}" class="maker">
+							<a blc:togglefacetlink="${facetValue}" class="maker">
 								<span th:if="${facetValue.value != null}" th:remove="tag"
 									th:text="${facetValue.value}"></span>
 									

@@ -1171,7 +1171,6 @@ ul#payment_methods li {
 	}
 	
 	#left_column header #sort {
-		width: 20%;
 		font-size: 12px;
 		margin-top: 6px;
 		line-height: 14px;
@@ -1179,9 +1178,36 @@ ul#payment_methods li {
 		float: right;
 	}
 	
-		#left_column header #sort select {
-			font-size: 12px;
-			display: inline;
+		#left_column header #sort span.heading {
+			display: block;
+			margin-bottom: 6px;
+		}
+		
+		#left_column header #sort a {
+			padding: 2px 4px;
+			border-radius: 2px;
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			font-weight: normal;
+			color: #655C5A;
+			text-decoration: none;
+		}
+		
+		#left_column header #sort a.active {
+			background: #EAEBE3;
+			font-weight: bold;
+		}
+		
+		#left_column header #sort a.asc:after {
+			font-size: 8px;
+			margin-left: 5px;
+			content: "\25B2";
+		}
+		
+		#left_column header #sort a.desc:after {
+			font-size: 8px;
+			margin-left: 5px;
+			content: "\25BC";
 		}
 	
 #product_main_image {
