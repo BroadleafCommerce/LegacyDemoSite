@@ -17,7 +17,7 @@
 		<section id="left_column">
 	
 			<header>
-				<h1>Viewing All Hot Sauces</h1>
+				<h1 th:inline="text">Viewing All [[${category.name}]]</h1>
 				<div th:substituteby="catalog/partials/productSortOptions"></div>
 			</header>
 			
