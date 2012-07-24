@@ -536,6 +536,14 @@ nav {
     width: 200px;
 }
 
+.success {
+	background: #E6EFC2;
+	border: 2px solid #C6D880;
+	color: #264409;
+	margin: 0;
+	padding: .8em;
+}
+
 #account-menu li {
     padding: 6px 0;
 }

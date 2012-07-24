@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/account/addresses")
@@ -49,8 +50,8 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addCustomerAddress(HttpServletRequest request, Model model, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result) {
-        return super.addCustomerAddress(request, model, form, result);
+    public String addCustomerAddress(HttpServletRequest request, Model model, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+        return super.addCustomerAddress(request, model, form, result, redirectAttributes);
     }
     
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.GET)
@@ -59,13 +60,13 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST)
-    public String updateCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result) {
-    	return super.updateCustomerAddress(request, model, customerAddressId, form, result);
+    public String updateCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+    	return super.updateCustomerAddress(request, model, customerAddressId, form, result, redirectAttributes);
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST, params="removeAddress=Remove")
-    public String removeCustomerAddress(HttpServletRequest request, @PathVariable("customerAddressId") Long customerAddressId) {
-    	return super.removeCustomerAddress(request, customerAddressId);
+    public String removeCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, RedirectAttributes redirectAttributes) {
+    	return super.removeCustomerAddress(request, model, customerAddressId, redirectAttributes);
     }
     
     

@@ -20,6 +20,7 @@
 			<ul th:substituteby="account/partials/accountMenu" />
 
 			<div class="manage-account-form-wrapper">
+				<p class="success" th:if="${successMessage}" th:text="${successMessage}"></p>
 				<h2>Address Book</h2>
 				<p th:if="${#lists.isEmpty(customerAddresses)}" style="margin: 20px 10px;">
 					You have not yet added any addresses to your account. Start by adding one below. 
@@ -81,6 +82,10 @@
 				            <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
 				            <input type="text" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
 				        </div>
+						<div class="form25 margin20">
+							<label>&nbsp;</label>
+							<input type="checkbox" th:field="*{address.default}" class="field25" style="width:22px;" /> Make Default
+						</div>				        
 				        <div class="form100">
 				        	<label for="address_name">Address Name</label>
 				        	<input type="text" th:field="*{addressName}" class="field50" />
