@@ -47,6 +47,7 @@ public class CartController extends BroadleafCartController {
 		try {
 			super.add(request, response, model, addToCartItem);
 			
+			responseMap.put("productId", addToCartItem.getProductId());
 			responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
 			responseMap.put("quantityAdded", addToCartItem.getQuantity());
 			responseMap.put("cartItemCount", String.valueOf(CartState.getCart().getItemCount()));
