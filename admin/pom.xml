@@ -32,58 +32,96 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<configuration>
-							<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
-						</configuration>
-						<goals>
-							<goal>compile</goal>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
+	<plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>gwt-maven-plugin</artifactId>
+		<executions>
+			<execution>
 				<configuration>
-					<style>DETAILED</style>
-					<modules>
-						<module>com.mycompany.gwt.mycompanyAdmin</module>
-					</modules>
-					<inplace>false</inplace>
-					<hostedWebapp>${webappDirectory}</hostedWebapp>
-					<bindAddress>0.0.0.0</bindAddress>
-					<debugPort>8001</debugPort>
-					<runTarget>admin/admin.html</runTarget>
+					<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webappDirectory>${webappDirectory}</webappDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.22</version>
-				<configuration>
-					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-					<webApp>${webappDirectory}</webApp>
+				<goals>
+					<goal>compile</goal>
+					<goal>test</goal>
+				</goals>
+			</execution>
+		</executions>
+		<configuration>
+			<style>DETAILED</style>
+			<modules>
+				<module>com.mycompany.gwt.mycompanyAdmin</module>
+			</modules>
+			<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M </extraJvmArgs>
+		    <noServer>true</noServer>
+			<localWorkers>2</localWorkers>
+			<inplace>false</inplace>
+			<hostedWebapp>${webappDirectory}</hostedWebapp>
+			<bindAddress>0.0.0.0</bindAddress>
+			<debugPort>8001</debugPort>
+			<runTarget>admin/admin.html</runTarget>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		<configuration>
+			<webappDirectory>${webappDirectory}</webappDirectory>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.mortbay.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<version>8.0.0.M2</version>
+		<configuration>
+			<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
+			<contextPath>/admin</contextPath>
+			<stopPort>9967</stopPort>
+			<stopKey>foo</stopKey>
 
-						<contextPath>/admin</contextPath>
-					<stopPort>9967</stopPort>
-					<stopKey>foo</stopKey>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8081</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
-				</configuration>
-			</plugin>
+			<connectors>
+				<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+					<port>8081</port>
+					<maxIdleTime>60000</maxIdleTime>
+				</connector>
+				<connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
+					<port>8444</port>
+					<keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
+					<keyPassword>broadleaf</keyPassword>
+					<password>broadleaf</password>
+				</connector>
+			</connectors>
+		</configuration>
+	</plugin>
+
+	<plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>keytool-maven-plugin</artifactId>
+		<version>1.2</version>
+		<executions>
+			<execution>
+				<phase>generate-resources</phase>
+				<id>clean</id>
+				<goals>
+					<goal>clean</goal>
+				</goals>
+			</execution>
+			<execution>
+				<phase>generate-resources</phase>
+				<id>genkey</id>
+				<goals>
+					<goal>genkey</goal>
+				</goals>
+			</execution>
+		</executions>
+		<configuration>
+			<keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
+			<dname>cn=localhost</dname>
+			<keypass>broadleaf</keypass>
+			<storepass>broadleaf</storepass>
+			<alias>broadleaf</alias>
+			<keyalg>RSA</keyalg>
+		</configuration>
+	</plugin>
 	
 			<plugin>
 				<groupId>org.zeroturnaround</groupId>

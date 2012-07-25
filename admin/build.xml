@@ -19,6 +19,7 @@
             <arg value="-Pgwt"/>
 			<arg value="gwt:run"/>
 			<arg value="-Dgwt.extraJvmArgs=-XX:MaxPermSize=256M -Xmx512M -Dlogs.dir=${logs.dir}"/>
+			<arg value="-Dgwt.noserver=true"/>
 		</artifact:mvn>
 	</target>
 
@@ -30,6 +31,7 @@
             <arg value="-Pgwt"/>
 			<arg value="gwt:debug"/>
 			<arg value="-Dgwt.extraJvmArgs=-XX:MaxPermSize=256M -Xmx512M -Dlogs.dir=${logs.dir}"/>
+			<arg value="-Dgwt.noserver=true"/>
 		</artifact:mvn>
 	</target>
 
