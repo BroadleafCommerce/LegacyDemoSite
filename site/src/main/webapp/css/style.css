@@ -600,7 +600,7 @@ form.manage-account input[type="submit"] {
     width: 600px;
 }
 
-#order-history h4 {
+.order-details-container h4 {
 	margin: 0;
 	padding: 0;
 	text-decoration: underline;
@@ -645,13 +645,6 @@ form.manage-account input[type="submit"] {
     width: 100px;
 }
 
-
-#order-history section {
-	margin: 10px;
-	padding: 5px 10px;
-	border: 1px solid #c5c8c1;
-}
-
 /* Manage Account -> Order History -> Order Details */
 #order-history .order-details {
     display: none;
@@ -663,89 +656,99 @@ form.manage-account input[type="submit"] {
 	padding: 0;
 }
 
-#order-history .shipping-groups > li {
-	margin: 10px 0;
-	border: 1px solid #c5c8c1;
+.order-details-container {
+	float: left;
+	width: 600px;
 }
 
-#order-history .shipping-groups h3 {
+.order-details-container ul {
+	list-style: none;
+}
+
+.order-details-container .shipping-groups > li {
+	margin: 10px 0;
+	border: 1px solid #c5c8c1;
+	width: 600px;
+}
+
+.order-details-container .shipping-groups h3 {
 	background-color: #f3efeb;
 	border-bottom: 1px solid #c8c5c1;
 	margin: 0;
 	padding: 6px;
 }
 
-#order-history .payment-information h3 {
+.order-details-container .payment-information h3 {
 	color: #fff;
 	background-color: #E40037;
 }
 
-#order-history .details {
+.order-details-container .details {
 	padding: 12px;
 } 
 
-#order-history .payment-information .order-summary {
+.order-details-container .payment-information .order-summary {
 	width: 360px;
 }
 
-#order-history .order-summary th, #order-history .order-items th {
+.order-details-container .order-summary th, .order-details-container .order-items th {
 	text-decoration: underline;
 } 
 
-#order-history .shipping-information, #order-history .payment-details {
+.order-details-container .shipping-information, .order-details-container .payment-details {
 	float: left;
 	width: 200px;
 }
 
-#order-history .shipping-type, #order-history .payment-method {
+.order-details-container .shipping-type, .order-details-container .payment-method {
 	margin-top: 20px;
 }
 
-#order-history .shipment-total, #order-history .grand-total {
+.order-details-container .shipment-total, .order-details-container .grand-total {
 	font-weight: bold;
 }
 
-#order-history .grand-total td {
+.order-details-container .grand-total td {
 	font-size: 15px;
 	padding-top: 6px;
 }
 
-#order-history .order-items, #order-history .order-summary {
+.order-details-container .order-items, .order-details-container .order-summary {
 	float: right;
 	width: 360px;
 }
 
-#order-history .order-items .shipment-summary.merchandise-total td {
+.order-details-container .order-items .shipment-summary.merchandise-total td {
 	border-top: 1px dotted #c8c5c1;
 	padding-top: 10px;
 }
 
-#order-history tr.taxes td {
+.order-details-container tr.taxes td {
 	border-bottom: 1px solid #c8c5c1;
 }
 
-#order-history .order-items td.label, #order-history .order-items th.label, #order-history .order-summary th.label {
+.order-details-container .order-items td.label, .order-details-container .order-items th.label, .order-details-container .order-summary th.label {
 	text-align: left;
 }
 
-#order-history td.price, #order-history th.price {
+.order-details-container td.price, .order-details-container th.price {
 	text-align: right;
 }
 
-#order-history td.price.discount {
+.order-details-container td.price.discount {
 	color: #E40037; 
 }
 
-#order-history .order-summary th {
+.order-details-container .order-summary th {
 	text-align: right;
 }
 
-#order-history .shipment-summary td.label, #order-history .order-summary td.label {
+.order-details-container .shipment-summary td.label, .order-details-container .order-summary td.label {
 	text-align: right;
 	width: 300px;
 }
 
-#order-history .shipment-summary td:last-child {
+.order-details-container .shipment-summary td:last-child {
 	text-align: right;
 }
 
