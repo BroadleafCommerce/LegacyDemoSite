@@ -1,6 +1,13 @@
 package com.mycompany.controller.checkout;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
+import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
@@ -10,6 +17,8 @@ import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
+import org.broadleafcommerce.profile.core.domain.CustomerAddress;
+import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,9 +27,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/checkout")
@@ -89,14 +95,23 @@ public class CheckoutController extends BroadleafCheckoutController {
     }
 
     protected void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
-        if (cart.getFulfillmentGroups() != null && cart.getFulfillmentGroups().size() > 0 && 
-        		cart.getFulfillmentGroups().get(0).getAddress() != null && 
-        		cart.getFulfillmentGroups().get(0).getFulfillmentOption() != null) {
-            shippingForm.setAddress(cart.getFulfillmentGroups().get(0).getAddress());
-            shippingForm.setFulfillmentOptionId(cart.getFulfillmentGroups().get(0).getFulfillmentOption().getId());
+        
+    	List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
+    	
+    	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
+    		//if the cart has already has fulfillment information
+            shippingForm.setAddress(groups.get(0).getAddress());
+            shippingForm.setFulfillmentOptionId(groups.get(0).getFulfillmentOption().getId());
+        } else {
+        	//check for a default address for the customer
+        	CustomerAddress defaultAddress = customerAddressService.findDefaultCustomerAddress(CustomerState.getCustomer().getId());
+        	if (defaultAddress != null) {
+        		shippingForm.setAddress(defaultAddress.getAddress());
+        		shippingForm.setAddressName(defaultAddress.getAddressName());
+        	}
         }
 
-        if (cart.getPaymentInfos() != null) {
+    	if (cart.getPaymentInfos() != null) {
             for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
                 if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
                     billingForm.setAddress(paymentInfo.getAddress());
