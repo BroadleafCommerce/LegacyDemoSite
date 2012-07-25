@@ -1,51 +1,22 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<div>
+    <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
+        <li>
+            <span class="order-number">Order Number</span>
+            <span class="submit-date">Date</span>
+            <span class="status">Status</span>
+            <span class="total">Total</span>
+        </li>
+        <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
+            <div class="order-info-row">
+             <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
+             <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
+             <span class="status" th:text="*{status.friendlyType}">Processing</span>
+             <span class="total" blc:price="*{total}"></span>
+         </div>
+            <div class="order-details"></div>
+        </li>
+    </ul>
+    
+    <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
 
-<blc:head pageTitle="Broadleaf Demo" />
-
-<body>
-<div id="notification_bar"></div>
-<header th:substituteby="layout/partials/header" />
-
-<div id="content" class="width_setter group" role="main">
-
-    <nav th:substituteby="layout/partials/nav" />
-
-    <div class="manage-account-container clearfix">
-
-		<h1>Account Options</h1>
-
-        <ul th:substituteby="account/partials/accountMenu" />
-
-
-        <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
-            <li>
-                <span class="order-number">Order Number</span>
-                <span class="submit-date">Date</span>
-                <span class="status">Status</span>
-                <span class="total">Total</span>
-            </li>
-            <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
-                <div class="order-info-row">
-	                <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
-	                <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
-	                <span class="status" th:text="*{status.friendlyType}">Processing</span>
-	                <span class="total" blc:price="*{total}"></span>
-	            </div>
-                <div class="order-details"></div>
-            </li>
-        </ul>
-        
-        <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
-
-
-    </div>
 </div>
-
-<footer th:substituteby="layout/partials/footer" />
-
-</body>
-</html>

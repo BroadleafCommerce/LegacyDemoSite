@@ -1,46 +1,18 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
-<blc:head pageTitle="Broadleaf Demo" />
-
-<body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">	
-
-        <nav th:substituteby="partials/nav" />
-
-        <div class="manage-account-container clearfix">
-
-            <ul th:substituteby="partials/accountMenu" />
-
-            <form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
-                <div class="form50">
-                    <label for="emailAddress">Email Address:</label>
-                    <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
-                    <input type="text" name="emailAddress" id="emailAddress" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'"/>
-                </div>
-                <div class="form50">
-                    <label for="firstName">First Name:</label>
-                    <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
-                    <input type="text" name="firstName" id="firstName" th:field="*{firstName}" class="field50" th:classappend="${#fields.hasErrors('firstName')}? 'fieldError'"/>
-                </div>
-                <div class="form50">
-                    <label for="lastName">Last Name:</label>
-                    <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
-                    <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
-                </div>
-                <input type="submit" class="submitFormButton" value="Update Account" />
-            </form>
-
-        </div>
-	</div>
-	
-	<footer th:substituteby="partials/footer" />
-	
-</body>
-</html>
+<form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
+    <div class="form50">
+        <label for="emailAddress">Email Address:</label>
+        <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
+        <input type="text" name="emailAddress" id="emailAddress" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'"/>
+    </div>
+    <div class="form50">
+        <label for="firstName">First Name:</label>
+        <span class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        <input type="text" name="firstName" id="firstName" th:field="*{firstName}" class="field50" th:classappend="${#fields.hasErrors('firstName')}? 'fieldError'"/>
+    </div>
+    <div class="form50">
+        <label for="lastName">Last Name:</label>
+        <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
+    </div>
+    <input type="submit" class="submitFormButton" value="Update Account" />
+</form>

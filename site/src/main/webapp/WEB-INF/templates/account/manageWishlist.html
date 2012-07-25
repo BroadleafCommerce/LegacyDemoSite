@@ -1,35 +1,11 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<div>     
 
-<blc:head pageTitle="Broadleaf Demo" />
-
-<body>
-<div id="notification_bar"></div>
-<header th:substituteby="layout/partials/header" />
-
-<div id="content" class="width_setter group" role="main">
-
-    <nav th:substituteby="layout/partials/nav" />
-
-    <div class="manage-account-container clearfix">
-		<h1>Account Options</h1>
-        <ul th:substituteby="account/partials/accountMenu" />
-        
-        <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
-	        <table th:substituteby="account/partials/wishlistItemsTable"></table>
-        </div>
-        
-        <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
-            <h3>You do not have any items in your wishlist</h3>
-        </div>
-        
+    <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
+    	<table th:substituteby="account/partials/wishlistItemsTable"></table>
     </div>
+    
+    <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
+        <h3>You do not have any items in your wishlist</h3>
+    </div>
+    
 </div>
-
-<footer th:substituteby="layout/partials/footer" />
-
-</body>
-</html>

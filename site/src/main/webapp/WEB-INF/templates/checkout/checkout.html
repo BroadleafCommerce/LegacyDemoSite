@@ -1,123 +1,60 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<div id="cart">
 
-<blc:head pageTitle="Broadleaf Demo - Heat Clinic - Checkout" />
+    <div class="cart_title">
+        Order Summary
+        &nbsp;
+        <a id="cartLink" class="fancycart" th:href="@{/cart}">
+            Edit
+        </a>
+    </div>
+    <table id="cart_summary" class="order_summary">
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th align="left">Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+            <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+            <td align="left">
+                <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                <br/>
+                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+                    <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+                </ul>
+            </td>
+            <td align="center" th:text="*{quantity}"></td>
+            <td align="center" blc:price="*{price}"></td>
+            <td align="center" th:if="*{adjustmentValue.zero}">---</td>
+            <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
 
-<body>
-	<div id="notification_bar"></div>
+            <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
+        </tr>
+        </tbody>
+    </table>
 
-    <header th:substituteby="layout/partials/headerCheckout" />
+    <div class="cart_title">Step 1 &raquo; Shipping Information</div>
     
-	<div id="checkout_content" class="width_setter group" role="main">
-	
-	    <div id="cart">
-	
-	        <div class="cart_title">
-	            Order Summary
-	            &nbsp;
-	            <a id="cartLink" class="fancycart" th:href="@{/cart}">
-	                Edit
-	            </a>
-	        </div>
-	        <table id="cart_summary" class="order_summary">
-	            <thead>
-	            <tr>
-	                <th>&nbsp;</th>
-	                <th align="left">Item</th>
-	                <th>Quantity</th>
-	                <th>Price</th>
-	                <th>Discount</th>
-	                <th>Total</th>
-	            </tr>
-	            </thead>
-	            <tbody>
-	            <tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-	                <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-	                <td align="left">
-	                    <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
-	                    <br/>
-	                    <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-	                        <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-	                    </ul>
-	                </td>
-	                <td align="center" th:text="*{quantity}"></td>
-	                <td align="center" blc:price="*{price}"></td>
-	                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-	                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
-	
-	                <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
-	            </tr>
-	            </tbody>
-	        </table>
-	
-	        <div class="cart_title">Step 1 &raquo; Shipping Information</div>
-	        
-	        <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
-	        	<table th:substituteby="checkout/partials/multishipInfo"></table>
-	        </div>
-	        <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
-	        	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
-	        </div> 
-	
-	        <div class="cart_title">Step 2 &raquo; Billing Information</div>
-	
-	        <div class="clearfix"></div>
-	
-	        <div id="checkout_warning" th:if="!${validShipping}">
-	            Please fill out a shipping address and pick a shipping method to complete purchase
-	        </div>
-	
-	        <div th:substituteby="checkout/partials/billingInfoForm" />
-	
-	    </div>
-	
-	</div>
+    <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+    	<table th:substituteby="checkout/partials/multishipInfo"></table>
+    </div>
+    <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+    	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
+    </div> 
 
-	<footer th:substituteby="layout/partials/footer" />
+    <div class="cart_title">Step 2 &raquo; Billing Information</div>
 
-	<script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
-		$().ready(function() {
-            $('#paymentOptions dd').css({display:"none"});
-            $('#paymentMethod_cc').click();
-            $('#shipping_info').validate({
-                rules: {
-                    'address.firstName': "required",
-                    'address.lastName': "required",
-                    'address.addressLine1': "required",
-                    'address.city': "required",
-                    'address.state': "required",
-                    'address.emailAddress' : "required"
-                },
-                messages: {
-                    'address.firstName': "Please enter your first name." + "<br/>",
-                    'address.lastName': "Please enter your last name." + "<br/>",
-                    'address.addressLine1': "Please enter the actual address." + "<br/>",
-                    'address.city': "Please enter the city." + "<br/>",
-                    'address.state': "Please enter the state." + "<br/>",
-                    'address.emailAddress' : "Please enter a valid email address." + "<br/>"
-                },
-                errorPlacement: function(error, element) {
-                    $(element).parent().append(error);
-                },
-                highlight: function(element, errorClass) {
-                    $(element).addClass('fieldError');
-                },
-                unhighlight: function(element, errorClass) {
-                    $(element).removeClass('fieldError');
-                },
-                errorElement: "div",
-                errorClass: "error"
-            });
+    <div class="clearfix"></div>
 
-		});
-        /*]]>*/
-	</script>
+    <div id="checkout_warning" th:if="!${validShipping}">
+        Please fill out a shipping address and pick a shipping method to complete purchase
+    </div>
 
-</body>
-</html>
+    <div th:substituteby="checkout/partials/billingInfoForm" />
+
+</div>
