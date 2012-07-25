@@ -3,8 +3,8 @@
 		<tr>
 			<th colspan="2">Item</th>
 			<th>Quantity</th>
-			<th>Price</th>
-			<th>Discount</th>
+			<th>Price <span class="small">(each)</span></th>
+			<th>Discount <span class="small">(each)</span></th>
 			<th>Total</th>
 		</tr>
 	</thead>
@@ -27,7 +27,7 @@
 				</form>
 			  	<a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
 			</td>
-			<td align="center" blc:price="*{price}"></td>
+			<td align="center" blc:price="*{getPriceBeforeAdjustments(true)}"></td>
 			
 			<td align="center" th:if="*{adjustmentValue.zero}">---</td>
 			<td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>

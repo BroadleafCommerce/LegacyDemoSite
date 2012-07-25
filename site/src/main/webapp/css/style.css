@@ -820,11 +820,17 @@ form.manage-account input[type="submit"] {
 }
 
 	#cart_products thead tr th {
-		padding: 5px;
+		padding: 0 5px;
 		text-align: center;
-		font: bold 10px/18px Helvetica, sans-serif;
+		font: bold 10px/10px Helvetica, sans-serif;
 		text-transform: uppercase;
 		color: #333;
+		vertical-align: top;
+	}
+	
+	#cart_products thead tr th span.small {
+		font-size: 8px;
+		display: block;
 	}
 	
 	#cart_products tbody tr td {
@@ -1014,6 +1020,10 @@ form.manage-account input[type="submit"] {
 	display: block;
 }
 
+	#cart_promo label {
+		padding-top: 5px;
+	}
+	
 	#cart_promo #promoCode {
 		border: none;
 		padding: 3px 5px;

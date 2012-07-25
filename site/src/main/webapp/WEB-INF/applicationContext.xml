@@ -80,7 +80,7 @@
 		</property>
 	</bean>
     
-    <!-- Uncomment this bean to disable caching -->
+    <!-- Delete this bean to enable caching -->
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
