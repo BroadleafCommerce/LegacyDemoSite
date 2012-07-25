@@ -69,6 +69,15 @@
         </property>
     </bean>
     
+    <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
+    <bean id="blEntityConfiguration" class="org.broadleafcommerce.common.persistence.EntityConfiguration">
+		<property name="entityContexts">
+			<list>
+				<value>classpath:applicationContext-entity.xml</value>
+			</list>
+		</property>
+	</bean>
+    
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
     	<constructor-arg ref="blMailSender"/>
     </bean>

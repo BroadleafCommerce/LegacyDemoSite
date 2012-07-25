@@ -71,6 +71,15 @@
         </property>
     </bean>
     
+    <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
+    <bean id="blEntityConfiguration" class="org.broadleafcommerce.common.persistence.EntityConfiguration">
+		<property name="entityContexts">
+			<list>
+				<value>classpath:applicationContext-entity.xml</value>
+			</list>
+		</property>
+	</bean>
+    
     <!-- Uncomment this bean to disable caching -->
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
