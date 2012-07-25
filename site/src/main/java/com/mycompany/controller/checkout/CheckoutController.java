@@ -113,7 +113,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     	if (cart.getPaymentInfos() != null) {
             for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
-                if (PaymentInfoType.CREDIT_CARD == paymentInfo) {
+                if (PaymentInfoType.CREDIT_CARD.equals(paymentInfo.getType())) {
                     billingForm.setAddress(paymentInfo.getAddress());
                 }
             }

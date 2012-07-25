@@ -80,11 +80,9 @@
             <div id="shipping_total" blc:price="${cart.totalShipping}"/>
         </div>
 
-        <noscript>
-            <div>
-                <input type="submit" class="small dark" value="Select Shipping"/>
-            </div>
-        </noscript>
+        <div>
+            <input id="select_shipping" type="submit" class="small dark" value="Select Shipping"/>
+        </div>
 
         <p>
             <a id="multiship" th:href="@{/checkout/multiship}">Ship to Multiple Addresses</a>

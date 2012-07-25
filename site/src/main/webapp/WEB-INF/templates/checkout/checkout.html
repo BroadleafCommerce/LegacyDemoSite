@@ -55,7 +55,7 @@
 	            </tbody>
 	        </table>
 	
-	        <div class="cart_title">1 &raquo; Shipping Information</div>
+	        <div class="cart_title">Step 1 &raquo; Shipping Information</div>
 	        
 	        <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
 	        	<table th:substituteby="checkout/partials/multishipInfo"></table>
@@ -64,7 +64,7 @@
 	        	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
 	        </div> 
 	
-	        <div class="cart_title">2 &raquo; Billing Information</div>
+	        <div class="cart_title">Step 2 &raquo; Billing Information</div>
 	
 	        <div class="clearfix"></div>
 	
@@ -95,15 +95,15 @@
                     'address.emailAddress' : "required"
                 },
                 messages: {
-                    'address.firstName': "Please enter your first name.",
-                    'address.lastName': "Please enter your last name.",
-                    'address.addressLine1': "Please enter the actual address.",
+                    'address.firstName': "Please enter your first name." + "<br/>",
+                    'address.lastName': "Please enter your last name." + "<br/>",
+                    'address.addressLine1': "Please enter the actual address." + "<br/>",
                     'address.city': "Please enter the city." + "<br/>",
                     'address.state': "Please enter the state." + "<br/>",
-                    'address.emailAddress' : "Please enter a valid email address."
+                    'address.emailAddress' : "Please enter a valid email address." + "<br/>"
                 },
                 errorPlacement: function(error, element) {
-                    element.parent().prepend(error);
+                    $(element).parent().append(error);
                 },
                 highlight: function(element, errorClass) {
                     $(element).addClass('fieldError');
@@ -111,7 +111,7 @@
                 unhighlight: function(element, errorClass) {
                     $(element).removeClass('fieldError');
                 },
-                errorElement: "span",
+                errorElement: "div",
                 errorClass: "error"
             });
 

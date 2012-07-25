@@ -68,13 +68,8 @@ $(function(){
     });
 
     /* Submit Shipping Form when radio button is checked */
-    $('body').on('click', 'input.shipping_method_option', function() {
-        if (!$('#shipping_info').valid()){
-            $(this).prop('checked', false);
-        } else {
-            $('#loading_shipping').show().prev().hide();
-            $('#shipping_info').submit();
-        }
+    $('body').on('click', '#select_shipping', function() {
+        $('#shipping_info').submit();
     });
 
     /* Show or Edit multiship options link was clicked */

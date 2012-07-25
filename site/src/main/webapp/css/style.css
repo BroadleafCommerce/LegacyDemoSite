@@ -188,7 +188,7 @@ td.error {
 .group:after { clear:both; }
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
-span.error {
+span.error, div.error{
 	color: #E40037;
 	font-weight: bold;
 }
