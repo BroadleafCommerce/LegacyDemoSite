@@ -1,5 +1,7 @@
-<li>
+<li class="product_container">
+
 	<div th:if="*{featuredProduct}" class="new_badge">New!</div>
+	
 	<div class="image">
 		<a th:href="@{*{url}}">
 		<img th:src="@{*{media['primary'].url}}" alt="Sauce Image" />
@@ -9,17 +11,34 @@
 		</div>
 		</a>
 	</div>
+	
 	<div class="content">
 		<div class="title" th:text="*{name}"></div>
 		<p th:utext="*{longDescription}"></p>
 	</div>
 	
-	<div th:substituteby="catalog/partials/productActions"></div>
+	<div th:class="*{'productActions productActions' + id}">
+	
+		<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'">
+			<a class="fancycart fancybox.ajax inCart" th:href="@{/cart}">In Cart!</a>
+		</div>
+		
+		<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
+			<form method="POST" th:action="@{/cart/add}">
+				<input type="hidden" name="productId" th:value="*{id}" />
+				<input type="hidden" name="quantity" value="1" />
+	
+				<input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
+				<input type="submit" class="addToCart" value="Buy Now!"/>
+			</form>
+		</div>
+		
+	</div>
 	
 	<div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
 		<h3 th:text="*{name}"></h3>
-		<div class="product-options" th:include="catalog/partials/productOptions"/>
-		<span class="error centered" style="display: none;">All options are required</span>
-		<div th:substituteby="catalog/partials/productActions"></div>
+		<div class="product-options" th:substituteby="catalog/partials/productOptions"/>
+		<input type="button" class="addToCart" value="Buy Now!" />
 	</div>
+	
 </li>

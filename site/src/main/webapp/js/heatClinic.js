@@ -2,25 +2,6 @@
  * used by various other areas of the site */
 var HC = (function($) {
 	
-	function adjustPrice($option) {
-	    var adjustments = 0;
-	    $('.product-option-group li.active').each(function() {
-	        var adjustment = $(this).data('price-adjustment');
-	        if (adjustment) {
-	            adjustments += adjustment;
-	        }
-	    });
-	    var $price = $('#price');
-	    var basePrice = $price.data('base-price');
-	    var currentPrice = $price.data('current-price');
-	    var newPrice = basePrice + adjustments;
-	    $price.text('$' + newPrice);
-	    if (newPrice != currentPrice) {
-	        $price.effect('highlight', {}, 1000);
-	        $price.data('current-price', newPrice);
-	    }
-	}
-	
 	function updateCurrentImage() {
 		//grab the active product option values
 		var activeOptions = $('.product-options .active');
@@ -36,7 +17,7 @@ var HC = (function($) {
 			var candidateMedia = this;
 			var candidateMediaMatches = 0;
 			$.each(optionValues, function() {
-				if ($(candidateMedia).attr('data-tags').toLowerCase().indexOf(this.toLowerCase()) !== -1) {
+				if ($(candidateMedia).attr('data-tags') != undefined && $(candidateMedia).attr('data-tags').toLowerCase().indexOf(this.toLowerCase()) !== -1) {
 					candidateMediaMatches++;
 				}
 			});
@@ -64,7 +45,6 @@ var HC = (function($) {
 	        var $optionText = $option.parents('.product-option-group').find('span.option-value');
 	        $optionText.text(selectedOption);
 	        updateCurrentImage();
-	        //adjustPrice($option);
 	    }
 	}
 	

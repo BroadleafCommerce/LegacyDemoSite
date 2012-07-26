@@ -1239,10 +1239,18 @@ ul#payment_methods li {
 	float: left;
 }
 
-	#product_main_image img {
+	#product_main_image img#main_image {
 		width: 400px;
 		height: auto;
 	}
+
+.product-options {
+	text-align: left;
+}
+
+.product-options.modal {
+	text-align: center;
+}
 
 #product_thumbs {
 	width: 420px;
@@ -1579,7 +1587,7 @@ ul#payment_methods li {
 				text-decoration: none;
 			}
 		
-		#featured_products li .add_to_cart {
+		#featured_products li .add_to_cart, #featured_products li .in_cart {
 			margin-left: 90px;
 			display: block;
 		}
@@ -1618,7 +1626,8 @@ footer {
 /* Shared styles between all buttons */
 input[type="submit"].big, a.big-button, 
 input[type="submit"].medium, a.medium-button,
-input[type="submit"].small, a.small-button {
+input[type="submit"].small, a.small-button,
+.addToCart, a.inCart {
 	-webkit-transition: background-color 0.2s ease-in;  
 	-moz-transition: background-color 0.2s ease-in;  
 	-o-transition: background-color 0.2s ease-in;  
@@ -1631,7 +1640,7 @@ input[type="submit"].small, a.small-button {
 	text-decoration: none;
 }
 
-input[type="submit"].big, a.big-button {
+input[type="submit"].big, a.big-button, .addToCart, a.inCart {
 	font: 16px/16px 'Open Sans', Helvetica, sans-serif;
 	font-weight: 600;
 	margin: 10px auto 0;
@@ -1639,7 +1648,7 @@ input[type="submit"].big, a.big-button {
 	display: inline-table;
 }
 
-input[type="submit"].medium, a.medium-button {
+input[type="submit"].medium, a.medium-button, #featured_products .addToCart, #featured_products a.inCart {
 	font: 12px/16px 'Open Sans', Helvetica, sans-serif;
 	font-weight: 600;
 	margin: 10px auto;
@@ -1655,17 +1664,17 @@ input[type="submit"].small, a.small-button {
 	display: inline-table;
 }
 
-input[type="submit"].red, a.red-button {
+input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
 	color: white;
 	background-color: #E40037;
 }
 
-input[type="submit"].dark, a.dark-button {
+input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
 	color: white;
 	background-color: #3D0001;
 }
 	
-input[type="submit"].gray, a.gray-button {
+input[type="submit"].gray, a.gray-button, a.inCart {
 	color: white;
 	background-color: #BBAFAE;
 }
@@ -1673,22 +1682,23 @@ input[type="submit"].gray, a.gray-button {
 /* Shared hover styles between all buttons */
 input[type="submit"].big:hover, a.big-button:hover, 
 input[type="submit"].medium:hover, a.medium-button:hover,
-input[type="submit"].small:hover, a.small-button:hover {
+input[type="submit"].small:hover, a.small-button:hover,
+.addToCart, a.inCart {
 	-webkit-transition: background-color 0.2s ease-in;  
 	-moz-transition: background-color 0.2s ease-in;  
 	-o-transition: background-color 0.2s ease-in;  
 	transition: background-color 0.2s ease-in;
 }
 
-input[type="submit"].red:hover, a.red-button:hover {
+input[type="submit"].red:hover, a.red-button:hover, .addToCart:hover {
 	background-color: #a50832;
 }
 
-input[type="submit"].gray:hover, a.gray-button:hover {
+input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
 	background-color: #9B8A87;
 }
 
-input[type="submit"].dark:hover, a.dark-button:hover {
+input[type="submit"].dark:hover, a.dark-button:hover, #featured_products .addToCart:hover {
 	background-color: #0f0000;
 }
 
@@ -2227,43 +2237,123 @@ and (max-width : 480px) {
 }
 
 /* =============================================================================
-   CloudZoom
+   jqzoom
    ========================================================================== */
 
-/* This is the moving lens square underneath the mouse pointer. */
-.cloud-zoom-lens {
-	border: 4px solid #888;
-	margin:-4px;	/* Set this to minus the border thickness. */
-	background-color:#fff;	
-	cursor:move;		
+.zoomPad{
+	position:relative;
+	float:left;
+	z-index:99;
+	cursor:crosshair;
 }
 
-/* This is for the title text. */
-.cloud-zoom-title {
-	font-family:Arial, Helvetica, sans-serif;
-	position:absolute !important;
-	background-color:#000;
-	color:#fff;
-	padding:3px;
-	width:100%;
-	text-align:center;	
-	font-weight:bold;
-	font-size:10px;
-	top:0px;
+
+.zoomPreload{
+   -moz-opacity:0.8;
+   opacity: 0.8;
+   filter: alpha(opacity = 80);
+   color: #333;
+   font-size: 12px;
+   font-family: Tahoma;
+   text-decoration: none;
+   border: 1px solid #CCC;
+   background-color: white;
+   padding: 8px;
+   text-align:center;
+   background-image: url(../img/zoomloader.gif);
+   background-repeat: no-repeat;
+   background-position: 43px 30px;
+   z-index:110;
+   width:90px;
+   height:43px;
+   position:absolute;
+   top:0px;
+   left:0px;
+    * width:100px;
+    * height:49px;
 }
 
-/* This is the zoom window. */
-.cloud-zoom-big {
-	border:4px solid #ccc;
+
+.zoomPup{
 	overflow:hidden;
+	background-color: #FFF;
+	-moz-opacity:0.6;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+	z-index:120;
+	position:absolute;
+	border:1px solid #CCC;
+  z-index:101;
+  cursor:crosshair;
 }
 
-/* This is the loading message. */
-.cloud-zoom-loading {
-	color:white;	
-	background:#222;
-	padding:3px;
-	border:1px solid #000;
+.zoomOverlay{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:#FFF;
+	/*opacity:0.5;*/
+	z-index:5000;
+	width:100%;
+	height:100%;
+	display:none;
+  z-index:101;
+}
+
+.zoomWindow{
+	position:absolute;
+	left:110%;
+	top:40px;
+	background:#FFF;
+	z-index:6000;
+	height:auto;
+  z-index:10000;
+  z-index:110;
+}
+.zoomWrapper{
+	position:relative;
+	border:1px solid #999;
+  z-index:110;
+}
+.zoomWrapperTitle{
+	display:block;
+	background:#999;
+	color:#FFF;
+	height:18px;
+	line-height:18px;
+	width:100%;
+  overflow:hidden;
+	text-align:center;
+	font-size:10px;
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:120;
+  -moz-opacity:0.6;
+  opacity: 0.6;
+  filter: alpha(opacity = 60);
+}
+.zoomWrapperImage{
+	display:block;
+  position:relative;
+  overflow:hidden;
+  z-index:110;
+
+}
+.zoomWrapperImage img{
+  border:0px;
+  display:block;
+  position:absolute;
+  z-index:101;
+}
+
+.zoomIframe{
+  z-index: -1;
+  filter:alpha(opacity=0);
+  -moz-opacity: 0.80;
+  opacity: 0.80;
+  position:absolute;
+  display:block;
 }
 
 /* =============================================================================

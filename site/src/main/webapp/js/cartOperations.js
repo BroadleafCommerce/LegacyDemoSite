@@ -56,19 +56,28 @@ $(function(){
 	});
 	
 	// Intercept add to cart operations and perform them via AJAX instead
-	// This will trigger on any input with class "addToCart"
-	$('body').on('click', 'input.addToCart', function() {
+	// This will trigger on any input with class "addToCart" or "addToWishlist"
+	$('body').on('click', 'input.addToCart,input.addToWishlist', function() {
+		debugger;
+		
 		var $button = $(this),
+			$container = $button.closest('.product_container'),
 			$form = $button.closest('form'),
-			$options = $('span.option-value'),
-			$errorSpan = $button.closest('.product-options').children('span.error'),
-			itemRequest = BLC.serializeObject($form),
-			modalClick = $button.parents('.fancybox-inner').length > 0;
-			
-		if ($errorSpan.length == 0) {
-			$errorSpan = $('.product-options').children('span.error');
+			$options = $container.find('span.option-value'),
+			$errorSpan = $container.find('span.error');
+		
+		if ($container.length == 0) {
+			var myId = $button.parent().attr('id').substring('productOptions'.length);
+			$container = $('.productActions' + myId).closest('.product_container');
+			$form = $container.find('form');
+			$options = $button.parent().find('span.option-value');
+			$errorSpan = $button.parent().find('span.error');
 		}
 		
+		var itemRequest = BLC.serializeObject($form),
+			modalClick = $button.parents('.fancybox-inner').length > 0,
+			wishlistAdd = $button.hasClass('addToWishlist');
+			
 		if (itemRequest.hasProductOptions == "true" && !modalClick) {
 			$.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
 		} else {
@@ -90,63 +99,23 @@ $(function(){
 						
 						if (modalClick) {
 							$.fancybox.close();
+						} else if (wishlistAdd) {
+                            showInCartButton(data.productId, 'wishlist');
 						} else {
 							showInCartButton(data.productId, 'cart');
 						}
 						
-						HC.showNotification(data.productName + "  has been added to the cart!");
+						if (wishlistAdd) {
+							HC.showNotification(data.productName + "  has been added to your wishlist!");
+						} else {
+							HC.showNotification(data.productName + "  has been added to the cart!");
+						}
 					}
 				}
 			);
 		}
 		return false;
 	});
-
-    // Intercept add to wishlist operations and perform them via AJAX instead
-    // This will trigger on any input with class "addToWishlist"
-    $('body').on('click', 'input.addToWishlist', function() {
-        var $button = $(this),
-            $form = $button.closest('form'),
-            $options = $('span.option-value'),
-            $errorSpan = $button.closest('.product-options').children('span.error'),
-            itemRequest = BLC.serializeObject($form),
-            modalClick = $button.parents('.fancybox-inner').length > 0;
-
-        if ($errorSpan.length == 0) {
-            $errorSpan = $('.product-options').children('span.error');
-        }
-
-        if (itemRequest.hasProductOptions == "true" && !modalClick) {
-            $.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
-        } else {
-            $options.each(function(index, element) {
-                itemRequest['itemAttributes[' + $(element).attr('id') + ']'] = $(element).text();
-            });
-
-            BLC.ajax({url: $form.attr('action'),
-                    type: "POST",
-                    dataType: "json",
-                    data: itemRequest
-                }, function(data, extraData) {
-                    if (data.error) {
-                        $errorSpan.css('display', 'block');
-                        $errorSpan.effect('highlight', {}, 1000);
-                    } else {
-                        $errorSpan.css('display', 'none');
-
-                        if (modalClick) {
-                            $.fancybox.close();
-                        } else {
-                            showInCartButton(data.productId, 'wishlist');
-                        }
-
-                        HC.showNotification(data.productName + "  has been added to your wishlist!");
-                    }
-                }
-            );
-        }
-        return false;
-    });
 
     // Intercept update quantity operations and perform them via AJAX instead
 	// This will trigger on any input with class "updateQuantity"

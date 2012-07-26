@@ -62,7 +62,7 @@
 						<div class="section" th:object="${category}">
 					         <blc:related_products productId="${products[0].id}"/>	 
 							 <ul id="featured_products" class="group">
-								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/featuredProductListItem" th:remove="tag"></li>
+								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
 							 </ul>
 						</div>									
 					</div>

@@ -9,5 +9,7 @@ $(function(){
         HC.changeProductOption($(this));
         return false;
     });
+	
+	$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
 
 });

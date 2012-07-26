@@ -1,5 +1,6 @@
 package com.mycompany.controller.account;
 
+import org.broadleafcommerce.core.catalog.domain.Product;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
@@ -45,45 +46,53 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());
             }
-        } catch (RequiredAttributeNotProvidedException e) {
-            responseMap.put("error", "allOptionsRequired");
+        } catch (AddToCartException e) {
+			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+				responseMap.put("error", "allOptionsRequired");
+			} else {
+				throw e;
+			}
         }
         
         return responseMap;
     }
+    
+	/*
+	 * The Heat Clinic does not support adding products with required product options from a category browse page
+	 * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
+	 * for the given product so that the required options may be chosen.
+	 */
+	@RequestMapping(value = "/add", produces = "text/html")
+	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
+		try {
+			return super.add(request, response, model, addToCartItem, WISHLIST_ORDER_NAME);
+		} catch (AddToCartException e) {
+			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+				Product product = catalogService.findProductById(addToCartItem.getProductId());
+				return "redirect:" + product.getUrl();
+			} else {
+				throw e;
+			}
+		}
+	}
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     public String removeItemFromWishlist(HttpServletRequest request, HttpServletResponse response, Model model,
-                                         String wishlistName,  @ModelAttribute("orderItemId") Long itemId) throws RemoveFromCartException {
+    		@ModelAttribute("orderItemId") Long itemId) throws RemoveFromCartException {
         return super.removeItemFromWishlist(request, response, model, WISHLIST_ORDER_NAME, itemId);
     }
 
     @RequestMapping(value = "/moveItemToCart", method = RequestMethod.POST)
     public String moveItemToCart(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException {
-        try {
-            return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
-        } catch (RemoveFromCartException e) {
-            
-        } catch (AddToCartException e) {
-            
-        }
-        
-        return getAccountWishlistView();
+            @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException, RemoveFromCartException {
+    	return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
     }
 
     @RequestMapping(value = "/moveListToCart", method = RequestMethod.POST)
     public String moveListToCart(HttpServletRequest request, HttpServletResponse response, Model model)
-            throws IOException, PricingException, AddToCartException {
-        try {
-            return super.moveListToCart(request, response, model, WISHLIST_ORDER_NAME);  
-        } catch (RemoveFromCartException e) {
-            
-        } catch (AddToCartException e) {
-            
-        }
-        
-        return getAccountWishlistView();
+            throws IOException, PricingException, AddToCartException, RemoveFromCartException {
+        return super.moveListToCart(request, response, model, WISHLIST_ORDER_NAME);  
     }
 
 }

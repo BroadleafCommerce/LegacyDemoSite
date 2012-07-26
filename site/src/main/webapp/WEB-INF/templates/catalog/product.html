@@ -16,7 +16,7 @@
 		
 		<section id="left_column" th:object="${product}">
 		
-			<div id="product_content">
+			<div id="product_content" class="product_container">
 				<h2 th:text="*{name}"></h2>
 				
 				<div id="maker" th:text="*{manufacturer}"></div>
@@ -26,7 +26,7 @@
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
 				
-				<div class="product-options" th:include="catalog/partials/productOptions"/>								
+				<div class="product-options" th:substituteby="catalog/partials/productOptions"/>								
 				
 				<form method="POST" th:action="@{/cart/add}">
 					<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
@@ -40,9 +40,9 @@
 					
 					<div th:utext="*{longDescription}" id="description"></div>
 					
-					<div th:class="${'productActions' + product.id}">
-						<div class="in_cart" th:classappend="${!cart.containsSku(product.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
-						<div class="add_to_cart" th:classappend="${cart.containsSku(product.defaultSku)}? ' hidden'">
+					<div th:class="*{'productActions' + id}">
+						<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
+						<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
 							<input type="hidden" name="productId" th:value="*{id}" />
 							<input type="hidden" name="quantity" value="1" />
 							<input type="submit" class="addToCart big red" value="Buy Now!"/>
@@ -51,16 +51,16 @@
 				</form>
 				
 				<div th:unless="${customer.anonymous}" th:remove="tag">
-                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
-                        <div class="form50">
-                            <label th:text="*{label}"></label>
-                            <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
-                                <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
-                            </select>
-                        </div>
-                    </div>
 
                     <form method="POST" th:action="@{/account/wishlist/add}">
+	                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
+	                        <div class="form50">
+	                            <label th:text="*{label}"></label>
+	                            <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+	                                <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+	                            </select>
+	                        </div>
+	                    </div>
                         <div th:class="${'productActions' + product.id}">
 
                             <blc:named_order orderVar="wishlist" orderName="wishlist" />
@@ -92,23 +92,23 @@
 			</div>
 		
 			<div id="product_main_image">
-				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='cloud-zoom' id='zoom1' rel="position: 'inside', showTitle: false, adjustX:-4, adjustY:-4">
-		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" />
+				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
+		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
 		        </a>
 			</div>
 			
 			<ul id="product_thumbs">
 				<li>
-					<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class="cloud-zoom-gallery" 
-					   rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{*{media['primary'].url}} + ${''''}" th:attr="data-tags=*{media['primary'].tags}">
+					<a href="javascript:;" class="zoomThumbActive" 
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
 						<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
 					</a>
 				</li>
 				
 				<li th:each="media : *{media}" th:unless="${media.key == 'primary'}">
-					<a th:href="@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}" class="cloud-zoom-gallery" 
-						rel="useZoom: 'zoom1'" th:attrappend="rel=${', smallImage: '''} + @{${media.value.url}} + ${''''}" th:attr="data-tags=${media.value.tags}">
-						<img th:src="@{${media.value.url}}" />
+					<a href="javascript:;"
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}}__'', largeimage: ''__@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
+						<img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
 					</a>
 				</li>
 			</ul>
@@ -121,7 +121,7 @@
 				<div class="section">
 					 <blc:related_products productId="${product.id}"/>	 
 					<ul id="featured_products" class="group">
-						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/featuredProductListItem" th:remove="tag"></li>
+						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
 					</ul>
 				</div>									
 			</div>

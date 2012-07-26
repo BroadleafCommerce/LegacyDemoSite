@@ -47,7 +47,9 @@ public class CartController extends BroadleafCartController {
 		try {
 			super.add(request, response, model, addToCartItem);
 			
-			responseMap.put("productId", addToCartItem.getProductId());
+			if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0) {
+				responseMap.put("productId", addToCartItem.getProductId());
+			}
 			responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
 			responseMap.put("quantityAdded", addToCartItem.getQuantity());
 			responseMap.put("cartItemCount", String.valueOf(CartState.getCart().getItemCount()));
@@ -56,8 +58,12 @@ public class CartController extends BroadleafCartController {
 				// product options. The user may want the product in another version of the options as well.
 				responseMap.put("productId", addToCartItem.getProductId());
 			}
-		} catch (RequiredAttributeNotProvidedException e) {
-			responseMap.put("error", "allOptionsRequired");
+		} catch (AddToCartException e) {
+			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+				responseMap.put("error", "allOptionsRequired");
+			} else {
+				throw e;
+			}
 		}
 		
 		return responseMap;
@@ -73,7 +79,7 @@ public class CartController extends BroadleafCartController {
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
 		try {
 			return super.add(request, response, model, addToCartItem);
-		} catch (RequiredAttributeNotProvidedException e) {
+		} catch (AddToCartException e) {
 			Product product = catalogService.findProductById(addToCartItem.getProductId());
 			return "redirect:" + product.getUrl();
 		}
