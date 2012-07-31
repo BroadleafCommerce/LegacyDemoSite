@@ -29,7 +29,7 @@
         <property name="dataSources">
             <map>
                 <entry key="jdbc/web" value-ref="webDS"/>
-                <entry key="jdbc/webSecure" value-ref="webDS"/>
+                <entry key="jdbc/webSecure" value-ref="webSecureDS"/>
                 <entry key="jdbc/cmsStorage" value-ref="webStorageDS"/>
             </map>
         </property>

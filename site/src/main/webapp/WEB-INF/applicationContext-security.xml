@@ -45,8 +45,8 @@
 				filters="
                 	blSecurityContextPersistenceFilterWithAllowSessionCreationTrue,
                 	blLogoutFilter,
-                	blAuthenticationProcessingFilter,
                 	blRequestWrapperFilter,
+                	blAuthenticationProcessingFilter,
                 	blRememberMeAuthenticationFilter,
                 	blCustomerStateFilter,
                 	blCartStateFilter,
