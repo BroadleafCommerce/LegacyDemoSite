@@ -11,5 +11,8 @@ $(function(){
     });
 	
 	$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+	
+	// Trim all product descriptions in the small layout
+	$('.product_container .content').dotdotdot();
 
 });
