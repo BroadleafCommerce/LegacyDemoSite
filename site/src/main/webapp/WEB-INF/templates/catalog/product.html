@@ -90,6 +90,7 @@
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
                 </p>
                 
+                <!-- 
                 <div id="customer-reviews-container">
 					<blc:ratings itemId="${product.id}" />
 					<div th:if="${ratingSummary}" th:object="${ratingSummary}">
@@ -164,9 +165,10 @@
 						</form>
 					</p>
                 </div>
-                
+		 		-->
+		 	
 			</div>
-		
+		 	
 			<div id="product_main_image">
 				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
 		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
