@@ -2635,6 +2635,26 @@ and (max-width : 480px) {
 .product-option-group.colors li.Black div       {background-color: #000000;}
 .product-option-group.colors li.Red div     {background-color: #DC143C;}
 
+/*customer ratings and reviews*/
+#customer-reviews-container {margin-top: 30px;}
+#customer-reviews-container .title {font: 16px/18px 'Oxygen', Helvetica, sans-serif; font-weight: bold;}
+#customer-reviews-container #community-rating-container {float: right;}
+#customer-reviews-container .total-reviews {float: right;}
+#customer-reviews-container form.customer-rating {}
+.helpful-reviews h4 {background: #bbafae; color: #fff; font: 12px/16px 'Oxygen', Helvetica, sans-serif; padding: 6px; margin: 12px 0;}
+.customer-reviews {list-style: none; margin: 0 0 18px; padding: 0;}
+.customer-reviews .voting-summary {}
+.customer-reviews .reviewer-info {font-size: 11px; margin-left: 6px;}
+.customer-reviews .reviewer-info .penname {font-weight: bold;}
+.customer-reviews .vote {display: inline;}
+.customer-reviews .vote input.small {padding: 0 10px; font-size: 11px;}
+.customer-reviews .vote input.small.last {margin-left: 2px;}
+.customer-reviews blockquote {margin: 18px 18px 12px; font-style: italic;}
+.customer-reviews > li {padding-bottom: 12px; border-bottom: 1px dashed gray;}
+.customer-reviews .voting-container span {font-size: 11px;}
+#review .rate-product {margin-bottom: 30px;}
+#review .rate-product label {display: block; float: none;}
+.rating-cancel {display: none !important;}
 /* =============================================================================
  * Bootstrap v2.0.4
  *
