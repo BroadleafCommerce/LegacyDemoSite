@@ -74,7 +74,7 @@ $(function(){
 
     /* Show or Edit multiship options link was clicked */
     $('body').on('click', 'a#multiship', function() {
-		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), afterShow: function() {
+		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
 			addAddAddressDropDownOptions();
 		}}));
 		return false;
@@ -112,7 +112,8 @@ $(function(){
 		
 		BLC.ajax({url: $form.attr('action'),
 				type: "POST", 
-				data: $form.serialize() 
+				data: $form.serialize(),
+				cache: false
 			}, function(data, extraData) {
 				$('.fancybox-inner').html(data);
 				addAddAddressDropDownOptions();
