@@ -1645,7 +1645,7 @@ input[type="submit"].big, a.big-button, .addToCart, a.inCart {
 	font-weight: 600;
 	margin: 10px auto 0;
 	padding: 15px 35px;
-	display: inline-table;
+	display: inline-block;
 }
 
 input[type="submit"].medium, a.medium-button, #featured_products .addToCart, #featured_products a.inCart {
@@ -1653,7 +1653,7 @@ input[type="submit"].medium, a.medium-button, #featured_products .addToCart, #fe
 	font-weight: 600;
 	margin: 10px auto;
 	padding: 10px 20px;
-	display: inline-table;
+	display: inline-block;
 }
 
 input[type="submit"].small, a.small-button {
@@ -1661,7 +1661,7 @@ input[type="submit"].small, a.small-button {
 	font-weight: 600;
 	padding: 5px 10px;
 	margin-left: 5px;
-	display: inline-table;
+	display: inline-block;
 }
 
 input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
