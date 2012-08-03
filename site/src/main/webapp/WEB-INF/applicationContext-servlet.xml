@@ -71,7 +71,6 @@
 		<property name="order" value="1" />
 		<property name="cache" value="false" />
 		<property name="fullPageLayout" value="layout/fullPageLayout" />
-		<property name="iframeLayout" value="layout/iframeLayout" />
 		<property name="layoutMap">
 			<map>
 				<entry key="account/" value="layout/accountLayout" />

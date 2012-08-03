@@ -502,6 +502,7 @@ nav {
 }
 	
 #account {
+	margin-top: 30px;
 	font-size: 12px;
 	display: block;
 }
@@ -515,9 +516,12 @@ nav {
 
 #account #register, #account #login, #account #forgotPassword, #account #resetPassword {
 	width: 282px;
-	margin: 10px;
-	float: left;
-	display: inline;
+	margin: 10px auto;
+	padding: 20px;
+	background: url('../img/sidebarbg.jpg') repeat;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 .manage-account-container {
