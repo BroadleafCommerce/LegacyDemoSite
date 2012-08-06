@@ -7,7 +7,7 @@
         <div class="form100">
             <label for="emailAddress">Email Address:</label>
             <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
-            <input type="text" name="emailAddress" id="emailAddress" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'"/>
+            <input type="email" name="emailAddress" id="emailAddress" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'"/>
         </div>
         <div class="form100">
             <label for="firstName">First Name:</label>

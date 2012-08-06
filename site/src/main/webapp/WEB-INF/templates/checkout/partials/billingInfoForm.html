@@ -144,7 +144,7 @@
         <div class="form35 margin20">
             <label for="email">Email</label>
             <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span>
-            <input type="text" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
+            <input type="email" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div style="float:right;">
