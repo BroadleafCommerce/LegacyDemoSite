@@ -71,6 +71,7 @@
 		<property name="order" value="1" />
 		<property name="cache" value="false" />
 		<property name="fullPageLayout" value="layout/fullPageLayout" />
+		<property name="characterEncoding" value="UTF-8" />
 		<property name="layoutMap">
 			<map>
 				<entry key="account/" value="layout/accountLayout" />
