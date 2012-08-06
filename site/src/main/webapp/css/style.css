@@ -2640,7 +2640,7 @@ and (max-width : 480px) {
 .product-option-group.colors li.Red div     {background-color: #DC143C;}
 
 /*customer ratings and reviews*/
-#customer-reviews-container {margin-top: 30px;}
+#customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}
 #customer-reviews-container .title {font: 16px/18px 'Oxygen', Helvetica, sans-serif; font-weight: bold;}
 #customer-reviews-container #community-rating-container {float: right;}
 #customer-reviews-container .total-reviews {float: right;}
@@ -2650,12 +2650,9 @@ and (max-width : 480px) {
 .customer-reviews .voting-summary {}
 .customer-reviews .reviewer-info {font-size: 11px; margin-left: 6px;}
 .customer-reviews .reviewer-info .penname {font-weight: bold;}
-.customer-reviews .vote {display: inline;}
-.customer-reviews .vote input.small {padding: 0 10px; font-size: 11px;}
-.customer-reviews .vote input.small.last {margin-left: 2px;}
-.customer-reviews blockquote {margin: 18px 18px 12px; font-style: italic;}
-.customer-reviews > li {padding-bottom: 12px; border-bottom: 1px dashed gray;}
-.customer-reviews .voting-container span {font-size: 11px;}
+.customer-reviews blockquote {margin: 12px 0; font-style: italic;}
+.customer-reviews > li {padding: 12px 0 0; border-bottom: 1px dashed gray;}
+.customer-reviews > li:first-child {padding-top: 0;}
 #review .rate-product {margin-bottom: 30px;}
 #review .rate-product label {display: block; float: none;}
 .rating-cancel {display: none !important;}
