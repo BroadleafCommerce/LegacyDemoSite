@@ -80,7 +80,9 @@
 		</property>
 	</bean>
     
-    <!-- Delete this bean to enable caching -->
+    <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
+    <!-- as it will allow changes made in the admin or directly on the database to be reflected -->
+    <!-- immediately. However, caching is obviously beneficial in production. -->
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
