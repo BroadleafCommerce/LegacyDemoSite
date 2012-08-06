@@ -29,13 +29,13 @@
                         <div style="float: left; width: 70%;">
                             <label for="cardNumber" class="prompt">Card Number</label>
                             <div class="element">
-                                <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
+                                <input type="number" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
                             </div>
                         </div>
                         <div style="float: right; padding-right: 2%; width: 16%">
                             <label class="prompt">CVV</label>
                             <div class="element">
-                                <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
+                                <input type="number" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
         <div class="form30 margin20">
             <label for="phone">Phone</label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-            <input type="text" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
+            <input type="tel" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
         </div>
 
         <div class="clearfix"></div>
