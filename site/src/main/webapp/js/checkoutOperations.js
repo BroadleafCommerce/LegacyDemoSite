@@ -4,7 +4,7 @@ $(function(){
 	var fancyCheckoutOptions = {
 		maxWidth	: 720,
 		maxHeight	: 560,	
-		fitToView	: true,
+		fitToView	: false,
 		width		: '100%',
 		autoSize	: true,
 		closeClick	: false,
@@ -12,7 +12,8 @@ $(function(){
 		openEffect	: 'none',
 		closeEffect	: 'none',
 		type        : 'ajax',
-		scrolling   : 'no'
+		scrolling   : 'no',
+		padding		: 5
 	};
 	
     function copyShippingForm() {

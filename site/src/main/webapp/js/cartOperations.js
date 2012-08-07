@@ -11,7 +11,8 @@ $(function(){
 		topRatio	: 0,
 		openEffect	: 'none',
 		closeEffect	: 'none',
-		type        : 'ajax'
+		type        : 'ajax',
+		padding		: 5
 	};
 	
 	var fancyProductOptionsOptions = {
@@ -108,7 +109,7 @@ $(function(){
 						if (wishlistAdd) {
 							HC.showNotification(data.productName + "  has been added to your wishlist!");
 						} else {
-							HC.showNotification(data.productName + "  has been added to the cart!");
+							HC.showNotification(data.productName + "  has been added to the cart!", 2000);
 						}
 					}
 				}

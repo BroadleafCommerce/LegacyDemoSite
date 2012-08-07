@@ -33,8 +33,11 @@ var HC = (function($) {
 		}
 	}
 	
-	function showNotification(notification) {
-		$('#notification_bar').html(notification).slideToggle('slow').delay('3500').slideToggle('slow');
+	function showNotification(notification, delay) {
+		if (!delay) {
+			delay = '3500';
+		}
+		$('#notification_bar').html(notification).slideToggle('slow').delay(delay).slideToggle('slow');
 	}
 	
 	function changeProductOption($option) {
