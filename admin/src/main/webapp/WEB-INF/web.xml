@@ -126,18 +126,6 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 	
-	<resource-ref>
-		<res-ref-name>jdbc/webSecure</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
-	<resource-ref>
-		<res-ref-name>jdbc/cmsStorage</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
 	<welcome-file-list>
 		<welcome-file>admin.html</welcome-file>
 	</welcome-file-list>
