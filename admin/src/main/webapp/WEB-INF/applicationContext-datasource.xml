@@ -18,24 +18,16 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
     
-    <!-- The "webDS" data source is the main data source for Broadleaf. It is referenced and 
-	     should be configured via JNDI in your particular environment. For local testing and 
-	     development using Jetty, the JNDI data source is configured in the /WEB-INF/jetty-env.xml file. 
-	     The other data sources are required as well.  They allow Broadleaf to use different databases 
-	     for secure information such as payment info when in a PCI compliant situation, and/or for CMS 
-	     if you wish to store content in a separate database. By default, though, for simplicity and 
-	     in many real world scenarios, these can be the same data source.  So, we simply provide aliases 
-	     for the "webSecureDS" so that it actually points to the main "webDS"
-	     data source. -->
-	
-	<jee:jndi-lookup id="webDS" jndi-name="jdbc/web"/>
-    <alias name="webDS" alias="webSecureDS"/>
+    <!-- The "webDS" data source is the main data source for Broadleaf. It is referenced and
+         should be configured via JNDI in your particular environment. For local testing and
+         development using Jetty, the JNDI data source is configured in the /WEB-INF/jetty-env.xml file.
+         The other data sources are required as well.  They allow Broadleaf to use different databases
+         for secure information such as payment info when in a PCI compliant situation, and/or for CMS
+         if you wish to store content in a separate database. -->
 
-    <!-- We must declare a separate explicit datasource for the asset storage, otherwise we get the following exception
-         org.springframework.transaction.IllegalTransactionStateException: Pre-bound JDBC Connection found!
-         JpaTransactionManager does not support running within DataSourceTransactionManager if told to manage the DataSource
-         itself. It is recommended to use a single JpaTransactionManager for all transactions on a single DataSource,
-         no matter whether JPA or JDBC access. -->
+    <jee:jndi-lookup id="webDS" jndi-name="jdbc/web"/>
+
+    <jee:jndi-lookup id="webSecureDS" jndi-name="jdbc/secure"/>
 
     <jee:jndi-lookup id="webStorageDS" jndi-name="jdbc/storage"/>
 

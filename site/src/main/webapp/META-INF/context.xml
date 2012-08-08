@@ -19,4 +19,12 @@
               password=""
               driverClassName="org.hsqldb.jdbcDriver"
               url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+
+    <Resource name="jdbc/secure"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="sa"
+              password=""
+              driverClassName="org.hsqldb.jdbcDriver"
+              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
 </Context>
