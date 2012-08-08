@@ -10,10 +10,12 @@ $(function(){
         return false;
     });
 
-	//only activate product image zooming if this is not a touch-screen device
-	if (!Modernizr.touch) {
+	if (Modernizr.touch) {
+		$('.jqzoom').jqzoom({zoomType: 'reverse', title: false, lens: false, imageOpacity: 1});
+	} else {
 		$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
 	}
+	
 	
 	// Trim all product descriptions in the small layout
 	$('.product_container .content').dotdotdot();
