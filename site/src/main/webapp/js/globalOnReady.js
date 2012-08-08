@@ -9,8 +9,11 @@ $(function(){
         HC.changeProductOption($(this));
         return false;
     });
-	
-	$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+
+	//only activate product image zooming if this is not a touch-screen device
+	if (!Modernizr.touch) {
+		$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+	}
 	
 	// Trim all product descriptions in the small layout
 	$('.product_container .content').dotdotdot();

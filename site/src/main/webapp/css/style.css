@@ -1873,9 +1873,10 @@ and (max-width : 480px) {
 		float: left;
 	}
 	
-		#product_main_image img {
-			width: 320px;
+		#product_main_image img, #product_main_image img#main_image {
+			width: 300px;
 			height: auto;
+			margin: 0 10px;
 		}
 	
 	#product_thumbs {
