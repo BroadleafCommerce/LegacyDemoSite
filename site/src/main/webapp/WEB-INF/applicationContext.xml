@@ -113,4 +113,25 @@
 	</bean>	
 	-->
 	
+	<!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
+	<!-- you may want to override the bean definitions by uncommenting these two beans -->
+	<!-- to control whether or not templates are cacheable. This will generally be desireable -->
+	<!-- in production environments, but likely not in development environments. -->
+	<!-- 
+	<bean id="blWebTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>	
+	<bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+		<property name="prefix" value="emailTemplates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+	-->
+	
 </beans>

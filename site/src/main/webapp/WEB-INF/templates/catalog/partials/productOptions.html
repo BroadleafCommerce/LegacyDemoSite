@@ -5,7 +5,7 @@
 			<ul class="cf">
 				<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:attr="data-product-option=*{attributeValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
 					<div>
-						<span class="option-label" th:text="*{attributeValue}"></span>
+						<a href="#" class="option-label" th:text="*{attributeValue}"></a>
 					</div>
 				</li>
 			</ul>						
