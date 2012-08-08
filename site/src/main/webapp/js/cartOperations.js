@@ -59,8 +59,6 @@ $(function(){
 	// Intercept add to cart operations and perform them via AJAX instead
 	// This will trigger on any input with class "addToCart" or "addToWishlist"
 	$('body').on('click', 'input.addToCart,input.addToWishlist', function() {
-		debugger;
-		
 		var $button = $(this),
 			$container = $button.closest('.product_container'),
 			$form = $button.closest('form'),
@@ -92,8 +90,12 @@ $(function(){
 					data: itemRequest
 				}, function(data, extraData) {
 					if (data.error) {
-						$errorSpan.css('display', 'block');
-				        $errorSpan.effect('highlight', {}, 1000);
+						if (data.error == 'allOptionsRequired') {
+							$errorSpan.css('display', 'block');
+					        $errorSpan.effect('highlight', {}, 1000);
+						} else {
+							HC.showNotification("Error adding to cart");
+						}
 					} else {
 						$errorSpan.css('display', 'none'); 
 						updateHeaderCartItemsCount(data.cartItemCount);
