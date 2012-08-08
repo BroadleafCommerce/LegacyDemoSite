@@ -26,4 +26,16 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
 		</Arg>
 	</New>
 
+    <New id="webStorageDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/storage</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="username">sa</Set>
+                <Set name="password"></Set>
+            </New>
+        </Arg>
+    </New>
+
 </Configure>

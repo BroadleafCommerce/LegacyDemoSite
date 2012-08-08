@@ -25,11 +25,18 @@
 	     for secure information such as payment info when in a PCI compliant situation, and/or for CMS 
 	     if you wish to store content in a separate database. By default, though, for simplicity and 
 	     in many real world scenarios, these can be the same data source.  So, we simply provide aliases 
-	     for the "webSecureDS" and the "webStorageDS" so that they actually point to the main "webDS" 
+	     for the "webSecureDS" so that it actually points to the main "webDS"
 	     data source. -->
 	
 	<jee:jndi-lookup id="webDS" jndi-name="jdbc/web"/>
-	<alias name="webDS" alias="webSecureDS"/>
-	<alias name="webDS" alias="webStorageDS"/>
-    
+    <alias name="webDS" alias="webSecureDS"/>
+
+    <!-- We must declare a separate explicit datasource for the asset storage, otherwise we get the following exception
+         org.springframework.transaction.IllegalTransactionStateException: Pre-bound JDBC Connection found!
+         JpaTransactionManager does not support running within DataSourceTransactionManager if told to manage the DataSource
+         itself. It is recommended to use a single JpaTransactionManager for all transactions on a single DataSource,
+         no matter whether JPA or JDBC access. -->
+
+    <jee:jndi-lookup id="webStorageDS" jndi-name="jdbc/storage"/>
+
 </beans>

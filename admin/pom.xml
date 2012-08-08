@@ -43,6 +43,7 @@
 			<execution>
 				<configuration>
 					<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
+                    <strict>true</strict>
 				</configuration>
 				<goals>
 					<goal>compile</goal>
