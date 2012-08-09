@@ -20,7 +20,11 @@
 		</div>
 		
 	    <blc:content contentType="Homepage Middle Promo Snippet" />	
-		<div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
+		
+        <a th:href="@{/register}" style="text-decoration:none">
+            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
+        </a>
+
 		
 		<blc:content contentType="Homepage Featured Products Title" />    
 		<div class="title_bar" th:text="${contentItem['messageText']}"></div>

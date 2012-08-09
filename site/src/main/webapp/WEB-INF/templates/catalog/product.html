@@ -50,7 +50,7 @@
 					</div>
 				</form>
 				
-				<div th:unless="${customer.anonymous}" th:remove="tag">
+				<div th:unless="${customer.loggedIn}" th:remove="tag">
 
                     <form method="POST" th:action="@{/account/wishlist/add}">
 	                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
@@ -90,7 +90,32 @@
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
                 </p>
                 
-                <!-- 
+			</div>
+		 	
+			<div id="product_main_image">
+				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
+		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
+		        </a>
+			</div>
+			
+			<ul id="product_thumbs">
+				<li>
+					<a href="javascript:;" class="zoomThumbActive" 
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
+						<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
+					</a>
+				</li>
+				
+				<li th:each="media : *{media}" th:unless="${media.key == 'primary'}">
+					<a href="javascript:;"
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}}__'', largeimage: ''__@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
+						<img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
+					</a>
+				</li>
+			</ul>
+			
+			<div class="clearfix"></div>
+			<!-- 
                 <div id="customer-reviews-container">
 					<blc:ratings itemId="${product.id}" />
 					<div th:if="${ratingSummary}" th:object="${ratingSummary}">
@@ -119,12 +144,12 @@
 								<input type="radio" class="star {split:4}" />
 							</form>
 							<div class="total-reviews">
-								(<a href="#"><span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span></a>)
+								(<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
 							</div>
 						</div>
 						<div class="clearfix"></div>
 						<div class="helpful-reviews">
-							<h4>Most Helpful Reviews</h4>
+							<h4>Customer Reviews</h4>
 							<ul class="customer-reviews">
 								<li th:each="review, iterStat : *{reviews}" th:object="${review}" th:if="${iterStat.count} lt 4">
 									<p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
@@ -139,57 +164,29 @@
 										<input type="radio" class="star" />
 									</form>
 									<span class="reviewer-info">
-										by <span class="penname" th:text="*{customer.firstName}">John</span> on 	
+										by <span class="penname" th:text="${review.customer.firstName}">John</span> on 	
 										<span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
 									</span>
 									<div class="clearfix"></div>
 									<blockquote th:if="*{reviewText}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
-									<div class="voting-container">
-										<span>Was this review helpful?</span>
-										<form action="#" th:action="@{'/reviews/' + *{id} + '/vote'}" method="post" class="vote">
-											<input type="submit" name="helpful" value="Yes" class="small gray" /> 
-											<input type="submit" name="helpful" value="No" class="small gray last" />
-										</form>
-									</div>
 								</li>
 							</ul>
 						</div>
-						<a href="#" th:href="@{'/reviews/product/' + ${product.id}}" class="small dark create-review">Create A Review</a>
 					</div>
-					<p th:unless="${ratingSummary}">
-						<a href="@{'/reviews/product/' + ${product.id}}" class="review">Be the first to write a review!</a>
-						<form th:action="@{'/reviews/product/' + ${product.id}}" method="post">
-							<input type="text" name="rating" />
-							<textarea name="reviewText"></textarea>
-							<input type="submit" class="dark small" value="Review Product"/>
-						</form>
-					</p>
-                </div>
-		 		-->
-		 	
-			</div>
-		 	
-			<div id="product_main_image">
-				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
-		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
-		        </a>
-			</div>
-			
-			<ul id="product_thumbs">
-				<li>
-					<a href="javascript:;" class="zoomThumbActive" 
-						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
-						<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
-					</a>
-				</li>
-				
-				<li th:each="media : *{media}" th:unless="${media.key == 'primary'}">
-					<a href="javascript:;"
-						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}}__'', largeimage: ''__@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
-						<img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
-					</a>
-				</li>
-			</ul>
+					<div th:if="${customer.loggedIn}">
+						<div th:if="${ratingSummary}">
+							<a th:if="${currentCustomerReview}" class="account" th:href="@{'/reviews/product/' + ${product.id}}">Change your review</a>
+							<a th:unless="${currentCustomerReview}" class="account" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
+						</div>
+						<div th:unless="${ratingSummary}">
+							<a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Be the first to write a review!</a>
+						</div>
+					</div>
+					<div th:unless="${customer.loggedIn}" th:remove="tag">
+						<a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark create-review">Login to create a review</a>
+						<a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Login and be the first to write a review!</a>
+					</div>
+                </div>			-->
 			
 		</section>
 	

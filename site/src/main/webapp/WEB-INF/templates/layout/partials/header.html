@@ -10,7 +10,7 @@
 		    <div th:unless="${customer.anonymous}" th:remove="tag">
 				<span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>  
 				&nbsp;|&nbsp; 
-				<a th:href="@{/j_spring_security_logout}">Logout</a> 
+				<a th:href="@{/logout}">Logout</a> 
 				&nbsp;|&nbsp; 
 			</div>
 			<a id="cartLink" class="fancycart" th:href="@{/cart}">
@@ -25,7 +25,7 @@
 		
 		<div id="search">
 			<form th:action="@{/search}" method="GET">
-			<input type="text" class="search" name="q" th:value="${originalQuery}" />
+			<input type="search" class="search" name="q" th:value="${originalQuery}" />
 			<input type="submit" id="search_button" value="go" />
 			</form>
 		</div>

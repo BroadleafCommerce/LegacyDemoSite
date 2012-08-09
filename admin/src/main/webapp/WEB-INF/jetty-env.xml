@@ -25,29 +25,29 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
 			</New>
 		</Arg>
 	</New>
-	
-	<New id="webSecureDS" class="org.eclipse.jetty.plus.jndi.Resource">
-		<Arg>jdbc/webSecure</Arg>
-		<Arg>
-			<New class="org.apache.commons.dbcp.BasicDataSource">
-				<Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-				<Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-				<Set name="username">sa</Set>
-				<Set name="password"></Set>
-			</New>
-		</Arg>
-	</New>
-	
-	<New id="cmsStorageDS" class="org.eclipse.jetty.plus.jndi.Resource">
-		<Arg>jdbc/cmsStorage</Arg>
-		<Arg>
-			<New class="org.apache.commons.dbcp.BasicDataSource">
-				<Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-				<Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-				<Set name="username">sa</Set>
-				<Set name="password"></Set>
-			</New>
-		</Arg>
-	</New>
+
+    <New id="webSecureDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/secure</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="username">sa</Set>
+                <Set name="password"></Set>
+            </New>
+        </Arg>
+    </New>
+
+    <New id="webStorageDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/storage</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="username">sa</Set>
+                <Set name="password"></Set>
+            </New>
+        </Arg>
+    </New>
 
 </Configure>

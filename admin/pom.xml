@@ -43,6 +43,7 @@
 			<execution>
 				<configuration>
 					<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
+                    <strict>true</strict>
 				</configuration>
 				<goals>
 					<goal>compile</goal>
@@ -61,7 +62,7 @@
 			<inplace>false</inplace>
 			<hostedWebapp>${webappDirectory}</hostedWebapp>
 			<bindAddress>0.0.0.0</bindAddress>
-			<debugPort>8001</debugPort>
+			<debugPort>8011</debugPort>
 			<runTarget>admin/admin.html</runTarget>
 		</configuration>
 	</plugin>

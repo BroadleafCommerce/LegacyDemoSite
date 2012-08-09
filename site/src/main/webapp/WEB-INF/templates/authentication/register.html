@@ -4,7 +4,7 @@
 		<h3>Register for an Account</h3>
 		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>		
 
-		<form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post">
+		<form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
 			<div class="form50">
 				<label for="customer.emailAddress">Email</label>
 				<span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>

@@ -38,8 +38,8 @@ $(function(){
 		}}));
 		return false;
 	});
-
-	// All form actions (register, login, reset password) will be submitted via AJAX
+	
+	// All form actions will be submitted via AJAX
 	$('body').on('click','.fancybox-inner input.review_button', function() {
 		var $form = $(this).closest("form");
 		BLC.ajax({url: $form.attr('action'), 

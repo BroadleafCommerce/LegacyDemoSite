@@ -103,7 +103,7 @@
         <div class="form30 margin20">
             <label for="phone">Phone</label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-            <input type="text" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
+            <input type="tel" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
         </div>
 
         <div class="clearfix"></div>
@@ -144,7 +144,7 @@
         <div class="form35 margin20">
             <label for="email">Email</label>
             <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span>
-            <input type="text" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
+            <input type="email" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div style="float:right;">

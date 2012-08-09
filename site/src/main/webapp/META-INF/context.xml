@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- This is a sample datasource configuration for Tomcat
+         THIS IS NOT A PRODUCTION READY CONFIGURATION!!
+         Production ready configurations include additional settings,
+         such as validationQuery, maxActive and maxIdle -->
+    <Resource name="jdbc/web"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="sa"
+              password=""
+              driverClassName="org.hsqldb.jdbcDriver"
+              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+
+    <Resource name="jdbc/storage"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="sa"
+              password=""
+              driverClassName="org.hsqldb.jdbcDriver"
+              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+
+    <Resource name="jdbc/secure"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="sa"
+              password=""
+              driverClassName="org.hsqldb.jdbcDriver"
+              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+</Context>

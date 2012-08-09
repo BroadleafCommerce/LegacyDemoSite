@@ -19,104 +19,56 @@
     <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
-
-    <!-- We are customizing the spring security filters and have different behavior for REST calls
-         versus standard web requests.   For this reason, we are not using namespace configuration
-         and instead are opting to define the entire filter chain. -->
-	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-		<sec:filter-chain-map request-matcher="ant">
-			<!--  Any resources that do not require a security context should be included here. -->
-			<sec:filter-chain pattern="/css/**" filters="none" />
-			<sec:filter-chain pattern="/images/**" filters="none" />
-			<sec:filter-chain pattern="/js/**" filters="none" />       
-                	
-           <!--  REST APIs are Stateless.   The following implementation works well for clients
-                 who are in the same data center.    For others, additional security considerations will
-                 need to be made to determine whether or not the caller has rights to invoke calls on 
-                 behalf of the passed in customer id.   -->     	
-           <sec:filter-chain pattern="/api/**" 
-                filters="                    
-                    blRequestWrapperFilter,
-                    blRestCustomerStateFilter"/>
-                    
-            <!-- All other web requests need to be served through the default filter chain.
-                 Each of the filters is documented below.  -->     
-			<sec:filter-chain pattern="/**"
-				filters="
-                	blSecurityContextPersistenceFilterWithAllowSessionCreationTrue,
-                	blLogoutFilter,
-                	blRequestWrapperFilter,
-                	blAuthenticationProcessingFilter,
-                	blRememberMeAuthenticationFilter,
-                	blCustomerStateFilter,
-                	blCartStateFilter,
-                	blExceptionTranslationFilter,
-                	blFilterSecurityInterceptor" />                    
-		</sec:filter-chain-map>
-	</bean>
-
-
-
-
-    <!--
-      FILTER DEFINITIONS  
-    -->
-    <!--  Allow the security filter to create a session. -->
-	<bean id="blSecurityContextPersistenceFilterWithAllowSessionCreationTrue"
-		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
-        <constructor-arg>
-            <bean class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
-                <property name='allowSessionCreation' value='true' />
-            </bean>
-        </constructor-arg>
-	</bean>
-
-    <!--  Wraps the HttpServletRequest so that request.isUserInRole and request.getUserPrincipal utilize the
-          Spring Security Authentication. -->
-	<bean id="blRequestWrapperFilter"
-		class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
     
-    <!--  Used for REST api calls.   This just takes in the passed in customerId and uses it to establish the customer.
-          Additional considerations MUST be made for implementations that are allowing external access to APIs.  -->
-    <bean id="blRestCustomerStateFilter"
-          class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
-
-    <!--  Supports cookies that only are served over http -->
-	<bean id="blRememberMeServices"
-		class="org.broadleafcommerce.common.security.EnhancedTokenBasedRememberMeServices">
-        <constructor-arg value="SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
-        <constructor-arg ref="blUserDetailsService"/>
-	</bean>
-
-	<!--  Use the broadleaf authentication manager and remember me services with this filter. -->
-	<bean id="blRememberMeAuthenticationFilter"
-		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
-        <constructor-arg ref="blAuthenticationManager"/>
-        <constructor-arg ref="blRememberMeServices"/>
-	</bean>
-
-    <!--  Redirects the user to the logoutSuccessUrl, -->
-	<bean id="blLogoutFilter"
-		class="org.springframework.security.web.authentication.logout.LogoutFilter">
-		<constructor-arg>
-			<bean
-				class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler" />
-		</constructor-arg>
-		<constructor-arg>
-			<list>
-				<ref local="blRememberMeServices" />
-				<bean
-					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
-			</list>
-		</constructor-arg>
-	</bean>
-
-    <!--  Sets the RememberMe Cookie name -->
-	<bean id="blRememberMeAuthenticationProvider"
-		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-        <constructor-arg value="SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
-	</bean>
-
+    <!-- Resources do not need security -->
+	<sec:http pattern="/css/**" security="none" />
+	<sec:http pattern="/img/**" security="none" />
+	<sec:http pattern="/js/**" security="none" />       
+	<sec:http pattern="/favicon.ico" security="none" />       
+	<sec:http pattern="/robots.txt" security="none" />       
+	
+	<!-- Set up Spring security for the application -->
+	<sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
+		<!-- We handle session fixation protection ourselves  -->
+	    <sec:session-management session-fixation-protection="none" />
+	    
+		<!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
+		<sec:intercept-url pattern="/register*" requires-channel="https" />
+		<sec:intercept-url pattern="/login*/**" requires-channel="https"  />
+		<sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
+		<sec:intercept-url pattern="/checkout/**" requires-channel="https" />
+		<sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
+		
+		<!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
+		<sec:intercept-url pattern="/cart/**" requires-channel="any" />
+		
+		<!-- All URLs not explicitly specified as https will be served under http -->
+        <sec:intercept-url pattern="/" requires-channel="http"/>
+        <sec:intercept-url pattern="/**" requires-channel="http"/>
+		
+		<!-- Define the login form along with the success and failure handlers -->
+		<sec:form-login login-page='/login'
+			authentication-success-handler-ref="blAuthenticationSuccessHandler"
+			authentication-failure-handler-ref="blAuthenticationFailureHandler"
+			login-processing-url="/login_post.htm" 
+		/>
+		
+		<!-- Provide the logout handler -->
+		<sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
+		
+		<!-- Specify our custom filters -->
+		<sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
+		<sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
+	</sec:http>
+	
+	<!--  The BLC Authentication manager.   -->
+	<sec:authentication-manager alias="blAuthenticationManager">
+		<sec:authentication-provider user-service-ref="blUserDetailsService">
+			<sec:password-encoder ref="blPasswordEncoder" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
     <!--  User details service that authenticates using customer data in the database. -->
 	<sec:jdbc-user-service data-source-ref="webDS"
 		id="blUserDetailsService"
@@ -125,97 +77,18 @@
 	                                      JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
 	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
 	                                      WHERE USER_NAME=?" />
-
+	                                      
     <!-- Sets the login failure URL -->
-	<bean id="broadleafAuthenticationFailureHandler"
-		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
+	<bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
 		<constructor-arg value="/login?error=true" />
 		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" />
 	</bean>
 
     <!-- Sets the login success URL -->
-	<bean id="broadleafAuthenticationSuccessHandler"
-		class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
+	<bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
 		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
-		<property name="defaultTargetUrl" value="/" />
+		<property name="defaultTargetUrl" value="/account" />
 		<property name="alwaysUseDefaultTargetUrl" value="true" />
 	</bean>
-  
-     <!--  Sets up the filter that receives the login post.    -->
-	<bean id="blAuthenticationProcessingFilter"
-		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
-		<property name="authenticationManager" ref="blAuthenticationManager" />
-		<property name="authenticationFailureHandler" ref="broadleafAuthenticationFailureHandler" />
-		<property name="authenticationSuccessHandler" ref="broadleafAuthenticationSuccessHandler" />
-		<property name="filterProcessesUrl" value="/login_post.htm" />
-        <property name="rememberMeServices" ref="blRememberMeServices"/>
-	</bean>
-
-	<!-- URL a user goes to when they were unable to hit a page that requires access. -->
-	<bean id="blExceptionTranslationFilter"
-		class="org.springframework.security.web.access.ExceptionTranslationFilter">
-		<property name="authenticationEntryPoint">
-			<bean
-				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-				<property name="loginFormUrl" value="/login" />
-				<property name="forceHttps" value="false" />
-				<property name="portMapper">
-					<bean class="org.springframework.security.web.PortMapperImpl">
-						<property name="portMappings">
-							<map>
-								<entry key="8080">
-									<value>8443</value>
-								</entry>
-							</map>
-						</property>
-					</bean>
-				</property>
-			</bean>
-		</property>
-	</bean>
-
-     <!--  Secure pages or configure HTTP/HTTPS access here. -->
-	<bean id="blFilterSecurityInterceptor"
-		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
-		<property name="accessDecisionManager">
-			<bean class="org.springframework.security.access.vote.UnanimousBased">
-				<property name="decisionVoters">
-					<list>
-						<bean class="org.springframework.security.access.vote.RoleVoter" />
-					</list>
-				</property>
-			</bean>
-		</property>
-		<property name="authenticationManager" ref="blAuthenticationManager" />
-		<property name="securityMetadataSource">
-			<sec:filter-security-metadata-source>
-<!-- 				<sec:intercept-url pattern="/login" access="ROLE_USER"  /> -->
-<!-- 				<sec:intercept-url pattern="/register" access="ROLE_USER"  /> -->
-				<sec:intercept-url pattern="/account/**" access="ROLE_USER"  />
-			</sec:filter-security-metadata-source>
-		</property>
-	</bean>
 	
-	<!--  Setup a filter that will check method level security for methods annotated with the rolePrefix.   -->
-	<bean id="blAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
-		<property name="decisionVoters">
-			<list>
-				<bean class="org.springframework.security.access.vote.RoleVoter">
-					<property name="rolePrefix" value="PERMISSION_" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<!--  Enforces method annotation security.   -->
-	<sec:global-method-security access-decision-manager-ref="blAccessDecisionManager" secured-annotations="enabled" />
-		
-	<!--  The BLC Authentication manager.   -->
-	<sec:authentication-manager alias="blAuthenticationManager">
-		<sec:authentication-provider
-			user-service-ref="blUserDetailsService">
-			<sec:password-encoder ref="blPasswordEncoder" />
-		</sec:authentication-provider>
-		<sec:authentication-provider ref="blRememberMeAuthenticationProvider" />
-	</sec:authentication-manager>
 </beans>

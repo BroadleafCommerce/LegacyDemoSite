@@ -9,7 +9,15 @@ $(function(){
         HC.changeProductOption($(this));
         return false;
     });
+
+	if (Modernizr.touch) {
+		$('.jqzoom').jqzoom({zoomType: 'reverse', title: false, lens: false, imageOpacity: 1});
+	} else {
+		$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+	}
 	
-	$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+	
+	// Trim all product descriptions in the small layout
+	$('.product_container .content').dotdotdot();
 
 });

@@ -50,6 +50,8 @@
 	<mvc:resources order="-10" location="/css/" mapping="/css/**" />
 	<mvc:resources order="-10" location="/js/" mapping="/js/**" />
 	<mvc:resources order="-10" location="/fonts/" mapping="/fonts/**" />
+	<mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
+	<mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
 	
 	<!-- Set up Broadleaf messaging -->
 	<bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
@@ -69,7 +71,7 @@
 		<property name="order" value="1" />
 		<property name="cache" value="false" />
 		<property name="fullPageLayout" value="layout/fullPageLayout" />
-		<property name="iframeLayout" value="layout/iframeLayout" />
+		<property name="characterEncoding" value="UTF-8" />
 		<property name="layoutMap">
 			<map>
 				<entry key="account/" value="layout/accountLayout" />

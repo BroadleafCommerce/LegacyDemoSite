@@ -4,7 +4,7 @@ $(function(){
 	var fancyCheckoutOptions = {
 		maxWidth	: 720,
 		maxHeight	: 560,	
-		fitToView	: true,
+		fitToView	: false,
 		width		: '100%',
 		autoSize	: true,
 		closeClick	: false,
@@ -12,7 +12,8 @@ $(function(){
 		openEffect	: 'none',
 		closeEffect	: 'none',
 		type        : 'ajax',
-		scrolling   : 'no'
+		scrolling   : 'no',
+		padding		: 5
 	};
 	
     function copyShippingForm() {
@@ -74,7 +75,7 @@ $(function(){
 
     /* Show or Edit multiship options link was clicked */
     $('body').on('click', 'a#multiship', function() {
-		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), afterShow: function() {
+		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
 			addAddAddressDropDownOptions();
 		}}));
 		return false;
@@ -112,7 +113,8 @@ $(function(){
 		
 		BLC.ajax({url: $form.attr('action'),
 				type: "POST", 
-				data: $form.serialize() 
+				data: $form.serialize(),
+				cache: false
 			}, function(data, extraData) {
 				$('.fancybox-inner').html(data);
 				addAddAddressDropDownOptions();

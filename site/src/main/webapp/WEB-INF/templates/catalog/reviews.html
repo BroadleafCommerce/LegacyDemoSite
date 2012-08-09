@@ -1,0 +1,5 @@
+<ul>
+	<li th:each="review : ${reviews}" th:object="${review}">
+		<span th:text="*{reviewText}"></span>
+	</li>
+</ul>

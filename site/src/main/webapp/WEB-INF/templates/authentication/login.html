@@ -7,10 +7,10 @@
 			<p>The e-mail address and/or password entered do not match our records.  Please try again</p>
 		</span>
 
-		<form th:action="@{/login_post.htm}" method="post">
+		<form th:action="@{/login_post.htm}" method="post" class="clearfix">
 			<div class="form50">
 				<label for="j_username">Email</label>
-				<input type="text" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+				<input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
 			</div>
 			<div class="form50">
 				<label for="j_password">Password</label>
@@ -26,5 +26,4 @@
 			</div>
 		</form>
 	</div>
-	
 </div>

@@ -19,147 +19,56 @@
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
 
-	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-		<sec:filter-chain-map request-matcher="ant">
-			<sec:filter-chain pattern="/css/**" filters="none" />
-			<sec:filter-chain pattern="/images/**" filters="none" />
-			<sec:filter-chain pattern="/js/**" filters="none" />
-            <sec:filter-chain pattern="/utility.service" filters="none" />
-            <sec:filter-chain pattern="/com.mycompany.gwt.mycompanyAdmin/remote_logging/remote_logging" filters="none" />
-            <sec:filter-chain pattern="/api/**" 
-                filters="blRequestWrapperFilter,
-                    blRestCustomerStateFilter"/>
-            <sec:filter-chain pattern="/com.mycompany.gwt.mycompanyAdmin/**"
-				filters="
-                	blSecurityContextPersistenceFilterWithASCTrue,
-                	blAdminLogoutFilter,
-                	blAdminAuthenticationProcessingFilter,
-                	blRequestWrapperFilter,
-                	blAdminRememberMeAuthenticationFilter,
-                	blAdminExceptionTranslationFilter,
-                	blAdminFilterSecurityInterceptor" />
-            <sec:filter-chain pattern="/admin*"
-				filters="
-                	blSecurityContextPersistenceFilterWithASCTrue,
-                	blAdminLogoutFilter,
-                	blAdminAuthenticationProcessingFilter,
-                	blRequestWrapperFilter,
-                	blAdminRememberMeAuthenticationFilter,
-                	blAdminExceptionTranslationFilter,
-                	blAdminFilterSecurityInterceptor" />
-			<sec:filter-chain pattern="/admin/*"
-				filters="
-                	blSecurityContextPersistenceFilterWithASCTrue,
-                	blAdminLogoutFilter,
-                	blAdminAuthenticationProcessingFilter,
-                	blRequestWrapperFilter,
-                	blAdminRememberMeAuthenticationFilter,
-                	blAdminExceptionTranslationFilter,
-                	blAdminFilterSecurityInterceptor" />
-            <sec:filter-chain pattern="/*.service"
-				filters="
-                	blSecurityContextPersistenceFilterWithASCTrue,
-                	blAdminLogoutFilter,
-                	blAdminAuthenticationProcessingFilter,
-                	blRequestWrapperFilter,
-                	blAdminRememberMeAuthenticationFilter,
-                	blAdminExceptionTranslationFilter,
-                	blAdminFilterSecurityInterceptor" />
-		</sec:filter-chain-map>
-	</bean>
-
-	<bean id="blRequestWrapperFilter"
-		class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
-    
-    <bean id="blRestCustomerStateFilter"
-          class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
-
-	<bean id="blSecurityContextPersistenceFilterWithASCTrue"
-		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
-        <constructor-arg>
-            <bean class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
-                <property name='allowSessionCreation' value='true' />
-            </bean>
-        </constructor-arg>
-	</bean>
-
-
-
-	<bean id="blAdminAuthenticationProcessingFilter"
-		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
-		<property name="authenticationManager" ref="blAuthenticationManager" />
-		<property name="authenticationFailureHandler" ref="broadleafAdminAuthenticationFailureHandler" />
-		<property name="authenticationSuccessHandler" ref="springAdminAuthenticationSuccessHandler" />
-		<property name="filterProcessesUrl" value="/admin/login_admin_post" />
-        <property name="rememberMeServices" ref="blAdminRememberMeServices"/>
-	</bean>
-
-    <bean id="blAdminLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
-		<constructor-arg>
-			<bean class="org.broadleafcommerce.common.security.BroadleafAdminLogoutSuccessHandler">
-				<property name="defaultTargetUrl" value="/admin.html"/>
-			</bean>
-		</constructor-arg>
-		<constructor-arg>
-			<list>
-				<ref local="blAdminRememberMeServices" />
-				<bean
-					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
-			</list>
-		</constructor-arg>
-		<property name="filterProcessesUrl" value="/adminLogout.htm" />
-	</bean>
+    <!-- Resources do not need security -->
+	<sec:http pattern="/css/**" security="none" />
+	<sec:http pattern="/images/**" security="none" />
+	<sec:http pattern="/js/**" security="none" />       
+	<sec:http pattern="/utility.service" security="none" />       
+	<sec:http pattern="/com.mycompany.gwt.mycompanyAdmin/remote_logging/remote_logging" security="none" />       
+	<sec:http pattern="/favicon.ico" security="none" />       
+	<sec:http pattern="/robots.txt" security="none" />       
 	
-	<bean id="broadleafAdminAuthenticationFailureHandler"
-		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-		<constructor-arg value="/blcadmin/login.jsp?login_error=true" />
-<!-- 		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" /> -->
-	</bean>
-
-	<bean id="springAdminAuthenticationSuccessHandler"
-		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-<!-- 		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" /> -->
-		<property name="defaultTargetUrl" value="/admin.html" />
-		<property name="alwaysUseDefaultTargetUrl" value="false" />
-	</bean>
+	<!-- Set up Spring security for the application -->
+	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" >
+		<!-- All admin URLs will be secured with https -->
+		<sec:intercept-url pattern="/**" requires-channel="https" />
+		<sec:intercept-url pattern="/" requires-channel="https" />
+		
+		<!-- Define the login form along with the success and failure handlers -->
+		<sec:form-login login-page='/blcadmin/login.jsp'
+			authentication-success-handler-ref="blAdminAuthenticationSuccessHandler"
+			authentication-failure-handler-ref="blAdminAuthenticationFailureHandler"
+			login-processing-url="/admin/login_admin_post" 
+		/>
+		
+		<!-- Provide the logout handler -->
+		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/admin.html"/>
+		
+		<!-- Since we run this alongside the site, we need to set up the special port mapping -->
+		<!-- This isn't necessary for site becauase it maps from 8080 to 8443, which is a default mapping -->
+		<sec:port-mappings>
+			<sec:port-mapping http="8081" https="8444"/>
+		</sec:port-mappings>
+		
+		<!-- Specify our custom filters -->
+		<sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
+	</sec:http>
 	
-	<bean id="blAdminRememberMeAuthenticationFilter"
-		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
-		<property name="rememberMeServices" ref="blAdminRememberMeServices" />
-		<property name="authenticationManager" ref="blAuthenticationManager" />
-	</bean>
+	<!-- The BLC Admin authentication manager -->
+	<sec:authentication-manager alias="blAdminAuthenticationManager">
+		<sec:authentication-provider user-service-ref="blAdminUserDetailsService">
+			<sec:password-encoder hash="plaintext" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
 	
-	<bean id="blAdminRememberMeServices"
-		class="org.broadleafcommerce.common.security.EnhancedTokenBasedRememberMeServices">
-		<property name="key" value="SPRING_SECURITY_REMEMBER_ME_COOKIE" />
-		<property name="userDetailsService" ref="userDetailsManager" />
-	</bean>
-
-	<bean id="blAdminExceptionTranslationFilter"
-		class="org.springframework.security.web.access.ExceptionTranslationFilter">
-		<property name="authenticationEntryPoint">
-			<bean
-				class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-				<property name="loginFormUrl" value="/blcadmin/login.jsp" />
-				<property name="forceHttps" value="false" />
-				<property name="portMapper">
-					<bean class="org.springframework.security.web.PortMapperImpl">
-						<property name="portMappings">
-							<map>
-								<entry key="8081">
-									<value>8444</value>
-								</entry>
-							</map>
-						</property>
-					</bean>
-				</property>
-			</bean>
-		</property>
-	</bean>
+	<!-- The service used by the authentication manager -->
+    <bean id="blAdminUserDetailsService" class="org.broadleafcommerce.openadmin.server.security.service.AdminUserDetailsServiceImpl"/>
+	
+	<!-- This ensures that the user has permissions to perform the requested operation -->
 	<bean id="blAdminFilterSecurityInterceptor"
 		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
 		<property name="accessDecisionManager" ref="blAccessDecisionManager"/>
-		<property name="authenticationManager" ref="blAuthenticationManager" />
+		<property name="authenticationManager" ref="blAdminAuthenticationManager" />
 		<property name="securityMetadataSource">
 			<sec:filter-security-metadata-source>
 				<sec:intercept-url pattern="/admin.html*" access="PERMISSION_OTHER_DEFAULT" />
@@ -168,6 +77,20 @@
 		</property>
 	</bean>
 	
+    <!-- Sets the login failure URL -->
+	<bean id="blAdminAuthenticationFailureHandler"
+		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
+		<constructor-arg value="/blcadmin/login.jsp?login_error=true" />
+	</bean>
+
+    <!-- Sets the login success URL -->
+	<bean id="blAdminAuthenticationSuccessHandler"
+		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/admin.html" />
+		<property name="alwaysUseDefaultTargetUrl" value="false" />
+	</bean>
+    
+    <!-- The access decision manager works in conjunciton with global method security -->
 	<bean id="blAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
 		<property name="decisionVoters">
 			<list>
@@ -178,26 +101,7 @@
 		</property>
 	</bean>
 	
+	<!-- Allow the @Secured annotations -->
 	<sec:global-method-security access-decision-manager-ref="blAccessDecisionManager" secured-annotations="enabled" />
-		
-	<sec:authentication-manager alias="blAuthenticationManager">
-		<sec:authentication-provider
-			user-service-ref="userDetailsManager">
-			<sec:password-encoder hash="plaintext" />
-		</sec:authentication-provider>
-	</sec:authentication-manager>
-    
-    <bean id="blAdminUserDetailsService" class="org.broadleafcommerce.openadmin.server.security.service.AdminUserDetailsServiceImpl"/>
-
-    <alias name="blAdminUserDetailsService" alias="userDetailsManager"/>
-	
-	<!-- TODO: figure out why exactly this is needed. Without this here, causes SPEL parse exception because it cannot find a right-hand operand -->
-	<bean id="broadleafApplicationFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <property name="filterChainMap">
-            <util:map map-class="java.util.LinkedHashMap">
-
-            </util:map>
-        </property>
-    </bean>
 
 </beans>

@@ -80,7 +80,9 @@
 		</property>
 	</bean>
     
-    <!-- Delete this bean to enable caching -->
+    <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
+    <!-- as it will allow changes made in the admin or directly on the database to be reflected -->
+    <!-- immediately. However, caching is obviously beneficial in production. -->
     <bean id="blCacheManager"
           class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
         <property name="shared" value="true"/>
@@ -109,6 +111,27 @@
 			</set>
 		</property>
 	</bean>	
+	-->
+	
+	<!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
+	<!-- you may want to override the bean definitions by uncommenting these two beans -->
+	<!-- to control whether or not templates are cacheable. This will generally be desireable -->
+	<!-- in production environments, but likely not in development environments. -->
+	<!-- 
+	<bean id="blWebTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>	
+	<bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+		<property name="prefix" value="emailTemplates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false"/>
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
 	-->
 	
 </beans>
