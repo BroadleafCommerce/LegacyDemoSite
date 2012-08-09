@@ -355,9 +355,9 @@
 			</dependency>
             <dependency>
                 <groupId>com.google.gwt</groupId>
-                <artifactId>gwt-servlet</artifactId>
+                <artifactId>gwt-user</artifactId>
                 <version>${gwt.version}</version>
-                <scope>compile</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
