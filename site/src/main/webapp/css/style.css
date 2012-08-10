@@ -1629,7 +1629,28 @@ footer {
 		width: 400px;
 		text-align: left;
 		float: right;
-	}	
+	}
+
+    footer #blc_brand {
+        background: url(../img/broadleaf-seal.png) top center no-repeat;
+        display: block;
+        height: 60px;
+        text-align: left;
+        font: 10px/13px 'Georgia', serif;
+        padding: 10px 0 0 621px;
+        margin: 100px 0 0 -200px;
+
+    }
+
+    footer #blc_brand h4 , a{
+        font: 10px/15px 'Open Sans', Helvetica, sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        color: #262322;
+        text-decoration: none;
+    }
 
 /* Shared styles between all buttons */
 input[type="submit"].big, a.big-button, 
