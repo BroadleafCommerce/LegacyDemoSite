@@ -20,7 +20,7 @@
         
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
-    <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.profile.extensibility.jpa.MergePersistenceUnitManager">
+    <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
         <property name="persistenceXmlLocations">
             <list>
                 <value>classpath*:/META-INF/persistence-admin.xml</value>
@@ -80,11 +80,6 @@
     
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
     	<constructor-arg ref="blMailSender"/>
-    </bean>
-
-    <bean id="blUtilityRemoteService" class="org.broadleafcommerce.openadmin.server.service.UtilityRemoteService">
-        <property name="assetServerUrlPrefix" value="${asset.server.url.prefix.internal}"/>
-        <property name="storeFrontWebAppPrefix" value="http://localhost:8080/"/>
     </bean>
 
 </beans>
