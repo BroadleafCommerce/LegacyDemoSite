@@ -1642,7 +1642,7 @@ footer {
 
     }
 
-    footer #blc_brand h4 , a{
+    footer #blc_brand h4, footer #blc_brand a{
         font: 10px/15px 'Open Sans', Helvetica, sans-serif;
         font-weight: 600;
         letter-spacing: 1px;
