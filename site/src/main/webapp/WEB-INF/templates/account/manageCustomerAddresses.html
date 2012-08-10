@@ -19,6 +19,7 @@
 		method="post" 
 		th:action="@{'/account/addresses/' + ${customerAddressForm.customerAddressId != null ? customerAddressForm.customerAddressId : ''}}" 
 		th:object="${customerAddressForm}">    
+		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
 		<div>
 	        <div class="form30">
 	            <label for="firstName">First Name</label>

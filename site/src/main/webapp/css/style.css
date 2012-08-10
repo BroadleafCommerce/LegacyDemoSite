@@ -1249,7 +1249,7 @@ ul#payment_methods li {
 
 	#product_main_image img#main_image {
 		width: 400px;
-		height: auto;
+		max-height: 400px;
 	}
 
 .product-options {

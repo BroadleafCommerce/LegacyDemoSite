@@ -1,11 +1,7 @@
 package com.mycompany.controller.checkout;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.collections.CollectionUtils;
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.Order;
@@ -27,6 +23,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/checkout")
@@ -55,7 +56,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, 
-            BindingResult result) throws PricingException {
+            BindingResult result) throws PricingException, ServiceException {
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -69,7 +70,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     @RequestMapping(value = "/multiship", method = RequestMethod.POST)
     public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
     		@ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm, 
-    		BindingResult result) throws PricingException {
+    		BindingResult result) throws PricingException, ServiceException {
     	return super.saveMultiship(request, response, model, orderMultishipOptionForm, result);
     }
     
@@ -81,7 +82,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     
     @RequestMapping(value = "/add-address", method = RequestMethod.POST)
     public String saveMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) {
+    		@ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) throws ServiceException {
     	return super.saveMultishipAddAddress(request, response, model, addressForm, result);
     }
 
@@ -89,7 +90,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            BindingResult result) throws CheckoutException, PricingException {
+            BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }

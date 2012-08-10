@@ -17,8 +17,11 @@
 		<section id="left_column">
 	
 			<header>
-				<h1 th:inline="text">
+				<h1 th:unless="${#strings.isEmpty(originalQuery)}" th:inline="text">
                     Search Results for [[${originalQuery}]] ([[${#lists.size(products)}]])
+                </h1>
+				<h1 th:if="${#strings.isEmpty(originalQuery)}">
+                    Search Results for "" (0)
                 </h1>
 				<div th:substituteby="catalog/partials/productSortOptions"></div>
 			</header>

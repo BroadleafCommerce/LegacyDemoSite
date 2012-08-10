@@ -1,9 +1,6 @@
 package com.mycompany.controller.account;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafManageCustomerAddressesController;
 import org.broadleafcommerce.core.web.controller.account.CustomerAddressForm;
 import org.broadleafcommerce.profile.core.domain.Country;
@@ -19,6 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/account/addresses")
@@ -50,7 +51,7 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addCustomerAddress(HttpServletRequest request, Model model, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String addCustomerAddress(HttpServletRequest request, Model model, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) throws ServiceException {
         return super.addCustomerAddress(request, model, form, result, redirectAttributes);
     }
     
@@ -60,7 +61,7 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST)
-    public String updateCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String updateCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) throws ServiceException {
     	return super.updateCustomerAddress(request, model, customerAddressId, form, result, redirectAttributes);
     }
 

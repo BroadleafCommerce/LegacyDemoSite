@@ -1,4 +1,5 @@
 <form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate">
+	<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
     <div class="left_content">
         <input type="hidden" name="address.country" value="US" />
 
