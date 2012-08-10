@@ -183,6 +183,7 @@
 			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-contentmanagement-module</artifactId>
 		</dependency>
+	
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-framework-web</artifactId>
@@ -190,6 +191,11 @@
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
 			<artifactId>broadleaf-common</artifactId>
+		
+		</dependency>
+		<dependency>
+			<groupId>org.broadleafcommerce</groupId>
+			<artifactId>broadleaf-admin-search</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.mycompany</groupId>
