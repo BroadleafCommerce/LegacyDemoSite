@@ -101,14 +101,14 @@
 			<ul id="product_thumbs">
 				<li>
 					<a href="javascript:;" class="zoomThumbActive" 
-						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
 						<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
 					</a>
 				</li>
 				
 				<li th:each="media : *{media}" th:unless="${media.key == 'primary'}">
 					<a href="javascript:;"
-						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}}__'', largeimage: ''__@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}">
+						th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}}__'', largeimage: ''__@{${#strings.replace(media.value.url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=${media.value.tags}">
 						<img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
 					</a>
 				</li>
