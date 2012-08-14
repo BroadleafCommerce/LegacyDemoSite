@@ -36,7 +36,7 @@
 			<header>Filter your search</header>
 			<div id="options">
 				<div th:each="facetDto : ${facets}" class="section">
-					<h3 th:text="${facetDto.facet.searchFacet.label}"></h3>
+					<h3 th:text="${facetDto.facet.label}"></h3>
 					<ul>
 						<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
 							<a blc:togglefacetlink="${facetValue}" class="maker">
