@@ -1281,7 +1281,9 @@ ul#payment_methods li {
 		width: 89px;
 		height: auto;
 	}
-	
+
+		.thumbs_nav {display: none;}
+
 .add_to_cart, .in_cart {
 	display: block;
 }
@@ -1765,7 +1767,7 @@ and (max-width : 480px) {
 		padding: 0;
 		margin: 25px 0;
 		float: left;
-		display: block;
+		display: none;
 	}
 	
 	#logo {
@@ -1887,6 +1889,7 @@ and (max-width : 480px) {
 			display: inline;
 		}
 	
+	/**
 	#product_main_image {
 		width: 320px;
 		height: 320px;
@@ -1899,28 +1902,18 @@ and (max-width : 480px) {
 			height: auto;
 			margin: 0 10px;
 		}
-	
-	#product_thumbs {
-		width: 310px;
-		margin: 0 0 0 5px;
-		padding: 0;
-		list-style: none;
-		float: left;
+		**/
+
+	#product_main_image {
+		display: none;
 	}
-	
-		#product_thumbs li {
-			width: 70px;
-			height: 70px;
-			margin: 5px;
-			float: left;
-			display: inline;
-			overflow: hidden;
-		}
-		
-		#product_thumbs li img {
-			width: 70px;
-			height: auto;
-		}
+
+	#product_thumbs_container {width: 320px; overflow: hidden;}
+	#product_thumbs {list-style: none; margin: 0; padding: 0; width: 960px; float: none; display: block; }
+	#product_thumbs li {float: left; height: auto; margin: 0; width: 320px; position: relative; display: block;}
+	#product_thumbs li a {display: block;}
+	#product_thumbs li img {margin: 10px; width: 300px;}
+	.thumbs_nav {position: absolute; bottom: 10px; right: 10px; color: #fff; background: #000; opacity: .6; width: 290px; padding: 10px 5px; font-weight: bold; text-align: center; margin: 0; display: block;}
 		
 	#product_content {
 		width: 300px;
@@ -2092,7 +2085,7 @@ and (max-width : 480px) {
 		width: 320px;
 		margin: 20px 0;
 		background: url('../img/sidebarbg.jpg') repeat;
-		float: left;
+		float: none;
 		-moz-box-shadow: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
@@ -2157,8 +2150,10 @@ and (max-width : 480px) {
 		overflow: hidden;
 		float: left;
 		display: inline;
-		position: relative;
+		position: static;
 	}
+	
+	#featured_products li a {display: block; position: relative;}
 	
 		#featured_products li .image img {
 			width: auto;
