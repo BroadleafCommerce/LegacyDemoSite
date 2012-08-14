@@ -1762,13 +1762,16 @@ and (max-width : 480px) {
 	}
 	
 	footer {
-		width: 100%;
+		background: none;
+		width: 320px;
 		height: 150px;
 		padding: 0;
 		margin: 25px 0;
 		float: left;
-		display: none;
+		display: block;
 	}
+	
+	footer #blc_brand {background: none; text-align: center; margin: 20px 0 0; padding: 0;}
 	
 	#logo {
 		width: 300px;
