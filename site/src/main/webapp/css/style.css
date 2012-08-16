@@ -2304,6 +2304,52 @@ and (max-width : 480px) {
 }
 
 /* =============================================================================
+  	For iPad tablets in portait orientation
+   ========================================================================== */
+
+@media only screen
+	and (width : 768px)
+	and (orientation:portrait) { 
+	
+	#content, #header_content, header {width: 748px; margin-left: 10px; margin-right: 10px;}
+	nav ul li a {padding: 25px 20px; font-size: 13px;}
+	#header_content #cart_info {margin-right: 10px;}
+	#header_content #search {right: 10px;}
+	#banners {margin-top: 10px;}
+	#banners img {width: 100%;}
+	#banners, nav, #home_feature, #content .title_bar, #products, footer {width: 708px;}
+	#home_feature {margin-left: 20px; margin-right: 20px; padding: 10px 0;}
+	#products {margin: 15px 10px;}
+	#products li, #products li .image, #products li .image img, #products li .content, #products li .content .title  {width: 334px;}
+	footer #blc_brand {padding-left: 525px;}
+	footer #left_content, footer #right_content {display:none;}
+	
+	#left_column {width: 548px;}
+	#left_column #products {width: 508px;}
+	#left_column #products li, #left_column #products li .image, #left_column #products li .image img, #left_column #products li .content, 
+	#left_column #products li .content .title {width: 234px;}
+	#right_column {width: 180px; margin: 80px 20px 0 0;}
+	#right_column header, #right_column #options {width: 160px;}
+	#right_column header {width: 160px; margin: 0; padding: 10px;}
+	#right_column #options {margin: 10px;}
+	#right_column #options .maker {width: 140px;}
+	#right_column img {width: 160px;}
+	#right_column #right_column {display: none;}
+	
+	#right_column #featured_products {}
+	#right_column #featured_products li .image {float: none; display: block; width: 160px;}
+	#featured_products li .image img {width: 140px; margin: 5px 10px;}
+	#featured_products li .image .price {right: 10px;}
+	#featured_products li .content {float: none; display: block; }
+	#featured_products li .content .title {width: 160px; text-align: center; margin: 5px 0;}
+	#featured_products li .content p {width: 140px; margin: 10px 10px 0;}
+	
+	#product_content {width: 504px;}
+	#featured_products li .add_to_cart, #featured_products li .in_cart {margin-left: 30px;}
+		
+}
+
+/* =============================================================================
    Non-Semantic Helper Classes
    ========================================================================== */
 
