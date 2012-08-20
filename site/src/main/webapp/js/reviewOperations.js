@@ -18,7 +18,10 @@ $(function(){
 	var $communityRating = $('#community-rating');
 	var $customerRating = $('.customer-rating');
 	var $communityRatingWidget = $communityRating.find('input.star');
+	
 	var communityRating = $communityRating.data('community-rating') * 4 - 1;
+	
+	communityRating = Math.round(communityRating); //round to nearest whole number to be compatible with star widgit
 
 	$communityRatingWidget.rating('select', communityRating).rating('disable');
 	
@@ -29,7 +32,7 @@ $(function(){
 	
 	
 	
-	// Bind all links with class .account to open the login/register fancybox modal
+	// Bind all links with class 'create-review' to open the review modal
 	$('body').on('click', 'a.create-review', function() {
 		$.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href'), afterShow: function() {
 			$('.fancybox-inner').find('form:first').find('input:first').focus();

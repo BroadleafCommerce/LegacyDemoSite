@@ -119,7 +119,6 @@
 			</div>
 			
 			<div class="clearfix"></div>
-			<!-- 
                 <div id="customer-reviews-container">
 					<blc:ratings itemId="${product.id}" />
 					<div th:if="${ratingSummary}" th:object="${ratingSummary}">
@@ -152,6 +151,26 @@
 							</div>
 						</div>
 						<div class="clearfix"></div>
+							<blc:ratings itemId="${product.id}" />
+							<div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
+								<h4>Your Review</h4>
+								<p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
+									<span th:text="*{helpfulCount()}">9</span> of 
+									<span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+								</p>
+								<form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+									<input type="radio" class="star" />
+									<input type="radio" class="star" />
+									<input type="radio" class="star"/>
+									<input type="radio" class="star" />
+									<input type="radio" class="star" />
+								</form>
+								<span class="reviewer-info">
+									on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+								</span>
+								<div class="clearfix"></div>
+								<blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>							
+							</div>
 						<div class="helpful-reviews">
 							<h4>Customer Reviews</h4>
 							<ul class="customer-reviews">
@@ -172,26 +191,24 @@
 										<span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
 									</span>
 									<div class="clearfix"></div>
-									<blockquote th:if="*{reviewText}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
+									<blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div th:if="${customer.loggedIn}">
 						<div th:if="${ratingSummary}">
-							<a th:if="${currentCustomerReview}" class="account" th:href="@{'/reviews/product/' + ${product.id}}">Change your review</a>
-							<a th:unless="${currentCustomerReview}" class="account" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
+							<a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
 						</div>
 						<div th:unless="${ratingSummary}">
 							<a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Be the first to write a review!</a>
 						</div>
 					</div>
-					<div th:unless="${customer.loggedIn}" th:remove="tag">
-						<a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark create-review">Login to create a review</a>
+					<div th:unless="${customer.loggedIn}">
+						<a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Login to create a review</a>
 						<a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Login and be the first to write a review!</a>
 					</div>
-                </div>			-->
-			
+                </div>			
 		</section>
 	
 		<section id="right_column">
