@@ -119,6 +119,14 @@
 		<env-entry-type>java.lang.String</env-entry-type>
 		<env-entry-value>admin</env-entry-value>
 	</env-entry>
+	<servlet>
+    <servlet-name>remoteLogging</servlet-name>
+        <servlet-class>org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remoteLogging</servlet-name>
+        <url-pattern>/com.mycompany.gwt.mycompanyAdmin/remote_logging</url-pattern>
+    </servlet-mapping>
 	
 	<resource-ref>
 		<res-ref-name>jdbc/web</res-ref-name>

@@ -12,6 +12,9 @@
 	<logger name="org.broadleafcommerce">
 		<level value="warn" />
 	</logger>
+		<logger name="org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingServlet">
+		<level value="INFO" />
+	</logger>
 	<logger name="org.springframework">
 		<level value="warn" />
 	</logger>
