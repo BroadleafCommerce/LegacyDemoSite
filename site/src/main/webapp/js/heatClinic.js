@@ -2,6 +2,14 @@
  * used by various other areas of the site */
 var HC = (function($) {
 	
+	function showFacetMultiselect(abbr) {
+		$.fancybox.open($('#facet-' + abbr), {
+			minWidth: 200,
+			openEffect: 'none',
+			closeEffect: 'none'
+		});
+	}
+	
 	function updateCurrentImage() {
 		//grab the active product option values
 		var activeOptions = $('.product-options .active');
@@ -53,6 +61,7 @@ var HC = (function($) {
 	
 	return {
 		showNotification : showNotification,
-		changeProductOption : changeProductOption
+		changeProductOption : changeProductOption,
+		showFacetMultiselect : showFacetMultiselect
 	}
 })($);

@@ -62,7 +62,9 @@
     <!-- application footprint, it will default the search service to use the database implementation, which  -->
     <!-- is slower and less full-featured. Note that you may also pass in a bean reference to a SolrServer -->
     <!-- if you would prefer to use a standalone solr server. (The default constructor will create an embedded one) -->
-    <bean id="blProductSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrProductSearchServiceImpl" />
+    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
+    	<constructor-arg name="solrHome" value="solrhome" />
+    </bean>
     
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->

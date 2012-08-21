@@ -18,10 +18,10 @@
 	
 			<header>
 				<h1 th:unless="${#strings.isEmpty(originalQuery)}" th:inline="text">
-                    Search Results for [[${originalQuery}]] ([[${#lists.size(products)}]])
+					Search Results for [[${originalQuery}]] ([[${result.startResult}]] - [[${result.endResult}]] of [[${result.totalResults}]])
                 </h1>
 				<h1 th:if="${#strings.isEmpty(originalQuery)}">
-                    Search Results for "" (0)
+                    Search Results for (0)
                 </h1>
 				<div th:substituteby="catalog/partials/productSortOptions"></div>
 			</header>
@@ -30,32 +30,15 @@
 				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
 			</ul>
 			
+			<div th:substituteby="catalog/partials/productPagingOptions" />
+			
 		</section>
 	
 		<section id="right_column">
 			<header>Filter your search</header>
 			<div id="options">
-				<div th:each="facetDto : ${facets}" class="section">
-					<h3 th:text="${facetDto.facet.label}"></h3>
-					<ul>
-						<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'">
-							<a blc:togglefacetlink="${facetValue}" class="maker">
-								<span th:if="${facetValue.value != null}" th:remove="tag"
-									th:text="${facetValue.value}"></span>
-									
-								<span th:unless="${facetValue.value != null}" th:remove="tag">
-									<span blc:price="${facetValue.minValue}" th:remove="tag"></span>
-									<span th:text="${facetValue.maxValue == null ? ' or more' : ' - '}" th:remove="tag"></span>
-									<span th:if="${facetValue.maxValue != null}" blc:price="${facetValue.maxValue}" th:remove="tag"></span>
-								</span>
-                
-								    <span th:if="${facetDto.showQuantity}" th:text="${facetValue.quantity}"></span>
-                    
-                                  <i th:if="${facetValue.active}" class="icon-remove"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
+			
+				<div th:substituteby="catalog/partials/facetFilter" />
 				
 				<div th:substituteby="catalog/partials/rightHandBannerAds" />
 				
