@@ -102,7 +102,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
     		//if the cart has already has fulfillment information
             shippingForm.setAddress(groups.get(0).getAddress());
-            shippingForm.setFulfillmentOptionId(groups.get(0).getFulfillmentOption().getId());
+            shippingForm.setFulfillmentOption(groups.get(0).getFulfillmentOption());
         } else {
         	//check for a default address for the customer
         	CustomerAddress defaultAddress = customerAddressService.findDefaultCustomerAddress(CustomerState.getCustomer().getId());

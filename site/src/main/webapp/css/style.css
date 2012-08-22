@@ -9,7 +9,7 @@
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
 audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 audio:not([controls]) { display: none; }
-[hidden] { display: none; }
+.hide, [hidden] { display: none; }
 
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
@@ -789,6 +789,8 @@ form.manage-account input[type="submit"] {
 	display: block;
 }
 
+.cart_title a {margin-left: 6px;}
+
 #cart .left_content  {
 	width: 580px;
 	float: left;
@@ -890,6 +892,16 @@ form.manage-account input[type="submit"] {
 	#cart_products .multiship-address {
 		min-width: 140px;
 	}
+	
+#checkout_content .shipping-info-read-only {float: left; margin-right: 10px; padding: 10px 20px; width: 260px; background: url('../img/sidebarbg.jpg') repeat;}
+#checkout_content #cart_total {display: none;}
+#checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: 150px;}
+#checkout_content #cart_total h3, #checkout_content .shipping-info-read-only h3 {font: 14px/18px bold 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;}
+#checkout_content #cart_total #total_table {margin: 0;}
+#checkout_content #cart_total #total_table tr td {padding: 2px;}
+#checkout_content #cart_total #total_table .subtotal {border-bottom: none;}
+#checkout_content #cart_total #total_table .subtotal td {padding-top: 10px;}
+#checkout_content #cart_total #total_table .subtotal td.price {font-size: 24px;}
 
 #wishlist_items {
     width: 580px;
@@ -2327,6 +2339,9 @@ and (max-width : 480px) {
 #cart #shipping_info .right_content, #cart #billing_info .right_content_billing {width: 280px; float: none; margin: 10px 0; padding: 10px;}
 #cart #shipping_info .left_content .margin20, #cart #billing_info .right_content_billing .margin20 {margin: 0;}
 #cart #checkout_warning {width: 280px; padding: 10px; margin: 0;}
+
+#checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: auto; margin: 0 0 10px;}
+#checkout_content #cart_total {display: block; padding: 10px 20px; margin: 0; width: 260px;}
 
 #cart_promo #promoCode {margin-left: 0;}
 
