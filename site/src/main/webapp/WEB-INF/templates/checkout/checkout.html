@@ -39,7 +39,7 @@
 
     <div class="cart_title">
     	Step 1 &raquo; Shipping Information
-	    <a th:if="${validShipping}" th:href="@{/checkout} + '?edit-shipping=true'">
+	    <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout} + '?edit-shipping=true'">
             Edit
         </a>
     </div>
