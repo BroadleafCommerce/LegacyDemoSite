@@ -62,4 +62,16 @@ public class LoginController extends BroadleafLoginController {
     public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) throws ServiceException {
     	return super.processResetPassword(resetPasswordForm, request, response, model, errors);
     }	
+	
+	@Override
+	public String getResetPasswordUrl(HttpServletRequest request) {		
+		String url = request.getScheme() + "://" + request.getServerName() + getResetPasswordPort(request, request.getScheme() + "/");
+		
+		if (request.getContextPath() != null && ! "".equals(request.getContextPath())) {
+			url = url + request.getContextPath() + "/login/resetPassword";
+		} else {
+			url = url + "/login/resetPassword";
+		}
+		return url;
+	}
 }
