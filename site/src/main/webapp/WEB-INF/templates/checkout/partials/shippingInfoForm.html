@@ -58,12 +58,14 @@
 				<img src="/img/loading.gif" /> Shipping Method
 			</h3>
 
-			<span class="error" th:if="${#fields.hasErrors('fulfillmentOption')}" th:errors="*{fulfillmentOption}"></span>
+			<span class="error" th:if="${#fields.hasErrors('fulfillmentOptionId')}" th:errors="*{fulfillmentOptionId}"></span>
 			<table cellspacing="0" cellpadding="5" id="shippingoptions" class="checkoutTable">
 				<tr th:each="fulfillmentOption : ${fulfillmentOptions}">
-					<td><input class="shipping_method_option" type="radio" th:field="*{fulfillmentOption.id}" th:value="${fulfillmentOption.id}" /></td>
-					<td><span th:text="${fulfillmentOption.name}" />&nbsp;(<span th:text="${fulfillmentOption.longDescription}" />)&nbsp;-&nbsp;<span
-						blc:price="${fulfillmentOption.price}" /></td>
+					<td><input class="shipping_method_option" type="radio" th:field="*{fulfillmentOptionId}" th:value="${fulfillmentOption.id}" /></td>
+					<td>
+						<span th:text="${fulfillmentOption.name}"/>&nbsp;(<span th:text="${fulfillmentOption.longDescription}"/>)
+	                    <span th:if="${estimateResponse != null}" blc:price="${estimateResponse.fulfillmentOptionPrices.get(fulfillmentOption)}"/>
+					</td>
 				</tr>
 			</table>
 			<br />
