@@ -18,81 +18,71 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
     
-    <context:component-scan base-package="org.broadleafcommerce.common"/>
-    
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
-    <bean id="blPersistenceUnitManager" class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
-        <property name="persistenceXmlLocations">
-            <list>
-                <value>classpath*:/META-INF/persistence.xml</value>
-            </list>
-        </property>
-        <property name="dataSources">
+    <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
             <map>
                 <entry key="jdbc/web" value-ref="webDS"/>
                 <entry key="jdbc/webSecure" value-ref="webSecureDS"/>
                 <entry key="jdbc/cmsStorage" value-ref="webStorageDS"/>
             </map>
         </property>
-        <property name="defaultDataSource" ref="webDS"/>
-        <property name="persistenceUnitPostProcessors">
-        	<list>
-        		<bean class="org.broadleafcommerce.common.extensibility.jpa.JPAPropertiesPersistenceUnitPostProcessor">
-        			<property name="persistenceUnitProperties">
-        				<map>
-        					<!-- Overrides from environment properties files for blPU PersistenceUnit -->
-        					<entry key="blPU.hibernate.hbm2ddl.auto" value="${blPU.hibernate.hbm2ddl.auto}" />
-        					<entry key="blPU.hibernate.dialect" value="${blPU.hibernate.dialect}"/>
-        					<entry key="blPU.hibernate.show_sql" value="${blPU.hibernate.show_sql}"/>
-        					<entry key="blPU.hibernate.cache.use_second_level_cache" value="${blPU.hibernate.cache.use_second_level_cache}"/>
-        					<entry key="blPU.hibernate.cache.use_query_cache" value="${blPU.hibernate.cache.use_query_cache}"/>
-        					<entry key="blPU.hibernate.hbm2ddl.import_files" value="${blPU.hibernate.hbm2ddl.import_files}"/>
-        					
-        					<!-- Overrides from environment properties files for blCMSStorage PersistenceUnit -->
-        					<entry key="blCMSStorage.hibernate.hbm2ddl.auto" value="${blCMSStorage.hibernate.hbm2ddl.auto}" />
-        					<entry key="blCMSStorage.hibernate.dialect" value="${blCMSStorage.hibernate.dialect}"/>
-        					<entry key="blCMSStorage.hibernate.show_sql" value="${blCMSStorage.hibernate.show_sql}"/>
-        					<entry key="blCMSStorage.hibernate.cache.use_second_level_cache" value="${blCMSStorage.hibernate.cache.use_second_level_cache}"/>
-        					<entry key="blCMSStorage.hibernate.cache.use_query_cache" value="${blCMSStorage.hibernate.cache.use_query_cache}"/>
-        					<entry key="blCMSStorage.hibernate.hbm2ddl.import_files" value="${blCMSStorage.hibernate.hbm2ddl.import_files}"/>
-        					
-        					<!-- Overrides from environment properties files for blSecure PersistenceUnit -->
-        					<entry key="blSecurePU.hibernate.hbm2ddl.auto" value="${blSecurePU.hibernate.hbm2ddl.auto}" />
-        					<entry key="blSecurePU.hibernate.dialect" value="${blSecurePU.hibernate.dialect}"/>
-        					<entry key="blSecurePU.hibernate.show_sql" value="${blSecurePU.hibernate.show_sql}"/>
-        					<entry key="blSecurePU.hibernate.cache.use_second_level_cache" value="${blSecurePU.hibernate.cache.use_second_level_cache}"/>
-        					<entry key="blSecurePU.hibernate.cache.use_query_cache" value="${blSecurePU.hibernate.cache.use_query_cache}"/>
-        					<entry key="blSecurePU.hibernate.hbm2ddl.import_files" value="${blSecurePU.hibernate.hbm2ddl.import_files}"/>
-        				</map>
-        			</property>
-        		</bean>
-        	</list>
+    </bean>
+
+    <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath*:/META-INF/persistence.xml</value>
+            </list>
         </property>
     </bean>
     
     <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
-    <bean id="blEntityConfiguration" class="org.broadleafcommerce.common.persistence.EntityConfiguration">
-		<property name="entityContexts">
-			<list>
-				<value>classpath:applicationContext-entity.xml</value>
-			</list>
-		</property>
-	</bean>
+    <bean id="blMergedEntityContexts" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath:applicationContext-entity.xml</value>
+            </list>
+        </property>
+    </bean>
     
     <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
     <!-- as it will allow changes made in the admin or directly on the database to be reflected -->
     <!-- immediately. However, caching is obviously beneficial in production. -->
-    <bean id="blCacheManager"
-          class="org.broadleafcommerce.common.extensibility.cache.ehcache.MergeEhCacheManagerFactoryBean">
-        <property name="shared" value="true"/>
-        <property name="configLocations">
+    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
             <list>
                 <value>classpath:bl-override-ehcache.xml</value>
             </list>
         </property>
     </bean>
     
+    <!-- Delete this section to disable the embedded solr search service. Although this will result in a smaller -->
+    <!-- application footprint, it will default the search service to use the database implementation, which  -->
+    <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
+    <!-- majority of cases. Note that you may also pass in a bean reference to a SolrServer if you would prefer -->
+	<!-- to use a standalone solr server. (The default constructor will create an embedded one at solrHome) -->
+    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
+    	<constructor-arg name="solrHome" value="solrhome" />
+    </bean> 
+   	<bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  	<property name="targetObject" ref="blSearchService" />
+	  	<property name="targetMethod" value="rebuildIndex" />
+	</bean> 
+	<bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	    <property name="jobDetail" ref="rebuildIndexJobDetail" />
+	    <property name="startDelay" value="5000" />
+	    <property name="repeatInterval" value="3600000" />
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="rebuildIndexTrigger" />
+	        </list>
+	    </property>
+	</bean>
+	
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
 	<!-- Note that the same thing could be done for the blEmailTemplateEngine -->

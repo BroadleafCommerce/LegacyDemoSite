@@ -1,7 +1,6 @@
 package com.mycompany.controller.account;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafChangePasswordController;
 import org.broadleafcommerce.core.web.controller.account.ChangePasswordForm;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/account/password")
@@ -22,7 +23,7 @@ public class ChangePasswordController extends BroadleafChangePasswordController 
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processChangePassword(HttpServletRequest request, Model model, @ModelAttribute("changePasswordForm") ChangePasswordForm form, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String processChangePassword(HttpServletRequest request, Model model, @ModelAttribute("changePasswordForm") ChangePasswordForm form, BindingResult result, RedirectAttributes redirectAttributes) throws ServiceException {
         return super.processChangePassword(request, model, form, result, redirectAttributes);
     }
     

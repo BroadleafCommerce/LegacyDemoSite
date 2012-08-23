@@ -3,6 +3,7 @@
 		<div id="addAddressTitle">Add a new address</div>
 		<div id="addAddress">
 			<form th:object="${addressForm}" th:action="@{/checkout/add-address}" method="post" id="shipping_address">
+				<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
 				<input type="hidden" name="address.country" value="US" />
 				
 				<div class="form30">

@@ -16,6 +16,7 @@
 
 package com.mycompany.controller.account;
 
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafLoginController;
 import org.broadleafcommerce.core.web.controller.account.ResetPasswordForm;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,19 @@ public class LoginController extends BroadleafLoginController {
 	}	
     
 	@RequestMapping(value="/login/resetPassword", method=RequestMethod.POST)
-    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) {
+    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) throws ServiceException {
     	return super.processResetPassword(resetPasswordForm, request, response, model, errors);
     }	
+	
+	@Override
+	public String getResetPasswordUrl(HttpServletRequest request) {		
+		String url = request.getScheme() + "://" + request.getServerName() + getResetPasswordPort(request, request.getScheme() + "/");
+		
+		if (request.getContextPath() != null && ! "".equals(request.getContextPath())) {
+			url = url + request.getContextPath() + "/login/resetPassword";
+		} else {
+			url = url + "/login/resetPassword";
+		}
+		return url;
+	}
 }

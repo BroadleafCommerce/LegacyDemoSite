@@ -1,5 +1,6 @@
 <div id="multiship-products">	
 	<form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="multiship_address">
+		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
 		<div class="multishipContainer">
 			<table id="cart_products">
 				<thead>

@@ -2,8 +2,7 @@
 
     <div class="cart_title">
         Order Summary
-        &nbsp;
-        <a id="cartLink" class="fancycart" th:href="@{/cart}">
+         <a id="cartLink" class="fancycart" th:href="@{/cart}">
             Edit
         </a>
     </div>
@@ -38,14 +37,46 @@
         </tbody>
     </table>
 
-    <div class="cart_title">Step 1 &raquo; Shipping Information</div>
+    <div class="cart_title">
+    	Step 1 &raquo; Shipping Information
+	    <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout} + '?edit-shipping=true'">
+            Edit
+        </a>
+    </div>
     
     <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
     	<table th:substituteby="checkout/partials/multishipInfo"></table>
     </div>
     <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
     	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
-    </div> 
+    </div>
+    
+    <div th:if="${validShipping}" id="cart_total" class="group">
+        <h3>Order Total</h3>
+        <table width="100%" id="total_table" border="0">
+            <tr>
+                <td>Subtotal</td>
+                <td blc:price="${cart.subTotal}"></td>
+            </tr>
+            <tr>
+                <td>Promotions</td>
+                <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
+                <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
+            </tr>
+            <tr>
+                <td>Taxes</td>
+                <td blc:price="${cart.totalTax}"></td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td blc:price="${cart.totalShipping}"></td>
+            </tr>
+            <tr class="subtotal">
+            	<td>Total</td>
+            	<td class="price" blc:price="${cart.total}"></td>
+            </tr>
+        </table>
+     </div>    
 
     <div class="cart_title">Step 2 &raquo; Billing Information</div>
 

@@ -1,0 +1,8 @@
+<div class="pager">
+	<span class="heading">Page:</span> 
+	<ul>
+		<li th:each="num : ${#numbers.sequence(1, result.totalPages)}">
+			<a blc:paginationpagelink="${num}" th:text="${num}" th:class="${result.page == num}? 'active'"></a>
+		</li>
+	</ul>
+</div>

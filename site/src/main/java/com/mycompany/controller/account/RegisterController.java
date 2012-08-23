@@ -16,6 +16,7 @@
 
 package com.mycompany.controller.account;
 
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafRegisterController;
 import org.broadleafcommerce.profile.web.core.form.RegisterCustomerForm;
 import org.springframework.stereotype.Controller;
@@ -36,14 +37,15 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterController extends BroadleafRegisterController {
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String register(@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String register(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm) {
 		return super.register(request, response, model);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String processRegister(@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors, HttpServletRequest request, HttpServletResponse response, Model model) {
-		String url = super.processRegister(registerCustomerForm, errors, request, response, model);
-		return url;
+	public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors) throws ServiceException {
+		return super.processRegister(registerCustomerForm, errors, request, response, model);
 	}
 	
     @ModelAttribute("registrationForm") 

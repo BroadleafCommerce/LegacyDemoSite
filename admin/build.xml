@@ -65,7 +65,7 @@
 			<jvmarg value="-XX:MaxPermSize=256M" />
 		    <jvmarg value="-Xmx512M" />
 			<jvmarg value="-Xdebug" />
-			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8011,server=y,suspend=n" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
 			<jvmarg value="-Drebel.root=${project.root}" />
 			<jvmarg value="-Dlogs.dir=${logs.dir}" />
 			<jvmarg value="-noverify" />
