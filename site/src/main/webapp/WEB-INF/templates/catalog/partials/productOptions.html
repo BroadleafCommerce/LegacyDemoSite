@@ -5,9 +5,8 @@
 		<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
 			<label th:text="*{label}"></label>:  <span th:id="*{attributeName}" class="option-value"></span>
 			<ul class="cf">
-				<li th:each="optionValue : *{allowedValues}" th:object="${optionValue}" 
-					th:attr="data-product-option='{&quot;optionId&quot;:' + *{productOption.id} + ', &quot;valueId&quot;:' + *{id} + ', &quot;name&quot;:&quot;' + *{attributeValue} + '&quot;}'" 
-					th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}">
+					<!-- th:attr="data-product-option='{&quot;optionId&quot;:' + *{productOption.id} + ', &quot;valueId&quot;:' + *{id} + ', &quot;name&quot;:&quot;' + *{attributeValue} + '&quot;}'"--> 
+				<li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
 					<div>
 						<a href="#" class="option-label" th:text="*{attributeValue}"></a>
 					</div>

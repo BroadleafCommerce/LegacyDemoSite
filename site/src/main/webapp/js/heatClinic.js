@@ -15,9 +15,9 @@ var HC = (function($) {
 		var activeOptions = $('.product-options .active');
 		var optionValues = [];
 		$.each(activeOptions, function() {
-			optionValues.push($(this).attr('data-product-option'));
+			optionValues.push($(this).attr('data-product-option-value'));
 		});
-		
+		debugger;
 		var mediaItems = $('#product_thumbs a');
 		var finalMedia;
 		var finalMediaMatches = 0;
@@ -85,9 +85,9 @@ var HC = (function($) {
 	    if (!$option.is('.active')) {
 	        $option.siblings('.active').removeClass('active');
 	        $option.toggleClass('active');
-	        var selectedOption = $option.data('product-option');
+	        var selectedOption = $option.data('product-option-value');
 	        var $optionText = $option.parents('.product-option-group').find('span.option-value');
-	        $optionText.text(selectedOption.name);
+	        $optionText.text(selectedOption.valueName);
 	        var productOptionData = getProductOptionData();
 
 	        for (var i = 0; i < productOptionData.length; i++) {
