@@ -43,6 +43,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 	public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
 	    	@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
 	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm) {
+    	
         prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
         return super.checkout(request, response, model);
 	}
@@ -102,6 +103,7 @@ public class CheckoutController extends BroadleafCheckoutController {
     	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
     		//if the cart has already has fulfillment information
             shippingForm.setAddress(groups.get(0).getAddress());
+            shippingForm.setFulfillmentOption(groups.get(0).getFulfillmentOption());
             shippingForm.setFulfillmentOptionId(groups.get(0).getFulfillmentOption().getId());
         } else {
         	//check for a default address for the customer

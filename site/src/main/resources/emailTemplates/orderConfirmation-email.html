@@ -1,6 +1,202 @@
-<html>
-  <head><title>Order Confirmation</title></head>  
-  <body> 
-	  <p>Your order was successfully submitted.</p>  
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Heat Clinic - Order Confirmation</title>
+  </head>
+
+  <body style="margin: 0; padding: 0;">
+    <table width="100%" border="0" cellpadding="20" cellspacing="0" style="background-color: #ebe2df; font: 12px/18px &#39;Helvetica&#39;, sans-serif; color: #434343;">
+        <tr>
+            <td> <!-- Container table begins -->
+                <table width="900" cellpadding="20" cellspacing="0" border="0" style="background-color: #fff; margin: 0 auto; margin-bottom: 60px;">
+                    <tr>
+                        <td  width="100%" style="font: normal 30px/30px &#39;Helvetica&#39;, sans-serif; background: #ec0035; padding: 20px;" colspan="2">
+                            The Heat Clinic
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font: 16px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                            Thank you for your order, <span th:text="${customer.firstName + ' ' + customer.lastName}" />!
+                        </td>
+                    </tr>
+                    <tr>   <!-- Order summary table -->
+                        <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #3e0000; color: #fff; float: left; display: block;" colspan="2">
+                            Order Summary
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;"> <!-- Order summary sub-table -->
+                            <table >
+                                <thead style="padding: 0 5px; text-align: center; font: bold 10px/10px Helvetica, sans-serif; text-transform: uppercase; color: #333; vertical-align: top;">
+                                    <tr>
+                                        <th style="border-bottom: dotted 1px #afafaf;" align="left">Item</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Quantity</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Price</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Discount</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font: 14px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                    <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}" >
+                                        <td align="left" style="padding: 5px 5px 5px 0">
+                                            <span th:text="*{product.name}"></span>
+                                            <br/>
+                                            <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+                                                <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+                                            </ul>
+                                        </td>
+                                        <td align="center" th:text="*{quantity}"></td>
+                                        <td align="left" blc:price="*{price}"></td>
+                                        <td align="center" style="color: #E40037;" th:if="*{adjustmentValue.zero}">---</td>
+                                        <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+                                        <td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </td>
+                        <td style="vertical-align: top;"> <!-- Order total sub-table -->
+                            <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; color: #655C5A; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif;">
+                                <tr colspan="2">
+                                    <td colspan="2" width="100%" style="border-bottom: dotted 1px #afafaf;" >
+                                        <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
+                                            Order Total
+                                        </h3>
+                                        <div style="font: 32px/28px 'Oxygen', Helvetica, sans-serif;" blc:price="${order.total}"></div>
+                                        <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 10px 0 5px 0;padding: 0;">
+                                            Order number  <b><span th:text="${orderNumber}" /></b>
+                                        </h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Subtotal</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;" blc:price="${order.subTotal}"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Promotions</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #E40037;" th:if="${order.orderAdjustmentsValue.zero}">---</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #E40037;" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Taxes</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;" blc:price="${order.totalTax}"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Shipping</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;" blc:price="${order.totalShipping}"></td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>   <!-- Shipping information Header -->
+                        <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #3e0000; color: #fff; float: left; display: block;" colspan="2">
+                            Shipping Information
+                        </td>
+                    </tr>
+                    <tr> <!-- Shipping information table - 1 Address -->
+                        <td colspan="2">
+                            <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                <tr th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
+                                    <td>
+                                        <address>
+                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                            [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                                            [[*{address.addressLine1}]]<br/>
+                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.emailAddress}]]<br/>
+                                        </address>
+
+                                    </td>
+                                    <td>
+                                        <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                            <tr>
+                                                <td>
+                                                    <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
+                                                        Shipping Method
+                                                    </h3>
+                                                    <b>[[*{fulfillmentOption.name}]]</b><br/>
+                                                    ([[*{fulfillmentOption.longDescription}]])
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Shipping information table - Multi-ship -->
+                                <tr th:if="${#lists.size(order.fulfillmentGroups) > 1}" >
+                                    <td>
+                                        <table width="100%" th:object="${order.fulfillmentGroups[0]}" style="padding: 4px; margin-bottom: 3px; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                            <tr th:each="fg : ${order.fulfillmentGroups}" th:object="${fg}" >
+                                                <td style="border: 1px dotted #C8C3C1; padding: 4px;">
+                                                    <h4 style="margin: 0 0 5px;">
+                                                        <span th:classappend="*{address == null}? 'error'"
+                                                              th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
+                                                        <span>&nbsp;-&nbsp;</span>
+                                                        <span th:classappend="*{fulfillmentOption == null}? 'error'"
+                                                              th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
+                                                        <span blc:price="*{shippingPrice}" style="font-weight: normal; float: right;"></span>
+                                                    </h4>
+                                                    <table style="margin-left: 50px; vertical-align: top; padding: 5px 0; font: 12px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                                        <tbody>
+                                                        <tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
+                                                            <td align="center" th:text="${item.quantity}"></td>
+                                                            <td align="left">
+                                                                <span th:text="*{sku.name}"></span>
+                                                                <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>   <!-- Billing information Header -->
+                        <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #3e0000; color: #fff; float: left; display: block;" colspan="2">
+                            Billing Information
+                        </td>
+                    </tr>
+                    <tr> <!-- Billing information table -->
+                        <td colspan="2">
+                            <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                <tr th:each="paymentInfo : ${order.paymentInfos}" th:object="${paymentInfo}" th:inline="text">
+                                    <td>
+                                        <address>
+                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                            [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                                            [[*{address.addressLine1}]]<br/>
+                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.emailAddress}]]<br/>
+                                        </address>
+                                    </td>
+                                    <td>
+                                        <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                            <tr>
+                                                <td>
+                                                    <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
+                                                        Payment Information
+                                                    </h3>
+                                                    <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
+                                                    ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
+                                                    exp. <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
   </body>
 </html>
