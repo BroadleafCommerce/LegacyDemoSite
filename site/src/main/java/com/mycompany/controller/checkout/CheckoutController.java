@@ -1,5 +1,10 @@
 package com.mycompany.controller.checkout;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
@@ -23,16 +28,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.util.List;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/checkout")
 public class CheckoutController extends BroadleafCheckoutController {
 
+	@RequestMapping(value = "/checkout-anonymously", method = RequestMethod.GET)
+	public String checkoutAnonymously(HttpServletRequest request, Model model) {
+		return super.checkoutAnonymously(request, model);
+	}
+	
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
     * with an address if the fulfillment group has an address and fulfillment option 
@@ -42,10 +48,10 @@ public class CheckoutController extends BroadleafCheckoutController {
     @RequestMapping("")
 	public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
 	    	@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm) {
+	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
     	
         prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
-        return super.checkout(request, response, model);
+        return super.checkout(request, response, model, redirectAttributes);
 	}
     
     @RequestMapping(value="/singleship", method = RequestMethod.GET)
