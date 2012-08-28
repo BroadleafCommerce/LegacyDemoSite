@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.catalog.BroadleafSearchController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class SearchController extends BroadleafSearchController {
 	@Override
     @RequestMapping("")
 	public String search(Model model, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam String q) throws ServletException, IOException {
+			@RequestParam String q) throws ServletException, IOException, ServiceException {
 		return super.search(model, request,response, q);
     }
 
