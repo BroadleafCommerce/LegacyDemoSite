@@ -1,0 +1,40 @@
+body {
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	padding: 60px 0;
+}
+
+img.avatar {
+	float: left;
+	height: 30px;
+	margin-right: 10px;
+	width: 30px; 
+}
+
+.navbar-search {
+	margin-right: 40px;
+}
+
+.navbar-inner .logout {
+	margin-left: 20px;
+}
+
+#user-administration, #content-management, #customer-care, #catalog-merchandising {
+	margin-left: 4px;
+	font-size: 13px;
+}
+
+.sidebar-nav .nav-header {
+	font-size: 12px;
+}
+
+/* .sidebar-nav .nav-header a { */
+/* 	color: #fff; */
+/* 	font-weight: 600; */
+/* 	text-shadow: 0 0 0; */
+/* } */
+
+/*****bootstrap overrides*****/
+.navbar-inverse .navbar-inner {background: url(http://broadleafcommerce.org/img/org_header.jpg) repeat-x;}
+
+/*turn off rounded corners for the following components*/
+.btn, .well, .navbar-search .search-query, .label, .btn-group > .btn:first-child, .btn-group > .btn, .breadcrumb {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
