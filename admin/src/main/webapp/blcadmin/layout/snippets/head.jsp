@@ -7,8 +7,8 @@
 	<link href="/admin/resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/admin/resources/css/admin.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="com.mycompany.gwt.mycompanyAdmin/admin/style/admin.css" />
-    <link rel="stylesheet" type="text/css" href="com.mycompany.gwt.mycompanyAdmin/admin/style/RichTextToolbar.css" />
-    <script> var isomorphicDir = "com.mycompany.gwt.mycompanyAdmin/sc/"; </script>
+    <link rel="stylesheet" type="text/css" href="/admin/com.mycompany.gwt.mycompanyAdmin/admin/style/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/com.mycompany.gwt.mycompanyAdmin/admin/style/RichTextToolbar.css" />
+    <script> var isomorphicDir = "/admin/com.mycompany.gwt.mycompanyAdmin/sc/"; </script>
     <script>window.isc_useSimpleNames = false</script>
 </head>
