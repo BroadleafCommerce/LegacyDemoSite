@@ -12,9 +12,10 @@
 				<jsp:include page="/blcadmin/snippets/widgets/breadcrumb.jsp" />
                 <script type="text/javascript" language="javascript" src="/admin/org.broadleafcommerce.admin.categoryEntryPoint/org.broadleafcommerce.admin.categoryEntryPoint.nocache.js"></script>
 
-
+                <div id="gwt-component">
+                </div>
 			</div>
 		</div>
 		<jsp:include page="/blcadmin/layout/snippets/footer.jsp" />
-	</body>
+    </body>
 </html>
