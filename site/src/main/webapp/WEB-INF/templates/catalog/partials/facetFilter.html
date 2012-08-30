@@ -28,7 +28,7 @@
 	<div th:each="facetDto : ${facets}" th:unless="${facetDto.active}" class="section">
 		<h3 th:text="${facetDto.facet.label}"></h3>
 		<ul>
-			<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'" th:if="${facetValue.quantity > 0}">
+			<li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'" th:if="${!facetDto.showQuantity or facetValue.quantity > 0}">
 				<a blc:togglefacetlink="${facetValue}" class="maker">
 					
 					<span th:substituteby="catalog/partials/facetFilter :: facet-value-display" />
@@ -51,7 +51,7 @@
 		<div th:id="${'facet-' + facetDto.facet.field.abbreviation}" style="display: none;" class="multiselect_facet_container">
 			<h3 th:text="${facetDto.facet.label}"></h3>
 			<form method="POST">
-				<li th:each="facetValue : ${facetDto.facetValues}" th:if="${facetDto.active or facetValue.quantity > 0}">
+				<li th:each="facetValue : ${facetDto.facetValues}" th:if="${facetDto.active or (!facetDto.showQuantity or facetValue.quantity > 0)}">
 					<input type="checkbox" 
 						th:name="${facetDto.facet.field.abbreviation + '-' + facetValue.valueKey}" 
 						th:id="${facetDto.facet.field.abbreviation + '-' + facetValue.valueKey}" 
