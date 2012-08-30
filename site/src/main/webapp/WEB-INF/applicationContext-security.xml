@@ -22,6 +22,7 @@
     
     <!-- Resources do not need security -->
 	<sec:http pattern="/css/**" security="none" />
+	<sec:http pattern="/fonts/**" security="none" />
 	<sec:http pattern="/img/**" security="none" />
 	<sec:http pattern="/js/**" security="none" />       
 	<sec:http pattern="/favicon.ico" security="none" />       
