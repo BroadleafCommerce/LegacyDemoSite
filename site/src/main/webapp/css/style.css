@@ -205,6 +205,28 @@ span.error_spacer {
     visibility:hidden;
 }
 
+/* ===== Font Styles ========================================================
+   Author: Andre Azzolini
+   ========================================================================== */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen'), url(../fonts/oxygen400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(../fonts/open-sans600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/open-sans400.woff) format('woff');
+}
+
 /* ===== Primary Styles ========================================================
    Author: Ben Jordan
    ========================================================================== */
