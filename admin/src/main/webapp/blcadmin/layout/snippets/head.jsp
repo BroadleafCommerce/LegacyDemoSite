@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Language" content="en-us" />
     <meta http-equiv="Content-Author" content="Broadleaf Commerce" />
 	<title>Broadleaf Admin</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 	<link href="/admin/resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/admin/resources/css/admin.css" rel="stylesheet">
 

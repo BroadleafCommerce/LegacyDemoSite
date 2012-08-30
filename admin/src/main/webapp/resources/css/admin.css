@@ -1,6 +1,14 @@
 body {
+	background: url(http://broadleafcommerce.com/img/bg.jpg) repeat;
 	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	padding: 60px 0;
+}
+
+footer {
+	font-size: 12px;
+	font-weight: 700;
+	margin-top: 80px;
+	text-align: center;
 }
 
 img.avatar {
@@ -34,7 +42,9 @@ img.avatar {
 /* } */
 
 /*****bootstrap overrides*****/
+.navbar-inverse .brand {color: #fff;}
 .navbar-inverse .navbar-inner {background: url(http://broadleafcommerce.org/img/org_header.jpg) repeat-x;}
+.well {border-color: #bbb;}
 
 /*turn off rounded corners for the following components*/
 .btn, .well, .navbar-search .search-query, .label, .btn-group > .btn:first-child, .btn-group > .btn, .breadcrumb {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
