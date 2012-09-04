@@ -46,10 +46,6 @@
 				<input type="text" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
 			</div>
 
-			<div class="form35 margin20">
-				<label for="email">Email</label> <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span> <input
-					type="email" th:field="*{address.emailAddress}" class="field35 cloneable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" />
-			</div>
 		</div>
 
 		<div class="right_content">
@@ -90,7 +86,7 @@
 			<address>
 				[[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
 				[[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-				[[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br /> [[*{address.emailAddress}]]<br />
+				[[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
 				[[*{address.primaryPhone}]]
 			</address>
 		</div>

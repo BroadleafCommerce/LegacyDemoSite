@@ -205,6 +205,28 @@ span.error_spacer {
     visibility:hidden;
 }
 
+/* ===== Font Styles ========================================================
+   Author: Andre Azzolini
+   ========================================================================== */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen'), url(../fonts/oxygen400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(../fonts/open-sans600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/open-sans400.woff) format('woff');
+}
+
 /* ===== Primary Styles ========================================================
    Author: Ben Jordan
    ========================================================================== */
@@ -494,6 +516,18 @@ nav {
     color: #262322;
     margin-left: 30px;
     display: block;
+}
+
+#order_confirmation .confirmation-note {
+	background: url('../img/sidebarbg.jpg') repeat;
+	border: 1px solid #d2c3b6;
+	margin: 0 30px;
+	padding: 5px 10px;
+}
+
+#order_confirmation .confirmation-note span {
+	font-weight: bold;
+	margin-left: 2px;
 }
 
 .fulfillment_option, {
@@ -1717,24 +1751,32 @@ footer {
 	}
 
     footer #blc_brand {
-        background: url(../img/broadleaf-seal.png) top center no-repeat;
         display: block;
         height: 60px;
         text-align: left;
         font: 10px/13px 'Georgia', serif;
-        padding: 10px 0 0 621px;
+        padding: 10px 0 0 521px;
         margin: 100px 0 0 -200px;
 
+    }
+
+    footer #blc_brand img {
+        display: inline-block;
+    }
+
+    footer #blc_brand p {
+        display: block;
+        margin: -20px 0 0 100px;
     }
 
     footer #blc_brand h4, footer #blc_brand a{
         font: 10px/15px 'Open Sans', Helvetica, sans-serif;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-bottom: 0;
         text-transform: uppercase;
         color: #262322;
         text-decoration: none;
+        display: inline-block;
     }
 
 /* Shared styles between all buttons */

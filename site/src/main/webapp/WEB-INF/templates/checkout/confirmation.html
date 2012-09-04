@@ -4,6 +4,7 @@
     <div id="order_confirmation">
         <h2>Success!</h2>
         <h3>Order Confirmation #<span th:text="${order.orderNumber}"/></h3>
+        <p class="confirmation-note">A confirmation email will be sent to <span th:text="${order.emailAddress}"></span>.</p>
     </div>
 
     <div id="cart">
@@ -102,7 +103,6 @@
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                    [[*{address.emailAddress}]]<br/>
                 </address>
             </div>
             <div class="right_content">
@@ -125,7 +125,6 @@
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                    [[*{address.emailAddress}]]<br/>
                 </address>
             </div>
             <div class="right_content">
