@@ -194,10 +194,6 @@
 		
 		</dependency>
 		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-admin-search</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.mycompany</groupId>
 			<artifactId>core</artifactId>
 		</dependency>

@@ -238,13 +238,6 @@
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
-					<dependency>
-				<groupId>org.broadleafcommerce</groupId>
-				<artifactId>broadleaf-admin-search</artifactId>
-				<version>${blc.version}</version>
-				<type>jar</type>
-				     <scope>compile</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.broadleafcommerce</groupId>
 				<artifactId>broadleaf-open-admin-platform</artifactId>
