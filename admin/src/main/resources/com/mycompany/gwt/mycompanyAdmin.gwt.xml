@@ -4,6 +4,9 @@
 
     <inherits name="org.broadleafcommerce.admin.catalogCategoryModule" />
     <inherits name="org.broadleafcommerce.admin.catalogProductModule" />
+    <inherits name="org.broadleafcommerce.admin.catalogProductOptionModule" />
+    <inherits name="org.broadleafcommerce.admin.catalogPromotionModule" />
+
     <!--
     <inherits name="org.broadleafcommerce.admin.merchandisingModule" />
 	<inherits name="org.broadleafcommerce.admin.customerCareModule" />
