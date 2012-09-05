@@ -142,12 +142,6 @@
             <input type="text" th:field="*{address.postalCode}" class="field25 clearable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
-        <div class="form35 margin20">
-            <label for="email">Email</label>
-            <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span>
-            <input type="email" th:field="*{address.emailAddress}" class="field35 required clearable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
-
         <div style="float:right;">
             <input type="submit" class="medium" value="Complete Order" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
         </div>
