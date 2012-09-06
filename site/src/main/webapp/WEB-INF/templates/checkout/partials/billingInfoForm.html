@@ -1,5 +1,4 @@
-<form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validShipping}">
-	<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+<blc:form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validOrderInfo and validShipping}">
 
     <div class="left_content_billing payment_info">
         <h3>Payment Information</h3>
@@ -147,4 +146,4 @@
         </div>
 
     </div>
-</form>
+</blc:form>

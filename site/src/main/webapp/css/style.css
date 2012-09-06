@@ -494,7 +494,7 @@ nav {
     margin-top:120px;
 }
 
-#checkout_warning {
+.checkout_warning {
     width: 880px;
     padding: 10px 20px;
     margin: 10px 0px;
@@ -927,15 +927,18 @@ form.manage-account input[type="submit"] {
 		min-width: 140px;
 	}
 	
-#checkout_content .shipping-info-read-only {float: left; margin-right: 10px; padding: 10px 20px; width: 260px; background: url('../img/sidebarbg.jpg') repeat;}
+#checkout_content .shipping-info-read-only, #checkout_content .order-info {float: left; margin-right: 10px; padding: 10px 20px; width: 260px; background: url('../img/sidebarbg.jpg') repeat;}
 #checkout_content #cart_total {display: none;}
 #checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: 150px;}
-#checkout_content #cart_total h3, #checkout_content .shipping-info-read-only h3 {font: 14px/18px bold 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;}
+#checkout_content #cart_total h3, #checkout_content .shipping-info-read-only h3, #checkout_content .order-info h3 {font: 14px/18px bold 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;}
 #checkout_content #cart_total #total_table {margin: 0;}
 #checkout_content #cart_total #total_table tr td {padding: 2px;}
 #checkout_content #cart_total #total_table .subtotal {border-bottom: none;}
 #checkout_content #cart_total #total_table .subtotal td {padding-top: 10px;}
 #checkout_content #cart_total #total_table .subtotal td.price {font-size: 24px;}
+
+#checkout_content .order-info.edit-order-info { width: 282px;}
+#checkout_content .order-info.edit-order-info .submit-row { margin-left: -5px; padding-top: 10px; }
 
 #wishlist_items {
     width: 580px;
@@ -2380,7 +2383,7 @@ and (max-width : 480px) {
 #cart #shipping_info .left_content:after, #cart #billing_info .left_content_billing:after {	content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
 #cart #shipping_info .right_content, #cart #billing_info .right_content_billing {width: 280px; float: none; margin: 10px 0; padding: 10px;}
 #cart #shipping_info .left_content .margin20, #cart #billing_info .right_content_billing .margin20 {margin: 0;}
-#cart #checkout_warning {width: 280px; padding: 10px; margin: 0;}
+#cart .checkout_warning {width: 280px; padding: 10px; margin: 0;}
 
 #checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: auto; margin: 0 0 10px;}
 #checkout_content #cart_total {display: block; padding: 10px 20px; margin: 0; width: 260px;}
@@ -2913,7 +2916,7 @@ and (max-width : 480px) {
 /*customer ratings and reviews*/
 #customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}
 #customer-reviews-container .title {font: 16px/18px 'Oxygen', Helvetica, sans-serif; font-weight: bold;}
-#customer-reviews-container #community-rating-container {float: right;}
+#customer-reviews-container #community-rating-container {float: right; width: 145px;}
 #customer-reviews-container .total-reviews {float: right;}
 #customer-reviews-container form.customer-rating {}
 .helpful-reviews h4 {background: #bbafae; color: #fff; font: 12px/16px 'Oxygen', Helvetica, sans-serif; padding: 6px; margin: 12px 0;}

@@ -1,10 +1,5 @@
 package com.mycompany.controller.checkout;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
@@ -14,6 +9,7 @@ import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
@@ -30,15 +26,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.List;
+
 @Controller
 @RequestMapping("/checkout")
 public class CheckoutController extends BroadleafCheckoutController {
 
-	@RequestMapping(value = "/checkout-anonymously", method = RequestMethod.GET)
-	public String checkoutAnonymously(HttpServletRequest request, Model model) {
-		return super.checkoutAnonymously(request, model);
-	}
-	
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
     * with an address if the fulfillment group has an address and fulfillment option 
@@ -47,13 +43,19 @@ public class CheckoutController extends BroadleafCheckoutController {
     */
     @RequestMapping("")
 	public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
 	    	@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
 	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
-    	
-        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
+        prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
         return super.checkout(request, response, model, redirectAttributes);
 	}
     
+	@RequestMapping(value = "/savedetails", method = RequestMethod.POST)
+	public String saveGlobalOrderDetails(HttpServletRequest request, Model model, 
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
+		return super.saveGlobalOrderDetails(request, model, orderInfoForm, result);
+	}
+	
     @RequestMapping(value="/singleship", method = RequestMethod.GET)
     public String convertToSingleship(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         return super.convertToSingleship(request, response, model);
@@ -98,13 +100,17 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
-        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
+        prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
-    protected void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
-        
+    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, 
+    		BillingInfoForm billingForm) {
     	List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
+    	
+    	if (orderInfoForm != null) {
+	    	orderInfoForm.setEmailAddress(cart.getEmailAddress());
+    	}
     	
     	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
     		//if the cart has already has fulfillment information

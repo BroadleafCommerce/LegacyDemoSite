@@ -24,10 +24,10 @@
 		<div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
 		
 		<div id="search">
-			<form th:action="@{/search}" method="GET">
+			<blc:form th:action="@{/search}" method="GET">
 			<input type="search" class="search" name="q" th:value="${originalQuery}" />
 			<input type="submit" id="search_button" value="go" />
-			</form>
+			</blc:form>
 		</div>
 	</div>
 </header>
