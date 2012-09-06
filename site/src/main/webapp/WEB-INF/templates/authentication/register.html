@@ -7,6 +7,7 @@
 
 		<form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
 			<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+			<input type="hidden" th:field="*{redirectUrl}" />
 				
 			<div class="form50">
 				<label for="customer.emailAddress">Email</label>
