@@ -1,50 +1,33 @@
-body {
-	background: url(http://broadleafcommerce.com/img/bg.jpg) repeat;
-	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	padding: 60px 0;
-}
+html, body {height: 100%;}
+body {background: #444; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 60px 0 0;}
+body > .container-fluid {padding-left: 0;}
 
-footer {
-	font-size: 12px;
-	font-weight: 700;
-	margin-top: 80px;
-	text-align: center;
-}
+header {position: relative; float: right;}
+header .menu-options {padding-top: 10px;}
+footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; text-shadow: 1px 1px 1px #222; color: #fff;}
 
-img.avatar {
-	float: left;
-	height: 30px;
-	margin-right: 10px;
-	width: 30px; 
-}
+.container-fluid, .row-fluid, .span2, #modules, .nav {height: 100%;}
 
-.navbar-search {
-	margin-right: 40px;
-}
+.navbar-inverse .navbar-inner {background: #292929;}
+.navbar-search {margin-left: 40px;}
+.navbar-inner .logout {margin-left: 20px;}
 
-.navbar-inner .logout {
-	margin-left: 20px;
-}
+#gwt-component {margin-top: 20px;}
 
-#user-administration, #content-management, #customer-care, #catalog-merchandising {
-	margin-left: 4px;
-	font-size: 13px;
-}
+#modules {background: #444; float: left; width: 250px;}
+#modules > .nav {background: #222; padding-bottom: 100px;}
 
-.sidebar-nav .nav-header {
-	font-size: 12px;
-}
+#user-administration, #content-management, #customer-care, #catalog-merchandising {background: #2a2a2a; font-size: 12px; margin-left: 0;}
+#user-administration a, #content-management a, #customer-care a, #catalog-merchandising a {border-top: 1px solid #222; box-shadow: #444 1px 1px 1px inset; color: #fff; font-size: 13px; font-weight: 400; text-shadow: none; padding: 10px 37px;}
+#user-administration li.active a, #catalog-merchandising li.active a, #content-management li.active a, #customer-care li.active a {background: #899e3c; box-shadow: #222 1px 1px 25px inset; text-shadow: #000 1px 1px 1px; font-size: 14px; font-weight: 600;}
+#user-administration li:first-child a, #content-management li:first-child a, #customer-care li:first-child a, #catalog-merchandising li:first-child a {border-top: none;}
+#user-administration a:hover, #content-management a:hover, #customer-care a:hover, #catalog-merchandising a:hover {background: #3a3a3a;}
 
-/* .sidebar-nav .nav-header a { */
-/* 	color: #fff; */
-/* 	font-weight: 600; */
-/* 	text-shadow: 0 0 0; */
-/* } */
-
-/*****bootstrap overrides*****/
-.navbar-inverse .brand {color: #fff;}
-.navbar-inverse .navbar-inner {background: url(http://broadleafcommerce.org/img/org_header.jpg) repeat-x;}
-.well {border-color: #bbb;}
+.nav-header {margin: 0; padding: 0;}
+.nav li + .nav-header {margin-top: 0;}
+.sidebar-nav .nav-header a {background: #444; border: 1px solid #222; box-shadow: inset 1px 1px 1px #666; color: #fff; font-size: 13px; font-weight: 600; padding: 16px 10px; text-shadow: 1px 1px 1px #000;}
+.sidebar-nav .nav-header a:hover {background: #4f4f4f;}
+.sidebar-nav .nav-header a i {margin-right: 8px;}
 
 /*turn off rounded corners for the following components*/
 .btn, .well, .navbar-search .search-query, .label, .btn-group > .btn:first-child, .btn-group > .btn, .breadcrumb {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
