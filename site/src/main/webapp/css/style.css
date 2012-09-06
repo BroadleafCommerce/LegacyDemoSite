@@ -2916,7 +2916,7 @@ and (max-width : 480px) {
 /*customer ratings and reviews*/
 #customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}
 #customer-reviews-container .title {font: 16px/18px 'Oxygen', Helvetica, sans-serif; font-weight: bold;}
-#customer-reviews-container #community-rating-container {float: right;}
+#customer-reviews-container #community-rating-container {float: right; width: 145px;}
 #customer-reviews-container .total-reviews {float: right;}
 #customer-reviews-container form.customer-rating {}
 .helpful-reviews h4 {background: #bbafae; color: #fff; font: 12px/16px 'Oxygen', Helvetica, sans-serif; padding: 6px; margin: 12px 0;}
