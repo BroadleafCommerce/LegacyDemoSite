@@ -63,9 +63,11 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     @RequestMapping(value="/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, 
             BindingResult result) throws PricingException, ServiceException {
+    	prepopulateOrderInfoForm(CartState.getCart(), orderInfoForm);
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -97,6 +99,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
     public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
@@ -104,13 +107,17 @@ public class CheckoutController extends BroadleafCheckoutController {
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
+    protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
+    	if (orderInfoForm != null) {
+	    	orderInfoForm.setEmailAddress(cart.getEmailAddress());
+    	}
+	}
+    		
     protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, 
     		BillingInfoForm billingForm) {
     	List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
     	
-    	if (orderInfoForm != null) {
-	    	orderInfoForm.setEmailAddress(cart.getEmailAddress());
-    	}
+    	prepopulateOrderInfoForm(cart, orderInfoForm);
     	
     	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
     		//if the cart has already has fulfillment information
