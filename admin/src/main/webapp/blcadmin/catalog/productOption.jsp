@@ -6,17 +6,16 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span2">
-            <jsp:include page="/blcadmin/snippets/widgets/profile.jsp" />
             <jsp:include page="/blcadmin/layout/snippets/leftNav.jsp" />
         </div>
         <div class="span10">
-            <jsp:include page="/blcadmin/snippets/widgets/breadcrumb.jsp" />
             <div id="gwt-component">
+
             </div>
+            <jsp:include page="/blcadmin/layout/snippets/footer.jsp" />
         </div>
     </div>
 </div>
-<jsp:include page="/blcadmin/layout/snippets/footer.jsp" />
 <script type="text/javascript" language="javascript" src="/admin/com.mycompany.gwt.mycompanyAdmin/com.mycompany.gwt.mycompanyAdmin.nocache.js"></script>
 </body>
 </html>

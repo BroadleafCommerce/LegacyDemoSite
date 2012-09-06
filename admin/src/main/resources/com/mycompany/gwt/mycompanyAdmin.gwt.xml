@@ -6,6 +6,10 @@
     <inherits name="org.broadleafcommerce.admin.catalogProductModule" />
     <inherits name="org.broadleafcommerce.admin.catalogProductOptionModule" />
     <inherits name="org.broadleafcommerce.admin.catalogPromotionModule" />
+    <inherits name="org.broadleafcommerce.cms.admin.cmsPagesModule" />
+    <inherits name="org.broadleafcommerce.cms.admin.cmsAssetsModule" />
+    <inherits name="org.broadleafcommerce.cms.admin.cmsRedirectUrlModule" />
+    <inherits name="org.broadleafcommerce.cms.admin.cmsStructuredContentModule" />
 
     <!--
     <inherits name="org.broadleafcommerce.admin.merchandisingModule" />

@@ -4,7 +4,7 @@
 			<div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span2">
-                        <a class="brand" href="#"><img src="/admin/resources/img/broadleaf_logo_white_xsmall.png" /></a>
+                        <a class="brand" href="#"><img src="/admin/resources/img/broadleaf_admin_header_logo.png" /></a>
                     </div>
                     <div class="span10">
                         <div class="menu-options">
