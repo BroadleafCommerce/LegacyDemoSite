@@ -69,7 +69,7 @@
 						th:name="${facetDto2.facet.field.abbreviation}" 
 						th:value="${facetValue.valueKey}" />
 				</div>
-				<input type="hidden" name="q" th:value="${originalQuery}" />
+				<input type="hidden" th:if="${originalQuery}" name="q" th:value="${originalQuery}" />
 				<input type="hidden" name="facetField" th:value="${facetDto.facet.field.abbreviation}" />
 				<input type="submit" class="medium red" />
 			</blc:form>
