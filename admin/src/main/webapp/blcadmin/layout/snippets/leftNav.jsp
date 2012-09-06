@@ -4,8 +4,8 @@
 			<a href="#" data-toggle="collapse" data-target="#catalog-merchandising"><i class="icon-barcode icon-white"></i> Catalog<i class="icon-chevron-down pull-right"></i></a>
 		</li>
 		<li>
-			<ul id="catalog-merchandising" class="nav nav-list collapse in">
-				<li class="active"><a href="/admin/blcadmin/catalog/category#moduleKey=BLCCategoryModule&pageKey=category">Category</a></li>
+			<ul id="catalog-merchandising" class="module nav nav-list collapse in">
+				<li><a href="/admin/blcadmin/catalog/category#moduleKey=BLCCategoryModule&pageKey=category">Category</a></li>
 				<li><a href="/admin/blcadmin/catalog/product#moduleKey=BLCProductModule&pageKey=product">Product</a></li>
 				<li><a href="/admin/blcadmin/catalog/productOption#moduleKey=BLCProductOptionModule&pageKey=productOption" >Product Options</a></li>
 				<li><a href="/admin/blcadmin/catalog/promotion#moduleKey=BLCPromotionModule&pageKey=offer">Promotion</a></li>
