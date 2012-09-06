@@ -6,8 +6,7 @@
 				You can also <a th:href="@{/register(successUrl='/checkout')}">register a new account</a>.
 			</p>
 		
-			<form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
-				<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+			<blc:form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
 		
 				<div class="form50">
 					<label for="emailAddress">Email Address</label> 
@@ -20,7 +19,7 @@
 				<div class="form50 submit-row">
 					<input class="small red" type="submit" value="Checkout as Guest" />
 				</div>
-			</form>
+			</blc:form>
 		</div>
 	</div>
 	

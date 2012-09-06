@@ -1,6 +1,5 @@
 <div>
-	<form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
-		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+	<blc:form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
 		<div class="left_content">
 			<input type="hidden" name="address.country" value="US" />
 
@@ -78,7 +77,7 @@
 				<a id="multiship" th:href="@{/checkout/multiship}">Ship to Multiple Addresses</a>
 			</p>
 		</div>
-	</form>
+	</blc:form>
 
 	<div th:if="${validShipping}" th:object="${shippingInfoForm}" th:inline="text" class="clearfix">
 		<div class="group shipping-info-read-only">			
