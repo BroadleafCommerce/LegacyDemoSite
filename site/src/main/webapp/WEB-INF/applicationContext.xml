@@ -63,8 +63,11 @@
     <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
     <!-- majority of cases. Note that you may also pass in a bean reference to a SolrServer if you would prefer -->
 	<!-- to use a standalone solr server. (The default constructor will create an embedded one at solrHome) -->
+    <bean id="solrEmbedded" class="java.lang.String">
+        <constructor-arg value="solrhome"/>
+    </bean>
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
-    	<constructor-arg name="solrHome" value="solrhome" />
+    	<constructor-arg name="solrServer" ref="${solr.source}" />
     </bean> 
    	<bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 	  	<property name="targetObject" ref="blSearchService" />
