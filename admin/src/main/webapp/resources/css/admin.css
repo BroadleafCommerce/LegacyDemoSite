@@ -12,9 +12,9 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 .navbar-inner .brand img {padding: 5px; width: 145px;}
 .navbar-inner .logout {margin-left: 20px;}
 
-#gwt-component {margin-top: 20px;}
+#gwt-component {margin-top: 30px;}
 
-#loading-placeholder {margin-top: 20px;}
+#loading-placeholder {margin-top: 30px;}
 
 #modules {background: #444;}
 #modules > .nav {background: #222; padding-bottom: 100px;}
