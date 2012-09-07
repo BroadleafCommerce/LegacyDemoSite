@@ -10,15 +10,15 @@
 			</div>
 			<div class="span10">
 
-                <div id="loading-placeholder" class="row">
-                    <div class="span4">&nbsp;</div>
-                    <div class="span4">
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </div>
-                    <div class="span4">&nbsp;</div>
-                </div>
+                <%--<div id="loading-placeholder" class="row">--%>
+                    <%--<div class="span4">&nbsp;</div>--%>
+                    <%--<div class="span4">--%>
+                        <%--<div id="loading-placeholder" class="progress progress-striped active">--%>
+                            <%--<div class="bar" style="width: 100%;"></div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="span4">&nbsp;</div>--%>
+                <%--</div>--%>
 
                 <div id="gwt-component">
 

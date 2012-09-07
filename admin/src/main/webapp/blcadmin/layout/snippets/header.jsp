@@ -20,8 +20,11 @@
                                 </ul>
                             </div>
                             <form class="navbar-search pull-left">
-                                <input type="text" class="search-query" placeholder="Search">
+                                <input id="quick-search"type="text" class="search-query" placeholder="Search in Customers">
                             </form>
+                            <div id="loading-placeholder" class="progress progress-striped active pull-left">
+                                <div class="bar" style="width: 100%;">Loading...</div>
+                            </div>
                         </div>
                     </div>
                 </div>
