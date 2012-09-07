@@ -36,7 +36,7 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 .dropdown-menu li > a:hover, .dropdown-submenu:hover > a {background: #444;}
 
 /*turn off rounded corners for the following components*/
-.alert .btn, .well, .navbar-search .search-query, .label, .btn-group > .btn:first-child, .btn-group > .btn, .breadcrumb {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
+.alert, .btn, .well, .navbar-search .search-query, .label, .btn-group > .btn:first-child, .btn-group > .btn, .breadcrumb {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
 
 /** login **/
 #login {background: #4a4a4a; background: -webkit-gradient(linear, left top, left bottom, from(#3a3a3a), to(#4a4a4a)); box-shadow: 0 0 10px #444; padding: 10px 20px;}

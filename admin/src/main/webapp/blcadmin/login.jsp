@@ -22,7 +22,7 @@
                 <div class="control-group">
                     <label class="control-label" for="username_field">Username</label>
                     <div class="controls">
-                        <input type="text" id="username_field" name="j_username" />
+                        <input type="text" id="username_field" name="j_username" autofocus="autofocus" />
                     </div>
                 </div>
                 <div class="control-group">
@@ -54,6 +54,7 @@
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> -
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/changePassword">Change password</a>
         </div>
-
+        <script src="${pageContext.request.contextPath}/resources/js/lib/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/security.js"></script>
    </body>
 </html>
