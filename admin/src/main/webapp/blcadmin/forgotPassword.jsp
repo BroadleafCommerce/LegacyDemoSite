@@ -45,7 +45,7 @@
         </c:choose>
 
         <div id="security-options">
-            <a href="${pageContext.request.contextPath}/blcadmin/forgotPassword">Forgot username</a> |
+            <a href="${pageContext.request.contextPath}/blcadmin/forgotUsername">Forgot username</a> |
             <a href="${pageContext.request.contextPath}/blcadmin/login">Return to login</a>
         </div>
 
