@@ -14,19 +14,6 @@
    </head>
 
    <body>
-
-        <c:choose>
-            <c:when test="${not empty param.login_error}">
-                <div id="login-error">Invalid username / password combination.</div>
-            </c:when>
-            <c:when test="${param.messageCode == 'usernameSent'}">
-                <div id="login-message">Your username was sent to the email address on file.</div>
-            </c:when>
-            <c:when test="${param.messageCode == 'passwordReset'}">
-                <div id="login-message">Your password has been reset.  Please login with your new password.</div>
-            </c:when>
-        </c:choose>
-
         <div id="login">
             <div id="logo">
                 <img src="${pageContext.request.contextPath}/resources/img/broadleaf_admin_header_logo.png" />
@@ -51,6 +38,17 @@
                 </div>
             </form>
         </div>
+        <c:choose>
+            <c:when test="${not empty param.login_error}">
+                <p class="alert alert-error"><strong>Invalid username / password combination.</strong></p>
+            </c:when>
+            <c:when test="${param.messageCode == 'usernameSent'}">
+                <p class="alert alert-success">Your username was sent to the email address on file.</p>
+            </c:when>
+            <c:when test="${param.messageCode == 'passwordReset'}">
+                <p class="alert alert-success">Your password has been reset.  Please login with your new password.</p>
+            </c:when>
+        </c:choose>
         <div id="security-options">
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> -

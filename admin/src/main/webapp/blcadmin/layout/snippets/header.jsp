@@ -8,7 +8,7 @@
                     </div>
                     <div class="span10">
                         <div class="menu-options">
-                            <a class="btn btn-small btn-danger pull-right logout" href="#" title="Logout"><i class="icon-off icon-white"></i></a>
+                            <a class="btn btn-danger pull-right logout" href="${pageContext.request.contextPath}/adminLogout.htm" title="Logout"><i class="icon-off icon-white"></i></a>
                             <div class="btn-group pull-right">
                                 <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="icon-user icon-white"></i> jfridye <span class="caret"></span>
