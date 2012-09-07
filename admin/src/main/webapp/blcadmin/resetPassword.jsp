@@ -6,7 +6,7 @@
     <head>
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css" />
-        <title>Broadleaf Commerce - Administrative Application Change Password</title>
+        <title>Broadleaf Commerce - Administrative Application Reset Password</title>
     </head>
 
     <body>
