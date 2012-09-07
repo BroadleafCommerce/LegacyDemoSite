@@ -10,13 +10,12 @@
                         <div class="menu-options">
                             <a class="btn btn-small btn-danger pull-right logout" href="#" title="Logout"><i class="icon-off icon-white"></i></a>
                             <div class="btn-group pull-right">
-                                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="icon-user"></i>
-                                    jfridye
-                                    <span class="caret"></span>
+                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="icon-user icon-white"></i> jfridye <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <!-- dropdown menu links -->
+                                    <li><a href="#">Change Password...</a></li>
+                                    <li><a href="#">Edit Profile...</a></li>
                                 </ul>
                             </div>
                             <form class="navbar-search pull-left">
