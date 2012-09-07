@@ -1,6 +1,5 @@
 <div id="multiship-products">	
-	<form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="multiship_address">
-		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+	<blc:form th:object="${orderMultishipOptionForm}" th:action="@{/checkout/multiship}" method="post" id="multiship_address">
 		<div class="multishipContainer">
 			<table id="cart_products">
 				<thead>
@@ -61,5 +60,5 @@
 			<a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}">Add New Address</a>
 			<a th:href="@{/checkout}" class="cancel small-button gray-button">Cancel</a>
 		</div>
-	</form>
+	</blc:form>
 </div>

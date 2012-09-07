@@ -1,0 +1,32 @@
+<div>
+	<div th:unless="${validOrderInfo}">
+		<div class="group order-info edit-order-info">			
+			<p>
+				Checkout as guest by filling in an email or <a th:href="@{/login(successUrl='/checkout')}">log in to your account</a>.
+				You can also <a th:href="@{/register(successUrl='/checkout')}">register a new account</a>.
+			</p>
+		
+			<blc:form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
+		
+				<div class="form50">
+					<label for="emailAddress">Email Address</label> 
+					<span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span> 
+					<input type="text" th:field="*{emailAddress}" class="field50" th:classappend="${#fields.hasErrors('emailAddress')}? 'fieldError'" />
+				</div>
+				
+				<div style="clear: both;"></div>
+				
+				<div class="form50 submit-row">
+					<input class="small red" type="submit" value="Checkout as Guest" />
+				</div>
+			</blc:form>
+		</div>
+	</div>
+	
+	<div th:if="${validOrderInfo}" th:object="${orderInfoForm}" th:inline="text" class="clearfix">
+		<div class="group order-info">			
+			<h3>EmailAddress</h3>
+			<p th:text="*{emailAddress}"></p>
+		</div>
+	</div>
+</div>

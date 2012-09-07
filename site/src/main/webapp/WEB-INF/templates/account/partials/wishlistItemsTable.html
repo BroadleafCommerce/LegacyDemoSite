@@ -27,17 +27,17 @@
             <td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
             
             <td align="center">
-                <form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
+                <blc:form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
                     <input type="hidden" name="itemId" th:value="*{id}" />
                     <input type="submit" class="small red" value="Move Item to Cart"/>
-                </form>
+                </blc:form>
             </td>
         </tr>
         <tr>
             <td colspan="6" align="right" class="last">
-                <form method="POST" th:action="@{/account/wishlist/moveListToCart}">
+                <blc:form method="POST" th:action="@{/account/wishlist/moveListToCart}">
                     <input class="medium red" type="submit" value="Move Wishlist to Cart" />
-                </form>
+                </blc:form>
             </td>
         </tr>
     </tbody>

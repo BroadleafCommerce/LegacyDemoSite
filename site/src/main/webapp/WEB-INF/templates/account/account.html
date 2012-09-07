@@ -1,4 +1,4 @@
-<form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
+<blc:form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
     <div class="form50">
         <label for="emailAddress">Email Address:</label>
         <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
@@ -15,4 +15,4 @@
         <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
     </div>
     <input type="submit" class="submitFormButton" value="Update Account" />
-</form>
+</blc:form>

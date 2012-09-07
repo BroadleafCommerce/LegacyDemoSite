@@ -2,8 +2,7 @@
 	<div id="addAddressContainer">
 		<div id="addAddressTitle">Add a new address</div>
 		<div id="addAddress">
-			<form th:object="${addressForm}" th:action="@{/checkout/add-address}" method="post" id="shipping_address">
-				<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+			<blc:form th:object="${addressForm}" th:action="@{/checkout/add-address}" method="post" id="shipping_address">
 				<input type="hidden" name="address.country" value="US" />
 				
 				<div class="form30">
@@ -48,7 +47,7 @@
 				
 				<input type="submit" class="save medium red" value="Save" />
 				<a th:href="@{/checkout/multiship}" class="cancel small-button gray-button" style="margin-top: 16px;">Cancel</a>
-			</form>
+			</blc:form>
 		</div>
 	</div>
 </div>
