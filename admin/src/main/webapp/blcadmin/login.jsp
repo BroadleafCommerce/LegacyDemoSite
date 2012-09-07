@@ -2,25 +2,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html lang="en">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-      <link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/resources/css/admin_login.css" />
+       <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+       <link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/resources/css/admin.css" />
       <title>Broadleaf Commerce - Administrative Application Login</title>
       
-      <script language="javascript">
-          function setSubmitUrl(form)
-          {
-            var hash = encodeURI(self.document.location.hash.substring(1));
-            form.action = "${pageContext.request.contextPath}/admin/login_admin_post#" + hash;
-            return true;
-          }
-      </script>
    </head>
-   <body id="bg" class="en">
+
+   <body>
+
         <c:choose>
             <c:when test="${not empty param.login_error}">
                 <div id="login-error">Invalid username / password combination.</div>
@@ -33,20 +27,35 @@
             </c:when>
         </c:choose>
 
-        <div id="content">
-            <div id="logo"></div>
-            <form class="login-form" onSubmit="return setSubmitUrl(this);" method="post">
-                <table class="login">
-                    <tr><td><label for="username_field" class="user">Username</label><input id="username_field" class="input-username" name="j_username" type="text"></td></tr>
-                    <tr><td><label for="password_field" class="pass">Password</label><input id="password_field" class="input-pass" name="j_password" type="password"></td></tr>
-                    <tr><td><input id="submitButton" type="submit" name="_spring_security_remember_me" value="Sign In"></td></tr>
-                </table>
+        <div id="login">
+            <div id="logo">
+                <img src="${pageContext.request.contextPath}/resources/img/broadleaf_admin_header_logo.png" />
+            </div>
+            <form action="${pageContext.request.contextPath}/admin/login_admin_post" method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="username_field">Username</label>
+                    <div class="controls">
+                        <input type="text" id="username_field" name="j_username" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password_field">Password</label>
+                    <div class="controls">
+                        <input type="password" id="password_field" name="j_password" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn" >Sign In</button>
+                    </div>
+                </div>
             </form>
         </div>
-        <div id="foot" class="forgot">
+        <div id="security-options">
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> -
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/changePassword">Change password</a>
         </div>
+
    </body>
 </html>
