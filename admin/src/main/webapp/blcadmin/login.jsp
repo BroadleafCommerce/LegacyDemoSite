@@ -1,19 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ include file="/blcadmin/snippets/include.jsp" %>
 <!DOCTYPE html>
 
 <html lang="en">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-       <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-       <link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/resources/css/admin.css" />
-      <title>Broadleaf Commerce - Administrative Application Login</title>
-      
-   </head>
+    <head>
+        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css" />
+        <title>Broadleaf Commerce - Administrative Application Login</title>
+    </head>
 
-   <body>
+    <body>
         <div id="login">
             <div id="logo">
                 <img src="${pageContext.request.contextPath}/resources/img/broadleaf_admin_header_logo.png" />
@@ -50,8 +45,8 @@
             </c:when>
         </c:choose>
         <div id="security-options">
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> -
+            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> |
+            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a> |
             <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/changePassword">Change password</a>
         </div>
         <script src="${pageContext.request.contextPath}/resources/js/lib/jquery-1.8.0.min.js"></script>

@@ -48,3 +48,4 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 #login button[type="submit"] {border: 1px solid #444; color: #fff; background: #95ad42; text-shadow: 1px 1px 1px #000; border-radius: 0;}
 #login + p.alert {margin: 15px auto; width: 400px;}
 #security-options {margin-top: 20px; text-align: center;}
+#security-options a {margin: 0 5px;}
