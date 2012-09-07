@@ -16,10 +16,10 @@
 		</li>
 		<li>
 			<ul id="content-management" class="module nav nav-list collapse in">
-				<li><a href="#moduleKey=BLCContentManagement&pageKey=Pages">Pages</a></li>
-				<li><a href="#moduleKey=BLCContentManagement&pageKey=Assets">Assets</a></li>
-				<li><a href="#moduleKey=BLCContentManagement&pageKey=Structured Content">Structured Content</a></li>
-				<li><a href="#moduleKey=BLCContentManagement&pageKey=Redirect URL">Redirect URL</a></li>
+				<li><a href="/admin/blcadmin/cms/pages#moduleKey=BLCPagesModule&pageKey=pages">Pages</a></li>
+				<li><a href="/admin/blcadmin/cms/assets#moduleKey=BLCAssetsModule&pageKey=assets">Assets</a></li>
+				<li><a href="/admin/blcadmin/cms/structuredContent#moduleKey=BLCStructuredContentModule&pageKey=structuredContent">Structured Content</a></li>
+				<li><a href="/admin/blcadmin/cms/redirectUrl#moduleKey=BLCRedirectUrlModule&pageKey=urlRedirect">Redirect URL</a></li>
 			</ul>
 		</li>
 		<li class="nav-header">
