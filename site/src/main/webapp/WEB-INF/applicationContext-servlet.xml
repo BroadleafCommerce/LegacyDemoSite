@@ -44,16 +44,6 @@
 	<!-- Allow annotation driven controllers -->
 	<mvc:annotation-driven/>
 	
-	<!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
-	<mvc:interceptors>
-        <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
-	        <property name="cacheSeconds" value="0"/>
-	        <property name="useExpiresHeader" value="true"/>
-	        <property name="useCacheControlHeader" value="true"/>
-	        <property name="useCacheControlNoStore" value="true"/>
-        </bean>
-	</mvc:interceptors>	
-	
 	<!-- Tell Spring to not try to map things in these directories to controllers -->
 	<!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
 	<mvc:resources order="-10" location="/img/" mapping="/img/**" />
