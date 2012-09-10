@@ -205,6 +205,28 @@ span.error_spacer {
     visibility:hidden;
 }
 
+/* ===== Font Styles ========================================================
+   Author: Andre Azzolini
+   ========================================================================== */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen'), url(../fonts/oxygen400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(../fonts/open-sans600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/open-sans400.woff) format('woff');
+}
+
 /* ===== Primary Styles ========================================================
    Author: Ben Jordan
    ========================================================================== */
@@ -472,7 +494,7 @@ nav {
     margin-top:120px;
 }
 
-#checkout_warning {
+.checkout_warning {
     width: 880px;
     padding: 10px 20px;
     margin: 10px 0px;
@@ -494,6 +516,18 @@ nav {
     color: #262322;
     margin-left: 30px;
     display: block;
+}
+
+#order_confirmation .confirmation-note {
+	background: url('../img/sidebarbg.jpg') repeat;
+	border: 1px solid #d2c3b6;
+	margin: 0 30px;
+	padding: 5px 10px;
+}
+
+#order_confirmation .confirmation-note span {
+	font-weight: bold;
+	margin-left: 2px;
 }
 
 .fulfillment_option, {
@@ -893,15 +927,18 @@ form.manage-account input[type="submit"] {
 		min-width: 140px;
 	}
 	
-#checkout_content .shipping-info-read-only {float: left; margin-right: 10px; padding: 10px 20px; width: 260px; background: url('../img/sidebarbg.jpg') repeat;}
+#checkout_content .shipping-info-read-only, #checkout_content .order-info {float: left; margin-right: 10px; padding: 10px 20px; width: 260px; background: url('../img/sidebarbg.jpg') repeat;}
 #checkout_content #cart_total {display: none;}
 #checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: 150px;}
-#checkout_content #cart_total h3, #checkout_content .shipping-info-read-only h3 {font: 14px/18px bold 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;}
+#checkout_content #cart_total h3, #checkout_content .shipping-info-read-only h3, #checkout_content .order-info h3 {font: 14px/18px bold 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;}
 #checkout_content #cart_total #total_table {margin: 0;}
 #checkout_content #cart_total #total_table tr td {padding: 2px;}
 #checkout_content #cart_total #total_table .subtotal {border-bottom: none;}
 #checkout_content #cart_total #total_table .subtotal td {padding-top: 10px;}
 #checkout_content #cart_total #total_table .subtotal td.price {font-size: 24px;}
+
+#checkout_content .order-info.edit-order-info { width: 282px;}
+#checkout_content .order-info.edit-order-info .submit-row { margin-left: -5px; padding-top: 10px; }
 
 #wishlist_items {
     width: 580px;
@@ -1717,24 +1754,32 @@ footer {
 	}
 
     footer #blc_brand {
-        background: url(../img/broadleaf-seal.png) top center no-repeat;
         display: block;
         height: 60px;
         text-align: left;
         font: 10px/13px 'Georgia', serif;
-        padding: 10px 0 0 621px;
+        padding: 10px 0 0 521px;
         margin: 100px 0 0 -200px;
 
+    }
+
+    footer #blc_brand img {
+        display: inline-block;
+    }
+
+    footer #blc_brand p {
+        display: block;
+        margin: -20px 0 0 100px;
     }
 
     footer #blc_brand h4, footer #blc_brand a{
         font: 10px/15px 'Open Sans', Helvetica, sans-serif;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-bottom: 0;
         text-transform: uppercase;
         color: #262322;
         text-decoration: none;
+        display: inline-block;
     }
 
 /* Shared styles between all buttons */
@@ -2338,7 +2383,7 @@ and (max-width : 480px) {
 #cart #shipping_info .left_content:after, #cart #billing_info .left_content_billing:after {	content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
 #cart #shipping_info .right_content, #cart #billing_info .right_content_billing {width: 280px; float: none; margin: 10px 0; padding: 10px;}
 #cart #shipping_info .left_content .margin20, #cart #billing_info .right_content_billing .margin20 {margin: 0;}
-#cart #checkout_warning {width: 280px; padding: 10px; margin: 0;}
+#cart .checkout_warning {width: 280px; padding: 10px; margin: 0;}
 
 #checkout_content #cart_total, #checkout_content .shipping-info-read-only {height: auto; margin: 0 0 10px;}
 #checkout_content #cart_total {display: block; padding: 10px 20px; margin: 0; width: 260px;}

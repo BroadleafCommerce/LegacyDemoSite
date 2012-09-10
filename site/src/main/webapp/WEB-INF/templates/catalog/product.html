@@ -28,7 +28,7 @@
 				
 				<div class="product-options" th:substituteby="catalog/partials/productOptions"/>								
 				
-				<form method="POST" th:action="@{/cart/add}">
+				<blc:form method="POST" th:action="@{/cart/add}">
 					<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
 						<div class="form50">
 							<label th:text="*{label}"></label>
@@ -48,11 +48,11 @@
 							<input type="submit" class="addToCart big red" value="Buy Now!"/>
 						</div>
 					</div>
-				</form>
+				</blc:form>
 				
-				<div th:unless="${customer.loggedIn}" th:remove="tag">
+				<div th:if="${customer.loggedIn}" th:remove="tag">
 
-                    <form method="POST" th:action="@{/account/wishlist/add}">
+                    <blc:form method="POST" th:action="@{/account/wishlist/add}">
 	                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
 	                        <div class="form50">
 	                            <label th:text="*{label}"></label>
@@ -74,7 +74,7 @@
                                 <input type="submit" class="addToWishlist small dark" value="+ Add to Wishlist" />
                             </div>
                         </div>
-                    </form>
+                    </blc:form>
 				</div>
 					
 				<p>
@@ -124,7 +124,7 @@
 					<div th:if="${ratingSummary}" th:object="${ratingSummary}">
 	                	<span class="title">Community Rating</span>
 						<div id="community-rating-container">
-							<form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
+							<blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
 								<input type="radio" class="star {split:4}" /> 
 								<input type="radio" class="star {split:4}" /> 
 								<input type="radio" class="star {split:4}" /> 
@@ -145,7 +145,8 @@
 								<input type="radio" class="star {split:4}" />
 								<input type="radio" class="star {split:4}" />
 								<input type="radio" class="star {split:4}" />
-							</form>
+							</blc:form>
+							<br/>
 							<div class="total-reviews">
 								(<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
 							</div>
@@ -158,13 +159,13 @@
 									<span th:text="*{helpfulCount()}">9</span> of 
 									<span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
 								</p>
-								<form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+								<blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
 									<input type="radio" class="star" />
 									<input type="radio" class="star" />
 									<input type="radio" class="star"/>
 									<input type="radio" class="star" />
 									<input type="radio" class="star" />
-								</form>
+								</blc:form>
 								<span class="reviewer-info">
 									on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
 								</span>
@@ -179,13 +180,13 @@
 										<span th:text="*{helpfulCount()}">9</span> of 
 										<span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
 									</p>
-									<form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+									<blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
 										<input type="radio" class="star" />
 										<input type="radio" class="star" />
 										<input type="radio" class="star"/>
 										<input type="radio" class="star" />
 										<input type="radio" class="star" />
-									</form>
+									</blc:form>
 									<span class="reviewer-info">
 										by <span class="penname" th:text="${review.customer.firstName}">John</span> on 	
 										<span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>

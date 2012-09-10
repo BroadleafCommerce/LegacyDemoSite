@@ -22,6 +22,7 @@
     
     <!-- Resources do not need security -->
 	<sec:http pattern="/css/**" security="none" />
+	<sec:http pattern="/fonts/**" security="none" />
 	<sec:http pattern="/img/**" security="none" />
 	<sec:http pattern="/js/**" security="none" />       
 	<sec:http pattern="/favicon.ico" security="none" />       
@@ -32,9 +33,12 @@
 		<!-- We handle session fixation protection ourselves  -->
 	    <sec:session-management session-fixation-protection="none" />
 	    
+	    <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
+		<sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
+	    
 		<!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
 		<sec:intercept-url pattern="/register*" requires-channel="https" />
-		<sec:intercept-url pattern="/login*/**" requires-channel="https"  />
+		<sec:intercept-url pattern="/login*/**" requires-channel="https" />
 		<sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
 		<sec:intercept-url pattern="/checkout/**" requires-channel="https" />
 		<sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
@@ -57,6 +61,7 @@
 		<sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
 		
 		<!-- Specify our custom filters -->
+		<sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
 		<sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
 		<sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
 		<sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
@@ -77,6 +82,8 @@
 	                                      JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
 	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
 	                                      WHERE USER_NAME=?" />
+	
+	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
 	                                      
     <!-- Sets the login failure URL -->
 	<bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
@@ -88,7 +95,8 @@
 	<bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
 		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
 		<property name="defaultTargetUrl" value="/account" />
-		<property name="alwaysUseDefaultTargetUrl" value="true" />
+		<property name="targetUrlParameter" value="successUrl" />
+		<property name="alwaysUseDefaultTargetUrl" value="false" />
 	</bean>
 	
 </beans>

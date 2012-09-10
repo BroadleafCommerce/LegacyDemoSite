@@ -1,6 +1,5 @@
 <div>
-	<form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
-		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+	<blc:form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
 		<div class="left_content">
 			<input type="hidden" name="address.country" value="US" />
 
@@ -46,10 +45,6 @@
 				<input type="text" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
 			</div>
 
-			<div class="form35 margin20">
-				<label for="email">Email</label> <span class="error" th:if="${#fields.hasErrors('address.emailAddress')}" th:errors="*{address.emailAddress}"></span> <input
-					type="email" th:field="*{address.emailAddress}" class="field35 cloneable" th:classappend="${#fields.hasErrors('address.emailAddress')}? 'fieldError'" />
-			</div>
 		</div>
 
 		<div class="right_content">
@@ -82,7 +77,7 @@
 				<a id="multiship" th:href="@{/checkout/multiship}">Ship to Multiple Addresses</a>
 			</p>
 		</div>
-	</form>
+	</blc:form>
 
 	<div th:if="${validShipping}" th:object="${shippingInfoForm}" th:inline="text" class="clearfix">
 		<div class="group shipping-info-read-only">			
@@ -90,7 +85,7 @@
 			<address>
 				[[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
 				[[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-				[[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br /> [[*{address.emailAddress}]]<br />
+				[[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
 				[[*{address.primaryPhone}]]
 			</address>
 		</div>

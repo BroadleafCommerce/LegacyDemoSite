@@ -9,23 +9,30 @@
 			<p>The e-mail address and/or password entered do not match our records.  Please try again</p>
 		</span>
 
-		<form th:action="@{/login_post.htm}" method="post" class="clearfix">
-			<div class="form50">
-				<label for="j_username">Email</label>
-				<input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-			</div>
-			<div class="form50">
-				<label for="j_password">Password</label>
-				<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-			</div>
-			<div class="login_register">
-				<input class="login_button big red" type="submit" value="Login"/>
-			</div>
-			<div class="login_register_alt_links">
-			    <a class="account" th:href="@{/register}">Register</a> 
-				<br/>
-				<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
-			</div>
-		</form>
+		<div class="clearfix">
+			<blc:form th:action="@{/login_post.htm}" method="post">
+				<input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
+				
+				<div class="form50">
+					<label for="j_username">Email</label>
+					<input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+				</div>
+				
+				<div class="form50">
+					<label for="j_password">Password</label>
+					<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+				</div>
+				
+				<div class="login_register">
+					<input class="login_button big red" type="submit" value="Login"/>
+				</div>
+				
+				<div class="login_register_alt_links">
+				    <a class="account" th:href="@{/register}">Register</a> 
+					<br/>
+					<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
+				</div>
+			</blc:form>
+		</div>
 	</div>
 </div>

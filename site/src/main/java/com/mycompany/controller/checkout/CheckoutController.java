@@ -9,6 +9,7 @@ import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,13 +43,19 @@ public class CheckoutController extends BroadleafCheckoutController {
     */
     @RequestMapping("")
 	public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
 	    	@ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm) {
-    	
-        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
-        return super.checkout(request, response, model);
+	        @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
+        prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
+        return super.checkout(request, response, model, redirectAttributes);
 	}
     
+	@RequestMapping(value = "/savedetails", method = RequestMethod.POST)
+	public String saveGlobalOrderDetails(HttpServletRequest request, Model model, 
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
+		return super.saveGlobalOrderDetails(request, model, orderInfoForm, result);
+	}
+	
     @RequestMapping(value="/singleship", method = RequestMethod.GET)
     public String convertToSingleship(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         return super.convertToSingleship(request, response, model);
@@ -55,9 +63,11 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     @RequestMapping(value="/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm, 
             BindingResult result) throws PricingException, ServiceException {
+    	prepopulateOrderInfoForm(CartState.getCart(), orderInfoForm);
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -89,16 +99,25 @@ public class CheckoutController extends BroadleafCheckoutController {
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
     public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+			@ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
-        prepopulateShippingAndBillingForms(CartState.getCart(), shippingForm, billingForm);
+        prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
     }
 
-    protected void prepopulateShippingAndBillingForms(Order cart, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
-        
+    protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
+    	if (orderInfoForm != null) {
+	    	orderInfoForm.setEmailAddress(cart.getEmailAddress());
+    	}
+	}
+    		
+    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, 
+    		BillingInfoForm billingForm) {
     	List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
+    	
+    	prepopulateOrderInfoForm(cart, orderInfoForm);
     	
     	if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
     		//if the cart has already has fulfillment information

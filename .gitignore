@@ -12,3 +12,4 @@ test-output
 bin/
 site/data/
 .svn
+site/solrhome
