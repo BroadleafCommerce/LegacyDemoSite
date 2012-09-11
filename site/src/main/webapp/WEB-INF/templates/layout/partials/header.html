@@ -1,14 +1,16 @@
 <header>
 	<div id="header_content">
 		<div id="cart_info">
-		    <div th:if="${customer.anonymous}"  th:remove="tag">
-				<a class="account" th:href="@{/login}">Login</a> 
+
+            <div th:if="${customer.anonymous}"  th:remove="tag">
+
+                <a class="account" th:href="@{/login}">Login</a>
 				&nbsp;|&nbsp; 
 				<a class="account" th:href="@{/register}">Register</a> 
 				&nbsp;|&nbsp; 
 			</div>
 		    <div th:unless="${customer.anonymous}" th:remove="tag">
-				<span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>  
+				<span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
 				&nbsp;|&nbsp; 
 				<a th:href="@{/logout}">Logout</a> 
 				&nbsp;|&nbsp; 
@@ -19,7 +21,15 @@
 				<span class="headerCartItemsCount" th:text="${cart.itemCount}" />
 				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
 			</a>
+
 		</div>
+
+        <div id="languages">
+            Choose Language:
+            <a th:href="@{'?blLocaleCode=en'}"><img src="img/flags/United-States.png" th:src="@{/img/flags/United-States.png}" alt="United States" /></a>
+            <a th:href="@{'?blLocaleCode=en_UK'}"><img src="img/flags/United-Kingdom.png" th:src="@{/img/flags/United-Kingdom.png}" alt="United Kingdom" /></a>
+            <a th:href="@{'?blLocaleCode=es_MX'}"><img src="img/flags/Mexico.png" th:src="@{/img/flags/Mexico.png}" alt="Mexico" /></a>
+        </div>
 		
 		<div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
 		
