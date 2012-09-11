@@ -6,14 +6,22 @@
     <inherits name="org.broadleafcommerce.admin.catalogProductModule" />
     <inherits name="org.broadleafcommerce.admin.catalogProductOptionModule" />
     <inherits name="org.broadleafcommerce.admin.catalogPromotionModule" />
+
+    <inherits name="org.broadleafcommerce.admin.customerCareCustomerModule" />
+    <inherits name="org.broadleafcommerce.admin.customerCareOrderModule" />
+
     <inherits name="org.broadleafcommerce.cms.admin.cmsPagesModule" />
     <inherits name="org.broadleafcommerce.cms.admin.cmsAssetsModule" />
     <inherits name="org.broadleafcommerce.cms.admin.cmsRedirectUrlModule" />
     <inherits name="org.broadleafcommerce.cms.admin.cmsStructuredContentModule" />
 
+    <inherits name="org.broadleafcommerce.openadmin.userAdminUserModule" />
+    <inherits name="org.broadleafcommerce.openadmin.userAdminRoleModule" />
+    <inherits name="org.broadleafcommerce.openadmin.userAdminPermissionModule" />
+
     <!--
     <inherits name="org.broadleafcommerce.admin.merchandisingModule" />
-	<inherits name="org.broadleafcommerce.admin.customerCareModule" />
+    <inherits name="org.broadleafcommerce.admin.customerCareModule" />
     <inherits name="org.broadleafcommerce.openadmin.userModule" />
     <inherits name="org.broadleafcommerce.cms.admin.contentManagementModule" />
     -->

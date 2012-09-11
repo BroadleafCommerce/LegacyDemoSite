@@ -56,7 +56,6 @@
 					<style>DETAILED</style>
 					<modules>
 						<module>com.mycompany.gwt.mycompanyAdmin</module>
-                        <!--<module>org.broadleafcommerce.admin.categoryEntryPoint</module>-->
 					</modules>
 					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M </extraJvmArgs>
 				    <noServer>true</noServer>

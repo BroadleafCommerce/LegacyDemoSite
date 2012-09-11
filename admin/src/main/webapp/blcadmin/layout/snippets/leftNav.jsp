@@ -27,8 +27,8 @@
 		</li>
 		<li>
 			<ul id="customer-care" class="module nav nav-list collapse in">
-				<li><a href="#moduleKey=BLCCustomerCare&pageKey=Order">Order</a></li>
-				<li><a href="#moduleKey=BLCCustomerCare&pageKey=Customer">Customer</a></li>
+				<li><a href="/admin/blcadmin/customerCare/order#moduleKey=BLCOrderModule&pageKey=order">Order</a></li>
+				<li><a href="/admin/blcadmin/customerCare/customer#moduleKey=BLCCustomerModule&pageKey=customer">Customer</a></li>
 			</ul>
 		</li>
 		<li class="nav-header">
@@ -36,9 +36,9 @@
 		</li>
 		<li>
 			<ul id="user-administration" class="module nav nav-list collapse in">
-				<li><a href="#moduleKey=BLCOpenAdmin&pageKey=User Management">User Management</a></li>
-				<li><a href="#moduleKey=BLCOpenAdmin&pageKey=Role Management">Role Management</a></li>
-				<li><a href="#moduleKey=BLCOpenAdmin&pageKey=Permission Management">Permission Management</a></li>
+				<li><a href="/admin/blcadmin/userAdmin/user#moduleKey=BLCUserModule&pageKey=user">User Management</a></li>
+				<li><a href="/admin/blcadmin/userAdmin/role#moduleKey=BLCRoleModule&pageKey=role">Role Management</a></li>
+				<li><a href="/admin/blcadmin/userAdmin/permission#moduleKey=BLCPermissionModule&pageKey=permission">Permission Management</a></li>
 			</ul>
 		</li>						
 	</ul>
