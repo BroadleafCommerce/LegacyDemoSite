@@ -36,8 +36,6 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController extends BroadleafLoginController {
 	
-	
-	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
 		return super.login(request, response, model);

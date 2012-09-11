@@ -61,6 +61,7 @@
 		<sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
 		
 		<!-- Specify our custom filters -->
+		<sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
 		<sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
 		<sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
 		<sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
@@ -81,6 +82,8 @@
 	                                      JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
 	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
 	                                      WHERE USER_NAME=?" />
+	
+	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
 	                                      
     <!-- Sets the login failure URL -->
 	<bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
@@ -92,7 +95,7 @@
 	<bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
 		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
 		<property name="defaultTargetUrl" value="/account" />
-		<property name="targetUrlParameter" value="postLoginUrl" />
+		<property name="targetUrlParameter" value="successUrl" />
 		<property name="alwaysUseDefaultTargetUrl" value="false" />
 	</bean>
 	

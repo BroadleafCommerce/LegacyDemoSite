@@ -3,8 +3,7 @@
     <p class="success" th:if="${successMessage}" th:text="${successMessage}"></p>
     
 	<h2>Update Account Information</h2>
-        <form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST" style="width: 400px;">
-		<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+        <blc:form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST" style="width: 400px;">
         <div class="form100">
             <label for="emailAddress">Email Address:</label>
             <span class="error" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></span>
@@ -21,5 +20,5 @@
             <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
         </div>
         <input type="submit" class="medium red" value="Submit" />
-    </form>
+    </blc:form>
 </div>

@@ -19,7 +19,7 @@
 		<repository>
 			<id>public releases</id>
 			<name>public releases</name>
-			<url>http://www.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
+			<url>http://www.broadleafcommerce.org/nexus/content/repositories/releases/</url>
 		</repository>
 	</repositories>
 	<build>

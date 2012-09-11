@@ -5,8 +5,8 @@
 		<h3>Register for an Account</h3>
 		<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>		
 
-		<form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
-			<input type="hidden" th:field="*{csrfToken}" blc:csrftoken="" />
+		<blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
+			<input type="hidden" th:field="*{redirectUrl}" />
 				
 			<div class="form50">
 				<label for="customer.emailAddress">Email</label>
@@ -42,6 +42,6 @@
 				<br/>
 				<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
 			</div>
-		</form>
+		</blc:form>
 	</div>	
 </div>
