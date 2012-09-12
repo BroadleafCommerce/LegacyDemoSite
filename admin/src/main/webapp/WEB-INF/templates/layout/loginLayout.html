@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:include="layout/partials/head::login" />
+    <body>
+        <div id="login">
+            <div id="logo">
+                <img th:src="@{/resources/img/broadleaf_admin_header_logo.png}" />
+            </div>
+            <div th:substituteby="${templateName}::form" />
+        </div>
+        <div id="options">
+            <div th:include="${templateName}::options" />
+        </div>
+        <div id="messages">
+            <div th:include="${templateName}::messages" />
+        </div>
+        <footer th:include="layout/partials/footer::login" />
+    </body>
+</html>

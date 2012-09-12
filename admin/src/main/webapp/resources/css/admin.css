@@ -23,7 +23,7 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 
 #user-administration, #content-management, #customer-care, #catalog-merchandising {background: #2a2a2a; font-size: 11px; margin-left: 0;}
 #user-administration a, #content-management a, #customer-care a, #catalog-merchandising a {border-top: 1px solid #222; box-shadow: #444 1px 1px 1px inset; color: #fff; font-size: 12px; font-weight: 400; text-shadow: none; padding: 10px 37px;}
-#user-administration li a.active, #catalog-merchandising li a.active, #content-management li .active, #customer-care li a.active {background: #899e3c; box-shadow: #222 1px 1px 25px inset; text-shadow: #000 1px 1px 1px; font-size: 12px; font-weight: 600;}
+#user-administration li a.active, #catalog-merchandising li a.active, #content-management li .active, #customer-care li a.active, #user-administration li a.active:hover, #catalog-merchandising li a.active:hover, #content-management li .active:hover, #customer-care li a.active:hover {background: #899e3c; box-shadow: #222 1px 1px 25px inset; text-shadow: #000 1px 1px 1px; font-size: 12px; font-weight: 600;}
 #user-administration li:first-child a, #content-management li:first-child a, #customer-care li:first-child a, #catalog-merchandising li:first-child a {border-top: none;}
 #user-administration a:hover, #content-management a:hover, #customer-care a:hover, #catalog-merchandising a:hover {background: #3a3a3a;}
 
@@ -47,5 +47,5 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 #login input {border: 1px solid #222; border-radius: 0;}
 #login button[type="submit"] {border: 1px solid #444; color: #fff; background: #95ad42; text-shadow: 1px 1px 1px #000; border-radius: 0;}
 #login + p.alert {margin: 15px auto; width: 400px;}
-#security-options {margin-top: 20px; text-align: center;}
-#security-options a {font-size: 12px; margin: 0 5px; color: #7c9036; text-decoration: underline;}
+#options {margin-top: 20px; text-align: center;}
+#options a {font-size: 12px; margin: 0 5px; color: #7c9036; text-decoration: underline;}

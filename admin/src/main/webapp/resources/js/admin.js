@@ -4,7 +4,7 @@ $(document).ready(function() {
     var $quickSearchButton = $('#quick-search-button');
 
     //highlight active section in left nav
-    $('.module > li > a').each(function() {
+    $('.module > li > a').each(function(event) {
 
         var href = $(this).attr('href');
         var hash = href.substring(href.indexOf('#'));
@@ -13,28 +13,19 @@ $(document).ready(function() {
         if (hash == currentHash) {
             $(this).addClass('active');
         }
+
     });
 
-    //bind enter key and search button click for quick search
-    $quickSearch.on('keypress', function(event) {
-        if (event.which == 13) {
-            event.preventDefault();
-            search();
-        }
+    //by default, turn off module-level linking, but enable module collapsing
+    $('#modules > ul.nav > li.nav-header > a').on('click', function() {
+        var $module = $($(this).data('target'));
+        $module.collapse('toggle');
+        return false;
     });
 
-    $quickSearchButton.on('click', function(event) {
-        event.preventDefault();
-        search();
+    //by default, turn off linking for the currently active section
+    $('#content-management, #catalog-merchandising, #customer-care, #user-administration').find('a.active').on('click', function() {
+        return false;
     });
-	
+
 });
-
-function updateSearchPlaceholder(section) {
-    var newPlaceholderText = 'Search in ' + section;
-    $('#quick-search').attr('placeholder', newPlaceholderText);
-}
-
-function search(query, section) {
-
-}

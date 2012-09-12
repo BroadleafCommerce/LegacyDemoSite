@@ -28,27 +28,50 @@
 				
 				<div class="product-options" th:substituteby="catalog/partials/productOptions"/>								
 				
-				<blc:form method="POST" th:action="@{/cart/add}">
-					<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
-						<div class="form50">
-							<label th:text="*{label}"></label>
-							<select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
-								<option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
-							</select>
-						</div>
-					</div>
-					
-					<div th:utext="*{longDescription}" id="description"></div>
-					
-					<div th:class="*{'productActions' + id}">
-						<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
-						<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
-							<input type="hidden" name="productId" th:value="*{id}" />
-							<input type="hidden" name="quantity" value="1" />
-							<input type="submit" class="addToCart big red" value="Buy Now!"/>
-						</div>
-					</div>
-				</blc:form>
+				<!--<blc:form method="POST" th:action="@{/cart/add}">-->
+					<!--<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">-->
+						<!--<div class="form50">-->
+							<!--<label th:text="*{label}"></label>-->
+							<!--<select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">-->
+								<!--<option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>-->
+							<!--</select>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!---->
+					<!--<div th:utext="*{longDescription}" id="description"></div>-->
+					<!---->
+					<!--<div th:class="*{'productActions' + id}">-->
+						<!--<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>-->
+						<!--<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">-->
+							<!--<input type="hidden" name="productId" th:value="*{id}" />-->
+							<!--<input type="hidden" name="quantity" value="1" />-->
+							<!--<input type="submit" class="addToCart big red" value="Buy Now!"/>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</blc:form>-->
+
+                <blc:form method="POST" th:action="@{/cart/add}">
+                    <!--<div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">-->
+                        <!--<div class="form50">-->
+                            <!--<label th:text="*{label}"></label>-->
+                            <!--<select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">-->
+                                <!--<option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                     <!--<div th:utext="*{longDescription}" id="description"></div>-->
+
+                    <!--<div th:class="*{'productActions' + id}">-->
+                     <!--<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>-->
+                    <div class="add_to_cart">
+                        <!--<input type="hidden" name="productId" th:value="*{id}" />-->
+                        <input th:field="*{quantity}" type="number" value="1" />
+                        <!--<span  th:if="${#fields.hasErrors('quantity')}" th:errors="${quantity}">Invalid Quantity</span>-->
+                        <input type="submit" class="addToCart big red" value="Buy Now!"/>
+                    </div>
+                <!--</div>-->
+                </blc:form>
 				
 				<div th:if="${customer.loggedIn}" th:remove="tag">
 
