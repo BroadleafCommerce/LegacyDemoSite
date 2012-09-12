@@ -8,12 +8,8 @@
             </div>
             <div th:substituteby="${templateName}::form" />
         </div>
-        <div id="options">
-            <div th:include="${templateName}::options" />
-        </div>
-        <div id="messages">
-            <div th:include="${templateName}::messages" />
-        </div>
+        <div id="messages" th:include="${templateName}::messages" />
+        <div id="options" th:include="${templateName}::options" />
         <footer th:include="layout/partials/footer::login" />
     </body>
 </html>
