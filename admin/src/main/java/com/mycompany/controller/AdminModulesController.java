@@ -15,6 +15,7 @@
  */
 package com.mycompany.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  * Date: 9/12/12
  * Time: 11:34 AM
  */
+@Controller
 public class AdminModulesController extends BroadleafAdminModulesController {
 
     @Override
