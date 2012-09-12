@@ -110,11 +110,17 @@ var HC = (function($) {
 	function getPricingData() {
 		return $('#product-option-data').data('product-option-pricing');
 	}
+
+    function updateLocaleSelection(){
+        var locale = $('span#selectedLocale').text();
+        $("#" + locale).addClass('selected');
+    }
 	
 	return {
 		showNotification : showNotification,
 		changeProductOption : changeProductOption,
 		showFacetMultiselect : showFacetMultiselect,
-		getProductOptionData : getProductOptionData
+		getProductOptionData : getProductOptionData,
+        updateLocaleSelection: updateLocaleSelection
 	}
 })($);

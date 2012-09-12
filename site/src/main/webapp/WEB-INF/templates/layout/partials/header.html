@@ -25,12 +25,15 @@
 		</div>
 
         <div id="languages">
-            Choose Language:
-            <a th:href="@{'?blLocaleCode=en'}"><img src="img/flags/United-States.png" th:src="@{/img/flags/United-States.png}" alt="United States" /></a>
-            <a th:href="@{'?blLocaleCode=en_UK'}"><img src="img/flags/United-Kingdom.png" th:src="@{/img/flags/United-Kingdom.png}" alt="United Kingdom" /></a>
-            <a th:href="@{'?blLocaleCode=es_MX'}"><img src="img/flags/Mexico.png" th:src="@{/img/flags/Mexico.png}" alt="Mexico" /></a>
+            <span id="selectedLocale" th:text="${session.blLocale.localeCode}" style="display: none" />
+            <a th:href="@{'?blLocaleCode=en'}"><img id="en" src="img/flags/United-States.png" th:src="@{/img/flags/United-States.png}" alt="United States" title="English" /></a>
+            <a th:href="@{'?blLocaleCode=en_UK'}"><img id="en_UK" src="img/flags/United-Kingdom.png" th:src="@{/img/flags/United-Kingdom.png}" alt="United Kingdom" title="English (UK)"/></a>
+            <a th:href="@{'?blLocaleCode=es_MX'}"><img id="es_MX" src="img/flags/Mexico.png" th:src="@{/img/flags/Mexico.png}" alt="Mexico" title="Spanish (Mexico)"/></a>
+            <a th:href="@{'?blLocaleCode=es_SP'}"><img id="es_SP" src="img/flags/Mexico.png" th:src="@{/img/flags/Spain.png}" alt="Spain" title="Spanish (Spain)"/></a>
+            <a th:href="@{'?blLocaleCode=fr_FR'}"><img id="fr_FR" src="img/flags/Mexico.png" th:src="@{/img/flags/France.png}" alt="France" title="French (France)" /></a>
         </div>
-		
+
+
 		<div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
 		
 		<div id="search">
