@@ -16,6 +16,10 @@
 
     <aop:config/>
 
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+
     <!-- Scan for custom controllers -->
     <context:component-scan base-package="com.mycompany.controller" />
 
@@ -27,6 +31,8 @@
     <mvc:resources order="-10" mapping="/resources/img/**" location="/resources/img/" />
     <mvc:resources order="-10" mapping="/resources/css/**" location="/resources/css/" />
     <mvc:resources order="-10" mapping="/resources/js/**" location="/resources/js/" />
+    <mvc:resources order="-10" mapping="/favicon.ico" location="/favicon.ico" />
+    <mvc:resources order="-10" mapping="/robots.txt" location="/robots.txt" />
 
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
@@ -42,5 +48,7 @@
             </map>
         </property>
     </bean>
+
+    <mvc:default-servlet-handler/>
 
 </beans>

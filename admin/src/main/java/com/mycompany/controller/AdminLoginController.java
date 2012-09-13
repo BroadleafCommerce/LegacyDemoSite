@@ -39,12 +39,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  */
 public class AdminLoginController extends BroadleafAdminLoginController {
-			
-		
-		@RequestMapping
-		public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.login(request, response, model);
-		}
+
+//		@RequestMapping
+//		public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+//			return super.login(request, response, model);
+//		}
 
 		@RequestMapping(value="/login", method=RequestMethod.GET)
 		public String baseLogin(HttpServletRequest request, HttpServletResponse response, Model model) {

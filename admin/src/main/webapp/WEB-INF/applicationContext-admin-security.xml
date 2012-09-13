@@ -24,7 +24,7 @@
 	<sec:http pattern="/resources/images/**" security="none" />
 	<sec:http pattern="/resources/js/**" security="none" />
 	<sec:http pattern="/utility.service" security="none" />       
-	<sec:http pattern="/com.mycompany.gwt.mycompanyAdmin/remote_logging" security="none" />       
+	<sec:http pattern="/com.mycompany.gwt.mycompanyAdmin/remote_logging" security="none" />
 	<sec:http pattern="/favicon.ico" security="none" />       
 	<sec:http pattern="/robots.txt" security="none" />       
 	
@@ -74,7 +74,7 @@
 		<property name="authenticationManager" ref="blAdminAuthenticationManager" />
 		<property name="securityMetadataSource">
 			<sec:filter-security-metadata-source>
-				<sec:intercept-url pattern="/admin.html*" access="PERMISSION_OTHER_DEFAULT" />
+				<sec:intercept-url pattern="/modules*" access="PERMISSION_OTHER_DEFAULT" />
 				<sec:intercept-url pattern="/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
 			</sec:filter-security-metadata-source>
 		</property>

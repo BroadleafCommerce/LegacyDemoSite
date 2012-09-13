@@ -23,6 +23,15 @@ $(document).ready(function() {
         return false;
     });
 
+    //Force a window reload to reload GWT component
+    $('#modules > ul.nav > li > ul > li > a').on('click', function() {
+        var href = $(this).attr('href');
+        var hash = href.substring(href.indexOf('#'));
+        window.location.hash = hash;
+        window.location.reload(true);
+        return false;
+    });
+
     //by default, turn off linking for the currently active section
     $('#content-management, #catalog-merchandising, #customer-care, #user-administration').find('a.active').on('click', function() {
         return false;
