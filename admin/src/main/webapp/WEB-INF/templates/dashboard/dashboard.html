@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Author" content="Broadleaf Commerce" />
+    <title>Broadleaf Sample Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
+    <link rel="stylesheet" type="text/css" href="/admin/resources/css/bootstrap.min.css" th:href="@{/resources/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="/admin/resources/css/admin.css" th:href="@{/resources/css/admin.css}" />
+
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+        google.load('visualization', '1', {'packages': ['geochart']});
+        google.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Popularity'],
+                ['Germany', 200],
+                ['United States', 300],
+                ['Brazil', 400],
+                ['Canada', 500],
+                ['France', 600],
+                ['RU', 700]
+            ]);
+
+            var options = {
+                backgroundColor:'#E9E9E9'
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        };
+    </script>
+</head>
+
+<body>
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <a class="brand" href="#"><img th:src="@{/resources/img/broadleaf_admin_header_logo.png}" /></a>
+                    </div>
+                    <div class="span10">
+                        <div class="menu-options">
+                            <a class="btn btn-danger pull-right logout" href="#" th:href="@{/adminLogout.htm}" title="Logout"><i class="icon-off icon-white"></i></a>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="icon-user icon-white"></i> jfridye <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" th:href="@{/changePassword}">Change Password...</a></li>
+                                    <li><a href="#">Edit Profile...</a></li>
+                                </ul>
+                            </div>
+                            <form class="navbar-search pull-left">
+                                <input id="quick-search" type="text" class="search-query" placeholder="Search in Customers" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div th:substituteby="layout/partials/leftNav" />
+        </div>
+        <div class="span10">
+            <h2>Dashboard</h2>
+            <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+            <footer th:fragment="modules">
+                Copyright 2012 by Broadleaf Commerce
+                <script type="text/javascript" src="/admin/resources/js/lib/jquery-1.8.0.min.js" th:src="@{/resources/js/lib/jquery-1.8.0.min.js}"></script>
+                <script type="text/javascript" src="/admin/resources/js/lib/bootstrap.min.js" th:src="@{/resources/js/lib/bootstrap.min.js}"></script>
+                <script type="text/javascript" src="/admin/resources/js/admin.js" th:src="@{/resources/js/admin.js}"></script>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

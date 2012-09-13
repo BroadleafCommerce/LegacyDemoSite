@@ -45,6 +45,7 @@
                 <entry key="login/" value="layout/loginLayout" />
                 <entry key="layout/" value="NONE" />
                 <entry key="modules/" value="NONE" />
+                <entry key="dashboard/" value="NONE" />
             </map>
         </property>
     </bean>
