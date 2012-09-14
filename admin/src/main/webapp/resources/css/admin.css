@@ -19,19 +19,18 @@ footer {font-size: 13px; font-weight: 700; padding: 30px 0; text-align: center; 
 #loading-placeholder, .progress-striped .bar {border-radius: 0;}
 
 #modules {background: #444;}
-#modules > .nav {background: #222; padding-bottom: 100px;}
-
-#user-administration, #content-management, #customer-care, #catalog-merchandising {background: #2a2a2a; font-size: 11px; margin-left: 0;}
-#user-administration a, #content-management a, #customer-care a, #catalog-merchandising a {border-top: 1px solid #222; box-shadow: #444 1px 1px 1px inset; color: #fff; font-size: 12px; font-weight: 400; text-shadow: none; padding: 10px 37px;}
-#user-administration li a.active, #catalog-merchandising li a.active, #content-management li .active, #customer-care li a.active, #user-administration li a.active:hover, #catalog-merchandising li a.active:hover, #content-management li .active:hover, #customer-care li a.active:hover {background: #899e3c; box-shadow: #222 1px 1px 25px inset; text-shadow: #000 1px 1px 1px; font-size: 12px; font-weight: 600;}
-#user-administration li:first-child a, #content-management li:first-child a, #customer-care li:first-child a, #catalog-merchandising li:first-child a {border-top: none;}
-#user-administration a:hover, #content-management a:hover, #customer-care a:hover, #catalog-merchandising a:hover {background: #3a3a3a;}
+#modules > .nav {background: #222;}
 
 .nav-header {margin: 0; padding: 0;}
 .nav li + .nav-header {margin-top: 0;}
-.sidebar-nav .nav-header a {background: #444; border: 1px solid #222; box-shadow: inset 1px 1px 1px #666; color: #fff; font-size: 12px; font-weight: 600; padding: 16px 10px; text-shadow: 1px 1px 1px #000;}
-.sidebar-nav .nav-header a:hover {background: #4f4f4f;}
-.sidebar-nav .nav-header a i {margin-right: 8px;}
+.nav a.module-header {background: #444; border: 1px solid #222; box-shadow: inset 1px 1px 1px #666; color: #fff; font-size: 12px; font-weight: 600; padding: 16px 10px; text-shadow: 1px 1px 1px #000;}
+.nav a.module-header:hover {background: #4f4f4f;}
+.nav a.module-header i {margin-right: 8px;}
+
+.nav .module {background: #2a2a2a; font-size: 11px; margin-left: 0;}
+.nav .module li a {border-top: 1px solid #222; box-shadow: #444 1px 1px 1px inset; color: #fff; font-size: 12px; font-weight: 400; text-shadow: none; padding: 10px 37px;}
+.nav .module li a.active, .module li a.active:hover {background: #899e3c; box-shadow: #222 1px 1px 25px inset; text-shadow: #000 1px 1px 1px; font-size: 12px; font-weight: 600;}
+.nav .module li a:hover {background: #3a3a3a;}
 
 .dropdown-menu li > a:hover, .dropdown-submenu:hover > a {background: #444;}
 

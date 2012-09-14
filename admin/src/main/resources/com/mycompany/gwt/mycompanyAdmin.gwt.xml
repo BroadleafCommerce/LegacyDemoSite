@@ -2,6 +2,7 @@
 <module>
 	<inherits name="com.google.gwt.user.User" />
 
+    <!--
     <inherits name="org.broadleafcommerce.admin.catalogCategoryModule" />
     <inherits name="org.broadleafcommerce.admin.catalogProductModule" />
     <inherits name="org.broadleafcommerce.admin.catalogProductOptionModule" />
@@ -18,13 +19,13 @@
     <inherits name="org.broadleafcommerce.openadmin.userAdminUserModule" />
     <inherits name="org.broadleafcommerce.openadmin.userAdminRoleModule" />
     <inherits name="org.broadleafcommerce.openadmin.userAdminPermissionModule" />
+    -->
 
-    <!--
     <inherits name="org.broadleafcommerce.admin.merchandisingModule" />
     <inherits name="org.broadleafcommerce.admin.customerCareModule" />
     <inherits name="org.broadleafcommerce.openadmin.userModule" />
     <inherits name="org.broadleafcommerce.cms.admin.contentManagementModule" />
-    -->
+
     <inherits name="com.google.gwt.core.CompilerParameters"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
     <inherits name="org.broadleafcommerce.admin.theme.broadleaf.Broadleaf"/>

@@ -1,45 +1,16 @@
 <div id="modules" class="sidebar-nav">
+
+    <blc:admin_module resultVar="modules" />
+
     <ul class="nav">
-        <li class="nav-header">
-            <a href="#" data-toggle="collapse" data-target="#catalog-merchandising"><i class="icon-barcode icon-white"></i> Catalog<i class="icon-chevron-down pull-right"></i></a>
-        </li>
-        <li>
-            <ul id="catalog-merchandising" class="module nav nav-list collapse in">
-                <li><a th:href="@{/modules} + '#moduleKey=BLCCategoryModule&amp;pageKey=category'">Category</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCProductModule&amp;pageKey=product'">Product</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCProductOptionModule&amp;pageKey=productOption'" >Product Options</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCPromotionModule&amp;pageKey=offer'">Promotion</a></li>
-            </ul>
-        </li>
-        <li class="nav-header">
-            <a href="#" data-toggle="collapse" data-target="#content-management"><i class="icon-file icon-white"></i> Content Management<i class="icon-chevron-down pull-right"></i></a>
-        </li>
-        <li>
-            <ul id="content-management" class="module nav nav-list collapse in">
-                <li><a th:href="@{/modules} + '#moduleKey=BLCPagesModule&amp;pageKey=pages'">Pages</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCAssetsModule&amp;pageKey=assets'">Assets</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCStructuredContentModule&amp;pageKey=structuredContent'">Structured Content</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCRedirectUrlModule&amp;pageKey=urlRedirect'">Redirect URL</a></li>
-            </ul>
-        </li>
-        <li class="nav-header">
-            <a href="#" data-toggle="collapse" data-target="#customer-care"><i class="icon-heart icon-white"></i> Customer Care<i class="icon-chevron-down pull-right"></i></a>
-        </li>
-        <li>
-            <ul id="customer-care" class="module nav nav-list collapse in">
-                <li><a th:href="@{/modules} + '#moduleKey=BLCOrderModule&amp;pageKey=order'">Order</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCCustomerModule&amp;pageKey=customer'">Customer</a></li>
-            </ul>
-        </li>
-        <li class="nav-header">
-            <a href="#" data-toggle="collapse" data-target="#user-administration"><i class="icon-user icon-white"></i> User Administration<i class="icon-chevron-down pull-right"></i></a>
-        </li>
-        <li>
-            <ul id="user-administration" class="module nav nav-list collapse in">
-                <li><a th:href="@{/modules} + '#moduleKey=BLCUserModule&amp;pageKey=user'">User Management</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCRoleModule&amp;pageKey=role'">Role Management</a></li>
-                <li><a th:href="@{/modules} + '#moduleKey=BLCPermissionModule&amp;pageKey=permission'">Permission Management</a></li>
+        <li th:each="module : ${modules}" th:inline="text">
+            <a class="module-header" href="#" data-toggle="collapse"><i class="icon-white" th:classappend="${module.icon}"></i>[[${module.name}]]<i class="icon-chevron-down pull-right"></i></a>
+            <ul th:each="section : ${module.sections}" class="module nav nav-list collapse in">
+                <li>
+                    <a th:href="@{/modules} + '#moduleKey=' + ${module.moduleKey} + '&amp;pageKey=' + ${section.sectionKey}">[[${section.name}]]</a>
+                </li>
             </ul>
         </li>
     </ul>
+
 </div>
