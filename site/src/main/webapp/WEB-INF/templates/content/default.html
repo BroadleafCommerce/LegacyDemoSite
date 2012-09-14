@@ -8,48 +8,18 @@
 		<div class="clearfix"></div>
 		<div th:utext="${BLC_PAGE.pageFields[body]}"/>
 	</section>
+	
 	<section id="right_column">
 		<header>Featured Products</header>
 		<div id="options">
 			<div class="section">
-				<a href=""><img src="img/bannerad.jpg" alt="The Essentials Collection" /></a>
-			</div>
-			<div class="section">
-				<h3>Must Have Sauces</h3>
-				<ul id="featured_products">
-					<li>
-						<div class="image">
-							<a href="sauce.html">
-							<img src="img/sauces/Day-of-the-Dead-Habanero-Hot-Sauce-Close.jpg" alt="Sauce Image" />
-							<div class="price">$6.99</div>
-							</a>
-						</div>
-						
-						<div class="content">
-						<div class="title">Day of the Dead Habanero Hot Sauce</div>
-							Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-						</div>
-						<div class="add_to_cart"><a href="">Buy Now</a></div>
-					</li>
-					
-					<li>
-						<div class="image">
-							<a href="sauce.html">
-							<img src="img/sauces/Blazin-Saddle-XXX-Hot-Habanero-Pepper-Sauce-Close.jpg" alt="Sauce Image" />
-							<div class="price">$6.99</div>
-							</a>
-						</div>
-						
-						<div class="content">
-						<div class="title">Blazin' Saddle XXX Hot Habanero Pepper Sauce</div>
-							Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-						</div>
-						<div class="add_to_cart"><a href="">Buy Now</a></div>
-					</li>				
-				</ul>
-			</div>
+				 <blc:related_products categoryId="2001" quantity="3"/>	 
+				 <ul id="featured_products" class="group">
+					<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+				 </ul>
+			</div>									
 		</div>
-	</section>
+	</section>	
 </div>
 		
 			
