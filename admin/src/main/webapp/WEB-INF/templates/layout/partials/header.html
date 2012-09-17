@@ -10,17 +10,20 @@
                         <div class="menu-options">
                             <a class="btn btn-danger pull-right logout" href="#" th:href="@{/adminLogout.htm}" title="Logout"><i class="icon-off icon-white"></i></a>
                             <div class="btn-group pull-right">
-                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="icon-user icon-white"></i> jfridye <span class="caret"></span>
+                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#" th:inline="text">
+                                    <blc:admin_user resultVar="adminUser" />
+                                    <i class="icon-user icon-white"></i> [[${adminUser.name}]] <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#" th:href="@{/changePassword}">Change Password...</a></li>
-                                    <li><a href="#">Edit Profile...</a></li>
+                                    <li><a href="#" id="editUserInfo">Edit Profile...</a></li>
                                 </ul>
                             </div>
+                            <!--
                             <form class="navbar-search pull-left">
                                 <input id="quick-search" type="text" class="search-query" placeholder="Search in Customers" />
                             </form>
+                            -->
                             <div id="loading-placeholder" class="progress progress-striped active pull-left">
                                 <div class="bar" style="width: 100%;">Loading...</div>
                             </div>

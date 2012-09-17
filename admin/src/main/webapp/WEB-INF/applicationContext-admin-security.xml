@@ -89,7 +89,7 @@
     <!-- Sets the login success URL -->
 	<bean id="blAdminAuthenticationSuccessHandler"
 		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-		<property name="defaultTargetUrl" value="/modules#moduleKey=BLCMerchandising&amp;pageKey=Category" />
+		<property name="defaultTargetUrl" value="/loginSuccess" />
 		<property name="alwaysUseDefaultTargetUrl" value="false" />
 	</bean>
     

@@ -16,25 +16,25 @@
 package com.mycompany.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.broadleafcommerce.admin.web.controller.BroadleafAdminModulesController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ *
  * @author jfridye
+ * @see org.broadleafcommerce.openadmin.web.handler.AdminNavigationHandlerMapping
  * Date: 9/12/12
  * Time: 11:34 AM
  */
-@Controller
+@Controller("blAdminModulesController")
 public class AdminModulesController extends BroadleafAdminModulesController {
 
     @Override
-    @RequestMapping(value = "/modules", method = RequestMethod.GET)
-    public String viewModules(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return super.viewModules(request, response, model);
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return super.handleRequest(request, response);
     }
+
 }
