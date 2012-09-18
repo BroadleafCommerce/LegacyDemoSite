@@ -113,4 +113,8 @@
             </list>
         </property>
     </bean>
+
+    <bean id="blExploitProtectionService" class="org.broadleafcommerce.common.security.service.ExploitProtectionServiceImpl">
+           <property name="xsrfProtectionEnabled" value="false"/>
+    </bean>
 </beans>
