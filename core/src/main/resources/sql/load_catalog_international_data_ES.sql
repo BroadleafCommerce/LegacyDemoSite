@@ -44,6 +44,7 @@ INSERT INTO BLC_PRODUCT_OPTION_TRANSLATION_XREF (PRODUCT_OPTION_ID, TRANSLATION_
 -- PRODUCT SKU TRANSLATION
 -----------------------------------------------------------------------------------------------------------------------------------
 -- Custom store SKUs in Spanish
+-- -- Hot Sauces translations
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (1,'Sudden Death Sauce','Salsa de la Muerte S&uacute;bita ','Como mis amigos salseros saben, nunca soy f&aacute;cil de satisfacer. Por lo tanto, naci&oacute; la creaci&oacute;n de la Muerte S&uacute;bita. Cuando este listo para saborear al m&aacute;s all&aacute; ... Muerte s&uacute;bita entregar&aacute;!','es',1);
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (2,'Sweet Death Sauce','Salsa de la Muerte Dulce','El perfecto acompa&ntilde;ante para el pollo, el pescado, hamburguesas o pizza. Una gran mezcla de habanero, mango, fruta de la pasi&oacute;n y mucho m&aacute;s hacen de esta salsa de la Muerte una delicia tropical incre&iacute;ble.','es',2);
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (3,'Hoppin'' Hot Sauce','Salsa de la Muerte Saltante','Picante, maduro pimienta que se mezcla junto con el ajo, la cebolla, pasta de tomate y una pizca de az&uacute;car de ca&ntilde;a para hacer de esto una salsa suave. Maravilloso en huevos, aves de corral, carne de cerdo o pescado, esta salsa se ​​mezcla para hacer los adobos y sopas ricas.','es',3);
@@ -63,6 +64,14 @@ INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTIO
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (17,'Insanity Sauce','Salsa de Locura','Esta salsa debe su gran sabor a los pimientos de edad y vinagre de ca&ntilde;a. Mejorar&aacute; el sabor de cualquier comida.','es',17);
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (18,'Hurtin'' Jalepeno Hot Sauce','Salsa de Jalape&ntilde;o Ardiente','Esta salsa debe su gran sabor a los pimientos de edad y vinagre de ca&ntilde;a. Mejorar&aacute; el sabor de cualquier comida.','es',18);
 INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (19,'Roasted Red Pepper & Chipotle Hot Sauce','Salsa de Pimienta Roja y Chipotle','Esta salsa debe su gran sabor a los pimientos de edad y vinagre de ca&ntilde;a. Mejorar&aacute; el sabor de cualquier comida.','es',19);
+-- -- Merchandise translations
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (100,'Hawt Like a Habanero Shirt (Men''s)','Camisa de Habanero Hawt (Hombres)','Colecci&oacute;n de Hombres Habanero est&aacute;ndar de manga corta serigrafiadas, camiseta de algod&oacute;n suave en ajuste normal.','es',100);
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (200,'Hawt Like a Habanero Shirt (Women''s)','Camisa de Habanero Hawt (Mujeres)','Colecci&oacute;n de Mujeres Habanero est&aacute;ndar de manga corta serigrafiadas, camiseta de algod&oacute;n suave en ajuste normal.','es',200);
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (300,'Heat Clinic Hand-Drawn (Men''s)','Heat Clinic dibujado a mano (Hombres)','Esta camiseta tiene el logo dibujado a mano para hombres, ofrece un ajuste regular en tres colores diferentes.','es',300);
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (400,'Heat Clinic Hand-Drawn (Women''s)','Heat Clinic dibujado a mano (Mujeres)','Esta camiseta tiene el logo dibujado a mano para hombres, ofrece un ajuste regular en tres colores diferentes.','es',400);
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (500,'Heat Clinic Mascot (Men''s)','Mascota de Heat Clinic (Hombres)','&iquest;No te encanta nuestra mascota? Compre su propia camiseta hoy!','es',500);
+INSERT INTO BLC_SKU_TRANSLATION (TRANSLATION_ID,DESCRIPTION,NAME,LONG_DESCRIPTION,LOCALE_CODE,SKU_ID) VALUES (600,'Heat Clinic Mascot (Women''s)','Mascota de Heat Clinic (Mujeres)','&iquest;No te encanta nuestra mascota? Compre su propia camiseta hoy!','es',600);
+
 
 -- Custom store SKU cross reference with translations
 INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (1, 1, 'es');
@@ -84,3 +93,10 @@ INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (1
 INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (17, 17, 'es');
 INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (18, 18, 'es');
 INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (19, 19, 'es');
+-- -- Merchandise cross reference
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (100, 100, 'es');
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (200, 200, 'es');
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (300, 300, 'es');
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (400, 400, 'es');
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (500, 500, 'es');
+INSERT INTO BLC_SKU_TRANSLATION_XREF (SKU_ID, TRANSLATION_ID, MAP_KEY) VALUES (600, 600, 'es');
