@@ -16,20 +16,32 @@
 
 package com.mycompany.controller;
 
-import org.broadleafcommerce.common.web.controller.BroadleafAbstractController;
+import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminAbstractController;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Controller("blAdminDashboardController")
-public class AdminDashboardController extends BroadleafAbstractController implements org.springframework.web.servlet.mvc.Controller {
+@Controller
+@RequestMapping(value = "/dashboard")
+public class AdminDashboardController extends BroadleafAdminAbstractController {
 
     @Override
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return  new ModelAndView("dashboard/dashboard");
+    public String getCurrentSectionKey() {
+        return "Dashboard";
     }
 
+    @RequestMapping(method= RequestMethod.GET)
+    public String viewDashboard(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return "dashboard/dashboard";
+    }
+
+    @RequestMapping(value="/reports", method= RequestMethod.GET)
+    public String viewReports(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return "dashboard/reports";
+    }
 
 }

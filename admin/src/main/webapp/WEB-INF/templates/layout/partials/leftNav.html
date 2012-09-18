@@ -8,9 +8,9 @@
                 <i class="icon-white" th:classappend="${module.icon}"></i>
                 [[${module.name}]]
                 <i class="collapse-icon pull-right"
-                   th:classappend="${#lists.contains(currentAdminModules, module)}? 'icon-chevron-up' : 'icon-chevron-down' "></i>
+                   th:classappend="${currentAdminModule.id == module.id}? 'icon-chevron-up' : 'icon-chevron-down' "></i>
             </a>
-            <div class="collapse" th:classappend="${#lists.contains(currentAdminModules, module)}? 'in'">
+            <div class="collapse" th:classappend="${currentAdminModule.id == module.id}? 'in'">
                 <ul th:each="section : ${module.sections}" class="module nav nav-list">
                     <li>
                         <a th:href="@{${section.url}} + '#moduleKey=' + ${module.moduleKey} + '&amp;pageKey=' + ${section.sectionKey}"
