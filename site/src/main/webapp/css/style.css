@@ -1002,6 +1002,7 @@ form.manage-account input[type="submit"] {
 
 .order_summary {
     width: 100%;
+    clear: both;
 }
 
 .multiship_summary {
