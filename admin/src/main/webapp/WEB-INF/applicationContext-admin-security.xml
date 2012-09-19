@@ -42,7 +42,7 @@
 		/>
 		
 		<!-- Provide the logout handler -->
-		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/admin.html"/>
+		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/blcadmin/login.jsp"/>
 		
 		<!-- Since we run this alongside the site, we need to set up the special port mapping -->
 		<!-- This isn't necessary for site becauase it utilizes a default mapping -->

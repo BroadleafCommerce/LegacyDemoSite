@@ -24,7 +24,7 @@
 			</header>
 			
 			<ul id="products" class="group">
-				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
 			</ul>
 			
 			<div th:substituteby="catalog/partials/productPagingOptions" />
@@ -45,7 +45,7 @@
 						<div class="section" th:object="${category}">
 							 <blc:related_products categoryId="*{id}" quantity="3"/>	 
 							 <ul id="featured_products" class="group">
-								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
 							 </ul>
 						</div>									
 					</div>
