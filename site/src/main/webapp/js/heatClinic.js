@@ -57,7 +57,7 @@ var HC = (function($) {
 		for (var i = 0; i < productOptionPricing.length; i++) {
 			var pricing = productOptionPricing[i];
 			if ($(pricing.selectedOptions).not(selectedProductOptions).length == 0 && $(selectedProductOptions).not(pricing.selectedOptions).length == 0) {
-				price = '$' + pricing.price;
+				price = pricing.price;
 				break;
 			}
 		}
