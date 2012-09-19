@@ -106,14 +106,6 @@
            <property name="propertyLocations"  value="classpath:/test/load-properties/"/>
     </bean>
 
-    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
-        <property name="sourceList">
-            <list>
-                <value>classpath:bl-ehcache.xml</value>
-            </list>
-        </property>
-    </bean>
-
     <bean id="blExploitProtectionService" class="org.broadleafcommerce.common.security.service.ExploitProtectionServiceImpl">
            <property name="xsrfProtectionEnabled" value="false"/>
     </bean>
