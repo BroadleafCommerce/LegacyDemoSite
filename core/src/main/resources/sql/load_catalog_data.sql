@@ -106,8 +106,8 @@ INSERT INTO BLC_PRODUCT (PRODUCT_ID,  DEFAULT_CATEGORY_ID, URL, MANUFACTURE, IS_
 -- a product only has one SKU.    SKUs hold the pricing information for the product and are the actual entity
 -- that is added to the cart.    Inventory, Pricing, and Fulfillment concerns are done at the SKU level
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE, INVENTORY_TYPE) VALUES (1,1,'Sudden Death Sauce','As my Chilipals know, I am never one to be satisfied. Hence, the creation of Sudden Death. When you need to go beyond... Sudden Death will deliver! ',10.99,'Y','Y',CURRENT_TIMESTAMP, 'BASIC');
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE, INVENTORY_TYPE) VALUES (2,2,'Sweet Death Sauce','The perfect topper for chicken, fish, burgers or pizza. A great blend of Habanero, Mango, Passion Fruit and more make this Death Sauce an amazing tropical treat.',10.99,'Y','Y',CURRENT_TIMESTAMP, 'BASIC');
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (1,1,'Sudden Death Sauce','As my Chilipals know, I am never one to be satisfied. Hence, the creation of Sudden Death. When you need to go beyond... Sudden Death will deliver! ',10.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (2,2,'Sweet Death Sauce','The perfect topper for chicken, fish, burgers or pizza. A great blend of Habanero, Mango, Passion Fruit and more make this Death Sauce an amazing tropical treat.',10.99,'Y','Y',CURRENT_TIMESTAMP);
 INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (3,3,'Hoppin'' Hot Sauce','Tangy, ripe cayenne peppes flow together with garlic, onion, tomato paste and a hint of cane sugar to make this a smooth sauce with a bite.  Wonderful on eggs, poultry, pork, or fish, this sauce blends to make rich marinades and soups.',4.99,'Y','Y',CURRENT_TIMESTAMP);
 INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (4,4,'Day of the Dead Chipotle Hot Sauce','When any pepper is dried and smoked, it is referred to as a Chipotle. Usually with a wrinkled, drak brown appearance, the Chipotle delivers a smokey, sweet flavor which is generally used for adding a smokey, roasted flavor to salsas, stews and marinades.',6.99,'Y','Y',CURRENT_TIMESTAMP);
 INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (5,5,'Day of the Dead Habanero Hot Sauce','If you want hot, this is the chile to choose. Native to the Carribean, Yucatan and Northern Coast of South America, the Habanero presents itself in a variety of colors ranging from light green to a bright red. The Habanero''s bold heat, unique flavor and aroma has made it the favorite of chile lovers.',6.99,'Y','Y',CURRENT_TIMESTAMP);
@@ -576,20 +576,4 @@ INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (
 INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (2, 10.00);
 INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (3, 20.00);
 
-------------------------------------------------------------------------------------------------------------------
--- Load Catalog - Step 6:  Inventory
--- ========================================================
-------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_ADDRESS (ADDRESS_ID, ADDRESS_LINE1, CITY, STATE_PROV_REGION, POSTAL_CODE, COUNTRY, IS_BUSINESS, IS_DEFAULT, IS_ACTIVE) VALUES (10001, '123 HEAT CLINIC DR.', 'AUSTIN', 'TX', '78757', 'US', TRUE, FALSE, TRUE);
-INSERT INTO BLC_ADDRESS (ADDRESS_ID, ADDRESS_LINE1, CITY, STATE_PROV_REGION, POSTAL_CODE, COUNTRY, IS_BUSINESS, IS_DEFAULT, IS_ACTIVE) VALUES (10002, '456 HEAT CLINIC CIR.', 'DALLAS', 'TX', '75251', 'US', TRUE, FALSE, TRUE);
-INSERT INTO BLC_ADDRESS (ADDRESS_ID, ADDRESS_LINE1, CITY, STATE_PROV_REGION, POSTAL_CODE, COUNTRY, IS_BUSINESS, IS_DEFAULT, IS_ACTIVE) VALUES (10003, '789 HEAT CLINIC WAY', 'AUSTIN', 'TX', '75251', 'US', TRUE, FALSE, TRUE);
 
-INSERT INTO BLC_FULFILLMENT_LOCATION (FULFILLMENT_LOCATION_ID, ADDRESS_ID, PICKUP_LOCATION, SHIPPING_LOCATION, DEFAULT_LOCATION) values (1, 10001, FALSE, TRUE, TRUE);
-INSERT INTO BLC_FULFILLMENT_LOCATION (FULFILLMENT_LOCATION_ID, ADDRESS_ID, PICKUP_LOCATION, SHIPPING_LOCATION, DEFAULT_LOCATION) values (2, 10002, TRUE, TRUE, FALSE);
-INSERT INTO BLC_FULFILLMENT_LOCATION (FULFILLMENT_LOCATION_ID, ADDRESS_ID, PICKUP_LOCATION, SHIPPING_LOCATION, DEFAULT_LOCATION) values (3, 10003, TRUE, FALSE, FALSE);
-
-INSERT INTO BLC_INVENTORY (INVENTORY_ID, FULFILLMENT_LOCATION_ID, SKU_ID, QUANTITY_AVAILABLE, QUANTITY_ON_HAND, VERSION_NUM) VALUES (1, 1, 1, 10, 10, 0);
-INSERT INTO BLC_INVENTORY (INVENTORY_ID, FULFILLMENT_LOCATION_ID, SKU_ID, QUANTITY_AVAILABLE, QUANTITY_ON_HAND, VERSION_NUM) VALUES (2, 2, 1, 5, 5, 0);
-INSERT INTO BLC_INVENTORY (INVENTORY_ID, FULFILLMENT_LOCATION_ID, SKU_ID, QUANTITY_AVAILABLE, QUANTITY_ON_HAND, VERSION_NUM) VALUES (3, 3, 1, 5, 5, 0);
-INSERT INTO BLC_INVENTORY (INVENTORY_ID, FULFILLMENT_LOCATION_ID, SKU_ID, QUANTITY_AVAILABLE, QUANTITY_ON_HAND, VERSION_NUM) VALUES (4, 2, 2, 20, 20, 0);
-INSERT INTO BLC_INVENTORY (INVENTORY_ID, FULFILLMENT_LOCATION_ID, SKU_ID, QUANTITY_AVAILABLE, QUANTITY_ON_HAND, VERSION_NUM) VALUES (5, 3, 2, 15, 15, 0);
