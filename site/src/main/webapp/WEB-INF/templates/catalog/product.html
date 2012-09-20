@@ -47,6 +47,7 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="submit" class="addToCart big red" value="Buy Now!"/>
 						</div>
+                        <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
 					</div>
 				</blc:form>
 				

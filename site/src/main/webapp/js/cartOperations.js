@@ -93,7 +93,9 @@ $(function(){
 						if (data.error == 'allOptionsRequired') {
 							$errorSpan.css('display', 'block');
 					        $errorSpan.effect('highlight', {}, 1000);
-						} else {
+						} else if (data.error == 'inventoryUnavailable') {
+                            HC.showNotification("This item is no longer in stock. We apologize for the inconvenience.", 7000);
+                        } else {
 							HC.showNotification("Error adding to cart");
 						}
 					} else {
@@ -129,11 +131,13 @@ $(function(){
 				type: "POST", 
 				data: $form.serialize() 
 			}, function(data, extraData) {
-				updateHeaderCartItemsCount(extraData.cartItemCount);
-				if ($form.children('input.quantityInput').val() == 0) {
-					showAddToCartButton(extraData.productId, 'cart');
-				}
-				
+				if (extraData) {
+                    updateHeaderCartItemsCount(extraData.cartItemCount);
+                    if ($form.children('input.quantityInput').val() == 0) {
+                        showAddToCartButton(extraData.productId, 'cart');
+                    }
+                }
+
 				$('.fancybox-inner').html(data);
 			}
 		);
