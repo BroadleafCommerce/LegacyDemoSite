@@ -40,7 +40,7 @@ INSERT INTO BLC_PRODUCT_OPTION_TRANSLATION_XREF (PRODUCT_OPTION_ID, TRANSLATION_
 INSERT INTO BLC_PRODUCT_OPTION_TRANSLATION_XREF (PRODUCT_OPTION_ID, TRANSLATION_ID, MAP_KEY) VALUES (2, 2, 'es');
 
 -----------------------------------------------------------------------------------------------------------------------------------
--- PRODUCT OPTIONS TRANSLATION
+-- PRODUCT OPTION VALUES TRANSLATION
 -----------------------------------------------------------------------------------------------------------------------------------
 -- Custom store product option values in Spanish
 INSERT INTO BLC_PRODUCT_OPTION_VALUE_TRANSLATION (TRANSLATION_ID,ATTRIBUTE_VALUE,LOCALE_CODE,PRODUCT_OPTION_VALUE_ID) VALUES (1,'Negro','es',1);
