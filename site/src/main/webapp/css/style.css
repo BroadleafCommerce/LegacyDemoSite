@@ -2927,10 +2927,15 @@ and (max-width : 480px) {
 .product-option-group.colors li.Black div       {background-color: #000000;}
 .product-option-group.colors li.Red div     {background-color: #DC143C;}
 
-    /*color options in spanish*/
+    /*color options in Spanish*/
     .product-option-group.colors li.Plateado div   {background-color: #FFFFFF;}
     .product-option-group.colors li.Negro div       {background-color: #000000;}
     .product-option-group.colors li.Rojo div     {background-color: #DC143C;}
+
+    /*color options in French*/
+    .product-option-group.colors li.Argent div   {background-color: #FFFFFF;}
+    .product-option-group.colors li.Noir div       {background-color: #000000;}
+    .product-option-group.colors li.Rouge div     {background-color: #DC143C;}
 
 /*customer ratings and reviews*/
 #customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}
