@@ -18,6 +18,7 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
+import org.broadleafcommerce.core.inventory.exception.ConcurrentInventoryModificationException;
 import org.broadleafcommerce.core.inventory.exception.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
@@ -119,6 +120,14 @@ public class CartController extends BroadleafCartController {
                     return getCartView();
                 } else {
                     redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                    return getCartPageRedirect();
+                }
+            } else if (e.getCause() instanceof ConcurrentInventoryModificationException) {
+                if (isAjaxRequest(request)) {
+                    model.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
+                    return getCartView();
+                } else {
+                    redirectAttributes.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
                     return getCartPageRedirect();
                 }
             } else {
