@@ -4,8 +4,8 @@
 	<a th:href="@{*{url}}">
 	<img th:if="*{media['primary']}" th:src="@{*{media['primary'].url}}" alt="Sauce Image" />
 	<div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-		<div blc:price="*{salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-		<div blc:price="*{retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+		<div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+		<div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
 	</div>
 	<div class="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
 		<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
