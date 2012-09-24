@@ -96,7 +96,7 @@
                 
 			</div>
 		 	
-			<div id="product_main_image">
+			<div id="product_main_image" th:if="*{media['primary']}">
 				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
 		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
 		        </a>
@@ -105,7 +105,7 @@
 			<div id="product_thumbs_container">
 				<ul id="product_thumbs" class="clearfix">
 					<li>
-						<a href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
+						<a th:if="*{media['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
 							<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
 						</a>
 						<p th:if="*{#maps.size(media) > 1}" class="thumbs_nav">Swipe to see more... (<span th:text="'1 of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></span>)</p>
