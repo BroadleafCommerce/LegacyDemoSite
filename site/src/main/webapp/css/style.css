@@ -200,6 +200,7 @@ td.error {
 span.error, div.error{
 	color: #E40037;
 	font-weight: bold;
+    display: inline-block;
 }
 span.error_spacer {
     visibility:hidden;
