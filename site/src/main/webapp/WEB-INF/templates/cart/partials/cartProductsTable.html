@@ -35,7 +35,8 @@
 			<td align="center" th:if="*{adjustmentValue.zero}">---</td>
 			<td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
 			
-			<td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+			<td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price}"></td>
 		</tr>
 	</tbody>
 </table>
