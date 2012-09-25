@@ -1,27 +1,27 @@
 <div id="cart">
     <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
-    	Your cart is empty
+        <span th:text="#{cart.empty}">Your cart is empty</span>
     	<br/>
-    	<a th:href="@{/}">Continue Shopping</a>
+    	<a th:href="@{/}"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
     </div>
     
     <div th:unless="${#lists.isEmpty(cart.orderItems)}">
 
 	    <div class="cart_title">
-	        Order Summary
+            <span th:text="#{cart.orderSummary}">Order Summary</span>
 	         <a id="cartLink" class="fancycart" th:href="@{/cart}">
-	            Edit
+                 <span th:text="#{cart.edit}">Edit</span>
 	        </a>
 	    </div>
 	    <table id="cart_summary" class="order_summary">
 	        <thead>
 	        <tr>
-	            <th>&nbsp;</th>
-	            <th align="left">Item</th>
-	            <th>Quantity</th>
-	            <th>Price</th>
-	            <th>Discount</th>
-	            <th>Total</th>
+                <th>&nbsp;</th>
+                <th align="left"><span th:text="#{cart.item}">Item</span></th>
+                <th><span th:text="#{cart.quantity}">Quantity</span></th>
+                <th> <span th:text="#{cart.price}">Price</span></th>
+                <th> <span th:text="#{cart.discount}">Discount</span></th>
+                <th><span th:text="#{cart.total}">Total</span></th>
 	        </tr>
 	        </thead>
 	        <tbody>
@@ -45,25 +45,25 @@
 	    </table>
     
 	    <div class="cart_title">
-	    	Step 1 &raquo; Order Information
+            <span th:text="#{cart.step1}">Step 1</span> &raquo; <span th:text="#{cart.orderInformation}">Order Information</span>
 		    <a th:if="${validOrderInfo and customer.anonymous}" th:href="@{/checkout(edit-order-info='true')}">
-	            Edit
+                <span th:text="#{cart.edit}">Edit</span>
 	        </a>
 	    </div>
 	    
 		<div th:substituteby="checkout/partials/orderInfoForm"></div>
 	
 	    <div class="cart_title">
-	    	Step 2 &raquo; Shipping Information
+            <span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.shippingInformation}">Shipping Information</span>
 		    <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
-	            Edit
+                <span th:text="#{cart.edit}">Edit</span>
 	        </a>
 	    </div>
 	    
 	    <div class="clearfix"></div>
 	    
 	    <div th:unless="${validOrderInfo}" class="checkout_warning" >
-	        Please fill out the basic order information to complete purchase
+            <span th:text="#{cart.fillOutBasicOrder}">Please fill out the basic order information to complete purchase</span>
 	    </div>
 	    
 	    <div th:if="${validOrderInfo}">
@@ -75,39 +75,39 @@
 		    </div>
 		    
 		    <div th:if="${validShipping}" id="cart_total" class="group">
-		        <h3>Order Total</h3>
+		        <h3><span th:text="#{cart.orderTotal}">Order Total</span></h3>
 		        <table width="100%" id="total_table" border="0">
 		            <tr>
-		                <td>Subtotal</td>
+		                <td><span th:text="#{cart.orderSubTotal}">Subtotal</span></td>
 		                <td blc:price="${cart.subTotal}"></td>
 		            </tr>
 		            <tr>
-		                <td>Promotions</td>
+		                <td><span th:text="#{cart.promotions}">Promotions</span></td>
 		                <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
 		                <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
 		            </tr>
 		            <tr>
-		                <td>Taxes</td>
+		                <td><span th:text="#{cart.taxes}">Taxes</span></td>
 		                <td blc:price="${cart.totalTax}"></td>
 		            </tr>
 		            <tr>
-		                <td>Shipping</td>
+		                <td><span th:text="#{cart.shipping}">Shipping</span></td>
 		                <td blc:price="${cart.totalShipping}"></td>
 		            </tr>
 		            <tr class="subtotal">
-		            	<td>Total</td>
+		            	<td><span th:text="#{cart.total}">Total</span></td>
 		            	<td class="price" blc:price="${cart.total}"></td>
 		            </tr>
 		        </table>
 		     </div>    
 	     </div>
 	
-	    <div class="cart_title">Step 3 &raquo; Billing Information</div>
+	    <div class="cart_title"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.billing.info}">Billing Information</span></div>
 	
 	    <div class="clearfix"></div>
 	
 	    <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
-	        Please fill out a shipping address and pick a shipping method to complete purchase
+            <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
 	    </div>
 	
 	    <div th:substituteby="checkout/partials/billingInfoForm" />

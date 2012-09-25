@@ -1,11 +1,11 @@
 <table id="cart_products">
 	<thead>
 		<tr>
-			<th colspan="2">Item</th>
-			<th>Quantity</th>
-			<th>Price <span class="small">(each)</span></th>
-			<th>Discount <span class="small">(each)</span></th>
-			<th>Total</th>
+			<th colspan="2"><span th:text="#{cart.item}">Item</span></th>
+			<th><span th:text="#{cart.quantity}">Quantity</span></th>
+			<th> <span th:text="#{cart.price}">Price</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+			<th> <span th:text="#{cart.discount}">Discount</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+			<th><span th:text="#{cart.total}">Total</span></th>
 		</tr>
 	</thead>
 	<tbody>

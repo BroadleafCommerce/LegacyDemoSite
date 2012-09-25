@@ -7,7 +7,7 @@
 			<a th:if="${facetDto.facet.canMultiselect}" 
 				th:attr="onclick=${'HC.showFacetMultiselect(''__${facetDto.facet.field.abbreviation}__'')'}"
 				href="javascript:;" 
-				class="remove_facet_values">[ Edit ]</a>
+				class="remove_facet_values">[ <span th:text="#{facet.edit}">Edit</span> ]</a>
 			<a blc:removefacetvalueslink="${facetDto}" class="remove_facet_values">[ Clear ]</a>
 		</h3>
 		
@@ -41,7 +41,7 @@
 				<a th:if="${facetDto.facet.canMultiselect}" 
 					th:attr="onclick=${'HC.showFacetMultiselect(''__${facetDto.facet.field.abbreviation}__'')'}"
 					href="javascript:;" 
-					class="maker multiple">Choose Multiple...</a>
+					class="maker multiple"><span th:text="#{facet.chooseMultiple}">Choose Multiple...</span></a>
 			</li>
 		</ul>
 	</div>

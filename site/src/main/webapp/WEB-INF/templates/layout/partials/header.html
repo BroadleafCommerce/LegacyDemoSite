@@ -4,22 +4,28 @@
 
             <div th:if="${customer.anonymous}"  th:remove="tag">
 
-                <a class="account" th:href="@{/login}">Login</a>
+                <a class="account" th:href="@{/login}">
+                    <span th:text="#{home.login}">Login</span>
+                </a>
 				&nbsp;|&nbsp; 
-				<a class="account" th:href="@{/register}">Register</a> 
+				<a class="account" th:href="@{/register}">
+                    <span th:text="#{home.register}">Register</span>
+				</a>
 				&nbsp;|&nbsp; 
 			</div>
 		    <div th:unless="${customer.anonymous}" th:remove="tag">
-				<span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
+				<span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
 				&nbsp;|&nbsp; 
-				<a th:href="@{/logout}">Logout</a> 
+				<a th:href="@{/logout}">
+                    <span th:text="#{home.logout}">Logout</span>
+                </a>
 				&nbsp;|&nbsp; 
 			</div>
 			<a id="cartLink" class="fancycart" th:href="@{/cart}">
 				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
 				&nbsp; 
 				<span class="headerCartItemsCount" th:text="${cart.itemCount}" />
-				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
+				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
 			</a>
 
 		</div>

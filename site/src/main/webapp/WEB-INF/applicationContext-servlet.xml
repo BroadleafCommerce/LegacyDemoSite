@@ -43,7 +43,8 @@
 	
 	<!-- Allow annotation driven controllers -->
 	<mvc:annotation-driven/>
-	
+
+
 	<!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
 	<mvc:interceptors>
         <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
@@ -52,7 +53,16 @@
 	        <property name="useCacheControlHeader" value="true"/>
 	        <property name="useCacheControlNoStore" value="true"/>
         </bean>
-	</mvc:interceptors>	
+        <!-- Interceptor for blLocalCode-->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="blLocaleCode"/>
+        </bean>
+	</mvc:interceptors>
+
+    <!-- Default locale set -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
 	
 	<!-- Tell Spring to not try to map things in these directories to controllers -->
 	<!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
@@ -73,6 +83,7 @@
 			</list>
 		</constructor-arg>
 		<constructor-arg ref="resourceBundleExtensionPoint" />
+        <property name="basename" value="messages" />
 	</bean>
 	
 	<!-- Set up the view resolver to be used by Spring -->

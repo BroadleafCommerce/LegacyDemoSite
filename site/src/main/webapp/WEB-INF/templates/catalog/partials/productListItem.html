@@ -20,7 +20,7 @@
 	<div th:class="*{'productActions productActions' + id}">
 	
 		<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'">
-			<a class="fancycart fancybox.ajax inCart" th:href="@{/cart}">In Cart!</a>
+			<a class="fancycart fancybox.ajax inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
 		</div>
 		
 		<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
@@ -29,7 +29,7 @@
 				<input type="hidden" name="quantity" value="1" />
 	
 				<input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
-				<input type="submit" class="addToCart" value="Buy Now!"/>
+				<input type="submit" class="addToCart" th:value="#{product.buyNow}"/>
 			</blc:form>
 		</div>
 		
@@ -38,7 +38,7 @@
 	<div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
 		<h3 th:text="*{name}"></h3>
 		<div class="product-options" th:substituteby="catalog/partials/productOptions"/>
-		<input type="button" class="addToCart" value="Buy Now!" />
+		<input type="button" class="addToCart" th:value="#{product.buyNow}" />
 	</div>
 	
 </li>

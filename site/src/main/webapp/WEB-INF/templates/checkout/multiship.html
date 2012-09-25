@@ -4,10 +4,10 @@
 			<table id="cart_products">
 				<thead>
 					<tr>
-						<th colspan="2">Item</th>
-						<th>Quantity</th>
-						<th>Address</th>
-						<th>Method</th>
+                        <th colspan="2"><span th:text="#{cart.item}">Item</span></th>
+                        <th><span th:text="#{cart.quantity}">Quantity</span></th>
+                        <th><span th:text="#{cart.address}">Address</span></th>
+                        <th><span th:text="#{cart.method}">Method</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,8 +57,8 @@
 			
 		<div id="multiship-actions">
 			<input type="submit" class="save medium red" value="Save" />
-			<a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}">Add New Address</a>
-			<a th:href="@{/checkout}" class="cancel small-button gray-button">Cancel</a>
+			<a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}"><span th:text="#{cart.addAddress}">Add New Address</span></a>
+			<a th:href="@{/checkout}" class="cancel small-button gray-button"><span th:text="#{cart.cancel}">Cancel</span></a>
 		</div>
 	</blc:form>
 </div>

@@ -2,11 +2,11 @@
 	<div style="display:none;" th:fragment="title" th:inline="text">Login - Broadleaf Demo - Heat Clinic</div>
 	
 	<div id="login">
-		<h3>Login to Your Account</h3>
-		<p>Already a member? Sign in using the form below.</p>
+		<h3><span th:text="#{login.loginToAccount}">Login to Your Account</span></h3>
+		<p><span th:text="#{login.alreadyMember}">Already a member? Sign in using the form below</span>.</p>
 		
 		<span class="error" th:if="${param.error}">
-			<p>The e-mail address and/or password entered do not match our records.  Please try again</p>
+			<p><span th:text="#{login.noMatchTryAgain}">The e-mail address and/or password entered do not match our records.  Please try again</span></p>
 		</span>
 
 		<div class="clearfix">
@@ -14,23 +14,23 @@
 				<input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
 				
 				<div class="form50">
-					<label for="j_username">Email</label>
+					<label for="j_username"><span th:text="#{login.email}">Email</span></label>
 					<input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
 				</div>
 				
 				<div class="form50">
-					<label for="j_password">Password</label>
+					<label for="j_password"><span th:text="#{login.password}">Password</span></label>
 					<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
 				</div>
 				
 				<div class="login_register">
-					<input class="login_button big red" type="submit" value="Login"/>
+					<input class="login_button big red" type="submit" th:value="#{login.login}"/>
 				</div>
 				
 				<div class="login_register_alt_links">
-				    <a class="account" th:href="@{/register}">Register</a> 
+				    <a class="account" th:href="@{/register}"><span th:text="#{login.register}">Register</span></a>
 					<br/>
-					<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
+					<a class="account" th:href="@{/login/forgotPassword}"><span th:text="#{login.forgotPassword}">Forgot Password</span></a>
 				</div>
 			</blc:form>
 		</div>
