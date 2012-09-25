@@ -38,13 +38,6 @@ $(function(){
 		);
 		return false;
     }
-    
-    function addAddAddressDropDownOptions() {
-		$('select.multiship-address')
-         .append($("<option></option>")
-         .attr("value",'')
-         .text('Add new address...')); 
-    }
 
     /* Toggle visibility of payment methods */
     $('body').on('click', 'input#paymentMethod_cc', function() {
@@ -76,7 +69,6 @@ $(function(){
     /* Show or Edit multiship options link was clicked */
     $('body').on('click', 'a#multiship', function() {
 		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
-			addAddAddressDropDownOptions();
 		}}));
 		return false;
     });
@@ -84,7 +76,7 @@ $(function(){
     /* Add address from the dropdown was selected */
     $('body').on('change', 'select.multiship-address', function() {
     	var $option = $(this).children(':selected');
-    	if ($option.text() == 'Add new address...') {
+    	if ($option.val() == 'addNewAddress')  {
     		showAddAddress();
     	}
     });
@@ -117,7 +109,6 @@ $(function(){
 				cache: false
 			}, function(data, extraData) {
 				$('.fancybox-inner').html(data);
-				addAddAddressDropDownOptions();
 			}
 		);
 		return false;
