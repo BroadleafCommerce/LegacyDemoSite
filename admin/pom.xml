@@ -57,7 +57,7 @@
 					<modules>
 						<module>com.mycompany.gwt.mycompanyAdmin</module>
 					</modules>
-					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M </extraJvmArgs>
+					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
 				    <noServer>true</noServer>
 					<localWorkers>2</localWorkers>
 					<inplace>false</inplace>
@@ -174,6 +174,22 @@
 			</resource>
 		</resources>
 	</build>
+    <profiles>
+        <profile>
+            <id>gwt-jrebel</id>
+            <build>
+	            <plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M -javaagent:${jrebel.path}</extraJvmArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+            </build>
+        </profile>
+    </profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>
