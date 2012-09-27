@@ -31,8 +31,8 @@
 	<!-- Set up Spring security for the application -->
 	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" >
 		<!-- All admin URLs will be secured with https -->
-		<sec:intercept-url pattern="/" requires-channel="https" />
-		<sec:intercept-url pattern="/**" requires-channel="https" />
+		<sec:intercept-url pattern="/" requires-channel="any" />
+		<sec:intercept-url pattern="/**" requires-channel="any" />
 		
 		<!-- Define the login form along with the success and failure handlers -->
 		<sec:form-login login-page='/blcadmin/login.jsp'
