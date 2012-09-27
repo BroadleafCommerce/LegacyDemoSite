@@ -10,6 +10,15 @@
 	<property name="project.root" location="../../"/>
 	
 	<property file="../build.properties"/>
+	
+	<!-- start the integrated gwt development server inplace with the current codebase -->
+	<target name="full-clean">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+            <arg value="-o"/>
+            <arg value="-Pfull-clean"/>
+			<arg value="clean"/>
+		</artifact:mvn>
+	</target>
 
 	<!-- start the integrated gwt development server inplace with the current codebase -->
 	<target name="gwt-run">

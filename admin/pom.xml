@@ -98,7 +98,25 @@
 					</connectors>
 				</configuration>
 			</plugin>
-		
+    
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+			 		<excludeDefaultDirectories>true</excludeDefaultDirectories>
+					<filesets>
+						<fileset>
+							<directory>target</directory>
+							<excludes>
+								<exclude>admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
+								<exclude>gwt-unitCache/**</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>			
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>keytool-maven-plugin</artifactId>
@@ -175,6 +193,7 @@
 		</resources>
 	</build>
     <profiles>
+    
         <profile>
             <id>gwt-jrebel</id>
             <build>
@@ -189,6 +208,21 @@
 				</plugins>
             </build>
         </profile>
+        
+        <profile>
+            <id>full-clean</id>
+            <build>
+	            <plugins>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+					 		<excludeDefaultDirectories>false</excludeDefaultDirectories>
+						</configuration>
+					</plugin>			
+				</plugins>
+			</build>
+		</profile>
+            
     </profiles>
 	<dependencies>
 		<dependency>
