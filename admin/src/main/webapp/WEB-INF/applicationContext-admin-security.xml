@@ -31,8 +31,8 @@
 	<!-- Set up Spring security for the application -->
 	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" >
 		<!-- All admin URLs will be secured with https -->
-		<sec:intercept-url pattern="/" requires-channel="https" />
-		<sec:intercept-url pattern="/**" requires-channel="https" />
+		<sec:intercept-url pattern="/" requires-channel="any" />
+		<sec:intercept-url pattern="/**" requires-channel="any" />
 		
 		<!-- Define the login form along with the success and failure handlers -->
 		<sec:form-login login-page='/blcadmin/login.jsp'
@@ -42,7 +42,7 @@
 		/>
 		
 		<!-- Provide the logout handler -->
-		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/admin.html"/>
+		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/blcadmin/login.jsp"/>
 		
 		<!-- Since we run this alongside the site, we need to set up the special port mapping -->
 		<!-- This isn't necessary for site becauase it utilizes a default mapping -->

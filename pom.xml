@@ -369,6 +369,13 @@
                  <artifactId>validation-api</artifactId>
                  <version>1.0.0.GA</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>7.0.30</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>

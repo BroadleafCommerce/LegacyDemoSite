@@ -33,7 +33,7 @@
     <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
-                <value>classpath*:/META-INF/persistence-admin.xml</value>
+             	<value>classpath*:/META-INF/persistence.xml</value>
             </list>
         </property>
     </bean>
@@ -43,6 +43,14 @@
         <property name="sourceList">
             <list>
                 <value>classpath:applicationContext-entity.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath:bl-override-ehcache.xml</value>
             </list>
         </property>
     </bean>

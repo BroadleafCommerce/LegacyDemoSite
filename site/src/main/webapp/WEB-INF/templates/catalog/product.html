@@ -21,7 +21,11 @@
 				
 				<div id="maker" th:text="*{manufacturer}"></div>
 				
-				<div id="price">
+				<div id="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
+					<div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{onSale}? 'sale'"></div>
+					<div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
+				</div>
+				<div id="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
 					<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
 					<div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
 				</div>
@@ -47,6 +51,7 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="submit" class="addToCart big red" th:value="#{product.button.buyNow}"/>
 						</div>
+                        <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
 					</div>
 				</blc:form>
 				
@@ -92,7 +97,7 @@
                 
 			</div>
 		 	
-			<div id="product_main_image">
+			<div id="product_main_image" th:if="*{media['primary']}">
 				<a th:href="@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}" class='jqzoom' id='zoom1' rel="gal1">
 		            <img th:src="@{*{media['primary'].url}}" alt='' align="left" id="main_image" />
 		        </a>
@@ -101,7 +106,7 @@
 			<div id="product_thumbs_container">
 				<ul id="product_thumbs" class="clearfix">
 					<li>
-						<a href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
+						<a th:if="*{media['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}}__'', largeimage: ''__@{*{#strings.replace(media['primary'].url, 'img/sauces/', 'img/sauces/zoom/')}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
 							<img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
 						</a>
 						<p th:if="*{#maps.size(media) > 1}" class="thumbs_nav">Swipe to see more... (<span th:text="'1 of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></span>)</p>
@@ -218,7 +223,7 @@
 				<div class="section">
 					 <blc:related_products productId="${product.id}"/>	 
 					<ul id="featured_products" class="group">
-						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+						<li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.product}" th:include="catalog/partials/productListItem" class="product_container"></li>
 					</ul>
 				</div>									
 			</div>

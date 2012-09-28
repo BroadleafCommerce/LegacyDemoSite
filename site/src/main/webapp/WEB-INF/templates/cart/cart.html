@@ -1,7 +1,10 @@
 <div id="cart" class="cart_modal">
 	<div th:fragment="title" th:inline="text" style="display: none;">Cart - Broadleaf Demo - Heat Clinic</div>
-	
-	<table th:substituteby="cart/partials/cartProductsTable"></table>
+
+    <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
+    <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    <table th:substituteby="cart/partials/cartProductsTable"></table>
+
 	<div id="cart_total" class="group">
 		<h3><span th:text="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
 		<div id="subtotal" th:unless="${cart.subTotal.zero}" blc:price="${cart.subTotal.subtract(cart.orderAdjustmentsValue)}"></div>

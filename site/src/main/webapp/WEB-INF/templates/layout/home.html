@@ -30,7 +30,7 @@
 		<div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
 		<ul id="products" class="group">
-			<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" th:remove="tag"></li>
+			<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
 		</ul>
 	</div>
 	

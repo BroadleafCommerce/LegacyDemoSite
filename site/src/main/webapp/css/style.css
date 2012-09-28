@@ -197,7 +197,7 @@ td.error {
 .group:after { clear:both; }
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
-span.error, div.error{
+span.error, div.error, p.error {
 	color: #E40037;
 	font-weight: bold;
     display: inline-block;
@@ -1017,6 +1017,7 @@ form.manage-account input[type="submit"] {
 
 .order_summary {
     width: 100%;
+    clear: both;
 }
 
 .multiship_summary {
@@ -1479,10 +1480,11 @@ ul#payment_methods li {
 		
 		#products li .content {
 			width: 220px;
-			height: 108px;
+			height: 118px;
 			font: 13px/18px 'Georgia',serif;
 			color: #655c5a;
 			overflow: hidden;
+			max-height: 118px;
 		}
 		
 		#products li .content .title {
@@ -1718,6 +1720,7 @@ ul#payment_methods li {
 			color: #655c5a;
 			float: right;
 			display: inline;
+			max-height: 170px;
 		}
 		
 		#featured_products li .content .title {
