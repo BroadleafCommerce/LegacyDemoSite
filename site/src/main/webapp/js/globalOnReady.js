@@ -31,7 +31,8 @@ $(function(){
 		$('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
 	}
 	
-	$('.product_container .content').dotdotdot(); // trim product descriptions in the small layout
+	$('ul#products li .content').dotdotdot(); // trim product descriptions in the small layout
+	$('ul#featured_products li .content').dotdotdot(); // trim product descriptions in the small layout
 
 	/**
 	 * Catch each phase of the swipe.

@@ -10,6 +10,15 @@
 	<property name="project.root" location="../../"/>
 	
 	<property file="../build.properties"/>
+	
+	<!-- clean the gwt generated code -->
+	<target name="full-clean">
+		<artifact:mvn mavenHome="${maven.home}" fork="true">
+            <arg value="-o"/>
+            <arg value="-Pfull-clean"/>
+			<arg value="clean"/>
+		</artifact:mvn>
+	</target>
 
 	<!-- start the integrated gwt development server inplace with the current codebase -->
 	<target name="gwt-run">
@@ -25,23 +34,20 @@
 
 	<!-- start the integrated gwt development server in debug mode inplace with the current codebase -->
 	<target name="gwt-debug">
-		<delete dir="war/WEB-INF/lib"/>
 		<artifact:mvn mavenHome="${maven.home}" fork="true">
             <arg value="-o"/>
             <arg value="-Pgwt"/>
 			<arg value="gwt:debug"/>
-			<arg value="-Dgwt.extraJvmArgs=-XX:MaxPermSize=256M -Xmx512M -Dlogs.dir=${logs.dir}"/>
-			<arg value="-Dgwt.noserver=true"/>
 		</artifact:mvn>
 	</target>
 
 	<!-- start the integrated gwt development server in debug mode inplace with the current codebase - add jrebel instrumentation -->
 	<target name="gwt-debug-jrebel">
-		<delete dir="target/broadleafdemo/WEB-INF/lib"/>
 		<artifact:mvn mavenHome="${maven.home}" fork="true">
-			<arg value="-Pgwt"/>
-            <arg value="gwt:debug"/>
-			<arg value="-Dgwt.extraJvmArgs=-XX:MaxPermSize=256M -Xmx512M -Drebel.root=${project.root} -Dlogs.dir=${logs.dir} -noverify -javaagent:${jrebel.path}"/>
+            <arg value="-o"/>
+            <arg value="-Pgwt-jrebel"/>
+			<arg value="gwt:debug"/>
+			<arg value="-Djrebel.path=${jrebel.path}"/>
 		</artifact:mvn>
 	</target>
 
@@ -49,8 +55,8 @@
 	<target name="jetty-demo">
 		<delete dir="war/WEB-INF/lib"/>
 		<artifact:mvn mavenHome="${maven.home}" fork="true" >
-			<jvmarg value="-XX:MaxPermSize=256M" />
-			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-XX:MaxPermSize=512M" />
+			<jvmarg value="-Xmx1024M" />
 			<jvmarg value="-Xdebug" />
 			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
 			<arg value="compile"/>

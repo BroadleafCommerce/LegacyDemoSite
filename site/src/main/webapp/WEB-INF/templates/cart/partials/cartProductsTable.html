@@ -9,20 +9,23 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr th:each="item : ${cart.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-			<td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+		<tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+			<td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
 			<td class="name">
 				<a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
 				<br/>
 				<ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
 					<li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
 				</ul>
+				<ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
+					<li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
+				</ul>
 			</td>
 			<td align="center">
 				<blc:form method="POST" th:action="@{/cart/updateQuantity}">
 					<input type="hidden" name="productId" th:value="*{product.id}" />
 					<input type="hidden" name="orderItemId" th:value="*{id}" />
-	            	<input type="number" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
+	            	<input type="number" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off" min="0"/><br />
 					<input type="submit" class="updateQuantity" value="Update"/>
 				</blc:form>
 			  	<a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}">Remove</a>
@@ -32,7 +35,8 @@
 			<td align="center" th:if="*{adjustmentValue.zero}">---</td>
 			<td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
 			
-			<td align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+			<td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
+            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price}"></td>
 		</tr>
 	</tbody>
 </table>

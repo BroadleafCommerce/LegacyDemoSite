@@ -3,6 +3,7 @@
 	<fields>
 		<field name="id" type="long" indexed="true" stored="true" />
 		<field name="category" type="long" indexed="true" stored="true" multiValued="true" />
+		<field name="explicitCategory" type="long" indexed="true" stored="true" multiValued="true" />
 		<field name="searchable" type="text_general" indexed="true" stored="true" />
 		
 		<dynamicField name="*_i" type="int" indexed="true" stored="true" />

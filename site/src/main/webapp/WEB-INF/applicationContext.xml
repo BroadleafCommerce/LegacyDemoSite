@@ -75,8 +75,8 @@
 	</bean> 
 	<bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
 	    <property name="jobDetail" ref="rebuildIndexJobDetail" />
-	    <property name="startDelay" value="5000" />
-	    <property name="repeatInterval" value="3600000" />
+	    <property name="startDelay" value="${solr.index.start.delay}" />
+	    <property name="repeatInterval" value="${solr.index.repeat.interval}" />
 	</bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 	    <property name="triggers">
