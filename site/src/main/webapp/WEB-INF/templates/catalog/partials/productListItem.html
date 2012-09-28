@@ -24,17 +24,16 @@
 	<div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'">
 		<a class="fancycart fancybox.ajax inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
 	</div>
-	
+
 	<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
 		<blc:form method="POST" th:action="@{/cart/add}">
 			<input type="hidden" name="productId" th:value="*{id}" />
 			<input type="hidden" name="quantity" value="1" />
-
 			<input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
 			<input type="submit" class="addToCart" th:value="#{product.buyNow}"/>
 		</blc:form>
 	</div>
-	
+
 </div>
 
 <div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
