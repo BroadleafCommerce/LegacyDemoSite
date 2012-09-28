@@ -52,7 +52,13 @@ $(function(){
 
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
-		$.fancybox.open($.extend({ href : $(this).attr('href') }, fancyCartOptions));
+		var extendedOptions = $.extend({ href : $(this).attr('href') }, fancyCartOptions);
+		
+		if ($(this).hasClass('refreshonclose')) {
+			extendedOptions = $.extend({ afterClose: function() { window.location.reload(); }}, extendedOptions);
+		}
+		
+		$.fancybox.open(extendedOptions);
 		return false;
 	});
 	

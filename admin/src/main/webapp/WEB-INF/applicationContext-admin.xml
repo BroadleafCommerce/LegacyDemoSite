@@ -33,7 +33,7 @@
     <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
-                <value>classpath*:/META-INF/persistence-admin.xml</value>
+             	<value>classpath*:/META-INF/persistence.xml</value>
             </list>
         </property>
     </bean>

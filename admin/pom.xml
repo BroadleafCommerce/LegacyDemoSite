@@ -57,7 +57,7 @@
 					<modules>
 						<module>com.mycompany.gwt.mycompanyAdmin</module>
 					</modules>
-					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M </extraJvmArgs>
+					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
 				    <noServer>true</noServer>
 					<localWorkers>2</localWorkers>
 					<inplace>false</inplace>
@@ -98,7 +98,25 @@
 					</connectors>
 				</configuration>
 			</plugin>
-		
+    
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+			 		<excludeDefaultDirectories>true</excludeDefaultDirectories>
+					<filesets>
+						<fileset>
+							<directory>target</directory>
+							<excludes>
+								<exclude>admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
+								<exclude>gwt-unitCache/**</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>			
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>keytool-maven-plugin</artifactId>
@@ -174,6 +192,38 @@
 			</resource>
 		</resources>
 	</build>
+    <profiles>
+    
+        <profile>
+            <id>gwt-jrebel</id>
+            <build>
+	            <plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M -javaagent:${jrebel.path}</extraJvmArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>full-clean</id>
+            <build>
+	            <plugins>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+					 		<excludeDefaultDirectories>false</excludeDefaultDirectories>
+						</configuration>
+					</plugin>			
+				</plugins>
+			</build>
+		</profile>
+            
+    </profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.broadleafcommerce</groupId>

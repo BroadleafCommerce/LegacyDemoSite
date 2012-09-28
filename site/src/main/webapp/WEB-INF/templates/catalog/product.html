@@ -22,8 +22,8 @@
 				<div id="maker" th:text="*{manufacturer}"></div>
 				
 				<div id="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-					<div blc:price="*{salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
-					<div blc:price="*{retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
+					<div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{onSale}? 'sale'"></div>
+					<div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
 				</div>
 				<div id="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
 					<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
