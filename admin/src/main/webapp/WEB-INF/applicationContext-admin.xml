@@ -58,5 +58,7 @@
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
     	<constructor-arg ref="blMailSender"/>
     </bean>
+    
+    <bean id="blPrecompressedArtifactFilter" class="org.broadleafcommerce.common.web.util.PrecompressedArtifactFilter"/>
 
 </beans>
