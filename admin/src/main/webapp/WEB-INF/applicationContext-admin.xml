@@ -47,13 +47,13 @@
         </property>
     </bean>
 
-    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <!--<bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
                 <value>classpath:bl-override-ehcache.xml</value>
             </list>
         </property>
-    </bean>
+    </bean>-->
     
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
     	<constructor-arg ref="blMailSender"/>
