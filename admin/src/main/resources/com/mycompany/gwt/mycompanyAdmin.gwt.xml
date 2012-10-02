@@ -17,9 +17,9 @@
 	<entry-point class="org.broadleafcommerce.openadmin.client.BLCLaunch" />
     
     <!--  Uncomment the following lines to turn on logging  -->
-    <inherits name="com.google.gwt.logging.Logging"/>
-    <set-property name="gwt.logging.enabled" value="TRUE"/>
-    <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" />
+    <!-- <inherits name="com.google.gwt.logging.Logging"/> -->
+    <!-- <set-property name="gwt.logging.enabled" value="TRUE"/> -->
+    <!-- <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" /> -->
 
 	<!-- Uncomment this line to compile only for Firefox and Chrome. -->
     <!-- It will speed up compiliation times while developing -->

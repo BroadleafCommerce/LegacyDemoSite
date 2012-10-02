@@ -64,7 +64,7 @@
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
 					<bindAddress>0.0.0.0</bindAddress>
 					<debugPort>8011</debugPort>
-					<runTarget>admin/admin.html</runTarget>
+					<runTarget>admin/login</runTarget>
 				</configuration>
 			</plugin>
 			<plugin>

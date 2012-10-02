@@ -149,7 +149,7 @@
 	</resource-ref>
 	
 	<welcome-file-list>
-		<welcome-file>admin.html</welcome-file>
+		<welcome-file>admin.jsp</welcome-file>
 	</welcome-file-list>
 
     <!-- Spring jsp taglibs, commented out as Thymeleaf is the default templating framework -->
