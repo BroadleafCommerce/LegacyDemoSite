@@ -33,7 +33,7 @@
     <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
-                <value>classpath*:/META-INF/persistence-admin.xml</value>
+             	<value>classpath*:/META-INF/persistence.xml</value>
             </list>
         </property>
     </bean>
@@ -46,9 +46,19 @@
             </list>
         </property>
     </bean>
+
+    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath:bl-override-ehcache.xml</value>
+            </list>
+        </property>
+    </bean>
     
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
     	<constructor-arg ref="blMailSender"/>
     </bean>
+    
+    <bean id="blPrecompressedArtifactFilter" class="org.broadleafcommerce.common.web.util.PrecompressedArtifactFilter"/>
 
 </beans>

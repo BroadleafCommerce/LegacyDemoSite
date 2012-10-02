@@ -65,14 +65,14 @@
 	</filter-mapping>	
 	
 	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<filter-mapping>
 		<filter-name>blRequestFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>blURLHandlerFilter</filter-name>

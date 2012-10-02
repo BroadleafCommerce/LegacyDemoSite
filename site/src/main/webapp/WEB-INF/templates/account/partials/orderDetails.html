@@ -23,9 +23,9 @@
 						<th class="label">Items</th>
 						<th class="price">Price</th>
 					</tr>
-					<tr th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem.orderItem}">
-						<td class="label" th:text="*{quantity} + ' of ' + *{name}"></td>
-						<td class="price" blc:price="*{price}"></td>
+					<tr th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}">
+						<td class="label" th:text="*{quantity} + ' of ' + *{orderItem.name}"></td>
+						<td class="price" blc:price="*{orderItem.price}"></td>
 					</tr>
 					<tr class="shipment-summary merchandise-total">
 						<td class="label">Merchandise Total:</td>

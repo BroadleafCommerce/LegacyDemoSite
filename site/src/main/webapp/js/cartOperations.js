@@ -52,7 +52,13 @@ $(function(){
 
 	// Show the cart in a modal when any link with the class "fancycart" is clicked
 	$('body').on('click', 'a.fancycart', function() {
-		$.fancybox.open($.extend({ href : $(this).attr('href') }, fancyCartOptions));
+		var extendedOptions = $.extend({ href : $(this).attr('href') }, fancyCartOptions);
+		
+		if ($(this).hasClass('refreshonclose')) {
+			extendedOptions = $.extend({ afterClose: function() { window.location.reload(); }}, extendedOptions);
+		}
+		
+		$.fancybox.open(extendedOptions);
 		return false;
 	});
 	
@@ -93,7 +99,12 @@ $(function(){
 						if (data.error == 'allOptionsRequired') {
 							$errorSpan.css('display', 'block');
 					        $errorSpan.effect('highlight', {}, 1000);
-						} else {
+						} else if (data.error == 'inventoryUnavailable') {
+                            var $errorMessage = $('.error.errorMessage');
+                            $errorMessage.text('This item is no longer in stock. We apologize for the inconvenience.');
+                            $errorMessage.show();
+                            $errorMessage.effect('highlight', {}, 1000);
+                        } else {
 							HC.showNotification("Error adding to cart");
 						}
 					} else {
@@ -129,11 +140,13 @@ $(function(){
 				type: "POST", 
 				data: $form.serialize() 
 			}, function(data, extraData) {
-				updateHeaderCartItemsCount(extraData.cartItemCount);
-				if ($form.children('input.quantityInput').val() == 0) {
-					showAddToCartButton(extraData.productId, 'cart');
-				}
-				
+				if (extraData) {
+                    updateHeaderCartItemsCount(extraData.cartItemCount);
+                    if ($form.children('input.quantityInput').val() == 0) {
+                        showAddToCartButton(extraData.productId, 'cart');
+                    }
+                }
+
 				$('.fancybox-inner').html(data);
 			}
 		);

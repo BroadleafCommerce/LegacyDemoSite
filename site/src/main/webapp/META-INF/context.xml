@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <!-- This is a sample datasource configuration for Tomcat
-         THIS IS NOT A PRODUCTION READY CONFIGURATION!!
-         Production ready configurations include additional settings,
-         such as validationQuery, maxActive and maxIdle -->
     <Resource name="jdbc/web"
               auth="Container"
               type="javax.sql.DataSource"
-              username="sa"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              testWhileIdle="true"
+              testOnBorrow="true"
+              testOnReturn="false"
+              validationQuery="SELECT 1"
+              timeBetweenEvictionRunsMillis="30000"
+              maxActive="100"
+              minIdle="10"
+              removeAbandonedTimeout="60"
+              removeAbandoned="false"
+              logAbandoned="true"
+              minEvictableIdleTimeMillis="30000"
+              jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+              username="root"
               password=""
-              driverClassName="org.hsqldb.jdbcDriver"
-              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/broadleafcommerce"/>
 
     <Resource name="jdbc/storage"
               auth="Container"
               type="javax.sql.DataSource"
-              username="sa"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              testWhileIdle="true"
+              testOnBorrow="true"
+              testOnReturn="false"
+              validationQuery="SELECT 1"
+              timeBetweenEvictionRunsMillis="30000"
+              maxActive="100"
+              minIdle="10"
+              removeAbandonedTimeout="60"
+              removeAbandoned="false"
+              logAbandoned="true"
+              minEvictableIdleTimeMillis="30000"
+              jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+              username="root"
               password=""
-              driverClassName="org.hsqldb.jdbcDriver"
-              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/broadleafcommerce"/>
 
     <Resource name="jdbc/secure"
               auth="Container"
               type="javax.sql.DataSource"
-              username="sa"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              testWhileIdle="true"
+              testOnBorrow="true"
+              testOnReturn="false"
+              validationQuery="SELECT 1"
+              timeBetweenEvictionRunsMillis="30000"
+              maxActive="50"
+              minIdle="10"
+              removeAbandonedTimeout="60"
+              removeAbandoned="false"
+              logAbandoned="true"
+              minEvictableIdleTimeMillis="30000"
+              jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+              username="root"
               password=""
-              driverClassName="org.hsqldb.jdbcDriver"
-              url="jdbc:hsqldb:hsql://localhost/broadleaf"/>
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/broadleafcommerce"/>
 </Context>

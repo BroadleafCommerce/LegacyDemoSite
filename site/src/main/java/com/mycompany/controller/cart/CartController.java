@@ -18,6 +18,8 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
+import org.broadleafcommerce.core.inventory.exception.ConcurrentInventoryModificationException;
+import org.broadleafcommerce.core.inventory.exception.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
@@ -32,10 +34,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,9 +79,11 @@ public class CartController extends BroadleafCartController {
 		} catch (AddToCartException e) {
 			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
 				responseMap.put("error", "allOptionsRequired");
-			} else {
-				throw e;
-			}
+			} else if (e.getCause() instanceof InventoryUnavailableException) {
+                responseMap.put("error", "inventoryUnavailable");
+            } else {
+                throw e;
+            }
 		}
 		
 		return responseMap;
@@ -91,20 +95,45 @@ public class CartController extends BroadleafCartController {
 	 * for the given product so that the required options may be chosen.
 	 */
 	@RequestMapping(value = "/add", produces = "text/html")
-	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
+	public String add(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
 		try {
 			return super.add(request, response, model, addToCartItem);
 		} catch (AddToCartException e) {
+            if (e.getCause() instanceof InventoryUnavailableException) {
+                redirectAttributes.addAttribute("errorMessage", "This item is no longer in stock. We apologize for the inconvenience.");
+            }
 			Product product = catalogService.findProductById(addToCartItem.getProductId());
 			return "redirect:" + product.getUrl();
 		}
 	}
 	
 	@RequestMapping("/updateQuantity")
-	public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model,
+	public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
-		return super.updateQuantity(request, response, model, addToCartItem);
+		try {
+            return super.updateQuantity(request, response, model, addToCartItem);
+        } catch (UpdateCartException e) {
+            if (e.getCause() instanceof InventoryUnavailableException) {
+                if (isAjaxRequest(request)) {
+                    model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                    return getCartView();
+                } else {
+                    redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                    return getCartPageRedirect();
+                }
+            } else if (e.getCause() instanceof ConcurrentInventoryModificationException) {
+                if (isAjaxRequest(request)) {
+                    model.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
+                    return getCartView();
+                } else {
+                    redirectAttributes.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
+                    return getCartPageRedirect();
+                }
+            } else {
+                throw e;
+            }
+        }
 	}
 	
 	@RequestMapping("/remove")
