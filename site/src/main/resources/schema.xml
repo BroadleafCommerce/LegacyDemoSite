@@ -8,6 +8,7 @@
         
         <!-- Declare these field as dynamic as well as static because when using internationalization, -->
         <!-- you may have several different indexes -->
+		<dynamicField name="*_id" type="long" indexed="true" stored="true" />
 		<dynamicField name="*_category" type="long" indexed="true" stored="true" multiValued="true" />
 		<dynamicField name="*_explicitCategory" type="long" indexed="true" stored="true" multiValued="true" />
 		<dynamicField name="*_searchable" type="text_general" indexed="true" stored="true" />
