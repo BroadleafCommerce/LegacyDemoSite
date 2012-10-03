@@ -106,9 +106,9 @@ $(function(){
 					        $errorSpan.effect('highlight', {}, 1000);
 						} else if (data.error == 'inventoryUnavailable') {
                             var $errorMessage = $('.error.errorMessage');
-                            $errorMessage.text('This item is no longer in stock. We apologize for the inconvenience.');
-                            $errorMessage.show();
-                            $errorMessage.effect('highlight', {}, 1000);
+                            var message = 'This item is no longer in stock. We apologize for the inconvenience.';
+                            $errorMessage.text(message).show().effect('highlight', {}, 1000);
+                            HC.showNotification(message);
                         } else {
 							HC.showNotification("Error adding to cart");
 						}
