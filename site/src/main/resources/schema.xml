@@ -5,6 +5,15 @@
 		<field name="category" type="long" indexed="true" stored="true" multiValued="true" />
 		<field name="explicitCategory" type="long" indexed="true" stored="true" multiValued="true" />
 		<field name="searchable" type="text_general" indexed="true" stored="true" />
+        
+        <!-- Declare these field as dynamic as well as static because when using internationalization, -->
+        <!-- you may have several different indexes -->
+		<dynamicField name="*_id" type="long" indexed="true" stored="true" />
+		<dynamicField name="*_category" type="long" indexed="true" stored="true" multiValued="true" />
+		<dynamicField name="*_explicitCategory" type="long" indexed="true" stored="true" multiValued="true" />
+		<dynamicField name="*_searchable" type="text_general" indexed="true" stored="true" />
+        
+		<dynamicField name="*_p" type="double" indexed="true" stored="true" />
 		
 		<dynamicField name="*_i" type="int" indexed="true" stored="true" />
 		<dynamicField name="*_is" type="int" indexed="true" stored="true" multiValued="true" />
