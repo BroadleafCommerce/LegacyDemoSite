@@ -51,10 +51,10 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="submit" class="addToCart big red" th:value="#{product.button.buyNow}"/>
 						</div>
-                        <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
+			<p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
 					</div>
 				</blc:form>
-				
+	
 				<div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">

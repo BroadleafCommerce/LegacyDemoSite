@@ -14,20 +14,47 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+    <aop:config/>
+
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
     <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
-    
-    <aop:config/>
-    
-  	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<property name="prefix" value=""/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
 
-    <mvc:annotation-driven /> 
-     <context:component-scan base-package="com.mycompany.controller"/>
+    <!-- Scan for custom controllers -->
+    <context:component-scan base-package="com.mycompany.controller" />
+
+    <!-- Allow annotation driven controllers -->
+    <mvc:annotation-driven/>
+
+    <!--  Checks for a URL match an Admin Section's URL.   -->
+    <bean class="org.broadleafcommerce.openadmin.web.handler.AdminNavigationHandlerMapping">
+        <property name="order" value="2"/>
+    </bean>
+
+    <!-- Tell Spring to not try to map things in these directories to controllers -->
+    <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
+    <mvc:resources order="-10" mapping="/resources/img/**" location="/resources/img/" />
+    <mvc:resources order="-10" mapping="/resources/css/**" location="/resources/css/" />
+    <mvc:resources order="-10" mapping="/resources/js/**" location="/resources/js/" />
+    <mvc:resources order="-10" mapping="/favicon.ico" location="/favicon.ico" />
+    <mvc:resources order="-10" mapping="/robots.txt" location="/robots.txt" />
+
+    <!-- Set up the view resolver to be used by Spring -->
+    <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
+        <property name="templateEngine" ref="blWebTemplateEngine" />
+        <property name="order" value="1" />
+        <property name="cache" value="false" />
+        <property name="characterEncoding" value="UTF-8" />
+        <property name="layoutMap">
+            <map>
+                <entry key="login/" value="layout/loginLayout" />
+                <entry key="layout/" value="NONE" />
+                <entry key="modules/" value="NONE" />
+                <entry key="dashboard/" value="NONE" />
+            </map>
+        </property>
+    </bean>
+
     <mvc:default-servlet-handler/>
 
 </beans>

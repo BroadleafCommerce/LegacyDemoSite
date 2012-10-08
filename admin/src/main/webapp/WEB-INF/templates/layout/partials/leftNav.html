@@ -1,0 +1,24 @@
+<div id="modules" class="sidebar-nav">
+
+    <blc:admin_module resultVar="modules" />
+
+    <ul class="nav">
+        <li th:each="module : ${modules}" th:inline="text">
+            <a class="module-header" href="#" data-toggle="collapse">
+                <i class="icon-white" th:classappend="${module.icon}"></i>
+                [[${module.name}]]
+                <i class="collapse-icon pull-right"
+                   th:classappend="${currentAdminModule.id == module.id}? 'icon-chevron-up' : 'icon-chevron-down' "></i>
+            </a>
+            <div class="collapse" th:classappend="${currentAdminModule.id == module.id}? 'in'">
+                <ul th:each="section : ${module.sections}" class="module nav nav-list">
+                    <li>
+                        <a th:href="@{${section.url}} + '#moduleKey=' + ${module.moduleKey} + '&amp;pageKey=' + ${section.sectionKey}"
+                           th:classappend="${currentAdminSection.id == section.id}? 'active'">[[${section.name}]]</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+</div>

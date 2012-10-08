@@ -1,61 +1,89 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ include file="/blcadmin/snippets/include.jsp" %>
+<!DOCTYPE html>
 
+<html lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-      <link rel="stylesheet" type="text/css" href="<c:out value="${pageContext.request.contextPath}"/>/css/admin/admin_login.css" />
-      <title>Broadleaf Commerce - Administrative Application Login</title>
-   </head>
-   <body id="bg" class="en">
-        <c:choose>
-            <c:when test="${errorCode == 'notFound'}">
-                <div id="login-error">No matching user found.</div>
-            </c:when>
-            <c:when test="${errorCode == 'inactiveUser'}">
-                <div id="login-error">The username associated with the email you entered is marked as inactive.   Please contact an administrator to activate the account.</div>
-            </c:when>
-            <c:when test="${errorCode == 'invalidToken' || errorCode == 'tokenExpired'}">
-                <div id="login-error">The token entered is invalid or expired.     To request a new token, choose the "Forgot Password" link below.</div>
-            </c:when>
-            <c:when test="${errorCode == 'tokenUsed'}">
-                <div id="login-error">The token entered has already been processed.   No new updates were made.   To request a new token, choose the "Forgot Password" link below.</div>
-            </c:when>
-            <c:when test="${errorCode == 'inactiveUser'}">
-                <div id="login-error">The username associated with the email you entered is marked as inactive.   Please contact an administrator to activate the account.</div>
-            </c:when>
-            <c:when test="${errorCode == 'invalidPassword'}">
-                <div id="login-error">Please enter a valid password.</div>
-            </c:when>
-            <c:when test="${errorCode == 'passwordMismatch'}">
-                <div id="login-error">The password and confirm password fields did not match.</div>
-            </c:when>
-            <c:when test="${param.messageCode == 'passwordTokenSent'}">
-                <div id="login-message">A reset password email was sent to the address associated with your account.  Enter the token from your email in the form below to reset your password.</div>
-            </c:when>
-        </c:choose>
+    <head>
+        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css" />
+        <title>Broadleaf Commerce - Administrative Application Reset Password</title>
+    </head>
 
-        <div id="content">
-            <div id="logo"></div>
-            <form:form cssClass="login-form" modelAttribute="resetPasswordForm" method="post">
-                <table class="login">
-                    <tr><td><label for="username_field" class="user">Username:</label><form:input id="username_field" cssClass="input-username" path="username"/></td></tr>
-                    <tr><td><label for="token_field" class="user">Token:</label><form:input id="token_field" cssClass="input-token" path="token"/></td></tr>
-                    <tr><td><label for="password_field" class="pass">New Password:</label><form:password id="password_field" cssClass="input-pass" path="password"/></td></tr>
-                    <tr><td><label for="confirm_password_field" class="pass">Verify New Password:</label><form:password id="confirm_password_field" cssClass="input-pass" path="confirmPassword"/></td></tr>
-                    <tr id="LoginBtn"><td><input id="submitButton" type="submit" value="Reset Password"></td></tr>
-                </table>
+    <body>
+
+        <div id="login">
+            <div id="logo">
+                <img src="${pageContext.request.contextPath}/resources/img/broadleaf_admin_header_logo.png" />
+            </div>
+            <form:form action="${pageContext.request.contextPath}/blcadmin/resetPassword" method="post" cssClass="form-horizontal" modelAttribute="resetPasswordForm">
+                <div class="control-group">
+                    <label class="control-label" for="username_field">Username</label>
+                    <div class="controls">
+                        <form:input id="username_field" path="username" autofocus="autofocus" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="token_field">Token</label>
+                    <div class="controls">
+                        <form:input id="token_field" path="token" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password_field">New Password</label>
+                    <div class="controls">
+                        <form:password id="password_field" path="password" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="confirm_password_field">Confirm New Password</label>
+                    <div class="controls">
+                        <form:password id="confirm_password_field" path="confirmPassword" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn" >Reset Password</button>
+                    </div>
+                </div>
             </form:form>
         </div>
 
-        <div id="foot" class="forgot">
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/login">Login</a> -
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotPassword">Forgot password</a>
+        <c:choose>
+            <c:when test="${errorCode == 'notFound'}">
+                <p class="alert alert-error"><strong>No matching user found.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'inactiveUser'}">
+                <p class="alert alert-error"><strong>The username associated with the email you entered is marked as inactive.   Please contact an administrator to activate the account.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'invalidToken' or errorCode == 'tokenExpired'}">
+                <p class="alert alert-error"><strong>The token entered is invalid or expired.     To request a new token, choose the "Forgot Password" link below.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'tokenUsed'}">
+                <p class="alert alert-error"><strong>The token entered has already been processed.   No new updates were made.   To request a new token, choose the "Forgot Password" link below.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'inactiveUser'}">
+                <p class="alert alert-error"><strong>The username associated with the email you entered is marked as inactive.   Please contact an administrator to activate the account.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'invalidPassword'}">
+                <p class="alert alert-error"><strong>Please enter a valid password.</strong></p>
+            </c:when>
+            <c:when test="${errorCode == 'passwordMismatch'}">
+                <p class="alert alert-error"><strong>The password and confirm password fields did not match.</strong></p>
+            </c:when>
+            <c:when test="${param.messageCode == 'passwordTokenSent'}">
+                <p class="alert alert-success"><strong>A reset password email was sent to the address associated with your account.  Enter the token from your email in the form below to reset your password.</strong></p>
+            </c:when>
+        </c:choose>
+
+        <div id="security-options">
+            <a href="${pageContext.request.contextPath}/blcadmin/login">Login</a> |
+            <a href="${pageContext.request.contextPath}/blcadmin/forgotUsername">Forgot username</a> |
+            <a href="${pageContext.request.contextPath}/blcadmin/forgotPassword">Forgot password</a>
         </div>
-   </body>
+
+        <script src="${pageContext.request.contextPath}/resources/js/lib/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/security.js"></script>
+
+    </body>
+
 </html>

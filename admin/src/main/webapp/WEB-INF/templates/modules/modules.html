@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head th:include="layout/partials/head::modules" />
+    <body>
+        <header th:substituteby="layout/partials/header" />
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    <div th:substituteby="layout/partials/leftNav" />
+                </div>
+                <div class="span10">
+                    <div id="gwt-component">
+
+                    </div>
+                    <footer th:substituteby="layout/partials/footer::modules" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
