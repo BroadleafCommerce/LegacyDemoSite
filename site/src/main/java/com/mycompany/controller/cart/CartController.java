@@ -90,7 +90,7 @@ public class CartController extends BroadleafCartController {
 	 * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
 	 * for the given product so that the required options may be chosen.
 	 */
-	@RequestMapping(value = "/add", produces = "text/html")
+	@RequestMapping(value = "/add", produces = { "text/html", "*/*" })
 	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
 		try {
