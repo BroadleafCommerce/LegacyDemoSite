@@ -1,7 +1,7 @@
 <blc:form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validOrderInfo and validShipping}">
 
     <div class="left_content_billing payment_info">
-        <h3>Payment Information</h3>
+        <h3><span th:text="#{cart.paymentInfo}">Payment Information</span></h3>
 
         <ul id="payment_methods">
             <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
@@ -13,7 +13,7 @@
         <dl id="paymentOptions">
             <dt>
                 <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
-                <label for="paymentMethod_cc">Credit Card</label>
+                <label for="paymentMethod_cc"><span th:text="#{cart.creditCard}">Credit Card</span></label>
             </dt>
             <dd>
                 <div id="creditCardFields">
@@ -27,13 +27,13 @@
 
                     <div class="form25" style="width: 94%;">
                         <div style="float: left; width: 70%;">
-                            <label for="cardNumber" class="prompt">Card Number</label>
+                            <label for="cardNumber" class="prompt"><span th:text="#{cart.cardNumber}">Card Number</span></label>
                             <div class="element">
                                 <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
                             </div>
                         </div>
                         <div style="float: right; padding-right: 2%; width: 16%">
-                            <label class="prompt">CVV</label>
+                            <label class="prompt"><span th:text="#{cart.cvv}">CVV</span></label>
                             <div class="element">
                                 <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
                             </div>
@@ -41,14 +41,14 @@
                     </div>
 
                     <div class="form25">
-                        <label for="nameOnCard" class="prompt"> Name on the Card </label>
+                        <label for="nameOnCard" class="prompt"><span th:text="#{cart.nameOnCard}">Name on the Card</span></label>
                         <div class="form100">
                             <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
                         </div>
                     </div>
 
                     <div class="form50">
-                        <label for="expirationMonth" class="prompt"> Expiration Date </label>
+                        <label for="expirationMonth" class="prompt"><span th:text="#{cart.experationDate}">Expiration Date</span></label>
                         <span class="error" th:if="${#fields.hasErrors('creditCardExpMonth')}" th:errors="*{creditCardExpMonth}"></span>
                         <br th:if="${#fields.hasErrors('creditCardExpMonth')} and ${#fields.hasErrors('creditCardExpYear')}"/>
                         <span class="error" th:if="${#fields.hasErrors('creditCardExpYear')}" th:errors="*{creditCardExpYear}"></span>
@@ -67,7 +67,7 @@
             </dd>
             <dt>
                 <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
-                <label for="paymentMethod_paypal">PayPal</label>
+                <label for="paymentMethod_paypal"><span th:text="#{cart.payPal}">PayPal</span></label>
             </dt>
             <dd>
                 <div id="paypalfields">
@@ -85,23 +85,23 @@
         <input type="hidden" name="address.country" value="US" />
 
         <div class="form100" th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
-            <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> Use Shipping Information
+            <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> <span th:text="#{cart.useShppingInfo}">Use Shipping Information</span>
         </div>
 
         <div class="form30">
-            <label for="firstName">First Name</label>
+            <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
             <input type="text" th:field="*{address.firstName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div class="form30 margin20">
-            <label for="lastName">Last Name</label>
+            <label for="lastName"><span th:text="#{cart.lastName}">Last Name</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
             <input type="text" th:field="*{address.lastName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div class="form30 margin20">
-            <label for="phone">Phone</label>
+            <label for="phone"><span th:text="#{cart.phone}">Phone</span></label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
             <input type="tel" th:field="*{address.primaryPhone}" class="field30 clearable" th:disabled="${!validShipping}"/>
         </div>
@@ -109,13 +109,13 @@
         <div class="clearfix"></div>
 
         <div class="form50">
-            <label for="address1">Address</label>
+            <label for="address1"><span th:text="#{cart.address}">Address</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
             <input type="text" th:field="*{address.addressLine1}" class="field50 required clearable" th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div class="form50 margin20">
-            <label for="address2">Address 2</label>
+            <label for="address2"><span th:text="#{cart.address2}">Address 2</span></label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
             <input type="text" th:field="*{address.addressLine2}" class="field50 clearable" th:disabled="${!validShipping}" />
         </div>
@@ -123,7 +123,7 @@
         <div class="clearfix"></div>
 
         <div class="form30">
-            <label for="city">City / State</label>
+            <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
             <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
             <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
@@ -136,13 +136,13 @@
         </div>
 
         <div class="form25 margin20">
-            <label for="postal_code">Postal Code</label>
+            <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
             <input type="text" th:field="*{address.postalCode}" class="field25 clearable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" th:disabled="${!validShipping}" />
         </div>
 
         <div style="float:right;">
-            <input type="submit" class="medium" value="Complete Order" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
+            <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
         </div>
 
     </div>

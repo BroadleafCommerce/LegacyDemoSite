@@ -2,24 +2,24 @@
 	<div style="display: none;" th:fragment="title" th:inline="text">Order Confirmation [[${order.orderNumber}]] - Broadleaf Demo - Heat Clinic</div>
 
     <div id="order_confirmation">
-        <h2>Success!</h2>
-        <h3>Order Confirmation #<span th:text="${order.orderNumber}"/></h3>
-        <p class="confirmation-note">A confirmation email will be sent to <span th:text="${order.emailAddress}"></span>.</p>
+        <h2><span th:text="#{confirmation.success}">Success!</span></h2>
+        <h3><span th:text="#{confirmation.orderNum}">Order Confirmation #</span> - <span th:text="${order.orderNumber}"/></h3>
+        <p class="confirmation-note"><span th:text="#{confirmation.confirmEmail.toBeSent}">A confirmation email will be sent to</span> <span th:text="${order.emailAddress}"></span>.</p>
     </div>
 
     <div id="cart">
 
-        <div class="cart_title">Order Summary</div>
+        <div class="cart_title"><span th:text="#{confirmation.orderSummary}">Order Summary</span></div>
 
         <table id="cart_products">
             <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th align="left">Item</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Discount</th>
-                <th>Total</th>
+                <th align="left"><span th:text="#{cart.item}">Item</span></th>
+                <th><span th:text="#{cart.quantity}">Quantity</span></th>
+                <th> <span th:text="#{cart.price}">Price</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+                <th> <span th:text="#{cart.discount}">Discount</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+                <th><span th:text="#{cart.total}">Total</span></th>
             </tr>
             </thead>
             <tbody>
@@ -43,30 +43,30 @@
         </table>
 
         <div id="cart_total" class="group">
-            <h3>Order Total</h3>
+            <h3><span th:text="#{confirmation.orderTotal}">Order Total</span></h3>
             <div id="subtotal" blc:price="${order.total}"></div>
             <table width="100%" id="total_table" border="0">
                 <tr>
-                    <td>Subtotal</td>
+                    <td><span th:text="#{confirmation.orderSubTotal}">Subtotal</span></td>
                     <td blc:price="${order.subTotal}"></td>
                 </tr>
                 <tr>
-                    <td>Promotions</td>
+                    <td><span th:text="#{confirmation.promotions}">Promotions</span></td>
                     <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
                     <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
                 </tr>
                 <tr>
-                    <td>Taxes</td>
+                    <td><span th:text="#{confirmation.taxes}">Taxes</span></td>
                     <td blc:price="${order.totalTax}"></td>
                 </tr>
                 <tr>
-                    <td>Shipping</td>
+                    <td><span th:text="#{confirmation.shipping}">Shipping</span></td>
                     <td blc:price="${order.totalShipping}"></td>
                 </tr>
             </table>
         </div>
 
-        <div class="cart_title">Shipping Information</div>
+        <div class="cart_title"><span th:text="#{confirmation.shipping.info}">Shipping Information</span></div>
 
         <div class="clearfix"></div>
 
@@ -106,14 +106,14 @@
                 </address>
             </div>
             <div class="right_content">
-                <h3>Shipping Method</h3>
+                <h3><span th:text="#{confirmation.shipping.method}">Shipping Method</span></h3>
                 <b>[[*{fulfillmentOption.name}]]</b><br/>
                 ([[*{fulfillmentOption.longDescription}]])
             </div>
             <div class="clearfix"></div>
         </div>
 
-        <div class="cart_title">Billing Information</div>
+        <div class="cart_title"><span th:text="#{confirmation.billing.info}">Billing Information</span></div>
 
         <div class="clearfix"></div>
 
@@ -128,10 +128,10 @@
                 </address>
             </div>
             <div class="right_content">
-                <h3>Payment Information</h3>
+                <h3><span th:text="#{confirmation.payment.info}">Payment Information</span></h3>
                 <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
                 ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
-                exp. <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
             </div>
             <div class="clearfix"></div>
         </div>

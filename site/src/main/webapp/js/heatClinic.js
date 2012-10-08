@@ -57,7 +57,7 @@ var HC = (function($) {
 		for (var i = 0; i < productOptionPricing.length; i++) {
 			var pricing = productOptionPricing[i];
 			if ($(pricing.selectedOptions).not(selectedProductOptions).length == 0 && $(selectedProductOptions).not(pricing.selectedOptions).length == 0) {
-				price = '$' + pricing.price;
+				price = pricing.price;
 				break;
 			}
 		}
@@ -110,11 +110,17 @@ var HC = (function($) {
 	function getPricingData() {
 		return $('#product-option-data').data('product-option-pricing');
 	}
+
+    function updateLocaleSelection(){
+        var locale = $('span#selectedLocale').text();
+        $("#" + locale).addClass('selected');
+    }
 	
 	return {
 		showNotification : showNotification,
 		changeProductOption : changeProductOption,
 		showFacetMultiselect : showFacetMultiselect,
-		getProductOptionData : getProductOptionData
+		getProductOptionData : getProductOptionData,
+        updateLocaleSelection: updateLocaleSelection
 	}
 })($);

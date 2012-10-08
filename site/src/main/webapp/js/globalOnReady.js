@@ -13,8 +13,10 @@ $(function(){
 			allowPageScroll		: "vertical",
 			threshold			: 40			
 	}
-	
-	
+
+    // Update the locale that has been selected
+    HC.updateLocaleSelection();
+
 	// Show the JavaScript version of product options if the user has JavaScript enabled
 	$('.product-options').removeClass('hidden');
 	$('.product-option-nonjs').remove();

@@ -15,19 +15,19 @@
 		<nav th:substituteby="layout/partials/nav" />
 			
 		<blc:content contentType="Homepage Banner Ad" />	   
-		<div id="banners">
+		<div id="banners" th:if="${contentItem}">
 			<a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>		
 		</div>
 		
 	    <blc:content contentType="Homepage Middle Promo Snippet" />	
 		
-        <a th:href="@{/register}" style="text-decoration:none">
+        <a th:href="@{/register}" th:if="${contentItem}" style="text-decoration:none">
             <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
         </a>
 
 		
 		<blc:content contentType="Homepage Featured Products Title" />    
-		<div class="title_bar" th:text="${contentItem['messageText']}"></div>
+		<div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
 		
 		<ul id="products" class="group">
 			<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
