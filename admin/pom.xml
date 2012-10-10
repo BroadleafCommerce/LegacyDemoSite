@@ -62,9 +62,10 @@
 					<localWorkers>2</localWorkers>
 					<inplace>false</inplace>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
-					<bindAddress>0.0.0.0</bindAddress>
+					<bindAddress>localhost</bindAddress>
 					<debugPort>8011</debugPort>
-					<runTarget>admin/login</runTarget>
+					<port>8081</port>
+					<runTarget>admin/admin</runTarget>
 				</configuration>
 			</plugin>
 			<plugin>
