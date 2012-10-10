@@ -9,7 +9,7 @@
 
     <inherits name="com.google.gwt.core.CompilerParameters"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
-    <inherits name="org.broadleafcommerce.admin.theme.broadleaf.Broadleaf"/>
+    <inherits name="org.broadleafcommerce.openadmin.theme.broadleaf.Broadleaf"/>
     <inherits name="com.google.gwt.precompress.Precompress"/>
 	
 
