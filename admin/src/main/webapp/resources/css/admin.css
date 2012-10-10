@@ -1,5 +1,5 @@
 html, body {height: 100%;}
-body {background: #e9e9e9; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 55px 0 0;}
+body {background: #e9e9e9; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 55px 0 0;}
 .container-fluid {padding-left: 0;}
 
 header .menu-options {padding-top: 10px;}
