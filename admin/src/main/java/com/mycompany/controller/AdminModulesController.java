@@ -16,7 +16,7 @@
 package com.mycompany.controller;
 
 import org.springframework.stereotype.Controller;
-import org.broadleafcommerce.admin.web.controller.BroadleafAdminModulesController;
+import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminModulesController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
