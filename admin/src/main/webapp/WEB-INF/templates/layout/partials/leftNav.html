@@ -13,8 +13,7 @@
             <div class="collapse" th:classappend="${currentAdminModule.id == module.id}? 'in'">
                 <ul th:each="section : ${module.sections}" class="module nav nav-list">
                     <li>
-                        <blc:admin_section_href resultVar="sectionHref" section="${section}"/>
-                        <a th:href="${sectionHref}"
+                        <a blc:admin_section_href="${section}"
                            th:classappend="${currentAdminSection.id == section.id}? 'active'">[[${section.name}]]</a>
                     </li>
                 </ul>
