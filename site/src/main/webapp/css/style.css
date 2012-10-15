@@ -410,6 +410,10 @@ header {
             filter:alpha(opacity=100); /* For IE8 and earlier */
         }
 
+        #header_content #languages a {
+            text-decoration: none;
+        }
+
 nav {
 	width: 940px;
 	height: 70px;
