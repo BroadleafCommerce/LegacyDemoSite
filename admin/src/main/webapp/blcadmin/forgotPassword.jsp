@@ -15,7 +15,7 @@
           function setSubmitUrl(form)
           {
             var hash = encodeURI(self.document.location.hash.substring(1));
-            form.action = "${pageContext.request.contextPath}/blcadmin/resetPassword#" + hash;
+            form.action = "blcadmin/resetPassword#" + hash;
             return true;
           }
       </script>
@@ -47,8 +47,8 @@
             </form>
         </div>
         <div id="foot" class="forgot">
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/forgotUsername">Forgot username</a> -
-            <a href="<c:out value="${pageContext.request.contextPath}"/>/blcadmin/login">Return to Login</a>
+            <a href="forgotUsername">Forgot username</a> -
+            <a href="login">Return to Login</a>
         </div>
    </body>
 </html>

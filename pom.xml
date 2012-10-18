@@ -10,7 +10,7 @@
 	<name>ecommerce</name>
 	<url>http://www.blc-archetype.com</url>
 	<properties>
-		<blc.version>2.0.1-GA</blc.version>
+		<blc.version>2.0.2-SNAPSHOT</blc.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<gwt.version>2.4.0</gwt.version>
 	</properties>
@@ -169,20 +169,6 @@
 			<dependency>
 				<groupId>com.mycompany</groupId>
 				<artifactId>core</artifactId>
-				<version>1.0</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.mycompany</groupId>
-				<artifactId>site</artifactId>
-				<version>1.0</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.mycompany</groupId>
-				<artifactId>admin</artifactId>
 				<version>1.0</version>
 				<type>jar</type>
 				<scope>compile</scope>
@@ -382,5 +368,6 @@
 		<module>admin</module>
 		<module>core</module>
 		<module>site</module>
-	</modules>
+        <module>combined</module>
+    </modules>
 </project>

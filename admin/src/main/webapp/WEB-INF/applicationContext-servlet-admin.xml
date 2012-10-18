@@ -27,7 +27,7 @@
 	</bean>
 
     <mvc:annotation-driven /> 
-     <context:component-scan base-package="com.mycompany.controller"/>
+     <context:component-scan base-package="com.mycompany.admin.controller"/>
     <mvc:default-servlet-handler/>
 
 </beans>
