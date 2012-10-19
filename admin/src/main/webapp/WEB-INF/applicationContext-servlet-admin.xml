@@ -45,12 +45,10 @@
         <property name="order" value="1" />
         <property name="cache" value="false" />
         <property name="characterEncoding" value="UTF-8" />
+        <property name="fullPageLayout" value="layout/fullPageLayout" />
         <property name="layoutMap">
             <map>
                 <entry key="login/" value="layout/loginLayout" />
-                <entry key="layout/" value="NONE" />
-                <entry key="modules/" value="NONE" />
-                <entry key="dashboard/" value="NONE" />
             </map>
         </property>
     </bean>

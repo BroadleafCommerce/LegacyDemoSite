@@ -1,11 +1,28 @@
-html, body {height: 100%;}
-body {background: #e9e9e9; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 55px 0 0;}
+body {background: #e9e9e9; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 0;}
+
 .container-fluid {padding-left: 0;}
 
 header .menu-options {padding-top: 10px;}
-footer {font-size: 13px; font-weight: 700; padding: 10px 0; text-align: center; color: #222;}
+footer {font-size: 13px; font-weight: 700; padding: 0; text-align: center; color: #222;}
 
-.container-fluid, .row-fluid, .span2, #modules {height: 100%;}
+header {height: 55px; }
+
+#nav-container {
+    width: 16%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background: #222;
+    overflow: hidden;
+}
+
+#content-container {
+    position: relative;
+    left: 16%;
+    width: 84%;
+}
+
+#nongwt-component, #gwt-component { margin: 20px 20px 0 20px; }
 
 .navbar-inverse .navbar-inner {
     background: #4a4a4a;
@@ -20,14 +37,12 @@ footer {font-size: 13px; font-weight: 700; padding: 10px 0; text-align: center; 
 .navbar-inner .brand img {padding: 5px; width: 145px;}
 .navbar-inner .logout {margin-left: 20px;}
 
-#gwt-component {margin-top: 30px;}
-
 #loading-placeholder {margin: 10px 0 0 0; width: 200px;}
 .progress-striped .bar {background-color: #899e3c; font-weight: 700; text-shadow: 1px 1px 1px #222;}
 #loading-placeholder, .progress-striped .bar {border-radius: 0;}
 
-#modules {background: #222;}
-#modules > .nav {background: #222;}
+#modules {background: #222; margin-top: 55px;}
+#modules > .nav {background: #222; padding-bottom: 20px;}
 
 .nav-header {margin: 0; padding: 0;}
 .nav li + .nav-header {margin-top: 0;}
@@ -54,7 +69,9 @@ footer {font-size: 13px; font-weight: 700; padding: 10px 0; text-align: center; 
     background: -o-linear-gradient(top,#3a3a3a,#4a4a4a);
     background: linear-gradient(to bottom,#3a3a3a,#4a4a4a);
     box-shadow: 0 0 10px #444;
-    padding: 10px 20px;}
+    padding: 10px 20px;
+    margin-top: 55px;
+}
 #login, #security-options {width: 450px; margin-left: auto; margin-right: auto;}
 #login #logo img {display: block; margin-left: 10px; width: 40%;}
 #login form {margin-top: 30px;}
