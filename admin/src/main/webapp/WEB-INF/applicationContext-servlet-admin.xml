@@ -21,7 +21,7 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
     <!-- Scan for custom controllers -->
-    <context:component-scan base-package="com.mycompany.controller" />
+    <context:component-scan base-package="com.mycompany.admin.controller" />
 
     <!-- Allow annotation driven controllers -->
     <mvc:annotation-driven/>

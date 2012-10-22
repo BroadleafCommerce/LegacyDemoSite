@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mycompany.controller;
+package com.mycompany.admin.controller;
 
 import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminLoginController;
 import org.broadleafcommerce.openadmin.web.form.ResetPasswordForm;

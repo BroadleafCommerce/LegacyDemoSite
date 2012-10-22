@@ -173,20 +173,6 @@
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
-			<dependency>
-				<groupId>com.mycompany</groupId>
-				<artifactId>site</artifactId>
-				<version>1.0</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.mycompany</groupId>
-				<artifactId>admin</artifactId>
-				<version>1.0</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
 
 			<!--Broadleaf libraries -->
 			<dependency>
@@ -355,5 +341,6 @@
 		<module>admin</module>
 		<module>core</module>
 		<module>site</module>
-	</modules>
+        	<module>combined</module>
+    	</modules>
 </project>
