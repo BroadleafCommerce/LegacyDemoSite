@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mycompany.controller;
+package com.mycompany.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminModulesController;
