@@ -18,7 +18,6 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
-import org.broadleafcommerce.core.inventory.exception.ConcurrentInventoryModificationException;
 import org.broadleafcommerce.core.inventory.exception.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
@@ -111,27 +110,16 @@ public class CartController extends BroadleafCartController {
 	@RequestMapping("/updateQuantity")
 	public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
-		try {
+
+        try {
             return super.updateQuantity(request, response, model, addToCartItem);
-        } catch (UpdateCartException e) {
-            if (e.getCause() instanceof InventoryUnavailableException) {
-                if (isAjaxRequest(request)) {
-                    model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
-                    return getCartView();
-                } else {
-                    redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
-                    return getCartPageRedirect();
-                }
-            } else if (e.getCause() instanceof ConcurrentInventoryModificationException) {
-                if (isAjaxRequest(request)) {
-                    model.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
-                    return getCartView();
-                } else {
-                    redirectAttributes.addAttribute("errorMessage", "There was a problem updating the quantity for this item. Please try again.");
-                    return getCartPageRedirect();
-                }
+        } catch (InventoryUnavailableException e) {
+            if (isAjaxRequest(request)) {
+                model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                return getCartView();
             } else {
-                throw e;
+                redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                return getCartPageRedirect();
             }
         }
 	}
