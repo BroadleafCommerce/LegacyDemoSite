@@ -9,11 +9,11 @@ header {height: 55px; }
 
 #nav-container {
     width: 16%;
-    position: absolute;
+    position: fixed;
     height: 100%;
-    top: 0;
+    top: 55px;
     background: #222;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #content-container {
@@ -46,7 +46,7 @@ header {height: 55px; }
 .progress-striped .bar {background-color: #899e3c; font-weight: 700; text-shadow: 1px 1px 1px #222;}
 #loading-placeholder, .progress-striped .bar {border-radius: 0;}
 
-#modules {background: #222; margin-top: 55px;}
+#modules {background: #222; padding-bottom: 30px; }
 #modules > .nav {background: #222; padding-bottom: 20px;}
 
 .nav-header {margin: 0; padding: 0;}
@@ -86,3 +86,31 @@ header {height: 55px; }
 #messages p.alert {margin: 15px auto; width: 400px;}
 #options {margin-top: 20px; text-align: center;}
 #options a {font-size: 12px; margin: 0 5px; color: #7c9036; text-decoration: underline;}
+
+span.help-inline {
+	padding-right: 5px;
+}
+
+span.conditionFieldType {
+	display: block;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #666;
+}
+
+span.conditionFieldType:before {
+	content: "(";
+}
+
+span.conditionFieldType:after {
+	content: ")";
+}
+
+ul.conditionList {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+ul.conditionList li {
+	margin-bottom: 5px;
+}
