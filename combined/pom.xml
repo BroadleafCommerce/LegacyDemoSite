@@ -50,6 +50,7 @@
                             <excludes>
                                 <exclude>WEB-INF/applicationContext-security.xml</exclude>
                                 <exclude>WEB-INF/applicationContext-filter.xml</exclude>
+                                <exclude>WEB-INF/classes/rebel.xml</exclude>
                             </excludes>
                         </overlay>
                         <overlay>
@@ -60,6 +61,7 @@
                                 <exclude>${gwtModule}/**</exclude>
                                 <exclude>WEB-INF/applicationContext-admin-security.xml</exclude>
                                 <exclude>WEB-INF/applicationContext-admin-filter.xml</exclude>
+                                <exclude>WEB-INF/classes/rebel.xml</exclude>
                             </excludes>
                         </overlay>
                     </overlays>
@@ -123,6 +125,42 @@
                 <configuration>
                     <packaging>war</packaging>
                     <rootPath>${basedir}</rootPath>
+                    <classpath>
+                        <resources>
+                            <resource>
+                                <directory>../admin/target/admin/WEB-INF/classes</directory>
+                            </resource>
+                            <resource>
+                                <directory>../admin/src/main/java</directory>
+                            </resource>
+                            <resource>
+                                <directory>../admin/src/main/resources</directory>
+                            </resource>
+                            <resource>
+                                <directory>../site/target/mycompany/WEB-INF/classes</directory>
+                            </resource>
+                            <resource>
+                                <directory>../site/src/main/java</directory>
+                            </resource>
+                            <resource>
+                                <directory>../site/src/main/resources</directory>
+                            </resource>
+                            <resource/>
+                        </resources>
+                    </classpath>
+                    <web>
+                        <resources>
+                            <resource>
+                                <target>/</target>
+                                <directory>../admin/src/main/webapp</directory>
+                            </resource>
+                            <resource>
+                                <target>/</target>
+                                <directory>../site/src/main/webapp</directory>
+                            </resource>
+                            <resource/>
+                        </resources>
+                    </web>
                 </configuration>
                 <executions>
                     <execution>
@@ -145,7 +183,7 @@
               perform this profile disabling in the ant task for starting jetty.-->
             <id>build</id>
             <activation>
-              <activeByDefault>true</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
