@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head th:include="layout/partials/head::login" />
+    <head th:include="admin/layout/partials/head::login" />
     <body>
         <div id="login">
             <div id="logo">
-                <img th:src="@{/resources/img/broadleaf_admin_header_logo.png}" />
+                <img th:src="@{resources/img/broadleaf_admin_header_logo.png}" />
             </div>
             <div th:substituteby="${templateName}::form" />
         </div>
         <div id="messages" th:include="${templateName}::messages" />
         <div id="options" th:include="${templateName}::options" />
-        <footer th:include="layout/partials/footer::login" />
+        <footer th:include="admin/layout/partials/footer::login" />
     </body>
 </html>

@@ -40,15 +40,6 @@
                             </includes>
                             <targetPath>admin</targetPath>
                         </overlay>
-                        <overlay>
-                            <id>admin-html</id>
-                            <groupId>com.mycompany</groupId>
-                            <artifactId>admin</artifactId>
-                            <includes>
-                                <include>admin.html</include>
-                            </includes>
-                            <targetPath>admin</targetPath>
-                        </overlay>
                         <!-- site is overlayed first so that its runtime properties are set,
                         resulting in the admin properties being ignored. This is the default
                         behavior for the combined application -->
@@ -58,6 +49,7 @@
                             <artifactId>site</artifactId>
                             <excludes>
                                 <exclude>WEB-INF/applicationContext-security.xml</exclude>
+                                <exclude>WEB-INF/applicationContext-filter.xml</exclude>
                             </excludes>
                         </overlay>
                         <overlay>
@@ -66,8 +58,8 @@
                             <artifactId>admin</artifactId>
                             <excludes>
                                 <exclude>${gwtModule}/**</exclude>
-                                <exclude>admin.html</exclude>
                                 <exclude>WEB-INF/applicationContext-admin-security.xml</exclude>
+                                <exclude>WEB-INF/applicationContext-admin-filter.xml</exclude>
                             </excludes>
                         </overlay>
                     </overlays>
@@ -124,6 +116,23 @@
                     <alias>broadleaf</alias>
                     <keyalg>RSA</keyalg>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>javarebel-maven-plugin</artifactId>
+                <configuration>
+                    <packaging>war</packaging>
+                    <rootPath>${basedir}</rootPath>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

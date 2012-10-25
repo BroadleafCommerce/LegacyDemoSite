@@ -59,9 +59,10 @@
 					</modules>
 					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
 				    <noServer>true</noServer>
-					<localWorkers>2</localWorkers>
 					<inplace>false</inplace>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
+                    <webappDirectory>${webappDirectory}/admin</webappDirectory>
+                    <deploy>${webappDirectory}/WEB-INF/deploy</deploy>
 					<bindAddress>localhost</bindAddress>
 					<debugPort>8011</debugPort>
 					<port>8081</port>
@@ -109,7 +110,7 @@
 						<fileset>
 							<directory>target</directory>
 							<excludes>
-								<exclude>admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
+								<exclude>admin/admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
 								<exclude>gwt-unitCache/**</exclude>
 							</excludes>
 							<followSymlinks>false</followSymlinks>

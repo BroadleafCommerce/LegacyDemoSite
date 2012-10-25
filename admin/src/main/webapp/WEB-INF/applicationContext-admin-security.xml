@@ -20,13 +20,13 @@
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
 
     <!-- Resources do not need security -->
-	<sec:http pattern="/resources/css/**" security="none" />
-	<sec:http pattern="/resources/images/**" security="none" />
-	<sec:http pattern="/resources/js/**" security="none" />
-	<sec:http pattern="/utility.service" security="none" />       
-	<sec:http pattern="/com.mycompany.gwt.mycompanyAdmin/remote_logging" security="none" />
-	<sec:http pattern="/favicon.ico" security="none" />       
-	<sec:http pattern="/robots.txt" security="none" />       
+	<sec:http pattern="/**/resources/css/**" security="none" />
+	<sec:http pattern="/**/resources/images/**" security="none" />
+	<sec:http pattern="/**/resources/js/**" security="none" />
+	<sec:http pattern="/**/utility.service" security="none" />
+	<sec:http pattern="/**/remote_logging" security="none" />
+	<sec:http pattern="/favicon.ico" security="none" />
+	<sec:http pattern="/robots.txt" security="none" />
 	
 	<!-- Set up Spring security for the application -->
 	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" >
@@ -74,9 +74,8 @@
 		<property name="authenticationManager" ref="blAdminAuthenticationManager" />
 		<property name="securityMetadataSource">
 			<sec:filter-security-metadata-source>
-				<sec:intercept-url pattern="/modules*" access="PERMISSION_OTHER_DEFAULT" />
-				<sec:intercept-url pattern="/admin.html*" access="PERMISSION_OTHER_DEFAULT" />
-				<sec:intercept-url pattern="/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
+				<sec:intercept-url pattern="/**/modules*" access="PERMISSION_OTHER_DEFAULT" />
+				<sec:intercept-url pattern="/**/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
 			</sec:filter-security-metadata-source>
 		</property>
 	</bean>
@@ -84,7 +83,7 @@
     <!-- Sets the login failure URL -->
 	<bean id="blAdminAuthenticationFailureHandler"
 		class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-		<constructor-arg value="/login?login_error=true" />
+		<constructor-arg value="/admin/login?login_error=true" />
 	</bean>
 
     <!-- Sets the login success URL -->

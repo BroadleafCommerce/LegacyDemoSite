@@ -1,19 +1,19 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head th:include="layout/partials/head::login" />
+    <head th:include="admin/layout/partials/head::login" />
     <body>
     
-        <header th:substituteby="layout/partials/header" />
+        <header th:substituteby="admin/layout/partials/header" />
         
         <div id="nav-container">
-            <div th:substituteby="layout/partials/leftNav" />
+            <div th:substituteby="admin/layout/partials/leftNav" />
         </div>
         
         <div id="content-container">
             <div th:substituteby="${templateName}" />
         </div>
                     
-        <footer th:substituteby="layout/partials/footer::modules" />
+        <footer th:substituteby="admin/layout/partials/footer::modules" />
         
     </body>
 </html>

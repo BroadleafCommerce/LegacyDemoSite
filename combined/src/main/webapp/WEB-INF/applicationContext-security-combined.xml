@@ -15,31 +15,16 @@
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
     <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
 
-    <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <sec:filter-chain-map request-matcher="regex">
-            <sec:filter-chain pattern="/(?&lt;!=admin/).*" filters="
-               blRequestFilter"/>
-        </sec:filter-chain-map>
-    </bean>
-
-    <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <sec:filter-chain-map request-matcher="regex">
-            <sec:filter-chain pattern="/admin/.*?|/blcadmin/.*?" filters="
-               blPrecompressedArtifactFilter,
-               blAdminSandBoxFilter"/>
-            <sec:filter-chain pattern="/.*" filters="
-               blURLHandlerFilter"/>
-        </sec:filter-chain-map>
-    </bean>
-
     <!-- Resources do not need security -->
+    <sec:http pattern="/**/resources/css/**" security="none" />
+    <sec:http pattern="/**/resources/img/**" security="none" />
+    <sec:http pattern="/**/resources/js/**" security="none" />
+    <sec:http pattern="/**/utility.service" security="none" />
+    <sec:http pattern="/**/remote_logging" security="none" />
+    <sec:http pattern="/favicon.ico" security="none" />
+    <sec:http pattern="/robots.txt" security="none" />
     <sec:http pattern="/css/**" security="none"/>
-    <sec:http pattern="/images/**" security="none"/>
     <sec:http pattern="/js/**" security="none"/>
-    <sec:http pattern="/utility.service" security="none"/>
-    <sec:http pattern="/admin/com.mycompany.gwt.mycompanyAdmin/remote_logging" security="none"/>
-    <sec:http pattern="/favicon.ico" security="none"/>
-    <sec:http pattern="/robots.txt" security="none"/>
     <sec:http pattern="/fonts/**" security="none"/>
     <sec:http pattern="/img/**" security="none"/>
 
@@ -53,14 +38,14 @@
         <sec:intercept-url pattern="/**" requires-channel="any"/>
 
         <!-- Define the login form along with the success and failure handlers -->
-        <sec:form-login login-page='/admin/blcadmin/login'
+        <sec:form-login login-page='/admin/login'
                         authentication-success-handler-ref="blAdminAuthenticationSuccessHandler"
                         authentication-failure-handler-ref="blAdminAuthenticationFailureHandler"
                         login-processing-url="/admin/login_admin_post"
                 />
 
         <!-- Provide the logout handler -->
-        <sec:logout invalidate-session="true" logout-url="/admin/adminLogout.htm" logout-success-url="/admin/blcadmin/login"/>
+        <sec:logout invalidate-session="true" logout-url="/admin/adminLogout.htm" logout-success-url="/admin/login"/>
 
         <!-- Since we run this alongside the site, we need to set up the special port mapping -->
         <!-- This isn't necessary for site becauase it utilizes a default mapping -->
@@ -86,7 +71,7 @@
         <property name="authenticationManager" ref="blAuthenticationManager"/>
         <property name="securityMetadataSource">
             <sec:filter-security-metadata-source>
-                <sec:intercept-url pattern="/admin/admin.html*" access="PERMISSION_OTHER_DEFAULT"/>
+                <sec:intercept-url pattern="/admin/modules*" access="PERMISSION_OTHER_DEFAULT" />
                 <sec:intercept-url pattern="/admin/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT"/>
             </sec:filter-security-metadata-source>
         </property>
@@ -95,13 +80,13 @@
     <!-- Sets the login failure URL -->
     <bean id="blAdminAuthenticationFailureHandler"
           class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-        <constructor-arg value="/blcadmin/login.jsp?login_error=true"/>
+        <constructor-arg value="/admin/login?login_error=true"/>
     </bean>
 
     <!-- Sets the login success URL -->
     <bean id="blAdminAuthenticationSuccessHandler"
           class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-        <property name="defaultTargetUrl" value="/admin/admin.html"/>
+        <property name="defaultTargetUrl" value="/admin/loginSuccess"/>
         <property name="alwaysUseDefaultTargetUrl" value="false"/>
     </bean>
 

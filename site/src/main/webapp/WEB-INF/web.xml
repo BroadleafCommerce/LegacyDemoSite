@@ -21,6 +21,7 @@
   		    /WEB-INF/applicationContext-email.xml
   		    /WEB-INF/applicationContext-i18n.xml
 		    /WEB-INF/applicationContext-security.xml
+            /WEB-INF/applicationContext-filter.xml
             /WEB-INF/applicationContext.xml          
         </param-value>
 	</context-param>
@@ -35,61 +36,37 @@
              org.springframework.web.context.request.RequestContextListener
         </listener-class>
     </listener>
+	
+    <filter>
+        <filter-name>blPreSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
 
-	<!-- Maintain a single Hibernate session for the duration of an HTTP request. 
-		Mitigates Hibernate session related exceptions -->
-	<filter>
-		<filter-name>entityManagerInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-	</filter>
-	
-	<!-- Sets up the Site, Locale, and Sandbox for Broadleaf operations -->
-	<filter>
-		<filter-name>blRequestFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>	
-	
-	<!-- Allows for broadleaf URL forward and redirect processing. -->
-	<filter>
-		<filter-name>blURLHandlerFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>		
-	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>		
-    
+	</filter>
+
     <filter>
-	   <filter-name>priceListDynamicSkuPricingFilter</filter-name>
-	   <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <filter-name>blPostSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
 
     <filter-mapping>
-		<filter-name>entityManagerInViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>	
-	
-	<filter-mapping>
-		<filter-name>blRequestFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>	
+        <filter-name>blPreSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<filter-mapping>
-		<filter-name>blURLHandlerFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>		
-    
+
     <filter-mapping>
-    	<filter-name>priceListDynamicSkuPricingFilter</filter-name>
-    	<url-pattern>/*</url-pattern>
+        <filter-name>blPostSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
 	<!-- enable configured logging -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>

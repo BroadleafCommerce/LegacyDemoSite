@@ -1,5 +1,5 @@
 <div>
-    <form th:fragment="form" th:action="@{/login_admin_post}" action="#" method="post" class="form-horizontal">
+    <form th:fragment="form" th:action="@{login_admin_post}" action="#" method="post" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="username">Username</label>
             <div class="controls">
@@ -24,8 +24,8 @@
         <p th:if="${param.messageCode == 'passwordReset'}" class="alert alert-success">Your password has been reset.  Please login with your new password.</p>
     </div>
     <div th:fragment="options">
-        <a th:href="@{/forgotUsername}" href="#">Forgot Username</a> |
-        <a th:href="@{/forgotPassword}" href="#">Forgot Password</a> |
-        <a th:href="@{/changePassword}" href="#">Change Password</a>
+        <a th:href="@{forgotUsername}" href="#">Forgot Username</a> |
+        <a th:href="@{forgotPassword}" href="#">Forgot Password</a> |
+        <a th:href="@{changePassword}" href="#">Change Password</a>
     </div>
 </div>

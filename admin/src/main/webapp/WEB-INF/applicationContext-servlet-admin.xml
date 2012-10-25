@@ -31,13 +31,36 @@
         <property name="order" value="2"/>
     </bean>
 
+    <bean id="blAdminLoginController" class="com.mycompany.admin.controller.AdminLoginController">
+        <property name="loginView" value="admin/login/login"/>
+        <property name="forgotPasswordView" value="admin/login/forgotPassword"/>
+        <property name="forgotUsernameView" value="admin/login/forgotUsername"/>
+        <property name="resetPasswordView" value="admin/login/resetPassword"/>
+        <property name="changePasswordView" value="admin/login/changePassword"/>
+    </bean>
+
+    <bean id="blAdminModulesController" class="com.mycompany.admin.controller.AdminModulesController">
+        <property name="modulesView" value="admin/modules/modules"/>
+    </bean>
+
     <!-- Tell Spring to not try to map things in these directories to controllers -->
     <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
-    <mvc:resources order="-10" mapping="/resources/img/**" location="/resources/img/" />
-    <mvc:resources order="-10" mapping="/resources/css/**" location="/resources/css/" />
-    <mvc:resources order="-10" mapping="/resources/js/**" location="/resources/js/" />
+    <mvc:resources order="-10" mapping="/resources/img/**" location="/admin/resources/img/" />
+    <mvc:resources order="-10" mapping="/resources/css/**" location="/admin/resources/css/" />
+    <mvc:resources order="-10" mapping="/resources/js/**" location="/admin/resources/js/" />
+    <mvc:resources order="-10" mapping="/com.mycompany.gwt.mycompanyAdmin/**" location="/admin/com.mycompany.gwt.mycompanyAdmin/" />
     <mvc:resources order="-10" mapping="/favicon.ico" location="/favicon.ico" />
     <mvc:resources order="-10" mapping="/robots.txt" location="/robots.txt" />
+
+    <bean class="org.broadleafcommerce.common.web.BroadleafResourceHttpRequestBeanFactoryPostProcessor"/>
+
+    <bean id="blResourceUrlPatternRequestDispatchMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
+            <map>
+                <entry key="/**/remote_logging" value="/admin/blc_gwt_logging"/>
+            </map>
+        </property>
+    </bean>
 
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
@@ -45,10 +68,10 @@
         <property name="order" value="1" />
         <property name="cache" value="false" />
         <property name="characterEncoding" value="UTF-8" />
-        <property name="fullPageLayout" value="layout/fullPageLayout" />
+        <property name="fullPageLayout" value="/admin/layout/fullPageLayout" />
         <property name="layoutMap">
             <map>
-                <entry key="login/" value="layout/loginLayout" />
+                <entry key="admin/login/" value="/admin/layout/loginLayout" />
             </map>
         </property>
     </bean>

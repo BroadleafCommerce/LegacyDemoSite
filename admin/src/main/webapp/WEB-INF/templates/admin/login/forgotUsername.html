@@ -1,5 +1,5 @@
 <div>
-    <form th:fragment="form" action="#" th:action="@{/forgotUsername}" method="post" class="form-horizontal">
+    <form th:fragment="form" action="#" th:action="@{forgotUsername}" method="post" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="emailAddress">Email</label>
             <div class="controls">
@@ -19,7 +19,7 @@
 
     </div>
     <div th:fragment="options">
-        <a href="#" th:href="@{/forgotPassword}">Forgot Password</a> |
-        <a href="#" th:href="@{/login}">Login</a>
+        <a href="#" th:href="@{forgotPassword}">Forgot Password</a> |
+        <a href="#" th:href="@{login}">Login</a>
     </div>
 </div>

@@ -23,7 +23,9 @@
             /WEB-INF/applicationContext-datasource.xml
             /WEB-INF/applicationContext-admin.xml
   		    /WEB-INF/applicationContext-email.xml
+            /WEB-INF/applicationContext-i18n.xml
 		    /WEB-INF/applicationContext-security-combined.xml
+            /WEB-INF/applicationContext-filter-combined.xml
             /WEB-INF/applicationContext.xml          
         </param-value>
 	</context-param>
@@ -39,17 +41,10 @@
         </listener-class>
     </listener>
 
-	<!-- Maintain a single Hibernate session for the duration of an HTTP request. 
-		Mitigates Hibernate session related exceptions -->
     <filter>
         <filter-name>blPreSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
-
-	<filter>
-		<filter-name>entityManagerInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-	</filter>
 	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -65,11 +60,6 @@
         <filter-name>blPreSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
-    <filter-mapping>
-		<filter-name>entityManagerInViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -139,16 +129,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>remoteLogging</servlet-name>
-        <servlet-class>org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>remoteLogging</servlet-name>
-        <url-pattern>/com.mycompany.gwt.mycompanyAdmin/remote_logging</url-pattern>
-    </servlet-mapping>
-
 	<env-entry>
 		<env-entry-name>appName</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>
@@ -160,16 +140,5 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-
-    <jsp-config>
-        <taglib>
-            <taglib-uri>/spring</taglib-uri>
-            <taglib-location>/WEB-INF/tld/spring.tld</taglib-location>
-        </taglib>
-        <taglib>
-            <taglib-uri>/spring-form</taglib-uri>
-            <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
-        </taglib>
-    </jsp-config>
 	
 </web-app>

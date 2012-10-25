@@ -42,7 +42,7 @@ public class AdminLoginController extends BroadleafAdminLoginController {
     
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String baseRedirect(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return "redirect:/login";
+        return "redirect:login";
     }
 
     @RequestMapping(value="/login", method=RequestMethod.GET)

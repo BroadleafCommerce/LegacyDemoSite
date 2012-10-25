@@ -10,8 +10,7 @@
 	</taskdef>
 
 	<target name="change-identifier">
-		<input message="Enter in new maven group. NOTE: This should be 2 letter-only strings separated by a dot. Also
-			note that this may only be run once." defaultvalue="com.mycompany" addproperty="maven-group" />
+		<input message="Enter in new maven group (e.g. com.mycompany). Also note that this may only be run once." defaultvalue="com.mycompany" addproperty="maven-group" />
 
 		<propertyregex property="maven-group-clean"
 		               input="${maven-group}"
@@ -59,6 +58,8 @@
                 <replace dir="admin" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
 				<replace dir="admin" token="mycompany-admin" value="${company-name}-admin" summary="yes" excludes="target/" />
 				<replace dir="admin" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
+
+                <replace dir="combined" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
 		
 				<replace dir="core" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
 		
