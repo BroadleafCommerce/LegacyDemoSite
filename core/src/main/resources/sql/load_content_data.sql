@@ -39,6 +39,19 @@ INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (10, 'body
 INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('body', 10, 10);
 INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (11, 'title', 10, '');
 INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('title',  11,10);
+
+-- Insert SEO Properties into FAQ
+INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (12, 'metaDescription', 2, 'Frequently Asked Questions');
+INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('metaDescription', 12, 2);
+
+INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (13, 'metaKeywords', 2, 'Frequently Asked Questions, FAQ, Hot Sauces');
+INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('metaKeywords', 13, 2);
+
+INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (14, 'metaRobot', 2, 'INDEX,FOLLOW');
+INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('metaRobot', 14, 2);
+
+INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, PAGE_ID, VALUE) VALUES (15, 'titleFragment', 2, 'FAQ - Frequently Asked Questions');
+INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('titleFragment', 15, 2);
 -----------------------------------------------------------------------------------------------------------------------------------
 -- SAMPLE STRUCTURED CONTENT DATA  - would typically be entered via the admin
 -----------------------------------------------------------------------------------------------------------------------------------
