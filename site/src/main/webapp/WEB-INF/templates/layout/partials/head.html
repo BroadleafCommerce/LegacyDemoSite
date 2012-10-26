@@ -8,8 +8,10 @@
 		<title th:inline="text" th:include="${templateName} :: title" />
 	</title>
 	
-	<meta name="description" content="Broadleaf Demo Store" />
+	<meta name="description" th:content="${#strings.isEmpty(metaDescription) ? 'Broadleaf Demo Store' : metaDescription}" />
 	<meta name="author" content="Broadleaf Commerce" />
+	<meta name="keywords" th:content="${#strings.isEmpty(metaKeywords) ? '' : metaKeywords}" />
+	<meta name="robot" th:content="${#strings.isEmpty(metaRobot) ? 'INDEX,FOLLOW' : metaRobot}" />
 
 	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />	
 	<meta name="viewport" content="width=device-width" />

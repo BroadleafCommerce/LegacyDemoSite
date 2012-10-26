@@ -4,7 +4,10 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<blc:head pageTitle="${category.name + ' - Broadleaf Demo - Heat Clinic'}" />
+<blc:head   pageTitle="${#strings.isEmpty(category.titleFragment) ? category.name + ' - Broadleaf Demo - Heat Clinic' : category.titleFragment}"
+            metaDescription="${category.calculatedMetaDescription}"
+            metaKeywords="${category.metaKeywords}"
+            metaRobot="${category.metaRobot}"/>
 
 <body>
 	<div id="notification_bar"></div>
