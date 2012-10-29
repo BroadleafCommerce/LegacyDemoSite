@@ -1,25 +1,45 @@
-<div>
-	<div style="display:none;" th:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</div>
-	
-	<section id="left_column">
-		<header>
-			<h1 th:text="${BLC_PAGE.pageFields[title]}"></h1>
-		</header>
-		<div class="clearfix"></div>
-		<div th:utext="${BLC_PAGE.pageFields[body]}"/>
-	</section>
-	
-	<section id="right_column">
-		<header>Featured Products</header>
-		<div id="options">
-			<div class="section">
-				 <blc:related_products categoryId="2001" quantity="3"/>	 
-				 <ul id="featured_products" class="group">
-					<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-				 </ul>
-			</div>									
-		</div>
-	</section>	
-</div>
-		
-			
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<blc:head   pageTitle="${page.description}"
+            metaDescription="${page.pageFields[metaDescription]}"
+            metaKeywords="${page.pageFields[metaKeywords]}"
+            metaRobot="${page.pageFields[metaRobot]}"/>
+
+<body>
+    <div id="notification_bar"></div>
+    <header th:substituteby="layout/partials/header" />
+
+    <div id="content" class="width_setter group" role="main">
+
+        <nav th:substituteby="layout/partials/nav" />
+
+        <section id="left_column">
+            <header>
+                <h1 th:text="${page.pageFields[title]}"></h1>
+            </header>
+            <div class="clearfix"></div>
+            <div th:utext="${page.pageFields[body]}"/>
+        </section>
+
+        <section id="right_column">
+            <header>Featured Products</header>
+            <div id="options">
+                <div class="section">
+                    <blc:related_products categoryId="2001" quantity="3"/>
+                    <ul id="featured_products" class="group">
+                        <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer th:substituteby="layout/partials/footer" />
+
+</body>
+</html>

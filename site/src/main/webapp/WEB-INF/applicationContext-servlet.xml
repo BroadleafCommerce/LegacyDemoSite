@@ -89,6 +89,7 @@
 				<entry key="checkout/" value="layout/checkoutLayout" />
 				<entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
 				<entry key="layout/" value="NONE" />
+                <entry key="content/" value="content/default" />
 			</map>
 		</property>
 	</bean>
