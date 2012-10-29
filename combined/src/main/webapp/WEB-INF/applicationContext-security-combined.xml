@@ -37,7 +37,7 @@
     <sec:http pattern="/images/**" security="none"/>
     <sec:http pattern="/js/**" security="none"/>
     <sec:http pattern="/utility.service" security="none"/>
-    <sec:http pattern="/admin/com.mycompany.gwt.mycompanyAdmin/remote_logging" security="none"/>
+    <sec:http pattern="/**/remote_logging" security="none"/>
     <sec:http pattern="/favicon.ico" security="none"/>
     <sec:http pattern="/robots.txt" security="none"/>
     <sec:http pattern="/fonts/**" security="none"/>
