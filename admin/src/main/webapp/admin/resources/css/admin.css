@@ -114,3 +114,38 @@ ul.conditionList {
 ul.conditionList li {
 	margin-bottom: 5px;
 }
+
+/*=====================Bootstrap overrides=====================*/
+
+input[type="radio"] {
+    margin: 0 0 5px;
+}
+
+/** catalog - offers - section headers **/
+.bl-promo-header {
+    background: none repeat scroll 0 0 #666666;
+    border: 1px solid #444444;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.bl-promo-section {
+    background: none repeat scroll 0 0 #DDDDDD;
+    box-shadow: 1px 1px 3px #444444 inset;
+}
+
+.bl-promo-question {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.bl-promo-question-answers {
+    margin: 0 10px;
+}
+
+.bl-promo-question-radio-labels label {
+    font-size: 12px;
+}
