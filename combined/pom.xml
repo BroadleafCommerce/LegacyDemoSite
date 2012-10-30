@@ -136,7 +136,7 @@
                     <classpath>
                         <resources>
                             <resource>
-                                <directory>../site/target/jeff/WEB-INF/classes</directory>
+                                <directory>../site/target/mycompany/WEB-INF/classes</directory>
                             </resource>
                             <resource>
                                 <directory>../site/src/main/java</directory>
