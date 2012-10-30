@@ -135,6 +135,7 @@
                     <rootPath>${basedir}</rootPath>
                     <classpath>
                         <resources>
+                            <resource/>
                             <resource>
                                 <directory>../site/target/mycompany/WEB-INF/classes</directory>
                             </resource>
@@ -153,20 +154,19 @@
                             <resource>
                                 <directory>../admin/src/main/resources</directory>
                             </resource>
-                            <resource/>
                         </resources>
                     </classpath>
                     <web>
                         <resources>
-                            <resource>
-                                <target>/</target>
-                                <directory>../admin/src/main/webapp</directory>
-                            </resource>
+                            <resource/>
                             <resource>
                                 <target>/</target>
                                 <directory>../site/src/main/webapp</directory>
                             </resource>
-                            <resource/>
+                            <resource>
+                                <target>/</target>
+                                <directory>../admin/src/main/webapp</directory>
+                            </resource>
                         </resources>
                     </web>
                 </configuration>
