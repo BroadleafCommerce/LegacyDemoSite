@@ -128,15 +128,6 @@
                     <classpath>
                         <resources>
                             <resource>
-                                <directory>../admin/target/admin/WEB-INF/classes</directory>
-                            </resource>
-                            <resource>
-                                <directory>../admin/src/main/java</directory>
-                            </resource>
-                            <resource>
-                                <directory>../admin/src/main/resources</directory>
-                            </resource>
-                            <resource>
                                 <directory>../site/target/mycompany/WEB-INF/classes</directory>
                             </resource>
                             <resource>
@@ -144,6 +135,15 @@
                             </resource>
                             <resource>
                                 <directory>../site/src/main/resources</directory>
+                            </resource>
+                            <resource>
+                                <directory>../admin/target/admin/WEB-INF/classes</directory>
+                            </resource>
+                            <resource>
+                                <directory>../admin/src/main/java</directory>
+                            </resource>
+                            <resource>
+                                <directory>../admin/src/main/resources</directory>
                             </resource>
                             <resource/>
                         </resources>
