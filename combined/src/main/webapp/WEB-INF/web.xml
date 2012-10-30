@@ -146,7 +146,7 @@
 
     <servlet-mapping>
         <servlet-name>remoteLogging</servlet-name>
-        <url-pattern>/com.mycompany.gwt.mycompanyAdmin/remote_logging</url-pattern>
+        <url-pattern>/admin/com.mycompany.gwt.mycompanyAdmin/remote_logging</url-pattern>
     </servlet-mapping>
 
 	<env-entry>
