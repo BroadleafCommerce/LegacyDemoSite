@@ -115,20 +115,42 @@ ul.conditionList li {
 	margin-bottom: 5px;
 }
 
-/*=====================Bootstrap overrides=====================*/
+/*============================= Bootstrap Overrides =============================*/
+/*===============================================================================*/
+label {
+    margin-bottom: 0;
+}
+
 
 input[type="radio"] {
     margin: 0 0 5px;
 }
 
-/** catalog - offers - section headers **/
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+/*============================= Catalog -> Offers =============================*/
+/*===============================================================================*/
+
+.bl-dynamic-form {
+    border: 1px solid #C0C3C7;
+    border-top: none;
+}
+
+.bl-form {
+
+}
+
 .bl-promo-header {
     background: none repeat scroll 0 0 #666666;
-    border: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    border-top: 1px solid #444444;
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
-    padding: 10px;
+    padding: 4px 8px;
     text-shadow: 1px 1px 1px #000000;
 }
 
