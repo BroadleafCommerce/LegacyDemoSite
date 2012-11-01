@@ -171,3 +171,14 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .bl-promo-question-radio-labels label {
     font-size: 12px;
 }
+
+.bl-rich-text-item, .bl-rich-text-itemDisabled {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, .075) inset;
+    overflow: scroll;
+    padding: 4px 6px;
+    max-width: 500px;
+    max-height: 250px;
+    min-height: 100px;
+}
