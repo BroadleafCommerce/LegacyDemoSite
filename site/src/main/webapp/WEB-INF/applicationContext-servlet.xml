@@ -13,13 +13,7 @@
        http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
-	
-	<!-- Scan Broadleaf defined web utility classes -->
-	<!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
-	<context:component-scan base-package="org.broadleafcommerce.common.web"/>
-	<context:component-scan base-package="org.broadleafcommerce.core.web"/>	
-	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
-	
+
 	<!-- Turn on AOP annotations (required by Broadleaf) -->
 	<aop:config/>
 	
