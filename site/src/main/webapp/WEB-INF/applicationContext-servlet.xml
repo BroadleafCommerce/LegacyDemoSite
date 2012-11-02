@@ -72,20 +72,7 @@
 	<mvc:resources order="-10" location="/fonts/" mapping="/fonts/**" />
 	<mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
 	<mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
-	
-	<!-- Set up Broadleaf messaging -->
-	<bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
-	<bean id="messageSource"
-		class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
-		<constructor-arg>
-			<list>
-				<value>messages</value>
-			</list>
-		</constructor-arg>
-		<constructor-arg ref="resourceBundleExtensionPoint" />
-        <property name="basename" value="messages" />
-	</bean>
-	
+
 	<!-- Set up the view resolver to be used by Spring -->
 	<bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
 		<property name="templateEngine" ref="blWebTemplateEngine" />

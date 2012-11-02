@@ -37,6 +37,19 @@
             </list>
         </property>
     </bean>
+
+    <!-- Set up Broadleaf messaging -->
+    <bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
+    <bean id="messageSource"
+          class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
+        <constructor-arg>
+            <list>
+                <value>messages</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg ref="resourceBundleExtensionPoint" />
+        <property name="basename" value="messages" />
+    </bean>
     
     <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
     <bean id="blMergedEntityContexts" class="org.springframework.beans.factory.config.ListFactoryBean">
