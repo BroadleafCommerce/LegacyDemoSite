@@ -178,7 +178,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, .075) inset;
     overflow: scroll;
     padding: 4px 6px;
-    max-width: 500px;
+    max-width: 480px;
     max-height: 250px;
     min-height: 100px;
 }
