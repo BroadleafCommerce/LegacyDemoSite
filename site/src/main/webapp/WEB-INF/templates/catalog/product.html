@@ -4,10 +4,10 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<blc:head   pageTitle="${#strings.isEmpty(product.titleFragment) ? product.name + ' - Broadleaf Demo - Heat Clinic' : product.titleFragment}"
+<blc:head   pageTitle="${#strings.isEmpty(product.seo.titleFragment) ? product.name + ' - Broadleaf Demo - Heat Clinic' : product.seo.titleFragment}"
             metaDescription="${product.calculatedMetaDescription}"
-            metaKeywords="${product.metaKeywords}"
-            metaRobot="${product.metaRobot}"/>
+            metaKeywords="${product.seo.metaKeywords}"
+            metaRobot="${product.seo.metaRobot}"/>
 
 <body>
 	<div id="notification_bar"></div>
