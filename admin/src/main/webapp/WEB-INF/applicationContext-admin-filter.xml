@@ -21,7 +21,6 @@
     <bean id="hiddenHttpMethodFilter" class="org.springframework.web.filter.HiddenHttpMethodFilter"/>
 
     <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <!-- the request-matcher can be changed to regex for more flexible matching -->
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
                openEntityManagerInViewFilter"/>
@@ -29,7 +28,6 @@
     </bean>
 
     <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <!-- the request-matcher can be changed to regex for more flexible matching -->
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
                hiddenHttpMethodFilter,
