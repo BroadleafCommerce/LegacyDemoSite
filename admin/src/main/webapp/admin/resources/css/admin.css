@@ -131,7 +131,12 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     margin-bottom: 0;
 }
 
-.windowHeader img {vertical-align: top;}
+.windowHeader img,
+.imgButton img,
+.imgButtonOver img,
+.imgButtonSelected img,
+.imgButtonSelectedDisabled img,
+.imgButtonSelectedOver img {vertical-align: top;}
 
 /*============================= Catalog -> Offers =============================*/
 /*===============================================================================*/
