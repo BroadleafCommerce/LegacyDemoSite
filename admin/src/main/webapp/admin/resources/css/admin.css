@@ -172,8 +172,6 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 .bl-promo-section {
-    background: none repeat scroll 0 0 #DDDDDD;
-    box-shadow: 1px 1px 3px #444444 inset;
 }
 
 .bl-promo-question {
