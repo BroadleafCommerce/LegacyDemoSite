@@ -151,15 +151,6 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 /*============================= Catalog -> Offers =============================*/
 /*===============================================================================*/
 
-.bl-dynamic-form {
-    border: 1px solid #C0C3C7;
-    border-top: none;
-}
-
-.bl-form {
-
-}
-
 .bl-promo-header {
     background: none repeat scroll 0 0 #666666;
     border-bottom: 1px solid #444444;
