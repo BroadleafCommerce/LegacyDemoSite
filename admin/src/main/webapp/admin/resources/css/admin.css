@@ -115,6 +115,16 @@ ul.conditionList li {
 	margin-bottom: 5px;
 }
 
+/*============================= Custom Broadleaf Styles =========================*/
+/*===============================================================================*/
+.bl-headerDisabled, .bl-header {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    color: #333;
+    font-weight: normal;
+}
+
 /*============================= Bootstrap Overrides =============================*/
 /*===============================================================================*/
 label {
