@@ -11,7 +11,7 @@
                             <a class="btn btn-danger pull-right logout" href="#" th:href="@{adminLogout.htm}" title="Logout"><i class="icon-off icon-white"></i></a>
                             <div class="btn-group pull-right">
                                 <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#" th:inline="text">
-                                    <blc:admin_user resultVar="adminUser" />
+                                    <blc_admin:admin_user resultVar="adminUser" />
                                     <i class="icon-user icon-white"></i> [[${adminUser.name}]] <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">

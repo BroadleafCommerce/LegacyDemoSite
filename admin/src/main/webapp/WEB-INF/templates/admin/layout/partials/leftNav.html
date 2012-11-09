@@ -1,6 +1,6 @@
 <div id="modules" class="sidebar-nav">
 
-    <blc:admin_module resultVar="modules" />
+    <blc_admin:admin_module resultVar="modules" />
 
     <ul class="nav">
         <li th:each="module : ${modules}" th:inline="text">
@@ -13,7 +13,7 @@
             <div class="collapse" th:classappend="${currentAdminModule.id == module.id}? 'in'">
                 <ul th:each="section : ${module.sections}" class="module nav nav-list">
                     <li>
-                        <a blc:admin_section_href="${section}"
+                        <a blc_admin:admin_section_href="${section}"
                            th:classappend="${currentAdminSection.id == section.id}? 'active'">[[${section.name}]]</a>
                     </li>
                 </ul>
