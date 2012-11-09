@@ -148,6 +148,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .imgButtonSelectedDisabled img,
 .imgButtonSelectedOver img {vertical-align: top;}
 
+#gwt-component img {
+    vertical-align: top;
+}
+
 /*============================= Catalog -> Offers =============================*/
 /*===============================================================================*/
 
