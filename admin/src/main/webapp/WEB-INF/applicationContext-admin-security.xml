@@ -21,12 +21,13 @@
 
     <!-- Resources do not need security -->
 	<sec:http pattern="/**/resources/css/**" security="none" />
-	<sec:http pattern="/**/resources/images/**" security="none" />
+	<sec:http pattern="/**/resources/img/**" security="none" />
 	<sec:http pattern="/**/resources/js/**" security="none" />
 	<sec:http pattern="/**/utility.service" security="none" />
 	<sec:http pattern="/**/remote_logging" security="none" />
 	<sec:http pattern="/favicon.ico" security="none" />
 	<sec:http pattern="/robots.txt" security="none" />
+    <sec:http pattern="/login" security="none" />
 	
 	<!-- Set up Spring security for the application -->
 	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" >
@@ -76,6 +77,7 @@
 			<sec:filter-security-metadata-source>
 				<sec:intercept-url pattern="/**/modules*" access="PERMISSION_OTHER_DEFAULT" />
 				<sec:intercept-url pattern="/**/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
+                <sec:intercept-url pattern="/*" access="PERMISSION_OTHER_DEFAULT" />
 			</sec:filter-security-metadata-source>
 		</property>
 	</bean>

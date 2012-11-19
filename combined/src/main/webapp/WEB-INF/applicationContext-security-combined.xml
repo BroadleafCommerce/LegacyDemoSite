@@ -27,6 +27,7 @@
     <sec:http pattern="/js/**" security="none"/>
     <sec:http pattern="/fonts/**" security="none"/>
     <sec:http pattern="/img/**" security="none"/>
+    <sec:http pattern="/admin/login" security="none" />
 
     <!--
     Admin
@@ -73,6 +74,7 @@
             <sec:filter-security-metadata-source>
                 <sec:intercept-url pattern="/admin/modules*" access="PERMISSION_OTHER_DEFAULT" />
                 <sec:intercept-url pattern="/admin/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT"/>
+                <sec:intercept-url pattern="/admin/*" access="PERMISSION_OTHER_DEFAULT" />
             </sec:filter-security-metadata-source>
         </property>
     </bean>

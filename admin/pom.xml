@@ -66,7 +66,7 @@
 					<bindAddress>localhost</bindAddress>
 					<debugPort>8011</debugPort>
 					<port>8081</port>
-					<runTarget>admin/admin</runTarget>
+					<runTarget>admin/</runTarget>
 				</configuration>
 			</plugin>
 			<plugin>
