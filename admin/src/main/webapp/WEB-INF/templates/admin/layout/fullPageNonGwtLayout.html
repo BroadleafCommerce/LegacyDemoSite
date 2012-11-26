@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head th:include="admin/layout/partials/head" />
+    <body>
+    
+        <header th:substituteby="admin/layout/partials/header" />
+        
+        <div id="nav-container">
+            <div th:substituteby="admin/layout/partials/leftNav" />
+        </div>
+        
+        <div id="content-container">
+            <div th:substituteby="${templateName}" />
+        </div>
+                    
+        <footer th:substituteby="admin/layout/partials/footer::non-gwt" />
+        
+    </body>
+</html>
