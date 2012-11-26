@@ -70,7 +70,6 @@
             </list>
         </constructor-arg>
         <constructor-arg ref="resourceBundleExtensionPoint" />
-        <property name="basename" value="messages" />
     </bean>
 
 </beans>
