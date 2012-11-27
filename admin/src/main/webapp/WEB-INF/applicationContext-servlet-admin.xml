@@ -76,6 +76,17 @@
         </property>
     </bean>
 
+    <mvc:interceptors>
+        <!-- Interceptor for locale-->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="locale"/>
+        </bean>
+    </mvc:interceptors>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+
     <mvc:default-servlet-handler/>
 
 </beans>
