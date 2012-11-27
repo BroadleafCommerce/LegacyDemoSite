@@ -8,15 +8,16 @@
                     </div>
                     <div class="span10">
                         <div class="menu-options">
-                            <a class="btn btn-danger pull-right logout" href="#" th:href="@{adminLogout.htm}" title="Logout"><i class="icon-off icon-white"></i></a>
+                            <a class="btn btn-danger pull-right logout" href="#" th:href="@{adminLogout.htm}"
+                               title="Logout" th:title="#{header.logout}"><i class="icon-off icon-white"></i></a>
                             <div class="btn-group pull-right">
                                 <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#" th:inline="text">
                                     <blc_admin:admin_user resultVar="adminUser" />
                                     <i class="icon-user icon-white"></i> [[${adminUser.name}]] <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" th:href="@{changePassword}">Change Password...</a></li>
-                                    <li><a href="#" id="editUserInfo">Edit Profile...</a></li>
+                                    <li><a href="#" th:href="@{changePassword}" th:text="#{header.password.change} + '...'">Change Password...</a></li>
+                                    <li><a href="#" id="editUserInfo" th:text="#{header.profile.edit} + '...'">Edit Profile...</a></li>
                                 </ul>
                             </div>
                             <!--
@@ -25,7 +26,7 @@
                             </form>
                             -->
                             <div id="loading-placeholder" class="progress progress-striped active pull-left">
-                                <div class="bar" style="width: 100%;">Loading...</div>
+                                <div class="bar" style="width: 100%;" th:text="#{header.loading} + '...'">Loading...</div>
                             </div>
                         </div>
                     </div>
