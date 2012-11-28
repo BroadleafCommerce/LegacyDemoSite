@@ -18,7 +18,6 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
-import org.broadleafcommerce.core.inventory.exception.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
@@ -37,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +45,8 @@ import java.util.Map;
 @RequestMapping("/cart")
 public class CartController extends BroadleafCartController {
 	
-	@RequestMapping("")
+	@Override
+    @RequestMapping("")
 	public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
 		return super.cart(request, response, model);
 	}
@@ -78,9 +79,7 @@ public class CartController extends BroadleafCartController {
 		} catch (AddToCartException e) {
 			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
 				responseMap.put("error", "allOptionsRequired");
-			} else if (e.getCause() instanceof InventoryUnavailableException) {
-                responseMap.put("error", "inventoryUnavailable");
-            } else {
+			} else {
                 throw e;
             }
 		}
@@ -99,9 +98,6 @@ public class CartController extends BroadleafCartController {
 		try {
 			return super.add(request, response, model, addToCartItem);
 		} catch (AddToCartException e) {
-            if (e.getCause() instanceof InventoryUnavailableException) {
-                redirectAttributes.addAttribute("errorMessage", "This item is no longer in stock. We apologize for the inconvenience.");
-            }
 			Product product = catalogService.findProductById(addToCartItem.getProductId());
 			return "redirect:" + product.getUrl();
 		}
@@ -110,40 +106,33 @@ public class CartController extends BroadleafCartController {
 	@RequestMapping("/updateQuantity")
 	public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
-
-        try {
-            return super.updateQuantity(request, response, model, addToCartItem);
-        } catch (InventoryUnavailableException e) {
-            if (isAjaxRequest(request)) {
-                model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
-                return getCartView();
-            } else {
-                redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
-                return getCartPageRedirect();
-            }
-        }
-	}
+        return super.updateQuantity(request, response, model, addToCartItem);
+    }
 	
-	@RequestMapping("/remove")
+	@Override
+    @RequestMapping("/remove")
 	public String remove(HttpServletRequest request, HttpServletResponse response, Model model,
 			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, RemoveFromCartException {
 		return super.remove(request, response, model, addToCartItem);
 	}
 	
-	@RequestMapping("/empty")
+	@Override
+    @RequestMapping("/empty")
 	public String empty(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
 		//return super.empty(request, response, model);
 		return "ajaxredirect:/";
 		
 	}
 	
-	@RequestMapping("/promo")
+	@Override
+    @RequestMapping("/promo")
 	public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,
 			@RequestParam("promoCode") String customerOffer) throws IOException, PricingException {
 		return super.addPromo(request, response, model, customerOffer);
 	}
 	
-	@RequestMapping("/promo/remove")
+	@Override
+    @RequestMapping("/promo/remove")
 	public String removePromo(HttpServletRequest request, HttpServletResponse response, Model model,
 			@RequestParam("offerCodeId") Long offerCodeId) throws IOException, PricingException {
 		return super.removePromo(request, response, model, offerCodeId);
