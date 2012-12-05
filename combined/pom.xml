@@ -121,7 +121,7 @@
             </plugin>
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
-                <artifactId>javarebel-maven-plugin</artifactId>
+                <artifactId>jrebel-maven-plugin</artifactId>
                 <configuration>
                     <packaging>war</packaging>
                     <rootPath>${basedir}</rootPath>
