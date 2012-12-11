@@ -128,6 +128,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>remoteLogging</servlet-name>
+        <servlet-class>org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>remoteLogging</servlet-name>
+        <url-pattern>/admin/com.mycompany.gwt.mycompanyAdmin/remote_logging</url-pattern>
+    </servlet-mapping>
+
 	<env-entry>
 		<env-entry-name>appName</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>
