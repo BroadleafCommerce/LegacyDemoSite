@@ -80,7 +80,6 @@
     </bean>
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
     	<constructor-arg name="solrServer" ref="${solr.source}" />
-        <property name="indexPriceLists" value="true" />
     </bean> 
    	<bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 	  	<property name="targetObject" ref="blSearchService" />

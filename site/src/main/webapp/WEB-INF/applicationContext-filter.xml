@@ -28,8 +28,7 @@
     <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
-               blURLHandlerFilter,
-               priceListDynamicSkuPricingFilter"/>
+               blURLHandlerFilter"/>
         </sec:filter-chain-map>
     </bean>
 
