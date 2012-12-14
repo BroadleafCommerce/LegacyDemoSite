@@ -21,4 +21,8 @@
 	<link rel="stylesheet" th:unless="${#strings.isEmpty(additionalCss)}" />
 
 	<script src="../../js/libs/modernizr-2.5.3.min.js" th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
+	
+	<blc:googleAnalytics th:attr="orderNumber=${order != null ? order.orderNumber : null}" />
+    <script th:utext="${analytics}"></script>
+	
 </head>

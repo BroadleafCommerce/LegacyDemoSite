@@ -42,6 +42,9 @@
     <sec:http pattern="/robots.txt" security="none"/>
     <sec:http pattern="/fonts/**" security="none"/>
     <sec:http pattern="/img/**" security="none"/>
+    <!-- This also goes for static assets delivered by the application -->
+    <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />       
+
 
     <!--
     Admin
