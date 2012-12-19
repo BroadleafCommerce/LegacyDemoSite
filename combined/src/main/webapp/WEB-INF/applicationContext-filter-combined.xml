@@ -29,8 +29,7 @@
                blPrecompressedArtifactFilter,
                blAdminSandBoxFilter"/>
             <sec:filter-chain pattern="/**" filters="
-               blURLHandlerFilter,
-               priceListDynamicSkuPricingFilter"/>
+               blURLHandlerFilter"/>
         </sec:filter-chain-map>
     </bean>
 
