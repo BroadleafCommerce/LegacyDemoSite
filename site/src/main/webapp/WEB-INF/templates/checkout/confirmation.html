@@ -97,9 +97,15 @@
         
         <div class="fulfillment_option" th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
             <div class="left_content">
-                <address>
+                <address th:if="*{address.phonePrimary != null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                    [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                    [[*{address.phonePrimary.phoneNumber}]]<br/>
+                    [[*{address.addressLine1}]]<br/>
+                    [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                </address>
+                <address th:if="*{address.phonePrimary == null}">
+                    [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
@@ -119,9 +125,15 @@
 
         <div class="payment_method" th:each="paymentInfo : ${order.paymentInfos}" th:object="${paymentInfo}" th:inline="text">
             <div class="left_content">
-                <address>
+                <address th:if="*{address.phonePrimary != null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                    [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                    [[*{address.phonePrimary.phoneNumber}]]<br/>
+                    [[*{address.addressLine1}]]<br/>
+                    [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                </address>
+                <address th:if="*{address.phonePrimary == null}">
+                    [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
