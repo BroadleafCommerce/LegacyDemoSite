@@ -14,7 +14,7 @@
 				&nbsp;|&nbsp; 
 			</div>
 			<a id="cartLink" class="fancycart" th:href="@{/cart}">
-				<blc:img src="@{/img/shopping_cart.png}"/>
+				<img th:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
 				&nbsp; 
 				<span class="headerCartItemsCount" th:text="${cart.itemCount}" />
 				<span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1 ? ' item' : ' items'}" />
