@@ -13,3 +13,5 @@ bin/
 site/data/
 .svn
 site/solrhome
+combined/data/
+combined/solrhome

@@ -16,6 +16,7 @@
 
 package com.mycompany.admin.controller;
 
+import org.apache.commons.lang.StringUtils;
 import org.broadleafcommerce.openadmin.web.controller.BroadleafAdminLoginController;
 import org.broadleafcommerce.openadmin.web.form.ResetPasswordForm;
 import org.springframework.stereotype.Controller;
@@ -77,7 +78,10 @@ public class AdminLoginController extends BroadleafAdminLoginController {
 
     @RequestMapping(value="/resetPassword", method=RequestMethod.POST)
     public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
-        return super.resetPassword(resetPasswordForm, request);
+        if (!StringUtils.isEmpty(resetPasswordForm.getToken())) {
+            return super.resetPassword(resetPasswordForm, request);
+        }
+        return super.processResetPassword(resetPasswordForm.getUsername(), request, response, model);
     }
 
     @RequestMapping(value="/changePassword", method=RequestMethod.GET)
