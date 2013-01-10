@@ -7,25 +7,25 @@
 <blc:head pageTitle="Account - Broadleaf Demo - Heat Clinic" />
 
 <body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="layout/partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">	
+    <div id="notification_bar"></div>
+    <header th:substituteby="layout/partials/header" />
+    
+    <div id="content" class="width_setter group" role="main">   
 
         <nav th:substituteby="layout/partials/nav" />
 
         <div class="manage-account-container clearfix">
 
-			<h1>Account Options</h1>
-			
+            <h1>Account Options</h1>
+            
             <ul th:substituteby="account/partials/accountMenu" />
             
-			<div th:substituteby="${templateName}" />
+            <div th:substituteby="${templateName}" />
 
         </div>
-	</div>
-	
-	<footer th:substituteby="layout/partials/footer" />
-	
+    </div>
+    
+    <footer th:substituteby="layout/partials/footer" />
+    
 </body>
 </html>

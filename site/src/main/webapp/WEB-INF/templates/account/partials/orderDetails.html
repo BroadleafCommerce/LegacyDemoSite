@@ -1,98 +1,98 @@
 <div class="order-details-container" th:object="${order}">
-	<ul class="shipping-groups">
-		<li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
-			<h3>Shipment <span th:text="${iterStat.count}"></span><span th:if="*{status}" th:text="' : ' + *{status}"></span></h3>
-			<div class="details">
-				<div class="shipping-information">
-					<div class="fulfillment-group-address" th:inline="text">
-				        <h4>Shipping Address</h4>
-				        <address>
-				            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-				            [[*{address.addressLine1}]]<br/>
-				            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-				            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-				        </address>
-					</div>
-					<div class="shipping-type">
-						<h4>Shipping Speed</h4>
-						<div th:text="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
-					</div>
-				</div>
-				<table class="order-items">
-					<tr>
-						<th class="label">Items</th>
-						<th class="price">Price</th>
-					</tr>
-					<tr th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}">
-						<td class="label" th:text="*{quantity} + ' of ' + *{orderItem.name}"></td>
-						<td class="price" blc:price="*{orderItem.price}"></td>
-					</tr>
-					<tr class="shipment-summary merchandise-total">
-						<td class="label">Merchandise Total:</td>
-						<td class="price" blc:price="*{merchandiseTotal}"></td>
-					</tr>
-					<tr class="shipment-summary">
-						<td class="label">Shipping Total:</td>
-						<td class="price" blc:price="*{shippingPrice}"></td>
-					</tr>
-					<tr class="shipment-summary taxes">
-						<td class="label">Taxes:</td>
-						<td class="price" blc:price="*{totalTax}"></td>
-					</tr>
-					<tr class="shipment-total shipment-summary">
-						<td class="label">Shipment Total:</td>
-						<td class="price" blc:price="*{total}"></td>
-					</tr>
-				</table>
-				<div class="clearfix">&nbsp;</div>
-			</div>
-		</li>
-		<li class="payment-information">
-			<h3>Payment Information</h3>
-			<div class="details">
-			    <div class="payment-details" th:each="paymentInfo : *{paymentInfos}" th:object="${paymentInfo}" th:inline="text">
-			        <div class="billing-address">
-				        <h4>Billing Address</h4>
-				        <address>
-				            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-				            [[*{address.addressLine1}]]<br/>
-				            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-				            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-				        </address>
-			        </div>
-			        <div class="payment-method">
-				        <h4>Payment Method</h4>
-				        <div>Type: <span th:text="*{type.friendlyType}"></span> </div>
-				        <span th:text="*{additionalFields['CARD_TYPE']}"/> | ****<span th:text="*{additionalFields['LAST_FOUR']}"/>
-			        </div>
-			    </div>
-				<table class="order-summary">
-				    <tr>
-				    	<th colspan="2">Order Summary</th>
-				    </tr>
-				    <tr>
-				    	<td class="label">Subtotal:</td>
-				    	<td class="price" blc:price="*{subTotal}"></td>
-				    </tr>
-				    <tr th:unless="*{orderAdjustmentsValue.zero}">
-                    	<td class="label">Promotions:</td>
-                    	<td class="discount price">(<span blc:price="*{orderAdjustmentsValue}"></span>)</td>
-				    </tr>
-				    <tr>
-				        <td class="label">Shipping:</td>
-				        <td class="price" blc:price="*{totalShipping}"></td>
-				    </tr>
-				    <tr class="taxes">
-				        <td class="label">Taxes:</td>
-				        <td class="price" blc:price="*{totalTax}"></td>
-				    </tr>
-				    <tr class="grand-total">
-				        <td class="label">Grand Total:</td>
-				        <td class="price" blc:price="*{total}"></td>
-				    </tr>
-				</table>
-				<div class="clearfix">&nbsp;</div>	
-			</div>
-		</li>				
-	</ul>
+    <ul class="shipping-groups">
+        <li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
+            <h3>Shipment <span th:text="${iterStat.count}"></span><span th:if="*{status}" th:text="' : ' + *{status}"></span></h3>
+            <div class="details">
+                <div class="shipping-information">
+                    <div class="fulfillment-group-address" th:inline="text">
+                        <h4>Shipping Address</h4>
+                        <address>
+                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                            [[*{address.addressLine1}]]<br/>
+                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                        </address>
+                    </div>
+                    <div class="shipping-type">
+                        <h4>Shipping Speed</h4>
+                        <div th:text="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
+                    </div>
+                </div>
+                <table class="order-items">
+                    <tr>
+                        <th class="label">Items</th>
+                        <th class="price">Price</th>
+                    </tr>
+                    <tr th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}">
+                        <td class="label" th:text="*{quantity} + ' of ' + *{orderItem.name}"></td>
+                        <td class="price" blc:price="*{orderItem.price}"></td>
+                    </tr>
+                    <tr class="shipment-summary merchandise-total">
+                        <td class="label">Merchandise Total:</td>
+                        <td class="price" blc:price="*{merchandiseTotal}"></td>
+                    </tr>
+                    <tr class="shipment-summary">
+                        <td class="label">Shipping Total:</td>
+                        <td class="price" blc:price="*{shippingPrice}"></td>
+                    </tr>
+                    <tr class="shipment-summary taxes">
+                        <td class="label">Taxes:</td>
+                        <td class="price" blc:price="*{totalTax}"></td>
+                    </tr>
+                    <tr class="shipment-total shipment-summary">
+                        <td class="label">Shipment Total:</td>
+                        <td class="price" blc:price="*{total}"></td>
+                    </tr>
+                </table>
+                <div class="clearfix">&nbsp;</div>
+            </div>
+        </li>
+        <li class="payment-information">
+            <h3>Payment Information</h3>
+            <div class="details">
+                <div class="payment-details" th:each="paymentInfo : *{paymentInfos}" th:object="${paymentInfo}" th:inline="text">
+                    <div class="billing-address">
+                        <h4>Billing Address</h4>
+                        <address>
+                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                            [[*{address.addressLine1}]]<br/>
+                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                        </address>
+                    </div>
+                    <div class="payment-method">
+                        <h4>Payment Method</h4>
+                        <div>Type: <span th:text="*{type.friendlyType}"></span> </div>
+                        <span th:text="*{additionalFields['CARD_TYPE']}"/> | ****<span th:text="*{additionalFields['LAST_FOUR']}"/>
+                    </div>
+                </div>
+                <table class="order-summary">
+                    <tr>
+                        <th colspan="2">Order Summary</th>
+                    </tr>
+                    <tr>
+                        <td class="label">Subtotal:</td>
+                        <td class="price" blc:price="*{subTotal}"></td>
+                    </tr>
+                    <tr th:unless="*{orderAdjustmentsValue.zero}">
+                        <td class="label">Promotions:</td>
+                        <td class="discount price">(<span blc:price="*{orderAdjustmentsValue}"></span>)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Shipping:</td>
+                        <td class="price" blc:price="*{totalShipping}"></td>
+                    </tr>
+                    <tr class="taxes">
+                        <td class="label">Taxes:</td>
+                        <td class="price" blc:price="*{totalTax}"></td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td class="label">Grand Total:</td>
+                        <td class="price" blc:price="*{total}"></td>
+                    </tr>
+                </table>
+                <div class="clearfix">&nbsp;</div>  
+            </div>
+        </li>               
+    </ul>
 </div>
