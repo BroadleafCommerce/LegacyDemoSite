@@ -63,46 +63,46 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
                 responseMap.put("productId", addToCartItem.getProductId());
             }
         } catch (AddToCartException e) {
-			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
-				responseMap.put("error", "allOptionsRequired");
-			} else {
-				throw e;
-			}
+            if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+                responseMap.put("error", "allOptionsRequired");
+            } else {
+                throw e;
+            }
         }
         
         return responseMap;
     }
     
-	/*
-	 * The Heat Clinic does not support adding products with required product options from a category browse page
-	 * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
-	 * for the given product so that the required options may be chosen.
-	 */
-	@RequestMapping(value = "/add", produces = "text/html")
-	public String add(HttpServletRequest request, HttpServletResponse response, Model model,
-			@ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
-		try {
-			return super.add(request, response, model, addToCartItem, WISHLIST_ORDER_NAME);
-		} catch (AddToCartException e) {
-			if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
-				Product product = catalogService.findProductById(addToCartItem.getProductId());
-				return "redirect:" + product.getUrl();
-			} else {
-				throw e;
-			}
-		}
-	}
+    /*
+     * The Heat Clinic does not support adding products with required product options from a category browse page
+     * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
+     * for the given product so that the required options may be chosen.
+     */
+    @RequestMapping(value = "/add", produces = "text/html")
+    public String add(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
+        try {
+            return super.add(request, response, model, addToCartItem, WISHLIST_ORDER_NAME);
+        } catch (AddToCartException e) {
+            if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+                Product product = catalogService.findProductById(addToCartItem.getProductId());
+                return "redirect:" + product.getUrl();
+            } else {
+                throw e;
+            }
+        }
+    }
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     public String removeItemFromWishlist(HttpServletRequest request, HttpServletResponse response, Model model,
-    		@ModelAttribute("orderItemId") Long itemId) throws RemoveFromCartException {
+            @ModelAttribute("orderItemId") Long itemId) throws RemoveFromCartException {
         return super.removeItemFromWishlist(request, response, model, WISHLIST_ORDER_NAME, itemId);
     }
 
     @RequestMapping(value = "/moveItemToCart", method = RequestMethod.POST)
     public String moveItemToCart(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException, RemoveFromCartException {
-    	return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
+        return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
     }
 
     @RequestMapping(value = "/moveListToCart", method = RequestMethod.POST)

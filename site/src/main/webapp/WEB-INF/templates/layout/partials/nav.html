@@ -1,15 +1,15 @@
-<nav>	
-	<div th:remove="all">
-		<!--
-		     This template displays the navigation of the site by looking up the category named "Nav"
-		     and building a list of the categories sub-categories. 	         	      	    
-		-->
-	</div>
-	<blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="6" />
-	
-	<ul>
-		<li th:each="category : ${navCategories}">
-			<a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
-		</li>
-	</ul>
+<nav>   
+    <div th:remove="all">
+        <!--
+             This template displays the navigation of the site by looking up the category named "Nav"
+             and building a list of the categories sub-categories.                          
+        -->
+    </div>
+    <blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="6" />
+    
+    <ul>
+        <li th:each="category : ${navCategories}">
+            <a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
+        </li>
+    </ul>
 </nav>

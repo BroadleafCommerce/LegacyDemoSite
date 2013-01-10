@@ -8,14 +8,14 @@ $(function(){
         
         // if this is the currently opened order details, collapse it
         if ($orderDetails.is(':visible')) {
-        	$orderDetails.slideToggle();
+            $orderDetails.slideToggle();
         } else {
-        	$orderDetails.load(url, function() {
-        		$visibleSections = $('.order-details:visible');
-        		$orderDetails.slideToggle();
-        		$visibleSections.slideToggle();
-        	});
-        }	
+            $orderDetails.load(url, function() {
+                $visibleSections = $('.order-details:visible');
+                $orderDetails.slideToggle();
+                $visibleSections.slideToggle();
+            });
+        }   
         return false;
     });
 

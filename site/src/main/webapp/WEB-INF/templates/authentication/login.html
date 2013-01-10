@@ -1,38 +1,38 @@
-<div id="account">	
-	<div style="display:none;" th:fragment="title" th:inline="text">Login - Broadleaf Demo - Heat Clinic</div>
-	
-	<div id="login">
-		<h3>Login to Your Account</h3>
-		<p>Already a member? Sign in using the form below.</p>
-		
-		<span class="error" th:if="${param.error}">
-			<p>The e-mail address and/or password entered do not match our records.  Please try again</p>
-		</span>
+<div id="account">  
+    <div style="display:none;" th:fragment="title" th:inline="text">Login - Broadleaf Demo - Heat Clinic</div>
+    
+    <div id="login">
+        <h3>Login to Your Account</h3>
+        <p>Already a member? Sign in using the form below.</p>
+        
+        <span class="error" th:if="${param.error}">
+            <p>The e-mail address and/or password entered do not match our records.  Please try again</p>
+        </span>
 
-		<div class="clearfix">
-			<blc:form th:action="@{/login_post.htm}" method="post">
-				<input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
-				
-				<div class="form50">
-					<label for="j_username">Email</label>
-					<input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-				</div>
-				
-				<div class="form50">
-					<label for="j_password">Password</label>
-					<input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
-				</div>
-				
-				<div class="login_register">
-					<input class="login_button big red" type="submit" value="Login"/>
-				</div>
-				
-				<div class="login_register_alt_links">
-				    <a class="account" th:href="@{/register}">Register</a> 
-					<br/>
-					<a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
-				</div>
-			</blc:form>
-		</div>
-	</div>
+        <div class="clearfix">
+            <blc:form th:action="@{/login_post.htm}" method="post">
+                <input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
+                
+                <div class="form50">
+                    <label for="j_username">Email</label>
+                    <input type="email" name="j_username" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+                </div>
+                
+                <div class="form50">
+                    <label for="j_password">Password</label>
+                    <input type="password" name="j_password" th:class="${param.error} ? 'field50 fieldError' : 'field50'" />
+                </div>
+                
+                <div class="login_register">
+                    <input class="login_button big red" type="submit" value="Login"/>
+                </div>
+                
+                <div class="login_register_alt_links">
+                    <a class="account" th:href="@{/register}">Register</a> 
+                    <br/>
+                    <a class="account" th:href="@{/login/forgotPassword}">Forgot Password</a>
+                </div>
+            </blc:form>
+        </div>
+    </div>
 </div>

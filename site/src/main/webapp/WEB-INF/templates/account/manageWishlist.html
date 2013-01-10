@@ -1,7 +1,7 @@
 <div>     
 
     <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
-    	<table th:substituteby="account/partials/wishlistItemsTable"></table>
+        <table th:substituteby="account/partials/wishlistItemsTable"></table>
     </div>
     
     <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
