@@ -38,12 +38,12 @@ public class OrderHistoryController extends BroadleafOrderHistoryController {
     @Resource(name = "blCountryService")
     CountryService countryService;
 
-	@RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String viewOrderHistory(HttpServletRequest request, Model model) {
         return super.viewOrderHistory(request, model); 
     }
 
-	@RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
     public String viewOrderDetails(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
         return super.viewOrderDetails(request, model, orderNumber);
     }

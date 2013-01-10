@@ -39,47 +39,47 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class AdminLoginController extends BroadleafAdminLoginController {
-			
-		
-		@RequestMapping(value="/blcadmin")
-		public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.login(request, response, model);
-		}
+            
+        
+        @RequestMapping(value="/blcadmin")
+        public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.login(request, response, model);
+        }
 
-		@RequestMapping(value="/blcadmin/login", method=RequestMethod.GET)
-		public String baseLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.login(request, response, model);
-		}
-		@RequestMapping(value="/blcadmin/forgotPassword", method=RequestMethod.GET)
-		public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.forgotPassword(request, response, model);
-		}
-		@RequestMapping(value="/blcadmin/forgotUsername", method=RequestMethod.GET)
-	    public String forgotUsername(HttpServletRequest request, HttpServletResponse response,Model model) {
-	    	return super.forgotUsername(request, response, model);
-	    } 
-		@RequestMapping(value="/blcadmin/forgotUsername", method=RequestMethod.POST)
-	    public String processForgotUserName(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
-	    	return super.processForgotUserName(emailAddress, request, model);
-	    }   
+        @RequestMapping(value="/blcadmin/login", method=RequestMethod.GET)
+        public String baseLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.login(request, response, model);
+        }
+        @RequestMapping(value="/blcadmin/forgotPassword", method=RequestMethod.GET)
+        public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.forgotPassword(request, response, model);
+        }
+        @RequestMapping(value="/blcadmin/forgotUsername", method=RequestMethod.GET)
+        public String forgotUsername(HttpServletRequest request, HttpServletResponse response,Model model) {
+            return super.forgotUsername(request, response, model);
+        } 
+        @RequestMapping(value="/blcadmin/forgotUsername", method=RequestMethod.POST)
+        public String processForgotUserName(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
+            return super.processForgotUserName(emailAddress, request, model);
+        }   
 
-		@RequestMapping(value="/blcadmin/resetPassword", method=RequestMethod.GET)
-		public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.resetPassword(request, response, model);
-		}	
-	    
-		@RequestMapping(value="/blcadmin/resetPassword", method=RequestMethod.POST)
-	    public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
-	    	return super.resetPassword(resetPasswordForm, request);
-	    }	
-		@RequestMapping(value="/blcadmin/changePassword", method=RequestMethod.GET)
-		public String changePassword(HttpServletRequest request, HttpServletResponse response, Model model) {
-			return super.changePassword(request, response, model);
-		}	
-	    
-		@RequestMapping(value="/blcadmin/changePassword", method=RequestMethod.POST)
-	    public String processchangePassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
-	    	return super.processChangePassword(resetPasswordForm, request);
-	    }	
+        @RequestMapping(value="/blcadmin/resetPassword", method=RequestMethod.GET)
+        public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.resetPassword(request, response, model);
+        }   
+        
+        @RequestMapping(value="/blcadmin/resetPassword", method=RequestMethod.POST)
+        public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.resetPassword(resetPasswordForm, request);
+        }   
+        @RequestMapping(value="/blcadmin/changePassword", method=RequestMethod.GET)
+        public String changePassword(HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.changePassword(request, response, model);
+        }   
+        
+        @RequestMapping(value="/blcadmin/changePassword", method=RequestMethod.POST)
+        public String processchangePassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model) {
+            return super.processChangePassword(resetPasswordForm, request);
+        }   
 
-	}
+    }

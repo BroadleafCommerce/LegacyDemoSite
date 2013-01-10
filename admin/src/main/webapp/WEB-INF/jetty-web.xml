@@ -3,6 +3,6 @@
 
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
 
-	<Set name="contextPath">/admin</Set>
+    <Set name="contextPath">/admin</Set>
 
 </Configure>

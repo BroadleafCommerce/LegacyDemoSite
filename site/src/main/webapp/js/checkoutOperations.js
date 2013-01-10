@@ -1,21 +1,21 @@
 /* Operations that deal with checkout */
 $(function(){
-	// The options used for the login/register fancybox modal
-	var fancyCheckoutOptions = {
-		maxWidth	: 720,
-		maxHeight	: 560,	
-		fitToView	: false,
-		width		: '100%',
-		autoSize	: true,
-		closeClick	: false,
-		topRatio	: 0,
-		openEffect	: 'none',
-		closeEffect	: 'none',
-		type        : 'ajax',
-		scrolling   : 'no',
-		padding		: 5
-	};
-	
+    // The options used for the login/register fancybox modal
+    var fancyCheckoutOptions = {
+        maxWidth    : 720,
+        maxHeight   : 560,  
+        fitToView   : false,
+        width       : '100%',
+        autoSize    : true,
+        closeClick  : false,
+        topRatio    : 0,
+        openEffect  : 'none',
+        closeEffect : 'none',
+        type        : 'ajax',
+        scrolling   : 'no',
+        padding     : 5
+    };
+    
     function copyShippingForm() {
         $('.cloneable').each(function() {
             $("#billing_info input[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
@@ -24,23 +24,23 @@ $(function(){
     }
     
     function showAddAddress() {
-		var $form = $('form#multiship_address');
-		BLC.ajax({url: $form.attr('action'),
-				type: "POST", 
-				data: $form.serialize() 
-			}, function(data, extraData) {
-		    	var showAddAddressUrl = $('a.add-address-link').attr('href');
-				BLC.ajax({url: showAddAddressUrl}, function(data, extraData) {
-					$('#multiship-products').hide();
-					$('.fancybox-inner').append(data);
-				});
-			}
-		);
-		return false;
+        var $form = $('form#multiship_address');
+        BLC.ajax({url: $form.attr('action'),
+                type: "POST", 
+                data: $form.serialize() 
+            }, function(data, extraData) {
+                var showAddAddressUrl = $('a.add-address-link').attr('href');
+                BLC.ajax({url: showAddAddressUrl}, function(data, extraData) {
+                    $('#multiship-products').hide();
+                    $('.fancybox-inner').append(data);
+                });
+            }
+        );
+        return false;
     }
     
     function addAddAddressDropDownOptions() {
-		$('select.multiship-address')
+        $('select.multiship-address')
          .append($("<option></option>")
          .attr("value",'')
          .text('Add new address...')); 
@@ -75,51 +75,51 @@ $(function(){
 
     /* Show or Edit multiship options link was clicked */
     $('body').on('click', 'a#multiship', function() {
-		$.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
-			addAddAddressDropDownOptions();
-		}}));
-		return false;
+        $.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
+            addAddAddressDropDownOptions();
+        }}));
+        return false;
     });
     
     /* Add address from the dropdown was selected */
     $('body').on('change', 'select.multiship-address', function() {
-    	var $option = $(this).children(':selected');
-    	if ($option.text() == 'Add new address...') {
-    		showAddAddress();
-    	}
+        var $option = $(this).children(':selected');
+        if ($option.text() == 'Add new address...') {
+            showAddAddress();
+        }
     });
     
     /* Add address button clicked */
     $('body').on('click', 'a.add-address-link', function() {
-    	return showAddAddress();
+        return showAddAddress();
     });
     
     /* Cancel pressed on multiship */
     $('body').on('click', '#multiship-products a.cancel', function() {
-		$.fancybox.close();
-		return false;
+        $.fancybox.close();
+        return false;
     });
     
     /* Cancel pressed on add address */
     $('body').on('click', '#multiship-add-address a.cancel', function() {
-		$('#multiship-products').show();
-		$('#multiship-add-address').remove();
-		return false;
+        $('#multiship-products').show();
+        $('#multiship-add-address').remove();
+        return false;
     });
     
     /* Save pressed on add address */
-	$('body').on('click', '#multiship-add-address input.save', function() {
-		var $form = $(this).closest('form');
-		
-		BLC.ajax({url: $form.attr('action'),
-				type: "POST", 
-				data: $form.serialize(),
-				cache: false
-			}, function(data, extraData) {
-				$('.fancybox-inner').html(data);
-				addAddAddressDropDownOptions();
-			}
-		);
-		return false;
-	});
+    $('body').on('click', '#multiship-add-address input.save', function() {
+        var $form = $(this).closest('form');
+        
+        BLC.ajax({url: $form.attr('action'),
+                type: "POST", 
+                data: $form.serialize(),
+                cache: false
+            }, function(data, extraData) {
+                $('.fancybox-inner').html(data);
+                addAddAddressDropDownOptions();
+            }
+        );
+        return false;
+    });
 });

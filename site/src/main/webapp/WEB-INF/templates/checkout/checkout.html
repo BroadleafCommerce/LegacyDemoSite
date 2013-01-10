@@ -1,119 +1,119 @@
 <div id="cart">
     <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
-    	Your cart is empty
-    	<br/>
-    	<a th:href="@{/}">Continue Shopping</a>
+        Your cart is empty
+        <br/>
+        <a th:href="@{/}">Continue Shopping</a>
     </div>
     
     <div th:unless="${#lists.isEmpty(cart.orderItems)}">
 
-	    <div class="cart_title">
-	        Order Summary
-	         <a id="cartLink" class="fancycart refreshonclose" th:href="@{/cart}">
-	            Edit
-	        </a>
-	    </div>
-	    <table id="cart_summary" class="order_summary">
-	        <thead>
-	        <tr>
-	            <th>&nbsp;</th>
-	            <th align="left">Item</th>
-	            <th>Quantity</th>
-	            <th>Price</th>
-	            <th>Discount</th>
-	            <th>Total</th>
-	        </tr>
-	        </thead>
-	        <tbody>
-	        <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-	            <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
-	            <td align="left">
-	                <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
-	                <br/>
-	                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-	                    <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-	                </ul>
-					<ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
-						<li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
-					</ul>
-	            </td>
-	            <td align="center" th:text="*{quantity}"></td>
-	            <td align="center" blc:price="*{price}"></td>
-	            <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-	            <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
-	
-	            <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
-	        </tr>
-	        </tbody>
-	    </table>
+        <div class="cart_title">
+            Order Summary
+             <a id="cartLink" class="fancycart refreshonclose" th:href="@{/cart}">
+                Edit
+            </a>
+        </div>
+        <table id="cart_summary" class="order_summary">
+            <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th align="left">Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
+                <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+                <td align="left">
+                    <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                    <br/>
+                    <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
+                        <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
+                    </ul>
+                    <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
+                        <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
+                    </ul>
+                </td>
+                <td align="center" th:text="*{quantity}"></td>
+                <td align="center" blc:price="*{price}"></td>
+                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
+                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
     
-	    <div class="cart_title">
-	    	Step 1 &raquo; Order Information
-		    <a th:if="${validOrderInfo and customer.anonymous}" th:href="@{/checkout(edit-order-info='true')}">
-	            Edit
-	        </a>
-	    </div>
-	    
-		<div th:substituteby="checkout/partials/orderInfoForm"></div>
-	
-	    <div class="cart_title">
-	    	Step 2 &raquo; Shipping Information
-		    <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
-	            Edit
-	        </a>
-	    </div>
-	    
-	    <div class="clearfix"></div>
-	    
-	    <div th:unless="${validOrderInfo}" class="checkout_warning" >
-	        Please fill out the basic order information to complete purchase
-	    </div>
-	    
-	    <div th:if="${validOrderInfo}">
-		    <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
-		    	<table th:substituteby="checkout/partials/multishipInfo"></table>
-		    </div>
-		    <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
-		    	<div th:substituteby="checkout/partials/shippingInfoForm"></div>
-		    </div>
-		    
-		    <div th:if="${validShipping}" id="cart_total" class="group">
-		        <h3>Order Total</h3>
-		        <table width="100%" id="total_table" border="0">
-		            <tr>
-		                <td>Subtotal</td>
-		                <td blc:price="${cart.subTotal}"></td>
-		            </tr>
-		            <tr>
-		                <td>Promotions</td>
-		                <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
-		                <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
-		            </tr>
-		            <tr>
-		                <td>Taxes</td>
-		                <td blc:price="${cart.totalTax}"></td>
-		            </tr>
-		            <tr>
-		                <td>Shipping</td>
-		                <td blc:price="${cart.totalShipping}"></td>
-		            </tr>
-		            <tr class="subtotal">
-		            	<td>Total</td>
-		            	<td class="price" blc:price="${cart.total}"></td>
-		            </tr>
-		        </table>
-		     </div>    
-	     </div>
-	
-	    <div class="cart_title">Step 3 &raquo; Billing Information</div>
-	
-	    <div class="clearfix"></div>
-	
-	    <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
-	        Please fill out a shipping address and pick a shipping method to complete purchase
-	    </div>
-	
-	    <div th:substituteby="checkout/partials/billingInfoForm" />
-	</div>
+                <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
+            </tr>
+            </tbody>
+        </table>
+    
+        <div class="cart_title">
+            Step 1 &raquo; Order Information
+            <a th:if="${validOrderInfo and customer.anonymous}" th:href="@{/checkout(edit-order-info='true')}">
+                Edit
+            </a>
+        </div>
+        
+        <div th:substituteby="checkout/partials/orderInfoForm"></div>
+    
+        <div class="cart_title">
+            Step 2 &raquo; Shipping Information
+            <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
+                Edit
+            </a>
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        <div th:unless="${validOrderInfo}" class="checkout_warning" >
+            Please fill out the basic order information to complete purchase
+        </div>
+        
+        <div th:if="${validOrderInfo}">
+            <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+                <table th:substituteby="checkout/partials/multishipInfo"></table>
+            </div>
+            <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+                <div th:substituteby="checkout/partials/shippingInfoForm"></div>
+            </div>
+            
+            <div th:if="${validShipping}" id="cart_total" class="group">
+                <h3>Order Total</h3>
+                <table width="100%" id="total_table" border="0">
+                    <tr>
+                        <td>Subtotal</td>
+                        <td blc:price="${cart.subTotal}"></td>
+                    </tr>
+                    <tr>
+                        <td>Promotions</td>
+                        <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
+                        <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
+                    </tr>
+                    <tr>
+                        <td>Taxes</td>
+                        <td blc:price="${cart.totalTax}"></td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td blc:price="${cart.totalShipping}"></td>
+                    </tr>
+                    <tr class="subtotal">
+                        <td>Total</td>
+                        <td class="price" blc:price="${cart.total}"></td>
+                    </tr>
+                </table>
+             </div>    
+         </div>
+    
+        <div class="cart_title">Step 3 &raquo; Billing Information</div>
+    
+        <div class="clearfix"></div>
+    
+        <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
+            Please fill out a shipping address and pick a shipping method to complete purchase
+        </div>
+    
+        <div th:substituteby="checkout/partials/billingInfoForm" />
+    </div>
 
 </div>
