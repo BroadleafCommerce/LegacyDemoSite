@@ -1,19 +1,19 @@
 <div class="product-options hidden" th:fragment="productOptions">
-	<blc:product_options productId="${product.id}" />
-	<div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}" />
-	<ul>
-		<li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
-			<label th:text="*{label}"></label>:  <span th:id="*{attributeName}" class="option-value"></span>
-			<ul class="cf">
-				<li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
-					<div>
-						<a href="#" class="option-label" th:text="*{attributeValue}"></a>
-					</div>
-				</li>
-			</ul>						
-		</li>
-	</ul>
-	
-	<span class="error centered" style="display: none;"><span th:text="#{product.allOptionsRequired}">All options are required</span></span>
-	<span class="error errorMessage" style="display: none;"></span>
+    <blc:product_options productId="${product.id}" />
+    <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}" />
+    <ul>
+        <li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
+            <label th:text="*{label}"></label>:  <span th:id="*{attributeName}" class="option-value"></span>
+            <ul class="cf">
+                <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
+                    <div>
+                        <a href="#" class="option-label" th:text="*{attributeValue}"></a>
+                    </div>
+                </li>
+            </ul>                       
+        </li>
+    </ul>
+    
+    <span class="error centered" style="display: none;"><span th:text="#{product.allOptionsRequired}">All options are required</span></span>
+    <span class="error errorMessage" style="display: none;"></span>
 </div>

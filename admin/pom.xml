@@ -1,280 +1,280 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.mycompany</groupId>
-		<artifactId>ecommerce-website</artifactId>
-		<version>1.0</version>
-	</parent>
-	<artifactId>admin</artifactId>
-	<packaging>war</packaging>
-	<name>admin</name>
-	<description>Web Module For Customized Broadleaf Commerce Admin</description>
-	<properties>
-		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-		<!-- httpsPort and httpPort	are used by embeded jetty server.-->
-		<!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
-		<httpsPort>8444</httpsPort> 
-		<httpPort>8081</httpPort>
-	</properties>
-	<build>
-		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
-		<finalName>admin</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<configuration>
-							<extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
-		                    <strict>true</strict>
-						</configuration>
-						<goals>
-							<goal>compile</goal>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<style>DETAILED</style>
-					<modules>
-						<module>com.mycompany.gwt.mycompanyAdmin</module>
-					</modules>
-					<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
-				    <noServer>true</noServer>
-					<inplace>false</inplace>
-					<hostedWebapp>${webappDirectory}</hostedWebapp>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mycompany</groupId>
+        <artifactId>ecommerce-website</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>admin</artifactId>
+    <packaging>war</packaging>
+    <name>admin</name>
+    <description>Web Module For Customized Broadleaf Commerce Admin</description>
+    <properties>
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+        <!-- httpsPort and httpPort are used by embeded jetty server.-->
+        <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
+        <httpsPort>8444</httpsPort> 
+        <httpPort>8081</httpPort>
+    </properties>
+    <build>
+        <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+        <finalName>admin</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
+                            <strict>true</strict>
+                        </configuration>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <style>DETAILED</style>
+                    <modules>
+                        <module>com.mycompany.gwt.mycompanyAdmin</module>
+                    </modules>
+                    <extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
+                    <noServer>true</noServer>
+                    <inplace>false</inplace>
+                    <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <webappDirectory>${webappDirectory}/admin</webappDirectory>
                     <deploy>${webappDirectory}/WEB-INF/deploy</deploy>
-					<bindAddress>localhost</bindAddress>
-					<debugPort>8011</debugPort>
-					<port>8081</port>
-					<runTarget>admin/</runTarget>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webappDirectory>${webappDirectory}</webappDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.5.v20120716</version>
-				<configuration>
-					<webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-					<contextPath>/admin</contextPath>
-					<stopPort>9967</stopPort>
-					<stopKey>foo</stopKey>
-		
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>${httpPort}</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-						<connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
-							<port>${httpsPort}</port>
-							<keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
-							<keyPassword>broadleaf</keyPassword>
-							<password>broadleaf</password>
-						</connector>
-					</connectors>
-				</configuration>
-			</plugin>
+                    <bindAddress>localhost</bindAddress>
+                    <debugPort>8011</debugPort>
+                    <port>8081</port>
+                    <runTarget>admin/</runTarget>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webappDirectory>${webappDirectory}</webappDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.1.5.v20120716</version>
+                <configuration>
+                    <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
+                    <contextPath>/admin</contextPath>
+                    <stopPort>9967</stopPort>
+                    <stopKey>foo</stopKey>
+        
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${httpPort}</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                        <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
+                            <port>${httpsPort}</port>
+                            <keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
+                            <keyPassword>broadleaf</keyPassword>
+                            <password>broadleaf</password>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
     
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-			 		<excludeDefaultDirectories>true</excludeDefaultDirectories>
-					<filesets>
-						<fileset>
-							<directory>target</directory>
-							<excludes>
-								<exclude>admin/admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
-								<exclude>gwt-unitCache/**</exclude>
-							</excludes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>			
-			
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>keytool-maven-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<id>clean</id>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-					<execution>
-						<phase>generate-resources</phase>
-						<id>genkey</id>
-						<goals>
-							<goal>genkey</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
-					<dname>cn=localhost</dname>
-					<keypass>broadleaf</keypass>
-					<storepass>broadleaf</storepass>
-					<alias>broadleaf</alias>
-					<keyalg>RSA</keyalg>
-				</configuration>
-			</plugin>
-	
-			<plugin>
-				<groupId>org.zeroturnaround</groupId>
-				<artifactId>jrebel-maven-plugin</artifactId>
-				<configuration>
-					<packaging>war</packaging>
-					<rootPath>${basedir}</rootPath>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-rebel-xml</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>timestamp-property</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>timestamp-property</goal>
-						</goals>
-						<configuration>
-							<name>clientBuildDate</name>
-							<pattern>yyyy-MM-dd HH:mm:ss</pattern>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-			</resource>
-		</resources>
-	</build>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    <filesets>
+                        <fileset>
+                            <directory>target</directory>
+                            <excludes>
+                                <exclude>admin/admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
+                                <exclude>gwt-unitCache/**</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>           
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>keytool-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <id>clean</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <id>genkey</id>
+                        <goals>
+                            <goal>genkey</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
+                    <dname>cn=localhost</dname>
+                    <keypass>broadleaf</keypass>
+                    <storepass>broadleaf</storepass>
+                    <alias>broadleaf</alias>
+                    <keyalg>RSA</keyalg>
+                </configuration>
+            </plugin>
+    
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>jrebel-maven-plugin</artifactId>
+                <configuration>
+                    <packaging>war</packaging>
+                    <rootPath>${basedir}</rootPath>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>clientBuildDate</name>
+                            <pattern>yyyy-MM-dd HH:mm:ss</pattern>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+            </resource>
+        </resources>
+    </build>
     <profiles>
     
         <profile>
             <id>gwt-jrebel</id>
             <build>
-	            <plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<configuration>
-							<extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M -javaagent:${jrebel.path}</extraJvmArgs>
-						</configuration>
-					</plugin>
-				</plugins>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>gwt-maven-plugin</artifactId>
+                        <configuration>
+                            <extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M -javaagent:${jrebel.path}</extraJvmArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
         
         <profile>
             <id>full-clean</id>
             <build>
-	            <plugins>
-					<plugin>
-						<artifactId>maven-clean-plugin</artifactId>
-						<configuration>
-					 		<excludeDefaultDirectories>false</excludeDefaultDirectories>
-						</configuration>
-					</plugin>			
-				</plugins>
-			</build>
-		</profile>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <configuration>
+                            <excludeDefaultDirectories>false</excludeDefaultDirectories>
+                        </configuration>
+                    </plugin>           
+                </plugins>
+            </build>
+        </profile>
             
     </profiles>
-	<dependencies>
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-admin-module</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-contentmanagement-module</artifactId>
-		</dependency>
-	
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-framework-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.broadleafcommerce</groupId>
-			<artifactId>broadleaf-common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.broadleafcommerce</groupId>
+            <artifactId>broadleaf-admin-module</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.broadleafcommerce</groupId>
+            <artifactId>broadleaf-contentmanagement-module</artifactId>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.broadleafcommerce</groupId>
+            <artifactId>broadleaf-framework-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.broadleafcommerce</groupId>
+            <artifactId>broadleaf-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
         </dependency>
         <dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator-annotation-processor</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-		</dependency>
-	</dependencies>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>

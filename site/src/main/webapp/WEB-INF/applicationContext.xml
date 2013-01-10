@@ -7,9 +7,9 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
-		http://www.springframework.org/schema/jee
-		http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
-		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+        http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
@@ -74,69 +74,69 @@
     <!-- application footprint, it will default the search service to use the database implementation, which  -->
     <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
     <!-- majority of cases. Note that you may also pass in a bean reference to a SolrServer if you would prefer -->
-	<!-- to use a standalone solr server. (The default constructor will create an embedded one at solrHome) -->
+    <!-- to use a standalone solr server. (The default constructor will create an embedded one at solrHome) -->
     <bean id="solrEmbedded" class="java.lang.String">
         <constructor-arg value="solrhome"/>
     </bean>
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
-    	<constructor-arg name="solrServer" ref="${solr.source}" />
+        <constructor-arg name="solrServer" ref="${solr.source}" />
     </bean> 
-   	<bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-	  	<property name="targetObject" ref="blSearchService" />
-	  	<property name="targetMethod" value="rebuildIndex" />
-	</bean> 
-	<bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
-	    <property name="jobDetail" ref="rebuildIndexJobDetail" />
-	    <property name="startDelay" value="${solr.index.start.delay}" />
-	    <property name="repeatInterval" value="${solr.index.repeat.interval}" />
-	</bean>
-	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-	    <property name="triggers">
-	        <list>
-	            <ref bean="rebuildIndexTrigger" />
-	        </list>
-	    </property>
-	</bean>
-	
+    <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="blSearchService" />
+        <property name="targetMethod" value="rebuildIndex" />
+    </bean> 
+    <bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="rebuildIndexJobDetail" />
+        <property name="startDelay" value="${solr.index.start.delay}" />
+        <property name="repeatInterval" value="${solr.index.repeat.interval}" />
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="rebuildIndexTrigger" />
+            </list>
+        </property>
+    </bean>
+    
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
-	<!-- Note that the same thing could be done for the blEmailTemplateEngine -->
+    <!-- Note that the same thing could be done for the blEmailTemplateEngine -->
     <!-- 
-	<bean id="myDialect" class="com.mycompany.common.web.dialect.MyDialect">
-	    <property name="processors">
-		  <set>
-			<bean class="com.mycompany.common.web.processor.MyProcessor" />
-		  </set>
-		</property>  	
-	</bean> 
-	<bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
-		<property name="dialects">
-			<set>
-				<ref bean="myDialect" />
-			</set>
-		</property>
-	</bean>	
-	-->
-	
-	<!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
-	<!-- you may want to override the bean definitions by uncommenting these two beans -->
-	<!-- to control whether or not templates are cacheable. This will generally be desireable -->
-	<!-- in production environments, but likely not in development environments. -->
-	<!-- 
-	<bean id="blWebTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-		<property name="prefix" value="/WEB-INF/templates/" />
-		<property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML5" />
-		<property name="cacheable" value="false"/>
-		<property name="characterEncoding" value="UTF-8" />
-	</bean>	
-	<bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
-		<property name="prefix" value="emailTemplates/" />
-		<property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML5" />
-		<property name="cacheable" value="false"/>
-		<property name="characterEncoding" value="UTF-8" />
-	</bean>
-	-->
-	
+    <bean id="myDialect" class="com.mycompany.common.web.dialect.MyDialect">
+        <property name="processors">
+          <set>
+            <bean class="com.mycompany.common.web.processor.MyProcessor" />
+          </set>
+        </property>     
+    </bean> 
+    <bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+        <property name="dialects">
+            <set>
+                <ref bean="myDialect" />
+            </set>
+        </property>
+    </bean> 
+    -->
+    
+    <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
+    <!-- you may want to override the bean definitions by uncommenting these two beans -->
+    <!-- to control whether or not templates are cacheable. This will generally be desireable -->
+    <!-- in production environments, but likely not in development environments. -->
+    <!-- 
+    <bean id="blWebTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML5" />
+        <property name="cacheable" value="false"/>
+        <property name="characterEncoding" value="UTF-8" />
+    </bean> 
+    <bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+        <property name="prefix" value="emailTemplates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML5" />
+        <property name="cacheable" value="false"/>
+        <property name="characterEncoding" value="UTF-8" />
+    </bean>
+    -->
+    
 </beans>

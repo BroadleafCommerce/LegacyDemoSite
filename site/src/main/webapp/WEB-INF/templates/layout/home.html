@@ -7,34 +7,34 @@
 <blc:head pageTitle="Broadleaf Demo - Heat Clinic" />
 
 <body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="layout/partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">
-	
-		<nav th:substituteby="layout/partials/nav" />
-			
-		<blc:content contentType="Homepage Banner Ad" />	   
-		<div id="banners" th:if="${contentItem}">
-			<a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>		
-		</div>
-		
-	    <blc:content contentType="Homepage Middle Promo Snippet" />	
-		
+    <div id="notification_bar"></div>
+    <header th:substituteby="layout/partials/header" />
+    
+    <div id="content" class="width_setter group" role="main">
+    
+        <nav th:substituteby="layout/partials/nav" />
+            
+        <blc:content contentType="Homepage Banner Ad" />       
+        <div id="banners" th:if="${contentItem}">
+            <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" alt="Buy One Get One" /></a>        
+        </div>
+        
+        <blc:content contentType="Homepage Middle Promo Snippet" /> 
+        
         <a th:href="@{/register}" th:if="${contentItem}" style="text-decoration:none">
             <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
         </a>
 
-		
-		<blc:content contentType="Homepage Featured Products Title" />    
-		<div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
-		
-		<ul id="products" class="group">
-			<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-		</ul>
-	</div>
-	
-	<footer th:substituteby="layout/partials/footer" />
-	
+        
+        <blc:content contentType="Homepage Featured Products Title" />    
+        <div th:if="${contentItem}" class="title_bar" th:text="${contentItem['messageText']}"></div>
+        
+        <ul id="products" class="group">
+            <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+        </ul>
+    </div>
+    
+    <footer th:substituteby="layout/partials/footer" />
+    
 </body>
 </html>

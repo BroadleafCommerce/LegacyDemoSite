@@ -7,24 +7,24 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
 -->
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
 
-	<!-- Add an EnvEntry only valid for this webapp -->
+    <!-- Add an EnvEntry only valid for this webapp -->
     <New id="appName" class="org.eclipse.jetty.plus.jndi.EnvEntry">
-		<Arg>appName</Arg>
-		<Arg type="java.lang.String">mycompany-admin</Arg>
-		<Arg type="boolean">true</Arg>
-	</New>
-	
-	<New id="webDS" class="org.eclipse.jetty.plus.jndi.Resource">
-		<Arg>jdbc/web</Arg>
-		<Arg>
-			<New class="org.apache.commons.dbcp.BasicDataSource">
-				<Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-				<Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-				<Set name="username">sa</Set>
-				<Set name="password"></Set>
-			</New>
-		</Arg>
-	</New>
+        <Arg>appName</Arg>
+        <Arg type="java.lang.String">mycompany-admin</Arg>
+        <Arg type="boolean">true</Arg>
+    </New>
+    
+    <New id="webDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/web</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="username">sa</Set>
+                <Set name="password"></Set>
+            </New>
+        </Arg>
+    </New>
 
     <New id="webSecureDS" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg>jdbc/secure</Arg>

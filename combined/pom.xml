@@ -16,7 +16,7 @@
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <gwtModule>com.mycompany.gwt.mycompanyAdmin</gwtModule>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- httpsPort and httpPort	are used by embeded jetty server.-->
+        <!-- httpsPort and httpPort are used by embeded jetty server.-->
         <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
         <httpsPort>8443</httpsPort>
         <httpPort>8080</httpPort>

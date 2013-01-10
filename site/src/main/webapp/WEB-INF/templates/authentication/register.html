@@ -1,47 +1,47 @@
 <div id="account">
-	<div style="display:none;" th:fragment="title" th:inline="text">Register - Broadleaf Demo - Heat Clinic</div>
+    <div style="display:none;" th:fragment="title" th:inline="text">Register - Broadleaf Demo - Heat Clinic</div>
 
-	<div id="register">
-		<h3><span th:text="#{register.registerForAccount}">Register for an Account</span></h3>
-		<p><span th:text="#{register.signUpNow}">Don't have an account yet? Sign up for one now to gain access to all our member tools</span>.</p>
+    <div id="register">
+        <h3><span th:text="#{register.registerForAccount}">Register for an Account</span></h3>
+        <p><span th:text="#{register.signUpNow}">Don't have an account yet? Sign up for one now to gain access to all our member tools</span>.</p>
 
-		<blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
-			<input type="hidden" th:field="*{redirectUrl}" />
-				
-			<div class="form50">
-				<label for="customer.emailAddress"><span th:text="#{register.email}">Email</span></label>
-				<span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>
-				<input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'" />
-			</div>
-			<div class="form50">
-				<label for="customer.firstName"><span th:text="#{register.firstName}">First Name</span></label>
-				<span class="error" th:if="${#fields.hasErrors('customer.firstName')}" th:errors="*{customer.firstName}"></span>
-				<input type="text" th:field="*{customer.firstName}" class="field50" th:classappend="${#fields.hasErrors('customer.firstName')}? 'fieldError'" />
-			</div>
-			<div class="form50">
-				<label for="customer.lastName"><span th:text="#{register.lastName}">Last Name</span></label>
-				<span class="error" th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}"></span>
-				<input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" />
-			</div>			
-			<div class="form50">
-				<label for="password"><span th:text="#{register.password}">Password</span></label>
-			    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-				<input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" />
-			</div>
-			<div class="form50">
-				<label for="confirmPassword"><span th:text="#{register.confirmPassword}">Confirm Password</span></label>
-			    <span class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
-				<input type="password" th:field="*{passwordConfirm}" class="field50" th:classappend="${#fields.hasErrors('passwordConfirm')}? 'fieldError'" />
-			</div>			
-			
-			<div class="login_register">
-				<input class="register_button big red" type="submit" th:value="#{register.register}"/>
-			</div>
-			<div class="login_register_alt_links">
-				<a class="account" th:href="@{/login}"><span th:text="#{register.login}">Login</span></a>
-				<br/>
-				<a class="account" th:href="@{/login/forgotPassword}"><span th:text="#{register.forgotPassword}">Forgot Password</span></a>
-			</div>
-		</blc:form>
-	</div>	
+        <blc:form id="registrationForm" action="#" th:object="${registrationForm}" th:action="@{/register}" method="post" class="clearfix">
+            <input type="hidden" th:field="*{redirectUrl}" />
+                
+            <div class="form50">
+                <label for="customer.emailAddress"><span th:text="#{register.email}">Email</span></label>
+                <span class="error" th:if="${#fields.hasErrors('customer.emailAddress')}" th:errors="*{customer.emailAddress}"></span>
+                <input type="email" th:field="*{customer.emailAddress}" class="field50" th:classappend="${#fields.hasErrors('customer.emailAddress')}? 'fieldError'" />
+            </div>
+            <div class="form50">
+                <label for="customer.firstName"><span th:text="#{register.firstName}">First Name</span></label>
+                <span class="error" th:if="${#fields.hasErrors('customer.firstName')}" th:errors="*{customer.firstName}"></span>
+                <input type="text" th:field="*{customer.firstName}" class="field50" th:classappend="${#fields.hasErrors('customer.firstName')}? 'fieldError'" />
+            </div>
+            <div class="form50">
+                <label for="customer.lastName"><span th:text="#{register.lastName}">Last Name</span></label>
+                <span class="error" th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}"></span>
+                <input type="text" th:field="*{customer.lastName}" class="field50" th:classappend="${#fields.hasErrors('customer.lastName')}? 'fieldError'" />
+            </div>          
+            <div class="form50">
+                <label for="password"><span th:text="#{register.password}">Password</span></label>
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <input type="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'" />
+            </div>
+            <div class="form50">
+                <label for="confirmPassword"><span th:text="#{register.confirmPassword}">Confirm Password</span></label>
+                <span class="error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
+                <input type="password" th:field="*{passwordConfirm}" class="field50" th:classappend="${#fields.hasErrors('passwordConfirm')}? 'fieldError'" />
+            </div>          
+            
+            <div class="login_register">
+                <input class="register_button big red" type="submit" th:value="#{register.register}"/>
+            </div>
+            <div class="login_register_alt_links">
+                <a class="account" th:href="@{/login}"><span th:text="#{register.login}">Login</span></a>
+                <br/>
+                <a class="account" th:href="@{/login/forgotPassword}"><span th:text="#{register.forgotPassword}">Forgot Password</span></a>
+            </div>
+        </blc:form>
+    </div>  
 </div>

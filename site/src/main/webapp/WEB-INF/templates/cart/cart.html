@@ -1,30 +1,30 @@
 <div id="cart" class="cart_modal">
-	<div th:fragment="title" th:inline="text" style="display: none;">Cart - Broadleaf Demo - Heat Clinic</div>
+    <div th:fragment="title" th:inline="text" style="display: none;">Cart - Broadleaf Demo - Heat Clinic</div>
 
     <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
     <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <table th:substituteby="cart/partials/cartProductsTable"></table>
 
-	<div id="cart_total" class="group">
-		<h3><span th:text="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
-		<div id="subtotal" th:unless="${cart.subTotal.zero}" blc:price="${cart.subTotal.subtract(cart.orderAdjustmentsValue)}"></div>
-		<div id="orderDiscounts" th:unless="${cart.orderAdjustmentsValue.zero}">
+    <div id="cart_total" class="group">
+        <h3><span th:text="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
+        <div id="subtotal" th:unless="${cart.subTotal.zero}" blc:price="${cart.subTotal.subtract(cart.orderAdjustmentsValue)}"></div>
+        <div id="orderDiscounts" th:unless="${cart.orderAdjustmentsValue.zero}">
             <span th:text="#{cart.orderDiscount}">Order Discount</span>: <span blc:price="${cart.orderAdjustmentsValue}" />
-		</div>
-		<p><span th:text="#{cart.subtotalDisclaimer}">Subtotal does not yet include applicable tax or shipping and handling charges</span>.</p>
-		<div id="checkout"><a th:href="@{/checkout}" target="_top" class="big-button red-button"><span th:text="#{cart.checkout}">Checkout</span></a></div>
-		<p><a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a></p>
-	</div>
-	<blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
-		<label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
-		<input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/>
-		<input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
-		<div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
-			<div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
-		</div>
-		<div id="cart_promo_error" style="display: none;"></div>
-	</blc:form>
-	
-	<div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
+        </div>
+        <p><span th:text="#{cart.subtotalDisclaimer}">Subtotal does not yet include applicable tax or shipping and handling charges</span>.</p>
+        <div id="checkout"><a th:href="@{/checkout}" target="_top" class="big-button red-button"><span th:text="#{cart.checkout}">Checkout</span></a></div>
+        <p><a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a></p>
+    </div>
+    <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
+        <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
+        <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/>
+        <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
+        <div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
+            <div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
+        </div>
+        <div id="cart_promo_error" style="display: none;"></div>
+    </blc:form>
+    
+    <div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
 
 </div>

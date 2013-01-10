@@ -33,11 +33,11 @@ import java.io.IOException;
 @RequestMapping("/search")
 public class SearchController extends BroadleafSearchController {
 
-	@Override
+    @Override
     @RequestMapping("")
-	public String search(Model model, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "q") String q) throws ServletException, IOException, ServiceException {
-		return super.search(model, request,response, q);
+    public String search(Model model, HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "q") String q) throws ServletException, IOException, ServiceException {
+        return super.search(model, request,response, q);
     }
 
 }

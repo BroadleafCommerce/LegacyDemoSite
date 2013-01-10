@@ -1,100 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:p="http://www.springframework.org/schema/p"
     xmlns:sec="http://www.springframework.org/schema/security"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-    	http://www.springframework.org/schema/beans
-    	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-    	http://www.springframework.org/schema/context
-    	http://www.springframework.org/schema/context/spring-context-3.1.xsd
-    	http://www.springframework.org/schema/security
-    	http://www.springframework.org/schema/security/spring-security-3.1.xsd
-    	http://www.springframework.org/schema/util
-    	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
 
     <!-- Resources do not need security -->
-	<sec:http pattern="/**/resources/css/**" security="none" />
-	<sec:http pattern="/**/resources/img/**" security="none" />
-	<sec:http pattern="/**/resources/js/**" security="none" />
-	<sec:http pattern="/**/utility.service" security="none" />
-	<sec:http pattern="/**/remote_logging" security="none" />
-	<sec:http pattern="/favicon.ico" security="none" />
-	<sec:http pattern="/robots.txt" security="none" />
+    <sec:http pattern="/**/resources/css/**" security="none" />
+    <sec:http pattern="/**/resources/img/**" security="none" />
+    <sec:http pattern="/**/resources/js/**" security="none" />
+    <sec:http pattern="/**/utility.service" security="none" />
+    <sec:http pattern="/**/remote_logging" security="none" />
+    <sec:http pattern="/favicon.ico" security="none" />
+    <sec:http pattern="/robots.txt" security="none" />
     <sec:http pattern="/login" security="none" />
     <sec:http pattern="/forgotUsername" security="none" />
     <sec:http pattern="/forgotPassword" security="none" />
     <sec:http pattern="/changePassword" security="none" />
     <sec:http pattern="/resetPassword" security="none" />
-	
-	<!-- Set up Spring security for the application -->
-	<sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" entry-point-ref="adminAuthenticationEntryPoint">
-		<!-- All admin URLs will be secured with https -->
-		<sec:intercept-url pattern="/" requires-channel="any" />
-		<sec:intercept-url pattern="/**" requires-channel="any" />
-		
-		<!-- Define the login form along with the success and failure handlers -->
-		<sec:form-login
-			authentication-success-handler-ref="blAdminAuthenticationSuccessHandler"
-			authentication-failure-handler-ref="blAdminAuthenticationFailureHandler"
-			login-processing-url="/login_admin_post"
-		/>
-		
-		<!-- Provide the logout handler -->
-		<sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/login"/>
-		
-		<!-- Since we run this alongside the site, we need to set up the special port mapping -->
-		<!-- This isn't necessary for site becauase it utilizes a default mapping -->
-		<!-- Note that since we are providing a special mapping, we must repeat the default ones -->
-		<sec:port-mappings>
-			<sec:port-mapping http="80" https="443"/>
-			<sec:port-mapping http="8080" https="8443"/>
-			<sec:port-mapping http="8081" https="8444"/>
-		</sec:port-mappings>
-		
-		<!-- Specify our custom filters -->
-		<sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
-	</sec:http>
+    
+    <!-- Set up Spring security for the application -->
+    <sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" entry-point-ref="adminAuthenticationEntryPoint">
+        <!-- All admin URLs will be secured with https -->
+        <sec:intercept-url pattern="/" requires-channel="any" />
+        <sec:intercept-url pattern="/**" requires-channel="any" />
+        
+        <!-- Define the login form along with the success and failure handlers -->
+        <sec:form-login
+            authentication-success-handler-ref="blAdminAuthenticationSuccessHandler"
+            authentication-failure-handler-ref="blAdminAuthenticationFailureHandler"
+            login-processing-url="/login_admin_post"
+        />
+        
+        <!-- Provide the logout handler -->
+        <sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/login"/>
+        
+        <!-- Since we run this alongside the site, we need to set up the special port mapping -->
+        <!-- This isn't necessary for site becauase it utilizes a default mapping -->
+        <!-- Note that since we are providing a special mapping, we must repeat the default ones -->
+        <sec:port-mappings>
+            <sec:port-mapping http="80" https="443"/>
+            <sec:port-mapping http="8080" https="8443"/>
+            <sec:port-mapping http="8081" https="8444"/>
+        </sec:port-mappings>
+        
+        <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
+    </sec:http>
 
     <bean id="adminAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <constructor-arg value="/login"/>
         <property name="useForward" value="true"/>
     </bean>
-	
-	<!-- The BLC Admin authentication manager -->
-	<sec:authentication-manager alias="blAdminAuthenticationManager">
-		<sec:authentication-provider user-service-ref="blAdminUserDetailsService">
-			<sec:password-encoder hash="plaintext" />
-		</sec:authentication-provider>
-	</sec:authentication-manager>
-	
-	<!-- The service used by the authentication manager -->
+    
+    <!-- The BLC Admin authentication manager -->
+    <sec:authentication-manager alias="blAdminAuthenticationManager">
+        <sec:authentication-provider user-service-ref="blAdminUserDetailsService">
+            <sec:password-encoder hash="plaintext" />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+    
+    <!-- The service used by the authentication manager -->
     <bean id="blAdminUserDetailsService" class="org.broadleafcommerce.openadmin.server.security.service.AdminUserDetailsServiceImpl"/>
-	
-	<!-- This ensures that the user has permissions to perform the requested operation -->
-	<bean id="blAdminFilterSecurityInterceptor"
-		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
-		<property name="accessDecisionManager" ref="blAccessDecisionManager"/>
-		<property name="authenticationManager" ref="blAdminAuthenticationManager" />
-		<property name="securityMetadataSource">
-			<sec:filter-security-metadata-source>
-				<sec:intercept-url pattern="/**/modules*" access="PERMISSION_OTHER_DEFAULT" />
-				<sec:intercept-url pattern="/**/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
+    
+    <!-- This ensures that the user has permissions to perform the requested operation -->
+    <bean id="blAdminFilterSecurityInterceptor"
+        class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="accessDecisionManager" ref="blAccessDecisionManager"/>
+        <property name="authenticationManager" ref="blAdminAuthenticationManager" />
+        <property name="securityMetadataSource">
+            <sec:filter-security-metadata-source>
+                <sec:intercept-url pattern="/**/modules*" access="PERMISSION_OTHER_DEFAULT" />
+                <sec:intercept-url pattern="/**/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
                 <sec:intercept-url pattern="/*" access="PERMISSION_OTHER_DEFAULT" />
-			</sec:filter-security-metadata-source>
-		</property>
-	</bean>
-	
+            </sec:filter-security-metadata-source>
+        </property>
+    </bean>
+    
     <!-- Sets the login failure URL -->
-	<bean id="blAdminAuthenticationFailureHandler" class="org.broadleafcommerce.openadmin.security.BroadleafAdminAuthenticationFailureHandler">
-		<constructor-arg value="/login?login_error=true" />
-	</bean>
+    <bean id="blAdminAuthenticationFailureHandler" class="org.broadleafcommerce.openadmin.security.BroadleafAdminAuthenticationFailureHandler">
+        <constructor-arg value="/login?login_error=true" />
+    </bean>
 
     <!-- Sets the login success URL -->
     <bean id="blAdminAuthenticationSuccessHandler" class="org.broadleafcommerce.openadmin.security.BroadleafAdminAuthenticationSuccessHandler">
@@ -103,17 +103,17 @@
     </bean>
     
     <!-- The access decision manager works in conjunciton with global method security -->
-	<bean id="blAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
-		<property name="decisionVoters">
-			<list>
-				<bean class="org.springframework.security.access.vote.RoleVoter">
-					<property name="rolePrefix" value="PERMISSION_" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-	
-	<!-- Allow the @Secured annotations -->
-	<sec:global-method-security access-decision-manager-ref="blAccessDecisionManager" secured-annotations="enabled" />
+    <bean id="blAccessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.access.vote.RoleVoter">
+                    <property name="rolePrefix" value="PERMISSION_" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- Allow the @Secured annotations -->
+    <sec:global-method-security access-decision-manager-ref="blAccessDecisionManager" secured-annotations="enabled" />
 
 </beans>

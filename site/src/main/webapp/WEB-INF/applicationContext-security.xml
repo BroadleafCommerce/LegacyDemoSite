@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:p="http://www.springframework.org/schema/p"
     xmlns:sec="http://www.springframework.org/schema/security"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-    	http://www.springframework.org/schema/beans
-    	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-    	http://www.springframework.org/schema/context
-    	http://www.springframework.org/schema/context/spring-context-3.1.xsd
-    	http://www.springframework.org/schema/security
-    	http://www.springframework.org/schema/security/spring-security-3.1.xsd
-    	http://www.springframework.org/schema/util
-    	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
     <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
     
     <!-- Resources do not need security -->
-	<sec:http pattern="/css/**" security="none" />
-	<sec:http pattern="/fonts/**" security="none" />
-	<sec:http pattern="/img/**" security="none" />
-	<sec:http pattern="/js/**" security="none" />       
-	<sec:http pattern="/favicon.ico" security="none" />       
+    <sec:http pattern="/css/**" security="none" />
+    <sec:http pattern="/fonts/**" security="none" />
+    <sec:http pattern="/img/**" security="none" />
+    <sec:http pattern="/js/**" security="none" />       
+    <sec:http pattern="/favicon.ico" security="none" />       
     <sec:http pattern="/robots.txt" security="none" />
     <!-- This also goes for static assets delivered by the application -->
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />       
-	
-	<!-- Set up Spring security for the application -->
-	<sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
-		<!-- We handle session fixation protection ourselves  -->
-	    <sec:session-management session-fixation-protection="none" />
-	    
-	    <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
-		<sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
-	    
-		<!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
-		<sec:intercept-url pattern="/register*" requires-channel="https" />
-		<sec:intercept-url pattern="/login*/**" requires-channel="https" />
-		<sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
-		<sec:intercept-url pattern="/checkout/**" requires-channel="https" />
-		<sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
-		
-		<!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
-		<sec:intercept-url pattern="/cart/**" requires-channel="any" />
-		
-		<!-- All URLs not explicitly specified as https will be served under http -->
+    
+    <!-- Set up Spring security for the application -->
+    <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
+        <!-- We handle session fixation protection ourselves  -->
+        <sec:session-management session-fixation-protection="none" />
+        
+        <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
+        <sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
+        
+        <!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
+        <sec:intercept-url pattern="/register*" requires-channel="https" />
+        <sec:intercept-url pattern="/login*/**" requires-channel="https" />
+        <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
+        <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
+        <sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
+        
+        <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
+        <sec:intercept-url pattern="/cart/**" requires-channel="any" />
+        
+        <!-- All URLs not explicitly specified as https will be served under http -->
         <sec:intercept-url pattern="/" requires-channel="http"/>
         <sec:intercept-url pattern="/**" requires-channel="http"/>
-		
-		<!-- Define the login form along with the success and failure handlers -->
-		<sec:form-login login-page='/login'
-			authentication-success-handler-ref="blAuthenticationSuccessHandler"
-			authentication-failure-handler-ref="blAuthenticationFailureHandler"
-			login-processing-url="/login_post.htm" 
-		/>
-		
-		<!-- Provide the logout handler -->
-		<sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
-		
-		<!-- Specify our custom filters -->
-		<sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
-		<sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
-		<sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
-		<sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
-	</sec:http>
-	
-	<!--  The BLC Authentication manager.   -->
-	<sec:authentication-manager alias="blAuthenticationManager">
-		<sec:authentication-provider user-service-ref="blUserDetailsService">
-			<sec:password-encoder ref="blPasswordEncoder" />
-		</sec:authentication-provider>
-	</sec:authentication-manager>
-	
+        
+        <!-- Define the login form along with the success and failure handlers -->
+        <sec:form-login login-page='/login'
+            authentication-success-handler-ref="blAuthenticationSuccessHandler"
+            authentication-failure-handler-ref="blAuthenticationFailureHandler"
+            login-processing-url="/login_post.htm" 
+        />
+        
+        <!-- Provide the logout handler -->
+        <sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
+        
+        <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
+        <sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
+        <sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
+        <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
+    </sec:http>
+    
+    <!--  The BLC Authentication manager.   -->
+    <sec:authentication-manager alias="blAuthenticationManager">
+        <sec:authentication-provider user-service-ref="blUserDetailsService">
+            <sec:password-encoder ref="blPasswordEncoder" />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+    
     <!--  User details service that authenticates using customer data in the database. -->
-	<sec:jdbc-user-service data-source-ref="webDS"
-		id="blUserDetailsService"
-		users-by-username-query="SELECT USER_NAME,PASSWORD,TRUE FROM BLC_CUSTOMER WHERE USER_NAME=?"
-		authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c 
-	                                      JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
-	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
-	                                      WHERE USER_NAME=?" />
-	
-	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
-	                                      
+    <sec:jdbc-user-service data-source-ref="webDS"
+        id="blUserDetailsService"
+        users-by-username-query="SELECT USER_NAME,PASSWORD,TRUE FROM BLC_CUSTOMER WHERE USER_NAME=?"
+        authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c 
+                                          JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
+                                          JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
+                                          WHERE USER_NAME=?" />
+    
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
+                                          
     <!-- Sets the login failure URL -->
-	<bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-		<constructor-arg value="/login?error=true" />
-		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" />
-	</bean>
+    <bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
+        <constructor-arg value="/login?error=true" />
+        <property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" />
+    </bean>
 
     <!-- Sets the login success URL -->
-	<bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
-		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
-		<property name="defaultTargetUrl" value="/account" />
-		<property name="targetUrlParameter" value="successUrl" />
-		<property name="alwaysUseDefaultTargetUrl" value="false" />
-	</bean>
-	
+    <bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
+        <property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
+        <property name="defaultTargetUrl" value="/account" />
+        <property name="targetUrlParameter" value="successUrl" />
+        <property name="alwaysUseDefaultTargetUrl" value="false" />
+    </bean>
+    
 </beans>

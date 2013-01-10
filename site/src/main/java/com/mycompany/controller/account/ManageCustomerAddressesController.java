@@ -43,22 +43,22 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
 
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-    	super.initBinder(request, binder);
+        super.initBinder(request, binder);
     }
-	
+    
     @ModelAttribute("states")
     protected List<State> populateStates() {
-    	return super.populateStates();
+        return super.populateStates();
     }
     
     @ModelAttribute("countries")
     protected List<Country> populateCountries() {
-    	return super.populateCountries();
+        return super.populateCountries();
     }
     
     @ModelAttribute("customerAddresses")
     protected List<CustomerAddress> populateCustomerAddresses() {
-    	return super.populateCustomerAddresses();
+        return super.populateCustomerAddresses();
     }
     
     @RequestMapping(method = RequestMethod.GET)
@@ -73,17 +73,17 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.GET)
     public String viewCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId) {
-    	return super.viewCustomerAddress(request, model, customerAddressId);
+        return super.viewCustomerAddress(request, model, customerAddressId);
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST)
     public String updateCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, @ModelAttribute("customerAddressForm") CustomerAddressForm form, BindingResult result, RedirectAttributes redirectAttributes) throws ServiceException {
-    	return super.updateCustomerAddress(request, model, customerAddressId, form, result, redirectAttributes);
+        return super.updateCustomerAddress(request, model, customerAddressId, form, result, redirectAttributes);
     }
 
     @RequestMapping(value = "/{customerAddressId}", method = RequestMethod.POST, params="removeAddress=Remove")
     public String removeCustomerAddress(HttpServletRequest request, Model model, @PathVariable("customerAddressId") Long customerAddressId, RedirectAttributes redirectAttributes) {
-    	return super.removeCustomerAddress(request, model, customerAddressId, redirectAttributes);
+        return super.removeCustomerAddress(request, model, customerAddressId, redirectAttributes);
     }
     
     

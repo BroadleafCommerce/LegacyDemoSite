@@ -29,10 +29,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller("blCategoryController")
 public class CategoryController extends BroadleafCategoryController {
-	
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return super.handleRequest(request, response);
-	}
+    
+    @Override
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return super.handleRequest(request, response);
+    }
 
 }
