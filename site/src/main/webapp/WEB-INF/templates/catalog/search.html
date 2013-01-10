@@ -7,59 +7,59 @@
 <blc:head pageTitle="Search - Broadleaf Demo - Heat Clinic" />
 
 <body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="layout/partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">
-	
-		<nav th:substituteby="layout/partials/nav" />
-		
-		<section id="left_column">
-	
-			<header>
-				<h1 th:unless="${#strings.isEmpty(originalQuery)}" th:inline="text">
+    <div id="notification_bar"></div>
+    <header th:substituteby="layout/partials/header" />
+    
+    <div id="content" class="width_setter group" role="main">
+    
+        <nav th:substituteby="layout/partials/nav" />
+        
+        <section id="left_column">
+    
+            <header>
+                <h1 th:unless="${#strings.isEmpty(originalQuery)}" th:inline="text">
                     <span th:text="#{search.results}">Search Results for</span> [[${originalQuery}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{search.of}">of</span> [[${result.totalResults}]])
                 </h1>
-				<h1 th:if="${#strings.isEmpty(originalQuery)}">
+                <h1 th:if="${#strings.isEmpty(originalQuery)}">
                     <span th:text="#{search.resultsFor}">Search Results for</span> (0)
                 </h1>
-				<div th:substituteby="catalog/partials/productSortOptions"></div>
-			</header>
-			
-			<ul id="products" class="group">
-				<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-			</ul>
-			
-			<div th:substituteby="catalog/partials/productPagingOptions" />
-			
-		</section>
-	
-		<section id="right_column">
-			<header><span th:text="#{search.filterSearch}">Filter your search</span></header>
-			<div id="options">
-			
-				<div th:substituteby="catalog/partials/facetFilter" />
-				
-				<div th:substituteby="catalog/partials/rightHandBannerAds" />
-				
-				<section id="right_column" th:unless="${#lists.isEmpty(products)}">
-					<header><span th:text="#{search.featuredProducts}">Featured Products</span></header>
-					<div id="options">
-						<div class="section">
-					         <blc:related_products productId="${products[0].id}" quantity="3" />	 
-							 <ul id="featured_products" class="group">
-								<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-							 </ul>
-						</div>									
-					</div>
-				</section>	
-				
-			</div>
-		</section>
-			
-	</div>
-	
-	<footer th:substituteby="layout/partials/footer" />
-	
+                <div th:substituteby="catalog/partials/productSortOptions"></div>
+            </header>
+            
+            <ul id="products" class="group">
+                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+            </ul>
+            
+            <div th:substituteby="catalog/partials/productPagingOptions" />
+            
+        </section>
+    
+        <section id="right_column">
+            <header><span th:text="#{search.filterSearch}">Filter your search</span></header>
+            <div id="options">
+            
+                <div th:substituteby="catalog/partials/facetFilter" />
+                
+                <div th:substituteby="catalog/partials/rightHandBannerAds" />
+                
+                <section id="right_column" th:unless="${#lists.isEmpty(products)}">
+                    <header><span th:text="#{search.featuredProducts}">Featured Products</span></header>
+                    <div id="options">
+                        <div class="section">
+                             <blc:related_products productId="${products[0].id}" quantity="3" />     
+                             <ul id="featured_products" class="group">
+                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                             </ul>
+                        </div>                                  
+                    </div>
+                </section>  
+                
+            </div>
+        </section>
+            
+    </div>
+    
+    <footer th:substituteby="layout/partials/footer" />
+    
 </body>
 </html>

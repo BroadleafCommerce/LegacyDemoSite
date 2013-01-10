@@ -2,7 +2,7 @@
 
     <p class="success" th:if="${successMessage}" th:text="${successMessage}"></p>
     
-	<h2>Update Account Information</h2>
+    <h2>Update Account Information</h2>
         <blc:form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST" style="width: 400px;">
         <div class="form100">
             <label for="emailAddress">Email Address:</label>

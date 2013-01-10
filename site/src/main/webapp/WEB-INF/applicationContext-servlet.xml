@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.1.xsd
@@ -13,85 +13,85 @@
        http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
-	
-	<!-- Scan Broadleaf defined web utility classes -->
-	<!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
-	<context:component-scan base-package="org.broadleafcommerce.common.web"/>
-	<context:component-scan base-package="org.broadleafcommerce.core.web"/>	
-	<context:component-scan base-package="org.broadleafcommerce.profile.web"/>
-	
-	<!-- Turn on AOP annotations (required by Broadleaf) -->
-	<aop:config/>
-	
-	<!--  Checks for a URL match to a product's SEO URL.   -->
-	<bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
- 	  <property name="order" value="2"/>
+    
+    <!-- Scan Broadleaf defined web utility classes -->
+    <!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
+    <context:component-scan base-package="org.broadleafcommerce.common.web"/>
+    <context:component-scan base-package="org.broadleafcommerce.core.web"/> 
+    <context:component-scan base-package="org.broadleafcommerce.profile.web"/>
+    
+    <!-- Turn on AOP annotations (required by Broadleaf) -->
+    <aop:config/>
+    
+    <!--  Checks for a URL match to a product's SEO URL.   -->
+    <bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
+      <property name="order" value="2"/>
     </bean>
     
     <!--  Checks for a URL match to a CMS managed page URL.   -->
     <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
- 	  <property name="order" value="3"/>
+      <property name="order" value="3"/>
     </bean>
     
     <!--  Checks for a URL match to a category's SEO URL -->
     <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
- 	  <property name="order" value="4"/>
+      <property name="order" value="4"/>
     </bean>
 
-	<!-- Scan for custom controllers -->
-	<context:component-scan base-package="com.mycompany.controller" />
-	
-	<!-- Allow annotation driven controllers -->
-	<mvc:annotation-driven/>
+    <!-- Scan for custom controllers -->
+    <context:component-scan base-package="com.mycompany.controller" />
+    
+    <!-- Allow annotation driven controllers -->
+    <mvc:annotation-driven/>
 
 
-	<!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
-	<mvc:interceptors>
+    <!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
+    <mvc:interceptors>
         <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
-	        <property name="cacheSeconds" value="0"/>
-	        <property name="useExpiresHeader" value="true"/>
-	        <property name="useCacheControlHeader" value="true"/>
-	        <property name="useCacheControlNoStore" value="true"/>
+            <property name="cacheSeconds" value="0"/>
+            <property name="useExpiresHeader" value="true"/>
+            <property name="useCacheControlHeader" value="true"/>
+            <property name="useCacheControlNoStore" value="true"/>
         </bean>
         <!-- Interceptor for blLocalCode-->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="blLocaleCode"/>
         </bean>
-	</mvc:interceptors>
+    </mvc:interceptors>
 
     <!-- Default locale set -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="en"/>
     </bean>
-	
-	<!-- Tell Spring to not try to map things in these directories to controllers -->
-	<!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
-	<mvc:resources order="-10" location="/img/" mapping="/img/**" />
-	<mvc:resources order="-10" location="/css/" mapping="/css/**" />
-	<mvc:resources order="-10" location="/js/" mapping="/js/**" />
-	<mvc:resources order="-10" location="/fonts/" mapping="/fonts/**" />
-	<mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
-	<mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
+    
+    <!-- Tell Spring to not try to map things in these directories to controllers -->
+    <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
+    <mvc:resources order="-10" location="/img/" mapping="/img/**" />
+    <mvc:resources order="-10" location="/css/" mapping="/css/**" />
+    <mvc:resources order="-10" location="/js/" mapping="/js/**" />
+    <mvc:resources order="-10" location="/fonts/" mapping="/fonts/**" />
+    <mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
+    <mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
 
-	<!-- Set up the view resolver to be used by Spring -->
-	<bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
-		<property name="templateEngine" ref="blWebTemplateEngine" />
-		<property name="order" value="1" />
-		<property name="cache" value="false" />
-		<property name="fullPageLayout" value="layout/fullPageLayout" />
-		<property name="characterEncoding" value="UTF-8" />
-		<property name="layoutMap">
-			<map>
-				<entry key="account/" value="layout/accountLayout" />
-				<entry key="catalog/" value="NONE" />
-				<entry key="checkout/" value="layout/checkoutLayout" />
-				<entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
-				<entry key="layout/" value="NONE" />
-			</map>
-		</property>
-	</bean>
-	
-	<!-- This validator will additionally require state on shipping addresses -->
-	<bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
-	
+    <!-- Set up the view resolver to be used by Spring -->
+    <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
+        <property name="templateEngine" ref="blWebTemplateEngine" />
+        <property name="order" value="1" />
+        <property name="cache" value="false" />
+        <property name="fullPageLayout" value="layout/fullPageLayout" />
+        <property name="characterEncoding" value="UTF-8" />
+        <property name="layoutMap">
+            <map>
+                <entry key="account/" value="layout/accountLayout" />
+                <entry key="catalog/" value="NONE" />
+                <entry key="checkout/" value="layout/checkoutLayout" />
+                <entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
+                <entry key="layout/" value="NONE" />
+            </map>
+        </property>
+    </bean>
+    
+    <!-- This validator will additionally require state on shipping addresses -->
+    <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
+    
 </beans>

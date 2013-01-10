@@ -1,41 +1,41 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     
     <cache
-    	name="blStandardElements"
-    	maxElementsInMemory="1"
-    	eternal="false"
-    	overflowToDisk="false"
+        name="blStandardElements"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="false"
         timeToLiveSeconds="1">
-    	<cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
+        <cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
     </cache>
     
-   	<cache
-    	name="blOrderElements"
-    	maxElementsInMemory="1"
-    	eternal="false"
-    	overflowToDisk="false"
-    	timeToLiveSeconds="1"/>
-    	
+    <cache
+        name="blOrderElements"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="false"
+        timeToLiveSeconds="1"/>
+        
     <defaultCache
-    	maxElementsInMemory="10"
-    	eternal="false"
-    	overflowToDisk="false"
-    	timeToLiveSeconds="60"
-    	timeToIdleSeconds="1"/>
+        maxElementsInMemory="10"
+        eternal="false"
+        overflowToDisk="false"
+        timeToLiveSeconds="60"
+        timeToIdleSeconds="1"/>
         
     <cache
-    	name="org.hibernate.cache.StandardQueryCache"
-    	maxElementsInMemory="1"
-    	eternal="false"
-    	overflowToDisk="false"
-    	timeToLiveSeconds="10"/>
+        name="org.hibernate.cache.StandardQueryCache"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="false"
+        timeToLiveSeconds="10"/>
 
     <cache
-    	name="query.Catalog"
-    	maxElementsInMemory="1"
-    	eternal="false"
-    	overflowToDisk="false"
-    	timeToLiveSeconds="10"/>
+        name="query.Catalog"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="false"
+        timeToLiveSeconds="10"/>
 
     <cache name="cmsPageCache"
         maxElementsInMemory="1"
@@ -48,5 +48,5 @@
         eternal="false"
         overflowToDisk="false"
         timeToLiveSeconds="1"/>
-    	
+        
 </ehcache>

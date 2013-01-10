@@ -1,5 +1,5 @@
 <div>
-	<div style="display: none;" th:fragment="title" th:inline="text">Order Confirmation [[${order.orderNumber}]] - Broadleaf Demo - Heat Clinic</div>
+    <div style="display: none;" th:fragment="title" th:inline="text">Order Confirmation [[${order.orderNumber}]] - Broadleaf Demo - Heat Clinic</div>
 
     <div id="order_confirmation">
         <h2><span th:text="#{confirmation.success}">Success!</span></h2>
@@ -71,28 +71,28 @@
         <div class="clearfix"></div>
 
         <div th:object="${order.fulfillmentGroups[0]}" th:if="${#lists.size(order.fulfillmentGroups) > 1}">
-	    	<div th:each="fg : ${order.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow">
-	    		<h4>
-	    			<span th:classappend="*{address == null}? 'error'"
-	    				  th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
-	    			<span>&nbsp;-&nbsp;</span>
-	    			<span th:classappend="*{fulfillmentOption == null}? 'error'"
-	    				  th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
-	    			<span blc:price="*{shippingPrice}" class="multishipGroupShippingCharge"></span>
-	    		</h4>
-	    		
-				<table class="multiship_summary">
-				    <tbody>
-						<tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
-				            <td align="center" th:text="${item.quantity}"></td>
-				        	<td align="left">
-				            	<span th:text="*{sku.name}"></span>
-				                   <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
-				            </td>
-				        </tr>
-				    </tbody>
-				</table>
-	    	</div>
+            <div th:each="fg : ${order.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow">
+                <h4>
+                    <span th:classappend="*{address == null}? 'error'"
+                          th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
+                    <span>&nbsp;-&nbsp;</span>
+                    <span th:classappend="*{fulfillmentOption == null}? 'error'"
+                          th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
+                    <span blc:price="*{shippingPrice}" class="multishipGroupShippingCharge"></span>
+                </h4>
+                
+                <table class="multiship_summary">
+                    <tbody>
+                        <tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
+                            <td align="center" th:text="${item.quantity}"></td>
+                            <td align="left">
+                                <span th:text="*{sku.name}"></span>
+                                   <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <div class="fulfillment_option" th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">

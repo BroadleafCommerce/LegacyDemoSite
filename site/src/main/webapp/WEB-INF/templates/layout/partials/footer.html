@@ -1,14 +1,14 @@
 <footer class="group">
-	<div id="left_content">
-		<h4><span th:text="#{footer.delivering}">Delivering Texas Sized Heat</span></h4>
-		&copy; <span th:text="#{footer.copyrightHC}">Copyright 2012 The Heat Clinic</span><br />
-		<a href=""><span th:text="#{footer.privacyPolicy}">Privacy Policy</span></a>
-	</div>
-	<div id="right_content">
-		<h4><span th:text="#{footer.since1978}">Since Nineteen Seventy Eight</span></h4>
+    <div id="left_content">
+        <h4><span th:text="#{footer.delivering}">Delivering Texas Sized Heat</span></h4>
+        &copy; <span th:text="#{footer.copyrightHC}">Copyright 2012 The Heat Clinic</span><br />
+        <a href=""><span th:text="#{footer.privacyPolicy}">Privacy Policy</span></a>
+    </div>
+    <div id="right_content">
+        <h4><span th:text="#{footer.since1978}">Since Nineteen Seventy Eight</span></h4>
         <span th:text="#{footer.allRights}">All Rights Reserved</span>.<br />
-		<a href=""><span th:text="#{footer.customerService}">Customer Service</span></a>
-	</div>
+        <a href=""><span th:text="#{footer.customerService}">Customer Service</span></a>
+    </div>
     <div id="blc_brand">
         <a href="http://www.broadleafcommerce.com"  >
             <img th:src="@{/img/broadleaf-seal.png}" alt="Broadleaf Commerce" />
@@ -18,43 +18,43 @@
         <p>&copy; <span th:text="#{footer.branding.copyrightBLC}">Copyright 2012 Broadleaf Commerce</span><br /></p>
     </div>
 
-	<div th:remove="all">
-		<!--
-			Include this template at the bottom of a page (automatically included by partials/footer.html
-			to gain access to jQuery and other plugins used throughout the site.
-			
-			We will attempt to load the jQuery library from Google's CDN, but fallback on our own provided
-			jQuery if necessary.
-			
-			Other than this jQuery loading script, no other scripts should be defined inline.
-		-->
-	</div>
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>
-		//<![CDATA[
-		window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')
-		//]]>
-	</script>
-	
-	<script th:src="@{/js/plugins.js}"></script>
-	<script th:src="@{/js/libs/jquery.MetaData.js}"></script>
-	<script th:src="@{/js/libs/jquery.rating.pack.js}"></script>
-	<script th:src="@{/js/libs/jquery.dotdotdot-1.5.1.js}"></script>
-	
-	<div th:remove="all">
-		<!--
-			In a production environment, you would want to use some pre-processor (such as JAWR) to
-			collapse these JavaScript files into one for faster performance and naming the files in a
-			versioned way to avoid browser cache issues. This has the added benefit of allowing proper
-			organization of the JavaScript in the project.
-		-->
-	</div>
-	<script th:src="@{/js/BLC.js}"></script>
-	<script th:src="@{/js/heatClinic.js}"></script>
-	<script th:src="@{/js/cartOperations.js}"></script>
+    <div th:remove="all">
+        <!--
+            Include this template at the bottom of a page (automatically included by partials/footer.html
+            to gain access to jQuery and other plugins used throughout the site.
+            
+            We will attempt to load the jQuery library from Google's CDN, but fallback on our own provided
+            jQuery if necessary.
+            
+            Other than this jQuery loading script, no other scripts should be defined inline.
+        -->
+    </div>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        //<![CDATA[
+        window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')
+        //]]>
+    </script>
+    
+    <script th:src="@{/js/plugins.js}"></script>
+    <script th:src="@{/js/libs/jquery.MetaData.js}"></script>
+    <script th:src="@{/js/libs/jquery.rating.pack.js}"></script>
+    <script th:src="@{/js/libs/jquery.dotdotdot-1.5.1.js}"></script>
+    
+    <div th:remove="all">
+        <!--
+            In a production environment, you would want to use some pre-processor (such as JAWR) to
+            collapse these JavaScript files into one for faster performance and naming the files in a
+            versioned way to avoid browser cache issues. This has the added benefit of allowing proper
+            organization of the JavaScript in the project.
+        -->
+    </div>
+    <script th:src="@{/js/BLC.js}"></script>
+    <script th:src="@{/js/heatClinic.js}"></script>
+    <script th:src="@{/js/cartOperations.js}"></script>
     <script th:src="@{/js/checkoutOperations.js}"></script>
-	<script th:src="@{/js/globalOnReady.js}"></script>
+    <script th:src="@{/js/globalOnReady.js}"></script>
     <script th:src="@{/js/manageAccountOperations.js}"></script>
     <script th:src="@{/js/reviewOperations.js}"></script>
 

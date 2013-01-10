@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-	<inherits name="com.google.gwt.user.User" />
+    <inherits name="com.google.gwt.user.User" />
 
     <inherits name="org.broadleafcommerce.admin.merchandisingModule" />
     <inherits name="org.broadleafcommerce.admin.customerCareModule" />
@@ -11,17 +11,17 @@
     <inherits name="com.google.gwt.i18n.I18N"/>
     <inherits name="org.broadleafcommerce.openadmin.theme.broadleaf.Broadleaf"/>
     <inherits name="com.google.gwt.precompress.Precompress"/>
-	
+    
 
-	<extend-property name="locale" values="en_US"/>
-	<entry-point class="org.broadleafcommerce.openadmin.client.BLCLaunch" />
+    <extend-property name="locale" values="en_US"/>
+    <entry-point class="org.broadleafcommerce.openadmin.client.BLCLaunch" />
     
     <!--  Uncomment the following lines to turn on logging  -->
     <!-- <inherits name="com.google.gwt.logging.Logging"/> -->
     <!-- <set-property name="gwt.logging.enabled" value="TRUE"/> -->
     <!-- <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" /> -->
 
-	<!-- Uncomment this line to compile only for Firefox and Chrome. -->
+    <!-- Uncomment this line to compile only for Firefox and Chrome. -->
     <!-- It will speed up compiliation times while developing -->
     <!-- <set-property name="user.agent" value="safari,gecko1_8" /> -->
 

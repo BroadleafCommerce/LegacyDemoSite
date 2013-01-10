@@ -7,18 +7,18 @@
 <blc:head pageTitle="TEMPLATE" />
 
 <body>
-	<div id="notification_bar"></div>
-	<header th:substituteby="layout/partials/header" />
-	
-	<div id="content" class="width_setter group" role="main">
-	
-		<nav th:substituteby="layout/partials/nav" />
-		
-		<div th:substituteby="${templateName}" />
-			
-	</div>
-	
-	<footer th:substituteby="layout/partials/footer" />
-	
+    <div id="notification_bar"></div>
+    <header th:substituteby="layout/partials/header" />
+    
+    <div id="content" class="width_setter group" role="main">
+    
+        <nav th:substituteby="layout/partials/nav" />
+        
+        <div th:substituteby="${templateName}" />
+            
+    </div>
+    
+    <footer th:substituteby="layout/partials/footer" />
+    
 </body>
 </html>

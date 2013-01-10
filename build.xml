@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="!BroadleafDemoTools" default="change-identifier" basedir="." 
-	xmlns:artifact="antlib:org.apache.maven.artifact.ant" 
-	xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
+    xmlns:artifact="antlib:org.apache.maven.artifact.ant" 
+    xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
 
-	<taskdef resource="net/sf/antcontrib/antlib.xml">
-		<classpath>
-			<pathelement location="lib/ant-contrib-1.0b3.jar" />
-		</classpath>
-	</taskdef>
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-contrib-1.0b3.jar" />
+        </classpath>
+    </taskdef>
 
-	<target name="change-identifier">
-		<input message="Enter in new maven group (e.g. com.mycompany). Also note that this may only be run once." defaultvalue="com.mycompany" addproperty="maven-group" />
+    <target name="change-identifier">
+        <input message="Enter in new maven group (e.g. com.mycompany). Also note that this may only be run once." defaultvalue="com.mycompany" addproperty="maven-group" />
 
-		<propertyregex property="maven-group-clean"
-		               input="${maven-group}"
-		               regexp="([^A-Za-z\.])*"
-		               replace=""
-		               global="true" />
+        <propertyregex property="maven-group-clean"
+                       input="${maven-group}"
+                       regexp="([^A-Za-z\.])*"
+                       replace=""
+                       global="true" />
 
-		<propertyregex property="company-name" 
-			input="${maven-group-clean}" 
-			regexp="[\w]+\.([^\.]*)" 
-			select="\1" 
-			casesensitive="false" />
-		
-		<propertyregex property="company-tld" 
-					input="${maven-group-clean}" 
-					regexp="([\w]+)*" 
-					select="\0" 
-					casesensitive="false" />
-		
-		<fail message="Bad input">
-			<condition>
-				<not>
-					<isset property="company-name" />
-				</not>
-			</condition>
-		</fail>
-		
-		<input message="New maven-group: ${maven-group}, new company-name: ${company-name} -- Continue?" addproperty="continue" validargs="y,n" defaultvalue="y" />
+        <propertyregex property="company-name" 
+            input="${maven-group-clean}" 
+            regexp="[\w]+\.([^\.]*)" 
+            select="\1" 
+            casesensitive="false" />
+        
+        <propertyregex property="company-tld" 
+                    input="${maven-group-clean}" 
+                    regexp="([\w]+)*" 
+                    select="\0" 
+                    casesensitive="false" />
+        
+        <fail message="Bad input">
+            <condition>
+                <not>
+                    <isset property="company-name" />
+                </not>
+            </condition>
+        </fail>
+        
+        <input message="New maven-group: ${maven-group}, new company-name: ${company-name} -- Continue?" addproperty="continue" validargs="y,n" defaultvalue="y" />
 
-		<if>
-			<equals arg1="${continue}" arg2="y" />
-			<then>
-				<echo message="${maven-group}" />
-				<echo message="${company-name}" />
-				<!-- Move the required files / directories to their new homes -->
-				<move file="admin/src/main/resources/com/mycompany/gwt/mycompanyAdmin.gwt.xml" tofile="admin/src/main/resources/${company-tld}/${company-name}/gwt/${company-name}Admin.gwt.xml" />
-				<move file="admin/src/main/resources/com/mycompany" tofile="admin/src/main/resources/${company-tld}/${company-name}" />
-				<move file="site/src/main/java/com/mycompany" tofile="site/src/main/java/${company-tld}/${company-name}" />
-				<move file="admin/src/main/java/com/mycompany" tofile="admin/src/main/java/${company-tld}/${company-name}" />
-				<!-- Replace the appropriate tokens -->
-				<replace file="pom.xml" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
+        <if>
+            <equals arg1="${continue}" arg2="y" />
+            <then>
+                <echo message="${maven-group}" />
+                <echo message="${company-name}" />
+                <!-- Move the required files / directories to their new homes -->
+                <move file="admin/src/main/resources/com/mycompany/gwt/mycompanyAdmin.gwt.xml" tofile="admin/src/main/resources/${company-tld}/${company-name}/gwt/${company-name}Admin.gwt.xml" />
+                <move file="admin/src/main/resources/com/mycompany" tofile="admin/src/main/resources/${company-tld}/${company-name}" />
+                <move file="site/src/main/java/com/mycompany" tofile="site/src/main/java/${company-tld}/${company-name}" />
+                <move file="admin/src/main/java/com/mycompany" tofile="admin/src/main/java/${company-tld}/${company-name}" />
+                <!-- Replace the appropriate tokens -->
+                <replace file="pom.xml" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
                 <replace dir="admin" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
-				<replace dir="admin" token="mycompany-admin" value="${company-name}-admin" summary="yes" excludes="target/" />
-				<replace dir="admin" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
+                <replace dir="admin" token="mycompany-admin" value="${company-name}-admin" summary="yes" excludes="target/" />
+                <replace dir="admin" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
                 <replace dir="combined" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
-				<replace dir="core" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
-				<replace dir="site" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
-				<replace dir="site" token="mycompany-site" value="${company-name}-site" summary="yes" excludes="target/" />
-				<replace dir="site" token="target/mycompany" value="target/${company-name}" summary="yes" excludes="target/" />
-				<replace file="site/src/main/webapp/WEB-INF/web.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
-				<replace file="site/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
+                <replace dir="core" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
+                <replace dir="site" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
+                <replace dir="site" token="mycompany-site" value="${company-name}-site" summary="yes" excludes="target/" />
+                <replace dir="site" token="target/mycompany" value="target/${company-name}" summary="yes" excludes="target/" />
+                <replace file="site/src/main/webapp/WEB-INF/web.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
+                <replace file="site/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
                 <replace file="combined/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
-			</then>
-		</if>
-	</target>
+            </then>
+        </if>
+    </target>
 
 </project>

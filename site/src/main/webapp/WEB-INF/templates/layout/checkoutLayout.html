@@ -7,21 +7,21 @@
 <blc:head pageTitle="Checkout - Broadleaf Demo - Heat Clinic" />
 
 <body>
-	<div id="notification_bar"></div>
+    <div id="notification_bar"></div>
 
     <header th:substituteby="layout/partials/headerCheckout" />
     
-	<div id="checkout_content" class="width_setter group" role="main">
-	
-		<div th:substituteby="${templateName}" />
-	
-	</div>
+    <div id="checkout_content" class="width_setter group" role="main">
+    
+        <div th:substituteby="${templateName}" />
+    
+    </div>
 
-	<footer th:substituteby="layout/partials/footer" />
+    <footer th:substituteby="layout/partials/footer" />
 
-	<script type="text/javascript" th:inline="javascript">
+    <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
-		$().ready(function() {
+        $().ready(function() {
             $('#paymentOptions dd').css({display:"none"});
             $('#paymentMethod_cc').click();
             $('#shipping_info').validate({
@@ -54,9 +54,9 @@
                 errorClass: "error"
             });
 
-		});
+        });
         /*]]>*/
-	</script>
+    </script>
 
 </body>
 </html>

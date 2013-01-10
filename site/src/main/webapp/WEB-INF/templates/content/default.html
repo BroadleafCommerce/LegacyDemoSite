@@ -1,25 +1,25 @@
 <div>
-	<div style="display:none;" th:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</div>
-	
-	<section id="left_column">
-		<header>
-			<h1 th:text="${BLC_PAGE.pageFields[title]}"></h1>
-		</header>
-		<div class="clearfix"></div>
-		<div th:utext="${BLC_PAGE.pageFields[body]}"/>
-	</section>
-	
-	<section id="right_column">
-		<header>Featured Products</header>
-		<div id="options">
-			<div class="section">
-				 <blc:related_products categoryId="2001" quantity="3"/>	 
-				 <ul id="featured_products" class="group">
-					<li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-				 </ul>
-			</div>									
-		</div>
-	</section>	
+    <div style="display:none;" th:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</div>
+    
+    <section id="left_column">
+        <header>
+            <h1 th:text="${BLC_PAGE.pageFields[title]}"></h1>
+        </header>
+        <div class="clearfix"></div>
+        <div th:utext="${BLC_PAGE.pageFields[body]}"/>
+    </section>
+    
+    <section id="right_column">
+        <header>Featured Products</header>
+        <div id="options">
+            <div class="section">
+                 <blc:related_products categoryId="2001" quantity="3"/>  
+                 <ul id="featured_products" class="group">
+                    <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                 </ul>
+            </div>                                  
+        </div>
+    </section>  
 </div>
-		
-			
+        
+            
