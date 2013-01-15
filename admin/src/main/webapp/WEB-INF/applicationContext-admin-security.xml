@@ -20,11 +20,9 @@
     <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
 
     <!-- Resources do not need security -->
-    <sec:http pattern="/**/resources/css/**" security="none" />
-    <sec:http pattern="/**/resources/img/**" security="none" />
-    <sec:http pattern="/**/resources/js/**" security="none" />
-    <sec:http pattern="/**/utility.service" security="none" />
-    <sec:http pattern="/**/remote_logging" security="none" />
+    <sec:http pattern="/css/**" security="none" />
+    <sec:http pattern="/img/**" security="none" />
+    <sec:http pattern="/js/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />
     <sec:http pattern="/robots.txt" security="none" />
     <sec:http pattern="/login" security="none" />
@@ -36,8 +34,8 @@
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" entry-point-ref="adminAuthenticationEntryPoint">
         <!-- All admin URLs will be secured with https -->
-        <sec:intercept-url pattern="/" requires-channel="any" />
         <sec:intercept-url pattern="/**" requires-channel="any" />
+        <sec:intercept-url pattern="/" requires-channel="any" />
         
         <!-- Define the login form along with the success and failure handlers -->
         <sec:form-login
@@ -84,8 +82,7 @@
         <property name="authenticationManager" ref="blAdminAuthenticationManager" />
         <property name="securityMetadataSource">
             <sec:filter-security-metadata-source>
-                <sec:intercept-url pattern="/**/modules*" access="PERMISSION_OTHER_DEFAULT" />
-                <sec:intercept-url pattern="/**/dynamic.entity.service" access="PERMISSION_OTHER_DEFAULT" />
+                <sec:intercept-url pattern="/**/*" access="PERMISSION_OTHER_DEFAULT" />
                 <sec:intercept-url pattern="/*" access="PERMISSION_OTHER_DEFAULT" />
             </sec:filter-security-metadata-source>
         </property>

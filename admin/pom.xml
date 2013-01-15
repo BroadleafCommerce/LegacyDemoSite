@@ -24,53 +24,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <extraJvmArgs>-Xmx768M -Xss1024k</extraJvmArgs>
-                            <strict>true</strict>
-                        </configuration>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <style>DETAILED</style>
-                    <modules>
-                        <module>com.mycompany.gwt.mycompanyAdmin</module>
-                    </modules>
-                    <extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M</extraJvmArgs>
-                    <noServer>true</noServer>
-                    <inplace>false</inplace>
-                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-                    <webappDirectory>${webappDirectory}/admin</webappDirectory>
-                    <deploy>${webappDirectory}/WEB-INF/deploy</deploy>
-                    <bindAddress>localhost</bindAddress>
-                    <debugPort>8011</debugPort>
-                    <port>8081</port>
-                    <runTarget>admin/</runTarget>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <webappDirectory>${webappDirectory}</webappDirectory>
@@ -101,24 +54,6 @@
                 </configuration>
             </plugin>
     
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                    <filesets>
-                        <fileset>
-                            <directory>target</directory>
-                            <excludes>
-                                <exclude>admin/admin/com.mycompany.gwt.mycompanyAdmin/**</exclude>
-                                <exclude>gwt-unitCache/**</exclude>
-                            </excludes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>           
-            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
@@ -184,48 +119,7 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-        </resources>
     </build>
-    <profiles>
-    
-        <profile>
-            <id>gwt-jrebel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>gwt-maven-plugin</artifactId>
-                        <configuration>
-                            <extraJvmArgs>-XX:MaxPermSize=512M -Xms512M -Xmx1024M -javaagent:${jrebel.path}</extraJvmArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        
-        <profile>
-            <id>full-clean</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-clean-plugin</artifactId>
-                        <configuration>
-                            <excludeDefaultDirectories>false</excludeDefaultDirectories>
-                        </configuration>
-                    </plugin>           
-                </plugins>
-            </build>
-        </profile>
-            
-    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.broadleafcommerce</groupId>

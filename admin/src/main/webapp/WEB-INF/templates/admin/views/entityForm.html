@@ -1,0 +1,42 @@
+<style>
+    .formInnerContainer {
+    	margin: 10px;
+    }
+    
+    .well {
+        padding: 0 19px;
+    }
+    
+    legend {
+        font-size: 19px;
+        line-height: 34px;
+    }
+    
+</style>
+
+<div class="formInnerContainer">
+
+    <div th:each="sr : ${ef.subordinateListGrids}">
+        <div th:include="/components/listGrid" th:object="${sr.value}" th:remove="tag" />
+    </div>
+    
+    <form th:object="${ef}" th:action="@{${'/' + sectionKey + '/' + ef.entity.findProperty('id').value}}" method="POST" class="form-horizontal">
+        <input type="submit" />
+        
+        <input type="hidden" th:field="*{entity.type}" />
+    
+        <div th:each="e : *{groupedFields}" class="well">
+        
+            <legend th:text="${e.key}" />
+            
+            <div class="control-group" th:each="f : ${e.value}" th:if="${f.name}">
+                <label class="control-label" th:for="${f.name}" th:text="#{${f.friendlyName}}" />
+                <div class="controls">
+                    <input th:substituteby="${'/fields/' + f.fieldType}" />
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    
+</div>

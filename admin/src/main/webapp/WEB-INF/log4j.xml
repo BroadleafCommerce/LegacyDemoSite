@@ -10,7 +10,7 @@
     
 
     <logger name="org.broadleafcommerce">
-        <level value="warn" />
+        <level value="trace" />
     </logger>
         <logger name="org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingService">
         <level value="INFO" />

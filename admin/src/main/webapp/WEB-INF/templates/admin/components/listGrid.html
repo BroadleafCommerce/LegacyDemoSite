@@ -1,0 +1,29 @@
+<div class="listGrid toolbar">
+    <ul>
+        <li><i class="icon-plus-sign"></i> Add</li>
+        <li><i class="icon-remove-sign"></i> Remove</li>
+    </ul>
+</div>
+
+<table class="table table-condensed table-bordered table-hover" style="font-size: 10px;">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th th:each="hc : *{headerColumns}" 
+                th:class="${'th' + hcStat.count}" 
+                scope="col">
+                <span th:text="#{${hc.friendlyName}}" th:remove="tag" />
+                <input type="text" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="e : *{entities}">
+            <td data-fieldName="id" th:text="${e.findProperty('id').value}" />
+            <td th:each="hc : *{headerColumns}" 
+                th:class="${'td' + hcStat.count}" 
+                th:text="${e.findProperty(hc.name).value}"
+                th:attr="data-fieldName=${hc.name}" />
+        </tr>
+    </tbody>
+</table>

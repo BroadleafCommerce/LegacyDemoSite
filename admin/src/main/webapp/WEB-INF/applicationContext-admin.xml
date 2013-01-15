@@ -18,6 +18,8 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
         
+    <context:component-scan base-package="com.mycompany.admin.service" />
+        
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">

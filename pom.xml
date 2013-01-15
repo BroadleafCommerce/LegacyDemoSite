@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>2.2.0-SNAPSHOT</blc.version>
+        <blc.version>3.0.0-SNAPSHOT</blc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gwt.version>2.4.0</gwt.version>
     </properties>
@@ -315,9 +315,9 @@
                 <version>4.1.0.Final</version>
             </dependency>
             <dependency>
-                 <groupId>javax.validation</groupId>
-                 <artifactId>validation-api</artifactId>
-                 <version>1.0.0.GA</version>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.0.0.GA</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
@@ -332,6 +332,6 @@
         <module>admin</module>
         <module>core</module>
         <module>site</module>
-            <module>combined</module>
-        </modules>
+        <module>combined</module>
+    </modules>
 </project>
