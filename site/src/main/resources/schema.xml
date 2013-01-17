@@ -37,6 +37,8 @@
         <dynamicField name="*_td" type="tdouble" indexed="true" stored="true" />
         <dynamicField name="*_tdt" type="tdate" indexed="true" stored="true" />
     </fields>
+    
+    <uniqueKey>id</uniqueKey>
 
     <types>
         <!-- The StrField type is not analyzed, but indexed/stored verbatim. -->
