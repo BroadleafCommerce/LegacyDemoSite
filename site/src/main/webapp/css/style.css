@@ -1517,6 +1517,7 @@ ul#payment_methods li {
     }
 
     .pager ul {
+        margin-top: 0;
         clear: both;
     }
         .pager li {
