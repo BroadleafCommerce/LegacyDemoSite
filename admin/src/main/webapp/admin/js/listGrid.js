@@ -1,14 +1,18 @@
 $(document).ready(function() {
 	
+	// Allow clicking on the entire table row to navigate to the entity record
 	$('.listGridContainer tbody').on('click', 'tr', function() {
-		var entityId = $(this).find('td').filter(function() { 
-			return $(this).data('fieldname') == 'id'; 
-		}).text();
-		
-		$.get('/admin/' + $('#sectionKey').text() + '/' + entityId, function(data) {
-			$('#mainFormContainer').html(data);
-		});
+		window.location = $(this).data('link');
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	var $modal;
 	var $textInput;

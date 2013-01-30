@@ -1,23 +1,4 @@
 <style>
-    .listGridContainer {
-    	width: 50%;
-    	height: 100%;
-    	position: absolute;
-    	overflow: auto;
-    }
-    
-    .listGridInnerContainer {
-    	margin: 10px;
-    }
-    
-    .formContainer {
-    	left: 50%;
-    	width: 50%;
-    	height: 100%;
-    	position: absolute;
-    	overflow: auto;
-    }
-    
     .toolbar {
     	background-color: #D5D5D5;
     	width: 100%;
@@ -49,15 +30,5 @@
 </style>
 
 <div class="listGridContainer">
-
-    <div class="listGridInnerContainer">
-
-        <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
-
-    </div>
-
+    <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
 </div>
-
-<div id="mainFormContainer" class="formContainer">
-</div>
-

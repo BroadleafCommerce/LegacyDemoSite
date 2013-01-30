@@ -1,7 +1,0 @@
-<input type="hidden" th:value="*{metadata.pMap['__${f.name}__'].metadata.foreignKeyDisplayValueProperty}"  />
-<input type="hidden" th:field="*{entity.pMap['__${f.name}__'].value}"  />
-<input type="text" th:value="*{entity.pMap['__${f.name}__'].displayValue}" />
-
-<a class="showModalListGrid" th:href="@{${'/' + sectionKey + '/' + ef.entity.pMap['id'].value + '/' + f.name}}">
-    find
-</a>

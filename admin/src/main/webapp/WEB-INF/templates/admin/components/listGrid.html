@@ -9,21 +9,21 @@
     <thead>
         <tr>
             <th>id</th>
-            <th th:each="hc : *{headerColumns}" 
-                th:class="${'th' + hcStat.count}" 
+            <th th:each="headerField : *{headerFields}" 
+                th:class="${'th' + headerFieldStat.count}" 
+                th:text="#{${headerField.friendlyName}}"
                 scope="col">
-                <span th:text="#{${hc.friendlyName}}" th:remove="tag" />
-                <input type="text" />
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr th:each="e : *{entities}">
-            <td data-fieldName="id" th:text="${e.findProperty('id').value}" />
-            <td th:each="hc : *{headerColumns}" 
-                th:class="${'td' + hcStat.count}" 
-                th:text="${e.findProperty(hc.name).value}"
-                th:attr="data-fieldName=${hc.name}" />
+        <tr th:each="record : *{records}" 
+            th:attr="data-link=@{${sectionKey + '/' + record.id}}">
+            <td data-fieldName="id" th:text="${record.id}" />
+            <td th:each="field : ${record.fields}" 
+                th:class="${'td' + fieldStat.count}" 
+                th:text="${field.value}"
+                th:attr="data-fieldName=${field.name}" />
         </tr>
     </tbody>
 </table>

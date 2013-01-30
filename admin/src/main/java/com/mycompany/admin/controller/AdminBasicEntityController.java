@@ -17,7 +17,7 @@
 package com.mycompany.admin.controller;
 
 import org.broadleafcommerce.openadmin.web.controller.entity.BroadleafAdminBasicEntityController;
-import org.broadleafcommerce.openadmin.web.form.EntityForm;
+import org.broadleafcommerce.openadmin.web.form.entity.EntityForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
