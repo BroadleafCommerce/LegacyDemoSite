@@ -377,22 +377,22 @@ INSERT INTO BLC_ADMIN_MODULE (ADMIN_MODULE_ID, NAME, MODULE_KEY, ICON, DISPLAY_O
 --
 -- Create BLC SECTIONS (These modules are required for the admin left navigation)
 --
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (1, 1, 'Category', 'Category', '/category', FALSE, "org.broadleafcommerce.core.catalog.domain.Category");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (2, 1, 'Product', 'Product', '/product', FALSE, "org.broadleafcommerce.core.catalog.domain.Product");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (3, 1, 'Product Options', 'ProductOptions', '/product-options', FALSE, "org.broadleafcommerce.core.catalog.domain.ProductOption");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (4, 1, 'Offer', 'Offer', '/offer', FALSE, "org.broadleafcommerce.core.offer.domain.Offer");
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (1, 1, 'Category', 'Category', '/category', FALSE, 'org.broadleafcommerce.core.catalog.domain.Category');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (2, 1, 'Product', 'Product', '/product', FALSE, 'org.broadleafcommerce.core.catalog.domain.Product');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (3, 1, 'Product Options', 'ProductOptions', '/product-options', FALSE, 'org.broadleafcommerce.core.catalog.domain.ProductOption');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (4, 1, 'Offer', 'Offer', '/offer', FALSE, 'org.broadleafcommerce.core.offer.domain.Offer');
 
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (5, 2, 'Pages', 'Pages', '/pages', FALSE, "org.broadleafcommerce.cms.page.domain.Page");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (6, 2, 'Assets', 'Assets', '/assets', FALSE, "org.broadleafcommerce.cms.file.domain.StaticAsset");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (7, 2, 'Structured Content', 'StructuredContent', '/structured-content', FALSE, "org.broadleafcommerce.cms.structure.domain.StructuredContent");
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (5, 2, 'Pages', 'Pages', '/pages', FALSE, 'org.broadleafcommerce.cms.page.domain.Page');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (6, 2, 'Assets', 'Assets', '/assets', FALSE, 'org.broadleafcommerce.cms.file.domain.StaticAsset');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (7, 2, 'Structured Content', 'StructuredContent', '/structured-content', FALSE, 'org.broadleafcommerce.cms.structure.domain.StructuredContent');
 INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (8, 2, 'Redirect URL', 'RedirectURL', '/redirect-url', FALSE, '');
 
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (9, 3, 'Order', 'Order', '/order', FALSE, "org.broadleafcommerce.core.order.domain.Order");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (10, 3,'Customer', 'Customer', '/customer', FALSE, "org.broadleafcommerce.profile.core.domain.Customer");
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (9, 3, 'Order', 'Order', '/order', FALSE, 'org.broadleafcommerce.core.order.domain.Order');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (10, 3,'Customer', 'Customer', '/customer', FALSE, 'org.broadleafcommerce.profile.core.domain.Customer');
 
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (11, 4, 'User Management', 'UserManagement', '/user-management', FALSE, "org.broadleafcommerce.openadmin.server.security.domain.AdminUser");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (12, 4, 'Role Management', 'RoleManagement', '/role-management', FALSE, "org.broadleafcommerce.openadmin.server.security.domain.AdminRole");
-INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (13, 4, 'Permission Management', 'PermissionManagement', '/permission-management', FALSE, "org.broadleafcommerce.openadmin.server.security.domain.AdminPermission");
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (11, 4, 'User Management', 'UserManagement', '/user-management', FALSE, 'org.broadleafcommerce.openadmin.server.security.domain.AdminUser');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (12, 4, 'Role Management', 'RoleManagement', '/role-management', FALSE, 'org.broadleafcommerce.openadmin.server.security.domain.AdminRole');
+INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, CEILING_ENTITY) VALUES (13, 4, 'Permission Management', 'PermissionManagement', '/permission-management', FALSE, 'org.broadleafcommerce.openadmin.server.security.domain.AdminPermission');
 
 -- Sample Spring MVC Controller module
 INSERT INTO BLC_ADMIN_SECTION (ADMIN_SECTION_ID, ADMIN_MODULE_ID, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER) VALUES (14, 4, 'Dashboard', 'Dashboard', '/dashboard', FALSE);
