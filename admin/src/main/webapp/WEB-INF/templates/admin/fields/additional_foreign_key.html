@@ -2,6 +2,6 @@
 <input type="hidden" th:field="*{fields['__${field.name}__'].value}"  />
 <input type="text" th:value="*{fields['__${field.name}__'].displayValue}" />
 
-<a class="showModalListGrid" th:href="@{${'/' + sectionKey + '/' + entityForm.id + '/' + field.name}}">
+<a class="showModalListGrid" th:href="@{${'/' + sectionKey + '/' + entityForm.fields['id'].value + '/' + field.name}}">
     find
 </a>
