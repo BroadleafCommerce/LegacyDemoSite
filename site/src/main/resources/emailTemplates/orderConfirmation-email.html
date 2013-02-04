@@ -99,15 +99,21 @@
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
                                     <td>
-                                        <address>
+                                        <address th:if="*{address.phonePrimary != null}">
                                             [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                                            [[*{address.phonePrimary.phoneNumber}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
                                             [[*{address.emailAddress}]]<br/>
                                         </address>
-
+                                        <address th:if="*{address.phonePrimary == null}">
+                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                            [[*{address.addressLine1}]]<br/>
+                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.emailAddress}]]<br/>
+                                        </address>
                                     </td>
                                     <td>
                                         <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
@@ -166,9 +172,16 @@
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:each="paymentInfo : ${order.paymentInfos}" th:object="${paymentInfo}" th:inline="text">
                                     <td>
-                                        <address>
+                                        <address th:if="*{address.phonePrimary != null}">
                                             [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.primaryPhone}]]<br th:if="!*{#strings.isEmpty(address.primaryPhone)}"/>
+                                            [[*{address.phonePrimary}]]<br/>
+                                            [[*{address.addressLine1}]]<br/>
+                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.emailAddress}]]<br/>
+                                        </address>
+                                        <address th:if="*{address.phonePrimary == null}">
+                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>

@@ -142,6 +142,7 @@
         <!--<property name="my.app.context" location="src/main/webapp/WEB-INF/applicationContext.xml"/>-->
         <taskdef name="hibernatetool" classname="org.broadleafcommerce.common.util.sql.HibernateToolTask" classpathref="build.runtime.classpath"/>
         <hibernatetool destDir="target/sql/create" combinePersistenceUnits="false" refineFileNames="true">
+            <classPathApplicationContext path="bl-framework-web-applicationContext.xml"/>
             <!--add in additional persistence configuration related to the framework -->
             <classPathApplicationContext path="bl-framework-applicationContext-persistence.xml"/>
             <!--add in additional persistence configuration related to common -->
