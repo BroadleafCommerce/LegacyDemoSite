@@ -66,6 +66,23 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
         return super.viewEntityCollection(request, response, model, sectionKey, id, collectionField);
     }
 
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.GET)
+    public String showAddCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String id,
+            @PathVariable String collectionField) throws Exception {
+        return super.showAddCollectionItem(request, response, model, sectionKey, id, collectionField);
+    }
+
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.POST)
+    public String saveNewCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String id,
+            @PathVariable String collectionField,
+            @ModelAttribute EntityForm entityForm) throws Exception {
+        return super.saveNewCollectionItem(request, response, model, sectionKey, id, collectionField, entityForm);
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         super.initBinder(binder);

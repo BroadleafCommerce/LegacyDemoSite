@@ -1,0 +1,27 @@
+<div class="formInnerContainer">
+    
+    <form th:object="${entityForm}" 
+        method="POST" 
+        th:action="${currentUrl}"
+        class="form-horizontal">
+        
+        <input type="submit" />
+        
+        <input type="hidden" th:field="*{entityType}" />
+    
+        <div th:each="group : *{groups.values()}" class="well">
+        
+            <legend th:text="${group.title}" />
+            
+            <div th:each="field : ${group.fields}" class="control-group" th:if="${field.name}">
+                <label class="control-label" th:for="${field.name}" th:text="#{${field.friendlyName}}" />
+                <div class="controls">
+                    <input th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
+                </div>
+            </div>
+            
+        </div>
+
+    </form>
+    
+</div>

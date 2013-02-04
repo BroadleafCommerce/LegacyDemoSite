@@ -1,7 +1,15 @@
 <div class="listGrid toolbar">
     <ul>
-        <li><i class="icon-plus-sign"></i> Add</li>
-        <li><i class="icon-remove-sign"></i> Remove</li>
+        <li>
+            <i class="icon-plus-sign"></i> 
+            <a th:if="*{subCollectionFieldName != null}"
+                class="subCollectionListGridAdd"
+                th:href="@{${'/' + sectionKey + '/' + entityForm.id + '/' + #object.subCollectionFieldName + '/add'}}">Add</a>
+        </li>
+        <li>
+            <i class="icon-remove-sign"></i> 
+            Remove
+        </li>
     </ul>
 </div>
 

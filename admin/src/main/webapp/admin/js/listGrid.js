@@ -5,7 +5,20 @@ $(document).ready(function() {
 		window.location = $(this).data('link');
 	});
 	
-	
+    $('body').on('click', 'a.subCollectionListGridAdd', function(event) {
+		$.get($(this).attr('href'), function(data) {
+			$modal = $(data);
+			
+			$modal.attr('id', 'andre');
+			$('body').append($modal);
+			$modal.modal();
+			
+			$modal.on('hidden', function() {
+				$modal.remove();
+			});
+		});
+		return false;
+    });
 	
 	
 	
