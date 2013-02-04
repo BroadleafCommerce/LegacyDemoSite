@@ -4,12 +4,12 @@
     <body>
         <div id="login">
             <div id="logo">
-                <img th:src="@{/img/broadleaf_admin_header_logo.png}" />
+                <img th:src="@{/img/admin/broadleaf_admin_header_logo.png}" />
             </div>
             <div th:substituteby="${templateName}::form" />
         </div>
         <div id="messages" th:include="${templateName}::messages" />
         <div id="options" th:include="${templateName}::options" />
-        <footer th:include="layout/partials/footer" />
+        <footer th:substituteby="layout/partials/footer" />
     </body>
 </html>

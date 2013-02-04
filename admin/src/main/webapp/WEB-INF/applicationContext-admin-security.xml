@@ -23,6 +23,8 @@
     <sec:http pattern="/css/**" security="none" />
     <sec:http pattern="/img/**" security="none" />
     <sec:http pattern="/js/**" security="none" />
+    <sec:http pattern="/gzip_*/js/**" security="none" />
+    <sec:http pattern="/gzip_*/css/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />
     <sec:http pattern="/robots.txt" security="none" />
     <sec:http pattern="/login" security="none" />

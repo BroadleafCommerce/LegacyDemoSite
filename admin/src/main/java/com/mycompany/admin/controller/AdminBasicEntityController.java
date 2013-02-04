@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Andre Azzolini (apazzolini)
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class AdminBasicEntityController extends BroadleafAdminBasicEntityController {
 
     @RequestMapping(value = "{sectionKey}", method = RequestMethod.GET)
