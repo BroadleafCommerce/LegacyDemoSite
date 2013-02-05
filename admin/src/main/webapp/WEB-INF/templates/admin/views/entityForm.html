@@ -19,7 +19,15 @@
     <div th:each="collectionListGrid : ${entityForm.collectionListGrids}">
         <div th:include="/components/listGrid" th:object="${collectionListGrid}" th:remove="tag" />
     </div>
-    
+
+    <hr/>
+
+    <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}">
+        <div th:include="/components/ruleBuilder" th:object="${collectionRuleBuilder}" th:remove="tag" />
+    </div>
+
+    <hr/>
+
     <form th:object="${entityForm}" 
         method="POST" 
         class="form-horizontal">
