@@ -1,19 +1,4 @@
-<div class="listGrid toolbar">
-    <ul>
-        <li>
-            <i class="icon-plus-sign"></i> 
-            <a th:if="*{subCollectionFieldName != null}"
-                class="subCollectionListGridAdd"
-                th:href="@{${'/' + sectionKey + '/' + entityForm.id + '/' + #object.subCollectionFieldName + '/add'}}">Add</a>
-        </li>
-        <li>
-            <i class="icon-remove-sign"></i> 
-            Remove
-        </li>
-    </ul>
-</div>
-
-<table class="table table-condensed table-bordered table-hover" style="font-size: 10px;">
+<table class="list-grid-table table table-condensed table-bordered table-hover" style="font-size: 10px;" th:attr="data-listgridtype=${listGridType}">
     <thead>
         <tr>
             <th>id</th>
@@ -27,11 +12,11 @@
     <tbody>
         <tr th:each="record : *{records}" 
             th:attr="data-link=@{${sectionKey + '/' + record.id}}">
-            <td data-fieldName="id" th:text="${record.id}" />
+            <td data-fieldname="id" th:text="${record.id}" />
             <td th:each="field : ${record.fields}" 
                 th:class="${'td' + fieldStat.count}" 
                 th:text="${field.value}"
-                th:attr="data-fieldName=${field.name}" />
+                th:attr="data-fieldname=${field.name}" />
         </tr>
     </tbody>
 </table>

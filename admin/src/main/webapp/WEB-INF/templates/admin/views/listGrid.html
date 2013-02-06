@@ -1,34 +1,5 @@
-<style>
-    .toolbar {
-    	background-color: #D5D5D5;
-    	width: 100%;
-    	padding: 5px 0;
-    	border-bottom: 1px solid #3D3E41;
-    }
-    
-    .toolbar ul {
-    	list-style-type: none;
-    	margin: 0;
-    }
-    
-    .toolbar ul li {
-    	display: inline-block;
-    	padding: 0 5px;
-    }
-    
-    div.listGridContainer table {
-        font-size: 10px;
-    }
-    
-    div.listGridContainer table th input {
-        width: 100%; display: inline-block;
-    }
-    
-    table.table-hover tbody tr:hover {
-        cursor: pointer;
-    }
-</style>
+<div th:include="/components/listGridToolbar" th:object="${listGrid}" th:remove="tag" />
 
-<div class="listGridContainer">
+<div class="listGridContainer" th:with="listGridType=${'main'}">
     <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
 </div>
