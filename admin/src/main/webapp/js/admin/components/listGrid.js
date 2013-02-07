@@ -11,6 +11,7 @@ $(document).ready(function() {
 		var $table = $tr.closest('table');
 		var link = $tr.data('link');
 		var listGridType = $table.data('listgridtype');
+		var currentUrl = $table.data('currenturl');
 		var fields = {};
 		
 		$tr.find('td').each(function() {
@@ -19,35 +20,55 @@ $(document).ready(function() {
 			fields[fieldName] = value;
 		});
 		
-		$('body').trigger('listGrid-' + listGridType + '-rowSelected', [link, fields]);
+		$('body').trigger('listGrid-' + listGridType + '-rowSelected', [link, fields, currentUrl]);
 	});
 	
 	/**
 	 * The rowSelected handler for the main list grid simply needs to navigate to the given URL.
 	 */
-	$('body').on('listGrid-main-rowSelected', function(event, link, fields) {
+	$('body').on('listGrid-main-rowSelected', function(event, link, fields, currentUrl) {
 		window.location = link;
+	});
+	
+	/**
+	 * The rowSelected handler for the inline list grid ...
+	 */
+	$('body').on('listGrid-inline-rowSelected', function(event, link, fields, currentUrl) {
+		alert('hi');
 	});
 	
 	/**
 	 * The rowSelected handler for a toOne list grid needs to trigger the specific valueSelected handler 
 	 * for the field that we are performing the to-one lookup on.
 	 */
-	$('body').on('listGrid-toOne-rowSelected', function(event, link, fields) {
+	$('body').on('listGrid-toOne-rowSelected', function(event, link, fields, currentUrl) {
 		$('div.additional-foreign-key-container').trigger('valueSelected', fields);
 	});
 	
 	/**
 	 * The rowSelected handler for a simpleCollection list grid ...
 	 */
-	$('body').on('listGrid-basicCollection-rowSelected', function(event, link, fields) {
-		alert('handling row selected for a collection add');
+	$('body').on('listGrid-basicCollection-rowSelected', function(event, link, fields, currentUrl) {
+		var postData = {};
+		
+		for (var key in fields){
+		    if (fields.hasOwnProperty(key)){
+		    	postData["fields['" + key + "'].value"] = fields[key];
+		    }
+		}	
+		
+		$.post(currentUrl, postData, function(data) {
+			replaceListGrid(data);
+		})
+		.fail(function(data) {
+			alert('failed ' + data);
+		});
 	});
 	
 	/**
 	 * The rowSelected handler for an adornedTarget list grid ...
 	 */
-	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields) {
+	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields, currentUrl) {
 		alert('handling row selected for an adornedTarget add');
 	});
 	
@@ -87,7 +108,21 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	var showLinkAsModal = function(link, callback) {
+	$('body').on('submit', 'form.modal-form', function() {
+		$.post(this.action, $(this).serialize(), function(data) {
+			replaceListGrid(data);
+	    });
+		return false;
+	});
+	
+	var replaceListGrid = function(data) {
+		var $table = $(data).find('table');
+		var tableId = $table.attr('id');
+		$('#' + tableId).replaceWith($table);
+		$('#modal').modal('hide');
+	}
+	
+	var showLinkAsModal = function(link, onModalHide) {
 		$.get(link, function(data) {
 			var $data = $(data);
 			
@@ -95,8 +130,8 @@ $(document).ready(function() {
 			$data.modal();
 			
 			$data.on('hidden', function() {
-				if (callback != null) {
-					callback();
+				if (onModalHide != null) {
+					onModalHide();
 				}
 				$(this).remove();
 			});
