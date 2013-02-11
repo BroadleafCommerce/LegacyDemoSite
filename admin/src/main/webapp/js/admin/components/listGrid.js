@@ -69,7 +69,9 @@ $(document).ready(function() {
 	 * The rowSelected handler for an adornedTarget list grid ...
 	 */
 	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields, currentUrl) {
-		alert('handling row selected for an adornedTarget add');
+		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
+		$('#modal').find('.listGridContainer').hide();
+		$('#modal').find('.entityFormContainer').show();
 	});
 	
 	/**

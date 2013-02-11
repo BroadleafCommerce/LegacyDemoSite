@@ -5,8 +5,6 @@
         th:action="${currentUrl}"
         class="form-horizontal modal-form">
         
-        <input type="submit" />
-        
         <input type="hidden" th:field="*{entityType}" />
     
         <div th:each="group : *{groups.values()}" class="well">

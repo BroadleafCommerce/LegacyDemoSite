@@ -1,7 +1,6 @@
 <table class="list-grid-table table table-condensed table-bordered table-hover" style="font-size: 10px;" 
-    th:attr="data-listgridtype=${listGridType},data-currenturl=${currentUrl}"
-    th:id="*{subCollectionFieldName != null ? 'listGrid-' + subCollectionFieldName : ''}"
-    >
+    th:attr="data-listgridtype=*{listGridType},data-currenturl=${currentUrl}"
+    th:id="*{subCollectionFieldName != null ? 'listGrid-' + subCollectionFieldName : ''}">
     <thead>
         <tr>
             <th>id</th>
