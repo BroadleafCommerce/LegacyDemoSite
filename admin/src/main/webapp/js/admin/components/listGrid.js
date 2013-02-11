@@ -70,8 +70,7 @@ $(document).ready(function() {
 	 */
 	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
-		$('#modal').find('.listGridContainer').hide();
-		$('#modal').find('.entityFormContainer').show();
+		$('a#modalTab2Link').click();
 	});
 	
 	/**
@@ -88,7 +87,6 @@ $(document).ready(function() {
     	
     	// This handler will
     	$container.on('valueSelected', function(event, fields) {
-    		debugger;
     		var $this = $(this);
     		var displayValueProp = $this.find('input.display-value-property').val();
     		
@@ -121,7 +119,7 @@ $(document).ready(function() {
 		var $table = $(data).find('table');
 		var tableId = $table.attr('id');
 		$('#' + tableId).replaceWith($table);
-		$('#modal').modal('hide');
+    	$('#modal').modal('hide');
 	}
 	
 	var showLinkAsModal = function(link, onModalHide) {

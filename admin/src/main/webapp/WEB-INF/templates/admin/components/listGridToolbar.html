@@ -2,7 +2,8 @@
     <ul class="inline-list" th:if="*{subCollectionFieldName != null}">
         <li class="list-title" th:text="*{subCollectionFieldName}">Sub-collection Field Name</li>
         <li>
-            <a th:href="@{${'/' + sectionKey + '/' + entityForm.id + '/' + #object.subCollectionFieldName + '/add'}}">
+            <a class="sub-list-grid-add"
+                th:href="@{${'/' + sectionKey + '/' + entityForm.id + '/' + #object.subCollectionFieldName + '/add'}}">
                 <i class="foundicon-plus"></i>&nbsp;Add
             </a>
         </li>

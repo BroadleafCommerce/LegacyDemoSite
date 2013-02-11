@@ -1,28 +1,35 @@
 <div class="adornedListGridContainer">
-    <div class="listGridContainer">
-        <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
-    </div>
-    
-    <div class="entityFormContainer" style="display: none;">
-        <form th:object="${entityForm}" 
-            method="POST" 
-            th:action="${currentUrl}"
-            class="form-horizontal modal-form">
-            
-            <input type="hidden" th:field="*{entityType}" />
-        
-            <div th:each="group : *{groups.values()}" class="well">
-            
-                <legend th:text="${group.title}" />
-                
-                <div th:each="field : ${group.fields}" class="control-group" th:if="${field.name}">
-                    <label class="control-label" th:for="${field.name}" th:text="#{${field.friendlyName}}" th:if="${field.friendlyName}" />
-                    <div class="controls">
-                        <input th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
-                    </div>
-                </div>
-                
+
+    <dl class="tabs">
+        <dd class="active"><a id="modalTab1Link" href="#modalTab1">Pick Entity</a></dd>
+        <dd><a id="modalTab2Link" href="#modalTab2">Additional Fields</a></dd>
+    </dl>
+
+    <ul class="tabs-content">
+        <li class="active" id="modalTab1Tab">
+            <div class="listGridContainer">
+                <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
             </div>
-        </form>
-    </div>
+        </li>
+        <li id="modalTab2Tab">
+            <form th:object="${entityForm}"
+                  method="POST"
+                  class="twelve columns custom modal-form"
+                  th:action="@{${currentUrl}}">
+        
+                <input type="hidden" th:field="*{entityType}" />
+        
+                <fieldset th:each="group : *{groups.values()}">
+                    <legend th:text="${group.title}" />
+        
+                    <div th:each="field : ${group.fields}" th:if="${field.name}">
+                        <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
+                    </div>
+                </fieldset>
+        
+                <input type="submit" class="button right modal-submit" value="Save"/>
+            </form>
+        </li>
+    </ul>
+    
 </div>
