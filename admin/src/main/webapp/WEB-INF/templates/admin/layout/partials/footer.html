@@ -2,4 +2,20 @@
     <script blc:jawr-js="/js/admin/lib.js" th:remove="tag" />
     <script blc:jawr-js="/js/admin/ui.js" th:remove="tag" />
     <script blc:jawr-js="/js/admin/components.js" th:remove="tag" />
+
+    <script type="text/javascript">
+        $(document).ready(
+            function()
+            {
+                $('#redactor').redactor();
+            }
+        );
+    </script>
+
+    <script>
+        $(window).load(function(){
+            $("#featured").orbit();
+        });
+    </script>
+
 </footer>

@@ -1,15 +1,32 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
-<html lang="en">
-    <head th:include="layout/partials/head" />
-    <body>
-        <div id="login">
-            <div id="logo">
-                <img th:src="@{/img/admin/broadleaf_admin_header_logo.png}" />
-            </div>
-            <div th:substituteby="${templateName}::form" />
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head th:include="layout/partials/head" />
+
+<body class="off-canvas">
+
+<div class="container">
+    <div class="basic-form">
+
+        <div class="logo">
+            <img th:src="@{/img/admin/blc-logo-150.png}" />
         </div>
+
+        <div class="clear"></div>
+
         <div id="messages" th:include="${templateName}::messages" />
-        <div id="options" th:include="${templateName}::options" />
-        <footer th:substituteby="layout/partials/footer" />
-    </body>
+
+        <div th:substituteby="${templateName}::form" />
+
+        <div id="options" class="basic-links" th:include="${templateName}::options" />
+
+    </div> <!-- /basic-form -->
+</div>
+
+<footer th:substituteby="layout/partials/footer" />
+
+</body>
 </html>

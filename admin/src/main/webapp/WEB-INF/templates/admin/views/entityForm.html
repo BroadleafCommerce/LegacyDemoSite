@@ -1,55 +1,65 @@
-<style>
-    .formInnerContainer {
-    	margin: 10px;
-    }
-    
-    .well {
-        padding: 0 19px;
-    }
-    
-    legend {
-        font-size: 19px;
-        line-height: 34px;
-    }
-    
-</style>
+<div>
 
-<div class="formInnerContainer">
-
-    <div th:each="collectionListGrid : ${entityForm.collectionListGrids}">
-        <div th:include="/components/listGridToolbar" th:object="${collectionListGrid}" th:remove="tag" />
-        <div th:include="/components/listGrid" th:object="${collectionListGrid}" th:remove="tag" />
-    </div>
-
-    <hr/>
-
-    <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}">
-        <div th:include="/components/ruleBuilder" th:object="${collectionRuleBuilder}" th:remove="tag" />
-    </div>
-
-    <hr/>
-
-    <form th:object="${entityForm}" 
-        method="POST" 
-        class="form-horizontal">
-        
-        <input type="submit" />
-        
-        <input type="hidden" th:field="*{entityType}" />
-    
-        <div th:each="group : *{groups.values()}" class="well">
-        
-            <legend th:text="${group.title}" />
-            
-            <div th:each="field : ${group.fields}" class="control-group" th:if="${field.name}">
-                <label class="control-label" th:for="${field.name}" th:text="#{${field.friendlyName}}" />
-                <div class="controls">
-                    <input th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
-                </div>
-            </div>
-            
+    <div class="row">
+        <div class="twelve columns">
+            <h2>Entity Name</h2>
+            <h5 class="subheader">Entity Description</h5>
         </div>
+    </div>
 
-    </form>
-    
+    <dl class="tabs">
+        <dd class="active"><a href="#tab1">Tab 1</a></dd>
+        <dd><a href="#tab2">Tab 2</a></dd>
+        <dd><a href="#tab3">Tab 3</a></dd>
+    </dl>
+
+    <ul class="tabs-content">
+        <li class="active" id="tab1Tab">
+
+            <ul class="inline-list magellan-toolbar" data-magellan-expedition='fixed'>
+                <li><a href="#"><i class="foundicon-checkmark"></i>&nbsp;Save</a></li>
+                <li class="divider">&nbsp;</li>
+                <li><a href="#" class="alert"><i class="foundicon-minus"></i>&nbsp;Delete Product</a></li>
+            </ul>
+
+            <form th:object="${entityForm}"
+                  method="POST"
+                  class="twelve columns custom"
+                  action="#">
+
+                <input type="hidden" th:field="*{entityType}" />
+
+                <fieldset th:each="group : *{groups.values()}">
+                    <legend th:text="${group.title}" />
+
+                    <div th:each="field : ${group.fields}" th:if="${field.name}">
+                        <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
+                    </div>
+                </fieldset>
+
+                <input type="submit" class="button right" value="Save"/>
+            </form>
+
+            <hr/>
+
+            <div th:each="collectionListGrid : ${entityForm.collectionListGrids}">
+                <div th:include="/components/listGridToolbar" th:object="${collectionListGrid}" th:remove="tag" />
+                <div th:include="/components/listGrid" th:object="${collectionListGrid}" th:remove="tag" />
+            </div>
+
+            <hr/>
+
+            <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}">
+                <div th:include="/components/ruleBuilder" th:object="${collectionRuleBuilder}" th:remove="tag" />
+            </div>
+
+        </li>
+        <li id="tab2Tab">
+            Tab 2 Content
+        </li>
+        <li id="tab3Tab">
+            Tab 3 Content
+        </li>
+    </ul>
+
 </div>

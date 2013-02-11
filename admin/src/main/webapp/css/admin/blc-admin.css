@@ -1,0 +1,319 @@
+/* Broadleaf Admin Specific Styles  */
+
+body {
+    padding-bottom: 60px;
+    background: #e9e9e9;
+}
+
+[role="main"] {
+    background: #fff;
+    border-left: 3px solid #ccc;
+    border-top: 2px solid #ccc;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.clear {
+    clear:both;
+}
+.row {
+    width: 1440px;
+}
+
+.content {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 500;
+}
+
+header .subheader {
+    position: relative; top: -18px;
+}
+
+a {
+    color: #8EAA2B;
+}
+
+.label.secondary a, .label.secondary a:hover {
+    color: #6f6f6f;
+}
+
+.inline-block, input[type="text"].inline-block {
+    display: inline-block;
+    margin-bottom: 12px;
+    vertical-align: middle;
+}
+
+span.error {
+    color: #c60f13;
+    padding-left: 5px;
+}
+
+
+/* --------------------------------------------------
+  Top Bar
+-----------------------------------------------------
+*/
+.top-bar {
+    margin: 0 0 8px 0;
+}
+
+.top-bar a {
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-bar .attached {
+    padding: 0 0 0 23px;
+    max-width: 1440px;
+    z-index: 0 !important;
+}
+
+.top-bar .attached > .brand {
+    float: left;
+    padding: 5px 10px 0px;
+}
+
+/* --------------------------------------------------
+   Navigation
+-----------------------------------------------------
+*/
+nav > ul.blc-accordion {
+    margin: 0 0 22px 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+nav > ul.blc-accordion > li {
+    border-left: 3px solid #ccc;
+    background: #f2f2f2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e9e9e9;
+}
+
+nav > ul.blc-accordion > li.active {
+    margin-top: 0;
+    border-top: 1px solid #4d4d4d;
+    border-left: 4px solid #1a1a1a;
+    background: #4d4d4d;
+}
+
+nav > ul.blc-accordion > li .title {
+    padding-top: 13px;
+    background: #f2f2f2;
+    border-width: 1px 1px 0 0;
+    color: #555;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0;
+    position: relative;
+    border-left: 1px solid #e9e9e9;
+    border-right: 1px solid #e9e9e9;
+    -webkit-transition: 0.15s background linear;
+    -moz-transition: 0.15s background linear;
+    -o-transition: 0.15s background linear;
+    transition: 0.15s background linear;
+}
+
+nav > ul.blc-accordion > li.active .title {
+    background: #4d4d4d;
+    border: none;
+}
+
+nav > ul.blc-accordion > li .title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 6px;
+    border-color: transparent transparent transparent #9d9d9d;
+    position: absolute;
+    right: 15px;
+    top: 21px;
+}
+
+nav > ul.blc-accordion > li.active .title::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 6px;
+    border-color: #9d9d9d transparent transparent transparent;
+}
+
+
+nav > ul.blc-accordion > li .title > h5 {
+    line-height: 1;
+    padding: 2px 6px;
+    font-size: 14px;
+    margin: 0;
+}
+
+nav > ul.blc-accordion > li.active .title > h5 {
+    line-height: 1;
+    padding: 2px 6px;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+}
+
+nav > ul.blc-accordion > li .content {
+    padding: 0px;
+    background: #fff;
+}
+
+nav > ul.blc-accordion > li.active .content {
+    padding: 0px;
+    border-left: none;
+    border-right: 1px solid #e9e9e9;
+    background: #fff;
+}
+
+nav > ul.blc-accordion > li > .content > ul {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left: solid 3px #ddd;
+    border-right: solid 1px #eee;
+    margin-left: -4px;
+    -webkit-box-shadow: 1px 0 0 white inset;
+    -moz-box-shadow: 1px 0 0 white inset;
+    box-shadow: 1px 0 0 white inset;
+}
+
+nav > ul.blc-accordion > li > .content > ul li {
+    border: none;
+    list-style: none;
+    padding: 2px;
+}
+
+nav > ul.blc-accordion > li > .content > ul li a {
+    cursor: pointer !important;
+    font-weight: normal;
+    color: #666 !important;
+    padding: 7px 0 7px 20px;
+    background: #fff !important;
+}
+
+nav > ul.blc-accordion > li > .content > ul li a:hover {
+    color: #111 !important;
+    background: #fff !important;
+}
+
+nav > ul.blc-accordion > li > .content > ul li.active {
+    border: none;
+}
+
+nav > ul.blc-accordion > li > .content > ul li.active a {
+    font-weight: bold;
+    color: #222 !important;
+}
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+.button-blc, .button-blc:hover {
+    background: #8EAA2B;
+    border: 1px solid #8EAA2C;
+}
+
+table.table-hover tbody tr:hover {
+    cursor: pointer;
+    background-color: #f3f3f3;
+}
+
+.listgrid-toolbar {
+    margin: 0;
+    padding: 10px;
+    background: #f1f1f1;
+    background: -moz-linear-gradient(top,  #f1f1f1 0%, #e2e2e2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f1), color-stop(100%,#e2e2e2));
+    background: -webkit-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: -o-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: -ms-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: linear-gradient(to bottom,  #f1f1f1 0%,#e2e2e2 100%);
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.listgrid-toolbar > ul > li.list-title {
+    font-weight: bold;
+}
+
+.listgrid-toolbar > ul.inline-list, .listgrid-toolbar > ul.link-list {
+    margin-bottom: 0;
+}
+
+ul.magellan-toolbar {
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #bbb;
+    background: #f1f1f1;
+    background: -moz-linear-gradient(top,  #f1f1f1 0%, #e2e2e2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f1), color-stop(100%,#e2e2e2));
+    background: -webkit-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: -o-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: -ms-linear-gradient(top,  #f1f1f1 0%,#e2e2e2 100%);
+    background: linear-gradient(to bottom,  #f1f1f1 0%,#e2e2e2 100%);
+    z-index: 100;
+    width: 100%;
+    padding: 10px;
+    margin:0;
+}
+
+ul.magellan-toolbar > li.divider {
+    background: #ccc;
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    height: 100%;
+    margin-right: 1px;
+    width: 1px;
+}
+
+
+.listgrid-toolbar a.alert, ul.magellan-toolbar a.alert {
+    color: #c60f13;
+}
+
+.listgrid-toolbar a.alert:hover, ul.magellan-toolbar a.alert:hover {
+    color: #970b0e;
+}
+
+/* -----------------------------------------
+   Login/Forgot Password Forms
+----------------------------------------- */
+
+.basic-form {
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin: 50px auto 20px auto;
+    padding: 30px 30px 10px 30px;
+    max-width: 500px;
+}
+
+.basic-links {
+    margin: 0 auto;
+    padding-top: 20px;
+    clear:both;
+}
+
+.basic-links > ul > li.divider {
+    background: #ccc;
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
+    height: 100%;
+    margin-right: 1px;
+    width: 1px;
+}
+
+.logo {
+    float: right;
+    padding-bottom: 15px;
+}

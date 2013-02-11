@@ -1,4 +1,5 @@
 <div class="listGridContainer">
+    <div th:include="/components/searchFields" th:object="${listGrid}" th:remove="tag" />
     <div th:include="/components/listGridToolbar" th:object="${listGrid}" th:remove="tag" />
     <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
 </div>

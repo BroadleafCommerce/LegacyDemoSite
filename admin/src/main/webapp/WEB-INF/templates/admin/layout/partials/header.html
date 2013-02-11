@@ -1,34 +1,26 @@
 <header>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <a class="brand" href="#"><img th:src="@{/img/admin/broadleaf_admin_header_logo.png}" /></a>
-                    </div>
-                    <div class="span10">
-                        <div class="menu-options">
-                            <a class="btn btn-danger pull-right logout" href="#" th:href="@{adminLogout.htm}"
-                               title="Logout" th:title="#{header.logout}"><i class="icon-off icon-white"></i></a>
-                            <div class="btn-group pull-right">
-                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#" th:inline="text">
-                                    <blc_admin:admin_user resultVar="adminUser" />
-                                    <i class="icon-user icon-white"></i> [[${adminUser.name}]] <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" th:href="@{changePassword}" th:text="#{header.password.change} + '...'">Change Password...</a></li>
-                                    <li><a href="#" id="editUserInfo" th:text="#{header.profile.edit} + '...'">Edit Profile...</a></li>
-                                </ul>
-                            </div>
-                            <!--
-                            <form class="navbar-search pull-left">
-                                <input id="quick-search" type="text" class="search-query" placeholder="Search in Customers" />
-                            </form>
-                            -->
-                        </div>
-                    </div>
-                </div>
+    <div class="top-bar">
+        <div class="attached">
+            <div class="brand show-for-small hide-for-medium-up">
+                <span><a href="/admin"><img th:src="@{/img/admin/blc-logo-leaf.png}" /></a></span>
             </div>
+            <div class="brand show-for-medium-up hide-for-small">
+                <span><a href="/admin"><img th:src="@{/img/admin/blc-logo-header.png}" /></a></span>
+            </div>
+
+            <ul class="right">
+                <li class="has-dropdown" th:inline="text">
+                    <blc_admin:admin_user resultVar="adminUser" />
+                    <a href="#">[[${adminUser.name}]]</a>
+                    <ul class="dropdown">
+                        <li><a href="#" th:href="@{changePassword}" th:text="#{header.password.change} + '...'">Change Password...</a></li>
+                        <li><a href="#" id="editUserInfo" th:text="#{header.profile.edit} + '...'">Edit Profile...</a></li>
+                    </ul>
+                </li>
+                <li class="logout">
+                    <a class="small button alert" th:href="@{adminLogout.htm}" title="Logout" th:title="#{header.logout}">Logout</a>
+                </li>
+            </ul>
         </div>
     </div>
 </header>

@@ -1,1 +1,4 @@
-<input type="checkbox" th:field="*{fields['__${field.name}__'].value}" th:value="${true}" />
+<label th:for="${field.name}" th:inline="text" >
+    <input type="checkbox" th:id="${field.name}" th:field="*{fields['__${field.name}__'].value}" th:value="${true}" style="display: none;" />
+    [[#{${field.friendlyName}}]]
+</label>

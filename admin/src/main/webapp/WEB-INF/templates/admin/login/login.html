@@ -1,31 +1,30 @@
 <div>
-    <form th:fragment="form" th:action="@{/login_admin_post}" action="#" method="post" class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-                <input type="text" id="username" name="j_username" autofocus="autofocus" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="password">Password</label>
-            <div class="controls">
-                <input type="password" id="password" name="j_password" />
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn" >Sign In</button>
-            </div>
-        </div>
-    </form>
     <div th:fragment="messages">
-        <p th:unless="${#strings.isEmpty(param.login_error)}" class="alert alert-error"><strong>Invalid username / password combination.</strong></p>
-        <p th:if="${param.messageCode == 'usernameSent'}" class="alert alert-success">Your username was sent to the email address on file.</p>
-        <p th:if="${param.messageCode == 'passwordReset'}" class="alert alert-success">Your password has been reset.  Please login with your new password.</p>
+        <div class="alert-box alert" th:unless="${#strings.isEmpty(param.login_error) and #strings.isEmpty(param.messageCode)}">
+            <div th:unless="${#strings.isEmpty(param.login_error)}">Invalid username / password combination.</div>
+            <div th:if="${param.messageCode == 'usernameSent'}">Your username was sent to the email address on file.</div>
+            <div th:if="${param.messageCode == 'passwordReset'}">Your password has been reset.  Please login with your new password.</div>
+        </div>
     </div>
+
+    <form method="POST" th:fragment="form" th:action="@{/login_admin_post}" action="#">
+
+        <label>Username</label>
+        <input type="text" id="username" name="j_username" autofocus="autofocus" />
+
+        <label>Password</label>
+        <input type="password" id="password" name="j_password" />
+
+        <input type="submit" class="button radius right" value="Sign In"/>
+    </form>
+
     <div th:fragment="options">
-        <a th:href="@{forgotUsername}" href="#">Forgot Username</a> |
-        <a th:href="@{forgotPassword}" href="#">Forgot Password</a> |
-        <a th:href="@{changePassword}" href="#">Change Password</a>
+        <ul class="inline-list">
+            <li><a th:href="@{forgotUsername}" href="#">Forgot Username</a></li>
+            <li class="divider">&nbsp;</li>
+            <li><a th:href="@{forgotPassword}" href="#">Forgot Password</a></li>
+            <li class="divider">&nbsp;</li>
+            <li><a th:href="@{changePassword}" href="#">Change Password</a></li>
+        </ul>
     </div>
 </div>
