@@ -20,6 +20,7 @@ import org.broadleafcommerce.openadmin.web.controller.entity.BroadleafAdminBasic
 import org.broadleafcommerce.openadmin.web.form.entity.EntityForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,12 +38,14 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("")
 public class AdminBasicEntityController extends BroadleafAdminBasicEntityController {
 
+    @Override
     @RequestMapping(value = "{sectionKey}", method = RequestMethod.GET)
     public String viewEntityList(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey) throws Exception {
         return super.viewEntityList(request, response, model, sectionKey);
     }
 
+    @Override
     @RequestMapping(value = "{sectionKey}/{id}", method = RequestMethod.GET)
     public String viewEntityForm(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
@@ -50,14 +53,16 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
         return super.viewEntityForm(request, response, model, sectionKey, id);
     }
 
+    @Override
     @RequestMapping(value = "{sectionKey}/{id}", method = RequestMethod.POST)
     public String saveEntity(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
             @PathVariable String id,
-            @ModelAttribute EntityForm entityForm) throws Exception {
-        return super.saveEntity(request, response, model, sectionKey, id, entityForm);
+            @ModelAttribute EntityForm entityForm, BindingResult result) throws Exception {
+        return super.saveEntity(request, response, model, sectionKey, id, entityForm, result);
     }
 
+    @Override
     @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.GET)
     public String showAddCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
@@ -66,6 +71,7 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
         return super.showAddCollectionItem(request, response, model, sectionKey, id, collectionField);
     }
 
+    @Override
     @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.POST)
     public String saveNewCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
@@ -75,6 +81,7 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
         return super.saveNewCollectionItem(request, response, model, sectionKey, id, collectionField, entityForm);
     }
 
+    @Override
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         super.initBinder(binder);

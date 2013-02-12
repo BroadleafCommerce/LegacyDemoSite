@@ -33,6 +33,7 @@
                     <legend th:text="${group.title}" />
 
                     <div th:each="field : ${group.fields}" th:if="${field.name}">
+                        <span class="error" th:errors="*{fields['__${field.name}__'].value}" />
                         <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
                     </div>
                 </fieldset>
