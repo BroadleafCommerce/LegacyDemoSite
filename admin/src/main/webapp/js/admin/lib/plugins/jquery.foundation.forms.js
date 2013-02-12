@@ -362,6 +362,10 @@
 
   };
 
+  var escapeIdentifier = function(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  };
+
   var toggleCheckbox = function($element) {
     var $input = $element.prev(),
         input = $input[0];
@@ -380,7 +384,7 @@
         input = $input[0];
 
     if (false === $input.is(':disabled')) {
-      $form.find('input:radio[name="' + $input.attr('name') + '"]').next().not($element).removeClass('checked');
+      $form.find('input:radio[name="' + escapeIdentifier($input.attr('name')) + '"]').next().not($element).removeClass('checked');
       if ( !$element.hasClass('checked') ) {
         $element.toggleClass('checked');
       }
@@ -409,7 +413,7 @@
   });
 
   $(document).on('click', 'form.custom label', function (event) {
-    var $associatedElement = $('#' + $(this).attr('for') + '[data-customforms!=disabled]'),
+    var $associatedElement = $('#' + escapeIdentifier($(this).attr('for')) + '[data-customforms!=disabled]'),
         $customCheckbox,
         $customRadio;
     if ($associatedElement.length !== 0) {
