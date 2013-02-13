@@ -30,7 +30,7 @@
                 <input type="hidden" th:field="*{entityType}" />
 
                 <fieldset th:each="group : *{groups.values()}">
-                    <legend th:text="${group.title}" />
+                    <legend th:text="#{${group.title}}" />
 
                     <div th:each="field : ${group.fields}" th:if="${field.name}">
                         <span class="error" th:errors="*{fields['__${field.name}__'].value}" />
