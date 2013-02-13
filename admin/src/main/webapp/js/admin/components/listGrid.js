@@ -66,9 +66,20 @@ $(document).ready(function() {
 	});
 	
 	/**
-	 * The rowSelected handler for an adornedTarget list grid ...
+	 * The rowSelected handler for an adornedTarget list grid. This is specific to adorned target
+	 * lists that do not have any additional maintained fields. In this case, we can simply
+	 * submit the form directly.
 	 */
 	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields, currentUrl) {
+		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
+		$('#modal form').submit();
+	});
+	
+	/**
+	 * The rowSelected handler for an adornedTargetWithForm list grid. Once the user selects an entity,
+	 * show the form with the additional maintained fields.
+	 */
+	$('body').on('listGrid-adornedTargetWithForm-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
 		$('a#modalTab2Link').click();
 	});

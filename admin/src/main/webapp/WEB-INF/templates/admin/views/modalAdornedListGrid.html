@@ -1,35 +1,25 @@
 <div class="adornedListGridContainer">
 
-    <dl class="tabs">
-        <dd class="active"><a id="modalTab1Link" href="#modalTab1">Pick Entity</a></dd>
-        <dd><a id="modalTab2Link" href="#modalTab2">Additional Fields</a></dd>
-    </dl>
+    <div class="listGridContainer">
+        <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
+    </div>
+    
+    <form th:object="${entityForm}"
+          method="POST"
+          class="twelve columns custom modal-form"
+          th:action="@{${currentUrl}}">
 
-    <ul class="tabs-content">
-        <li class="active" id="modalTab1Tab">
-            <div class="listGridContainer">
-                <div th:include="/components/listGrid" th:object="${listGrid}" th:remove="tag" />
+        <input type="hidden" th:field="*{entityType}" />
+
+        <fieldset th:each="group : *{groups.values()}" th:classappend="${!group.isVisible}? 'hidden'">
+            <legend th:text="${group.title}" />
+
+            <div th:each="field : ${group.fields}" th:if="${field.name}">
+                <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
             </div>
-        </li>
-        <li id="modalTab2Tab">
-            <form th:object="${entityForm}"
-                  method="POST"
-                  class="twelve columns custom modal-form"
-                  th:action="@{${currentUrl}}">
-        
-                <input type="hidden" th:field="*{entityType}" />
-        
-                <fieldset th:each="group : *{groups.values()}">
-                    <legend th:text="${group.title}" />
-        
-                    <div th:each="field : ${group.fields}" th:if="${field.name}">
-                        <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
-                    </div>
-                </fieldset>
-        
-                <input type="submit" class="button right modal-submit" value="Save"/>
-            </form>
-        </li>
-    </ul>
+        </fieldset>
+
+        <input type="submit" class="button right modal-submit" value="Save"/>
+    </form>
     
 </div>
