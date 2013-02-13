@@ -39,15 +39,12 @@
     </bean>
 
     <!-- Set up Broadleaf messaging -->
-    <bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
-    <bean id="messageSource"
-          class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
-        <constructor-arg>
+    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
+        <property name="basenames">
             <list>
                 <value>messages</value>
             </list>
-        </constructor-arg>
-        <constructor-arg ref="resourceBundleExtensionPoint" />
+        </property>
     </bean>
     
     <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->

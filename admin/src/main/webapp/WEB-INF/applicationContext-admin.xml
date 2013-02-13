@@ -123,15 +123,12 @@
     
     <bean id="blPrecompressedArtifactFilter" class="org.broadleafcommerce.common.web.util.PrecompressedArtifactFilter"/>
 
-    <bean id="resourceBundleExtensionPoint" class="org.broadleafcommerce.common.util.ResourceBundleExtensionPoint" />
-    <bean id="messageSource"
-          class="org.broadleafcommerce.common.util.BLResourceBundleMessageSource">
-        <constructor-arg>
+    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
+        <property name="basenames">
             <list>
-                <value>messages-admin</value>
+                <value>classpath:messages-admin</value>
             </list>
-        </constructor-arg>
-        <constructor-arg ref="resourceBundleExtensionPoint" />
+        </property>
     </bean>
 
 </beans>
