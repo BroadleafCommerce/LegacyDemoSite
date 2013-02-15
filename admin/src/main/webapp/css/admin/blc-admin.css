@@ -18,9 +18,18 @@ body {
 	display: none;
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
 .clear {
     clear:both;
 }
+
 .row {
     width: 1440px;
 }
@@ -229,6 +238,10 @@ table.table-hover tbody tr:hover {
     background-color: #f3f3f3;
 }
 
+/* -----------------------------------------
+  List Grid
+----------------------------------------- */
+
 .listgrid-toolbar {
     margin: 0;
     padding: 10px;
@@ -251,6 +264,397 @@ table.table-hover tbody tr:hover {
 .listgrid-toolbar > ul.inline-list, .listgrid-toolbar > ul.link-list {
     margin-bottom: 0;
 }
+
+table.list-grid-table thead tr th {
+    padding: 0;
+}
+
+
+.listgrid-headerBtn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+    padding: 10px 20px 11px;
+    position: relative;
+    text-decoration: none;
+}
+
+.listgrid-headerBtn:hover, .listgrid-headerBtn:focus {
+    color: #222;
+    background: transparent;
+}
+
+
+.listgrid-headerBtn.dropdown {
+    position: relative;
+    padding-right: 44px; /* Sizes */ /* Triangles */ /* Flyout List */ /* Split Dropdown Buttons */
+}
+
+.listgrid-headerBtn.dropdown.large {
+    padding-right: 60px;
+}
+
+.listgrid-headerBtn.dropdown.small {
+    padding-right: 28px;
+}
+
+.listgrid-headerBtn.dropdown.tiny {
+    padding-right: 20px;
+}
+
+.listgrid-headerBtn.dropdown:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 6px;
+    border-color: white transparent transparent transparent;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -2px;
+}
+
+.listgrid-headerBtn.dropdown.large:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 7px;
+    border-color: white transparent transparent transparent;
+    margin-top: -3px;
+    right: 30px;
+}
+
+.listgrid-headerBtn.dropdown.small:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 5px;
+    border-color: white transparent transparent transparent;
+    margin-top: -2px;
+    right: 14px;
+}
+
+.listgrid-headerBtn.dropdown.tiny:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 4px;
+    border-color: white transparent transparent transparent;
+    margin-top: -1px;
+    right: 10px;
+}
+
+.listgrid-headerBtn.dropdown > ul {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    display: none;
+    position: absolute;
+    left: -1px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #cccccc;
+    border-top: none;
+    min-width: 100%;
+    z-index: 40;
+}
+
+.listgrid-headerBtn.dropdown > ul li {
+    width: 100%;
+    cursor: pointer;
+    padding: 0;
+    min-height: 18px;
+    line-height: 18px;
+    margin: 0;
+    white-space: nowrap;
+    list-style: none;
+}
+
+.listgrid-headerBtn.dropdown > ul li a, .listgrid-headerBtn.dropdown > ul li button {
+    display: block;
+    color: #555;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 6px 14px;
+    text-align: left;
+}
+
+.listgrid-headerBtn.dropdown > ul li a.add-filter, .listgrid-headerBtn.dropdown > ul li a.clear-filter {
+    display: inline;
+    color: #8EAA2B;
+    font-weight: normal;
+    text-align: left;
+    padding:0 2px 5px 0;
+}
+
+.listgrid-headerBtn.dropdown > ul li a.add-filter:hover,
+.listgrid-headerBtn.dropdown > ul li a.add-filter:focus,
+.listgrid-headerBtn.dropdown > ul li a.clear-filter:hover,
+.listgrid-headerBtn.dropdown > ul li a.clear-filter:focus {
+    color: #2ba6cb;
+}
+
+.listgrid-headerBtn.dropdown > ul li a.clear-filter {
+    display:block;
+    padding: 4px 0 0 8px;
+}
+
+.listgrid-headerBtn.dropdown > ul li button {
+    width: 100%;
+    border: inherit;
+    background: inherit;
+    font-family: inherit;
+    margin: inherit;
+    -webkit-font-smoothing: antialiased;
+}
+
+.listgrid-headerBtn.dropdown > ul li:hover, .listgrid-headerBtn.dropdown > ul li:focus {
+    background-color: #e3f4f9;
+    color: #222;
+}
+
+.listgrid-headerBtn.dropdown > ul li.divider {
+    min-height: 0;
+    padding: 0;
+    height: 1px;
+    margin: 4px 0;
+    background: #ededed;
+}
+
+.listgrid-headerBtn.dropdown.up > ul {
+    border-top: 1px solid #cccccc;
+    border-bottom: none;
+}
+
+.listgrid-headerBtn.dropdown ul.no-hover.show-dropdown {
+    display: block !important;
+    width: 255px;
+}
+
+.listgrid-headerBtn.dropdown ul.no-hover.show-dropdown.end {
+    width:100%;
+}
+
+.listgrid-headerBtn.dropdown:hover > ul.no-hover {
+    display: none;
+}
+
+.listgrid-headerBtn.dropdown.split {
+    padding: 0; position: relative; /* Sizes */ /* Triangle Spans */ /* Colors */
+}
+
+.listgrid-headerBtn.dropdown.split:after {
+    display: none;
+}
+
+.listgrid-headerBtn.dropdown.split:hover, .listgrid-headerBtn.dropdown.split:focus {
+    background-color: transparent;
+}
+
+.listgrid-headerBtn.dropdown.split.alert:hover, .listgrid-headerBtn.dropdown.split.alert:focus {
+    background-color: #c60f13;
+}
+
+.listgrid-headerBtn.dropdown.split.success:hover, .listgrid-headerBtn.dropdown.split.success:focus {
+    background-color: #5da423;
+}
+
+.listgrid-headerBtn.dropdown.split.secondary:hover, .listgrid-headerBtn.dropdown.split.secondary:focus {
+    background-color: #e9e9e9;
+}
+
+.listgrid-headerBtn.dropdown.split > a {
+    color: white;
+    display: block;
+    padding: 10px 50px 11px 20px;
+    padding-left: 20px;
+    padding-right: 50px;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.listgrid-headerBtn.dropdown.split > a:hover, .listgrid-headerBtn.dropdown.split > a:focus {
+    background-color: #2284a1;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+.listgrid-headerBtn.dropdown.split.large > a {
+    padding: 15px 75px 16px 30px;
+    padding-left: 30px;
+    padding-right: 75px;
+}
+
+.listgrid-headerBtn.dropdown.split.small > a {
+    padding: 7px 35px 8px 14px;
+    padding-left: 14px;
+    padding-right: 35px;
+}
+
+.listgrid-headerBtn.dropdown.split.tiny > a {
+    padding: 5px 25px 6px 10px;
+    padding-left: 10px;
+    padding-right: 25px;
+}
+
+.listgrid-headerBtn.dropdown.split > span {
+    background: transparent;
+    border-left: 1px solid #e9e9e9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 30px;
+    -webkit-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -moz-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.listgrid-headerBtn.dropdown.split > span:hover, .listgrid-headerBtn.dropdown.split > span:focus {
+    background: #D2D2D2;
+}
+
+.listgrid-headerBtn.dropdown.split > span:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 6px;
+    border-color: #9d9d9d transparent transparent transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -6px;
+    margin-top: -2px;
+}
+
+.listgrid-headerBtn.dropdown.split.secondary > span:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 6px;
+    border-color: #1d1d1d transparent transparent transparent;
+}
+
+.listgrid-headerBtn.dropdown.split.large span {
+    width: 45px;
+}
+
+.listgrid-headerBtn.dropdown.split.small span {
+    width: 21px;
+}
+
+.listgrid-headerBtn.dropdown.split.tiny span {
+    width: 15px;
+}
+
+.listgrid-headerBtn.dropdown.split.large span:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 7px;
+    border-color: white transparent transparent transparent;
+    margin-top: -3px;
+    margin-left: -7px;
+}
+
+.listgrid-headerBtn.dropdown.split.small span:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 4px;
+    border-color: white transparent transparent transparent;
+    margin-top: -1px;
+    margin-left: -4px;
+}
+
+.listgrid-headerBtn.dropdown.split.tiny span:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid 3px;
+    border-color: white transparent transparent transparent;
+    margin-top: -1px;
+    margin-left: -3px;
+}
+
+.listgrid-headerBtn.dropdown.split.alert > span {
+    background-color: #c60f13;
+    border-left-color: #7f0a0c;
+}
+
+.listgrid-headerBtn.dropdown.split.success > span {
+    background-color: #5da423;
+    border-left-color: #396516;
+}
+
+.listgrid-headerBtn.dropdown.split.secondary > span {
+    background-color: #e9e9e9;
+    border-left-color: #c3c3c3;
+}
+
+.listgrid-headerBtn.dropdown.split.secondary > a {
+    color: #1d1d1d;
+}
+
+.listgrid-headerBtn.dropdown.split.alert > a:hover, .listgrid-headerBtn.dropdown.split.alert > span:hover, .listgrid-headerBtn.dropdown.split.alert > a:focus, .listgrid-headerBtn.dropdown.split.alert > span:focus {
+    background-color: #970b0e;
+}
+
+.listgrid-headerBtn.dropdown.split.success > a:hover, .listgrid-headerBtn.dropdown.split.success > span:hover, .listgrid-headerBtn.dropdown.split.success > a:focus, .listgrid-headerBtn.dropdown.split.success > span:focus {
+    background-color: #457a1a;
+}
+
+.listgrid-headerBtn.dropdown.split.secondary > a:hover, .listgrid-headerBtn.dropdown.split.secondary > span:hover, .listgrid-headerBtn.dropdown.split.secondary > a:focus, .listgrid-headerBtn.dropdown.split.secondary > span:focus {
+    background-color: #d0d0d0;
+}
+
+.listgrid-headerBtn.dropdown.split > .listgrid-title {
+    color: #222;
+    display: block;
+    padding: 10px 50px 11px 20px;
+    padding-left: 20px;
+    padding-right: 50px;
+    cursor: default;
+}
+
+.listgrid-headerBtn.dropdown > ul > li > form {
+    padding: 10px;
+}
+
+/* -----------------------------------------
+   Magellan toolbar
+----------------------------------------- */
 
 ul.magellan-toolbar {
     border: 1px solid #ddd;

@@ -1,19 +1,32 @@
 <div class="row">
     <div class="seven columns">
-        <form>
-            <label>Search Products</label>
+        <form class="custom">
+            <label>Search</label>
             <div class="row">
-                <div class="nine columns">
-                    <input type="text" placeholder="Product Name" />
-                </div>
-                <div class="one columns">
-                    <div href="#" class="button small split radius dropdown">
-                        <a href="#"><i class="foundicon-search"></i>&nbsp;Search</a>
-                        <span></span>
+                <div class="four columns">
+                    <!-- Custom Selects -->
+                    <select style="display:none;" id="customDropdown">
+                        <option selected="selected">All</option>
+                        <option>Context A</option>
+                        <option>Context B</option>
+                    </select>
+                    <div class="custom dropdown expand">
+                        <a href="#" class="current">
+                            All
+                        </a>
+                        <a href="#" class="selector"></a>
                         <ul>
-                            <li><a href="#" data-reveal-id="advanceSearchModal">Advance Search</a></li>
+                            <li>All</li>
+                            <li>Context A</li>
+                            <li>Context B</li>
                         </ul>
                     </div>
+                </div>
+                <div class="five columns">
+                    <input type="text" placeholder="Name" />
+                </div>
+                <div class="one columns">
+                    <a href="#" class="button small radius"><i class="foundicon-search"></i>&nbsp;Search</a>
                 </div>
                 <div class="two columns">&nbsp;</div>
             </div>

@@ -3,11 +3,65 @@
        th:id="*{subCollectionFieldName != null ? 'listGrid-' + subCollectionFieldName : ''}">
     <thead>
         <tr>
-            <th>id</th>
+            <th>
+                <div href="#" class="listgrid-headerBtn split dropdown">
+                    <div class="listgrid-title"><i class="foundicon-down-arrow"></i>&nbsp;id</div>
+                    <span class="hide-for-small"></span>
+                    <ul>
+                        <li><a href="#">Sort A → Z</a></li>
+                        <li><a href="#">Sort Z → A</a></li>
+                        <li class="divider"></li>
+                        <li>
+                            <form>
+                                <label>Filter <a class="add-filter" href="#">Add Criteria</a></label>
+                                <div class="listgrid-criteria">
+                                    <input type="text" placeholder="criteria" />
+                                </div>
+                                <div class="float-left">
+                                    <label for="radio1"><input name="matchAll" type="radio" />Match All</label>
+                                    <label for="radio2"><input name="matchAny" type="radio" />Match Any</label>
+                                </div>
+                                <div class="float-right">
+                                    <input type="submit" class="button small radius" value="Filter"/>
+                                    <a class="clear-filter" href="#">Clear All</a>
+                                </div>
+                                <div class="clear"></div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </th>
             <th th:each="headerField : *{headerFields}"
                 th:class="${'th' + headerFieldStat.count}"
-                th:text="#{${headerField.friendlyName}}"
+                th:inline="text"
                 scope="col">
+
+                <div href="#" class="listgrid-headerBtn split dropdown">
+                    <div class="listgrid-title">[[#{${headerField.friendlyName}}]]</div>
+                    <span class="hide-for-small"></span>
+                    <ul th:class="${headerFieldStat.last}? 'end'">
+                        <li><a href="#">Sort A → Z</a></li>
+                        <li><a href="#">Sort Z → A</a></li>
+                        <li class="divider"></li>
+                        <li>
+                            <form>
+                                <label>Filter <a class="add-filter" href="#">Add Criteria</a></label>
+                                <div class="listgrid-criteria">
+                                    <input type="text" placeholder="criteria" />
+                                </div>
+                                <div class="float-left">
+                                    <label for="radio1"><input name="matchAll" type="radio" />Match All</label>
+                                    <label for="radio2"><input name="matchAny" type="radio" />Match Any</label>
+                                </div>
+                                <div class="float-right">
+                                    <input type="submit" class="button small radius" value="Filter"/>
+                                    <a class="clear-filter" href="#">Clear All</a>
+                                </div>
+                                <div class="clear"></div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </th>
         </tr>
     </thead>

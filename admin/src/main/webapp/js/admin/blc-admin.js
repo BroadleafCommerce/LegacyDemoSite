@@ -19,6 +19,7 @@
 
     $.fn.placeholder                ? $('input, textarea').placeholder() : null;
     $.fn.broadleafAccordion         ? $doc.broadleafAccordion() : null;
+    $.fn.broadleafListgrid          ? $doc.broadleafListgrid() : null;
     
     $('#redactor').redactor();
     $("#featured").orbit();
