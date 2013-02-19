@@ -5,7 +5,7 @@
         <tr>
             <th>
                 <div href="#" class="listgrid-headerBtn split dropdown">
-                    <div class="listgrid-title"><i class="foundicon-down-arrow"></i>&nbsp;id</div>
+                    <div class="listgrid-title"><i class="listgrid-icon-down"></i>&nbsp;id</div>
                     <span class="hide-for-small"></span>
                     <ul>
                         <li><a href="#">Sort A → Z</a></li>
@@ -13,19 +13,20 @@
                         <li class="divider"></li>
                         <li>
                             <form>
-                                <label>Filter <a class="add-filter" href="#">Add Criteria</a></label>
+                                <label>Filter: <a class="add-filter" href="#">Add Criteria</a></label>
                                 <div class="listgrid-criteria">
-                                    <input type="text" placeholder="criteria" />
+                                    <div class="listgrid-criteria-container">
+                                        <input class="listgrid-criteria-input" type="text" placeholder="criteria"/>
+                                        <a class="remove-filter" href="#">Remove</a>
+                                    </div>
                                 </div>
-                                <div class="float-left">
-                                    <label for="radio1"><input name="matchAll" type="radio" />Match All</label>
-                                    <label for="radio2"><input name="matchAny" type="radio" />Match Any</label>
+                                <div class="listgrid-operators" style="display:none">
+                                    <select>
+                                        <option>Match All</option>
+                                        <option>Match Any</option>
+                                    </select>
                                 </div>
-                                <div class="float-right">
-                                    <input type="submit" class="button small radius" value="Filter"/>
-                                    <a class="clear-filter" href="#">Clear All</a>
-                                </div>
-                                <div class="clear"></div>
+                                <input type="submit" class="listgrid-filter button small radius" value="Filter"/>
                             </form>
                         </li>
                     </ul>
@@ -45,19 +46,20 @@
                         <li class="divider"></li>
                         <li>
                             <form>
-                                <label>Filter <a class="add-filter" href="#">Add Criteria</a></label>
+                                <label>Filter: <a class="add-filter" href="#">Add Criteria</a></label>
                                 <div class="listgrid-criteria">
-                                    <input type="text" placeholder="criteria" />
+                                    <div class="listgrid-criteria-container">
+                                        <input class="listgrid-criteria-input" type="text" placeholder="criteria"/>
+                                        <a class="remove-filter" href="#">Remove</a>
+                                    </div>
                                 </div>
-                                <div class="float-left">
-                                    <label for="radio1"><input name="matchAll" type="radio" />Match All</label>
-                                    <label for="radio2"><input name="matchAny" type="radio" />Match Any</label>
+                                <div class="listgrid-operators" style="display:none">
+                                    <select>
+                                        <option>Match All</option>
+                                        <option>Match Any</option>
+                                    </select>
                                 </div>
-                                <div class="float-right">
-                                    <input type="submit" class="button small radius" value="Filter"/>
-                                    <a class="clear-filter" href="#">Clear All</a>
-                                </div>
-                                <div class="clear"></div>
+                                <input type="submit" class="listgrid-filter button small radius" value="Filter"/>
                             </form>
                         </li>
                     </ul>

@@ -241,6 +241,51 @@ table.table-hover tbody tr:hover {
 /* -----------------------------------------
   List Grid
 ----------------------------------------- */
+[class^="listgrid-icon-"],
+[class*=" listgrid-icon-"] {
+    display: inline-block;
+    width: 20px;
+    height: 17px;
+    *margin-right: .3em;
+    vertical-align: text-top;
+    background-image: url("../../img/admin/listgrid/listgrid.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}
+[class^="listgrid-icon-"]:last-child,
+[class*=" listgrid-icon-"]:last-child {
+    *margin-left: 0;
+}
+
+.listgrid-icon-down{
+    background-position: 0 0;
+    width: 20px;
+    height: 17px;
+}
+
+.listgrid-icon-filter{
+    background-position: 0 -67px;
+    width: 20px;
+    height: 17px;
+}
+
+.listgrid-icon-filter-down{
+    background-position: 0 -134px;
+    width: 20px;
+    height: 17px;
+}
+
+.listgrid-icon-filter-up{
+    background-position: 0 -201px;
+    width: 20px;
+    height: 17px;
+}
+
+.listgrid-icon-up{
+    background-position: 0 -268px;
+    width: 20px;
+    height: 17px;
+}
 
 .listgrid-toolbar {
     margin: 0;
@@ -398,7 +443,8 @@ table.list-grid-table thead tr th {
     text-align: left;
 }
 
-.listgrid-headerBtn.dropdown > ul li a.add-filter, .listgrid-headerBtn.dropdown > ul li a.clear-filter {
+.listgrid-headerBtn.dropdown > ul li a.add-filter,
+.listgrid-headerBtn.dropdown > ul li a.remove-filter {
     display: inline;
     color: #8EAA2B;
     font-weight: normal;
@@ -408,14 +454,15 @@ table.list-grid-table thead tr th {
 
 .listgrid-headerBtn.dropdown > ul li a.add-filter:hover,
 .listgrid-headerBtn.dropdown > ul li a.add-filter:focus,
-.listgrid-headerBtn.dropdown > ul li a.clear-filter:hover,
-.listgrid-headerBtn.dropdown > ul li a.clear-filter:focus {
+.listgrid-headerBtn.dropdown > ul li a.remove-filter:hover,
+.listgrid-headerBtn.dropdown > ul li a.remove-filter:focus {
     color: #2ba6cb;
 }
 
-.listgrid-headerBtn.dropdown > ul li a.clear-filter {
+.listgrid-headerBtn.dropdown > ul li a.remove-filter {
+    text-align: right;
     display:block;
-    padding: 4px 0 0 8px;
+    padding: 0;
 }
 
 .listgrid-headerBtn.dropdown > ul li button {
@@ -451,7 +498,7 @@ table.list-grid-table thead tr th {
 }
 
 .listgrid-headerBtn.dropdown ul.no-hover.show-dropdown.end {
-    width:100%;
+    width: 100%;
 }
 
 .listgrid-headerBtn.dropdown:hover > ul.no-hover {
@@ -650,6 +697,14 @@ table.list-grid-table thead tr th {
 
 .listgrid-headerBtn.dropdown > ul > li > form {
     padding: 10px;
+}
+
+input[type="text"].listgrid-criteria-input {
+    margin: 0px;
+}
+
+input[type="submit"].listgrid-filter {
+    margin-top:5px;
 }
 
 /* -----------------------------------------
