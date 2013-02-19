@@ -1,6 +1,6 @@
 <table class="list-grid-table table-hover responsive twelve"
        th:attr="data-listgridtype=*{listGridType},data-currenturl=${currentUrl}"
-       th:id="*{subCollectionFieldName != null ? 'listGrid-' + subCollectionFieldName : ''}">
+       blc_admin:component_id="${#object}">
     <thead>
         <tr>
             <th>
