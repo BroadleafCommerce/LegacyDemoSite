@@ -82,7 +82,7 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
     }
 
     @Override
-    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/{collectionItemId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/{collectionItemId}/delete", method = RequestMethod.POST)
     public String removeCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
             @PathVariable String id,

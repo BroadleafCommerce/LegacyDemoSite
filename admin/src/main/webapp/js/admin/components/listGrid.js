@@ -12,13 +12,7 @@ $(document).ready(function() {
 		var link = $tr.data('link');
 		var listGridType = $table.data('listgridtype');
 		var currentUrl = $table.data('currenturl');
-		var fields = {};
-		
-		$tr.find('td').each(function() {
-			var fieldName = $(this).data('fieldname');
-			var value = $(this).text();
-			fields[fieldName] = value;
-		});
+		var fields = getRowFields($tr);
 		
 		$('body').trigger('listGrid-' + listGridType + '-rowSelected', [link, fields, currentUrl]);
 	});
@@ -73,7 +67,7 @@ $(document).ready(function() {
 	 */
 	$('body').on('listGrid-adorned-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
-		$('#modal form').submit();
+		$('#modal form.modal-form').submit();
 	});
 	
 	/**
@@ -124,11 +118,12 @@ $(document).ready(function() {
 		var $container = $(this).closest('.listgrid-container');
 		var $selectedRows = $container.find('table tr.selected');
 		
-		var link = $selectedRows.attr('data-link');
+		var link = $selectedRows.attr('data-link') + '/delete';
 		
 		$.ajax({
 			url: link,
-			type: "DELETE"
+			data: getRowFields($selectedRows),
+			type: "POST"
 		}).done(function(data) {
 			replaceListGrid(data);
 		});
@@ -136,12 +131,24 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('body').on('submit', 'form.modal-form', function() {
+	$('body').on('submit', 'form.modal-form', function(event) {
 		$.post(this.action, $(this).serialize(), function(data) {
 			replaceListGrid(data);
 	    });
 		return false;
 	});
+	
+	var getRowFields = function($tr) {
+		var fields = {};
+		
+		$tr.find('td').each(function() {
+			var fieldName = $(this).data('fieldname');
+			var value = $(this).text();
+			fields[fieldName] = value;
+		});
+		
+		return fields;
+	}
 	
 	var replaceListGrid = function(data) {
 		var $table = $(data).find('table');
