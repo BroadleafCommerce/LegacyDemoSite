@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    //adminPromoOrderItemOnReady();
+    if (typeof adminPromoOrderItemOnReady == 'function') {
+        adminPromoOrderItemOnReady();
+    }
 });

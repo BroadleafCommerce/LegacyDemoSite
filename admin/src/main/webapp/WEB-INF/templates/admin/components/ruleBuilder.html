@@ -1,66 +1,14 @@
-<style>
-    #conditions, #actions {
-        margin: 20px 0;
-    }
-
-    #conditions > .conditional > .remove, #actions > .conditional > .remove {
-        display: none;
-    }
-
-    #error_message_wrapper {
-        margin: 20px 0;
-    }
-
-    .conditional {
-        padding-left: 60px;
-    }
-
-    .conditional .all-any-none-wrapper {
-        margin: 5px 20px 5px -60px;
-        display: -moz-inline-stack;
-        display: inline-block;
-    }
-
-    .all-any-none {
-        margin-right: 10px;
-    }
-
-    .all-any-none-wrapper, .conditional, .rule {
-        margin: 10px 0;
-    }
-
-    .rule select {
-        margin-right: 10px;
-    }
-
-    .add-rule, .add-condition, .remove {
-        margin: auto 5px;
-    }
-
-</style>
 <div class="ruleBuilder">
-    <h3>Rule Vars</h3>
     <ul>
-        <li th:each="ruleVar : *{ruleVars}"
-            th:text="${ruleVar}">
+        <li>
+            <h4>Customer Qualification</h4>
         </li>
-    </ul>
-
-    <h3>Config Keys</h3>
-    <ul>
-        <li th:each="configKey : *{configKeys}"
-            th:text="${configKey}">
+        <li>
+            <h4>Order Qualification</h4>
         </li>
-    </ul>
-
-    <br/>
-    ----------
-    <br/>
-
-    <ul>
-        <li>Customer Qualification</li>
-        <li>Order Qualification</li>
-        <li>Item Qualification</li>
+        <li>
+            <h4>Item Qualification</h4>
+        </li>
         <li>
             <h4>Item Discount Target</h4>
             <div id="conditions"></div>

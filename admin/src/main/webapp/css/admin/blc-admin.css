@@ -747,6 +747,46 @@ ul.magellan-toolbar > li.divider {
 }
 
 /* -----------------------------------------
+   Rule Builder
+----------------------------------------- */
+.conditional {
+    padding-left: 60px;
+}
+
+.conditional .all-any-none-wrapper {
+    margin: 5px 20px 5px -60px;
+    display: -moz-inline-stack;
+    display: inline-block;
+}
+
+.all-any-none {
+    margin-right: 10px;
+    width: 52px;
+}
+
+.all-any-none-wrapper, .conditional, .rule {
+    margin: 10px 0;
+}
+
+.rule select,
+.rule input[type="text"],
+.rule input[type="date"],
+.rule input[type="datetime"],
+.rule input[type="email"],
+.rule input[type="number"],
+.rule input[type="tel"],
+.rule input[type="time"],
+.rule input[type="url"],
+.rule textarea {
+    margin-right: 10px;
+    width: auto;
+    display: inline-block;
+}
+.add-rule, .add-condition, .remove {
+    margin: auto 5px;
+}
+
+/* -----------------------------------------
    Login/Forgot Password Forms
 ----------------------------------------- */
 
