@@ -73,12 +73,22 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
 
     @Override
     @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.POST)
-    public String saveNewCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+    public String addCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
             @PathVariable String id,
             @PathVariable String collectionField,
             @ModelAttribute EntityForm entityForm) throws Exception {
-        return super.saveNewCollectionItem(request, response, model, sectionKey, id, collectionField, entityForm);
+        return super.addCollectionItem(request, response, model, sectionKey, id, collectionField, entityForm);
+    }
+
+    @Override
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/{collectionItemId}", method = RequestMethod.DELETE)
+    public String removeCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String id,
+            @PathVariable String collectionField,
+            @PathVariable String collectionItemId) throws Exception {
+        return super.removeCollectionItem(request, response, model, sectionKey, id, collectionField, collectionItemId);
     }
 
     @Override

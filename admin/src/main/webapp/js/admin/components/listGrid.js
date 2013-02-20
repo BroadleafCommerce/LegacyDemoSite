@@ -34,21 +34,22 @@ $(document).ready(function() {
 	 * The rowSelected handler for the inline list grid ...
 	 */
 	$('body').on('listGrid-inline-rowSelected', function(event, link, fields, currentUrl) {
-		alert('hi');
+		var $tr = $('tr[data-link="' + link + '"]');
+		$tr.toggleClass("selected");
 	});
 	
 	/**
 	 * The rowSelected handler for a toOne list grid needs to trigger the specific valueSelected handler 
 	 * for the field that we are performing the to-one lookup on.
 	 */
-	$('body').on('listGrid-toOne-rowSelected', function(event, link, fields, currentUrl) {
+	$('body').on('listGrid-to_one-rowSelected', function(event, link, fields, currentUrl) {
 		$('div.additional-foreign-key-container').trigger('valueSelected', fields);
 	});
 	
 	/**
 	 * The rowSelected handler for a simpleCollection list grid ...
 	 */
-	$('body').on('listGrid-basicCollection-rowSelected', function(event, link, fields, currentUrl) {
+	$('body').on('listGrid-basic-rowSelected', function(event, link, fields, currentUrl) {
 		var postData = {};
 		
 		for (var key in fields){
@@ -70,7 +71,7 @@ $(document).ready(function() {
 	 * lists that do not have any additional maintained fields. In this case, we can simply
 	 * submit the form directly.
 	 */
-	$('body').on('listGrid-adornedTarget-rowSelected', function(event, link, fields, currentUrl) {
+	$('body').on('listGrid-adorned-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
 		$('#modal form').submit();
 	});
@@ -79,7 +80,7 @@ $(document).ready(function() {
 	 * The rowSelected handler for an adornedTargetWithForm list grid. Once the user selects an entity,
 	 * show the form with the additional maintained fields.
 	 */
-	$('body').on('listGrid-adornedTargetWithForm-rowSelected', function(event, link, fields, currentUrl) {
+	$('body').on('listGrid-adorned_with_form-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
 		$('a#modalTab2Link').click();
 	});
@@ -116,6 +117,22 @@ $(document).ready(function() {
 	
 	$('body').on('click', 'a.sub-list-grid-add', function() {
     	showLinkAsModal($(this).attr('href'));
+		return false;
+	});
+	
+	$('body').on('click', 'a.sub-list-grid-remove', function() {
+		var $container = $(this).closest('.listgrid-container');
+		var $selectedRows = $container.find('table tr.selected');
+		
+		var link = $selectedRows.attr('data-link');
+		
+		$.ajax({
+			url: link,
+			type: "DELETE"
+		}).done(function(data) {
+			replaceListGrid(data);
+		});
+		
 		return false;
 	});
 	

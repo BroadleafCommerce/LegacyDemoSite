@@ -43,7 +43,7 @@
 
             <hr/>
 
-            <div th:each="collectionListGrid : ${entityForm.collectionListGrids}">
+            <div th:each="collectionListGrid : ${entityForm.collectionListGrids}" class="listgrid-container">
                 <div th:include="/components/listGridToolbar" th:object="${collectionListGrid}" th:remove="tag" />
                 <div th:include="/components/listGrid" th:object="${collectionListGrid}" th:remove="tag" />
             </div>

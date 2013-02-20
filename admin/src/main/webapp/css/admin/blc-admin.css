@@ -746,6 +746,14 @@ ul.magellan-toolbar > li.divider {
     color: #970b0e;
 }
 
+table.list-grid-table tr.selected {
+	background-color: #C4DFE6;
+}
+
+table.list-grid-table tr.selected:hover {
+	background-color: #B3D4DD;
+}
+
 /* -----------------------------------------
    Rule Builder
 ----------------------------------------- */

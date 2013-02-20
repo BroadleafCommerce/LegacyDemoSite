@@ -69,7 +69,7 @@
     </thead>
     <tbody>
     <tr th:each="record : *{records}"
-        th:attr="data-link=@{${sectionKey + '/' + record.id}}">
+        blc_admin:list_grid_link="${sectionKey},${#object},${record}">
         <td data-fieldname="id" th:text="${record.id}" />
         <td th:each="field : ${record.fields}"
             th:class="${'td' + fieldStat.count}"
