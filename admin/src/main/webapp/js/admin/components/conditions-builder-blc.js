@@ -75,6 +75,7 @@
       select.append($("<option>", {"value": "all", "text": "All", "selected": kind == "all"}));
       select.append($("<option>", {"value": "any", "text": "Any", "selected": kind == "any"}));
       select.append($("<option>", {"value": "none", "text": "None", "selected": kind == "none"}));
+      selectWrapper.append($("<span>", {text: "Match "}));
       selectWrapper.append(select);
       selectWrapper.append($("<span>", {text: "of the following rules:"}));
       div.append(selectWrapper);

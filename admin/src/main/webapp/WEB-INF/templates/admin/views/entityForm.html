@@ -51,6 +51,7 @@
             <hr/>
 
             <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}">
+                <h4 th:text="${collectionRuleBuilder.friendlyName}"/>
                 <div th:include="/components/ruleBuilder" th:object="${collectionRuleBuilder}" th:remove="tag" />
             </div>
 

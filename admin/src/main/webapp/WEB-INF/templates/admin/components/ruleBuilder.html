@@ -1,33 +1,26 @@
 <div class="ruleBuilder">
-    <ul>
-        <li>
-            <h4>Customer Qualification</h4>
-        </li>
-        <li>
-            <h4>Order Qualification</h4>
-        </li>
-        <li>
-            <h4>Item Qualification</h4>
-        </li>
-        <li>
-            <h4>Item Discount Target</h4>
-            <div id="conditions"></div>
 
-            <blc_admin:admin_promo_order_item entities="*{entities}" resultVar="output" />
-            <script type="text/javascript" th:object="${output}" th:inline="javascript">
-                /*<![CDATA[*/
-                var json = /*[[*{conditions}]]*/ {};
-                var conditions;
-                function adminPromoOrderItemOnReady() {
-                    conditions = $("#conditions");
-                    initializeConditions();
-                }
+    <blc_admin:admin_rule_builder
+            entities="*{entities}"
+            fieldName="*{fieldName}"
+            ceilingEntity="*{ceilingEntity}"
+            configKey="*{configKey}"
+            mvelProperty="*{mvelProperty}"
+            resultVar="wrappers" />
 
-                function initializeConditions() {
-                    conditions.conditionsBuilder(json);
-                }
-                /*]]>*/
-            </script>
-        </li>
-    </ul>
+    <!-- Add field name to ID instead of count -->
+    <div th:each="wrapper : ${wrappers}" th:id="${wrapper.containerId}"/>
+
+    <script type="text/javascript" th:each="wrapper : ${wrappers}" th:inline="javascript">
+        /*<![CDATA[*/
+        var conditionsArray = Object.prototype.toString.call(conditionsArray) == "[object Array]" ? conditionsArray : [];
+
+        function Conditions() {
+            this.json = /*[[${wrapper.conditions}]]*/ {};
+            this.containerId = /*[[${wrapper.containerId}]]*/'';
+        }
+
+        conditionsArray.push(new Conditions());
+        /*]]>*/
+    </script>
 </div>
