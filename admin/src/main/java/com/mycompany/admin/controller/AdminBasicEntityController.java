@@ -72,6 +72,16 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
     }
 
     @Override
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/{collectionItemId}", method = RequestMethod.GET)
+    public String showUpdateCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String id,
+            @PathVariable String collectionField,
+            @PathVariable String collectionItemId) throws Exception {
+        return super.showUpdateCollectionItem(request, response, model, sectionKey, id, collectionField, collectionItemId);
+    }
+
+    @Override
     @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/add", method = RequestMethod.POST)
     public String addCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey,
@@ -79,6 +89,18 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
             @PathVariable String collectionField,
             @ModelAttribute EntityForm entityForm) throws Exception {
         return super.addCollectionItem(request, response, model, sectionKey, id, collectionField, entityForm);
+    }
+
+    @Override
+    @RequestMapping(value = "{sectionKey}/{id}/{collectionField}/{collectionItemId}", method = RequestMethod.POST)
+    public String updateCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String id,
+            @PathVariable String collectionField,
+            @PathVariable String collectionItemId,
+            @ModelAttribute EntityForm entityForm) throws Exception {
+        return super.updateCollectionItem(request, response, model, sectionKey, id, collectionField, collectionItemId,
+                entityForm);
     }
 
     @Override

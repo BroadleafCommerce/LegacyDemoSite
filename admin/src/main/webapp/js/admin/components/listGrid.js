@@ -131,6 +131,16 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('body').on('click', 'a.sub-list-grid-update', function() {
+		var $container = $(this).closest('.listgrid-container');
+		var $selectedRows = $container.find('table tr.selected');
+		
+		var link = $selectedRows.attr('data-link');
+    	showLinkAsModal(link);
+    	
+		return false;
+	});
+	
 	$('body').on('submit', 'form.modal-form', function(event) {
 		$.post(this.action, $(this).serialize(), function(data) {
 			replaceListGrid(data);
