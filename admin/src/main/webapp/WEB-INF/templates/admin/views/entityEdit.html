@@ -1,60 +1,9 @@
 <div class="row">
     <div class="twelve columns">
-        <h2>Entity Name</h2>
-        <h5 class="subheader">Entity Description</h5>
+        <h2>@AdminPresentationMainName</h2>
     </div>
 </div>
 
-<form th:object="${entityForm}"
-      method="POST"
-      class="twelve columns custom"
-      th:action="@{${currentUrl}}">
-      
-    <input type="hidden" th:field="*{entityType}" />
-    
-    <!-- TODO needs styling update after introducing tabs -->
-<!--                 <ul class="inline-list magellan-toolbar" data-magellan-expedition='fixed'> -->
-<!--                     <li><a href="#"><i class="foundicon-checkmark"></i>&nbsp;Save</a></li> -->
-<!--                     <li class="divider">&nbsp;</li> -->
-<!--                     <li><a href="#" class="alert"><i class="foundicon-minus"></i>&nbsp;Delete Product</a></li> -->
-<!--                 </ul> -->
-
-    <dl class="tabs">
-        <dd th:each="tab : ${entityForm.tabs}" th:class="${tabStat.first}? 'active'" th:inline="text">
-            <a th:href="'#tab' + ${tabStat.count}" th:text="${tab.title}" />
-        </dd>
-    </dl> 
-
-    <ul class="tabs-content">
-        <li th:each="tab : ${entityForm.tabs}" 
-            th:class="${tabStat.first}? 'active'" 
-            th:id="'tab' + ${tabStat.count} + 'Tab'"
-            th:inline="text">
-
-
-            <fieldset th:each="group : ${tab.fieldGroups}" th:classappend="${!group.isVisible}? 'hidden'">
-                <legend th:text="#{${group.title}}" />
-
-                <div th:each="field : ${group.fields}" th:if="${field.name}">
-                    <span class="error" th:errors="*{fields['__${field.name}__'].value}" />
-                    <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
-                </div>
-            </fieldset>
-
-            <div th:each="collectionListGrid : ${tab.listGrids}" class="listgrid-container">
-                <div th:include="/components/listGridToolbar" th:with="listGrid=${collectionListGrid}" th:remove="tag" />
-                <div th:include="/components/listGrid" th:with="listGrid=${collectionListGrid}" th:remove="tag" />
-            </div>
-
-<!--    Needs to be refactored in EntityForm.java to be nested inside of tabs like list grids now are -->
-<!--                 <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}"> -->
-<!--                     <h4 th:text="${collectionRuleBuilder.friendlyName}"/> -->
-<!--                     <div th:include="/components/ruleBuilder" th:with="ruleBuilder=${collectionRuleBuilder}" th:remove="tag" /> -->
-<!--                 </div> -->
-
-        </li>
-    </ul>
-    
-    <input type="submit" class="button right" value="Save"/>
-    
-</form>
+<form th:include="/components/entityForm"
+    th:remove="tag"
+    th:with="deleteButton='true'" />
