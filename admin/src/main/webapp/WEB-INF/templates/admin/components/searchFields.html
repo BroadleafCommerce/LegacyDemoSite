@@ -33,10 +33,22 @@
         </form>
     </div>
     <div class="five columns" style="padding-top:17px;">
-        <ul class="button-group even three-up">
-            <li><a href="#" data-reveal-id="exampleModal" class="button small"><i class="foundicon-plus"></i>&nbsp;Add Product</a></li>
-            <li><a href="#" data-reveal-id="exampleModal" class="button small secondary"><i class="foundicon-add-doc"></i>&nbsp;Clone Product</a></li>
-            <li><a href="#" data-reveal-id="exampleModal" class="button small secondary"><i class="foundicon-inbox"></i>&nbsp;Export Products</a></li>
+        <ul class="button-group" style="float: right;">
+            <li>
+                <a th:href="@{${sectionKey} + '/add'}" class="button small add-main-entity" th:inline="text">
+                    <i class="foundicon-plus"></i> &nbsp; Add [[${currentAdminSection.name}]]
+                </a>
+            </li>
+<!--             <li> -->
+<!--                 <a href="#" data-reveal-id="exampleModal" class="button small secondary"> -->
+<!--                     <i class="foundicon-add-doc"></i> &nbsp; Clone Product -->
+<!--                 </a> -->
+<!--             </li> -->
+<!--             <li> -->
+<!--                 <a href="#" data-reveal-id="exampleModal" class="button small secondary"> -->
+<!--                     <i class="foundicon-inbox"></i> &nbsp; Export Products -->
+<!--                 </a> -->
+<!--             </li> -->
         </ul>
     </div>
 </div>

@@ -5,7 +5,7 @@
     <label th:for="${field.name}" th:text="#{${field.friendlyName}}" />
     <input type="text" class="eight display-value" th:value="*{fields['__${field.name}__'].displayValue}" />
     
-    <a class="show-to-one-list-grid" th:href="@{${'/' + sectionKey + '/' + entityForm.fields['id'].value + '/' + field.name}}">
+    <a class="show-to-one-list-grid" th:href="@{${'/' + sectionKey + '/' + field.name + '/select'}}">
         find
     </a>
 </div>

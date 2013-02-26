@@ -6,30 +6,35 @@
             <h5 class="subheader">Entity Description</h5>
         </div>
     </div>
+    
+    <form th:object="${entityForm}"
+          method="POST"
+          class="twelve columns custom"
+          th:action="${currentUrl}">
+          
+        <input type="hidden" th:field="*{entityType}" />
+        
+        <!-- TODO needs styling update after introducing tabs -->
+<!--                 <ul class="inline-list magellan-toolbar" data-magellan-expedition='fixed'> -->
+<!--                     <li><a href="#"><i class="foundicon-checkmark"></i>&nbsp;Save</a></li> -->
+<!--                     <li class="divider">&nbsp;</li> -->
+<!--                     <li><a href="#" class="alert"><i class="foundicon-minus"></i>&nbsp;Delete Product</a></li> -->
+<!--                 </ul> -->
 
-    <dl class="tabs">
-        <dd class="active"><a href="#tab1">Tab 1</a></dd>
-        <dd><a href="#tab2">Tab 2</a></dd>
-        <dd><a href="#tab3">Tab 3</a></dd>
-    </dl>
+        <dl class="tabs">
+            <dd th:each="tab : ${entityForm.tabs.values()}" th:class="${tabStat.first}? 'active'" th:inline="text">
+                <a th:href="'#tab' + ${tabStat.count}" th:text="${tab.title}" />
+            </dd>
+        </dl> 
+    
+        <ul class="tabs-content">
+            <li th:each="tab : ${entityForm.tabs.values()}" 
+                th:class="${tabStat.first}? 'active'" 
+                th:id="'tab' + ${tabStat.count} + 'Tab'"
+                th:inline="text">
+    
 
-    <ul class="tabs-content">
-        <li class="active" id="tab1Tab">
-
-            <ul class="inline-list magellan-toolbar" data-magellan-expedition='fixed'>
-                <li><a href="#"><i class="foundicon-checkmark"></i>&nbsp;Save</a></li>
-                <li class="divider">&nbsp;</li>
-                <li><a href="#" class="alert"><i class="foundicon-minus"></i>&nbsp;Delete Product</a></li>
-            </ul>
-
-            <form th:object="${entityForm}"
-                  method="POST"
-                  class="twelve columns custom"
-                  action="#">
-
-                <input type="hidden" th:field="*{entityType}" />
-
-                <fieldset th:each="group : *{groups.values()}" th:classappend="${!group.isVisible}? 'hidden'">
+                <fieldset th:each="group : ${tab.fieldGroups}" th:classappend="${!group.isVisible}? 'hidden'">
                     <legend th:text="#{${group.title}}" />
 
                     <div th:each="field : ${group.fields}" th:if="${field.name}">
@@ -37,31 +42,23 @@
                         <div th:substituteby="${'/fields/' + #strings.toLowerCase(field.fieldType)}" />
                     </div>
                 </fieldset>
-
-                <input type="submit" class="button right" value="Save"/>
-            </form>
-
-            <hr/>
-
-            <div th:each="collectionListGrid : ${entityForm.collectionListGrids}" class="listgrid-container">
-                <div th:include="/components/listGridToolbar" th:object="${collectionListGrid}" th:remove="tag" />
-                <div th:include="/components/listGrid" th:object="${collectionListGrid}" th:remove="tag" />
-            </div>
-
-            <hr/>
-
-            <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}">
-                <h4 th:text="${collectionRuleBuilder.friendlyName}"/>
-                <div th:include="/components/ruleBuilder" th:object="${collectionRuleBuilder}" th:remove="tag" />
-            </div>
-
-        </li>
-        <li id="tab2Tab">
-            Tab 2 Content
-        </li>
-        <li id="tab3Tab">
-            Tab 3 Content
-        </li>
-    </ul>
+    
+                <div th:each="collectionListGrid : ${tab.listGrids}" class="listgrid-container">
+                    <div th:include="/components/listGridToolbar" th:with="listGrid=${collectionListGrid}" th:remove="tag" />
+                    <div th:include="/components/listGrid" th:with="listGrid=${collectionListGrid}" th:remove="tag" />
+                </div>
+    
+<!--    Needs to be refactored in EntityForm.java to be nested inside of tabs like list grids now are -->
+<!--                 <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}"> -->
+<!--                     <h4 th:text="${collectionRuleBuilder.friendlyName}"/> -->
+<!--                     <div th:include="/components/ruleBuilder" th:with="ruleBuilder=${collectionRuleBuilder}" th:remove="tag" /> -->
+<!--                 </div> -->
+    
+            </li>
+        </ul>
+        
+        <input type="submit" class="button right" value="Save"/>
+        
+    </form>
 
 </div>

@@ -4,11 +4,11 @@ $(document).ready(function() {
 		$(this).closest('div.modal').find('form').submit();
 	});
 	
-	$('body').on('shown', '#modal', function () {
+	$('body').on('shown', '.modal', function () {
 		$("body").css({ overflow: 'hidden' });
 	});
 	
-	$('body').on('hide', '#modal', function () {
+	$('body').on('hide', '.modal', function () {
 		$("body").css({ overflow: 'inherit' });
 	});
 	

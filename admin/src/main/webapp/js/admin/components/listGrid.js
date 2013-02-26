@@ -67,7 +67,8 @@ $(document).ready(function() {
 	 */
 	$('body').on('listGrid-adorned-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
-		$('#modal form.modal-form').submit();
+		var $modal = BLCAdmin.currentModal();
+		$modal.find('form.modal-form').submit();
 	});
 	
 	/**
@@ -91,7 +92,6 @@ $(document).ready(function() {
     $('body').on('click', 'a.show-to-one-list-grid', function(event) {
     	var $container = $(this).closest('div.additional-foreign-key-container');
     	
-    	// This handler will
     	$container.on('valueSelected', function(event, fields) {
     		var $this = $(this);
     		var displayValueProp = $this.find('input.display-value-property').val();
@@ -99,10 +99,10 @@ $(document).ready(function() {
     		$this.find('input.value').val(fields['id']);
     		$this.find('input.display-value').val(fields[displayValueProp]);
     		
-    		$('#modal').modal('hide');
+			BLCAdmin.currentModal().modal('hide');
     	});
     	
-    	showLinkAsModal($(this).attr('href'), function() {
+    	BLCAdmin.showLinkAsModal($(this).attr('href'), function() {
 			$('div.additional-foreign-key-container').unbind('valueSelected');
     	});
     	
@@ -110,7 +110,7 @@ $(document).ready(function() {
     });
 	
 	$('body').on('click', 'a.sub-list-grid-add', function() {
-    	showLinkAsModal($(this).attr('href'));
+    	BLCAdmin.showLinkAsModal($(this).attr('href'));
 		return false;
 	});
 	
@@ -136,7 +136,7 @@ $(document).ready(function() {
 		var $selectedRows = $container.find('table tr.selected');
 		
 		var link = $selectedRows.attr('data-link');
-    	showLinkAsModal(link);
+    	BLCAdmin.showLinkAsModal(link);
     	
 		return false;
 	});
@@ -164,24 +164,8 @@ $(document).ready(function() {
 		var $table = $(data).find('table');
 		var tableId = $table.attr('id');
 		$('#' + tableId).replaceWith($table);
-    	$('#modal').modal('hide');
+    	BLCAdmin.currentModal().modal('hide');
 	}
-	
-	var showLinkAsModal = function(link, onModalHide) {
-		$.get(link, function(data) {
-			var $data = $(data);
-			
-			$('body').append($data);
-			$data.modal();
-			
-			$data.on('hidden', function() {
-				if (onModalHide != null) {
-					onModalHide();
-				}
-				$(this).remove();
-			});
-		});
-	};
 	
 });
 

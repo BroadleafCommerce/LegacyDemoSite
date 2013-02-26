@@ -106,12 +106,12 @@
       }
 
     , enforceFocus: function () {
-        var that = this
-        $(document).on('focusin.modal', function (e) {
-          if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
-            that.$element.focus()
-          }
-        })
+//        var that = this
+//        $(document).on('focusin.modal', function (e) {
+//          if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+//            that.$element.focus()
+//          }
+//        })
       }
 
     , escape: function () {
@@ -148,8 +148,10 @@
       }
 
     , removeBackdrop: function () {
-        this.$backdrop.remove()
-        this.$backdrop = null
+    	if (this.$backdrop) { 
+	      this.$backdrop.remove()
+	      this.$backdrop = null
+    	}
       }
 
     , backdrop: function (callback) {

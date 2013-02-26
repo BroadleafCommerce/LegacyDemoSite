@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,22 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
     public String viewEntityList(HttpServletRequest request, HttpServletResponse response, Model model,
             @PathVariable String sectionKey) throws Exception {
         return super.viewEntityList(request, response, model, sectionKey);
+    }
+
+    @Override
+    @RequestMapping(value = "{sectionKey}/add", method = RequestMethod.GET)
+    public String viewAddEntityForm(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @RequestParam(defaultValue = "") String entityType) throws Exception {
+        return super.viewAddEntityForm(request, response, model, sectionKey, entityType);
+    }
+
+    @Override
+    @RequestMapping(value = "{sectionKey}/add", method = RequestMethod.POST)
+    public String addEntity(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @ModelAttribute EntityForm entityForm, BindingResult result) throws Exception {
+        return super.addEntity(request, response, model, sectionKey, entityForm, result);
     }
 
     @Override
@@ -79,6 +96,14 @@ public class AdminBasicEntityController extends BroadleafAdminBasicEntityControl
             @PathVariable String collectionField,
             @PathVariable String collectionItemId) throws Exception {
         return super.showUpdateCollectionItem(request, response, model, sectionKey, id, collectionField, collectionItemId);
+    }
+
+    @Override
+    @RequestMapping(value = "{sectionKey}/{collectionField}/select", method = RequestMethod.GET)
+    public String showSelectCollectionItem(HttpServletRequest request, HttpServletResponse response, Model model,
+            @PathVariable String sectionKey,
+            @PathVariable String collectionField) throws Exception {
+        return super.showSelectCollectionItem(request, response, model, sectionKey, collectionField);
     }
 
     @Override
