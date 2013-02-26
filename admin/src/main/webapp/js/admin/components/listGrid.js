@@ -77,7 +77,7 @@ $(document).ready(function() {
 	 */
 	$('body').on('listGrid-adorned_with_form-rowSelected', function(event, link, fields, currentUrl) {
 		$(this).find('input#adornedTargetIdProperty').val(fields['id']);
-		$('a#modalTab2Link').click();
+		$('a#adornedModalTab2Link').click();
 	});
 	
 	/**
@@ -161,7 +161,7 @@ $(document).ready(function() {
 	}
 	
 	var replaceListGrid = function(data) {
-		var $table = $(data).find('table');
+		var $table = $(data);
 		var tableId = $table.attr('id');
 		$('#' + tableId).replaceWith($table);
     	BLCAdmin.currentModal().modal('hide');
