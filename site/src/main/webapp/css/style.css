@@ -929,6 +929,7 @@ form.manage-account input[type="submit"] {
             
     #cart_products tbody tr td.discount {
         color: #E40037;
+        width: 100px;
     }
     
     #cart_products ul.productOptions {
