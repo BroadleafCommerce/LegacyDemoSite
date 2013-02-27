@@ -1,23 +1,18 @@
-<div class="ruleBuilder">
+<div th:classappend="${ruleBuilder.quantityProperty != null}? 'rule-builder-complex' : 'rule-builder-simple' ">
 
-    <blc_admin:admin_rule_builder
-            entities="${ruleBuilder.entities}"
-            fieldName="${ruleBuilder.fieldName}"
-            ceilingEntity="${ruleBuilder.ceilingEntity}"
-            configKey="${ruleBuilder.configKey}"
-            mvelProperty="${ruleBuilder.mvelProperty}"
-            resultVar="wrappers" />
+    <div th:id="${ruleBuilder.fieldName}"></div>
 
-    <!-- Add field name to ID instead of count -->
-    <div th:each="wrapper : ${wrappers}" th:id="${wrapper.containerId}"/>
-
-    <script type="text/javascript" th:each="wrapper : ${wrappers}" th:inline="javascript">
+    <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
         var conditionsArray = Object.prototype.toString.call(conditionsArray) == "[object Array]" ? conditionsArray : [];
 
         function Conditions() {
-            this.json = /*[[${wrapper.conditions}]]*/ {};
-            this.containerId = /*[[${wrapper.containerId}]]*/'';
+            this.containerId = /*[[${ruleBuilder.fieldName}]]*/ {};
+            this.fields = /*[[${fw}]]*/ {};
+            this.data = /*[[${dw}]]*/ {};
+            this.json = [];
+            this.json.push(this.fields);
+            this.json.push(this.data);
         }
 
         conditionsArray.push(new Conditions());

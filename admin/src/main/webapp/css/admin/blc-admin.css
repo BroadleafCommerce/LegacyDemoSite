@@ -767,6 +767,25 @@ table.list-grid-table tr.clickable.selected:hover {
     display: inline-block;
 }
 
+.rule-builder-simple > div > .conditional-rules > .conditional > .remove {
+	display: none;
+}
+
+input[type="text"].conditional-qty {
+    display: -moz-inline-stack;
+    display: inline-block;	
+    margin-right: 10px;
+    width: 32px;
+}
+.conditional-spacer {
+		margin-right: 10px;
+}
+
+.add-item-rule {
+	margin: 5px 20px 5px 0px;
+	display: block;
+}
+
 .all-any-none {
     margin-right: 10px;
     width: 52px;
@@ -788,10 +807,16 @@ table.list-grid-table tr.clickable.selected:hover {
 .rule textarea {
     margin-right: 10px;
     width: auto;
+    display: -moz-inline-stack;
     display: inline-block;
 }
 .add-rule, .add-condition, .remove {
     margin: auto 5px;
+}
+
+form.custom div.conditional div.custom.dropdown {
+    display:inline-block;
+    margin-right: 10px;
 }
 
 /* -----------------------------------------

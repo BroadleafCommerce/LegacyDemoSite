@@ -39,11 +39,20 @@
                 <div th:include="/components/listGrid" th:with="listGrid=${collectionListGrid}" th:remove="tag" />
             </div>
 
-<!--    Needs to be refactored in EntityForm.java to be nested inside of tabs like list grids now are -->
-<!--                 <div th:each="collectionRuleBuilder : ${entityForm.collectionRuleBuilders}"> -->
-<!--                     <h4 th:text="${collectionRuleBuilder.friendlyName}"/> -->
-<!--                     <div th:include="/components/ruleBuilder" th:with="ruleBuilder=${collectionRuleBuilder}" th:remove="tag" /> -->
-<!--                 </div> -->
+             <div th:each="collectionRuleBuilder : ${tab.ruleBuilders}" class="rulebuilder-container">
+                 <h4 th:text="${collectionRuleBuilder.friendlyName}"/>
+                 <blc_admin:admin_field_builder
+                         fieldBuilder="${collectionRuleBuilder.fieldBuilder}" />
+
+                 <blc_admin:admin_rule_builder
+                         entities="${collectionRuleBuilder.entities}"
+                         mvelProperty="${collectionRuleBuilder.mvelProperty}"
+                         quantityProperty="${collectionRuleBuilder.quantityProperty}" />
+
+                 <div th:include="/components/ruleBuilder"
+                      th:with="ruleBuilder=${collectionRuleBuilder},fw=${fieldWrapper},dw=${dataWrapper}"
+                      th:remove="tag" />
+             </div>
 
         </li>
     </ul>
