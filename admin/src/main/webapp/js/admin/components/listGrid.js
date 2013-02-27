@@ -18,10 +18,9 @@ $(document).ready(function() {
 	});
 	
 	/**
-	 * The rowSelected handler for the main list grid simply needs to navigate to the given URL.
+	 * The rowSelected handler for the main list grid doesn't do anything by default
 	 */
 	$('body').on('listGrid-main-rowSelected', function(event, link, fields, currentUrl) {
-		window.location = link;
 	});
 	
 	/**

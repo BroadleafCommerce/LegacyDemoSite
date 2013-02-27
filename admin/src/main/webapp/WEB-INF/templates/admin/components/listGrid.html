@@ -69,12 +69,29 @@
     </thead>
     <tbody>
     <tr th:each="record : ${listGrid.records}"
-        blc_admin:list_grid_link="${sectionKey},${listGrid},${record}">
+        th:classappend="${listGrid.listGridType != 'main'}? 'clickable'"
+        blc_admin:list_grid_link="${sectionKey},${listGrid},${record},'data-link'">
         <td data-fieldname="id" th:text="${record.id}" />
         <td th:each="field : ${record.fields}"
             th:class="${'td' + fieldStat.count}"
-            th:text="${field.value}"
-            th:attr="data-fieldname=${field.name}" />
+            th:inline="text"
+            th:switch="${listGrid.listGridType}"
+            th:attr="data-fieldname=${field.name}">
+            
+            <span th:case="'main'" th:remove="tag">
+                <a th:if="${fieldStat.first}" blc_admin:list_grid_link="${sectionKey},${listGrid},${record},'href'">
+                    [[${field.value}]]
+                </a>
+                <span th:unless="${fieldStat.first}" th:remove="tag">
+                    [[${field.value}]]
+                </span>
+            </span>
+            
+            <span th:case="*" th:remove="tag">
+                [[${field.value}]]
+            </span>
+            
+        </td>
         </tr>
     </tbody>
 </table>

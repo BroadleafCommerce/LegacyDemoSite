@@ -233,7 +233,7 @@ nav > ul.blc-accordion > li > .content > ul li.active a {
     border: 1px solid #8EAA2C;
 }
 
-table.table-hover tbody tr:hover {
+table.table-hover tbody tr.clickable:hover {
     cursor: pointer;
     background-color: #f3f3f3;
 }
@@ -746,11 +746,11 @@ ul.magellan-toolbar > li.divider {
     color: #970b0e;
 }
 
-table.list-grid-table tr.selected {
+table.list-grid-table tr.clickable.selected {
 	background-color: #C4DFE6;
 }
 
-table.list-grid-table tr.selected:hover {
+table.list-grid-table tr.clickable.selected:hover {
 	background-color: #B3D4DD;
 }
 
