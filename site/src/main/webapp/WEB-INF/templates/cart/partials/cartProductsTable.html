@@ -35,7 +35,7 @@
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
             <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
             <span  blc:price="*{adjustmentValue}" ></span>
-                <ul th:if="*{#lists.size(orderItemPriceDetails)>=1}" class="productOptions">
+                <ul th:if="*{#lists.size(orderItemPriceDetails)>1}" class="productOptions">
                    <li  class="discount" th:each="orderItemPriceDetail : *{orderItemPriceDetails}" >
                     <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" th:text="${orderItemPriceDetail.quantity}+'@'"></span>
                     <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" blc:price="${orderItemPriceDetail.adjustmentValue}"></span>
