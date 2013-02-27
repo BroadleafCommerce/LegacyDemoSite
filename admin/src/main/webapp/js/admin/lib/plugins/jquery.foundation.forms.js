@@ -329,6 +329,8 @@
   };
 
   var refreshCustomSelect = function($select) {
+    if ( $this.hasClass( options.disable_class ) ) return;
+
     var maxWidth = 0,
         $customSelect = $select.next();
     $options = $select.find('option');
