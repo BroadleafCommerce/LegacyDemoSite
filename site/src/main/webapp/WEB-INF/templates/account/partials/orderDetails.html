@@ -23,10 +23,26 @@
                         <th class="label">Items</th>
                         <th class="price">Price</th>
                     </tr>
-                    <tr th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}">
-                        <td class="label" th:text="*{quantity} + ' of ' + *{orderItem.name}"></td>
-                        <td class="price" blc:price="*{orderItem.price}"></td>
+                   <div th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}" th:remove="tag">
+                   <tr >
+                    
+                        <td class="label" th:text="${fulfillmentGroupItem.quantity} + ' of ' + ${fulfillmentGroupItem.orderItem.name}"></td>
+                        <td class="price" blc:price="${fulfillmentGroupItem.orderItem.price}"></td>
+                        
                     </tr>
+                     <tr >
+                      <td>
+                        <ul th:if="${#lists.size(fulfillmentGroupItem.orderItem.orderItemPriceDetails)>=1}" class="promotion">
+                         <li  class="promotion" th:each="orderItemPriceDetail : ${fulfillmentGroupItem.orderItem.orderItemPriceDetails}" >
+                           <span class="promotion" th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" th:text="'Promotion applied: '+${orderItemPriceDetail.quantity}+'@'"></span>
+                           <span class="promotion" th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" blc:price="${orderItemPriceDetail.adjustmentValue}"></span>
+                         </li>
+                        </ul> 
+                        </td>
+                        <td></td>
+                    </tr>
+                    
+                    </div>
                     <tr class="shipment-summary merchandise-total">
                         <td class="label">Merchandise Total:</td>
                         <td class="price" blc:price="*{merchandiseTotal}"></td>

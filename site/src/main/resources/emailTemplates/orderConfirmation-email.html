@@ -32,7 +32,7 @@
                                         <th style="border-bottom: dotted 1px #afafaf;" align="left">Item</th>
                                         <th style="border-bottom: dotted 1px #afafaf;">Quantity</th>
                                         <th style="border-bottom: dotted 1px #afafaf;">Price</th>
-                                        <th style="border-bottom: dotted 1px #afafaf;">Discount</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Average Discount</th>
                                         <th style="border-bottom: dotted 1px #afafaf;">Total</th>
                                     </tr>
                                 </thead>
@@ -48,7 +48,15 @@
                                         <td align="center" th:text="*{quantity}"></td>
                                         <td align="left" blc:price="*{price}"></td>
                                         <td align="center" style="color: #E40037;" th:if="*{adjustmentValue.zero}">---</td>
-                                        <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
+                                        <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" >
+                                             <span  align="center"  blc:price="*{adjustmentValue}" class="promotion" ></span>
+                                              <ul th:if="*{#lists.size(orderItemPriceDetails)>=1}" class="promotion">
+                                              <li  class="promotion" th:each="orderItemPriceDetail : *{orderItemPriceDetails}" >
+                                                <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" th:text="${orderItemPriceDetail.quantity}+'@'"></span>
+                                                <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" blc:price="${orderItemPriceDetail.adjustmentValue}"></span>
+                                               </li>
+                                                </ul>
+                                        </td>
                                         <td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>
                                     </tr>
                                 </tbody>
