@@ -4,7 +4,7 @@
             <th colspan="2"><span th:text="#{cart.item}">Item</span></th>
             <th><span th:text="#{cart.quantity}">Quantity</span></th>
             <th> <span th:text="#{cart.price}">Price</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
-            <th> <span th:text="#{cart.averageDiscount}">Average Discount</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+            <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
             <th><span th:text="#{cart.total}">Total</span></th>
         </tr>
     </thead>
@@ -34,14 +34,8 @@
             
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
             <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
-            <span  blc:price="*{adjustmentValue}" ></span>
-                <ul th:if="*{#lists.size(orderItemPriceDetails)>=1}" class="productOptions">
-                   <li  class="discount" th:each="orderItemPriceDetail : *{orderItemPriceDetails}" >
-                    <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" th:text="${orderItemPriceDetail.quantity}+'@'"></span>
-                    <span th:if="${orderItemPriceDetail.totalAdjustmentValue.amount>0}" blc:price="${orderItemPriceDetail.adjustmentValue}"></span>
-                    </li>
-                </ul>
-            
+            <span  blc:price="*{totalAdjustmentValue}" ></span>
+                 <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
              </td>
             <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
             <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
