@@ -1,4 +1,4 @@
-<div th:classappend="${ruleBuilder.quantityProperty != null}? 'rule-builder-complex' : 'rule-builder-simple' ">
+<div th:classappend="${ruleBuilder != null}? 'rule-builder-complex' : 'rule-builder-simple' ">
 
     <div th:id="${ruleBuilder.fieldName}"></div>
 
@@ -9,7 +9,7 @@
         function Conditions() {
             this.containerId = /*[[${ruleBuilder.fieldName}]]*/ {};
             this.fields = /*[[${fw}]]*/ {};
-            this.data = /*[[${dw}]]*/ {};
+            this.data = /*[[${ruleBuilder.dataWrapper != null}? ${ruleBuilder.dataWrapper} : '[]']]*/ {};
             this.json = [];
             this.json.push(this.fields);
             this.json.push(this.data);

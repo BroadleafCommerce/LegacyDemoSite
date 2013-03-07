@@ -44,12 +44,6 @@
                  <blc_admin:admin_field_builder
                          fieldBuilder="${collectionRuleBuilder.fieldBuilder}" />
 
-                 <blc_admin:admin_rule_builder
-                         entities="${collectionRuleBuilder.entities}"
-                         mvelProperty="${collectionRuleBuilder.mvelProperty}"
-                         quantityProperty="${collectionRuleBuilder.quantityProperty}"
-                         fieldBuilder="${collectionRuleBuilder.fieldBuilder}" />
-
                  <div th:include="/components/ruleBuilder"
                       th:with="ruleBuilder=${collectionRuleBuilder},fw=${fieldWrapper},dw=${dataWrapper}"
                       th:remove="tag" />
