@@ -1,15 +1,43 @@
 /**
- * Originally modified from business-rules
- * https://github.com/chrisjpowers/business-rules
- * @author: chris j. powers
+ * Broadleaf Commerce Conditions Rule Builder
+ * Javascript Conditions Builder that handles both simple targeting rules
+ * and complex quantitative item rules.
+ * @author: elbertbautista
  *
- * BLC Implementation
+ * Based off the Javascript component "business-rules"
+ * @author: chris j. powers
+ * https://github.com/chrisjpowers/business-rules
+ * Copyright 2013 Chris Powers
+ * http://chrisjpowers.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
  */
 (function($) {
     $.fn.conditionsBuilder = function(options) {
         if(options == "data") {
             var builder = $(this).eq(0).data("conditionsBuilder");
             return builder.collectData();
+        } else if (options == "builder") {
+            var builder = $(this).eq(0).data("conditionsBuilder");
+            return builder;
         } else {
             return $(this).each(function() {
                 var builder = new ConditionsBuilder(this, options);
@@ -29,7 +57,6 @@
             this.fields = this.options[0].fields;
             this.data = this.options[1].data;
             var rules = this.buildRules(this.data);
-            this.buildAddNewItemRule(rules, this.data);
             this.element.html(rules);
         },
 
@@ -76,43 +103,31 @@
                     groups:null,
                     name: element.find(".field").val(),
                     operator: element.find(".operator").val(),
-                    value: element.find(".value").val()
+                    value: element.find(".value").val(),
+                    start: element.find(".start").val(),
+                    end: element.find(".end").val()
                 };
             }
         },
 
-        buildAddNewItemRule: function(rules, ruleDataArray) {
-            if (ruleDataArray[0]) {
-                var qty = ruleDataArray[0].quantity;
-                if (qty != null) {
-                    var addItemRuleLink = $("<a>", {"href": "#", "class": "add-item-rule", "text": "Add New Item Rule"});
-                    var _this = this;
-                    addItemRuleLink.click(function(e) {
-                        e.preventDefault();
-                        var f = _this.fields[0];
-                        var newField = {quantity:1, groupOperator: "AND", groups: [{name: f.value, operator: f.operators[0], value: null}]};
-                        var newFieldArray = [];
-                        newFieldArray.push(newField);
-                        rules.after(_this.buildConditional(newFieldArray));
-                    });
-                    rules.prepend(addItemRuleLink);
-                }
-            }
-        },
-
-        buildEmptyRuleBuilder: function(){
+        buildAddNewRule: function(rules) {
             var _this = this;
-            var complex = this.element.parent().hasClass('rule-builder-complex');
-            var qty = null;
-            if (complex) {
-                qty = 1;
-            }
             var f = _this.fields[0];
-            var newField = {quantity:qty, groupOperator: "AND", groups: [{name: f.value, operator: f.operators[0], value: null}]};
+            var newField = {quantity:null, groupOperator: "AND", groups: [{name: f.value, operator: f.operators[0], value: null}]};
             var newFieldArray = [];
             newFieldArray.push(newField);
-            return _this.buildConditional(newFieldArray);
+            rules.append(_this.buildConditional(newFieldArray));
         },
+
+        buildAddNewItemRule: function(rules) {
+            var _this = this;
+            var f = _this.fields[0];
+            var newField = {quantity:1, groupOperator: "AND", groups: [{name: f.value, operator: f.operators[0], value: null}]};
+            var newFieldArray = [];
+            newFieldArray.push(newField);
+            rules.append(_this.buildConditional(newFieldArray));
+        },
+
 
         buildRules: function(ruleDataArray) {
             return this.buildConditional(ruleDataArray) || this.buildRule(ruleDataArray);
@@ -284,9 +299,9 @@
                 $this.after($("<input>", {"type": "text", "class": "value"}));
                 break;
             case "RANGE":
-                $this.after($("<input>", {"type": "text", "class": "value"}))
+                $this.after($("<input>", {"type": "text", "class": "end"}))
                     .after("<span class=\"value conditional-spacer\">and</span>")
-                    .after($("<input>", {"type": "text", "class": "value"}));
+                    .after($("<input>", {"type": "text", "class": "start"}));
                 break;
             case "SELECT":
                 var select = $("<select>", {"class": "value"});

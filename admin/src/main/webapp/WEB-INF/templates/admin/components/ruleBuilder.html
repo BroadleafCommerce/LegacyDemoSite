@@ -1,4 +1,11 @@
-<div th:classappend="${ruleBuilder != null}? 'rule-builder-complex' : 'rule-builder-simple' ">
+<div th:classappend="${ruleBuilder.styleClass}">
+
+    <input type="hidden" th:name="${ruleBuilder.jsonFieldName}" th:value="${ruleBuilder.json}"/>
+
+    <a class="add-rule" th:if="${ruleBuilder.styleClass == 'rule-builder-simple'}"
+       href="#" th:inline="text">Add [[${ruleBuilder.friendlyName}]] Rule</a>
+    <a class="add-item-rule" th:if="${ruleBuilder.styleClass == 'rule-builder-complex'}"
+       href="#" th:inline="text">Add [[${ruleBuilder.friendlyName}]] Rule</a>
 
     <div th:id="${ruleBuilder.fieldName}"></div>
 
@@ -9,7 +16,7 @@
         function Conditions() {
             this.containerId = /*[[${ruleBuilder.fieldName}]]*/ {};
             this.fields = /*[[${fw}]]*/ {};
-            this.data = /*[[${ruleBuilder.dataWrapper != null}? ${ruleBuilder.dataWrapper} : '[]']]*/ {};
+            this.data = /*[[${ruleBuilder.dataWrapper}]]*/ {};
             this.json = [];
             this.json.push(this.fields);
             this.json.push(this.data);
