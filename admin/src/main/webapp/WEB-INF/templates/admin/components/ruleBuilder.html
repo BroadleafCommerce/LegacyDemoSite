@@ -1,6 +1,9 @@
 <div th:classappend="${ruleBuilder.styleClass}">
 
-    <input type="hidden" th:name="${ruleBuilder.jsonFieldName}" th:value="${ruleBuilder.json}"/>
+    <input type="hidden"
+           th:id="${ruleBuilder.jsonFieldName}"
+           th:name="'fields[\&#39;'+${ruleBuilder.jsonFieldName}+'\&#39;].value'"
+           th:value="${ruleBuilder.json}"/>
 
     <a class="add-rule" th:if="${ruleBuilder.styleClass == 'rule-builder-simple'}"
        href="#" th:inline="text">Add [[${ruleBuilder.friendlyName}]] Rule</a>
@@ -14,6 +17,7 @@
         var conditionsArray = Object.prototype.toString.call(conditionsArray) == "[object Array]" ? conditionsArray : [];
 
         function Conditions() {
+            this.hiddenId = /*[[${ruleBuilder.jsonFieldName}]]*/ {};
             this.containerId = /*[[${ruleBuilder.fieldName}]]*/ {};
             this.fields = /*[[${fw}]]*/ {};
             this.data = /*[[${ruleBuilder.dataWrapper}]]*/ {};

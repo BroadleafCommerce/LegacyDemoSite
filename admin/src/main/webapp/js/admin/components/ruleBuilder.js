@@ -46,3 +46,13 @@ $(".rulebuilder-container").on('click', 'a.add-rule', function(){
     }
     return false;
 });
+
+$(".rulebuilder-form").submit(function () {
+    for (var i = 0; i < conditionsArray.length; i++) {
+        var hiddenId = conditionsArray[i].hiddenId;
+        var builder = conditionsArray[i].builder;
+        $("#"+hiddenId).val(JSON.stringify(builder.collectData()));
+    }
+    alert("Debug (ruleBuilder.js): Rulebuilder Fields Updated Successfully!");
+    return false;
+});
