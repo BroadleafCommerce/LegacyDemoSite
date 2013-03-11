@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,8 +56,9 @@ public class AdminOfferController extends BroadleafAdminOfferController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String saveEntity(HttpServletRequest request, HttpServletResponse response, Model model,
                              @PathVariable String id,
-                             @ModelAttribute EntityForm entityForm, BindingResult result) throws Exception {
-        return super.saveEntity(request, response, model, id, entityForm, result);
+                             @ModelAttribute EntityForm entityForm, BindingResult result,
+                             RedirectAttributes ra) throws Exception {
+        return super.saveEntity(request, response, model, id, entityForm, result, ra);
     }
 
     @Override
