@@ -17,20 +17,6 @@
     <!-- Broadleaf requires AOP -->
     <aop:config/>
     
-    <!-- Allow annotation driven controllers -->
-    <mvc:annotation-driven/>
-
-    <!-- Scan for custom controllers -->
-    <context:component-scan base-package="com.mycompany.admin.controller" />
-
-    <bean id="blAdminLoginController" class="com.mycompany.admin.controller.AdminLoginController">
-        <property name="loginView" value="login/login"/>
-        <property name="forgotPasswordView" value="login/forgotPassword"/>
-        <property name="forgotUsernameView" value="login/forgotUsername"/>
-        <property name="resetPasswordView" value="login/resetPassword"/>
-        <property name="changePasswordView" value="login/changePassword"/>
-    </bean>
-
     <!-- Tell Spring to not try to map things in these directories to controllers -->
     <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
     <mvc:resources order="-10" location="classpath:/admin_style/css/" mapping="/css/**" />
