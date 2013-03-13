@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="website" default="build-app" basedir="."
+<project name="site" default="build-app" basedir="."
     xmlns:artifact="antlib:org.apache.maven.artifact.ant"
     xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
     
