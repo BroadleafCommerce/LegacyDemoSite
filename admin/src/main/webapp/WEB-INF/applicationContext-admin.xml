@@ -124,6 +124,9 @@
     <bean id="blPrecompressedArtifactFilter" class="org.broadleafcommerce.common.web.util.PrecompressedArtifactFilter"/>
 
     <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
+        <!-- Fallback to use the default message in the admin. This will ensure that client-specific friendly
+            names are not required to appear in an internationalized properties file -->
+        <property name="useCodeAsDefaultMessage" value="true" />
         <property name="basenames">
             <list>
                 <value>classpath:messages-admin</value>
