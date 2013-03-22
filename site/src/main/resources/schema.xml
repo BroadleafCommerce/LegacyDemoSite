@@ -2,7 +2,8 @@
 <schema name="example" version="1.5">
     <fields>
         <field name="namespace" type="string" indexed="true" stored="false" />
-        <field name="id" type="long" indexed="true" stored="true" />
+        <field name="id" type="string" indexed="true" stored="true" />
+        <field name="productId" type="long" indexed="true" stored="true" />
         <field name="category" type="long" indexed="true" stored="false" multiValued="true" />
         <field name="explicitCategory" type="long" indexed="true" stored="false" multiValued="true" />
         <field name="searchable" type="text_general" indexed="true" stored="false" />
