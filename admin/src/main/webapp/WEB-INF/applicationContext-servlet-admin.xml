@@ -26,34 +26,6 @@
     <mvc:resources order="-10" location="/favicon.ico" mapping="favicon.ico" />
     <mvc:resources order="-10" location="/robots.txt" mapping="robots.txt" />
     
-    <!-- Base Jawr config -->
-<!--     <bean abstract="true" id="jawrBase" class="net.jawr.web.servlet.JawrSpringController"> -->
-        <!-- This must match the servlet-mapping to which the spring servlet is bound -->
-<!--         <property name="configLocation" value="/jawr.properties" /> -->
-<!--         <property name="configuration"> -->
-<!--             <props> -->
-<!--                 <prop key="jawr.debug.on">${jawr.debug.on}</prop> -->
-<!--                 <prop key="jawr.gzip.on">${jawr.gzip.on}</prop> -->
-<!--             </props> -->
-<!--         </property> -->
-<!--     </bean> -->
-
-<!--     <bean id="jawrJsController" parent="jawrBase" /> -->
-    
-<!--     <bean id="jawrCssController" parent="jawrBase"> -->
-<!--         <property name="type" value="css" /> -->
-<!--     </bean> -->
-
-<!--     <bean id="jawrUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> -->
-<!--         <property name="order" value="-20" /> -->
-<!--         <property name="mappings"> -->
-<!--             <map> -->
-<!--                 <entry key="/**/*.js" value-ref="jawrJsController" /> -->
-<!--                 <entry key="/**/*.css" value-ref="jawrCssController" /> -->
-<!--             </map> -->
-<!--         </property> -->
-<!--     </bean> -->
-    
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
         <property name="templateEngine" ref="blAdminWebTemplateEngine" />

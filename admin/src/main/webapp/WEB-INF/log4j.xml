@@ -9,8 +9,6 @@
     </appender>
 
     <logger name="org.broadleafcommerce"> <level value="warn" /> </logger>
-    
-    <logger name="net.jawr"> <level value="trace" /> </logger>
     <logger name="org.hibernate"> <level value="warn" /> </logger>
     <logger name="org.springframework"> <level value="warn" /> </logger>
     <logger name="org.springframework.web"> <level value="warn" /> </logger>
