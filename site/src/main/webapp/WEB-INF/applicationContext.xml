@@ -42,7 +42,7 @@
     <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>messages</value>
+                <value>classpath:messages</value>
             </list>
         </property>
     </bean>
