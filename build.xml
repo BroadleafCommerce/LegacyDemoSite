@@ -62,7 +62,7 @@
                 <replace dir="site" token="target/mycompany" value="target/${company-name}" summary="yes" excludes="target/" />
                 <replace file="site/src/main/webapp/WEB-INF/web.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
                 <replace file="site/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
-                <replace file="combined/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
+                <replace file="combined/pom.xml" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
             </then>
         </if>
     </target>
