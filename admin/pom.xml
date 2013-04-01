@@ -51,6 +51,9 @@
                             <password>broadleaf</password>
                         </connector>
                     </connectors>
+                    <webAppConfig>
+                         <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+                    </webAppConfig>
                 </configuration>
             </plugin>
     
