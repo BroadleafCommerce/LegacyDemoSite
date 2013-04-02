@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
     <!-- A dummy mail sender has been set to send emails for testing purposes only
          To view the emails sent use "DevNull SMTP" (download separately) with the following setting:
