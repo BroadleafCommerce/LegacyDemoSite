@@ -20,7 +20,7 @@
                 <th align="left"><span th:text="#{cart.item}">Item</span></th>
                 <th><span th:text="#{cart.quantity}">Quantity</span></th>
                 <th> <span th:text="#{cart.price}">Price</span></th>
-                <th> <span th:text="#{cart.discount}">Discount</span></th>
+                <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
                 <th><span th:text="#{cart.total}">Total</span></th>
             </tr>
             </thead>
@@ -40,9 +40,13 @@
                 <td align="center" th:text="*{quantity}"></td>
                 <td align="center" blc:price="*{price}"></td>
                 <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
-    
-                <td align="center" class="value" blc:price="*{price.multiply(quantity)}"></td>
+               
+                <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
+                  <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
+                    <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+
+                </td>
+                <td align="center" class="value" blc:price="*{totalPrice}"></td>
             </tr>
             </tbody>
         </table>

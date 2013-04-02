@@ -103,7 +103,8 @@
         <div class="form30 margin20">
             <label for="phone"><span th:text="#{cart.phone}">Phone</span></label>
             <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-            <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:value="*{address.phonePrimary.phoneNumber}" class="field30 clearable" />
+           <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary!=null}" th:value="*{address.phonePrimary.phoneNumber}" class="field30 clearable" />
+            <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary==null}" class="field30 clearable" />
         </div>
 
         <div class="clearfix"></div>

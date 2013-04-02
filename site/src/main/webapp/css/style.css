@@ -662,6 +662,15 @@ form.manage-account input[type="submit"] {
     padding: 0;
     text-decoration: underline;
 }
+.promotion {
+     color: #E40037;
+     white-space: nowrap;
+      list-style: none;
+}
+li.promotion,  ul.promotion{
+	font-family: 'Georgia', serif;
+    font-size: 12px;
+}
 
 #order-history .order-info-row {
     padding: 8px 0;
@@ -929,6 +938,8 @@ form.manage-account input[type="submit"] {
             
     #cart_products tbody tr td.discount {
         color: #E40037;
+        width: 100px;
+        white-space: nowrap;
     }
     
     #cart_products ul.productOptions {
@@ -1056,10 +1067,12 @@ form.manage-account input[type="submit"] {
     background-color: #F5F4F1;
 }
 
-.order_summary tbody tr td, .multiship_summary tbody tr td {
+.multiship_summary tbody tr td {
     vertical-align:middle;
 }
-
+.order_summary tbody tr td{
+    vertical-align:top;
+}
 #cart_total {
     width: 260px;
     padding: 10px 20px;
