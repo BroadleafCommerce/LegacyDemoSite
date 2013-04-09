@@ -72,4 +72,11 @@
         overflowToDisk="false"
         timeToLiveSeconds="1"/>
         
+     <cache
+        name="generatedResourceCache"
+        maxElementsInMemory="1"
+        eternal="false"
+        overflowToDisk="true"
+        timeToLiveSeconds="1"/>
+        
 </ehcache>
