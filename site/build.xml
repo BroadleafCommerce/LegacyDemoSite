@@ -9,6 +9,9 @@
     
     <property name="project.root" location="../../"/>
     
+    <!-- Read a user defined (.build.propertes) property file(if any) from the home directory-->
+    <property file="${user.home}/.build.properties"/>
+    
     <property file="../build.properties"/>
     
     <target name="jetty-demo-no-db">
