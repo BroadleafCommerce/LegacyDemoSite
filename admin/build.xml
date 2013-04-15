@@ -13,7 +13,7 @@
     <property file="${user.home}/.build.properties"/>
     
     <property file="../build.properties"/>
-    
+	<property name="runtime.environment" value="development"/>
     <!-- clean the gwt generated code -->
     <target name="full-clean">
         <artifact:mvn mavenHome="${maven.home}" fork="true">
@@ -31,6 +31,7 @@
             <jvmarg value="-Xmx1024M" />
             <jvmarg value="-Xdebug" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
@@ -48,6 +49,7 @@
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
             <jvmarg value="-javaagent:${jrebel.path}" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
