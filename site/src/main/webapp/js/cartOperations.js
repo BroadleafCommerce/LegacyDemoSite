@@ -92,7 +92,17 @@ $(function(){
             $.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
         } else {
             $options.each(function(index, element) {
-                itemRequest['itemAttributes[' + $(element).attr('id') + ']'] = $(element).text();
+            	var optionType = $(element).data('optiontype');
+            	var value;
+            	
+            	if ("TEXT" == optionType) {
+            		value = $(element).next().find('input').val();
+            	} else {
+            		value = $(element).text();
+            	}//need to add other types(date,long, etc) as needed
+            	
+            	
+            	itemRequest['itemAttributes[' + $(element).attr('id') + ']'] = value;
             });
             
             BLC.ajax({url: $form.attr('action'), 
