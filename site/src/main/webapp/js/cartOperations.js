@@ -75,13 +75,14 @@ $(function(){
             $form = $button.closest('form'),
             $options = $container.find('span.option-value'),
             $errorSpan = $container.find('span.error');
-        
+            $productOptionsSpan = $container.find('span.productOptionsSpan');
         if ($container.length == 0) {
             var myId = $button.parent().attr('id').substring('productOptions'.length);
             $container = $('.productActions' + myId).closest('.product_container');
             $form = $container.find('form');
             $options = $button.parent().find('span.option-value');
             $errorSpan = $button.parent().find('span.error');
+            $productOptionsSpan = $container.find('span.productOptionsSpan');
         }
         
         var itemRequest = BLC.serializeObject($form),
@@ -114,11 +115,19 @@ $(function(){
                         if (data.error == 'allOptionsRequired') {
                             $errorSpan.css('display', 'block');
                             $errorSpan.effect('highlight', {}, 1000);
+                        } else if (data.error == 'productOptionValidationError') {
+                        	// find the product option that failed validation with jquery
+                        	// put a message next to that text box with value = data.message
+                        	$productOptionsSpan.text('Product Validation Failed: '+ data.errorCode+' '+data.errorMessage);
+                        	$productOptionsSpan.css('display', 'block');
+                        	$productOptionsSpan.effect('highlight', {}, 1000);
+                        	
                         } else {
                             HC.showNotification("Error adding to cart");
                         }
                     } else {
                         $errorSpan.css('display', 'none'); 
+                        $productOptionsSpan.css('display', 'none'); 
                         updateHeaderCartItemsCount(data.cartItemCount);
                         
                         if (modalClick) {

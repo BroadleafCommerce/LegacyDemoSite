@@ -19,6 +19,7 @@ package com.mycompany.controller.cart;
 
 import org.broadleafcommerce.core.catalog.domain.Product;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
+import org.broadleafcommerce.core.order.service.exception.ProductOptionValidationException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
 import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
 import org.broadleafcommerce.core.order.service.exception.UpdateCartException;
@@ -34,12 +35,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/cart")
@@ -79,6 +80,12 @@ public class CartController extends BroadleafCartController {
         } catch (AddToCartException e) {
             if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
                 responseMap.put("error", "allOptionsRequired");
+            } else if (e.getCause() instanceof ProductOptionValidationException) {
+                ProductOptionValidationException exception = (ProductOptionValidationException) e.getCause();
+                responseMap.put("error", "productOptionValidationError");
+                responseMap.put("errorCode", exception.getErrorCode());
+                responseMap.put("errorMessage", exception.getMessage());
+                //blMessages.getMessage(exception.get, lfocale))
             } else {
                 throw e;
             }
