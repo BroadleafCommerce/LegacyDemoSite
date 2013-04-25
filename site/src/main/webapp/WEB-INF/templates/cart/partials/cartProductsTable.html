@@ -14,9 +14,13 @@
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                 <br/>
-                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                    <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                </ul>
+               <blc:product_option_display orderItem="${item}" >
+                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                         <li th:each="entry: ${productOptionDisplayValues}">
+                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                         </li>
+                     </ul>
+                </blc:product_option_display> 
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
                     <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
                 </ul>

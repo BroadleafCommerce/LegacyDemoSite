@@ -28,9 +28,13 @@
                 <td align="left">
                     <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                     <br/>
-                    <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                        <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                    </ul>
+                <blc:product_option_display orderItem="${item}" >
+                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                         <li th:each="entry: ${productOptionDisplayValues}">
+                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                         </li>
+                     </ul>
+                </blc:product_option_display>
                 </td>
                 <td align="center" th:text="*{quantity}"></td>
                 <td align="center" blc:price="*{price}"></td>
@@ -89,7 +93,13 @@
                             <td align="center" th:text="${item.quantity}"></td>
                             <td align="left">
                                 <span th:text="*{sku.name}"></span>
-                                   <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+                                       <blc:product_option_display orderItem="${item.orderItem}" >
+                                           <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                               <li th:each="entry: ${productOptionDisplayValues}">
+                                                 <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                               </li>
+                                           </ul>
+                                      </blc:product_option_display>
                             </td>
                         </tr>
                     </tbody>

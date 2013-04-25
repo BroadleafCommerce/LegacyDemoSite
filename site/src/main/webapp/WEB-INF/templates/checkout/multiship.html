@@ -16,9 +16,13 @@
                         <td class="name">
                             <a th:href="@{${omo.orderItem.product.url}}" th:text="${omo.orderItem.product.name}"></a>
                             <br/>
-                            <ul th:unless="${#lists.isEmpty(omo.orderItem.sku.productOptionValues)}" class="productOptions">
-                                <li th:each="productOptionValue : ${omo.orderItem.sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                            </ul>
+                             <blc:product_option_display orderItem="${omo.orderItem}" >
+                               <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                   <li th:each="entry: ${productOptionDisplayValues}">
+                                     <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                   </li>
+                               </ul>
+                            </blc:product_option_display>
                         </td>
                         <td align="center">
                             <span>1</span>
