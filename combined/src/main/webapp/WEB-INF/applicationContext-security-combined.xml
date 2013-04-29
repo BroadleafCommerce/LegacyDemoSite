@@ -32,6 +32,7 @@
     <sec:http pattern="/admin/forgotPassword" security="none" />
     <sec:http pattern="/admin/changePassword" security="none" />
     <sec:http pattern="/admin/resetPassword" security="none" />
+    <sec:http pattern="/admin/sendResetPassword" security="none" />    
     <!-- This also goes for static assets delivered by the application -->
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />       
 
