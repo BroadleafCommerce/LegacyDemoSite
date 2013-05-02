@@ -126,7 +126,8 @@
     <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
         <!-- Fallback to use the default message in the admin. This will ensure that client-specific friendly
             names are not required to appear in an internationalized properties file -->
-        <property name="useCodeAsDefaultMessage" value="true" />
+        <property name="useCodeAsDefaultMessage" value="${messages.useCodeAsDefaultMessage}" />
+        <property name="cacheSeconds" value="${messages.cacheSeconds}" />
         <property name="basenames">
             <list>
                 <value>classpath:messages-admin</value>
