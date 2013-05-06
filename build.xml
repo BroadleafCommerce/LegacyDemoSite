@@ -55,14 +55,12 @@
                 <replace dir="admin" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
                 <replace dir="admin" token="mycompany-admin" value="${company-name}-admin" summary="yes" excludes="target/" />
                 <replace dir="admin" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
-                <replace dir="combined" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
                 <replace dir="core" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
                 <replace dir="site" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
                 <replace dir="site" token="mycompany-site" value="${company-name}-site" summary="yes" excludes="target/" />
                 <replace dir="site" token="target/mycompany" value="target/${company-name}" summary="yes" excludes="target/" />
                 <replace file="site/src/main/webapp/WEB-INF/web.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
                 <replace file="site/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
-                <replace file="combined/pom.xml" token="mycompany" value="${company-name}" summary="yes" excludes="target/" />
             </then>
         </if>
     </target>
