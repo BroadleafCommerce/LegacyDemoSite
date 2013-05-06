@@ -67,6 +67,8 @@
             <arg value="jetty:stop"/>
         </artifact:mvn>
     </target>
+	
+	<target name="stop-all" depends="jetty-stop, stop-db"/>
     
     <!-- Project Reference Targets -->
     <!-- build the application and create the war artifact -->
