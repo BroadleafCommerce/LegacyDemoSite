@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <bean id="openEntityManagerInViewFilter" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter"/>
+
+    <bean id="hiddenHttpMethodFilter" class="org.springframework.web.filter.HiddenHttpMethodFilter"/>
+
+    <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+        <sec:filter-chain-map request-matcher="ant">
+            <sec:filter-chain pattern="/admin/**" filters="
+                openEntityManagerInViewFilter"/>
+            <sec:filter-chain pattern="/**" filters="
+                openEntityManagerInViewFilter,
+                blRequestFilter"/>
+        </sec:filter-chain-map>
+    </bean>
+
+    <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+        <sec:filter-chain-map request-matcher="ant">
+            <sec:filter-chain pattern="/admin/**" filters="
+               hiddenHttpMethodFilter,
+               blPrecompressedArtifactFilter,
+               blAdminSandBoxFilter"/>
+            <sec:filter-chain pattern="/**" filters="
+               blURLHandlerFilter"/>
+        </sec:filter-chain-map>
+    </bean>
+
+</beans>
