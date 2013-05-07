@@ -29,6 +29,7 @@
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
                blURLHandlerFilter,
+               blTranslationFilter,
                blCartStateFilter"/>
         </sec:filter-chain-map>
     </bean>
