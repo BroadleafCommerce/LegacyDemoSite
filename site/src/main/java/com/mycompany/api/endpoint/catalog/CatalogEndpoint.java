@@ -1,3 +1,18 @@
+/*
+ * Copyright 2008-2012 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.mycompany.api.endpoint.catalog;
 
@@ -10,11 +25,13 @@ import org.broadleafcommerce.core.web.api.wrapper.ProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.RelatedProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuWrapper;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -41,6 +58,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class CatalogEndpoint extends
         org.broadleafcommerce.core.web.api.endpoint.catalog.CatalogEndpoint {
+
+    @Resource(name = "messageSource")
+    protected MessageSource messageSource;
 
     @Override
     @GET
@@ -211,5 +231,4 @@ public class CatalogEndpoint extends
             @PathParam("id") Long id) {
         return super.findParentCategoriesForProduct(request, id);
     }
-
 }
