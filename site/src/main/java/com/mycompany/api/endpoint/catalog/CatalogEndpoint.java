@@ -25,13 +25,11 @@ import org.broadleafcommerce.core.web.api.wrapper.ProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.RelatedProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuWrapper;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -58,9 +56,6 @@ import javax.ws.rs.core.MediaType;
 @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class CatalogEndpoint extends
         org.broadleafcommerce.core.web.api.endpoint.catalog.CatalogEndpoint {
-
-    @Resource(name = "messageSource")
-    protected MessageSource messageSource;
 
     @Override
     @GET
