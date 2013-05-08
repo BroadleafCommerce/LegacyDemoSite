@@ -99,11 +99,25 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>mycompany</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    <!-- The RESTApiServlet can be disabled, but doesn't have to be. It will throw an exception if 
+         it is accessed when no endpoints have been registered via Spring. Add /WEB-INF/applicationContext-rest-api.xml 
+         to the merge patchConfigLocation above to activate and begin using REST services. Alternately, this 
+         servlet and servlet mapping can be commented out entirely. -->
+    <servlet>
+    	<servlet-name>RESTApiServlet</servlet-name>
+    	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+    	<servlet-name>RESTApiServlet</servlet-name>
+    	<url-pattern>/api/v1/*</url-pattern>
+	</servlet-mapping>
 
     <env-entry>
         <env-entry-name>appName</env-entry-name>
