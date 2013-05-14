@@ -18,6 +18,6 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         
-        <!-- Shared properties between admin and core go here -->
+        <!-- Shared properties between admin and site go here -->
         
 </beans>

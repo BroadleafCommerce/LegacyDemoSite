@@ -8,22 +8,19 @@
     <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
     
     <property name="project.root" location="../../"/>
+    <property name="project.name" value="admin" />
     
-    <!-- Read a user defined (.build.propertes) property file(if any) from the home directory-->
+	<!-- See the following URL for a description of this property file strategy -->
+	<!-- The only difference is we prepend a . for the home directory property files -->
+	<!-- http://www.javaranch.com/ant/properties.jsp -->
+	<property file="${user.home}/.${project.name}.properties"/>
     <property file="${user.home}/.build.properties"/>
-    
+    <property name="config.filename" value="${user.name}.properties"/>
+    <property file="config/${config.filename}"/>
     <property file="../build.properties"/>
+	
 	<property name="runtime.environment" value="development"/>
-    <!-- clean the gwt generated code -->
-    <target name="full-clean">
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <arg value="-o"/>
-            <arg value="-Pfull-clean"/>
-            <arg value="clean"/>
-        </artifact:mvn>
-    </target>
-
-    <!-- Requires full maven install. -->
+	
     <target name="jetty-demo">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true" >
