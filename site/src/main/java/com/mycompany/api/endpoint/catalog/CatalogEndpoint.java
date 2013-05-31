@@ -21,6 +21,7 @@ import org.broadleafcommerce.core.web.api.wrapper.CategoryAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.CategoryWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.MediaWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductAttributeWrapper;
+import org.broadleafcommerce.core.web.api.wrapper.ProductSummaryWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.RelatedProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuAttributeWrapper;
@@ -67,7 +68,7 @@ public class CatalogEndpoint extends
     @Override
     @GET
     @Path("products")
-    public List<ProductWrapper> findProductsByName(@Context HttpServletRequest request,
+    public List<ProductSummaryWrapper> findProductsByName(@Context HttpServletRequest request,
             @QueryParam("name") String name,
             @QueryParam("limit") @DefaultValue("20") int limit,
             @QueryParam("offset") @DefaultValue("0") int offset) {
@@ -143,7 +144,7 @@ public class CatalogEndpoint extends
     @Override
     @GET
     @Path("category/{id}/products")
-    public List<ProductWrapper> findProductsForCategory(@Context HttpServletRequest request,
+    public List<ProductSummaryWrapper> findProductsForCategory(@Context HttpServletRequest request,
             @PathParam("id") Long id,
             @QueryParam("limit") @DefaultValue("20") int limit,
             @QueryParam("offset") @DefaultValue("0") int offset,
