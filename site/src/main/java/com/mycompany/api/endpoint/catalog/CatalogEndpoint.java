@@ -21,9 +21,9 @@ import org.broadleafcommerce.core.web.api.wrapper.CategoryAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.CategoryWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.MediaWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductAttributeWrapper;
-import org.broadleafcommerce.core.web.api.wrapper.ProductSummaryWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.RelatedProductWrapper;
+import org.broadleafcommerce.core.web.api.wrapper.SearchResultsWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuWrapper;
 import org.springframework.context.annotation.Scope;
@@ -68,11 +68,12 @@ public class CatalogEndpoint extends
     @Override
     @GET
     @Path("products")
-    public List<ProductSummaryWrapper> findProductsByName(@Context HttpServletRequest request,
-            @QueryParam("name") String name,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset) {
-        return super.findProductsByName(request, name, limit, offset);
+    public SearchResultsWrapper findProductsByQuery(@Context HttpServletRequest request,
+            @QueryParam("q") String q,
+            @QueryParam("categoryId") Long categoryId,
+            @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
+            @QueryParam("page") @DefaultValue("1") Integer page) {
+        return super.findProductsByQuery(request, q, categoryId, pageSize, page);
     }
 
     @Override
@@ -139,17 +140,6 @@ public class CatalogEndpoint extends
     public List<CategoryAttributeWrapper> findCategoryAttributesForCategory(@Context HttpServletRequest request,
             @PathParam("id") Long id) {
         return super.findCategoryAttributesForCategory(request, id);
-    }
-
-    @Override
-    @GET
-    @Path("category/{id}/products")
-    public List<ProductSummaryWrapper> findProductsForCategory(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset,
-            @QueryParam("activeOnly") @DefaultValue("true") boolean activeOnly) {
-        return super.findProductsForCategory(request, id, limit, offset, activeOnly);
     }
 
     @Override
