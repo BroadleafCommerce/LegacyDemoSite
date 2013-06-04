@@ -137,10 +137,24 @@ public class CatalogEndpoint extends
     public CategoryWrapper findCategoryById(@Context HttpServletRequest request,
             @PathParam("id") Long id,
             @QueryParam("productLimit") @DefaultValue("20") int productLimit,
-            @QueryParam("productOffset") @DefaultValue("0") int productOffset, @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
+            @QueryParam("productOffset") @DefaultValue("0") int productOffset,
+            @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
             @QueryParam("subcategoryOffset") @DefaultValue("0") int subcategoryOffset) {
         return super.findCategoryById(request, id, productLimit, productOffset,
                 subcategoryLimit, subcategoryOffset);
+    }
+
+    @Override
+    @GET
+    @Path("category")
+    public CategoryWrapper findCategoryIdOrName(HttpServletRequest request,
+            @QueryParam("searchParameter") String searchParameter,
+            @QueryParam("productLimit") @DefaultValue("20") int productLimit,
+            @QueryParam("productOffset") @DefaultValue("0") int productOffset,
+            @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
+            @QueryParam("subcategoryOffset") @DefaultValue("0") int subcategoryOffset) {
+        return super.findCategoryIdOrName(request, searchParameter,
+                productLimit, productOffset, subcategoryLimit, subcategoryOffset);
     }
 
     @Override
