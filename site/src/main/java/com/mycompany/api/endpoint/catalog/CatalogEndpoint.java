@@ -138,10 +138,9 @@ public class CatalogEndpoint extends
             @PathParam("id") Long id,
             @QueryParam("productLimit") @DefaultValue("20") int productLimit,
             @QueryParam("productOffset") @DefaultValue("0") int productOffset, @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
-            @QueryParam("subcategoryOffset") @DefaultValue("0") int subcategoryOffset,
-            @QueryParam("subcategoryDepth") @DefaultValue("1") int subcategoryDepth) {
+            @QueryParam("subcategoryOffset") @DefaultValue("0") int subcategoryOffset) {
         return super.findCategoryById(request, id, productLimit, productOffset,
-                subcategoryLimit, subcategoryOffset, subcategoryDepth);
+                subcategoryLimit, subcategoryOffset);
     }
 
     @Override
