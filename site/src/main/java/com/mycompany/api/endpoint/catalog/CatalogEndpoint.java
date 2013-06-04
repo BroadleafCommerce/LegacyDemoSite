@@ -159,7 +159,7 @@ public class CatalogEndpoint extends
 
     @Override
     @GET
-    @Path("category/{id}/product-attributes")
+    @Path("category/{id}/category-attributes")
     public List<CategoryAttributeWrapper> findCategoryAttributesForCategory(@Context HttpServletRequest request,
             @PathParam("id") Long id) {
         return super.findCategoryAttributesForCategory(request, id);
