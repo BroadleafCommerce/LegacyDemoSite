@@ -67,13 +67,23 @@ public class CatalogEndpoint extends
 
     @Override
     @GET
-    @Path("products")
+    @Path("search/products")
     public SearchResultsWrapper findProductsByQuery(@Context HttpServletRequest request,
             @QueryParam("q") String q,
-            @QueryParam("categoryId") Long categoryId,
             @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
             @QueryParam("page") @DefaultValue("1") Integer page) {
-        return super.findProductsByQuery(request, q, categoryId, pageSize, page);
+        return super.findProductsByQuery(request, q, pageSize, page);
+    }
+
+    @Override
+    @GET
+    @Path("search/category/{categoryId}/products")
+    public SearchResultsWrapper findProductsByCategoryAndQuery(@Context HttpServletRequest request,
+            @PathParam("categoryId") Long categoryId,
+            @QueryParam("q") String q,
+            @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
+            @QueryParam("page") @DefaultValue("1") Integer page) {
+        return super.findProductsByCategoryAndQuery(request, categoryId, q, pageSize, page);
     }
 
     @Override
