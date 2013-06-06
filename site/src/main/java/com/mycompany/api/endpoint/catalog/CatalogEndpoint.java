@@ -147,7 +147,7 @@ public class CatalogEndpoint extends
     @Override
     @GET
     @Path("category")
-    public CategoryWrapper findCategoryIdOrName(HttpServletRequest request,
+    public CategoryWrapper findCategoryIdOrName(@Context HttpServletRequest request,
             @QueryParam("searchParameter") String searchParameter,
             @QueryParam("productLimit") @DefaultValue("20") int productLimit,
             @QueryParam("productOffset") @DefaultValue("0") int productOffset,
