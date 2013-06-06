@@ -18,7 +18,12 @@
     <bean id="openEntityManagerInViewFilter" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter"/>
 
     <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <sec:filter-chain-map request-matcher="ant">
+        <sec:filter-chain-map request-matcher="ant">        
+            <sec:filter-chain pattern="/api/**" filters="
+               blStatelessSessionFilter,
+               openEntityManagerInViewFilter,
+               blRequestFilter"/>
+            
             <sec:filter-chain pattern="/**" filters="
                openEntityManagerInViewFilter,
                blRequestFilter"/>
