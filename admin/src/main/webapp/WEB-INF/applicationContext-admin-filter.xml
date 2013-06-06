@@ -24,8 +24,7 @@
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
                openEntityManagerInViewFilter,
-               blAdminRequestFilter,
-               blJSCompatibilityRequestFilter"/>
+               blAdminRequestFilter"/>
         </sec:filter-chain-map>
     </bean>
 
@@ -34,7 +33,8 @@
             <sec:filter-chain pattern="/**" filters="
                hiddenHttpMethodFilter,
                blPrecompressedArtifactFilter,
-               blAdminSandBoxFilter"/>
+               blAdminSandBoxFilter,
+               blJSCompatibilityRequestFilter"/>
         </sec:filter-chain-map>
     </bean>
 
