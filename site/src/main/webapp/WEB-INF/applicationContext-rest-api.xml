@@ -50,7 +50,4 @@
          This MUST be marked as singleton. -->
     <bean class="org.broadleafcommerce.core.web.api.BroadleafRestExceptionMapper" scope="singleton"/>
     
-    <!-- This provider overrides the JacksonJaxbJsonProvider, forcing Date serialization in ISO 8601 format. 
-         This can be commented out or overridden to change that behavior. -->
-    <bean class="org.broadleafcommerce.core.web.api.BroadleafJacksonJaxbJsonProvider" scope="singleton"/>
 </beans>
