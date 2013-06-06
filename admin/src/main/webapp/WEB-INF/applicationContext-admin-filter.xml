@@ -24,7 +24,8 @@
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
                openEntityManagerInViewFilter,
-               blAdminRequestFilter"/>
+               blAdminRequestFilter,
+               blJSCompatibilityRequestFilter"/>
         </sec:filter-chain-map>
     </bean>
 
