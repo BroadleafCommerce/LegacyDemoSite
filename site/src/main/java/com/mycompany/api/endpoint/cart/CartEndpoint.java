@@ -64,14 +64,14 @@ public class CartEndpoint extends org.broadleafcommerce.core.web.api.endpoint.or
 
     @Override
     @POST
-    @Path("{categoryId}/{productId}")
+    @Path("{productId}")
     public OrderWrapper addProductToOrder(@Context HttpServletRequest request,
             @Context UriInfo uriInfo,
-            @PathParam("categoryId") Long categoryId,
             @PathParam("productId") Long productId,
+            @QueryParam("categoryId") Long categoryId,
             @QueryParam("quantity") @DefaultValue("1") int quantity,
             @QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
-        return super.addProductToOrder(request, uriInfo, categoryId, productId, quantity, priceOrder);
+        return super.addProductToOrder(request, uriInfo, productId, categoryId, quantity, priceOrder);
     }
 
     @Override
