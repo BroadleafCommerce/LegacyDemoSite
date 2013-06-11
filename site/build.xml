@@ -126,6 +126,11 @@
             You will need to run a mvn install on your project before attempting to execute this task.
             Also, you will likely need to assign additional heap space to your ANT process. A setting
             of -XX:MaxPermSize=256M -Xmx512M should be sufficient.
+            
+            This can be done by populating the 'ANT_OPTS' environment variable:
+                export ANT_OPTS=-XX:MaxPermSize=256M -Xmx512M
+            which will ensure those settings for all ant processes. Alternatively you could use JAVA_OPTS which is for
+            the global JVM and will effect all Java processes.
         -->
         <mkdir dir="target/sql/create"/>
         <artifact:pom id="myPom" file="pom.xml" />
@@ -184,75 +189,80 @@
     </target>
     
     <target name="build-update-sql">
-            <!--
-                You will need to run a mvn install on your project before attempting to execute this task.
-                Also, you will likely need to assign additional heap space to your ANT process. A setting
-                of -XX:MaxPermSize=256M -Xmx512M should be sufficient.
-            -->
-            <mkdir dir="target/sql/update"/>
-            <artifact:pom id="myPom" file="pom.xml" />
-            <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
-            <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
-            <fileset id="libDir" dir="${baseTarget}/lib"/>
-            <path id="build.runtime.classpath">
-                <!--There are some additional libraries needed at compile time that are not included
-                    in WEB-INF/lib - find those libraries via a difference algorithm-->
-                <restrict>
-                    <difference>
+        <!--
+            You will need to run a mvn install on your project before attempting to execute this task.
+            Also, you will likely need to assign additional heap space to your ANT process. A setting
+            of -XX:MaxPermSize=256M -Xmx512M should be sufficient.
+            
+            This can be done by populating the 'ANT_OPTS' environment variable:
+                export ANT_OPTS=-XX:MaxPermSize=256M -Xmx512M
+            which will ensure those settings for all ant processes. Alternatively you could use JAVA_OPTS which is for
+            the global JVM and will effect all Java processes.
+        -->
+        <mkdir dir="target/sql/update"/>
+        <artifact:pom id="myPom" file="pom.xml" />
+        <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
+        <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
+        <fileset id="libDir" dir="${baseTarget}/lib"/>
+        <path id="build.runtime.classpath">
+            <!--There are some additional libraries needed at compile time that are not included
+                in WEB-INF/lib - find those libraries via a difference algorithm-->
+            <restrict>
+                <difference>
+                    <fileset refid="pomDeps" />
+                    <intersect>
                         <fileset refid="pomDeps" />
-                        <intersect>
-                            <fileset refid="pomDeps" />
-                            <fileset refid="libDir" />
-                        </intersect>
-                    </difference>
-                    <rsel:not>
-                        <rsel:name name="**/*.pom" />
-                    </rsel:not>
-                </restrict>
-                <!--Add the lib directory to get all the dependencies required for the demo app-->
-                <fileset refid="libDir"/>
-                <dirset dir="src/main/resources" />
-                <!--Add the classes directory in the war project, if required-->
-                <!--<pathelement location="${baseTarget}/classes"/>-->
-            </path>
-            <!--If the war project does not contain custom entities (best practice), then it is not necessary to include application context from the WEB-INF directory-->
-            <!--<property name="my.app.context" location="src/main/webapp/WEB-INF/applicationContext.xml"/>-->
-            <taskdef name="hibernatetool" classname="org.broadleafcommerce.common.util.sql.HibernateToolTask" classpathref="build.runtime.classpath" />
-            <hibernatetool destDir="target/sql/update" combinePersistenceUnits="false" refineFileNames="true">
-                <!--add in additional persistence configuration related to the framework -->
-                <classPathApplicationContext path="bl-framework-applicationContext-persistence.xml"/>
-                <!--add in additional persistence configuration related to common -->
-                <classPathApplicationContext path="bl-common-applicationContext-persistence.xml"/>
-                <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
-                <!--add in additional persistence configuration related to the cms -->
-                <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
-                <classPathApplicationContext path="bl-cms-contentCreator-applicationContext.xml"/>
-                <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
-                <!--add in additional persistence configuration related to the profile -->
-                <classPathApplicationContext path="bl-profile-applicationContext-persistence.xml"/>
-                <!--add in additional persistence configuration for our core -->
-                <classPathApplicationContext path="applicationContext.xml"/>
-                <!--see description for my.app.context above -->
-                <fileSystemApplicationContext path="src/main/webapp/WEB-INF/applicationContext.xml"/>
-                <!--select the dialects and persistence units to export-->
-                <jpaconfiguration persistenceUnit="blPU" dialect="${ant.hibernate.sql.ddl.dialect}" 
-                    url="${ant.blPU.url}" 
-                    userName="${ant.blPU.userName}" 
-                    password="${ant.blPU.password}" 
-                    driverClassName="${ant.blPU.driverClassName}"/>
-                <jpaconfiguration persistenceUnit="blSecurePU" dialect="${ant.hibernate.sql.ddl.dialect}" 
-                    url="${ant.blSecurePU.url}" 
-                    userName="${ant.blSecurePU.userName}" 
-                    password="${ant.blSecurePU.password}" 
-                    driverClassName="${ant.blSecurePU.driverClassName}"/>
-                <jpaconfiguration persistenceUnit="blCMSStorage" dialect="${ant.hibernate.sql.ddl.dialect}" 
-                    url="${ant.blCMSStorage.url}" 
-                    userName="${ant.blCMSStorage.userName}" 
-                    password="${ant.blCMSStorage.password}" 
-                    driverClassName="${ant.blCMSStorage.driverClassName}"/>
-                <!--other required elements-->
-                <classpath refid="build.runtime.classpath" />
-                <hbm2ddl export="false" update="true" create="false"/>
-            </hibernatetool>
-        </target>
+                        <fileset refid="libDir" />
+                    </intersect>
+                </difference>
+                <rsel:not>
+                    <rsel:name name="**/*.pom" />
+                </rsel:not>
+            </restrict>
+            <!--Add the lib directory to get all the dependencies required for the demo app-->
+            <fileset refid="libDir"/>
+            <dirset dir="src/main/resources" />
+            <!--Add the classes directory in the war project, if required-->
+            <!--<pathelement location="${baseTarget}/classes"/>-->
+        </path>
+        <!--If the war project does not contain custom entities (best practice), then it is not necessary to include application context from the WEB-INF directory-->
+        <!--<property name="my.app.context" location="src/main/webapp/WEB-INF/applicationContext.xml"/>-->
+        <taskdef name="hibernatetool" classname="org.broadleafcommerce.common.util.sql.HibernateToolTask" classpathref="build.runtime.classpath" />
+        <hibernatetool destDir="target/sql/update" combinePersistenceUnits="false" refineFileNames="true">
+            <!--add in additional persistence configuration related to the framework -->
+            <classPathApplicationContext path="bl-framework-applicationContext-persistence.xml"/>
+            <!--add in additional persistence configuration related to common -->
+            <classPathApplicationContext path="bl-common-applicationContext-persistence.xml"/>
+            <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
+            <!--add in additional persistence configuration related to the cms -->
+            <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
+            <classPathApplicationContext path="bl-cms-contentCreator-applicationContext.xml"/>
+            <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
+            <!--add in additional persistence configuration related to the profile -->
+            <classPathApplicationContext path="bl-profile-applicationContext-persistence.xml"/>
+            <!--add in additional persistence configuration for our core -->
+            <classPathApplicationContext path="applicationContext.xml"/>
+            <!--see description for my.app.context above -->
+            <fileSystemApplicationContext path="src/main/webapp/WEB-INF/applicationContext.xml"/>
+            <!--select the dialects and persistence units to export-->
+            <jpaconfiguration persistenceUnit="blPU" dialect="${ant.hibernate.sql.ddl.dialect}" 
+                url="${ant.blPU.url}" 
+                userName="${ant.blPU.userName}" 
+                password="${ant.blPU.password}" 
+                driverClassName="${ant.blPU.driverClassName}"/>
+            <jpaconfiguration persistenceUnit="blSecurePU" dialect="${ant.hibernate.sql.ddl.dialect}" 
+                url="${ant.blSecurePU.url}" 
+                userName="${ant.blSecurePU.userName}" 
+                password="${ant.blSecurePU.password}" 
+                driverClassName="${ant.blSecurePU.driverClassName}"/>
+            <jpaconfiguration persistenceUnit="blCMSStorage" dialect="${ant.hibernate.sql.ddl.dialect}" 
+                url="${ant.blCMSStorage.url}" 
+                userName="${ant.blCMSStorage.userName}" 
+                password="${ant.blCMSStorage.password}" 
+                driverClassName="${ant.blCMSStorage.driverClassName}"/>
+            <!--other required elements-->
+            <classpath refid="build.runtime.classpath" />
+            <hbm2ddl export="false" update="true" create="false"/>
+        </hibernatetool>
+    </target>
 </project>
