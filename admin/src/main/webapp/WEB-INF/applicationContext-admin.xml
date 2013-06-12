@@ -56,6 +56,20 @@
             </list>
         </property>
     </bean>
+    
+    <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
+        <property name="additionalBundleFiles">
+            <map>
+                <entry key="admin.js">
+                    <list>
+                        <value>admin/catalog/product.js</value>
+                        <value>admin/catalog/offer.js</value>
+                        <value>admin/catalog/category.js</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>
 
     <!-- A dummy mail sender has been set to send emails for testing purposes only
              To view the emails sent use "DevNull SMTP" (download separately) with the following setting:

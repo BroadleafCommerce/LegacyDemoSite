@@ -31,31 +31,27 @@
     </div>
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>
+    <script th:inline="text">
         //<![CDATA[
-        window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')
+        window.jQuery || document.write('<script src="[[@{/js/admin/lib/jquery-1.7.2.min.js}]]"><\/script>');
         //]]>
     </script>
     
-    <script th:src="@{/js/plugins.js}"></script>
-    <script th:src="@{/js/libs/jquery.MetaData.js}"></script>
-    <script th:src="@{/js/libs/jquery.rating.pack.js}"></script>
-    <script th:src="@{/js/libs/jquery.dotdotdot-1.5.1.js}"></script>
+    <blc:bundle name="lib.js" 
+                mapping-prefix="/js/"
+                files="plugins.js,
+                       libs/jquery.MetaData.js,
+                       libs/jquery.rating.pack.js,
+                       libs/jquery.dotdotdot-1.5.1.js" />
     
-    <div th:remove="all">
-        <!--
-            In a production environment, you would want to use some pre-processor (such as JAWR) to
-            collapse these JavaScript files into one for faster performance and naming the files in a
-            versioned way to avoid browser cache issues. This has the added benefit of allowing proper
-            organization of the JavaScript in the project.
-        -->
-    </div>
-    <script th:src="@{/js/BLC.js}"></script>
-    <script th:src="@{/js/heatClinic.js}"></script>
-    <script th:src="@{/js/cartOperations.js}"></script>
-    <script th:src="@{/js/checkoutOperations.js}"></script>
-    <script th:src="@{/js/globalOnReady.js}"></script>
-    <script th:src="@{/js/manageAccountOperations.js}"></script>
-    <script th:src="@{/js/reviewOperations.js}"></script>
+    <blc:bundle name="heatclinic.js" 
+                mapping-prefix="/js/"
+                files="BLC.js,
+                       heatClinic.js,
+                       cartOperations.js,
+                       checkoutOperations.js,
+                       globalOnReady.js,
+                       manageAccountOperations.js,
+                       reviewOperations.js" />
 
 </footer>
