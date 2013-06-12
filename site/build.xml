@@ -162,22 +162,14 @@
         <!--<property name="my.app.context" location="src/main/webapp/WEB-INF/applicationContext.xml"/>-->
         <taskdef name="hibernatetool" classname="org.broadleafcommerce.common.util.sql.HibernateToolTask" classpathref="build.runtime.classpath"/>
         <hibernatetool destDir="target/sql/create" combinePersistenceUnits="false" refineFileNames="true">
-            <classPathApplicationContext path="bl-framework-web-applicationContext.xml"/>
-            <!--add in additional persistence configuration related to the framework -->
-            <classPathApplicationContext path="bl-framework-applicationContext-persistence.xml"/>
-            <!--add in additional persistence configuration related to common -->
-            <classPathApplicationContext path="bl-common-applicationContext-persistence.xml"/>
-            <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
             <!--add in additional persistence configuration related to the cms -->
             <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
-            <classPathApplicationContext path="bl-cms-contentCreator-applicationContext.xml"/>
             <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
-            <!--add in additional persistence configuration related to the profile -->
-            <classPathApplicationContext path="bl-profile-applicationContext-persistence.xml"/>
             <!--add in additional persistence configuration for our core -->
             <classPathApplicationContext path="applicationContext.xml"/>
             <!--see description for my.app.context above -->
             <fileSystemApplicationContext path="src/main/webapp/WEB-INF/applicationContext.xml"/>
+            <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
             <!--select the dialects and persistence units to export-->
             <jpaconfiguration persistenceUnit="blPU" dialect="${ant.hibernate.sql.ddl.dialect}" />
             <jpaconfiguration persistenceUnit="blSecurePU" dialect="${ant.hibernate.sql.ddl.dialect}" />
@@ -229,21 +221,14 @@
         <!--<property name="my.app.context" location="src/main/webapp/WEB-INF/applicationContext.xml"/>-->
         <taskdef name="hibernatetool" classname="org.broadleafcommerce.common.util.sql.HibernateToolTask" classpathref="build.runtime.classpath" />
         <hibernatetool destDir="target/sql/update" combinePersistenceUnits="false" refineFileNames="true">
-            <!--add in additional persistence configuration related to the framework -->
-            <classPathApplicationContext path="bl-framework-applicationContext-persistence.xml"/>
-            <!--add in additional persistence configuration related to common -->
-            <classPathApplicationContext path="bl-common-applicationContext-persistence.xml"/>
-            <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
             <!--add in additional persistence configuration related to the cms -->
             <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
-            <classPathApplicationContext path="bl-cms-contentCreator-applicationContext.xml"/>
             <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
-            <!--add in additional persistence configuration related to the profile -->
-            <classPathApplicationContext path="bl-profile-applicationContext-persistence.xml"/>
             <!--add in additional persistence configuration for our core -->
             <classPathApplicationContext path="applicationContext.xml"/>
             <!--see description for my.app.context above -->
             <fileSystemApplicationContext path="src/main/webapp/WEB-INF/applicationContext.xml"/>
+            <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
             <!--select the dialects and persistence units to export-->
             <jpaconfiguration persistenceUnit="blPU" dialect="${ant.hibernate.sql.ddl.dialect}" 
                 url="${ant.blPU.url}" 
