@@ -13,7 +13,7 @@
 -- Currencies need to be defined before locale if they are using a currency code.
 -- i18n standard abbreviations should be used.
 --
-INSERT INTO BLC_CURRENCY(CURRENCY_CODE, FRIENDLY_NAME, DEFAULT_FLAG) VALUES('USD', 'US Dollar', true);
+INSERT INTO BLC_CURRENCY(CURRENCY_CODE, FRIENDLY_NAME, DEFAULT_FLAG) VALUES('USD', 'US Dollar', TRUE);
 
 --
 -- Load Locales:  Your site must have at least one Locale with DEFAULT_FLAG set to TRUE
