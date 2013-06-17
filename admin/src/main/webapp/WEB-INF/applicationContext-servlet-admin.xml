@@ -81,7 +81,7 @@
         </bean>
         
         <!-- Interceptor to turn off caching -->
-        <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+        <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
             <property name="cacheSeconds" value="0"/>
             <property name="useExpiresHeader" value="true"/>
             <property name="useCacheControlHeader" value="true"/>
