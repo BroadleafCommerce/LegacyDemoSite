@@ -59,8 +59,11 @@
         </sec:port-mappings>
         
         <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
         <sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
     </sec:http>
+    
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
 
     <bean id="adminAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <constructor-arg value="/login"/>
