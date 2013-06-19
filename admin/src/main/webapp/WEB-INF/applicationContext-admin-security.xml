@@ -59,8 +59,10 @@
         </sec:port-mappings>
         
         <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
         <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
         <sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
+        <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />

@@ -63,9 +63,11 @@
         <sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
         
         <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
         <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
         <sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
         <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
+        <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
     <!--  The BLC Authentication manager.   -->
