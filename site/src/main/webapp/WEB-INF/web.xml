@@ -87,8 +87,8 @@
     
     <!-- The RESTApiServlet can be disabled, but doesn't have to be. It will throw an exception if 
          it is accessed when no endpoints have been registered via Spring. Add /WEB-INF/applicationContext-rest-api.xml 
-         to the merge patchConfigLocation above to activate and begin using REST services. Alternately, this 
-         servlet and servlet mapping can be commented out entirely. -->
+         to the merge patchConfigLocation ABOVE applicationContext-security.xml to activate and begin using REST services. 
+         Alternately, this servlet and servlet mapping can be commented out entirely. -->
     <servlet>
     	<servlet-name>RESTApiServlet</servlet-name>
     	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>

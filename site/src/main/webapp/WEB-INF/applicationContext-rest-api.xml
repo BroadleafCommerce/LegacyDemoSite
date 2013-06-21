@@ -31,7 +31,9 @@
     <!-- Set up Spring security for the RESTful API -->
     <sec:http pattern="/api/**" create-session="stateless">
         <sec:http-basic />
+        <sec:custom-filter ref="blRestPreSecurityFilterChain" before="CHANNEL_FILTER"/>
         <sec:custom-filter ref="blRestCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
+        <sec:custom-filter ref="blRestPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
     <!-- Used for REST api calls.   This just takes in the passed in customerId and uses it to establish the customer. -->
