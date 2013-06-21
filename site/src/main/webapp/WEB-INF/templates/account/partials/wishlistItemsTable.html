@@ -10,13 +10,17 @@
     </thead>
     <tbody>
         <tr th:each="item : ${wishlist.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-            <td><img th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+            <td><img th:src="@{*{product.media['primary'].url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                 <br/>
-                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                    <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                </ul>
+                <blc:product_option_display orderItem="${item}" >
+                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                         <li th:each="entry: ${productOptionDisplayValues}">
+                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                         </li>
+                     </ul>
+                </blc:product_option_display>
             </td>
             <td align="center">
                 <div th:text="*{quantity}"></div>

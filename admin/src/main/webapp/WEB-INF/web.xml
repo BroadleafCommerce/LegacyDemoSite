@@ -31,34 +31,20 @@
         <param-name>shutdownHookMethod</param-name>
         <param-value>forceFlush</param-value>
     </context-param>
-
-    <filter>
-        <filter-name>blPreSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    
+    <listener>
+        <listener-class>
+             org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
 
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
 
-    <filter>
-        <filter-name>blPostSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>blPreSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>blPostSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -106,13 +92,7 @@
     <env-entry>
         <env-entry-name>appName</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>admin</env-entry-value>
+        <env-entry-value>admin2</env-entry-value>
     </env-entry>
-
-    <resource-ref>
-        <res-ref-name>jdbc/web</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
 
 </web-app>

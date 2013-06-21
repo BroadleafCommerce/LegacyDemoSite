@@ -8,50 +8,19 @@
     <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
     
     <property name="project.root" location="../../"/>
+    <property name="project.name" value="admin" />
     
+	<!-- See the following URL for a description of this property file strategy -->
+	<!-- The only difference is we prepend a . for the home directory property files -->
+	<!-- http://www.javaranch.com/ant/properties.jsp -->
+	<property file="${user.home}/.${project.name}.properties"/>
+    <property file="${user.home}/.build.properties"/>
+    <property name="config.filename" value="${user.name}.properties"/>
+    <property file="config/${config.filename}"/>
     <property file="../build.properties"/>
-    
-    <!-- clean the gwt generated code -->
-    <target name="full-clean">
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <arg value="-o"/>
-            <arg value="-Pfull-clean"/>
-            <arg value="clean"/>
-        </artifact:mvn>
-    </target>
-
-    <!-- start the integrated gwt development server inplace with the current codebase -->
-    <target name="gwt-run">
-        <delete dir="war/WEB-INF/lib"/>
-        <artifact:mvn mavenHome="${maven.home}" fork="false">
-            <arg value="-o"/>
-            <arg value="-Pgwt"/>
-            <arg value="gwt:run"/>
-            <arg value="-Dgwt.extraJvmArgs=-XX:MaxPermSize=256M -Xmx512M -Dlogs.dir=${logs.dir}"/>
-            <arg value="-Dgwt.noserver=true"/>
-        </artifact:mvn>
-    </target>
-
-    <!-- start the integrated gwt development server in debug mode inplace with the current codebase -->
-    <target name="gwt-debug">
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <arg value="-o"/>
-            <arg value="-Pgwt"/>
-            <arg value="gwt:debug"/>
-        </artifact:mvn>
-    </target>
-
-    <!-- start the integrated gwt development server in debug mode inplace with the current codebase - add jrebel instrumentation -->
-    <target name="gwt-debug-jrebel">
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <arg value="-o"/>
-            <arg value="-Pgwt-jrebel"/>
-            <arg value="gwt:debug"/>
-            <arg value="-Djrebel.path=${jrebel.path}"/>
-        </artifact:mvn>
-    </target>
-
-    <!-- Requires full maven install. -->
+	
+	<property name="runtime.environment" value="development"/>
+	
     <target name="jetty-demo">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true" >
@@ -59,6 +28,7 @@
             <jvmarg value="-Xmx1024M" />
             <jvmarg value="-Xdebug" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
@@ -76,6 +46,7 @@
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
             <jvmarg value="-javaagent:${jrebel.path}" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>

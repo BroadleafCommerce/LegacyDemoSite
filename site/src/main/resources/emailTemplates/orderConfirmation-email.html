@@ -41,9 +41,13 @@
                                         <td align="left" style="padding: 5px 5px 5px 0">
                                             <span th:text="*{product.name}"></span>
                                             <br/>
-                                            <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                                                <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                                            </ul>
+                                            <blc:product_option_display orderItem="${item}" >
+                                                 <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                                     <li th:each="entry: ${productOptionDisplayValues}">
+                                                       <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                                     </li>
+                                                 </ul>
+                                            </blc:product_option_display>
                                         </td>
                                         <td align="center" th:text="*{quantity}"></td>
                                         <td align="left" blc:price="*{price}"></td>
@@ -152,8 +156,14 @@
                                                             <td align="center" th:text="${item.quantity}"></td>
                                                             <td align="left">
                                                                 <span th:text="*{sku.name}"></span>
-                                                                <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
-                                                            </td>
+                                                                <blc:product_option_display orderItem="${item.orderItem}" >
+                                                                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                                                         <li th:each="entry: ${productOptionDisplayValues}">
+                                                                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                                                         </li>
+                                                                     </ul>
+                                                                </blc:product_option_display>
+                                                             </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>

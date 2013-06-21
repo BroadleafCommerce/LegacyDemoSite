@@ -12,13 +12,17 @@
                 </thead>
                 <tbody>
                     <tr th:each="omo : ${orderMultishipOptions}" th:id="${'productRow' + omo.orderItem.id}">
-                        <td><img th:if="${omo.orderItem.product.media['primary'] != null}" th:src="@{${omo.orderItem.product.media['primary'].url}}" width="60" th:alt="${omo.orderItem.product.name}" /></td>
+                        <td><img th:if="${omo.orderItem.product.media['primary'] != null}" th:src="@{${omo.orderItem.product.media['primary'].url} + '?browse'}" width="60" th:alt="${omo.orderItem.product.name}" /></td>
                         <td class="name">
                             <a th:href="@{${omo.orderItem.product.url}}" th:text="${omo.orderItem.product.name}"></a>
                             <br/>
-                            <ul th:unless="${#lists.isEmpty(omo.orderItem.sku.productOptionValues)}" class="productOptions">
-                                <li th:each="productOptionValue : ${omo.orderItem.sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                            </ul>
+                             <blc:product_option_display orderItem="${omo.orderItem}" >
+                               <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                   <li th:each="entry: ${productOptionDisplayValues}">
+                                     <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                   </li>
+                               </ul>
+                            </blc:product_option_display>
                         </td>
                         <td align="center">
                             <span>1</span>

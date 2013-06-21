@@ -6,72 +6,70 @@
     xmlns:aop="http://www.springframework.org/schema/aop"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-3.1.xsd
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+       http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
+    <!-- Broadleaf requires AOP -->
     <aop:config/>
-
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
-
-    <!-- Scan for custom controllers -->
-    <context:component-scan base-package="com.mycompany.admin.controller" />
-
-    <!-- Allow annotation driven controllers -->
-    <mvc:annotation-driven/>
-
-    <!--  Checks for a URL match an Admin Section's URL.   -->
-    <bean class="org.broadleafcommerce.openadmin.web.handler.AdminNavigationHandlerMapping">
-        <property name="order" value="2"/>
-    </bean>
-
-    <bean id="blAdminLoginController" class="com.mycompany.admin.controller.AdminLoginController">
-        <property name="loginView" value="admin/login/login"/>
-        <property name="forgotPasswordView" value="admin/login/forgotPassword"/>
-        <property name="forgotUsernameView" value="admin/login/forgotUsername"/>
-        <property name="resetPasswordView" value="admin/login/resetPassword"/>
-        <property name="changePasswordView" value="admin/login/changePassword"/>
-    </bean>
-
-    <bean id="blAdminModulesController" class="com.mycompany.admin.controller.AdminModulesController">
-        <property name="modulesView" value="admin/modules/modules"/>
-    </bean>
-
+    
     <!-- Tell Spring to not try to map things in these directories to controllers -->
     <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
-    <mvc:resources order="-10" mapping="/resources/img/**" location="/admin/resources/img/" />
-    <mvc:resources order="-10" mapping="/resources/css/**" location="/admin/resources/css/" />
-    <mvc:resources order="-10" mapping="/resources/js/**" location="/admin/resources/js/" />
-    <mvc:resources order="-10" mapping="/com.mycompany.gwt.mycompanyAdmin/**" location="/admin/com.mycompany.gwt.mycompanyAdmin/" />
-    <mvc:resources order="-10" mapping="/favicon.ico" location="/favicon.ico" />
-    <mvc:resources order="-10" mapping="/robots.txt" location="/robots.txt" />
-
-    <bean class="org.broadleafcommerce.common.web.BroadleafResourceHttpRequestBeanFactoryPostProcessor"/>
-
-    <bean id="blResourceUrlPatternRequestDispatchMap" class="org.springframework.beans.factory.config.MapFactoryBean">
-        <property name="sourceMap">
-            <map>
-                <entry key="/**/remote_logging" value="/admin/blc_gwt_logging"/>
-            </map>
+    <mvc:resources order="-10" location="classpath:/open_admin_style/img/" mapping="/img/**" />
+    <mvc:resources order="-10" location="classpath:/open_admin_style/fonts/" mapping="/fonts/**" />
+    <mvc:resources order="-10" location="/favicon.ico" mapping="favicon.ico" />
+    <mvc:resources order="-10" location="/robots.txt" mapping="robots.txt" />
+    
+    <bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="handlers">
+            <list>
+                <ref bean="blRuleBuilderEnumOptionsResourceHandler" />
+            </list>
+        </property>
+        <property name="locations">
+            <list>
+                <value>classpath:/open_admin_style/js/</value>
+                <value>classpath:/admin_style/js/</value>
+                <value>classpath:/common_js/</value>
+            </list>
         </property>
     </bean>
-
+    
+    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="locations">
+            <list>
+                <value>classpath:/open_admin_style/css/</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- Map various location URLs to our resource handlers -->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order" value="-10" />
+        <property name="mappings">
+            <props>
+                <prop key="/js/**">blJsResources</prop>
+                <prop key="/css/**">blCssResources</prop>
+            </props>
+        </property>
+    </bean>
+    
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
         <property name="templateEngine" ref="blAdminWebTemplateEngine" />
         <property name="order" value="1" />
-        <property name="cache" value="false" />
+        <property name="cache" value="${thymeleaf.view.resolver.cache}" />
         <property name="characterEncoding" value="UTF-8" />
-        <property name="fullPageLayout" value="/admin/layout/fullPageLayout" />
+        <property name="fullPageLayout" value="layout/fullPageLayout" />
         <property name="layoutMap">
             <map>
-                <entry key="admin/login/" value="/admin/layout/loginLayout" />
+                <entry key="login/" value="layout/loginLayout" />
+                <entry key="views/" value="NONE" />
+                <entry key="modules/modalContainer" value="NONE" />
             </map>
         </property>
     </bean>
@@ -80,6 +78,14 @@
         <!-- Interceptor for locale-->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="locale"/>
+        </bean>
+        
+        <!-- Interceptor to turn off caching -->
+        <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
+            <property name="cacheSeconds" value="0"/>
+            <property name="useExpiresHeader" value="true"/>
+            <property name="useCacheControlHeader" value="true"/>
+            <property name="useCacheControlNoStore" value="true"/>
         </bean>
     </mvc:interceptors>
 
