@@ -27,8 +27,6 @@
     <sec:http pattern="/js/**" security="none" />       
     <sec:http pattern="/favicon.ico" security="none" />       
     <sec:http pattern="/robots.txt" security="none" />
-    <!-- This also goes for static assets delivered by the application -->
-    <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />       
     
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
@@ -47,6 +45,9 @@
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
         <sec:intercept-url pattern="/cart/**" requires-channel="any" />
+        
+        <!-- Static assets should be allowed to be served under any channel -->
+        <sec:intercept-url pattern="/**/${asset.server.url.prefix.internal}/**" requires-channel="any"/>
         
         <!-- All URLs not explicitly specified as https will be served under http -->
         <sec:intercept-url pattern="/" requires-channel="http"/>
