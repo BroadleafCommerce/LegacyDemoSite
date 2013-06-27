@@ -16,7 +16,13 @@
                         <td align="center" th:text="${item.quantity}"></td>
                         <td align="left">
                             <span th:text="*{sku.name}"></span>
-                               <span th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue + '&nbsp;'}"></span>
+                                  <blc:product_option_display orderItem="${item.orderItem}" >
+                                           <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                               <li th:each="entry: ${productOptionDisplayValues}">
+                                                 <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                               </li>
+                                           </ul>
+                                    </blc:product_option_display>
                         </td>
                     </tr>
                 </tbody>

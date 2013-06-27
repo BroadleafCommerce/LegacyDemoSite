@@ -17,7 +17,6 @@ var HC = (function($) {
         $.each(activeOptions, function() {
             optionValues.push($(this).attr('data-product-option-value'));
         });
-        debugger;
         var mediaItems = $('#product_thumbs a');
         var finalMedia;
         var finalMediaMatches = 0;

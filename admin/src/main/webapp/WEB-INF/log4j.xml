@@ -7,26 +7,13 @@
             <param name="ConversionPattern" value="[%5p] %d{HH:mm:ss} %c{1} - %m%n" />
         </layout>
     </appender>
-    
 
-    <logger name="org.broadleafcommerce">
-        <level value="warn" />
-    </logger>
-        <logger name="org.broadleafcommerce.common.logging.Log4JRemoteGwtLoggingService">
-        <level value="INFO" />
-    </logger>
-    <logger name="org.springframework">
-        <level value="warn" />
-    </logger>
-        <logger name="org.springframework.web">
-        <level value="warn" />
-    </logger>
-        <logger name="org.springframework.web.servlet">
-        <level value="warn" />
-    </logger>
-    <logger name="org.hibernate">
-        <level value="warn" />
-    </logger>
+    <logger name="org.broadleafcommerce"> <level value="warn" /> </logger>
+    <logger name="org.hibernate"> <level value="warn" /> </logger>
+    <logger name="org.springframework"> <level value="warn" /> </logger>
+    <logger name="org.springframework.web"> <level value="warn" /> </logger>
+    <logger name="org.springframework.web.servlet"> <level value="warn" /> </logger>
+    
     <root>
         <priority value="warn" />
         <appender-ref ref="console" />

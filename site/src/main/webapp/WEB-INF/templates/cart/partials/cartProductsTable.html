@@ -4,19 +4,23 @@
             <th colspan="2"><span th:text="#{cart.item}">Item</span></th>
             <th><span th:text="#{cart.quantity}">Quantity</span></th>
             <th> <span th:text="#{cart.price}">Price</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
-            <th> <span th:text="#{cart.discount}">Discount</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
+            <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
             <th><span th:text="#{cart.total}">Total</span></th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-            <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
+            <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                 <br/>
-                <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
-                    <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
-                </ul>
+               <blc:product_option_display orderItem="${item}" >
+                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                         <li th:each="entry: ${productOptionDisplayValues}">
+                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                         </li>
+                     </ul>
+                </blc:product_option_display> 
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
                     <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
                 </ul>
@@ -33,10 +37,12 @@
             <td align="center" blc:price="*{getPriceBeforeAdjustments(true)}"></td>
             
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-            <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" blc:price="*{adjustmentValue}" ></td>
-            
-            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price.multiply(quantity)}"></td>
-            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{price}"></td>
+            <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
+            <span  blc:price="*{totalAdjustmentValue}" ></span>
+                 <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+             </td>
+            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
+            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
         </tr>
     </tbody>
 </table>

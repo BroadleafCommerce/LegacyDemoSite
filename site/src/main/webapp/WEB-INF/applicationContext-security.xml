@@ -8,13 +8,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-3.1.xsd
         http://www.springframework.org/schema/util
-        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
     <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
@@ -27,8 +27,6 @@
     <sec:http pattern="/js/**" security="none" />       
     <sec:http pattern="/favicon.ico" security="none" />       
     <sec:http pattern="/robots.txt" security="none" />
-    <!-- This also goes for static assets delivered by the application -->
-    <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />       
     
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
@@ -48,6 +46,9 @@
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
         <sec:intercept-url pattern="/cart/**" requires-channel="any" />
         
+        <!-- Static assets should be allowed to be served under any channel -->
+        <sec:intercept-url pattern="/**/${asset.server.url.prefix.internal}/**" requires-channel="any"/>
+        
         <!-- All URLs not explicitly specified as https will be served under http -->
         <sec:intercept-url pattern="/" requires-channel="http"/>
         <sec:intercept-url pattern="/**" requires-channel="http"/>
@@ -63,10 +64,11 @@
         <sec:logout delete-cookies="ActiveID" invalidate-session="true" logout-url="/logout"/>
         
         <!-- Specify our custom filters -->
+        <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
         <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
         <sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
-        <sec:custom-filter ref="blCartStateFilter" before="ANONYMOUS_FILTER"/>
         <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
+        <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
     <!--  The BLC Authentication manager.   -->

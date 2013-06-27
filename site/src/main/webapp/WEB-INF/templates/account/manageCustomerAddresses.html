@@ -33,7 +33,7 @@
             <div class="form30 margin20">
                 <label for="phone">Phone</label>
                 <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-                <input type="tel" th:field="*{address.primaryPhone}" class="field30 cloneable" />
+                <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:value="*{address.phonePrimary.phoneNumber}" class="field30 cloneable" />
             </div>
             <div class="form50">
                 <label for="address1">Address</label>

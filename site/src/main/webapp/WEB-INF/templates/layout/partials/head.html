@@ -11,12 +11,16 @@
     <meta name="description" content="Broadleaf Demo Store" />
     <meta name="author" content="Broadleaf Commerce" />
 
-    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />   
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />   
     <meta name="viewport" content="width=device-width" />
     
-    <link rel='stylesheet' th:href="@{/css/jquery.rating.css}" />
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <blc:bundle name="style.css" 
+                mapping-prefix="/css/"
+                files="style.css,
+                       jquery.rating.css" />
+    
     <link rel="stylesheet" th:unless="${#strings.isEmpty(additionalCss)}" />
+    
 
     <script src="../../js/libs/modernizr-2.5.3.min.js" th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
     
