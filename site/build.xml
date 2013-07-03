@@ -120,8 +120,57 @@
         </sql>
         <echo message="SQL Executed on data base..." />
     </target>
-    
-    <target name="build-create-sql">
+    <target name="build-create-sql" >
+        <!--wrapping spring insturment jar-->
+            <echo>
+                 Creating schema insert files
+            </echo>
+            <java  classname="org.apache.tools.ant.launch.Launcher"
+                    fork="true"
+                    failonerror="true"
+                    dir="."
+                    timeout="4000000"
+                    taskname="startAnt">
+                    <classpath>
+                        <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                    </classpath>
+                    <!--uncomment the following spring insturment jar argument if you require spring instrument
+                    <jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                     <jvmarg value="-XX:MaxPermSize=512M" />
+                    <jvmarg value="-Xmx1024M" />
+                    <arg value="-buildfile"/>
+                    <arg file="build.xml"/>
+                    <arg value="-Dthis=this"/>
+                    <arg value="-Dthat=that"/>
+                   
+                    <arg value="-Dthe.other=the.other"/>
+                    <arg value="create-sql"/>
+              </java>
+    </target>
+    <target name="build-update-sql" >
+        <!--wrapping spring insturment jar-->
+            <echo>
+                 Creating schema update files
+                </echo>
+             <java  classname="org.apache.tools.ant.launch.Launcher"
+                fork="true"
+                failonerror="true"
+                dir="."
+                timeout="4000000"
+                taskname="startAnt">
+                <classpath>
+                   <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                </classpath>
+             	<!--uncomment the following spring insturment jar argument if you require spring instrument
+             	                    <jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                <jvmarg value="-XX:MaxPermSize=512M" />
+                        <jvmarg value="-Xmx1024M" />
+                <arg value="-buildfile"/>
+                <arg file="build.xml"/>
+               <arg value="update-sql"/>
+              </java>
+      </target>
+    <target name="create-sql">
         <!--
             You will need to run a mvn install on your project before attempting to execute this task.
             Also, you will likely need to assign additional heap space to your ANT process. A setting
@@ -165,6 +214,7 @@
             <!--add in additional persistence configuration related to the cms -->
             <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
             <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
+        	<classPathApplicationContext path="bl-framework-web-applicationContext.xml"/>
             <!--add in additional persistence configuration for our core -->
             <classPathApplicationContext path="applicationContext.xml"/>
             <!--see description for my.app.context above -->
@@ -178,9 +228,12 @@
             <classpath refid="build.runtime.classpath" />
             <hbm2ddl export="false" update="false" create="true"/>
         </hibernatetool>
+    	<echo>
+             Files exported to target/sql/create
+        </echo>
     </target>
     
-    <target name="build-update-sql">
+    <target name="update-sql">
         <!--
             You will need to run a mvn install on your project before attempting to execute this task.
             Also, you will likely need to assign additional heap space to your ANT process. A setting
@@ -224,6 +277,7 @@
             <!--add in additional persistence configuration related to the cms -->
             <classPathApplicationContext path="bl-cms-contentClient-applicationContext.xml"/>
             <classPathApplicationContext path="bl-open-admin-contentClient-applicationContext.xml"/>
+        	<classPathApplicationContext path="bl-framework-web-applicationContext.xml"/>
             <!--add in additional persistence configuration for our core -->
             <classPathApplicationContext path="applicationContext.xml"/>
             <!--see description for my.app.context above -->
@@ -249,5 +303,8 @@
             <classpath refid="build.runtime.classpath" />
             <hbm2ddl export="false" update="true" create="false"/>
         </hibernatetool>
+    	<echo>
+                 Files exported to target/sql/update
+        </echo>
     </target>
 </project>
