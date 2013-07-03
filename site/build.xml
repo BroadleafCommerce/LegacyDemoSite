@@ -132,7 +132,7 @@
                     timeout="4000000"
                     taskname="startAnt">
                     <classpath>
-                        <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                     <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
                     </classpath>
                     <!--uncomment the following spring insturment jar argument if you require spring instrument
                     <jvmarg value="-javaagent:${spring.instrument.path}"/>-->
@@ -140,10 +140,6 @@
                     <jvmarg value="-Xmx1024M" />
                     <arg value="-buildfile"/>
                     <arg file="build.xml"/>
-                    <arg value="-Dthis=this"/>
-                    <arg value="-Dthat=that"/>
-                   
-                    <arg value="-Dthe.other=the.other"/>
                     <arg value="create-sql"/>
               </java>
     </target>
@@ -159,12 +155,12 @@
                 timeout="4000000"
                 taskname="startAnt">
                 <classpath>
-                   <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
                 </classpath>
              	<!--uncomment the following spring insturment jar argument if you require spring instrument
              	                    <jvmarg value="-javaagent:${spring.instrument.path}"/>-->
                 <jvmarg value="-XX:MaxPermSize=512M" />
-                        <jvmarg value="-Xmx1024M" />
+                <jvmarg value="-Xmx1024M" />
                 <arg value="-buildfile"/>
                 <arg file="build.xml"/>
                <arg value="update-sql"/>
