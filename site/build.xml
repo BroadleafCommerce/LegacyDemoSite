@@ -195,7 +195,6 @@
             <!--see description for my.app.context above -->
             <fileSystemApplicationContext path="src/main/webapp/WEB-INF/applicationContext.xml"/>
             <classPathApplicationContext path="bl-fake-applicationContext-ant.xml"/>
-            <classPathApplicationContext path="bl-enterprise-applicationContext.xml"/>
             <!--select the dialects and persistence units to export-->
             <jpaconfiguration persistenceUnit="blPU" dialect="${ant.hibernate.sql.ddl.dialect}" />
             <jpaconfiguration persistenceUnit="blSecurePU" dialect="${ant.hibernate.sql.ddl.dialect}" />
