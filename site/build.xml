@@ -137,7 +137,7 @@
                  <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
                 </classpath>
                 <!--uncomment the following spring insturment jar argument if you require spring instrument-->
-                <jvmarg value="-javaagent:${spring.instrument.path}"/>
+                <!--<jvmarg value="-javaagent:${spring.instrument.path}"/>-->
                 <jvmarg value="-XX:MaxPermSize=512M" />
                 <jvmarg value="-Xmx1024M" />
                 <arg value="-buildfile"/>
