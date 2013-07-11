@@ -71,23 +71,6 @@
     <mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
     <mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
     
-    <bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="locations">
-            <list>
-                <value>/js/</value>
-                <value>classpath:/common_js/</value>
-            </list>
-        </property>
-    </bean>
-    
-    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="locations">
-            <list>
-                <value>/css/</value>
-            </list>
-        </property>
-    </bean>
-    
     <!-- Map various location URLs to our resource handlers -->
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="order" value="-10" />
@@ -99,7 +82,6 @@
         </property>
     </bean>
     
-
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
         <property name="templateEngine" ref="blWebTemplateEngine" />
