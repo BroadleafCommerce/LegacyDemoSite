@@ -134,5 +134,17 @@
             </list>
         </property>
     </bean>
-
+	
+	<bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="handlers">
+            <list>
+                <ref bean="blRuleBuilderEnumOptionsResourceHandler" />
+            </list>
+        </property>
+        <property name="locations" ref="blJsLocations" />
+    </bean>
+    
+    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="locations" ref="blCssLocations"/>
+    </bean>
 </beans>
