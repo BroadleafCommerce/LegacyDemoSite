@@ -147,4 +147,16 @@
     <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
         <property name="locations" ref="blCssLocations"/>
     </bean>
+    
+    <bean id="blJsFileMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
+            <map>
+                <entry key="admin.js" value-ref="blJsFileList"/>
+            </map>
+        </property>  
+    </bean>
+    
+    <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
+        <property name="additionalBundleFiles" ref="blJsFileMap"/>
+    </bean>
 </beans>
