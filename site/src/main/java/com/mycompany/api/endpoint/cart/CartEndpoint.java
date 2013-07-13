@@ -94,6 +94,16 @@ public class CartEndpoint extends org.broadleafcommerce.core.web.api.endpoint.or
     }
 
     @Override
+    @PUT
+    @Path("items/{itemId}/options")
+    public OrderWrapper updateProductOptions(@Context HttpServletRequest request,
+            @Context UriInfo uriInfo,
+            @PathParam("itemId") Long itemId,
+            @QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+        return super.updateProductOptions(request, uriInfo, itemId, priceOrder);
+    }
+
+    @Override
     @POST
     @Path("offer")
     public OrderWrapper addOfferCode(@Context HttpServletRequest request,
