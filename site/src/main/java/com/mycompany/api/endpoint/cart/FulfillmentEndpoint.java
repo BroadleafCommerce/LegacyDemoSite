@@ -18,6 +18,7 @@ package com.mycompany.api.endpoint.cart;
 
 import org.broadleafcommerce.core.web.api.wrapper.FulfillmentGroupItemWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.FulfillmentGroupWrapper;
+import org.broadleafcommerce.core.web.api.wrapper.FulfillmentOptionWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.OrderWrapper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -87,4 +88,26 @@ public class FulfillmentEndpoint extends org.broadleafcommerce.core.web.api.endp
         return super.addItemToFulfillmentGroup(request, fulfillmentGroupId, wrapper, priceOrder);
     }
 
+	@Override
+	@PUT
+	@Path("group/{fulfillmentGroupId}/option/{fulfillmentOptionId}")
+	public FulfillmentGroupWrapper addFulfillmentOptionToFulfillmentGroup(
+			@Context HttpServletRequest request, 
+			@PathParam("fulfillmentGroupId") Long fulfillmentGroupId,
+			@PathParam("fulfillmentOptionId") Long fulfillmentOptionId, 
+			@QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+		return super.addFulfillmentOptionToFulfillmentGroup(request,
+				fulfillmentGroupId, fulfillmentOptionId, priceOrder);
+	}
+
+	@Override
+	@GET
+	@Path("options")
+	public List<FulfillmentOptionWrapper> findFulfillmentOptions(
+			@Context HttpServletRequest request, 
+			@QueryParam("fulfillmentType") String fulfillmentType) {
+		return super.findFulfillmentOptions(request, fulfillmentType);
+	}
+
+    
 }

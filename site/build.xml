@@ -120,13 +120,38 @@
         </sql>
         <echo message="SQL Executed on data base..." />
     </target>
+
+    <target name="build-create-sql" >
+        <!--wrapping spring instrument jar-->
+        <echo>
+             Creating schema insert files
+        </echo>
+        <mkdir dir="target/sql/create"/>
+        <java  classname="org.apache.tools.ant.launch.Launcher"
+                fork="true"
+                failonerror="true"
+                dir="."
+                timeout="4000000"
+                taskname="startAnt">
+                <classpath>
+                 <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                </classpath>
+                <!--uncomment the following spring insturment jar argument if you require spring instrument-->
+                <!--<jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                <jvmarg value="-XX:MaxPermSize=512M" />
+                <jvmarg value="-Xmx1024M" />
+                <arg value="-buildfile"/>
+                <arg file="build.xml"/>
+                <arg value="create-sql"/>
+          </java>
+    </target>
     
-    <target name="build-create-sql">
+    <target name="create-sql">
         <!--
             You will need to run a mvn install on your project before attempting to execute this task.
             Also, you will likely need to assign additional heap space to your ANT process. A setting
             of -XX:MaxPermSize=256M -Xmx512M should be sufficient.
-            
+
             This can be done by populating the 'ANT_OPTS' environment variable:
                 export ANT_OPTS=-XX:MaxPermSize=256M -Xmx512M
             which will ensure those settings for all ant processes. Alternatively you could use JAVA_OPTS which is for
@@ -179,8 +204,33 @@
             <hbm2ddl export="false" update="false" create="true"/>
         </hibernatetool>
     </target>
+
+    <target name="build-update-sql" >
+        <!--wrapping spring instrument jar-->
+        <echo>
+             Creating schema insert files
+        </echo>
+        <mkdir dir="target/sql/create"/>
+        <java  classname="org.apache.tools.ant.launch.Launcher"
+                fork="true"
+                failonerror="true"
+                dir="."
+                timeout="4000000"
+                taskname="startAnt">
+                <classpath>
+                 <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
+                </classpath>
+                <!--uncomment the following spring insturment jar argument if you require spring instrument-->
+                <!--<jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                <jvmarg value="-XX:MaxPermSize=512M" />
+                <jvmarg value="-Xmx1024M" />
+                <arg value="-buildfile"/>
+                <arg file="build.xml"/>
+                <arg value="update-sql"/>
+          </java>
+    </target>
     
-    <target name="build-update-sql">
+    <target name="update-sql">
         <!--
             You will need to run a mvn install on your project before attempting to execute this task.
             Also, you will likely need to assign additional heap space to your ANT process. A setting

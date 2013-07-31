@@ -57,20 +57,6 @@
         </property>
     </bean>
     
-    <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
-        <property name="additionalBundleFiles">
-            <map>
-                <entry key="admin.js">
-                    <list>
-                        <value>admin/catalog/product.js</value>
-                        <value>admin/catalog/offer.js</value>
-                        <value>admin/catalog/category.js</value>
-                    </list>
-                </entry>
-            </map>
-        </property>
-    </bean>
-
     <!-- A dummy mail sender has been set to send emails for testing purposes only
              To view the emails sent use "DevNull SMTP" (download separately) with the following setting:
                 Port: 30000 -->
@@ -148,5 +134,29 @@
             </list>
         </property>
     </bean>
-
+	
+	<bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="handlers">
+            <list>
+                <ref bean="blRuleBuilderEnumOptionsResourceHandler" />
+            </list>
+        </property>
+        <property name="locations" ref="blJsLocations" />
+    </bean>
+    
+    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="locations" ref="blCssLocations"/>
+    </bean>
+    
+    <bean id="blJsFileMap" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
+            <map>
+                <entry key="admin.js" value-ref="blJsFileList"/>
+            </map>
+        </property>  
+    </bean>
+    
+    <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
+        <property name="additionalBundleFiles" ref="blJsFileMap"/>
+    </bean>
 </beans>
