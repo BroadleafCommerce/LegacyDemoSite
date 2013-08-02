@@ -191,10 +191,12 @@
     
     <bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
         <property name="locations" ref="blJsLocations"/>
+        <property name="handlers" ref="blJsHandlers" />
     </bean>
     
     <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
         <property name="locations" ref="blCssLocations"/>
+        <property name="handlers" ref="blCssHandlers" />
     </bean>
     
 </beans>
