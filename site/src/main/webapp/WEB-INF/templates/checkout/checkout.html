@@ -113,7 +113,7 @@
              </div>    
          </div>
     
-        <div class="cart_title"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.billing.info}">Billing Information</span></div>
+        <div class="cart_title"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
     
         <div class="clearfix"></div>
     
@@ -121,6 +121,7 @@
             <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
         </div>
     
+        <div th:substituteby="checkout/partials/applyCreditForm" />
         <div th:substituteby="checkout/partials/billingInfoForm" />
     </div>
 

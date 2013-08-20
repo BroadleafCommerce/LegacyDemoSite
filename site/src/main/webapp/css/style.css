@@ -711,6 +711,118 @@ li.promotion,  ul.promotion{
     width: 100px;
 }
 
+
+/* Manage Account -> Account Credit */
+
+#account-credit {
+    float: left;
+    list-style: none;
+    margin: 0;
+    /*padding: 10px;*/
+    width: 350px;
+}
+
+#account-credit .account-credit-info-row {
+    padding: 8px 0;
+}
+
+#account-credit > li:nth-child(2n) div.account-credit-info-row {
+    background-color: #eae3dd;
+}
+
+#account-credit > li:first-child {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+#account-credit > li {
+    border-bottom: 1px solid #C8C3C1;
+    padding: 0;
+}
+
+#account-credit > li span {
+    display: inline-block;
+}
+
+#account-credit > li .account-number {
+    padding-left: 6px;
+    width: 160px;
+}
+
+#account-credit > li .balance {
+    width: 120px;
+}
+
+#credit_section ul {
+    list-style: none;
+    display: inline-block;
+    width: 350px;
+}
+
+#credit_section > li {
+    display: inline-block;
+}
+
+#credit_section input {
+    margin: 10px;
+}
+
+#credit_section label, #credit_section span {
+    display: inline-block;
+    float: none;
+}
+
+#applyCredit_form span.balance {
+   padding-left: 100px;
+}
+
+#credit_section span.account-number {
+    padding-left: 35px;
+}
+
+
+/* Manage Account -> Redeem Gift Card */
+
+#redeem-giftcard .giftcard-info-row {
+    padding: 8px 0;
+}
+
+#redeem-giftcard > li:nth-child(2n) div.giftcard-info-row {
+    background-color: #eae3dd;
+}
+
+#redeem-giftcard > li:first-child {
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+
+#redeem-giftcard > li {
+    border-bottom: 1px solid #C8C3C1;
+    padding: 0;
+}
+
+#redeem-giftcard > li span {
+    display: inline-block;
+}
+
+#redeem-giftcard > li .giftcard-number {
+    padding-left: 6px;
+    width: 160px;
+}
+
+#redeem-giftcard > li .submit-date {
+    width: 120px;
+}
+
+#redeem-giftcard > li .status {
+    width: 120px;
+}
+
+#redeem-giftcard > li .balance {
+    width: 110px;
+}
+
+
 /* Manage Account -> Order History -> Order Details */
 #order-history .order-details {
     display: none;
@@ -1198,7 +1310,34 @@ ul#payment_methods li {
 #paymentOptions dd {
     margin: 5px;
 }
-    
+
+#credit_section {
+    display: inline-block;
+    width: 300px;
+    float: left;
+}
+
+#giftCard_section {
+    display: inline-block;
+    width: 330px;
+    float: left;
+}
+
+    #giftCard_section ul {
+        display: inline-block;
+        width: 330px;
+        float: left;
+    }
+
+    #giftCard_section form {
+        margin-left: 30px;
+    }
+
+#giftCard_info {
+    width: 540px;
+    padding-left: 40px;
+}
+
 #multiship-products {
     width: 720px;
 }
@@ -2970,16 +3109,19 @@ and (max-width : 480px) {
 .product-option-group.colors li.Silver div   {background-color: #FFFFFF;}
 .product-option-group.colors li.Black div       {background-color: #000000;}
 .product-option-group.colors li.Red div     {background-color: #DC143C;}
+.product-option-group.colors li.Blue div    {background-color:  #0000FF;}
 
     /*color options in Spanish*/
     .product-option-group.colors li.Plateado div   {background-color: #FFFFFF;}
     .product-option-group.colors li.Negro div       {background-color: #000000;}
     .product-option-group.colors li.Rojo div     {background-color: #DC143C;}
+    .product-option-group.colors li.Azul div    {background-color:  #0000FF;}
 
     /*color options in French*/
     .product-option-group.colors li.Argent div   {background-color: #FFFFFF;}
     .product-option-group.colors li.Noir div       {background-color: #000000;}
     .product-option-group.colors li.Rouge div     {background-color: #DC143C;}
+    .product-option-group.colors li.Bleu div    {background-color:  #0000FF;}
 
 /*customer ratings and reviews*/
 #customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}

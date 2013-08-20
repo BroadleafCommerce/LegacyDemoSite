@@ -96,20 +96,32 @@
         <li class="payment-information">
             <h3>Payment Information</h3>
             <div class="details">
-                <div class="payment-details" th:each="paymentInfo : *{paymentInfos}" th:object="${paymentInfo}" th:inline="text">
-                    <div class="billing-address">
-                        <h4>Billing Address</h4>
-                        <address>
-                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                            [[*{address.addressLine1}]]<br/>
-                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                        </address>
-                    </div>
+                <div class="payment-details" th:each="paymentInfo : *{paymentInfos}" th:object="${paymentInfo}" th:inline="text">           
                     <div class="payment-method">
                         <h4>Payment Method</h4>
-                        <div>Type: <span th:text="*{type.friendlyType}"></span> </div>
-                        <span th:text="*{additionalFields['CARD_TYPE']}"/> | ****<span th:text="*{additionalFields['LAST_FOUR']}"/>
+                        Payment type: [[*{type.type}]]<br/>
+                        Amount paid: <span blc:price="*{amount}" />
+                        <div th:if="!*{#strings.isEmpty(additionalFields['CARD_TYPE'])}">
+                        <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
+                        ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
+                        <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                        </div>
+                        <div th:if="!*{#strings.isEmpty(additionalFields['ACCOUNT_CREDIT_NUM'])}">
+                            <span th:text="#{cart.accountCredit.accounts}">Accounts</span><br/>
+                            <b th:text="*{additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                        </div>
+                        <div th:if="!*{#strings.isEmpty(additionalFields['GIFT_CARD_NUM'])}">
+                            <span th:text="#{cart.giftCardNumber}">Gift Card Number</span><br/>
+                            <b th:text="*{additionalFields['GIFT_CARD_NUM']}"/><br/>
+                        </div>
+                         <div class="billing-address" th:if="*{type.type == 'CREDIT_CARD'}">
+                            <address>
+                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                [[*{address.addressLine1}]]<br/>
+                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                            </address>
+                        </div>
                     </div>
                 </div>
                 <table class="order-summary">

@@ -1,0 +1,41 @@
+<div id="giftCard_section"  class="manage-account-form-wrapper">
+
+    <h2><span th:text="#{account.giftCard.title}">Enter Gift Card:</span></h2>
+    <div th:unless="${validGiftCardNumber}" th:inline="text" >
+        <p><span class="error_long" style="width: auto; margin: 20px 10px;" th:text="#{account.giftCard.invalid.number}">Gift Card Number not found.</span></p>
+    </div>
+
+    <blc:form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/account/giftcard/apply}" method="post" id="applyGiftcard_form">
+        <div>
+            <div class="form50">
+                <label for="giftCardNumber" class="prompt"><span th:text="#{cart.giftCardNumber}">Gift Card Number</span></label>
+                <span class="error_long" th:if="${#fields.hasErrors('giftCardNumber')}" th:errors="*{giftCardNumber}"></span>
+                <div class="form100">
+                    <input type="text" th:field="*{giftCardNumber}" id="giftCardNumber" class="field35" th:classappend="${#fields.hasErrors('giftCardNumber')}? 'fieldError'"/>
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" class="medium red apply" th:value="#{cart.giftCard.apply}" />
+            </div>
+        </div>
+    </blc:form>
+
+    <div id="gift-card-display" th:unless="${#lists.isEmpty(accounts)}" th:inline="text" class="clearfix">
+        <h2><span th:text="#{cart.giftCard.applied}">Applied Gift Cards</span></h2>
+        <ul id="redeem-giftcard">
+            <li>
+                <span class="giftcard-number" th:text="#{account.giftCard.giftcard.number}">Gift Card Number</span>
+                <span class="balance" th:text="#{cart.giftCard.balance}">Balance</span>
+            </li>
+            <li class="giftcard">
+                <div class="giftcard-info-row clearfix" th:each="account : ${accounts}" th:object="${account}">
+                    <span class="giftcard-number" th:text="*{accountNumber}"/>
+                    <span class="balance" blc:price="*{balance}"></span>
+                    <a class="remove_from_giftCard_checkout" th:href="@{/account/giftcard/remove(creditAccountId=*{accountNumber})}"><span th:text="#{cart.remove}">Remove</span></a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

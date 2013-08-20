@@ -11,6 +11,7 @@
     <url>http://www.blc-archetype.com</url>
     <properties>
         <blc.version>3.1.0-SNAPSHOT</blc.version>
+        <broadleaf.giftcard.version>2.0.0-SNAPSHOT</broadleaf.giftcard.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <description>My Company's eCommerce Website</description>
@@ -235,6 +236,13 @@
                 <type>jar</type>
                 <classifier>tests</classifier>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.broadleafcommerce</groupId>
+                <artifactId>broadleaf-account-credit</artifactId>
+                <version>${broadleaf.giftcard.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
             </dependency>
 
             <!-- Other dependencies -->

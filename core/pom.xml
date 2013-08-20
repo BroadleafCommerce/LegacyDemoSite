@@ -42,5 +42,9 @@
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-profile</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce</groupId>
+            <artifactId>broadleaf-account-credit</artifactId>
+        </dependency>
     </dependencies>
 </project>

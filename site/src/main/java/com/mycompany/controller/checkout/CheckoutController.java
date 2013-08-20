@@ -28,7 +28,6 @@ import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
-import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.profile.core.domain.CustomerAddress;
 import org.broadleafcommerce.profile.web.core.CustomerState;
@@ -42,14 +41,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.broadleafcommerce.accountcredit.core.web.checkout.model.CreditInfoForm;
+import com.broadleafcommerce.accountcredit.core.web.controller.BroadleafAccountCreditCheckoutController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/checkout")
-public class CheckoutController extends BroadleafCheckoutController {
+public class CheckoutController extends BroadleafAccountCreditCheckoutController {
 
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
@@ -61,11 +63,18 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, RedirectAttributes redirectAttributes) {
         prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
         return super.checkout(request, response, model, redirectAttributes);
     }
     
+    @RequestMapping(value = "/apply-credit", method = RequestMethod.POST)
+    public String applyCredit(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, BindingResult result) {
+        return super.applyCredit(request, response, model, creditInfoForm, result);
+    }
+
     @RequestMapping(value = "/savedetails", method = RequestMethod.POST)
     public String saveGlobalOrderDetails(HttpServletRequest request, Model model, 
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
