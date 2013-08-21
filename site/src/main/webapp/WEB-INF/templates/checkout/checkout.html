@@ -120,9 +120,13 @@
         <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
             <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
         </div>
-    
-        <div th:substituteby="checkout/partials/applyCreditForm" />
+        
+        <div th:if="${validOrderInfo and validShipping}" th:unless="${#lists.isEmpty(accounts)}">
+            <div th:substituteby="checkout/partials/applyCreditForm" />
+        </div>
+        
         <div th:substituteby="checkout/partials/billingInfoForm" />
+        
     </div>
 
 </div>

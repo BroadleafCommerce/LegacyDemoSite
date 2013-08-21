@@ -10,6 +10,7 @@
                         <th>Promotions</th>
                         <th>Taxes</th>
                         <th>Shipping</th>
+                        <th>Credit</th>
                     </tr>
                     <tr>
                         <td blc:price="${cart.subTotal}"></td>
@@ -17,6 +18,7 @@
                         <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
                         <td blc:price="${cart.totalTax}"></td>
                         <td blc:price="${cart.totalShipping}"></td>
+                        <td blc:price="${totalAppliedCredit}" th:if="${totalAppliedCredit}"></td>
                     </tr>
                 </table>
 
@@ -25,8 +27,9 @@
                 </div>
 
                 <div class="checkout_info_right">
-                    <h3>Current Total</h3>
-                    <div id="checkout_total" blc:price="${cart.total}"></div>
+                    <h3>Total</h3>
+                    <div id="checkout_total" blc:price="${orderTotalAfterCredit}" th:if="${orderTotalAfterCredit}"></div>
+                    <div id="checkout_total" blc:price="${cart.total}" th:unless="${orderTotalAfterCredit}"></div>
                 </div>
 
                 <div class="clearfix"></div>

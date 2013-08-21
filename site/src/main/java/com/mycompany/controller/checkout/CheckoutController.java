@@ -71,8 +71,12 @@ public class CheckoutController extends BroadleafAccountCreditCheckoutController
     
     @RequestMapping(value = "/apply-credit", method = RequestMethod.POST)
     public String applyCredit(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, BindingResult result) {
-        return super.applyCredit(request, response, model, creditInfoForm, result);
+            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, BindingResult result, RedirectAttributes redirectAttributes) {
+        prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
+        return super.applyCredit(request, response, model, creditInfoForm, result, redirectAttributes);
     }
 
     @RequestMapping(value = "/savedetails", method = RequestMethod.POST)
@@ -137,13 +141,13 @@ public class CheckoutController extends BroadleafAccountCreditCheckoutController
             orderInfoForm.setEmailAddress(cart.getEmailAddress());
         }
     }
-            
-    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, 
+
+    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm,
             BillingInfoForm billingForm) {
         List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
-        
+
         prepopulateOrderInfoForm(cart, orderInfoForm);
-        
+
         if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
             //if the cart has already has fulfillment information
             shippingForm.setAddress(groups.get(0).getAddress());

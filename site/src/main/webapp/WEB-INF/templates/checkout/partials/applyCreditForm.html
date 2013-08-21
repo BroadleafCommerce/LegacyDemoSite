@@ -1,12 +1,13 @@
-<h2 th:unless="${#lists.isEmpty(accounts)}"><span th:text="#{cart.accountCredit.accounts}">Accounts</span></h2>
+<h2><span th:text="#{cart.accountCredit.accounts}">Accounts</span></h2>
 
-<ul id="account-credit" th:unless="${#lists.isEmpty(accounts)}" th:inline="text" class="clearfix">
+<ul id="account-credit" th:inline="text" class="clearfix">
     <li>
         <span class="account-number">Account Number</span>
         <span class="balance">Balance</span>
     </li>
 </ul>
-<blc:form th:unless="${#lists.isEmpty(accounts)}" th:object="${creditInfoForm}" th:inline="text" th:action="@{/checkout/apply-credit}" method="post" id="applyCredit_form">
+<br/>
+<blc:form th:object="${creditInfoForm}" th:inline="text" th:action="@{/checkout/apply-credit}" method="post" id="applyCredit_form">
     <ul th:inline="text">
         <li th:each="account : ${accounts}">
             <input type="checkbox" th:value="${account.accountNumber}" th:field="*{accountNumbers}" />
@@ -20,20 +21,3 @@
         <input type="submit" class="medium red apply" th:value="#{cart.giftCard.apply}" />
     </div>
 </blc:form>
-
-<div th:unless="${#lists.isEmpty(appliedAccounts)}" >
-    <h2><span th:text="#{cart.accountCredit.applied}">Accounts Applied</span></h2>
-
-    <ul id="account-credit" th:inline="text" class="clearfix">
-        <li>
-            <span class="account-number">Account Number</span>
-            <span class="balance">Balance</span>
-        </li>
-        <li class="credit" th:each="account : ${accounts}" th:object="${account}">
-            <div class="account-credit-info-row">
-                <span class="account-number" th:text="*{accountNumber}"></span>
-                <span class="balance" blc:price="*{balance}"></span>
-            </div>
-        </li>
-    </ul>
-</div>

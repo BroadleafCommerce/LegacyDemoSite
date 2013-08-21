@@ -137,7 +137,7 @@
 
         <div class="payment_method" th:each="paymentInfo : ${order.paymentInfos}" th:object="${paymentInfo}" th:inline="text">
             <div class="left_content">
-                <h3><span th:text="#{confirmation.payment.info}">Payment Information</span></h3>
+                <h3><span th:text="#{confirmation.payment.method}">Payment Method</span></h3>
                     Payment type: [[*{type.type}]]<br/>
                     Amount paid: <span blc:price="*{amount}" />
                 	<div th:if="!*{#strings.isEmpty(additionalFields['CARD_TYPE'])}">
