@@ -22,21 +22,22 @@
     </blc:form>
 </div>
 
-<div th:if="${responseEvent}" th:object="${giftCardAccount}" th:inline="text" class="clearfix">
-    <ul id="redeem-giftcard">
-        <li>
-            <span class="giftcard-number" th:text="#{account.giftCard.giftcard.number}">Gift Card Number</span>
-            <span class="submit-date" th:text="#{account.giftCard.date}">Date</span>
-            <span class="status" th:text="#{account.giftCard.status}">Status</span>
-            <span class="balance" th:text="#{account.giftCard.amountApplied}">Amount Applied</span>
-        </li>
-        <li class="giftcard">
-            <div class="giftcard-info-row">
-                <span class="giftcard-number" th:text="*{accountNumber}"/>
-                <span class="submit-date" th:text="${#dates.format(responseEvent.eventDate, 'MM-dd-yyyy')}"></span>
-                <span class="status" th:text="${responseEvent.reasonDesc}">Pending</span>
-                <span class="balance" blc:price="${responseEvent.amount}"></span>
-            </div>
-        </li>
-    </ul>
-</div>
+
+<ul id="redeem-giftcard" th:if="${responseEvent}" th:object="${giftCardAccount}" th:inline="text">
+    <li>
+        <span class="giftcard-number" th:text="#{account.giftCard.giftcard.number}">Gift Card Number</span>
+        <span class="submit-date" th:text="#{account.giftCard.date}">Date</span>
+        <span class="status" th:text="#{account.giftCard.status}">Status</span>
+        <span class="balance" th:text="#{account.giftCard.amountApplied}">Amount Applied</span>
+    </li>
+    <li class="giftcard">
+        <div class="giftcard-info-row">
+            <span class="giftcard-number" th:text="*{accountNumber}"/>
+            <span class="submit-date" th:text="${#dates.format(responseEvent.eventDate, 'MM-dd-yyyy')}"></span>
+            <span class="status" th:text="${responseEvent.reasonDesc}">Pending</span>
+            <span class="balance" blc:price="${responseEvent.amount}"></span>
+        </div>
+    </li>
+</ul>
+
+<div class="clearfix"></div>

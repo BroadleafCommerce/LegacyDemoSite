@@ -718,8 +718,8 @@ li.promotion,  ul.promotion{
     float: left;
     list-style: none;
     margin: 0;
-    /*padding: 10px;*/
-    width: 350px;
+    padding: 10px 10px 10px 0px;
+    width: 500px;
 }
 
 #account-credit .account-credit-info-row {
@@ -782,6 +782,13 @@ li.promotion,  ul.promotion{
 
 
 /* Manage Account -> Redeem Gift Card */
+#redeem-giftcard {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 10px 10px 10px 0px;
+    width: 600px;
+}
 
 #redeem-giftcard .giftcard-info-row {
     padding: 8px 0;
