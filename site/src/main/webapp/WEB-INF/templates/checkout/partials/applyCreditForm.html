@@ -6,7 +6,7 @@
         <span class="balance">Balance</span>
     </li>
 </ul>
-<br/>
+<br/><br/>
 <blc:form th:object="${creditInfoForm}" th:inline="text" th:action="@{/checkout/apply-credit}" method="post" id="applyCredit_form">
     <ul th:inline="text">
         <li th:each="account : ${accounts}">
