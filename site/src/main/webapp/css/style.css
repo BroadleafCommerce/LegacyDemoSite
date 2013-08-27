@@ -772,8 +772,13 @@ li.promotion,  ul.promotion{
     float: none;
 }
 
+#applyCredit_form li {
+    list-style-type: none;
+}
+
 #applyCredit_form span.balance {
-   padding-left: 100px;
+    padding-left: 80px;
+    padding-right: 10px;
 }
 
 #credit_section span.account-number {
