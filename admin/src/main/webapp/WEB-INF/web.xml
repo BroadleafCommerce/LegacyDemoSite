@@ -79,6 +79,7 @@
                 classpath:/applicationContext-servlet-admin.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 classpath:/applicationContext-servlet-cms-contentCreator.xml
+                classpath:/bl-account-credit-admin-applicationContext-servlet.xml
                 /WEB-INF/applicationContext-servlet-admin.xml
             </param-value>
         </init-param>
