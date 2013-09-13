@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2012 the original author or authors.
+  * Copyright 2008-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@
 
 package com.mycompany.controller.checkout;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
+import org.broadleafcommerce.core.order.domain.FulfillmentOption;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
@@ -28,6 +28,7 @@ import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
+import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.profile.core.domain.CustomerAddress;
 import org.broadleafcommerce.profile.web.core.CustomerState;
@@ -41,9 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.broadleafcommerce.accountcredit.core.web.checkout.model.CreditInfoForm;
-import com.broadleafcommerce.accountcredit.core.web.controller.BroadleafAccountCreditCheckoutController;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +50,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/checkout")
-public class CheckoutController extends BroadleafAccountCreditCheckoutController {
+public class CheckoutController extends BroadleafCheckoutController {
 
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
@@ -63,20 +62,9 @@ public class CheckoutController extends BroadleafAccountCreditCheckoutController
     public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, RedirectAttributes redirectAttributes) {
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
         prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
         return super.checkout(request, response, model, redirectAttributes);
-    }
-    
-    @RequestMapping(value = "/apply-credit", method = RequestMethod.POST)
-    public String applyCredit(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, BindingResult result, RedirectAttributes redirectAttributes) {
-        prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
-        return super.applyCredit(request, response, model, creditInfoForm, result, redirectAttributes);
     }
 
     @RequestMapping(value = "/savedetails", method = RequestMethod.POST)
@@ -127,13 +115,23 @@ public class CheckoutController extends BroadleafAccountCreditCheckoutController
     }
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
-    public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+    public String completeCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
-        return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+        return super.completeCheckout(request, response, model, billingForm, result, createPaymentInfoTypeList(billingForm));
+    }
+
+    protected List<PaymentInfoType> createPaymentInfoTypeList(BillingInfoForm billingForm) {
+        List<PaymentInfoType> paymentInfoTypeList = new ArrayList<PaymentInfoType>();
+        if ("credit_card".equals(billingForm.getPaymentMethod())) {
+            paymentInfoTypeList.add(PaymentInfoType.CREDIT_CARD);
+        } else if ("cod".equals(billingForm.getPaymentMethod())) {
+            paymentInfoTypeList.add(PaymentInfoType.COD);
+        }
+        return paymentInfoTypeList;
     }
 
     protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
@@ -142,26 +140,25 @@ public class CheckoutController extends BroadleafAccountCreditCheckoutController
         }
     }
 
-    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm,
-            BillingInfoForm billingForm) {
-        List<FulfillmentGroup> groups = cart.getFulfillmentGroups();
-
+    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
         prepopulateOrderInfoForm(cart, orderInfoForm);
-
-        if (CollectionUtils.isNotEmpty(groups) && groups.get(0).getFulfillmentOption() != null) {
-            //if the cart has already has fulfillment information
-            shippingForm.setAddress(groups.get(0).getAddress());
-            shippingForm.setFulfillmentOption(groups.get(0).getFulfillmentOption());
-            shippingForm.setFulfillmentOptionId(groups.get(0).getFulfillmentOption().getId());
-        } else {
-            //check for a default address for the customer
-            CustomerAddress defaultAddress = customerAddressService.findDefaultCustomerAddress(CustomerState.getCustomer().getId());
-            if (defaultAddress != null) {
-                shippingForm.setAddress(defaultAddress.getAddress());
-                shippingForm.setAddressName(defaultAddress.getAddressName());
+        FulfillmentGroup firstShippableFulfillmentGroup = fulfillmentGroupService.getFirstShippableFulfillmentGroup(cart);
+        if (firstShippableFulfillmentGroup != null) {
+            FulfillmentOption fulfillmentOption = firstShippableFulfillmentGroup.getFulfillmentOption();
+            if (fulfillmentOption != null) {
+                //if the cart has already has fulfillment information    
+                shippingForm.setAddress(firstShippableFulfillmentGroup.getAddress());
+                shippingForm.setFulfillmentOption(fulfillmentOption);
+                shippingForm.setFulfillmentOptionId(fulfillmentOption.getId());
+            } else {
+                //check for a default address for the customer
+                CustomerAddress defaultAddress = customerAddressService.findDefaultCustomerAddress(CustomerState.getCustomer().getId());
+                if (defaultAddress != null) {
+                    shippingForm.setAddress(defaultAddress.getAddress());
+                    shippingForm.setAddressName(defaultAddress.getAddressName());
+                }
             }
         }
-
         if (cart.getPaymentInfos() != null) {
             for (PaymentInfo paymentInfo : cart.getPaymentInfos()) {
                 if (PaymentInfoType.CREDIT_CARD.equals(paymentInfo.getType())) {

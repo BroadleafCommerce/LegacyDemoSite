@@ -53,44 +53,46 @@
         </li>
     
         <li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
-            <h3>Shipment <span th:text="${iterStat.count}"></span><span th:if="*{status}" th:text="' : ' + *{status}"></span></h3>
-            <div class="details">
-                <div class="shipping-information">
-                    <div class="fulfillment-group-address" th:inline="text">
-                        <h4>Shipping Address</h4>
-                        <address>
-                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                            [[*{address.addressLine1}]]<br/>
-                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                        </address>
+            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
+                <h3>Shipment<span th:if="*{status}" th:text="' : ' + *{status}"></span></h3>
+                <div class="details">
+                    <div class="shipping-information">
+                        <div class="fulfillment-group-address" th:inline="text">
+                            <h4>Shipping Address</h4>
+                            <address>
+                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                [[*{address.addressLine1}]]<br/>
+                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                            </address>
+                        </div>
+                        <div class="shipping-type">
+                            <h4>Shipping Speed</h4>
+                            <div th:text="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
+                        </div>
                     </div>
-                    <div class="shipping-type">
-                        <h4>Shipping Speed</h4>
-                        <div th:text="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
-                    </div>
-                </div>
-                <table class="order-items">
-                    <tr>
-                        <th class="label">Items</th>
-                        <!--  <th class="price">Price</th>-->
-                    </tr>
-                   <div th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}" th:remove="tag">
-                   <tr >
-                    
-                        <td class="label" th:text="${fulfillmentGroupItem.quantity} + ' of ' + ${fulfillmentGroupItem.orderItem.name}"></td>
-                       <!--   <td class="price" blc:price="${fulfillmentGroupItem.orderItem.price}"></td>-->
+                    <table class="order-items">
+                        <tr>
+                            <th class="label">Items</th>
+                            <!--  <th class="price">Price</th>-->
+                        </tr>
+                       <div th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}" th:remove="tag">
+                       <tr >
                         
-                    </tr>
-                    </div>
-                 
-                    <tr class="shipment-summary merchandise-total">
-                        <td class="label">Shipping SubTotal:</td>
-                        <td class="price" blc:price="*{shippingPrice}"></td>
-                    </tr>
-                    
-                </table>
-                <div class="clearfix">&nbsp;</div>
+                            <td class="label" th:text="${fulfillmentGroupItem.quantity} + ' of ' + ${fulfillmentGroupItem.orderItem.name}"></td>
+                           <!--   <td class="price" blc:price="${fulfillmentGroupItem.orderItem.price}"></td>-->
+                            
+                        </tr>
+                        </div>
+                     
+                        <tr class="shipment-summary merchandise-total">
+                            <td class="label">Shipping SubTotal:</td>
+                            <td class="price" blc:price="*{shippingPrice}"></td>
+                        </tr>
+                        
+                    </table>
+                    <div class="clearfix">&nbsp;</div>
+                </div>
             </div>
         </li>
         <li class="payment-information">

@@ -18,9 +18,13 @@ package com.mycompany.controller.account;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.broadleafcommerce.accountcredit.core.web.checkout.model.CreditInfoForm;
 import com.broadleafcommerce.accountcredit.core.web.controller.BroadleafManageCustomerCreditController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +41,12 @@ public class ManageCustomerCreditController extends BroadleafManageCustomerCredi
     @RequestMapping(method = RequestMethod.GET)
     public String viewAccountCredit(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.viewAccountCredit(request, response, model);
+    }
+
+    @RequestMapping(value = "/apply", method = RequestMethod.POST)
+    public String applyCredit(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("creditInfoForm") CreditInfoForm creditInfoForm, BindingResult result, RedirectAttributes redirectAttributes) {
+        return super.applyCredit(request, response, model, creditInfoForm, result, redirectAttributes);
     }
 
 }

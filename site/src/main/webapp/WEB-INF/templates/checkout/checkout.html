@@ -64,9 +64,9 @@
         
         <div th:substituteby="checkout/partials/orderInfoForm"></div>
     
-        <div class="cart_title">
+        <div class="cart_title" th:if="${numShippableFulfillmentGroups > 0}">
             <span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.shippingInformation}">Shipping Information</span>
-            <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
+            <a th:if="${validShipping and cart.fulfillmentGroups != null and numShippableFulfillmentGroups == 1}" th:href="@{/checkout(edit-shipping='true')}">
                 <span th:text="#{cart.edit}">Edit</span>
             </a>
         </div>
@@ -77,11 +77,11 @@
             <span th:text="#{cart.fillOutBasicOrder}">Please fill out the basic order information to complete purchase</span>
         </div>
         
-        <div th:if="${validOrderInfo}">
-            <div th:if="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+        <div th:if="${validOrderInfo and numShippableFulfillmentGroups > 0}">
+            <div th:if="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">
                 <table th:substituteby="checkout/partials/multishipInfo"></table>
             </div>
-            <div th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+            <div th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">
                 <div th:substituteby="checkout/partials/shippingInfoForm"></div>
             </div>
             
@@ -113,20 +113,64 @@
              </div>    
          </div>
     
-        <div class="cart_title"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
+        <div th:if="${numShippableFulfillmentGroups == 0}">
+            <div th:unless="${totalCustomerCredit.amount == 0}">
+                <div class="cart_title"><span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.customer.credit}">Customer Credit</span></div>
+               
+                <div class="clearfix"></div>
     
-        <div class="clearfix"></div>
+                <div th:if="${validOrderInfo and validShipping}">
+                    <div th:substituteby="checkout/partials/applyCreditForm" />
+                </div>
+                
+                <div class="cart_title" th:unless="${orderTotalAfterCredit.amount == 0}"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
+            </div>
+            
+            <div th:unless="${orderTotalAfterCredit.amount == 0}"> 
+                <div class="cart_title" th:if="${totalCustomerCredit.amount == 0}"><span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
+          
+                <div class="clearfix"></div>
+          
+                <div th:substituteby="checkout/partials/billingInfoForm" /> 
+            </div>
+        </div>
+ 
+        <div th:if="${numShippableFulfillmentGroups > 0}">
+            <div th:unless="${totalCustomerCredit.amount == 0}">
+                <div class="cart_title"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.customer.credit}">Customer Credit</span></div>
+               
+                <div class="clearfix"></div>
+                
+                 <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
+                    <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
+                </div>
     
-        <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
-            <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
-        </div>
-        
-        <div th:if="${validOrderInfo and validShipping}" th:unless="${#lists.isEmpty(accounts)}">
-            <div th:substituteby="checkout/partials/applyCreditForm" />
-        </div>
-        
-        <div th:substituteby="checkout/partials/billingInfoForm" />
-        
+                <div th:if="${validOrderInfo and validShipping}">
+                    <div th:substituteby="checkout/partials/applyCreditForm" />
+                </div>
+                
+                <div class="cart_title" th:unless="${orderTotalAfterCredit.amount == 0}"><span th:text="#{cart.step4}">Step 4</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
+            </div>
+               
+            <div th:unless="${orderTotalAfterCredit.amount == 0}"> 
+                <div class="cart_title" th:if="${totalCustomerCredit.amount == 0}"><span th:text="#{cart.step3}">Step 3</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
+          
+                <div class="clearfix"></div>
+                
+                <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
+                    <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
+                </div>
+          
+                <div th:substituteby="checkout/partials/billingInfoForm" />
+            </div>
+        </div> 
+        <blc:form th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validOrderInfo and validShipping and orderTotalAfterCredit.amount == 0}">
+            <div style="float:right;">
+                <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
+            </div>      
+        </blc:form>
+        <div th:if="${transactionError}">
+            <span th:text="${payment.transaction.error}">An error occurred while processing your order.  Please try again.</span>
+        </div>       
     </div>
-
 </div>

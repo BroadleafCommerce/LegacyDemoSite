@@ -76,6 +76,15 @@
                     </div>
                 </div>
             </dd>
+            <dt>
+                <input type="radio" name="paymentMethod" value="cod" id="paymentMethod_cod" />
+                <label for="paymentMethod_cod"><span th:text="#{cart.collectOnDelivery}">Collect On Delivery</span></label>
+            </dt>
+            <dd>
+                <div style="float:right;">
+                    <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
+                </div>
+            </dd>
         </dl>
 
     </div>
@@ -84,7 +93,7 @@
 
         <input type="hidden" name="address.country" value="US" />
 
-        <div class="form100" th:unless="${cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) > 1}">
+        <div class="form100" th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups != 1}">
             <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> <span th:text="#{cart.useShppingInfo}">Use Shipping Information</span>
         </div>
 

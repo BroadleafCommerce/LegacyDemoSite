@@ -7,9 +7,9 @@
     </li>
 </ul>
 <br/><br/>
-<blc:form th:object="${creditInfoForm}" th:inline="text" th:action="@{/checkout/apply-credit}" method="post" id="applyCredit_form">
+<blc:form th:object="${creditInfoForm}" th:inline="text" th:action="@{/account/credit/apply}" method="post" id="applyCredit_form">
     <ul th:inline="text">
-        <li th:each="account : ${accounts}">
+        <li th:each="account : ${accounts}" th:unless="${account.balance.amount == 0}">
             <input type="checkbox" th:value="${account.accountNumber}" th:field="*{accountNumbers}" />
             <label th:for="${#ids.prev('accountNumbers')}">
                 <span th:text="${account.accountNumber}"></span>

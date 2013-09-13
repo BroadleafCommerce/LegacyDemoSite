@@ -199,7 +199,7 @@
         <property name="handlers" ref="blCssHandlers" />
     </bean>
     
-    <bean p:order="1500" id="blGiftCardPriceOverrideActivity" class="com.broadleafcommerce.accountcredit.core.workflow.GiftCardPriceOverrideActivity"/>
+    <!-- <bean p:order="1500" id="blGiftCardPriceOverrideActivity" class="com.broadleafcommerce.accountcredit.core.workflow.GiftCardPriceOverrideActivity"/>
     
     <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="activities">
@@ -207,7 +207,7 @@
                 <ref bean="blGiftCardPriceOverrideActivity" />
             </list>
         </property>
-    </bean>
+    </bean> -->
     
     <bean p:order="5500" id="blGiftCardProvisionActivity" class="com.broadleafcommerce.accountcredit.core.workflow.GiftCardProvisionActivity"/>
     

@@ -52,6 +52,12 @@ $(function(){
         $('#billing_info_form').css({display:"none"});
     });
 
+    $('body').on('click', 'input#paymentMethod_cod', function() {
+        $('#paymentOptions dd').css({display:"none"});
+        $(this).closest('dt').next().css({display:"block"});
+        $('#billing_info_form').css({display:"none"});
+    });
+    
     /* Copy Shipping Form to Billing Form Checkbox */
     $('body').on('click', 'input#use_shipping_address', function() {
         if ($(this).is(':checked')) {
