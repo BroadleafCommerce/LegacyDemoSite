@@ -14,7 +14,6 @@
     <context-param>
         <param-name>patchConfigLocation</param-name>
         <param-value>
-            classpath:/bl-account-credit-applicationContext.xml
             classpath:/bl-open-admin-contentClient-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             classpath:/applicationContext.xml
@@ -75,7 +74,6 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 classpath:/applicationContext-servlet-cms-contentClient.xml
-                classpath:/bl-account-credit-applicationContext-servlet.xml
                 /WEB-INF/applicationContext-servlet.xml
             </param-value>
         </init-param>

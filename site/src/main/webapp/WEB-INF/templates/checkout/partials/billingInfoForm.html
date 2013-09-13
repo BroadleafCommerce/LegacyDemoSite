@@ -1,5 +1,5 @@
 <blc:form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validOrderInfo and validShipping}">
-
+        
     <div class="left_content_billing payment_info">
         <h3><span th:text="#{cart.paymentInfo}">Payment Information</span></h3>
 

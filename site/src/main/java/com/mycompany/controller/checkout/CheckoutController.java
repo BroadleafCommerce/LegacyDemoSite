@@ -42,9 +42,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -122,16 +119,6 @@ public class CheckoutController extends BroadleafCheckoutController {
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
         return super.completeCheckout(request, response, model, billingForm, result, createPaymentInfoTypeList(billingForm));
-    }
-
-    protected List<PaymentInfoType> createPaymentInfoTypeList(BillingInfoForm billingForm) {
-        List<PaymentInfoType> paymentInfoTypeList = new ArrayList<PaymentInfoType>();
-        if ("credit_card".equals(billingForm.getPaymentMethod())) {
-            paymentInfoTypeList.add(PaymentInfoType.CREDIT_CARD);
-        } else if ("cod".equals(billingForm.getPaymentMethod())) {
-            paymentInfoTypeList.add(PaymentInfoType.COD);
-        }
-        return paymentInfoTypeList;
     }
 
     protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {

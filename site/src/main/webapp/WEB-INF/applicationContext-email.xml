@@ -72,10 +72,5 @@
         <property name="subject" value="Your order with The Heat Clinic"/>
         <property name="emailTemplate" value="orderConfirmation-email"/>
     </bean>   
-    
-    <bean id="blGiftCardEmailInfo" parent="blEmailInfo">
-        <property name="subject" value="Your have received a gift card to the Heat Clinic!"/>
-        <property name="emailTemplate" value="giftCard-email"/>
-    </bean>
               
 </beans>
