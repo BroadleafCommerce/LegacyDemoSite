@@ -117,7 +117,11 @@
             <div class="cart_title"><span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.payment.options}">Payment Options</span></div>
       
             <div class="clearfix"></div>
-      
+            
+            <div th:if="${transactionError}">
+                <span class="error" th:text="#{payment.transaction.error}">There was a problem processing your payment. Please review your information.</span>
+            </div>  
+            
             <div th:substituteby="checkout/partials/billingInfoForm" /> 
         </div>
  
@@ -129,6 +133,7 @@
             <div class="checkout_warning" th:unless="${validOrderInfo and validShipping}">
                 <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
             </div>
+            
             <div th:if="${transactionError}">
                 <span class="error" th:text="#{payment.transaction.error}">There was a problem processing your payment. Please review your information.</span>
             </div>  
