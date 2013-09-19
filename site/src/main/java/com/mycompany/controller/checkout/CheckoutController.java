@@ -118,7 +118,7 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
-        return super.completeCheckout(request, response, model, billingForm, result, createPaymentInfoTypeList(billingForm));
+        return super.completeCheckout(request, response, model, billingForm, result);
     }
 
     protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
