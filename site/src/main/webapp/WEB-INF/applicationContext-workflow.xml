@@ -20,7 +20,8 @@
     <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="activities">
             <list>
-                <bean p:order="6000" class="com.mycompany.worklow.checkout.SendOrderConfirmationEmailActivity" />
+                <!-- This activity should occur at the very end of the checkout workflow, after everything has been executed -->
+                <bean p:order="9999999" class="com.mycompany.worklow.checkout.SendOrderConfirmationEmailActivity" />
             </list>
         </property>
     </bean>
