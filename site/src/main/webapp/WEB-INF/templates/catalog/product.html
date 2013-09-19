@@ -45,8 +45,8 @@
                     <div th:utext="*{longDescription}" id="description"></div>
                     
                     <div th:class="*{'productActions' + id}">
-                        <div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
-                        <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
+                        <div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku) or !#lists.isEmpty(product.productOptions)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
+                        <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}? ' hidden'">
                             <input type="hidden" name="productId" th:value="*{id}" />
                             <input type="hidden" name="quantity" value="1" />
                             <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
