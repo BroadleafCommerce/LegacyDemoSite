@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td style="font: 16px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                            Thank you for your order, <span th:text="${customer.firstName + ' ' + customer.lastName}" />!
+                            Thank you for your order<span th:unless="${customer.anonymous}" th:text="${', ' + customer.firstName + ' ' + customer.lastName}" />!
                         </td>
                     </tr>
                     <tr>   <!-- Order summary table -->
@@ -54,7 +54,13 @@
                                         <td align="center" style="color: #E40037;" th:if="*{adjustmentValue.zero}">---</td>
                                         <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" >
                                              <span  align="center"  blc:price="*{adjustmentValue}" class="promotion" ></span>
-                                             <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+                                             <div th:if="*{#lists.size(orderItemPriceDetails)>=1}" >
+                                                <div th:each="orderItemPriceDetail : *{orderItemPriceDetails}" th:object="${orderItemPriceDetail}">
+                                                    <div th:each="orderItemPriceDetailAdjustment : ${orderItemPriceDetail.orderItemPriceDetailAdjustments}" th:object="${orderItemPriceDetailAdjustment}" >                   
+                                                        <span th:text="*{offerName}"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>
                                     </tr>

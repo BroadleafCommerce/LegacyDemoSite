@@ -16,6 +16,8 @@
 
 package com.mycompany.worklow.checkout;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.core.checkout.service.workflow.CheckoutSeed;
@@ -23,17 +25,22 @@ import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
 
+import com.broadleafcommerce.accountcredit.core.workflow.GiftCardProvisionActivity;
+
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 
 
 /**
- * 
+ * Send order confirmation email
  *
  * @author Phillip Verheyden (phillipuniverse)
+ * @author Joshua Skorton (jskorton)
  */
 public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessContext<CheckoutSeed>> {
+
+    private static final Log LOG = LogFactory.getLog(GiftCardProvisionActivity.class);
 
     @Resource(name = "blEmailService")
     protected EmailService emailService;
@@ -48,7 +55,13 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
         vars.put("customer", order.getCustomer());
         vars.put("orderNumber", order.getOrderNumber());
         vars.put("order", order);
-        emailService.sendTemplateEmail(order.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
+
+        //Email service failing should not trigger rollback
+        try {
+            emailService.sendTemplateEmail(order.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
+        } catch (Exception e) {
+            LOG.error(e);
+        }
         return context;
     }
     
