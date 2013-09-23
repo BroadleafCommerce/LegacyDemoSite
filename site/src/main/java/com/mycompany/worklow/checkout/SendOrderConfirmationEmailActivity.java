@@ -25,8 +25,6 @@ import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
 
-import com.broadleafcommerce.accountcredit.core.workflow.GiftCardProvisionActivity;
-
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -40,7 +38,7 @@ import javax.annotation.Resource;
  */
 public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessContext<CheckoutSeed>> {
 
-    private static final Log LOG = LogFactory.getLog(GiftCardProvisionActivity.class);
+    protected static final Log LOG = LogFactory.getLog(SendOrderConfirmationEmailActivity.class);
 
     @Resource(name = "blEmailService")
     protected EmailService emailService;
