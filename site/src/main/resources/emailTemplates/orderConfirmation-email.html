@@ -207,7 +207,7 @@
                                                         <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
                                                         <address th:if="*{address.phonePrimary != null}">
                                                             [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                                            [[*{address.phonePrimary}]]<br/>
+                                                            [[*{address.phonePrimary.phoneNumber}]]<br/>
                                                             [[*{address.addressLine1}]]<br/>
                                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
