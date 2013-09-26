@@ -770,6 +770,10 @@ li.promotion,  ul.promotion{
     margin-top: 20px;
 }
 
+.payment-method {
+    margin-right: 10px;
+}
+
 .order-details-container .shipment-total, .order-details-container .grand-total {
     font-weight: bold;
 }

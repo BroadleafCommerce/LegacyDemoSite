@@ -59,7 +59,14 @@
                     <div class="shipping-information">
                         <div class="fulfillment-group-address" th:inline="text">
                             <h4>Shipping Address</h4>
-                            <address>
+                            <address th:if="*{address.phonePrimary != null}">
+                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                [[*{address.phonePrimary.phoneNumber}]]<br/>
+                                [[*{address.addressLine1}]]<br/>
+                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                            </address>
+                            <address th:if="*{address.phonePrimary == null}">
                                 [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                 [[*{address.addressLine1}]]<br/>
                                 [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
@@ -117,7 +124,14 @@
                             <b th:text="*{additionalFields['GIFT_CARD_NUM']}"/><br/>
                         </div>
                          <div class="billing-address" th:if="*{type.type == 'CREDIT_CARD'}">
-                            <address>
+                            <address th:if="*{address.phonePrimary != null}">
+                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                [[*{address.phonePrimary.phoneNumber}]]<br/>
+                                [[*{address.addressLine1}]]<br/>
+                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                            </address>
+                            <address th:if="*{address.phonePrimary == null}">
                                 [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                 [[*{address.addressLine1}]]<br/>
                                 [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
