@@ -235,7 +235,7 @@
                 <type>jar</type>
                 <classifier>tests</classifier>
                 <scope>test</scope>
-            </dependency>           
+            </dependency>
 
             <!-- Other dependencies -->
             <dependency>
