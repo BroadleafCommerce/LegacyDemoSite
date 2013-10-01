@@ -93,7 +93,7 @@
 
         <input type="hidden" name="address.country" value="US" />
 
-        <div class="form100" th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups != 1}">
+        <div class="form100" th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">
             <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> <span th:text="#{cart.useShppingInfo}">Use Shipping Information</span>
         </div>
 
