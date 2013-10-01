@@ -70,13 +70,26 @@
     <!-- Delete this section to disable the embedded solr search service. Although this will result in a smaller -->
     <!-- application footprint, it will default the search service to use the database implementation, which  -->
     <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
-    <!-- majority of cases. Note that you may also pass in a bean reference to a SolrServer if you would prefer -->
-    <!-- to use a standalone solr server. (The default constructor will create an embedded one at solrHome) -->
+    <!-- majority of cases. -->
     <bean id="solrEmbedded" class="java.lang.String">
         <constructor-arg value="solrhome"/>
     </bean>
+    <!-- If you want to use a standalone solr server for at least one environment, uncomment the following -->
+    <!-- two beans and set solr.source and solr.source.reindex in the property file for the environment -->
+    <!-- to the URLs of the standalone server. NOTE: solr.url should point to the ROOT of the server, -->
+    <!-- for example: http://localhost:8983/solr. solr.url.reindex should point to the reindex core, -->
+    <!-- for example: http://localhost:8983/solr/reindex. The defaultCoreName property in solr.xml should -->
+    <!-- point to the primary core. solr.source and solr.source.reindex should be set to solrServer and -->
+    <!-- solrReindexServer, respectively. -->
+    <!--     <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
+    <!--         <constructor-arg value="${solr.url}"/> -->
+    <!--     </bean> -->
+    <!--     <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
+    <!--         <constructor-arg value="${solr.url.reindex}"/> -->
+    <!--     </bean> -->
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
         <constructor-arg name="solrServer" ref="${solr.source}" />
+        <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
     </bean> 
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
