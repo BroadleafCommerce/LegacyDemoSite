@@ -18,6 +18,7 @@
     <!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
     <context:component-scan base-package="org.broadleafcommerce.common.web"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.controller"/>
+    <context:component-scan base-package="org.broadleafcommerce.profile.web.core.service.login"/>
     
     <!-- Turn on AOP annotations (required by Broadleaf) -->
     <aop:config/>
