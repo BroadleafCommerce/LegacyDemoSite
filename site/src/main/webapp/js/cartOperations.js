@@ -30,7 +30,7 @@ $(function(){
     function updateHeaderCartItemsCount(newCount) {
 
         //Pull the word that was set in the html from the internationalized version from the locale
-        var singularItem = $('span#headerCartItemWordSingluar_i18n').text();
+        var singularItem = $('span#headerCartItemWordSingular_i18n').text();
         var plurarlItem = $('span#headerCartItemWordPlural_i18n').text();
 
         $('.headerCartItemsCount').html(newCount);
