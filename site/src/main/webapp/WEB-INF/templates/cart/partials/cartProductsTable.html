@@ -41,8 +41,8 @@
             <span  blc:price="*{totalAdjustmentValue}" ></span>
                  <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
              </td>
-            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
-            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:text="*{totalPrice}"></td>
+            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>
+            <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>
         </tr>
     </tbody>
 </table>
