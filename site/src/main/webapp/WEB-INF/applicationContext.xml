@@ -17,7 +17,9 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
-    
+
+    <task:annotation-driven />
+
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
