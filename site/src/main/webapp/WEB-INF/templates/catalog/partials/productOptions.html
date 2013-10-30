@@ -15,10 +15,12 @@
                 <li th:case="'DECIMAL'">
                     <input th:name="${'itemAttributes[' + attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
                 </li>
-                <li th:case="*" th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
-                    <div>
-                        <a href="#" class="option-label" th:text="*{attributeValue}"  ></a> 
-                    </div>
+                <li th:case="*" th:remove="tag">
+                    <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
+                        <div>
+                            <a href="#" class="option-label" th:text="*{attributeValue}"  ></a> 
+                        </div>
+                    </li>
                 </li>
             </ul>       
         </li>
