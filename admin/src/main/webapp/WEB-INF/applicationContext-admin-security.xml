@@ -65,7 +65,7 @@
         <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
-    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.openadmin.web.filter.AdminCsrfFilter" />
 
     <bean id="adminAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <constructor-arg value="/login"/>
