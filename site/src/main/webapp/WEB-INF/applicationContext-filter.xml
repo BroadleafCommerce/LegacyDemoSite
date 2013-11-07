@@ -45,7 +45,7 @@
 
     <bean id="blRestPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
-            <sec:filter-chain pattern="/**" filters="
+            <sec:filter-chain pattern="/api/**" filters="
                blURLHandlerFilter,
                blTranslationFilter,
                blCartStateFilter"/>
