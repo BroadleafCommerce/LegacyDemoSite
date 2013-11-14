@@ -74,9 +74,19 @@
     <!--  The BLC Authentication manager.   -->
     <sec:authentication-manager alias="blAuthenticationManager">
         <sec:authentication-provider user-service-ref="blUserDetailsService">
-            <sec:password-encoder ref="blPasswordEncoder" />
+            <sec:password-encoder ref="blPasswordEncoder">
+                <sec:salt-source ref="blSaltSource" />
+            </sec:password-encoder>
         </sec:authentication-provider>
     </sec:authentication-manager>
+    
+    <!-- Configuration for salting user passwords. This configuration will use the 'username' property as the salt, which
+        implies that the username cannot change. If you would like to change this property or generate a random salt to store
+        on a per-customer basis or if you need to allow users to change their password then you will need to modify this
+        configuration and likely provide a custom UserDetailsService. -->
+    <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <property name="userPropertyToUse" value="username" />
+    </bean>
     
     <!--  User details service that authenticates using customer data in the database. -->
     <sec:jdbc-user-service data-source-ref="webDS"
