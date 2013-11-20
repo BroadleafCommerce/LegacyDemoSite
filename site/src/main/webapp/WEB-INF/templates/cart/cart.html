@@ -17,7 +17,7 @@
     </div>
     <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
         <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
-        <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" maxlength="10" autocomplete="off"/>
+        <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" autocomplete="off"/>
         <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
         <div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
             <div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
