@@ -159,6 +159,9 @@
         -->
         <mkdir dir="target/sql/create"/>
         <artifact:pom id="myPom" file="pom.xml" />
+        <!-- This fileset is will be immediately overridden by the artifact:dependencies element. This is only declared here
+            to make eclipse not give a warning about this -->
+        <fileset dir="dir" id="pomDeps" />
         <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
         <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
         <fileset id="libDir" dir="${baseTarget}/lib"/>
@@ -243,6 +246,10 @@
         -->
         <mkdir dir="target/sql/update"/>
         <artifact:pom id="myPom" file="pom.xml" />
+        
+        <!-- This fileset is will be immediately overridden by the artifact:dependencies element. This is only declared here
+            to make eclipse not give a warning about this -->
+        <fileset dir="dir" id="pomDeps" />
         <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
         <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
         <fileset id="libDir" dir="${baseTarget}/lib"/>
