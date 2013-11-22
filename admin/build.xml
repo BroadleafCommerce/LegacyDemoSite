@@ -28,6 +28,7 @@
             <jvmarg value="-Xmx1024M" />
             <jvmarg value="-Xdebug" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
+        	<jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
@@ -46,6 +47,7 @@
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
             <jvmarg value="-javaagent:${jrebel.path}" />
+        	<jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>

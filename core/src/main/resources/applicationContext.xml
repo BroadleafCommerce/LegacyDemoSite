@@ -18,6 +18,34 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         
-        <!-- Shared properties between admin and site go here -->
-        
+    <!-- Shared properties between admin and site go here -->
+    
+    <!-- This bean is REQUIRED for proper operation of the max uses property for OfferCodes and is only required for the Broadleaf
+        3.0 line starting with 3.0.6-GA. For Broadleaf 3.1 and above this can be safely removed -->
+    
+    <bean id="blOfferAuditFixClassTransformer" class="org.broadleafcommerce.common.extensibility.jpa.copy.DirectCopyClassTransformer">
+        <constructor-arg name="moduleName" value="Offer Audit Fix" />
+        <property name="xformTemplates">
+            <map>
+                <entry>
+                    <key><value>org.broadleafcommerce.core.offer.domain.OfferAuditImpl</value></key>
+                    <value>org.broadleafcommerce.core.offer.domain.OfferAuditWeaveImpl</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="customClassTransformers" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="blOfferAuditFixClassTransformer" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="customClassTransformers" />
+        <property name="targetRef" value="blMergedClassTransformers" />
+    </bean>
+    
 </beans>
