@@ -28,6 +28,7 @@
                 <jvmarg value="-Xmx512M" />
                 <jvmarg value="-Xdebug" />
                 <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+            	<jvmarg value="-javaagent:${spring.instrument.path}" />
             	<jvmarg value="-Druntime.environment=${runtime.environment}" />
                 <arg value="compile"/>
                 <arg value="war:exploded"/>
@@ -42,7 +43,8 @@
             <jvmarg value="-Xmx512M" />
             <jvmarg value="-Xdebug" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
-            <jvmarg value="-Druntime.environment=${runtime.environment}" />
+            <jvmarg value="-javaagent:${spring.instrument.path}" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
@@ -60,7 +62,8 @@
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
             <jvmarg value="-javaagent:${jrebel.path}" />
-            <jvmarg value="-Druntime.environment=${runtime.environment}" />
+            <jvmarg value="-javaagent:${spring.instrument.path}" />
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
@@ -137,7 +140,7 @@
                  <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
                 </classpath>
                 <!--uncomment the following spring insturment jar argument if you require spring instrument-->
-                <!--<jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                <jvmarg value="-javaagent:${spring.instrument.path}"/>
                 <jvmarg value="-XX:MaxPermSize=512M" />
                 <jvmarg value="-Xmx1024M" />
                 <arg value="-buildfile"/>
@@ -159,6 +162,9 @@
         -->
         <mkdir dir="target/sql/create"/>
         <artifact:pom id="myPom" file="pom.xml" />
+        <!-- This fileset is will be immediately overridden by the artifact:dependencies element. This is only declared here
+            to make eclipse not give a warning about this -->
+        <fileset dir="dir" id="pomDeps" />
         <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
         <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
         <fileset id="libDir" dir="${baseTarget}/lib"/>
@@ -221,7 +227,7 @@
                  <pathelement location="${ant.home}/lib/ant-launcher.jar"/>
                 </classpath>
                 <!--uncomment the following spring insturment jar argument if you require spring instrument-->
-                <!--<jvmarg value="-javaagent:${spring.instrument.path}"/>-->
+                <jvmarg value="-javaagent:${spring.instrument.path}"/>
                 <jvmarg value="-XX:MaxPermSize=512M" />
                 <jvmarg value="-Xmx1024M" />
                 <arg value="-buildfile"/>
@@ -243,6 +249,10 @@
         -->
         <mkdir dir="target/sql/update"/>
         <artifact:pom id="myPom" file="pom.xml" />
+        
+        <!-- This fileset is will be immediately overridden by the artifact:dependencies element. This is only declared here
+            to make eclipse not give a warning about this -->
+        <fileset dir="dir" id="pomDeps" />
         <artifact:dependencies filesetId="pomDeps" pomRefId="myPom" useScope="compile" />
         <property name="baseTarget" location="target/${myPom.build.finalName}/WEB-INF"/>
         <fileset id="libDir" dir="${baseTarget}/lib"/>
