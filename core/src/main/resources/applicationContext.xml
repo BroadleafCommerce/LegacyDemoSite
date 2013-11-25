@@ -21,7 +21,10 @@
     <!-- Shared properties between admin and site go here -->
     
     <!-- This bean is REQUIRED for proper operation of the max uses property for OfferCodes and is only required for the Broadleaf
-        3.0 line starting with 3.0.6-GA. For Broadleaf 3.1 and above this can be safely removed -->
+        3.0 line starting with 3.0.6-GA. For Broadleaf 3.1 and above this can be safely removed.
+        For this to work properly, this also requires Spring Instrument to be available on your classpath. See the provided
+        spring-instrument-3.2.2.RELEASE.jar in the lib directory in the root of this project. This can be passed as -javaagent
+        property to the JVM such as -javaagent:/path/to/spring-instrument.3.2.2.RELEASE.jar -->
     
     <bean id="blOfferAuditFixClassTransformer" class="org.broadleafcommerce.common.extensibility.jpa.copy.DirectCopyClassTransformer">
         <constructor-arg name="moduleName" value="Offer Audit Fix" />
