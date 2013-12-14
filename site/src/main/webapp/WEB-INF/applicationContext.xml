@@ -20,6 +20,9 @@
 
     <task:annotation-driven />
 
+    <!-- Scan Broadleaf Sample Payment Gateway Implementation -->
+    <context:component-scan base-package="org.broadleafcommerce.sample.web" />
+
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
