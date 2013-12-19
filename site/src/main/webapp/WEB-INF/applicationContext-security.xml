@@ -102,6 +102,7 @@
         <property name="excludedRequestPatterns">
             <list>
                 <value>/null-checkout/**</value>
+                <value>/hosted/null-checkout/**</value>
             </list>
         </property>
     </bean>

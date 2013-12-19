@@ -23,6 +23,8 @@ import org.broadleafcommerce.core.order.domain.FulfillmentOption;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.OrderPayment;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.CustomerCreditInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
@@ -45,18 +47,14 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class CheckoutController extends BroadleafCheckoutController {
 
-    /*
-    * The Checkout page for Heat Clinic will have the shipping information pre-populated 
-    * with an address if the fulfillment group has an address and fulfillment option 
-    * associated with it. It also assumes that there is only one payment info of type 
-    * credit card on the order. If so, then the billing address will be pre-populated.
-    */
     @RequestMapping("/checkout")
     public String checkout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
             @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm, RedirectAttributes redirectAttributes) {
-        prepopulateCheckoutForms(CartState.getCart(), orderInfoForm, shippingForm, billingForm);
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
+            @ModelAttribute("customerCreditInfoForm") CustomerCreditInfoForm customerCreditInfoForm,
+            RedirectAttributes redirectAttributes) {
         return super.checkout(request, response, model, redirectAttributes);
     }
 
@@ -65,52 +63,6 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
         return super.saveGlobalOrderDetails(request, model, orderInfoForm, result);
     }
-
-    protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
-        if (orderInfoForm != null) {
-            orderInfoForm.setEmailAddress(cart.getEmailAddress());
-        }
-    }
-    protected void prepopulateCheckoutForms(Order cart, OrderInfoForm orderInfoForm, ShippingInfoForm shippingForm, BillingInfoForm billingForm) {
-        prepopulateOrderInfoForm(cart, orderInfoForm);
-        FulfillmentGroup firstShippableFulfillmentGroup = fulfillmentGroupService.getFirstShippableFulfillmentGroup(cart);
-        if (firstShippableFulfillmentGroup != null) {
-            FulfillmentOption fulfillmentOption = firstShippableFulfillmentGroup.getFulfillmentOption();
-            if (fulfillmentOption != null) {
-                //if the cart has already has fulfillment information
-                shippingForm.setAddress(firstShippableFulfillmentGroup.getAddress());
-                shippingForm.setFulfillmentOption(fulfillmentOption);
-                shippingForm.setFulfillmentOptionId(fulfillmentOption.getId());
-            } else {
-                //check for a default address for the customer
-                CustomerAddress defaultAddress = customerAddressService.findDefaultCustomerAddress(CustomerState.getCustomer().getId());
-                if (defaultAddress != null) {
-                    shippingForm.setAddress(defaultAddress.getAddress());
-                    shippingForm.setAddressName(defaultAddress.getAddressName());
-                }
-            }
-        }
-
-        if (cart.getPayments() != null) {
-            for (OrderPayment payment : cart.getPayments()) {
-                if (PaymentType.CREDIT_CARD.equals(payment.getType())) {
-                    billingForm.setAddress(payment.getBillingAddress());
-                }
-            }
-        }
-    }
-
-/*    @RequestMapping(value = "/complete", method = RequestMethod.POST)
-    public String completeCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
-            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-            BindingResult result) throws CheckoutException, PricingException, ServiceException {
-        prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
-        return super.completeCheckout(request, response, model, billingForm, result);
-    }*/
-
-
 
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

@@ -17,20 +17,12 @@
 package com.mycompany.controller.checkout;
 
 import org.broadleafcommerce.common.exception.ServiceException;
-import org.broadleafcommerce.common.payment.PaymentType;
-import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
-import org.broadleafcommerce.core.order.domain.FulfillmentOption;
-import org.broadleafcommerce.core.order.domain.Order;
-import org.broadleafcommerce.core.payment.domain.OrderPayment;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafShippingInfoController;
-import org.broadleafcommerce.core.web.order.CartState;
-import org.broadleafcommerce.profile.core.domain.CustomerAddress;
-import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,9 +46,10 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
     @RequestMapping(value="/checkout/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
                                  @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+                                 @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
                                  @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-                                 BindingResult result) throws PricingException, ServiceException {
-        prepopulateOrderInfoForm(CartState.getCart(), orderInfoForm);
+                                 BindingResult result)
+            throws PricingException, ServiceException {
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -89,13 +82,6 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
-    }
-
-    //TODO why is this here?
-    protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
-        if (orderInfoForm != null) {
-            orderInfoForm.setEmailAddress(cart.getEmailAddress());
-        }
     }
 
 }

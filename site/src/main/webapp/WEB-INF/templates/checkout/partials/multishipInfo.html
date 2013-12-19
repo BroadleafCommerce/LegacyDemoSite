@@ -1,6 +1,9 @@
-<div id="multiship_info">
+<div th:fragment="multiship-info"
+     id="multiship_info">
+
     <div class="left_content wide">
-        <div th:each="fg : ${cart.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow" th:unless="${fg.type?.type == 'GIFT_CARD' or fg.type?.type == 'DIGITAL' or fg.type?.type == 'PHYSICAL_PICKUP'}">
+        <div th:each="fg : ${cart.fulfillmentGroups}" th:object="${fg}" class="multishipGroupRow"
+             th:unless="${fg.type?.type == 'GIFT_CARD' or fg.type?.type == 'DIGITAL' or fg.type?.type == 'PHYSICAL_PICKUP'}">
             <h4>
                 <span th:classappend="*{address == null}? 'error'"
                       th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>

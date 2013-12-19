@@ -21,6 +21,7 @@ import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafBillingInfoController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.springframework.stereotype.Controller;
@@ -41,22 +42,16 @@ public class BillingInfoController extends BroadleafBillingInfoController {
     @RequestMapping(value="/checkout/billing", method = RequestMethod.POST)
     public String saveBillingAddress(HttpServletRequest request, HttpServletResponse response, Model model,
                                      @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-                                     @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,                                     BindingResult result)
+                                     @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+                                     @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+                                     BindingResult result)
             throws PricingException, ServiceException {
-        prepopulateOrderInfoForm(CartState.getCart(), orderInfoForm);
         return super.saveBillingAddress(request, response, model, billingForm, result);
     }
 
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
-    }
-
-    //TODO why is this here?
-    protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
-        if (orderInfoForm != null) {
-            orderInfoForm.setEmailAddress(cart.getEmailAddress());
-        }
     }
 
 }

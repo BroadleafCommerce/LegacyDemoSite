@@ -12,8 +12,21 @@
             <span th:text="#{cart.orderDiscount}">Order Discount</span>: <span blc:price="${cart.orderAdjustmentsValue}" />
         </div>
         <p><span th:text="#{cart.subtotalDisclaimer}">Subtotal does not yet include applicable tax or shipping and handling charges</span>.</p>
-        <div id="checkout"><a th:href="@{/checkout}" target="_top" class="big-button red-button"><span th:text="#{cart.checkout}">Checkout</span></a></div>
-        <p><a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a></p>
+        <div id="checkout">
+            <a th:href="@{/checkout}" target="_top" class="big-button red-button">
+                <span th:text="#{cart.checkout}">Checkout</span>
+            </a>
+        </div>
+        <p>
+            <form blc:null_payment_hosted_action="${paymentRequestDTO}" complete_checkout="${false}" method="POST">
+                <input type="hidden" name="TRANSACTION_AMT" th:value="${cart.total}"/>
+                <input type="hidden" name="ORDER_ID" th:value="${cart.id}"/>
+                <input type="hidden" name="COMPLETE_CHECKOUT_ON_CALLBACK" value="false"/>
+                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" alt="Submit Form" />
+            </form>
+            <div class="clearfix"></div>
+            <a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
+        </p>
     </div>
     <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
         <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
