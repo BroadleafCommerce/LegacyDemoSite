@@ -69,7 +69,6 @@
     <mvc:resources order="-10" location="/img/, classpath:/common_style/img/" mapping="/img/**" />
     <mvc:resources order="-10" location="/fonts/, classpath:/common_style/fonts/" mapping="/fonts/**" />
     <mvc:resources order="-10" location="favicon.ico" mapping="favicon.ico" />
-    <mvc:resources order="-10" location="robots.txt" mapping="robots.txt" />
     
     <!-- Map various location URLs to our resource handlers -->
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -96,6 +95,7 @@
                 <entry key="checkout/" value="layout/checkoutLayout" />
                 <entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
                 <entry key="layout/" value="NONE" />
+                <entry key="content/NONE" value="NONE" />
             </map>
         </property>
     </bean>
