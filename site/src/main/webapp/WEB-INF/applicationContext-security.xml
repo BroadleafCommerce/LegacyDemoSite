@@ -26,7 +26,6 @@
     <sec:http pattern="/img/**" security="none" />
     <sec:http pattern="/js/**" security="none" />       
     <sec:http pattern="/favicon.ico" security="none" />       
-    <sec:http pattern="/robots.txt" security="none" />
     
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
