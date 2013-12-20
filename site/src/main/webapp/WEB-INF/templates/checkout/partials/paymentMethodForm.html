@@ -1,6 +1,20 @@
 <div th:fragment="payment-method-form">
 
     <div class="right_content payment_info"
+         th:unless="${showAllPaymentMethods}">
+        <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
+
+        <ul id="payment_methods">
+            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+        </ul>
+
+        <div class="form100">
+            <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
+        </div>
+
+    </div>
+
+    <div class="right_content payment_info"
             th:if="${showAllPaymentMethods}">
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
