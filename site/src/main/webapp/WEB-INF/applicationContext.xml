@@ -2,26 +2,29 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jee="http://www.springframework.org/schema/jee"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/jee
-        http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
-        http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
     <task:annotation-driven />
 
-    <!-- Scan Broadleaf Sample Payment Gateway Implementation -->
-    <context:component-scan base-package="org.broadleafcommerce.sample.web" />
+    <!-- Scan DemoSite Sample Payment Gateway Implementation -->
+    <context:component-scan base-package="com.mycompany.sample" />
+    <!-- Add Sample Thymeleaf Processor to test Hosted Payment Gateway (e.g. PayPal Express Flow) -->
+    <bean id="myNullPaymentGatewayHostedActionProcessor" class="com.mycompany.sample.vendor.nullPaymentGateway.web.processor.NullPaymentGatewayHostedActionProcessor"/>
+    <bean id="mySamplePaymentProcessors" class="org.springframework.beans.factory.config.SetFactoryBean">
+        <property name="sourceSet">
+            <set>
+                <ref bean="myNullPaymentGatewayHostedActionProcessor"/>
+            </set>
+        </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="mySamplePaymentProcessors"/>
+        <property name="targetRef" value="blDialectProcessors"/>
+    </bean>
 
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 

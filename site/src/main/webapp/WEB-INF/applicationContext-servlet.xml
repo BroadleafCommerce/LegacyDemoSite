@@ -20,9 +20,8 @@
     <context:component-scan base-package="org.broadleafcommerce.profile.web.controller"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.service.login"/>
 
-    <!-- Scan Broadleaf Sample Payment Gateway Implementation -->
-    <context:component-scan base-package="org.broadleafcommerce.sample.web" />
-
+    <!-- Scan DemoSite Sample Payment Gateway Implementation -->
+    <context:component-scan base-package="com.mycompany.sample" />
 
     <!-- Turn on AOP annotations (required by Broadleaf) -->
     <aop:config/>
