@@ -2,7 +2,7 @@
 
     <div class="cart_title">
         <span th:text="#{cart.billingInformation}">Billing Information</span>
-        <a th:if="${billingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW}"
+        <a th:if="${'SAVED' == sectionDTO.state.type}"
            th:href="@{/checkout(edit-billing='true')}">
             <span th:text="#{cart.edit}">Edit</span>
         </a>
@@ -11,7 +11,7 @@
     <div class="clearfix"></div>
 
     <div class="checkout_warning"
-         th:if="${billingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_HELP_VIEW}">
+         th:if="${'INACTIVE' == sectionDTO.state.type}">
         <span th:text="#{cart.fillOutBasicOrder}">Please fill out your contact information to complete purchasee</span>
     </div>
 
@@ -20,7 +20,7 @@
               method="post" id="billing_info"
               novalidate="novalidate">
 
-        <div th:if="${billingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW
+        <div th:if="${'SAVED' == sectionDTO.state.type
                         and !#fields.hasErrors('*')}"
              th:inline="text" class="clearfix">
             <div class="group shipping-info-read-only">
@@ -41,9 +41,7 @@
 
         <!--/* We still have to render the billing form so the JavaScript can copy the fields, we will just add the class of 'hide' */-->
         <div id="billing_info_form"
-             th:classappend="${(billingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW
-                                or billingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_HELP_VIEW)
-                        and !#fields.hasErrors('*')} ? 'hide'">
+             th:classappend="${('SAVED' == sectionDTO.state.type or 'INACTIVE' == sectionDTO.state.type) and !#fields.hasErrors('*')} ? 'hide'">
 
             <input type="hidden" name="address.country" value="US" />
 

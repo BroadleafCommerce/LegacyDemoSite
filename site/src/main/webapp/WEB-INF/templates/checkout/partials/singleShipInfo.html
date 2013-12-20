@@ -5,8 +5,7 @@
               method="post" id="shipping_info"
               novalidate="novalidate">
 
-        <div th:if="${shippingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW
-                        and !#fields.hasErrors('*')}"
+        <div th:if="${'SAVED' == sectionDTO.state.type and !#fields.hasErrors('*')}"
              th:inline="text" class="clearfix">
 
             <div class="group shipping-info-read-only">
@@ -32,14 +31,13 @@
         <!--/* We still have to render the shipping form so the JavaScript can copy the fields, we will just add the class of 'hide' */-->
         <!--/* This only applies if you have the copy shipping to billing flow  */-->
         <div id="shipping_info_form"
-             th:classappend="${(shippingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW
-                                or shippingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_HELP_VIEW)
-                                and !#fields.hasErrors('*')} ? 'hide'">
+             th:classappend="${('SAVED' == sectionDTO.state.type or 'INACTIVE' == sectionDTO.state.type)
+                and !#fields.hasErrors('*')} ? 'hide'">
 
             <div class="left_content">
                 <input type="hidden" name="address.country" value="US" />
 
-                <div class="form100" th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">
+                <div class="form100" th:if="${showBillingInfoSection}">
                     <input id="use_billing_address" type="checkbox" th:field="*{useBillingAddress}" />
                     <span th:text="#{cart.useBillingInfo}">Use Billing Information</span>
                 </div>

@@ -16,25 +16,25 @@
 
             <div class="clearfix"></div>
 
-            <div th:replace="checkout/partials/orderInfoForm :: order-info-form"
-                    th:if="${showOrderInfoSection}"></div>
-
-            <div class="clearfix"></div>
-
-            <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
-                    th:if="${showBillingInfoSection}"></div>
-
-            <div class="clearfix"></div>
-
-            <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
-                    th:if="${showShippingInfoSection}"></div>
-
-            <div class="clearfix"></div>
-
-            <div th:replace="checkout/partials/paymentInfoForm :: payment-info-form"
-                    th:if="${showPaymentInfoSection}"></div>
-
-            <div class="clearfix"></div>
+            <div th:each="sectionDTO : ${checkoutSectionDTOs}" th:object="${sectionDTO}">
+                <div th:if="${'ORDER_INFO' == sectionDTO.view.type}">
+                    <div th:replace="checkout/partials/orderInfoForm :: order-info-form"
+                            th:with="${sectionDTO}"></div>
+                </div>
+                <div th:if="${'BILLING_INFO' == sectionDTO.view.type}">
+                    <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
+                            th:with="${sectionDTO}"></div>
+                </div>
+                <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type}">
+                    <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
+                            th:with="${sectionDTO}"></div>
+                </div>
+                <div th:if="${'PAYMENT_INFO' == sectionDTO.view.type}">
+                    <div th:replace="checkout/partials/paymentInfoForm :: payment-info-form"
+                            th:with="${sectionDTO}"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
 
         </div>
     </div>

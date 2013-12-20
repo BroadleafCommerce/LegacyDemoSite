@@ -7,11 +7,11 @@
     <div class="clearfix"></div>
 
     <div class="checkout_warning"
-         th:if="${paymentInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_HELP_VIEW}">
+         th:if="${'INACTIVE' == sectionDTO.state.type}">
         <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
     </div>
 
-    <div th:if="${paymentInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_FORM_VIEW}"
+    <div th:if="${'FORM' == sectionDTO.state.type}"
          id="payment_info_form">
 
         <div th:replace="checkout/partials/accountCreditForm :: account-credit-form"></div>

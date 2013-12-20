@@ -2,7 +2,7 @@
 
     <div class="cart_title">
         <span th:text="#{cart.shippingInformation}">Shipping Information</span>
-        <a th:if="${shippingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_SAVED_VIEW
+        <a th:if="${'SAVED' == sectionDTO.state.type
                         and cart.fulfillmentGroups != null and numShippableFulfillmentGroups == 1}"
            th:href="@{/checkout(edit-shipping='true')}">
             <span th:text="#{cart.edit}">Edit</span>
@@ -12,7 +12,7 @@
     <div class="clearfix"></div>
 
     <div class="checkout_warning"
-         th:if="${shippingInfoViewState == T(org.broadleafcommerce.core.web.processor.OnePageCheckoutProcessor$ViewState).SHOW_HELP_VIEW}">
+         th:if="${'INACTIVE' == sectionDTO.state.type}">
         <span th:text="#{cart.fillOutBillingAddress}">Please fill out a billing address to complete purchase</span>
     </div>
 
