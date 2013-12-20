@@ -64,6 +64,7 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
         }
 
         responseDTO.successful(true)
+                .confirmed(false)
                 .completeCheckoutOnCallback(Boolean.parseBoolean(paramMap.get(NullPaymentGatewayConstants.COMPLETE_CHECKOUT_ON_CALLBACK)[0]))
                 .amount(amount)
                 .paymentTransactionType(type)
