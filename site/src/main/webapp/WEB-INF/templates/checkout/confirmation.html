@@ -138,7 +138,7 @@
         <div class="clearfix"></div>
 
         <div class="payment_method" th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
-            <div th:if="${payment.archived == 'N'}" class="left_content">
+            <div th:if="${payment.archived+'' == 'N'}" class="left_content">
                 <h3><span th:text="#{confirmation.payment.method}">Payment Method</span></h3>
                     Payment type: [[*{type.type}]]<br/>
                     Amount paid: <span blc:price="*{amount}" />
