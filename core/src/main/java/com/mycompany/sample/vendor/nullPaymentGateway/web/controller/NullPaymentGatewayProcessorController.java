@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * This is a sample implementation of a Payment Gateway Processor.
@@ -69,6 +70,7 @@ public class NullPaymentGatewayProcessorController {
         String billingCity = "";
         String billingState = "";
         String billingZip = "";
+        String billingCountry = "";
         String shippingFirstName = "";
         String shippingLastName = "";
         String shippingAddressLine1 = "";
@@ -76,6 +78,7 @@ public class NullPaymentGatewayProcessorController {
         String shippingCity = "";
         String shippingState = "";
         String shippingZip = "";
+        String shippingCountry = "";
         String creditCardName = "";
         String creditCardNumber = "";
         String creditCardExpDate = "";
@@ -84,6 +87,7 @@ public class NullPaymentGatewayProcessorController {
 
         String resultMessage = "";
         String resultSuccess = "";
+        String gatewayTransactionId = UUID.randomUUID().toString();
 
         if (paramMap.get(NullPaymentGatewayConstants.TRANSACTION_AMT) != null
                 && paramMap.get(NullPaymentGatewayConstants.TRANSACTION_AMT).length > 0) {
@@ -130,6 +134,11 @@ public class NullPaymentGatewayProcessorController {
             billingZip = paramMap.get(NullPaymentGatewayConstants.BILLING_ZIP)[0];
         }
 
+        if (paramMap.get(NullPaymentGatewayConstants.BILLING_COUNTRY) != null
+                && paramMap.get(NullPaymentGatewayConstants.BILLING_COUNTRY).length > 0) {
+            billingCountry = paramMap.get(NullPaymentGatewayConstants.BILLING_COUNTRY)[0];
+        }
+
         if (paramMap.get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME) != null
                 && paramMap.get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME).length > 0) {
             shippingFirstName = paramMap.get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME)[0];
@@ -163,6 +172,11 @@ public class NullPaymentGatewayProcessorController {
         if (paramMap.get(NullPaymentGatewayConstants.SHIPPING_ZIP) != null
                 && paramMap.get(NullPaymentGatewayConstants.SHIPPING_ZIP).length > 0) {
             shippingZip = paramMap.get(NullPaymentGatewayConstants.SHIPPING_ZIP)[0];
+        }
+
+        if (paramMap.get(NullPaymentGatewayConstants.SHIPPING_COUNTRY) != null
+                && paramMap.get(NullPaymentGatewayConstants.SHIPPING_COUNTRY).length > 0) {
+            shippingCountry = paramMap.get(NullPaymentGatewayConstants.SHIPPING_COUNTRY)[0];
         }
 
         if (paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_NAME) != null
@@ -257,6 +271,8 @@ public class NullPaymentGatewayProcessorController {
                 +"\" value=\"" + transactionAmount + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.ORDER_ID
                 +"\" value=\"" + orderId + "\"/>");
+        response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.GATEWAY_TRANSACTION_ID
+                +"\" value=\"" + gatewayTransactionId + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.RESULT_MESSAGE
                 +"\" value=\"" + resultMessage + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.RESULT_SUCCESS
@@ -275,6 +291,8 @@ public class NullPaymentGatewayProcessorController {
                 +"\" value=\"" + billingState + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_ZIP
                 +"\" value=\"" + billingZip + "\"/>");
+        response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_COUNTRY
+                +"\" value=\"" + billingCountry + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_FIRST_NAME
                 +"\" value=\"" + shippingFirstName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_LAST_NAME
@@ -289,6 +307,8 @@ public class NullPaymentGatewayProcessorController {
                 +"\" value=\"" + shippingState + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_ZIP
                 +"\" value=\"" + shippingZip + "\"/>");
+        response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_COUNTRY
+                +"\" value=\"" + shippingCountry + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_NAME
                 +"\" value=\"" + creditCardName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_LAST_FOUR

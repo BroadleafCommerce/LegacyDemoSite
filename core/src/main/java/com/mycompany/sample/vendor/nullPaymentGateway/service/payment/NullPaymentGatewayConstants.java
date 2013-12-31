@@ -33,6 +33,7 @@ public class NullPaymentGatewayConstants {
 
     public static final String TRANSACTION_AMT = "TRANSACTION_AMT";
     public static final String ORDER_ID = "ORDER_ID";
+    public static final String GATEWAY_TRANSACTION_ID = "GATEWAY_TRANSACTION_ID";
 
     public static final String BILLING_FIRST_NAME = "NULL_BILLING_FIRST_NAME";
     public static final String BILLING_LAST_NAME = "NULL_BILLING_LAST_NAME";
@@ -41,6 +42,7 @@ public class NullPaymentGatewayConstants {
     public static final String BILLING_CITY = "NULL_BILLING_CITY";
     public static final String BILLING_STATE = "NULL_BILLING_STATE";
     public static final String BILLING_ZIP = "NULL_BILLING_ZIP";
+    public static final String BILLING_COUNTRY = "NULL_BILLING_COUNTRY";
 
     public static final String SHIPPING_FIRST_NAME = "NULL_SHIPPING_FIRST_NAME";
     public static final String SHIPPING_LAST_NAME = "NULL_SHIPPING_LAST_NAME";
@@ -49,6 +51,7 @@ public class NullPaymentGatewayConstants {
     public static final String SHIPPING_CITY = "NULL_SHIPPING_CITY";
     public static final String SHIPPING_STATE = "NULL_SHIPPING_STATE";
     public static final String SHIPPING_ZIP = "NULL_SHIPPING_ZIP";
+    public static final String SHIPPING_COUNTRY = "NULL_SHIPPING_COUNTRY";
 
     public static final String CREDIT_CARD_NAME = "CREDIT_CARD_NAME";
     public static final String CREDIT_CARD_NUMBER = "CREDIT_CARD_NUMBER";

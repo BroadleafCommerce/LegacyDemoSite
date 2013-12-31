@@ -86,7 +86,8 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
                     .responseMap(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2, billTo.getAddressLine2())
                     .responseMap(NullPaymentGatewayConstants.BILLING_CITY, billTo.getAddressCityLocality())
                     .responseMap(NullPaymentGatewayConstants.BILLING_STATE, billTo.getAddressStateRegion())
-                    .responseMap(NullPaymentGatewayConstants.BILLING_ZIP, billTo.getAddressPostalCode());
+                    .responseMap(NullPaymentGatewayConstants.BILLING_ZIP, billTo.getAddressPostalCode())
+                    .responseMap(NullPaymentGatewayConstants.BILLING_COUNTRY, billTo.getAddressCountryCode());
         }
 
         AddressDTO shipTo = requestDTO.getShipTo();
@@ -97,7 +98,8 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
                     .responseMap(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2, shipTo.getAddressLine2())
                     .responseMap(NullPaymentGatewayConstants.SHIPPING_CITY, shipTo.getAddressCityLocality())
                     .responseMap(NullPaymentGatewayConstants.SHIPPING_STATE, shipTo.getAddressStateRegion())
-                    .responseMap(NullPaymentGatewayConstants.SHIPPING_ZIP, shipTo.getAddressPostalCode());
+                    .responseMap(NullPaymentGatewayConstants.SHIPPING_ZIP, shipTo.getAddressPostalCode())
+                    .responseMap(NullPaymentGatewayConstants.SHIPPING_COUNTRY, shipTo.getAddressCountryCode());
         }
 
         return responseDTO;

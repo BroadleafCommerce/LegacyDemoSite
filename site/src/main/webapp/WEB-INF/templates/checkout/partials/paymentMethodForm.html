@@ -8,6 +8,8 @@
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
+        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="${PAYMENT_PROCESSING_ERROR}" class="form100 error">...</div>
+
         <div class="form100">
             <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
         </div>
@@ -24,6 +26,8 @@
             <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
+
+        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="${PAYMENT_PROCESSING_ERROR}" class="form100 error">...</div>
 
         <dl id="paymentOptions">
             <dt>

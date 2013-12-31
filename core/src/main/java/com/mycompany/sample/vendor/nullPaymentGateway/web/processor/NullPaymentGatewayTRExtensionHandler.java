@@ -140,6 +140,11 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
                 responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ZIP).toString());
         }
 
+        if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_COUNTRY) != null) {
+            hiddenFields.put(NullPaymentGatewayConstants.BILLING_COUNTRY,
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_COUNTRY).toString());
+        }
+
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME,
                 responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME).toString());
@@ -175,6 +180,10 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
                 responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ZIP).toString());
         }
 
+        if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_COUNTRY) != null) {
+            hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_COUNTRY,
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_COUNTRY).toString());
+        }
 
         formParameters.put(getHiddenParamsKey(), hiddenFields);
     }
