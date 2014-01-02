@@ -18,6 +18,7 @@ package com.mycompany.controller.checkout;
 
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.common.payment.PaymentType;
+import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.FulfillmentOption;
 import org.broadleafcommerce.core.order.domain.Order;
@@ -62,6 +63,11 @@ public class CheckoutController extends BroadleafCheckoutController {
     public String saveGlobalOrderDetails(HttpServletRequest request, Model model, 
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
         return super.saveGlobalOrderDetails(request, model, orderInfoForm, result);
+    }
+
+    @RequestMapping(value = "/checkout/complete", method = RequestMethod.POST)
+    public String processCompleteCheckoutOrderFinalized(RedirectAttributes redirectAttributes) throws PaymentException {
+        return super.processCompleteCheckoutOrderFinalized(redirectAttributes);
     }
 
     @InitBinder
