@@ -18,11 +18,14 @@ package com.mycompany.controller.checkout;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.broadleafcommerce.core.order.domain.NullOrderImpl;
+import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.AbstractCheckoutController;
+import org.broadleafcommerce.core.web.order.CartState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,11 +62,21 @@ public class NullGiftCardController extends AbstractCheckoutController {
                                 @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
                                 @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
                                 BindingResult result){
+        Order cart = CartState.getCart();
 
         giftCardInfoFormValidator.validate(giftCardInfoForm, result);
         if (!result.hasErrors()) {
             result.reject("giftCardNumber", "The Gift Card module is not enabled. Please contact us for more information about our AccountCredit Module (http://www.broadleafcommerce.com/contact)");
         }
+
+        if (!(cart instanceof NullOrderImpl)) {
+            model.addAttribute("orderMultishipOptions",
+                    orderMultishipOptionService.getOrGenerateOrderMultishipOptions(cart));
+            model.addAttribute("paymentRequestDTO",
+                    dtoTranslationService.translateOrder(cart));
+        }
+
+        populateModelWithReferenceData(request, model);
 
         return getCheckoutView();
     }
