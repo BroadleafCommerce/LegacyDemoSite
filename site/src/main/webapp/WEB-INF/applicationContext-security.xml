@@ -41,6 +41,7 @@
         <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/null-checkout/**" requires-channel="https" />
+        <sec:intercept-url pattern="/null-giftcard/**" requires-channel="https" />
         <sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
@@ -101,6 +102,7 @@
         <property name="excludedRequestPatterns">
             <list>
                 <value>/null-checkout/**</value>
+                <value>/null-giftcard/**</value>
                 <value>/hosted/null-checkout/**</value>
             </list>
         </property>

@@ -20,6 +20,7 @@ import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafBillingInfoController;
@@ -43,6 +44,7 @@ public class BillingInfoController extends BroadleafBillingInfoController {
     public String saveBillingAddress(HttpServletRequest request, HttpServletResponse response, Model model,
                                      @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
                                      @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+                                     @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
                                      @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
                                      BindingResult result)
             throws PricingException, ServiceException {

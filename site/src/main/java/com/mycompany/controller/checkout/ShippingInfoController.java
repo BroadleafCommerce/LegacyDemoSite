@@ -19,6 +19,7 @@ package com.mycompany.controller.checkout;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
+import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
@@ -47,6 +48,7 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
                                  @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
                                  @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+                                 @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
                                  @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
                                  BindingResult result)
             throws PricingException, ServiceException {
