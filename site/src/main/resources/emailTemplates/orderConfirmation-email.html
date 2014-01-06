@@ -112,6 +112,7 @@
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.country.name}]]<br/>
                                             [[*{address.emailAddress}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
@@ -119,6 +120,7 @@
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.country.name}]]<br/>
                                             [[*{address.emailAddress}]]<br/>
                                         </address>
                                     </td>
@@ -191,6 +193,7 @@
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.country.name}]]<br/>
                                             [[*{address.emailAddress}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
@@ -198,6 +201,7 @@
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            [[*{address.country.name}]]<br/>
                                             [[*{address.emailAddress}]]<br/>
                                         </address>
                                     </td>
