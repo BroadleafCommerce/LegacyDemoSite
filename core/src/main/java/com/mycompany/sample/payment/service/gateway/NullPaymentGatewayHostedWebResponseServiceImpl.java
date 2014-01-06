@@ -19,6 +19,7 @@
  */
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.broadleafcommerce.common.money.Money;
 import org.broadleafcommerce.common.payment.PaymentTransactionType;
 import org.broadleafcommerce.common.payment.PaymentType;
@@ -47,7 +48,8 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
 
     @Override
     public PaymentResponseDTO translateWebResponse(HttpServletRequest request) throws PaymentException {
-        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT)
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
+                NullPaymentGatewayType.NULL_GATEWAY)
                 .rawResponse(webResponsePrintService.printRequest(request));
 
         Map<String,String[]> paramMap = request.getParameterMap();

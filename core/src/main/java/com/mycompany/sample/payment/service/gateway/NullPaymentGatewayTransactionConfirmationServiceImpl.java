@@ -20,6 +20,7 @@
 
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.money.Money;
@@ -45,7 +46,8 @@ public class NullPaymentGatewayTransactionConfirmationServiceImpl implements Pay
             LOG.trace("Null Payment Gateway - Confirming Transaction with amount: " + paymentRequestDTO.getTransactionTotal());
         }
 
-        return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT)
+        return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
+                NullPaymentGatewayType.NULL_GATEWAY)
                 .rawResponse("confirmation - successful")
                 .successful(true)
                 .confirmed(true)

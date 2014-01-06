@@ -20,6 +20,7 @@
 
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.broadleafcommerce.common.payment.PaymentType;
 import org.broadleafcommerce.common.payment.dto.AddressDTO;
 import org.broadleafcommerce.common.payment.dto.PaymentRequestDTO;
@@ -72,7 +73,8 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
         //In a real implementation, the gateway will probably provide some API to tokenize this information
         //which you can then put on your form as a secure token. For this sample,
         // we will just place them as plain-text hidden fields on the form
-        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.CREDIT_CARD)
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.CREDIT_CARD,
+                NullPaymentGatewayType.NULL_GATEWAY)
                 .responseMap(NullPaymentGatewayConstants.ORDER_ID, requestDTO.getOrderId())
                 .responseMap(NullPaymentGatewayConstants.TRANSACTION_AMT, requestDTO.getTransactionTotal())
                 .responseMap(NullPaymentGatewayConstants.TRANSPARENT_REDIRECT_URL,

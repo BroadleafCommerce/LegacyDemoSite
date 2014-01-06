@@ -19,6 +19,7 @@
  */
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.broadleafcommerce.common.payment.PaymentType;
 import org.broadleafcommerce.common.payment.dto.PaymentRequestDTO;
 import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
@@ -50,7 +51,8 @@ public class NullPaymentGatewayHostedServiceImpl implements PaymentGatewayHosted
 
     @Override
     public PaymentResponseDTO requestHostedEndpoint(PaymentRequestDTO requestDTO) throws PaymentException {
-        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT)
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
+                NullPaymentGatewayType.NULL_GATEWAY)
                 .completeCheckoutOnCallback(requestDTO.isCompleteCheckoutOnCallback())
                 .responseMap(NullPaymentGatewayConstants.ORDER_ID, requestDTO.getOrderId())
                 .responseMap(NullPaymentGatewayConstants.TRANSACTION_AMT, requestDTO.getTransactionTotal())
