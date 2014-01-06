@@ -12,7 +12,7 @@
 
     <div class="checkout_warning"
          th:if="${'INACTIVE' == sectionDTO.state.type}">
-        <span th:text="#{cart.fillOutBasicOrder}">Please fill out your contact information to complete purchasee</span>
+        <span th:text="${sectionDTO.helpMessage}"></span>
     </div>
 
     <blc:form th:object="${billingInfoForm}"

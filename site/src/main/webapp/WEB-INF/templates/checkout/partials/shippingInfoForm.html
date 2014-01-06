@@ -13,7 +13,7 @@
 
     <div class="checkout_warning"
          th:if="${'INACTIVE' == sectionDTO.state.type}">
-        <span th:text="#{cart.fillOutBillingAddress}">Please fill out a billing address to complete purchase</span>
+        <span th:text="${sectionDTO.helpMessage}"></span>
     </div>
 
     <div th:if="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">

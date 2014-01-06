@@ -8,7 +8,7 @@
 
     <div class="checkout_warning"
          th:if="${'INACTIVE' == sectionDTO.state.type}">
-        <span th:text="#{cart.fillOutShippingAddress}">Please fill out a shipping address and pick a shipping method to complete purchase</span>
+        <span th:text="${sectionDTO.helpMessage}"></span>
     </div>
 
     <div th:if="${'FORM' == sectionDTO.state.type}"
