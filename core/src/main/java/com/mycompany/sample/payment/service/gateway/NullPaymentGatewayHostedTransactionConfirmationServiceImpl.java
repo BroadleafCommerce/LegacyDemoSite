@@ -37,10 +37,10 @@ import javax.annotation.Resource;
 /**
  * @author Elbert Bautista (elbertbautista)
  */
-@Service("blNullPaymentGatewayTransactionConfirmationService")
-public class NullPaymentGatewayTransactionConfirmationServiceImpl implements PaymentGatewayTransactionConfirmationService {
+@Service("blNullPaymentGatewayHostedTransactionConfirmationService")
+public class NullPaymentGatewayHostedTransactionConfirmationServiceImpl implements PaymentGatewayTransactionConfirmationService {
 
-    protected static final Log LOG = LogFactory.getLog(NullPaymentGatewayTransactionConfirmationServiceImpl.class);
+    protected static final Log LOG = LogFactory.getLog(NullPaymentGatewayHostedTransactionConfirmationServiceImpl.class);
 
     @Resource(name = "blNullPaymentGatewayConfigurationService")
     protected NullPaymentGatewayConfigurationService configurationService;
@@ -48,7 +48,7 @@ public class NullPaymentGatewayTransactionConfirmationServiceImpl implements Pay
     @Override
     public PaymentResponseDTO confirmTransaction(PaymentRequestDTO paymentRequestDTO) throws PaymentException {
         if (LOG.isTraceEnabled()) {
-            LOG.trace("Null Payment Gateway - Confirming Transaction with amount: " + paymentRequestDTO.getTransactionTotal());
+            LOG.trace("Null Payment Hosted Gateway - Confirming Transaction with amount: " + paymentRequestDTO.getTransactionTotal());
         }
 
         PaymentTransactionType type = PaymentTransactionType.AUTHORIZE_AND_CAPTURE;

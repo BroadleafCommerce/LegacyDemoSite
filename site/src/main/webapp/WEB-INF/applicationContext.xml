@@ -28,7 +28,8 @@
     </bean>
 
     <bean id="blPaymentGatewayConfiguration" class="org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration">
-        <property name="transactionConfirmationService" ref="blNullPaymentGatewayTransactionConfirmationService"/>
+        <property name="transactionConfirmationService" ref="blNullPaymentGatewayHostedTransactionConfirmationService"/>
+        <property name="rollbackService" ref="blNullPaymentGatewayHostedRollbackService"/>
     </bean>
     <!-- /End DemoSite NullPaymentGateway Config -->
 
