@@ -45,8 +45,8 @@ import java.util.Map;
 @Controller("blNullPaymentGatewayHostedProcessorController")
 public class NullPaymentGatewayHostedProcessorController {
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfiguration paymentGatewayConfigurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration paymentGatewayConfiguration;
 
     @RequestMapping(value = "/hosted/null-checkout", method = RequestMethod.POST)
     public @ResponseBody String retrieveHostedEndpoint(HttpServletRequest request){
@@ -85,7 +85,7 @@ public class NullPaymentGatewayHostedProcessorController {
         response.append("<p>This customer will be prompted to either enter their credentials or fill out their payment information. Once complete, " +
                 "they will be redirected back to either a confirmation page or a review page to complete checkout.</p>");
         response.append("<form action=\"" +
-                paymentGatewayConfigurationService.getHostedRedirectReturnUrl() +
+                paymentGatewayConfiguration.getHostedRedirectReturnUrl() +
                 "\" method=\"GET\" id=\"NullPaymentGatewayRedirectForm\" name=\"NullPaymentGatewayRedirectForm\">");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.TRANSACTION_AMT
                 +"\" value=\"" + transactionAmount + "\"/>");

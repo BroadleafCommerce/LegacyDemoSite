@@ -54,8 +54,8 @@ import java.util.UUID;
 @Controller("blNullPaymentGatewayProcessorController")
 public class NullPaymentGatewayProcessorController {
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfiguration paymentGatewayConfigurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration paymentGatewayConfiguration;
 
     @RequestMapping(value = "/null-checkout/process", method = RequestMethod.POST)
     public @ResponseBody String processTransparentRedirectForm(HttpServletRequest request){
@@ -265,7 +265,7 @@ public class NullPaymentGatewayProcessorController {
         response.append("<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en\"> <!--<![endif]-->");
         response.append("<body>");
         response.append("<form action=\"" +
-                paymentGatewayConfigurationService.getTransparentRedirectReturnUrl() +
+                paymentGatewayConfiguration.getTransparentRedirectReturnUrl() +
                 "\" method=\"POST\" id=\"NullPaymentGatewayRedirectForm\" name=\"NullPaymentGatewayRedirectForm\">");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.TRANSACTION_AMT
                 +"\" value=\"" + transactionAmount + "\"/>");
