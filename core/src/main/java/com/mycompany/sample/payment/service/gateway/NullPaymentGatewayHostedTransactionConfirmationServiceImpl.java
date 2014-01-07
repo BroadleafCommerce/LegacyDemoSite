@@ -42,8 +42,8 @@ public class NullPaymentGatewayHostedTransactionConfirmationServiceImpl implemen
 
     protected static final Log LOG = LogFactory.getLog(NullPaymentGatewayHostedTransactionConfirmationServiceImpl.class);
 
-    @Resource(name = "blNullPaymentGatewayConfiguration")
-    protected NullPaymentGatewayConfiguration configuration;
+    @Resource(name = "blNullPaymentGatewayHostedConfiguration")
+    protected NullPaymentGatewayHostedConfiguration configuration;
 
     @Override
     public PaymentResponseDTO confirmTransaction(PaymentRequestDTO paymentRequestDTO) throws PaymentException {

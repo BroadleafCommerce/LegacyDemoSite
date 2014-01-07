@@ -52,7 +52,7 @@ public class NullPaymentGatewayHostedController extends PaymentGatewayAbstractCo
     @Resource(name = "blNullPaymentGatewayHostedWebResponseService")
     protected PaymentGatewayWebResponseService paymentGatewayWebResponseService;
 
-    @Resource(name = "blNullPaymentGatewayConfiguration")
+    @Resource(name = "blNullPaymentGatewayHostedConfiguration")
     protected PaymentGatewayConfiguration paymentGatewayConfiguration;
 
     @Override

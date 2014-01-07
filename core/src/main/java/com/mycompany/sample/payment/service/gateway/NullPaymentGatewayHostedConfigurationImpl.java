@@ -1,21 +1,17 @@
 /*
- * #%L
- * BroadleafCommerce Framework Web
- * %%
- * Copyright (C) 2009 - 2013 Broadleaf Commerce
- * %%
+ * Copyright 2008-2013 the original author or authors.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * #L%
  */
 
 package com.mycompany.sample.payment.service.gateway;
@@ -25,29 +21,23 @@ import org.broadleafcommerce.common.payment.PaymentGatewayType;
 import org.springframework.stereotype.Service;
 
 /**
- * In order to use load this demo service, you will need to component scan
- * the package "com.mycompany.sample".
- *
- * This should NOT be used in production, and is meant solely for demonstration
- * purposes only.
- *
  * @author Elbert Bautista (elbertbautista)
  */
-@Service("blNullPaymentGatewayConfiguration")
-public class NullPaymentGatewayConfigurationImpl implements NullPaymentGatewayConfiguration {
+@Service("blNullPaymentGatewayHostedConfiguration")
+public class NullPaymentGatewayHostedConfigurationImpl implements NullPaymentGatewayHostedConfiguration {
 
     protected int failureReportingThreshold = 1;
 
     protected boolean performAuthorizeAndCapture = true;
 
     @Override
-    public String getTransparentRedirectUrl() {
-        return "/null-checkout/process";
+    public String getHostedRedirectUrl() {
+        return "/hosted/null-checkout";
     }
 
     @Override
-    public String getTransparentRedirectReturnUrl() {
-        return "/null-checkout/return";
+    public String getHostedRedirectReturnUrl() {
+        return "/null-checkout/hosted/return";
     }
 
     @Override
@@ -127,6 +117,6 @@ public class NullPaymentGatewayConfigurationImpl implements NullPaymentGatewayCo
 
     @Override
     public PaymentGatewayType getGatewayType() {
-        return NullPaymentGatewayType.NULL_GATEWAY;
+        return NullPaymentGatewayType.NULL_HOSTED_GATEWAY;
     }
 }
