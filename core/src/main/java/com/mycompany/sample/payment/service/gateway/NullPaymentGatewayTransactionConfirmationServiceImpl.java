@@ -32,6 +32,8 @@ import org.broadleafcommerce.common.payment.service.PaymentGatewayTransactionCon
 import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @author Elbert Bautista (elbertbautista)
  */
@@ -40,18 +42,25 @@ public class NullPaymentGatewayTransactionConfirmationServiceImpl implements Pay
 
     protected static final Log LOG = LogFactory.getLog(NullPaymentGatewayTransactionConfirmationServiceImpl.class);
 
+    @Resource(name = "blNullPaymentGatewayConfigurationService")
+    protected NullPaymentGatewayConfigurationService configurationService;
+
     @Override
     public PaymentResponseDTO confirmTransaction(PaymentRequestDTO paymentRequestDTO) throws PaymentException {
         if (LOG.isTraceEnabled()) {
             LOG.trace("Null Payment Gateway - Confirming Transaction with amount: " + paymentRequestDTO.getTransactionTotal());
         }
 
+        PaymentTransactionType type = PaymentTransactionType.AUTHORIZE_AND_CAPTURE;
+        if (!configurationService.isPerformAuthorizeAndCapture()) {
+            type = PaymentTransactionType.AUTHORIZE;
+        }
+
         return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
                 NullPaymentGatewayType.NULL_GATEWAY)
                 .rawResponse("confirmation - successful")
                 .successful(true)
-                .confirmed(true)
-                .paymentTransactionType(PaymentTransactionType.CONFIRMED)
+                .paymentTransactionType(type)
                 .amount(new Money(paymentRequestDTO.getTransactionTotal()));
     }
 

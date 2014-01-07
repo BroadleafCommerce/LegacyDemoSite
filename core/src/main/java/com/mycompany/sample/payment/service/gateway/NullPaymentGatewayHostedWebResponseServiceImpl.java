@@ -60,16 +60,10 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
             amount = new Money(amt);
         }
 
-        PaymentTransactionType type = PaymentTransactionType.AUTHORIZE_AND_CAPTURE;
-        if (!configurationService.isPerformAuthorizeAndCapture()) {
-            type = PaymentTransactionType.AUTHORIZE;
-        }
-
         responseDTO.successful(true)
-                .confirmed(false)
                 .completeCheckoutOnCallback(Boolean.parseBoolean(paramMap.get(NullPaymentGatewayConstants.COMPLETE_CHECKOUT_ON_CALLBACK)[0]))
                 .amount(amount)
-                .paymentTransactionType(type)
+                .paymentTransactionType(PaymentTransactionType.UNCONFIRMED)
                 .orderId(paramMap.get(NullPaymentGatewayConstants.ORDER_ID)[0])
                 .responseMap(NullPaymentGatewayConstants.RESULT_MESSAGE,
                         paramMap.get(NullPaymentGatewayConstants.RESULT_MESSAGE)[0]);
