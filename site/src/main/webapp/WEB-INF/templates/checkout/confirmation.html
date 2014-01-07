@@ -115,12 +115,14 @@
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.country.name}]]<br/>
                 </address>
                 <address th:if="*{address.phonePrimary == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.country.name}]]<br/>
                 </address>
             </div>
             <div class="right_content">
@@ -143,12 +145,14 @@
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.country.name}]]<br/>
                 </address>
                 <address th:if="*{address.phonePrimary == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                     [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.country.name}]]<br/>
                 </address>
             </div>
             <div class="right_content">
