@@ -58,8 +58,8 @@ public class NullPaymentGatewayWebResponseServiceImpl implements PaymentGatewayW
     @Resource(name = "blPaymentGatewayWebResponsePrintService")
     protected PaymentGatewayWebResponsePrintService webResponsePrintService;
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService configurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration configuration;
 
     @Override
     public PaymentResponseDTO translateWebResponse(HttpServletRequest request) throws PaymentException {
@@ -84,7 +84,7 @@ public class NullPaymentGatewayWebResponseServiceImpl implements PaymentGatewayW
         }
 
         PaymentTransactionType type = PaymentTransactionType.AUTHORIZE_AND_CAPTURE;
-        if (!configurationService.isPerformAuthorizeAndCapture()) {
+        if (!configuration.isPerformAuthorizeAndCapture()) {
             type = PaymentTransactionType.AUTHORIZE;
         }
 

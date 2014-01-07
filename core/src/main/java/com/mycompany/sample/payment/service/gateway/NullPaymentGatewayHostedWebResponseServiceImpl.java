@@ -19,6 +19,7 @@
  */
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.broadleafcommerce.common.money.Money;
 import org.broadleafcommerce.common.payment.PaymentTransactionType;
@@ -27,7 +28,6 @@ import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayWebResponsePrintService;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayWebResponseService;
 import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
-import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -42,9 +42,6 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
 
     @Resource(name = "blPaymentGatewayWebResponsePrintService")
     protected PaymentGatewayWebResponsePrintService webResponsePrintService;
-
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService configurationService;
 
     @Override
     public PaymentResponseDTO translateWebResponse(HttpServletRequest request) throws PaymentException {

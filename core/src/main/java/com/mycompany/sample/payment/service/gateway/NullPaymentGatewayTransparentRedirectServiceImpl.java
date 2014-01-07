@@ -20,6 +20,7 @@
 
 package com.mycompany.sample.payment.service.gateway;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType;
 import org.broadleafcommerce.common.payment.PaymentType;
 import org.broadleafcommerce.common.payment.dto.AddressDTO;
@@ -27,7 +28,6 @@ import org.broadleafcommerce.common.payment.dto.PaymentRequestDTO;
 import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayTransparentRedirectService;
 import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
-import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -50,8 +50,8 @@ import javax.annotation.Resource;
 @Service("blNullPaymentGatewayTransparentRedirectService")
 public class NullPaymentGatewayTransparentRedirectServiceImpl implements PaymentGatewayTransparentRedirectService {
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService configurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration configuration;
 
     @Override
     public PaymentResponseDTO createAuthorizeForm(PaymentRequestDTO requestDTO) throws PaymentException {
@@ -78,7 +78,7 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
                 .responseMap(NullPaymentGatewayConstants.ORDER_ID, requestDTO.getOrderId())
                 .responseMap(NullPaymentGatewayConstants.TRANSACTION_AMT, requestDTO.getTransactionTotal())
                 .responseMap(NullPaymentGatewayConstants.TRANSPARENT_REDIRECT_URL,
-                        configurationService.getTransparentRedirectUrl());
+                        configuration.getTransparentRedirectUrl());
 
         AddressDTO billTo = requestDTO.getBillTo();
         if (billTo != null)  {

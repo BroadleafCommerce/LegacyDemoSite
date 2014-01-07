@@ -19,7 +19,7 @@
  */
 package com.mycompany.sample.vendor.nullPaymentGateway.web.controller;
 
-import com.mycompany.sample.payment.service.gateway.NullPaymentGatewayConfigurationService;
+import com.mycompany.sample.payment.service.gateway.NullPaymentGatewayConfiguration;
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +46,7 @@ import java.util.Map;
 public class NullPaymentGatewayHostedProcessorController {
 
     @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService paymentGatewayConfigurationService;
+    protected NullPaymentGatewayConfiguration paymentGatewayConfigurationService;
 
     @RequestMapping(value = "/hosted/null-checkout", method = RequestMethod.POST)
     public @ResponseBody String retrieveHostedEndpoint(HttpServletRequest request){

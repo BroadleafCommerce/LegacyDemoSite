@@ -42,8 +42,8 @@ public class NullPaymentGatewayHostedTransactionConfirmationServiceImpl implemen
 
     protected static final Log LOG = LogFactory.getLog(NullPaymentGatewayHostedTransactionConfirmationServiceImpl.class);
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService configurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration configuration;
 
     @Override
     public PaymentResponseDTO confirmTransaction(PaymentRequestDTO paymentRequestDTO) throws PaymentException {
@@ -52,7 +52,7 @@ public class NullPaymentGatewayHostedTransactionConfirmationServiceImpl implemen
         }
 
         PaymentTransactionType type = PaymentTransactionType.AUTHORIZE_AND_CAPTURE;
-        if (!configurationService.isPerformAuthorizeAndCapture()) {
+        if (!configuration.isPerformAuthorizeAndCapture()) {
             type = PaymentTransactionType.AUTHORIZE;
         }
 

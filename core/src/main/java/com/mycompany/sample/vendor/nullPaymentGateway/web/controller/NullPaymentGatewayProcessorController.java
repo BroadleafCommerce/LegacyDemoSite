@@ -20,9 +20,9 @@
 
 package com.mycompany.sample.vendor.nullPaymentGateway.web.controller;
 
+import com.mycompany.sample.payment.service.gateway.NullPaymentGatewayConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.validator.CreditCardValidator;
-import com.mycompany.sample.payment.service.gateway.NullPaymentGatewayConfigurationService;
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
@@ -55,7 +55,7 @@ import java.util.UUID;
 public class NullPaymentGatewayProcessorController {
 
     @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService paymentGatewayConfigurationService;
+    protected NullPaymentGatewayConfiguration paymentGatewayConfigurationService;
 
     @RequestMapping(value = "/null-checkout/process", method = RequestMethod.POST)
     public @ResponseBody String processTransparentRedirectForm(HttpServletRequest request){

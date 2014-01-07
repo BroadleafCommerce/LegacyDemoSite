@@ -46,8 +46,8 @@ import javax.annotation.Resource;
 @Service("blNullPaymentGatewayHostedService")
 public class NullPaymentGatewayHostedServiceImpl implements PaymentGatewayHostedService {
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected NullPaymentGatewayConfigurationService configurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected NullPaymentGatewayConfiguration configuration;
 
     @Override
     public PaymentResponseDTO requestHostedEndpoint(PaymentRequestDTO requestDTO) throws PaymentException {
@@ -57,7 +57,7 @@ public class NullPaymentGatewayHostedServiceImpl implements PaymentGatewayHosted
                 .responseMap(NullPaymentGatewayConstants.ORDER_ID, requestDTO.getOrderId())
                 .responseMap(NullPaymentGatewayConstants.TRANSACTION_AMT, requestDTO.getTransactionTotal())
                 .responseMap(NullPaymentGatewayConstants.HOSTED_REDIRECT_URL,
-                        configurationService.getHostedRedirectUrl());
+                        configuration.getHostedRedirectUrl());
         return responseDTO;
     }
 

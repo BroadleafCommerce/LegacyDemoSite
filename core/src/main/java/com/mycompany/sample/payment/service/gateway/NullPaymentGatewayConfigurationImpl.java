@@ -33,8 +33,8 @@ import org.springframework.stereotype.Service;
  *
  * @author Elbert Bautista (elbertbautista)
  */
-@Service("blNullPaymentGatewayConfigurationService")
-public class NullPaymentGatewayConfigurationServiceImpl implements NullPaymentGatewayConfigurationService {
+@Service("blNullPaymentGatewayConfiguration")
+public class NullPaymentGatewayConfigurationImpl implements NullPaymentGatewayConfiguration {
 
     protected int failureReportingThreshold = 1;
 
