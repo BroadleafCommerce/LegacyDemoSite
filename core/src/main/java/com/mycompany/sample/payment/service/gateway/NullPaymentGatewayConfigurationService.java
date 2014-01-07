@@ -20,12 +20,12 @@
 
 package com.mycompany.sample.payment.service.gateway;
 
-import org.broadleafcommerce.common.payment.service.PaymentGatewayConfigurationService;
+import org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration;
 
 /**
  * @author Elbert Bautista (elbertbautista)
  */
-public interface NullPaymentGatewayConfigurationService extends PaymentGatewayConfigurationService {
+public interface NullPaymentGatewayConfigurationService extends PaymentGatewayConfiguration {
 
     public String getHostedRedirectUrl();
 

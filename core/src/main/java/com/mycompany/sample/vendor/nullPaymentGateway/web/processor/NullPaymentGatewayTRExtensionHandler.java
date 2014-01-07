@@ -21,17 +21,19 @@
 package com.mycompany.sample.vendor.nullPaymentGateway.web.processor;
 
 import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
-import org.broadleafcommerce.common.payment.service.PaymentGatewayConfigurationService;
+import org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayTransparentRedirectService;
 import org.broadleafcommerce.common.web.payment.processor.AbstractTRCreditCardExtensionHandler;
 import org.broadleafcommerce.common.web.payment.processor.TRCreditCardExtensionManager;
-import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.springframework.stereotype.Service;
+
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This sample handler will add itself to the {@link TRCreditCardExtensionManager}
@@ -62,8 +64,8 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
     @Resource(name = "blNullPaymentGatewayTransparentRedirectService")
     protected PaymentGatewayTransparentRedirectService transparentRedirectService;
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected PaymentGatewayConfigurationService configurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected PaymentGatewayConfiguration configuration;
 
     @PostConstruct
     public void init() {
@@ -83,8 +85,8 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
     }
 
     @Override
-    public PaymentGatewayConfigurationService getConfigurationService() {
-        return configurationService;
+    public PaymentGatewayConfiguration getConfiguration() {
+        return configuration;
     }
 
     @Override

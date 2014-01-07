@@ -23,20 +23,22 @@ package com.mycompany.sample.vendor.nullPaymentGateway.web.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
-import org.broadleafcommerce.common.payment.service.PaymentGatewayConfigurationService;
+import org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayWebResponseService;
 import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
 import org.broadleafcommerce.common.web.payment.controller.PaymentGatewayAbstractController;
-import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
+
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * This is a sample implementation of {@link PaymentGatewayAbstractController}
@@ -62,8 +64,8 @@ public class NullPaymentGatewayController extends PaymentGatewayAbstractControll
     @Resource(name = "blNullPaymentGatewayWebResponseService")
     protected PaymentGatewayWebResponseService paymentGatewayWebResponseService;
 
-    @Resource(name = "blNullPaymentGatewayConfigurationService")
-    protected PaymentGatewayConfigurationService paymentGatewayConfigurationService;
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected PaymentGatewayConfiguration paymentGatewayConfiguration;
 
     @Override
     public void handleProcessingException(Exception e, RedirectAttributes redirectAttributes) throws PaymentException {
@@ -97,8 +99,8 @@ public class NullPaymentGatewayController extends PaymentGatewayAbstractControll
     }
 
     @Override
-    public PaymentGatewayConfigurationService getConfigurationService() {
-        return paymentGatewayConfigurationService;
+    public PaymentGatewayConfiguration getConfiguration() {
+        return paymentGatewayConfiguration;
     }
 
     @Override
