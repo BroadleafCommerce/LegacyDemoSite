@@ -106,7 +106,7 @@
             <h3>Payment Information</h3>
             <div class="details">
                 <div class="payment-details" th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
-                    <div th:if="${payment.archived+'' == 'N'}" class="payment-method">
+                    <div th:if="${payment.active}" class="payment-method">
                         <h4>Payment Method</h4>
                         Payment type: [[*{type.friendlyType}]]<br/>
                         Amount paid: <span blc:price="*{amount}" />

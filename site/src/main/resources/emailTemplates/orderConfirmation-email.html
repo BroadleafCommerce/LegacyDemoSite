@@ -192,7 +192,7 @@
                         <td colspan="2">
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
-                                    <td th:if="${payment.archived+'' == 'N'}">
+                                    <td th:if="${payment.active}">
                                         <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                             <tr>
                                                 <td>
