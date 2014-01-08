@@ -75,6 +75,19 @@
                             </div>
                         </div>
 
+                        <blc:credit_card_types>
+                            <div th:if="${paymentGatewayCardTypes != null}" class="form25">
+                                <label for="cardType" class="prompt">
+                                    <span th:text="#{cart.cardType}">Card Type</span>
+                                </label>
+                                <div class="form100">
+                                    <select id="cardType" th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
+                                        <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </blc:credit_card_types>
+
                         <div class="form25">
                             <label for="nameOnCard" class="prompt">
                                 <span th:text="#{cart.nameOnCard}">Name on the Card</span>
