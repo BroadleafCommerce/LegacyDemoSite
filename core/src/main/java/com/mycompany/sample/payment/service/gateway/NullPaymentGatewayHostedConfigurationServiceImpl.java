@@ -50,6 +50,12 @@ public class NullPaymentGatewayHostedConfigurationServiceImpl implements Payment
     @Resource(name = "blNullPaymentGatewayHostedService")
     protected PaymentGatewayHostedService hostedService;
 
+    @Resource(name = "blNullPaymentGatewayHostedTransactionConfirmationService")
+    protected PaymentGatewayTransactionConfirmationService transactionConfirmationService;
+
+    @Resource(name = "blNullPaymentGatewayHostedWebResponseService")
+    protected PaymentGatewayWebResponseService webResponseService;
+
     public PaymentGatewayConfiguration getConfiguration() {
         return configuration;
     }
@@ -59,7 +65,7 @@ public class NullPaymentGatewayHostedConfigurationServiceImpl implements Payment
     }
 
     public PaymentGatewayTransactionConfirmationService getTransactionConfirmationService() {
-        return null;
+        return transactionConfirmationService;
     }
 
     public PaymentGatewayReportingService getReportingService() {
@@ -91,7 +97,7 @@ public class NullPaymentGatewayHostedConfigurationServiceImpl implements Payment
     }
 
     public PaymentGatewayWebResponseService getWebResponseService() {
-        return null;
+        return webResponseService;
     }
 
     public PaymentGatewayTransparentRedirectService getTransparentRedirectService() {
