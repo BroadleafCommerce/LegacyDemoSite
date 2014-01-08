@@ -46,7 +46,7 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
     @Override
     public PaymentResponseDTO translateWebResponse(HttpServletRequest request) throws PaymentException {
         PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
-                NullPaymentGatewayType.NULL_GATEWAY)
+                NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .rawResponse(webResponsePrintService.printRequest(request));
 
         Map<String,String[]> paramMap = request.getParameterMap();

@@ -47,7 +47,7 @@ public class NullPaymentGatewayHostedRollbackServiceImpl implements PaymentGatew
         }
 
         return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
-                NullPaymentGatewayType.NULL_GATEWAY)
+                NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .rawResponse("rollback authorize - successful")
                 .successful(true)
                 .paymentTransactionType(PaymentTransactionType.REVERSE_AUTH)
@@ -67,7 +67,7 @@ public class NullPaymentGatewayHostedRollbackServiceImpl implements PaymentGatew
         }
 
         return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
-                NullPaymentGatewayType.NULL_GATEWAY)
+                NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .rawResponse("rollback authorize and capture - successful")
                 .successful(true)
                 .paymentTransactionType(PaymentTransactionType.VOID)

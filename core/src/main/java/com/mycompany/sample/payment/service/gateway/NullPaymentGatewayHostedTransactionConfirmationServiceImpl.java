@@ -57,7 +57,7 @@ public class NullPaymentGatewayHostedTransactionConfirmationServiceImpl implemen
         }
 
         return new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
-                NullPaymentGatewayType.NULL_GATEWAY)
+                NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .rawResponse("confirmation - successful")
                 .successful(true)
                 .paymentTransactionType(type)

@@ -52,7 +52,7 @@ public class NullPaymentGatewayHostedServiceImpl implements PaymentGatewayHosted
     @Override
     public PaymentResponseDTO requestHostedEndpoint(PaymentRequestDTO requestDTO) throws PaymentException {
         PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.THIRD_PARTY_ACCOUNT,
-                NullPaymentGatewayType.NULL_GATEWAY)
+                NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .completeCheckoutOnCallback(requestDTO.isCompleteCheckoutOnCallback())
                 .responseMap(NullPaymentGatewayConstants.ORDER_ID, requestDTO.getOrderId())
                 .responseMap(NullPaymentGatewayConstants.TRANSACTION_AMT, requestDTO.getTransactionTotal())
