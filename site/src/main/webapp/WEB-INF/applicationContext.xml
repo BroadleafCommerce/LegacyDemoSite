@@ -27,9 +27,17 @@
         <property name="targetRef" value="blDialectProcessors"/>
     </bean>
 
-    <bean id="blPaymentGatewayConfiguration" class="org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration">
-        <property name="transactionConfirmationService" ref="blNullPaymentGatewayHostedTransactionConfirmationService"/>
-        <property name="rollbackService" ref="blNullPaymentGatewayHostedRollbackService"/>
+    <bean id="mySampleConfigurationServices" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="blNullPaymentGatewayConfigurationService"/>
+                <ref bean="blNullPaymentGatewayHostedConfigurationService"
+            </list>
+        </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="mySampleConfigurationServices"/>
+        <property name="targetRef" value="blPaymentGatewayConfigurationServices"/>
     </bean>
     <!-- /End DemoSite NullPaymentGateway Config -->
 
