@@ -30,6 +30,7 @@ import org.broadleafcommerce.common.payment.service.PaymentGatewayTransactionSer
 import org.broadleafcommerce.common.payment.service.PaymentGatewayTransparentRedirectService;
 import org.broadleafcommerce.common.payment.service.PaymentGatewayWebResponseService;
 import org.broadleafcommerce.common.web.payment.expression.PaymentGatewayFieldExtensionHandler;
+import org.broadleafcommerce.common.web.payment.processor.CreditCardTypesExtensionHandler;
 import org.broadleafcommerce.common.web.payment.processor.TRCreditCardExtensionHandler;
 import org.springframework.stereotype.Service;
 
@@ -113,6 +114,10 @@ public class NullPaymentGatewayConfigurationServiceImpl implements PaymentGatewa
 
     public PaymentGatewayFieldExtensionHandler getFieldExtensionHandler() {
         return fieldExtensionHandler;
+    }
+
+    public CreditCardTypesExtensionHandler getCreditCardTypesExtensionHandler() {
+        return null;
     }
 
 }
