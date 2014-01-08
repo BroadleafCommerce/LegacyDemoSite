@@ -31,7 +31,7 @@
         <property name="sourceList">
             <list>
                 <ref bean="blNullPaymentGatewayConfigurationService"/>
-                <ref bean="blNullPaymentGatewayHostedConfigurationService"
+                <ref bean="blNullPaymentGatewayHostedConfigurationService"/>
             </list>
         </property>
     </bean>
