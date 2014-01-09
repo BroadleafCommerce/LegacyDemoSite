@@ -15,3 +15,4 @@ site/data/
 site/solrhome
 combined/data/
 combined/solrhome
+*.error
