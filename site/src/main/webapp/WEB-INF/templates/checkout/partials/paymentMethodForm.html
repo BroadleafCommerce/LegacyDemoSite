@@ -142,7 +142,11 @@
             </dt>
             <dd>
                 <div>
-                    <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
+                    <blc:form th:action="@{/checkout/cod/complete}"
+                              method="POST" id="complete_checkout"
+                              novalidate="novalidate">
+                        <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
+                    </blc:form>
                 </div>
             </dd>
         </dl>

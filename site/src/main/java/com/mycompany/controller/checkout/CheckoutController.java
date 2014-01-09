@@ -23,6 +23,7 @@ import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.FulfillmentOption;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.OrderPayment;
+import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.CustomerCreditInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
@@ -68,6 +69,12 @@ public class CheckoutController extends BroadleafCheckoutController {
     @RequestMapping(value = "/checkout/complete", method = RequestMethod.POST)
     public String processCompleteCheckoutOrderFinalized(RedirectAttributes redirectAttributes) throws PaymentException {
         return super.processCompleteCheckoutOrderFinalized(redirectAttributes);
+    }
+
+    @RequestMapping(value = "/checkout/cod/complete", method = RequestMethod.POST)
+    public String processPassthroughCheckout(RedirectAttributes redirectAttributes)
+            throws PaymentException, PricingException {
+        return super.processPassthroughCheckout(redirectAttributes, PaymentType.COD);
     }
 
     @InitBinder
