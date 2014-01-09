@@ -8,7 +8,7 @@
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
-        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="${PAYMENT_PROCESSING_ERROR}" class="form100 error">...</div>
+        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="form100 error">...</div>
 
         <div class="form100">
             <blc:form th:action="@{/checkout/complete}"
@@ -31,7 +31,7 @@
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
-        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="${PAYMENT_PROCESSING_ERROR}" class="form100 error">...</div>
+        <div th:if="${PAYMENT_PROCESSING_ERROR}" th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="form100 error">...</div>
 
         <dl id="paymentOptions">
             <dt>
