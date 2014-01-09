@@ -1,159 +1,138 @@
-<blc:form th:object="${billingInfoForm}" th:action="@{/checkout/complete}" method="post" id="billing_info" th:if="${validOrderInfo and validShipping}">
-        
-    <div class="left_content_billing payment_info">
-        <h3><span th:text="#{cart.paymentInfo}">Payment Information</span></h3>
+<div th:fragment="billing-info-form">
 
-        <ul id="payment_methods">
-            <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
-        </ul>
-
-        <dl id="paymentOptions">
-            <dt>
-                <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
-                <label for="paymentMethod_cc"><span th:text="#{cart.creditCard}">Credit Card</span></label>
-            </dt>
-            <dd>
-                <div id="creditCardFields">
-
-                    <span class="error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardNumber')}"/>
-                    <span class="error" th:if="${#fields.hasErrors('creditCardCvvCode')}" th:errors="*{creditCardCvvCode}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardCvvCode')}"/>
-                    <span class="error" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}"></span>
-                    <br th:if="${#fields.hasErrors('creditCardName')}"/>
-
-                    <div class="form25" style="width: 94%;">
-                        <div style="float: left; width: 70%;">
-                            <label for="cardNumber" class="prompt"><span th:text="#{cart.cardNumber}">Card Number</span></label>
-                            <div class="element">
-                                <input type="text" name="creditCardNumber" value="" id="cardNumber" class="field30" autocomplete="off" style="width: 100%" th:disabled="${!validShipping}" />
-                            </div>
-                        </div>
-                        <div style="float: right; padding-right: 2%; width: 16%">
-                            <label class="prompt"><span th:text="#{cart.cvv}">CVV</span></label>
-                            <div class="element">
-                                <input type="text" name="creditCardCvvCode" id="securityCode" class="field30" autocomplete="off" style="width: 100%"  th:disabled="${!validShipping}"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form25">
-                        <label for="nameOnCard" class="prompt"><span th:text="#{cart.nameOnCard}">Name on the Card</span></label>
-                        <div class="form100">
-                            <input type="text" th:field="*{creditCardName}" id="nameOnCard" class="field30" th:disabled="${!validShipping}" />
-                        </div>
-                    </div>
-
-                    <div class="form50">
-                        <label for="expirationMonth" class="prompt"><span th:text="#{cart.experationDate}">Expiration Date</span></label>
-                        <span class="error" th:if="${#fields.hasErrors('creditCardExpMonth')}" th:errors="*{creditCardExpMonth}"></span>
-                        <br th:if="${#fields.hasErrors('creditCardExpMonth')} and ${#fields.hasErrors('creditCardExpYear')}"/>
-                        <span class="error" th:if="${#fields.hasErrors('creditCardExpYear')}" th:errors="*{creditCardExpYear}"></span>
-                        <div class="element">
-                            <select th:field="*{creditCardExpMonth}" id="expirationMonth" class=" " th:disabled="${!validShipping}">
-                                <option th:each="month,itr : ${expirationMonths}" th:value="${itr.count}" th:text="${month}"></option>
-                            </select>
-                            <select th:field="*{creditCardExpYear}" id="expirationYear" class=" " th:disabled="${!validShipping}">
-                                <option th:each="year,itr : ${expirationYears}" th:value="${year}" th:text="${year}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-            </dd>
-            <dt>
-                <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
-                <label for="paymentMethod_paypal"><span th:text="#{cart.payPal}">PayPal</span></label>
-            </dt>
-            <dd>
-                <div id="paypalfields">
-                    <div class="form100">
-                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
-                    </div>
-                </div>
-            </dd>
-            <dt>
-                <input type="radio" name="paymentMethod" value="cod" id="paymentMethod_cod" />
-                <label for="paymentMethod_cod"><span th:text="#{cart.collectOnDelivery}">Collect On Delivery</span></label>
-            </dt>
-            <dd>
-                <div style="float:right;">
-                    <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
-                </div>
-            </dd>
-        </dl>
-
+    <div class="cart_title">
+        <span th:text="#{cart.billingInformation}">Billing Information</span>
+        <a th:if="${'SAVED' == sectionDTO.state.type}"
+           th:href="@{/checkout(edit-billing='true')}">
+            <span th:text="#{cart.edit}">Edit</span>
+        </a>
     </div>
 
-    <div id="billing_info_form" class="right_content_billing">
+    <div class="clearfix"></div>
 
-        <input type="hidden" name="address.country" value="US" />
-
-        <div class="form100" th:unless="${cart.fulfillmentGroups != null and numShippableFulfillmentGroups > 1}">
-            <input id="use_shipping_address" type="checkbox" th:field="*{useShippingAddress}" th:disabled="${!validShipping}" /> <span th:text="#{cart.useShppingInfo}">Use Shipping Information</span>
-        </div>
-
-        <div class="form30">
-            <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label>
-            <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
-            <input type="text" th:field="*{address.firstName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
-
-        <div class="form30 margin20">
-            <label for="lastName"><span th:text="#{cart.lastName}">Last Name</span></label>
-            <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
-            <input type="text" th:field="*{address.lastName}" class="field30 required clearable" th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
-
-        <div class="form30 margin20">
-            <label for="phone"><span th:text="#{cart.phone}">Phone</span></label>
-            <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-           <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary!=null}" th:value="*{address.phonePrimary.phoneNumber}" class="field30 clearable" />
-            <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary==null}" class="field30 clearable" />
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="form50">
-            <label for="address1"><span th:text="#{cart.address}">Address</span></label>
-            <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
-            <input type="text" th:field="*{address.addressLine1}" class="field50 required clearable" th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
-
-        <div class="form50 margin20">
-            <label for="address2"><span th:text="#{cart.address2}">Address 2</span></label>
-            <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
-            <input type="text" th:field="*{address.addressLine2}" class="field50 clearable" th:disabled="${!validShipping}" />
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="form30">
-            <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
-            <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
-            <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
-            <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
-            <input type="text" th:field="*{address.city}" class="field25 required clearable" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" th:disabled="${!validShipping}" />
-
-            <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required clearable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'" th:disabled="${!validShipping}">
-                <option value="">--</option>
-                <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
-            </select>
-        </div>
-
-        <div class="form25 margin20">
-            <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label>
-            <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
-            <input type="text" th:field="*{address.postalCode}" class="field25 clearable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
-
-        <div style="float:right;">
-            <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>
-        </div>
-
+    <div class="checkout_warning"
+         th:if="${'INACTIVE' == sectionDTO.state.type}">
+        <span th:text="${sectionDTO.helpMessage}"></span>
     </div>
-</blc:form>
+
+    <blc:form th:object="${billingInfoForm}"
+              th:action="@{/checkout/billing}"
+              method="post" id="billing_info"
+              novalidate="novalidate">
+
+        <div th:if="${'SAVED' == sectionDTO.state.type
+                        and !#fields.hasErrors('*')}"
+             th:inline="text" class="clearfix">
+            <div class="group shipping-info-read-only">
+                <h3><span th:text="#{cart.billingAddress}">Billing Address</span></h3>
+                <address th:if="*{address.phonePrimary !=null and address.phonePrimary.phoneNumber != null}">
+                    [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
+                    [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                    [[*{address.phonePrimary.phoneNumber}]]
+                </address>
+                <address th:if="*{address.phonePrimary == null or address.phonePrimary.phoneNumber == null}">
+                    [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
+                    [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                </address>
+            </div>
+        </div>
+
+        <!--/* We still have to render the billing form so the JavaScript can copy the fields, we will just add the class of 'hide' */-->
+        <div id="billing_info_form"
+             th:classappend="${('SAVED' == sectionDTO.state.type or 'INACTIVE' == sectionDTO.state.type) and !#fields.hasErrors('*')} ? 'hide'">
+
+            <input type="hidden" name="address.country" value="US" />
+
+            <div class="form30">
+                <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label>
+                <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
+                <input type="text" th:field="*{address.firstName}"
+                       class="field30 required cloneable"
+                       th:classappend="${#fields.hasErrors('address.firstName')}? 'fieldError'" />
+            </div>
+
+            <div class="form30 margin20">
+                <label for="lastName"><span th:text="#{cart.lastName}">Last Name</span></label>
+                <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
+                <input type="text"
+                       th:field="*{address.lastName}"
+                       class="field30 required cloneable"
+                       th:classappend="${#fields.hasErrors('address.lastName')}? 'fieldError'" />
+            </div>
+
+            <div class="form30 margin20">
+                <label for="phone"><span th:text="#{cart.phone}">Phone</span></label>
+                <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
+                <input type="tel"
+                       id="address.phonePrimary"
+                       name="address.phonePrimary"
+                       th:if="*{address.phonePrimary!=null}"
+                       th:value="*{address.phonePrimary.phoneNumber}"
+                       class="field30 cloneable" />
+                <input type="tel"
+                       id="address.phonePrimary"
+                       name="address.phonePrimary"
+                       th:if="*{address.phonePrimary==null}" class="field30 cloneable" />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="form50">
+                <label for="address1"><span th:text="#{cart.address}">Address</span></label>
+                <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
+                <input type="text"
+                       th:field="*{address.addressLine1}"
+                       class="field50 required cloneable"
+                       th:classappend="${#fields.hasErrors('address.addressLine1')}? 'fieldError'" />
+            </div>
+
+            <div class="form50 margin20">
+                <label for="address2"><span th:text="#{cart.address2}">Address 2</span></label>
+                <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
+                <input type="text"
+                       th:field="*{address.addressLine2}" class="field50 cloneable" />
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="form30">
+                <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
+                <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
+                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
+                <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
+                <input type="text"
+                       th:field="*{address.city}"
+                       class="field25 required cloneable"
+                       th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
+
+                <select id="state" th:field="*{address.state}" size="1" style="width: 48px;"
+                        class="required cloneable"
+                        th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
+                    <option value="">--</option>
+                    <option th:each="state : ${states}"
+                            th:value="${state.abbreviation}"
+                            th:text="${state.abbreviation}">
+
+                     </option>
+                </select>
+            </div>
+
+            <div class="form25 margin20">
+                <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label>
+                <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
+                <input type="text"
+                       th:field="*{address.postalCode}"
+                       class="field25 cloneable"
+                       th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
+            </div>
+
+            <div style="float:right;">
+                <input type="submit" class="medium red" value="Save Billing" />
+            </div>
+
+        </div>
+    </blc:form>
+
+</div>

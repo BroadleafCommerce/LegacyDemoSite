@@ -1,0 +1,25 @@
+<div th:fragment="payment-info-form">
+
+    <div class="cart_title">
+        <span th:text="#{cart.payment.options}">Payment Options</span>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="checkout_warning"
+         th:if="${'INACTIVE' == sectionDTO.state.type}">
+        <span th:text="${sectionDTO.helpMessage}"></span>
+    </div>
+
+    <div th:if="${'FORM' == sectionDTO.state.type}"
+         id="payment_info_form">
+
+        <div th:replace="checkout/partials/accountCreditForm :: account-credit-form"></div>
+
+        <div th:replace="checkout/partials/paymentMethodForm :: payment-method-form"></div>
+
+        <div class="clearfix"></div>
+
+    </div>
+
+</div>
