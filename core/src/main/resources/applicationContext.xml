@@ -19,5 +19,37 @@
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         
     <!-- Shared properties between admin and site go here -->
-    
+
+    <!-- Scan DemoSite Sample Payment Gateway Implementation -->
+    <context:component-scan base-package="com.mycompany.sample" />
+    <bean class="com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType"/>
+
+    <!-- Add Sample Thymeleaf Processor to test Hosted Payment Gateway (e.g. PayPal Express Flow) -->
+    <bean id="myNullPaymentGatewayHostedActionProcessor" class="com.mycompany.sample.vendor.nullPaymentGateway.web.processor.NullPaymentGatewayHostedActionProcessor"/>
+    <bean id="mySamplePaymentProcessors" class="org.springframework.beans.factory.config.SetFactoryBean">
+        <property name="sourceSet">
+            <set>
+                <ref bean="myNullPaymentGatewayHostedActionProcessor"/>
+            </set>
+        </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="mySamplePaymentProcessors"/>
+        <property name="targetRef" value="blDialectProcessors"/>
+    </bean>
+
+    <bean id="mySampleConfigurationServices" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="blNullPaymentGatewayConfigurationService"/>
+                <ref bean="blNullPaymentGatewayHostedConfigurationService"/>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="mySampleConfigurationServices"/>
+        <property name="targetRef" value="blPaymentGatewayConfigurationServices"/>
+    </bean>
+    <!-- /End DemoSite NullPaymentGateway Config -->
+
 </beans>
