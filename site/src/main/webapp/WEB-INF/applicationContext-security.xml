@@ -89,15 +89,6 @@
         <property name="userPropertyToUse" value="username" />
     </bean>
     
-    <!--  User details service that authenticates using customer data in the database. -->
-    <sec:jdbc-user-service data-source-ref="webDS"
-        id="blUserDetailsService"
-        users-by-username-query="SELECT USER_NAME,PASSWORD, NOT DEACTIVATED FROM BLC_CUSTOMER WHERE USER_NAME=?"
-        authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c 
-                                          JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
-                                          JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
-                                          WHERE USER_NAME=?" />
-    
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
         <property name="excludedRequestPatterns">
             <list>
