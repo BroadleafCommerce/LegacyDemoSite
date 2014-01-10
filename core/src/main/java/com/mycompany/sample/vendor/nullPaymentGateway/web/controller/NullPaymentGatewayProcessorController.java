@@ -240,11 +240,11 @@ public class NullPaymentGatewayProcessorController {
 
             if (!validDate || !validDateFormat) {
                 transactionAmount = "0";
-                resultMessage = "The expiration date is invalid. Please use (MM/YY)";
+                resultMessage = "cart.payment.expiration.invalid";
                 resultSuccess = "false";
             } else if (!validCard) {
                 transactionAmount = "0";
-                resultMessage = "The card number you entered is invalid.";
+                resultMessage = "cart.payment.card.invalid";
                 resultSuccess = "false";
             } else {
                 resultMessage = "Success!";
@@ -253,7 +253,7 @@ public class NullPaymentGatewayProcessorController {
 
         } else {
             transactionAmount = "0";
-            resultMessage = "There was a problem processing your request. Invalid Arguments.";
+            resultMessage = "cart.payment.invalid";
             resultSuccess = "false";
         }
 
