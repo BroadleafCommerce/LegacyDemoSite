@@ -523,6 +523,13 @@ nav {
     background-color: #E7E3E2;
 }
 
+#cart .payment-error {
+    background: url('../img/sidebarbg.jpg') repeat;
+    border: 1px solid #d2c3b6;
+    margin: 0 30px;
+    padding: 5px 10px;
+}
+
 #order_confirmation h2 {
     font: 30px/30px 'Oxygen', Helvetica, sans-serif;
     color: #262322;

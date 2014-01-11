@@ -15,6 +15,12 @@
 
         <div th:unless="${#lists.isEmpty(cart.orderItems)}">
 
+            <p th:if="${PAYMENT_PROCESSING_ERROR}" class="payment-error">
+                <span th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="error">...</span>
+            </p>
+
+            <div class="clearfix"></div>
+
             <div th:replace="checkout/partials/orderSummary :: order-summary"></div>
 
             <div class="clearfix"></div>
