@@ -526,7 +526,6 @@ nav {
 #cart .payment-error {
     background: url('../img/sidebarbg.jpg') repeat;
     border: 1px solid #d2c3b6;
-    margin: 0 30px;
     padding: 5px 10px;
 }
 
