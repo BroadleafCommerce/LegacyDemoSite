@@ -74,14 +74,12 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
-    <!--  User details service that authenticates using customer data in the database. -->
-    <sec:jdbc-user-service data-source-ref="webDS"
-        id="blUserDetailsService"
-        users-by-username-query="SELECT USER_NAME,PASSWORD,TRUE FROM BLC_CUSTOMER WHERE USER_NAME=?"
-        authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c
-                                          JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID
-                                          JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID
-                                          WHERE USER_NAME=?" />
+    <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
+        on a per-customer basis or if you need to allow users to change their password then you will need to modify this
+        configuration and likely provide a custom UserDetailsService. -->
+    <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <property name="userPropertyToUse" value="id" />
+    </bean>
 
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
 
@@ -98,9 +96,6 @@
         <property name="targetUrlParameter" value="successUrl" />
         <property name="alwaysUseDefaultTargetUrl" value="false" />
     </bean>
-
-
-
 
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
            <property name="propertyLocations"  value="classpath:/test/load-properties/"/>
