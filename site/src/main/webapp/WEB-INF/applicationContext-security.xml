@@ -81,12 +81,11 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
     
-    <!-- Configuration for salting user passwords. This configuration will use the 'username' property as the salt, which
-        implies that the username cannot change. If you would like to change this property or generate a random salt to store
+    <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
         on a per-customer basis or if you need to allow users to change their password then you will need to modify this
         configuration and likely provide a custom UserDetailsService. -->
     <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-        <property name="userPropertyToUse" value="username" />
+        <property name="userPropertyToUse" value="id" />
     </bean>
     
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
