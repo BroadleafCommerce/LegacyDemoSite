@@ -73,6 +73,13 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
+    <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
+        on a per-customer basis or if you need to allow users to change their password then you will need to modify this
+        configuration and likely provide a custom UserDetailsService. -->
+    <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <property name="userPropertyToUse" value="id" />
+    </bean>
+
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
 
     <!-- Sets the login failure URL -->
@@ -88,9 +95,6 @@
         <property name="targetUrlParameter" value="successUrl" />
         <property name="alwaysUseDefaultTargetUrl" value="false" />
     </bean>
-
-
-
 
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
            <property name="propertyLocations"  value="classpath:/test/load-properties/"/>

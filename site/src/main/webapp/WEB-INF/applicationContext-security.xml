@@ -24,7 +24,8 @@
     <sec:http pattern="/css/**" security="none" />
     <sec:http pattern="/fonts/**" security="none" />
     <sec:http pattern="/img/**" security="none" />
-    <sec:http pattern="/js/**" security="none" />       
+    <sec:http pattern="/js/**" security="none" />
+    <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />       
     
     <!-- Set up Spring security for the application -->
@@ -46,9 +47,6 @@
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
         <sec:intercept-url pattern="/cart/**" requires-channel="any" />
-        
-        <!-- Static assets should be allowed to be served under any channel -->
-        <sec:intercept-url pattern="/**/${asset.server.url.prefix.internal}/**" requires-channel="any"/>
         
         <!-- All URLs not explicitly specified as https will be served under http -->
         <sec:intercept-url pattern="/" requires-channel="http"/>
@@ -97,7 +95,7 @@
             </list>
         </property>
     </bean>
-                                          
+
     <!-- Sets the login failure URL -->
     <bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
         <constructor-arg value="/login?error=true" />
