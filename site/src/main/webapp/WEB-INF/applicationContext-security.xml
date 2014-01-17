@@ -96,7 +96,7 @@
     <!-- Sets the login success URL -->
     <bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
         <property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
-        <property name="defaultTargetUrl" value="/account" />
+        <property name="defaultTargetUrl" value="/" />
         <property name="targetUrlParameter" value="successUrl" />
         <property name="alwaysUseDefaultTargetUrl" value="false" />
     </bean>
