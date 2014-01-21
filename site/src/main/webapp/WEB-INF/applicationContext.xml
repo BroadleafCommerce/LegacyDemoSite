@@ -67,12 +67,12 @@
         <constructor-arg value="solrhome"/>
     </bean>
 
-    <!--A simple quartz job for enabling cart purge functionality. Uncomment the following quartz configuration-->
-    <!--to activate this functionality (Also, uncomment the 'purgeCartTrigger' configured under SchedulerFactoryBean.-->
+    <!--A simple quartz jobs for enabling cart and customer purge functionality. Uncomment the following quartz configurations-->
+    <!--to activate this functionality (Also, uncomment the 'purgeCartTrigger' and 'purgeCustomerTrigger' configured under SchedulerFactoryBean.-->
     <!--Note, you can edit the configuration to customize the functionality. Take a look-->
-    <!--at PurgeCartVariableNames for a list of available params and ResourcePurgeService for additional information. Also,-->
+    <!--at PurgeCartVariableNames and PurgeCustomerVariableNames for a list of available params and ResourcePurgeService for additional information. Also,-->
     <!--for custom resource retrieval beyond the scope of the existing implementation, ResourcePurgeServiceImpl can be subclassed-->
-    <!--to provide custom resource retrieval functionality. Please see Quartz documentation for more advanced configuration-->
+    <!--to provide custom resource retrieval functionality. Please see Quartz documentation for more advanced configuration,-->
     <!--such as clustering.-->
 
     <!--<bean id="purgeCartConfig" class="org.springframework.beans.factory.config.MapFactoryBean">-->
@@ -96,6 +96,31 @@
 
     <!--<bean id="purgeCartTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">-->
         <!--<property name="jobDetail" ref="purgeCartJobDetail" />-->
+        <!--<property name="startDelay" value="30000" />-->
+        <!--<property name="repeatInterval" value="86400000" />-->
+    <!--</bean>-->
+
+    <!--<bean id="purgeCustomerConfig" class="org.springframework.beans.factory.config.MapFactoryBean">-->
+        <!--<property name="sourceMap">-->
+            <!--<map>-->
+                <!--<entry key="SECONDS_OLD" value="2592000"/>-->
+                <!--<entry key="IS_REGISTERED" value="false"/>-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="purgeCustomerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--<property name="targetObject" ref="blResourcePurgeService" />-->
+        <!--<property name="targetMethod" value="purgeCustomers" />-->
+        <!--<property name="arguments">-->
+            <!--<list>-->
+                <!--<ref bean="purgeCustomerConfig"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="purgeCustomerTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">-->
+        <!--<property name="jobDetail" ref="purgeCustomerJobDetail" />-->
         <!--<property name="startDelay" value="30000" />-->
         <!--<property name="repeatInterval" value="86400000" />-->
     <!--</bean>-->
@@ -131,6 +156,7 @@
             <list>
                 <ref bean="rebuildIndexTrigger" />
                 <!--<ref bean="purgeCartTrigger" />-->
+                <!--<ref bean="purgeCustomerTrigger" />-->
             </list>
         </property>
     </bean>
