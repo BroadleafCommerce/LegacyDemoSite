@@ -30,7 +30,7 @@
     <sec:http pattern="/robots.txt" security="none" />
     
     <!-- Set up Spring security for the application -->
-    <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
+    <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" disable-url-rewriting="true">
         <!-- We handle session fixation protection ourselves  -->
         <sec:session-management session-fixation-protection="none" />
         

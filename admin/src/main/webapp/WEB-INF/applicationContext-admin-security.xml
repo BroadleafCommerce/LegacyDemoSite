@@ -35,7 +35,8 @@
     <sec:http pattern="/sendResetPassword" security="none" />
     
     <!-- Set up Spring security for the application -->
-    <sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" entry-point-ref="adminAuthenticationEntryPoint">
+    <sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" 
+            entry-point-ref="adminAuthenticationEntryPoint" disable-url-rewriting="true">
         <!-- All admin URLs will be secured with https -->
         <sec:intercept-url pattern="/**" requires-channel="any" />
         <sec:intercept-url pattern="/" requires-channel="any" />
