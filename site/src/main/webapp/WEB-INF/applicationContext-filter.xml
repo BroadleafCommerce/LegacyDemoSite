@@ -20,14 +20,15 @@
     <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">        
             <sec:filter-chain pattern="/**" filters="
-               openEntityManagerInViewFilter,
-               blRequestFilter"/>
+               openEntityManagerInViewFilter" />
         </sec:filter-chain-map>
     </bean>
 
     <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
+               blRequestFilter,
+               blCustomerStateFilter,
                blURLHandlerFilter,
                blTranslationFilter,
                blCartStateFilter"/>
