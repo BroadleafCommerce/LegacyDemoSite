@@ -231,6 +231,7 @@ public class NullPaymentGatewayProcessorController {
                 String expYear = parsedDate[1];
                 try {
                     DateTime expirationDate = new DateTime(Integer.parseInt("20"+expYear), Integer.parseInt(expMonth), 1, 0, 0);
+                    expirationDate = expirationDate.dayOfMonth().withMaximumValue();
                     validDate = expirationDate.isAfterNow();
                     validDateFormat = true;
                 } catch (Exception e) {
