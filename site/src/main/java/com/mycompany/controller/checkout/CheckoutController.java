@@ -61,7 +61,10 @@ public class CheckoutController extends BroadleafCheckoutController {
     }
 
     @RequestMapping(value = "/checkout/savedetails", method = RequestMethod.POST)
-    public String saveGlobalOrderDetails(HttpServletRequest request, Model model, 
+    public String saveGlobalOrderDetails(HttpServletRequest request, Model model,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm, BindingResult result) throws ServiceException {
         return super.saveGlobalOrderDetails(request, model, orderInfoForm, result);
     }
