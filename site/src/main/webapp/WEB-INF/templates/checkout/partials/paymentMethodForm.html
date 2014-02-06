@@ -4,7 +4,7 @@
          th:unless="${showAllPaymentMethods}">
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
-        <ul id="payment_methods">
+        <ul th:if="${orderContainsThirdPartyPayment}" id="payment_methods">
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
