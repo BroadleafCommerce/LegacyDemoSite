@@ -30,9 +30,9 @@
             <sec:filter-chain pattern="/**" filters="
                blRequestFilter,
                blCustomerStateFilter,
-               blURLHandlerFilter,
                blTranslationFilter,
-               blCartStateFilter"/>
+               blCartStateFilter,
+               blURLHandlerFilter"/>
         </sec:filter-chain-map>
     </bean>
     
