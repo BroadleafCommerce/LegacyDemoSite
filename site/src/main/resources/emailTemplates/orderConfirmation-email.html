@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td style="font: 16px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                            Thank you for your order, <span th:text="${customer.firstName + ' ' + customer.lastName}" />!
+                            Thank you for your order<span th:unless="${customer.anonymous}" th:text="${', ' + customer.firstName + ' ' + customer.lastName}" />!
                         </td>
                     </tr>
                     <tr>   <!-- Order summary table -->
@@ -36,7 +36,7 @@
                                         <th style="border-bottom: dotted 1px #afafaf;">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody style="font: 14px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                <tbody style="font: 14px/16px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                     <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}" >
                                         <td align="left" style="padding: 5px 5px 5px 0">
                                             <span th:text="*{product.name}"></span>
@@ -54,7 +54,13 @@
                                         <td align="center" style="color: #E40037;" th:if="*{adjustmentValue.zero}">---</td>
                                         <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" >
                                              <span  align="center"  blc:price="*{adjustmentValue}" class="promotion" ></span>
-                                             <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+                                             <div th:if="*{#lists.size(orderItemPriceDetails)>=1}" >
+                                                <div th:each="orderItemPriceDetail : *{orderItemPriceDetails}" th:object="${orderItemPriceDetail}">
+                                                    <div th:each="orderItemPriceDetailAdjustment : ${orderItemPriceDetail.orderItemPriceDetailAdjustments}" th:object="${orderItemPriceDetailAdjustment}" >                   
+                                                        <span th:text="*{offerName}"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>
                                     </tr>
@@ -105,69 +111,71 @@
                         <td colspan="2">
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
-                                    <td>
-                                        <address th:if="*{address.phonePrimary != null}">
-                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.phonePrimary.phoneNumber}]]<br/>
-                                            [[*{address.addressLine1}]]<br/>
-                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
-                                        </address>
-                                        <address th:if="*{address.phonePrimary == null}">
-                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.addressLine1}]]<br/>
-                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
-                                        </address>
-                                    </td>
-                                    <td>
-                                        <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                                            <tr>
-                                                <td>
-                                                    <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
-                                                        Shipping Method
-                                                    </h3>
-                                                    <b>[[*{fulfillmentOption.name}]]</b><br/>
-                                                    ([[*{fulfillmentOption.longDescription}]])
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
+                                    <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
+                                        <td>
+                                            <address th:if="*{address.phonePrimary != null}">
+                                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                                [[*{address.phonePrimary.phoneNumber}]]<br/>
+                                                [[*{address.addressLine1}]]<br/>
+                                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            </address>
+                                            <address th:if="*{address.phonePrimary == null}">
+                                                [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
+                                                [[*{address.addressLine1}]]<br/>
+                                                [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                            </address>
+                                        </td>
+                                        <td>
+                                            <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                                <tr>
+                                                    <td>
+                                                        <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
+                                                            Shipping Method
+                                                        </h3>
+                                                        <b>[[*{fulfillmentOption.name}]]</b><br/>
+                                                        ([[*{fulfillmentOption.longDescription}]])
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </div>
                                 </tr>
                                 <!-- Shipping information table - Multi-ship -->
                                 <tr th:if="${#lists.size(order.fulfillmentGroups) > 1}" >
                                     <td>
                                         <table width="100%" th:object="${order.fulfillmentGroups[0]}" style="padding: 4px; margin-bottom: 3px; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                             <tr th:each="fg : ${order.fulfillmentGroups}" th:object="${fg}" >
-                                                <td style="border: 1px dotted #C8C3C1; padding: 4px;">
-                                                    <h4 style="margin: 0 0 5px;">
-                                                        <span th:classappend="*{address == null}? 'error'"
-                                                              th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
-                                                        <span>&nbsp;-&nbsp;</span>
-                                                        <span th:classappend="*{fulfillmentOption == null}? 'error'"
-                                                              th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
-                                                        <span blc:price="*{shippingPrice}" style="font-weight: normal; float: right;"></span>
-                                                    </h4>
-                                                    <table style="margin-left: 50px; vertical-align: top; padding: 5px 0; font: 12px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                                                        <tbody>
-                                                        <tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
-                                                            <td align="center" th:text="${item.quantity}"></td>
-                                                            <td align="left">
-                                                                <span th:text="*{sku.name}"></span>
-                                                                <blc:product_option_display orderItem="${item.orderItem}" >
-                                                                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
-                                                                         <li th:each="entry: ${productOptionDisplayValues}">
-                                                                           <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
-                                                                         </li>
-                                                                     </ul>
-                                                                </blc:product_option_display>
-                                                             </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
+                                                <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
+                                                    <td style="border: 1px dotted #C8C3C1; padding: 4px;">
+                                                        <h4 style="margin: 0 0 5px;">
+                                                            <span th:classappend="*{address == null}? 'error'"
+                                                                  th:text="*{address == null ? 'Missing Address' : address.firstName + ' at ' + address.addressLine1}"></span>
+                                                            <span>&nbsp;-&nbsp;</span>
+                                                            <span th:classappend="*{fulfillmentOption == null}? 'error'"
+                                                                  th:text="*{fulfillmentOption == null ? 'Missing Fulfillment Option' : fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"></span>
+                                                            <span blc:price="*{shippingPrice}" style="font-weight: normal; float: right;"></span>
+                                                        </h4>
+                                                        <table style="margin-left: 50px; vertical-align: top; padding: 5px 0; font: 12px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                                            <tbody>
+                                                            <tr th:each="item : *{fulfillmentGroupItems}" th:object="${item.orderItem}" th:id="${'productRow' + item.id}">
+                                                                <td align="center" th:text="${item.quantity}"></td>
+                                                                <td align="left">
+                                                                    <span th:text="*{sku.name}"></span>
+                                                                    <blc:product_option_display orderItem="${item.orderItem}" >
+                                                                         <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                                                             <li th:each="entry: ${productOptionDisplayValues}">
+                                                                               <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                                                             </li>
+                                                                         </ul>
+                                                                    </blc:product_option_display>
+                                                                 </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </div>
                                             </tr>
                                         </table>
                                     </td>
@@ -183,37 +191,46 @@
                     <tr> <!-- Billing information table -->
                         <td colspan="2">
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                                <tr th:each="paymentInfo : ${order.paymentInfos}" th:object="${paymentInfo}" th:inline="text">
-                                    <td>
-                                        <address th:if="*{address.phonePrimary != null}">
-                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.phonePrimary}]]<br/>
-                                            [[*{address.addressLine1}]]<br/>
-                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
-                                        </address>
-                                        <address th:if="*{address.phonePrimary == null}">
-                                            [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                                            [[*{address.addressLine1}]]<br/>
-                                            [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
-                                        </address>
-                                    </td>
-                                    <td>
-                                        <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
+                                <tr th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
+                                    <td th:if="${payment.active}">
+                                        <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                             <tr>
                                                 <td>
                                                     <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
-                                                        Payment Information
-                                                    </h3>
-                                                    <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
-                                                    ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
-                                                    exp. <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                                                        Payment Method
+                                                    </h3>          
+                                                    Payment type: [[*{type.friendlyType}]]<br/>
+                                                    Amount paid: <span blc:price="*{amount}" />
+                                                    <div th:if="${payment.initialTransaction != null}">
+                                                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
+                                                            <b th:text="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
+                                                            ****<span th:text="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
+                                                            <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{initialTransaction.additionalFields['EXP_DATE']}"/>
+                                                            <address th:if="*{billingAddress.phonePrimary != null}">
+                                                                [[*{billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName}]]<br/>
+                                                                [[*{billingAddress.phonePrimary.phoneNumber}]]<br/>
+                                                                [[*{billingAddress.addressLine1}]]<br/>
+                                                                [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
+                                                                [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
+                                                            </address>
+                                                            <address th:if="*{billingAddress.phonePrimary == null}">
+                                                                [[*{billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName}]]<br/>
+                                                                [[*{billingAddress.addressLine1}]]<br/>
+                                                                [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
+                                                                [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
+                                                            </address>
+                                                        </div>
+                                                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
+                                                            <span th:text="#{cart.accountCredit.accounts}">Accounts</span><br/>
+                                                            <b th:text="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                                                        </div>
+                                                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
+                                                            <span th:text="#{cart.giftCardNumber}">Gift Card Number</span><br/>
+                                                            <b th:text="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
-
                                         </table>
                                     </td>
                                 </tr>

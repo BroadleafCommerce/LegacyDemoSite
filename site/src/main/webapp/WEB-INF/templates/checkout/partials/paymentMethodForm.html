@@ -1,0 +1,152 @@
+<div th:fragment="payment-method-form">
+
+    <div class="right_content payment_info"
+         th:unless="${showAllPaymentMethods}">
+        <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
+
+        <ul th:if="${orderContainsThirdPartyPayment}" id="payment_methods">
+            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+        </ul>
+
+        <div class="form100">
+            <blc:form th:action="@{/checkout/complete}"
+                      method="POST" id="complete_checkout"
+                      novalidate="novalidate">
+                <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
+            </blc:form>
+        </div>
+
+    </div>
+
+    <div class="right_content payment_info"
+            th:if="${showAllPaymentMethods}">
+        <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
+
+        <ul id="payment_methods">
+            <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+        </ul>
+
+        <dl id="paymentOptions">
+            <dt>
+                <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
+                <label for="paymentMethod_cc"><span th:text="#{cart.creditCard}">Credit Card</span></label>
+            </dt>
+            <dd>
+                <blc:transparent_credit_card_form paymentRequestDTO="${paymentRequestDTO}"
+                                                  action="#"
+                                                  role="form"
+                                                  method="POST">
+                    <div id="creditCardFields">
+
+                        <div class="form25" style="width: 94%;">
+                            <div style="float: left; width: 70%;">
+                                <label for="cardNumber" class="prompt">
+                                    <span th:text="#{cart.cardNumber}">Card Number</span>
+                                </label>
+                                <div class="element">
+                                    <input type="text"
+                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardNum')}"
+                                           value=""
+                                           id="cardNumber"
+                                           class="field30"
+                                           autocomplete="off"
+                                           style="width: 100%"  />
+                                </div>
+                            </div>
+                            <div style="float: right; padding-right: 2%; width: 16%">
+                                <label class="prompt">
+                                    <span th:text="#{cart.cvv}">CVV</span>
+                                </label>
+                                <div class="element">
+                                    <input type="text"
+                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardCvv')}"
+                                           id="securityCode"
+                                           class="field30"
+                                           autocomplete="off"
+                                           style="width: 100%"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <blc:credit_card_types>
+                            <div th:if="${paymentGatewayCardTypes != null}" class="form25" style="width: 94%;">
+                                <label for="cardType" class="prompt">
+                                    <span th:text="#{cart.cardType}">Card Type</span>
+                                </label>
+                                <div class="form100">
+                                    <select id="cardType" th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
+                                        <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </blc:credit_card_types>
+
+                        <div class="form25" style="width: 94%;">
+                            <label for="nameOnCard" class="prompt">
+                                <span th:text="#{cart.nameOnCard}">Name on the Card</span>
+                            </label>
+                            <div class="form100">
+                                <input type="text"
+                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardHolderName')}"
+                                       id="nameOnCard"
+                                       class="field30"  />
+                            </div>
+                        </div>
+
+                        <div class="form25" style="width: 94%;">
+                            <div style="float: left; width: 30%;">
+                                <label for="cardExpDate" class="prompt">
+                                    <span th:text="#{cart.experationDate}">Expiration Date</span>
+                                </label>
+                                <div class="element">
+                                    <input type="text"
+                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardExpDate')}"
+                                           id="cardExpDate"
+                                           class="field30"
+                                           autocomplete="off"
+                                           placeholder="MM/YY"
+                                           style="width: 100%"  />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <input type="submit" class="medium red" value="Checkout" />
+
+                </blc:transparent_credit_card_form>
+
+            </dd>
+            <dt>
+                <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
+                <label for="paymentMethod_paypal"><span th:text="#{cart.payPal}">PayPal</span></label>
+            </dt>
+            <dd>
+                <div id="paypalfields">
+                    <div class="form100">
+                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
+                    </div>
+                </div>
+            </dd>
+            <dt>
+                <input type="radio" name="paymentMethod" value="cod" id="paymentMethod_cod" />
+                <label for="paymentMethod_cod"><span th:text="#{cart.collectOnDelivery}">Collect On Delivery</span></label>
+            </dt>
+            <dd>
+                <div>
+                    <blc:form th:action="@{/checkout/cod/complete}"
+                              method="POST" id="complete_checkout"
+                              novalidate="novalidate">
+                        <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
+                    </blc:form>
+                </div>
+            </dd>
+        </dl>
+
+    </div>
+
+</div>

@@ -155,6 +155,7 @@
         <property name="sourceMap">
             <map>
                 <entry key="admin.js" value-ref="blJsFileList"/>
+                <entry key="admin.css" value-ref="blCssFileList"/>
             </map>
         </property>  
     </bean>
@@ -162,4 +163,5 @@
     <bean id="blResourceBundlingService" class="org.broadleafcommerce.common.resource.service.ResourceBundlingServiceImpl">
         <property name="additionalBundleFiles" ref="blJsFileMap"/>
     </bean>
+    
 </beans>

@@ -282,7 +282,7 @@ header {
 }
 
     #header_content_checkout #checkout_info {
-        width: 450px;
+        width: 500px;
         text-align: right;
         float: right;
         margin-top: 10px;
@@ -521,6 +521,12 @@ nav {
     font: 15px/28px 'Oxygen', Helvetica, sans-serif;
     text-align: center;
     background-color: #E7E3E2;
+}
+
+#cart .payment-error {
+    background: url('../img/sidebarbg.jpg') repeat;
+    border: 1px solid #d2c3b6;
+    padding: 5px 10px;
 }
 
 #order_confirmation h2 {
@@ -768,6 +774,10 @@ li.promotion,  ul.promotion{
 
 .order-details-container .shipping-type, .order-details-container .payment-method {
     margin-top: 20px;
+}
+
+.payment-method {
+    margin-right: 10px;
 }
 
 .order-details-container .shipment-total, .order-details-container .grand-total {
@@ -1198,7 +1208,7 @@ ul#payment_methods li {
 #paymentOptions dd {
     margin: 5px;
 }
-    
+
 #multiship-products {
     width: 720px;
 }
@@ -2669,14 +2679,25 @@ and (max-width : 480px) {
   display:block;
 }
 
-/* =============================================================================
-   fancyBox v2.0.6
+/*! ============================================================================
+   fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license
    ========================================================================== */
-
-.fancybox-tmp iframe, .fancybox-tmp object {
-    vertical-align: top;
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp
+{
     padding: 0;
     margin: 0;
+    border: 0;
+    outline: none;
+    vertical-align: top;
 }
 
 .fancybox-wrap {
@@ -2688,8 +2709,6 @@ and (max-width : 480px) {
 
 .fancybox-skin {
     position: relative;
-    padding: 0;
-    margin: 0;
     background: #f9f9f9;
     color: #444;
     text-shadow: none;
@@ -2699,7 +2718,7 @@ and (max-width : 480px) {
 }
 
 .fancybox-opened {
-    z-index: 10000;
+    z-index: 8030;
 }
 
 .fancybox-opened .fancybox-skin {
@@ -2709,14 +2728,11 @@ and (max-width : 480px) {
 }
 
 .fancybox-outer, .fancybox-inner {
-    padding: 0;
-    margin: 0;
     position: relative;
-    outline: none;
 }
 
 .fancybox-inner {
-    overflow-x: hidden !important;
+    overflow: hidden;
 }
 
 .fancybox-type-iframe .fancybox-inner {
@@ -2727,17 +2743,14 @@ and (max-width : 480px) {
     color: #444;
     font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
-    padding: 10px;
+    padding: 15px;
+    white-space: nowrap;
 }
 
 .fancybox-image, .fancybox-iframe {
     display: block;
     width: 100%;
     height: 100%;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
 }
 
 .fancybox-image {
@@ -2758,7 +2771,7 @@ and (max-width : 480px) {
     background-position: 0 -108px;
     opacity: 0.8;
     cursor: pointer;
-    z-index: 8020;
+    z-index: 8060;
 }
 
 #fancybox-loading div {
@@ -2783,6 +2796,7 @@ and (max-width : 480px) {
     width: 40%;
     height: 100%;
     cursor: pointer;
+    text-decoration: none;
     background: transparent url('../img/blank.gif'); /* helps IE */
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     z-index: 8040;
@@ -2808,12 +2822,12 @@ and (max-width : 480px) {
 }
 
 .fancybox-prev span {
-    left: 20px;
+    left: 10px;
     background-position: 0 -36px;
 }
 
 .fancybox-next span {
-    right: 20px;
+    right: 10px;
     background-position: 0 -72px;
 }
 
@@ -2823,29 +2837,48 @@ and (max-width : 480px) {
 
 .fancybox-tmp {
     position: absolute;
-    top: -9999px;
-    left: -9999px;
-    padding: 0;
-    overflow: visible;
+    top: -99999px;
+    left: -99999px;
     visibility: hidden;
+    max-width: 99999px;
+    max-height: 99999px;
+    overflow: visible !important;
 }
 
 /* Overlay helper */
 
-#fancybox-overlay {
+.fancybox-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.fancybox-lock body {
+    overflow: hidden !important;
+}
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
+
+.fancybox-overlay {
     position: absolute;
     top: 0;
     left: 0;
     overflow: hidden;
     display: none;
     z-index: 8010;
-    background: #000;
+    background: url('../img/fancybox_overlay.png');
 }
 
-#fancybox-overlay.overlay-fixed {
+.fancybox-overlay-fixed {
     position: fixed;
     bottom: 0;
     right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+    overflow: auto;
+    overflow-y: scroll;
 }
 
 /* Title helper */
@@ -2867,7 +2900,7 @@ and (max-width : 480px) {
     bottom: 0;
     right: 50%;
     margin-bottom: -35px;
-    z-index: 8030;
+    z-index: 8050;
     text-align: center;
 }
 
@@ -2894,7 +2927,7 @@ and (max-width : 480px) {
 }
 
 .fancybox-title-inside-wrap {
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 .fancybox-title-over-wrap {
@@ -2947,16 +2980,19 @@ and (max-width : 480px) {
 .product-option-group.colors li.Silver div   {background-color: #FFFFFF;}
 .product-option-group.colors li.Black div       {background-color: #000000;}
 .product-option-group.colors li.Red div     {background-color: #DC143C;}
+.product-option-group.colors li.Blue div    {background-color:  #0000FF;}
 
     /*color options in Spanish*/
     .product-option-group.colors li.Plateado div   {background-color: #FFFFFF;}
     .product-option-group.colors li.Negro div       {background-color: #000000;}
     .product-option-group.colors li.Rojo div     {background-color: #DC143C;}
+    .product-option-group.colors li.Azul div    {background-color:  #0000FF;}
 
     /*color options in French*/
     .product-option-group.colors li.Argent div   {background-color: #FFFFFF;}
     .product-option-group.colors li.Noir div       {background-color: #000000;}
     .product-option-group.colors li.Rouge div     {background-color: #DC143C;}
+    .product-option-group.colors li.Bleu div    {background-color:  #0000FF;}
 
 /*customer ratings and reviews*/
 #customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}

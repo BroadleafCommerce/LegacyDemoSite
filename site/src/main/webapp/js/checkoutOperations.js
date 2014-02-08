@@ -22,6 +22,13 @@ $(function(){
             $("#billing_info select[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
         })
     }
+
+    function copyBillingForm() {
+        $('.cloneable').each(function() {
+            $("#shipping_info input[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
+            $("#shipping_info select[name='" + $(this).attr('name') + "']").val($(this).val()).attr("disabled", "disabled");
+        })
+    }
     
     function showAddAddress() {
         var $form = $('form#multiship_address');
@@ -43,13 +50,27 @@ $(function(){
     $('body').on('click', 'input#paymentMethod_cc', function() {
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
-        $('#billing_info_form').css({display:"block"});
     });
 
     $('body').on('click', 'input#paymentMethod_paypal', function() {
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
-        $('#billing_info_form').css({display:"none"});
+    });
+
+    $('body').on('click', 'input#paymentMethod_cod', function() {
+        $('#paymentOptions dd').css({display:"none"});
+        $(this).closest('dt').next().css({display:"block"});
+    });
+
+    /** Helper methods to copy from billing address to shipping address and vice versa based on your layout **/
+
+    /* Copy Billing Form to Shipping Form Checkbox */
+    $('body').on('click', 'input#use_billing_address', function() {
+        if ($(this).is(':checked')) {
+            copyBillingForm();
+        } else {
+            $(this).closest('form').find(".clearable").val("").removeAttr("disabled");
+        }
     });
 
     /* Copy Shipping Form to Billing Form Checkbox */

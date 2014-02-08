@@ -27,10 +27,9 @@
     <sec:http pattern="/js/**" security="none" />
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />       
-    <sec:http pattern="/robots.txt" security="none" />
     
     <!-- Set up Spring security for the application -->
-    <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" >
+    <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" disable-url-rewriting="true">
         <!-- We handle session fixation protection ourselves  -->
         <sec:session-management session-fixation-protection="none" />
         
@@ -42,6 +41,8 @@
         <sec:intercept-url pattern="/login*/**" requires-channel="https" />
         <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
+        <sec:intercept-url pattern="/null-checkout/**" requires-channel="https" />
+        <sec:intercept-url pattern="/null-giftcard/**" requires-channel="https" />
         <sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
@@ -64,7 +65,6 @@
         <!-- Specify our custom filters -->
         <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
         <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
-        <sec:custom-filter ref="blCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
         <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
         <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
@@ -78,25 +78,23 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
     
-    <!-- Configuration for salting user passwords. This configuration will use the 'username' property as the salt, which
-        implies that the username cannot change. If you would like to change this property or generate a random salt to store
+    <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
         on a per-customer basis or if you need to allow users to change their password then you will need to modify this
         configuration and likely provide a custom UserDetailsService. -->
     <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-        <property name="userPropertyToUse" value="username" />
+        <property name="userPropertyToUse" value="id" />
     </bean>
     
-    <!--  User details service that authenticates using customer data in the database. -->
-    <sec:jdbc-user-service data-source-ref="webDS"
-        id="blUserDetailsService"
-        users-by-username-query="SELECT USER_NAME,PASSWORD, NOT DEACTIVATED FROM BLC_CUSTOMER WHERE USER_NAME=?"
-        authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c 
-                                          JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
-                                          JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
-                                          WHERE USER_NAME=?" />
-    
-    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
-                                          
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
+        <property name="excludedRequestPatterns">
+            <list>
+                <value>/null-checkout/**</value>
+                <value>/null-giftcard/**</value>
+                <value>/hosted/null-checkout/**</value>
+            </list>
+        </property>
+    </bean>
+
     <!-- Sets the login failure URL -->
     <bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
         <constructor-arg value="/login?error=true" />
@@ -106,7 +104,7 @@
     <!-- Sets the login success URL -->
     <bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
         <property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
-        <property name="defaultTargetUrl" value="/account" />
+        <property name="defaultTargetUrl" value="/" />
         <property name="targetUrlParameter" value="successUrl" />
         <property name="alwaysUseDefaultTargetUrl" value="false" />
     </bean>
