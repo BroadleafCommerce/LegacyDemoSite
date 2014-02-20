@@ -1,0 +1,3 @@
+<ul id="products" class="group">
+    <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+</ul>

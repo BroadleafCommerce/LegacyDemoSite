@@ -23,9 +23,7 @@
                 <div th:substituteby="catalog/partials/productSortOptions"></div>
             </header>
             
-            <ul id="products" class="group">
-                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-            </ul>
+            <blc:substituteby template="catalog/partials/productResults" cacheKey="${'cat:' + category.id}" />
             
             <div th:substituteby="catalog/partials/productPagingOptions" />
             
