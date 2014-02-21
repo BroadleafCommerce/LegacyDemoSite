@@ -22,7 +22,7 @@
 <div th:class="*{'productActions productActions' + id}">
 
     <div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku) or !#lists.isEmpty(product.productOptions)}? ' hidden'" th:if="${#lists.isEmpty(product.productOptions)}">
-        <a class="fancycart fancybox.ajax inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
+        <a class="modalcart inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
     </div>
 
     <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}? ' hidden'">

@@ -3,10 +3,10 @@
 var HC = (function($) {
     
     function showFacetMultiselect(abbr) {
-        $.fancybox.open($('#facet-' + abbr), {
+        $.modal($('#facet-' + abbr), {
+            maxWidth: 200,
             minWidth: 200,
-            openEffect: 'none',
-            closeEffect: 'none'
+            minHeight: 150
         });
     }
     
