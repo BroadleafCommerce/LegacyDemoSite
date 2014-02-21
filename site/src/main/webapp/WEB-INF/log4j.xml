@@ -13,7 +13,7 @@
     <logger name="org.springframework"> <level value="warn" /> </logger>
     <logger name="org.springframework.web"> <level value="warn" /> </logger>
     <logger name="org.springframework.web.servlet"> <level value="warn" /> </logger>
-
+    
     <root>
         <priority value="warn" />
         <appender-ref ref="console" />
