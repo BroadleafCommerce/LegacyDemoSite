@@ -116,6 +116,8 @@ $(function(){
                         	$productOptionsSpan.css('display', 'block');
                         	$productOptionsSpan.effect('highlight', {}, 1000);
                         	
+                        } else if (data.error = 'inventoryUnavailable') {
+                            HC.showNotification("This item is no longer in stock. We apologize for the inconvenience.", 7000);
                         } else {
                             HC.showNotification("Error adding to cart");
                         }
