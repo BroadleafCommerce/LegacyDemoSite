@@ -22,7 +22,7 @@
     <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="activities">
             <list>
-                <bean p:order="2000" id="blCheckAddAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
+                <bean p:order="2010" id="blCheckAddAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
             </list>
         </property>
     </bean>
@@ -32,7 +32,7 @@
     <bean id="blUpdateItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="activities">
             <list>
-                <bean p:order="2000" id="blCheckUpdateAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
+                <bean p:order="2010" id="blCheckUpdateAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
             </list>
         </property>
     </bean>
@@ -42,7 +42,7 @@
             <list>
                 <!-- This activity is only necessary if you are managing inventory. This activity has been enabled in the core
                     Broadleaf framework in version 3.2.0+ and should be removed if on that version -->
-                <bean p:order="6000" id="blDecrementInventoryActivity" class="org.broadleafcommerce.core.checkout.service.workflow.DecrementInventoryActivity">
+                <bean p:order="5010" id="blDecrementInventoryActivity" class="org.broadleafcommerce.core.checkout.service.workflow.DecrementInventoryActivity">
                     <property name="rollbackHandler" ref="blDecrementInventoryRollbackHandler" />
                 </bean>
 
