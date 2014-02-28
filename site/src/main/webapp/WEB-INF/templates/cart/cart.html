@@ -1,13 +1,11 @@
 <div id="cart" class="cart_modal">
     <div th:fragment="title" th:inline="text" style="display: none;">Cart - Broadleaf Demo - Heat Clinic</div>
 
-    <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
-    <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <table th:substituteby="cart/partials/cartProductsTable"></table>
 
     <div id="cart_total" class="group">
         <h3><span th:text="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
-        <div id="subtotal" th:unless="${cart.subTotal.zero}" blc:price="${cart.subTotal.subtract(cart.orderAdjustmentsValue)}"></div>
+        <div id="subtotal" th:unless="${cart.subTotal?.zero}" blc:price="${cart.subTotal?.subtract(cart.orderAdjustmentsValue)}"></div>
         <div id="orderDiscounts" th:unless="${cart.orderAdjustmentsValue.zero}">
             <span th:text="#{cart.orderDiscount}">Order Discount</span>: <span blc:price="${cart.orderAdjustmentsValue}" />
         </div>
@@ -28,6 +26,8 @@
             <a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
         </p>
     </div>
+    <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
+    <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
         <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
         <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" autocomplete="off"/>
