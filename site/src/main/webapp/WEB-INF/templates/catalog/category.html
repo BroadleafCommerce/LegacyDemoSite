@@ -3,58 +3,14 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
-<head th:include="/layout/partials/head (pageTitle=${category.name + ' - Broadleaf Demo - Heat Clinic'})"></head>
-
+<blc:substituteby template="catalog/category-head" cacheKey="${'cat:' + category.id}" />
 <body>
     <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
-    
-    <div id="content" class="width_setter group" role="main">
-    
-        <nav th:substituteby="layout/partials/nav" />
-        
-        <section id="left_column">
-    
-            <header>
-                <h1 th:inline="text">
-                    <span th:text="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{category.of}">of</span> [[${result.totalResults}]])
-                </h1>
-                <div th:substituteby="catalog/partials/productSortOptions"></div>
-            </header>
-            
-            <blc:substituteby template="catalog/partials/productResults" cacheKey="${'cat:' + category.id}" />
-            
-            <div th:substituteby="catalog/partials/productPagingOptions" />
-            
-        </section>
-    
-        <section id="right_column">
-            <header><span th:text="#{category.filterResults}">Filter your results</span></header>
-            <div id="options">
-                
-                <div th:substituteby="catalog/partials/facetFilter" />
-                
-                <div th:substituteby="catalog/partials/rightHandBannerAds" />
-                
-                <section id="right_column">
-                    <header><span th:text="#{category.featuredProducts}">Featured Products</span></header>
-                    <div id="options">
-                        <div class="section" th:object="${category}">
-                             <blc:related_products categoryId="*{id}" quantity="3"/>     
-                             <ul id="featured_products" class="group">
-                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-                             </ul>
-                        </div>                                  
-                    </div>
-                </section>  
-                
-            </div>
-        </section>
-            
-    </div>
-    
-    <footer th:substituteby="layout/partials/footer" />
-    
+    <blc:substituteby template="layout/partials/header" customerCacheMethod="common"/>    
+    <div id="content" class="width_setter group" role="main">    
+        <blc:substituteby template="layout/partials/nav" />
+        <blc:substituteby template="catalog/category-internal" cacheKey="${'cat:' + category.id}"/>
+    </div>    
+    <blc:substituteby template="layout/partials/footer" />    
 </body>
 </html>
