@@ -22,24 +22,6 @@
         
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
-    <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
-        <property name="sourceMap">
-            <map>
-                <entry key="jdbc/web" value-ref="webDS"/>
-                <entry key="jdbc/webSecure" value-ref="webSecureDS"/>
-                <entry key="jdbc/cmsStorage" value-ref="webStorageDS"/>
-            </map>
-        </property>
-    </bean>
-
-    <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
-        <property name="sourceList">
-            <list>
-                <value>classpath*:/META-INF/persistence.xml</value>
-            </list>
-        </property>
-    </bean>
-    
     <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
     <bean id="blMergedEntityContexts" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">

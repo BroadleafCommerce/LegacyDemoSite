@@ -129,10 +129,4 @@
         <env-entry-value>mycompanySite</env-entry-value>
     </env-entry>
     
-    <resource-ref>
-        <res-ref-name>jdbc/web</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-    
 </web-app>
