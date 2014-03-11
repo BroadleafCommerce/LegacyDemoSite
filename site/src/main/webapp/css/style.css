@@ -2606,7 +2606,8 @@ and (max-width : 480px) {
 
 
 .zoomPreload{
-   -moz-opacity:0.8;
+   visibility: hidden !important;
+    -moz-opacity:0.8;
    opacity: 0.8;
    filter: alpha(opacity = 80);
    color: #333;
