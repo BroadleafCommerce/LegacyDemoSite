@@ -642,7 +642,7 @@ nav {
     padding: 5px 10px;
 }
 
-form.manage-account {
+form.manage-account, form.manage-promo {
     padding: 0 10px 10px;
 }
 
@@ -1160,6 +1160,10 @@ li.promotion,  ul.promotion{
         padding-top: 10px; 
         color: #F4F6EB;
     }
+
+    .checkout_promo {
+        color: #E40037 !important;
+    }
     
     input#promoCode, input.quantityInput {
         border: solid 1px #C4C0BC !important;
@@ -1177,6 +1181,7 @@ li.promotion,  ul.promotion{
 .payment_info {
     background: #FFFFF2;
     border: 1px solid #E5E5E5;
+    padding: 0px 20px;
 }
 
 ul#payment_methods,
@@ -1207,6 +1212,14 @@ ul#payment_methods li {
 
 #paymentOptions dd {
     margin: 5px;
+}
+
+#promoCreditOptions dt {
+    margin: 10px 20px;
+}
+
+#promoCreditOptions dd {
+    margin: 0 0 0 10px;
 }
 
 #multiship-products {
