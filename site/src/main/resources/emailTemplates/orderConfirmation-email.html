@@ -115,7 +115,7 @@
                                             [[*{address.emailAddress == null ? '' : address.emailAddress}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
-                                            [[*{address.lastName == null ? '' : address.lastName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
+                                            [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
                                             [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
                                             [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
@@ -194,7 +194,7 @@
                                             [[*{address.emailAddress == null ? '' : address.emailAddress}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
-                                            [[*{address.lastName == null ? '' : address.lastName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
+                                            [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
                                             [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
                                             [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                             [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
