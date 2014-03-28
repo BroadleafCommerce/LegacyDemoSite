@@ -22,6 +22,25 @@
 
     <!-- Scan DemoSite Sample Payment Gateway Implementation -->
     <context:component-scan base-package="com.mycompany.sample" />
+
+    <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
+            <map>
+                <entry key="jdbc/web" value-ref="webDS"/>
+                <entry key="jdbc/webSecure" value-ref="webSecureDS"/>
+                <entry key="jdbc/cmsStorage" value-ref="webStorageDS"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath*:/META-INF/persistence-core.xml</value>
+            </list>
+        </property>
+    </bean>
+
     <bean class="com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType"/>
 
     <!-- Add Sample Thymeleaf Processor to test Hosted Payment Gateway (e.g. PayPal Express Flow) -->
@@ -51,5 +70,30 @@
         <property name="targetRef" value="blPaymentGatewayConfigurationServices"/>
     </bean>
     <!-- /End DemoSite NullPaymentGateway Config -->
+
+    <!-- Inventory class transformer to enable simple inventory management. This transformer should be removed in Broadleaf 3.2.0+ -->
+    <bean id="blInventoryClassTransformer" class="org.broadleafcommerce.common.extensibility.jpa.copy.DirectCopyClassTransformer">
+        <constructor-arg name="moduleName" value="Basic Inventory Management" />
+        <property name="xformTemplates">
+            <map>
+                <entry key="org.broadleafcommerce.core.catalog.domain.SkuImpl"
+                       value="org.broadleafcommerce.core.catalog.domain.QuantityAvailableSkuTemplate">
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="customClassTransformers" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="blInventoryClassTransformer" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="customClassTransformers" />
+        <property name="targetRef" value="blMergedClassTransformers" />
+    </bean>
 
 </beans>

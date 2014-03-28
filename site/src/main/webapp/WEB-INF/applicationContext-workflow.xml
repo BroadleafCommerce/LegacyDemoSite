@@ -17,10 +17,35 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
+    <!-- This workflow modification is only necessary if you are managing inventory. This activity has been enabled in the core
+                    Broadleaf framework in version 3.2.0+ and should be removed if on that version -->
+    <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <bean p:order="2010" id="blCheckAddAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- This workflow modification is only necessary if you are managing inventory. This activity has been enabled in the core
+                    Broadleaf framework in version 3.2.0+ and should be removed if on that version -->
+    <bean id="blUpdateItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <bean p:order="2010" id="blCheckUpdateAvailabilityActivity" class="org.broadleafcommerce.core.order.service.workflow.CheckAvailabilityActivity"/>
+            </list>
+        </property>
+    </bean>
 
     <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="activities">
             <list>
+                <!-- This activity is only necessary if you are managing inventory. This activity has been enabled in the core
+                    Broadleaf framework in version 3.2.0+ and should be removed if on that version -->
+                <bean p:order="5010" id="blDecrementInventoryActivity" class="org.broadleafcommerce.core.checkout.service.workflow.DecrementInventoryActivity">
+                    <property name="rollbackHandler" ref="blDecrementInventoryRollbackHandler" />
+                </bean>
+
                 <!-- This activity should occur at the very end of the checkout workflow, after everything has been executed -->
                 <bean p:order="9999999" class="com.mycompany.worklow.checkout.SendOrderConfirmationEmailActivity" />
             </list>

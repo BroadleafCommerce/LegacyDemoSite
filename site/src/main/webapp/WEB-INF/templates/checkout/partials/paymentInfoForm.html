@@ -14,7 +14,22 @@
     <div th:if="${'FORM' == sectionDTO.state.type}"
          id="payment_info_form">
 
-        <div th:replace="checkout/partials/accountCreditForm :: account-credit-form"></div>
+        <dl id="promoCreditOptions">
+            <dt>
+                <input type="checkbox" id="promoCreditOption_credit" />
+                <span th:text="#{cart.payment.accountCredit}">Gift Cards and Customer Credit</span>
+            </dt>
+            <dd>
+                <div th:replace="checkout/partials/accountCreditForm :: account-credit-form"></div>
+            </dd>
+            <dt>
+                <input type="checkbox" id="promoCreditOption_promo" />
+                <span th:text="#{cart.payment.promo}">Promotion Codes</span>
+            </dt>
+            <dd>
+                <div th:replace="checkout/partials/promoCodes :: promo-code-form"></div>
+            </dd>
+        </dl>
 
         <div th:replace="checkout/partials/paymentMethodForm :: payment-method-form"></div>
 

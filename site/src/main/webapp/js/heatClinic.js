@@ -3,10 +3,10 @@
 var HC = (function($) {
     
     function showFacetMultiselect(abbr) {
-        $.fancybox.open($('#facet-' + abbr), {
+        $.modal($('#facet-' + abbr), {
+            maxWidth: 200,
             minWidth: 200,
-            openEffect: 'none',
-            closeEffect: 'none'
+            minHeight: 150
         });
     }
     
@@ -15,7 +15,7 @@ var HC = (function($) {
         var activeOptions = $('.product-options .active');
         var optionValues = [];
         $.each(activeOptions, function() {
-            optionValues.push($(this).attr('data-product-option-value'));
+            optionValues.push($.parseJSON($(this).attr('data-product-option-value')));
         });
         var mediaItems = $('#product_thumbs a');
         var finalMedia;
@@ -24,7 +24,8 @@ var HC = (function($) {
             var candidateMedia = this;
             var candidateMediaMatches = 0;
             $.each(optionValues, function() {
-                if ($(candidateMedia).attr('data-tags') != undefined && $(candidateMedia).attr('data-tags').toLowerCase().indexOf(this.toLowerCase()) !== -1) {
+                if ($(candidateMedia).attr('data-tags') != undefined && 
+                    $(candidateMedia).attr('data-tags').toLowerCase().indexOf(this.valueName.toLowerCase()) !== -1) {
                     candidateMediaMatches++;
                 }
             });
