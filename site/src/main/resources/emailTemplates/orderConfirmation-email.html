@@ -113,20 +113,14 @@
                                 <tr th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
                                     <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
                                         <td>
-                                            <address th:if="*{address.phonePrimary != null}">
+                                            <address>
                                                 [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
                                                 [[*{address.phonePrimary?.phoneNumber == null ? '' : address.phonePrimary?.phoneNumber}]]<br/>
                                                 [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
                                                 [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
                                                 [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
                                                 [[*{address.emailAddress == null ? '' : address.emailAddress}]]<br/>
-                                            </address>
-                                            <address th:if="*{address.phonePrimary == null}">
-                                                [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
-                                                [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
-                                                [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                                [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
-                                                [[*{address.emailAddress == null ? '' : address.emailAddress}]]<br/>
+                                                [[*{address.country.name == null ? '' : address.country.name}]]<br/>
                                             </address>
                                         </td>
                                         <td>
@@ -208,19 +202,13 @@
                                                             <b th:text="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
                                                             ****<span th:text="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
                                                             <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{initialTransaction.additionalFields['EXP_DATE']}"/>
-                                                            <address th:if="*{billingAddress.phonePrimary != null}">
+                                                            <address>
                                                                 [[*{billingAddress.firstName == null ? '' : billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName == null ? '' : billingAddress.lastName}]]<br/>
                                                                 [[*{billingAddress.phonePrimary?.phoneNumber == null ? '' : billingAddress.phonePrimary?.phoneNumber}]]<br/>
                                                                 [[*{billingAddress.addressLine1 == null ? '' : billingAddress.addressLine1}]]<br/>
                                                                 [[*{billingAddress.addressLine2 == null ? '' : billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
                                                                 [[*{billingAddress.city == null ? '' : billingAddress.city}]],&nbsp;[[*{billingAddress.state?.abbreviation == null ? '' : billingAddress.state?.abbreviation}]]&nbsp;[[*{billingAddress.postalCode == null ? '' : billingAddress.postalCode}]]<br/>
-                                                                [[*{billingAddress.emailAddress == null ? '' : billingAddress.emailAddress}]]<br/>
-                                                            </address>
-                                                            <address th:if="*{billingAddress.phonePrimary == null}">
-                                                                [[*{billingAddress.firstName == null ? '' : billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName == null ? '' : billingAddress.lastName}]]<br/>
-                                                                [[*{billingAddress.addressLine1 == null ? '' : billingAddress.addressLine1}]]<br/>
-                                                                [[*{billingAddress.addressLine2 == null ? '' : billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                                                                [[*{billingAddress.city == null ? '' : billingAddress.city}]],&nbsp;[[*{billingAddress.state?.abbreviation == null ? '' : billingAddress.state?.abbreviation}]]&nbsp;[[*{billingAddress.postalCode == null ? '' : billingAddress.postalCode}]]<br/>
+                                                                [[*{billingAddress.country.name == null ? '' : billingAddress.country.name}]]<br/>
                                                                 [[*{billingAddress.emailAddress == null ? '' : billingAddress.emailAddress}]]<br/>
                                                             </address>
                                                         </div>
