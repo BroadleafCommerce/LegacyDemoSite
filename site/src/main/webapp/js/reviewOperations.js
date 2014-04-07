@@ -1,7 +1,7 @@
 /* Operations that deal with the reviewing a product */
 $(function(){
-    // The options used for the review fancybox modal
-    var fancyAccountOptions = {
+    // The options used for the review modal
+    var modalAccountOptions = {
         maxWidth    : 600,
         maxHeight   : 560,  
         fitToView   : false,
@@ -11,8 +11,7 @@ $(function(){
         closeClick  : false,
         topRatio    : 0,
         openEffect  : 'none',
-        closeEffect : 'none',
-        type        : 'ajax'
+        closeEffect : 'none'
     };
     
     var $communityRating = $('#community-rating');
@@ -34,22 +33,27 @@ $(function(){
     
     // Bind all links with class 'create-review' to open the review modal
     $('body').on('click', 'a.create-review', function() {
-        $.fancybox.open($.extend(fancyAccountOptions, { href : $(this).attr('href'), afterShow: function() {
-            $('.fancybox-inner').find('form:first').find('input:first').focus();
-            $('input.star').rating();
-            return true;
-        }}));
+        BLC.ajax({url: $(this).attr('href')}, function(data) {
+            var extendedOptions = $.extend({
+                afterShow: function() {
+                    $('.simplemodal-wrap').find('form:first').find('input:first').focus();
+                    $('input.star').rating();
+                    return true;
+                }
+            }, modalAccountOptions);
+            $.modal(data, extendedOptions);
+        });
         return false;
     });
     
     // All form actions will be submitted via AJAX
-    $('body').on('click','.fancybox-inner input.review_button', function() {
+    $('body').on('click','.simplemodal-wrap input.review_button', function() {
         var $form = $(this).closest("form");
         BLC.ajax({url: $form.attr('action'), 
                 type: "POST",
                 data: $form.serialize()
             }, function(responseData) {
-                $('.fancybox-inner').html(responseData);
+                $('.simplemodal-wrap').html(responseData);
             }
         );
         return false;

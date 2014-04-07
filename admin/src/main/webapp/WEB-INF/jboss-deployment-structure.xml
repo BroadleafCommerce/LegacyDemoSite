@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+           <module name="org.hibernate"/>
+           <module name="org.javassist"/>
+           <module name="org.apache.log4j" />
+        </exclusions>
+        <dependencies>
+            <module name="org.jboss.ironjacamar.jdbcadapters" slot="main"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>

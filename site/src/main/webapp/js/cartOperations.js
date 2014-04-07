@@ -1,29 +1,18 @@
 $(function(){
-    // Set up basic options for the cart fancybox
-    var fancyCartOptions = {
+    // Set up basic options for the cart modal
+    var modalCartOptions = {
+        minWidth    : 940,
         maxWidth    : 940,
+        minHeight   : 355,
         maxHeight   : 570,
-        fitToView   : false,
-        width       : '100%',
-        height      : '100%',
-        autoSize    : true,
-        closeClick  : false,
-        topRatio    : 0,
-        openEffect  : 'none',
-        closeEffect : 'none',
-        type        : 'ajax',
-        padding     : 5
+        position    : ['30px']
     };
     
-    var fancyProductOptionsOptions = {
-        maxWidth    : 180,
-        fitToView   : false,
-        width       : '100%',
-        height      : '100%',
-        autoSize    : true,
-        closeClick  : false,
-        openEffect  : 'none',
-        closeEffect : 'none'
+    var modalProductOptionsOptions = {
+        minWidth    : 190,
+        maxWidth    : 190,
+        minHeight   : 300,
+        position    : ['30px']
     };
     
     // This will change the header "X item(s)" text to the new count and pluralization of "item"
@@ -55,15 +44,16 @@ $(function(){
         $('.productActions' + productId).children('.in_'+orderType).addClass('hidden');
     }
 
-    // Show the cart in a modal when any link with the class "fancycart" is clicked
-    $('body').on('click', 'a.fancycart', function() {
-        var extendedOptions = $.extend({ href : $(this).attr('href') }, fancyCartOptions);
-        
-        if ($(this).hasClass('refreshonclose')) {
-            extendedOptions = $.extend({ afterClose: function() { window.location.reload(); }}, extendedOptions);
-        }
-        
-        $.fancybox.open(extendedOptions);
+    // Show the cart in a modal when any link with the class "modalcart" is clicked
+    $('body').on('click', 'a.modalcart', function() {
+        BLC.ajax({ url: $(this).attr('href') }, function(data) {
+            var extendedOptions = $.extend({}, modalCartOptions);
+            if ($(this).hasClass('refreshonclose')) {
+                extendedOptions = $.extend({ afterClose: function() { window.location.reload(); }}, extendedOptions);
+            }
+            $.modal(data, extendedOptions);
+        });
+
         return false;
     });
     
@@ -86,11 +76,11 @@ $(function(){
         }
         
         var itemRequest = BLC.serializeObject($form),
-            modalClick = $button.parents('.fancybox-inner').length > 0,
+            modalClick = $button.parents('.simplemodal-wrap').length > 0,
             wishlistAdd = $button.hasClass('addToWishlist');
             
         if (itemRequest.hasProductOptions == "true" && !modalClick) {
-            $.fancybox.open($.extend({ href : '#productOptions' + itemRequest.productId}, fancyProductOptionsOptions));
+            $.modal($('#productOptions' + itemRequest.productId), modalProductOptionsOptions);
         } else {
             $options.each(function(index, element) {
             	var optionType = $(element).data('optiontype');
@@ -126,6 +116,8 @@ $(function(){
                         	$productOptionsSpan.css('display', 'block');
                         	$productOptionsSpan.effect('highlight', {}, 1000);
                         	
+                        } else if (data.error = 'inventoryUnavailable') {
+                            HC.showNotification("This item is no longer in stock. We apologize for the inconvenience.", 7000);
                         } else {
                             HC.showNotification("Error adding to cart");
                         }
@@ -135,7 +127,7 @@ $(function(){
                         updateHeaderCartItemsCount(data.cartItemCount);
                         
                         if (modalClick) {
-                            $.fancybox.close();
+                            $.modal.close();
                         } else if (wishlistAdd) {
                             showInCartButton(data.productId, 'wishlist');
                         } else {
@@ -170,7 +162,7 @@ $(function(){
                     }
                 }
 
-                $('.fancybox-inner').html(data);
+                $('.simplemodal-wrap').html(data);
             }
         );
         return false;
@@ -187,7 +179,7 @@ $(function(){
                 updateHeaderCartItemsCount(extraData.cartItemCount);
                 showAddToCartButton(extraData.productId, 'cart');
                 
-                $('.fancybox-inner').html(data);
+                $('.simplemodal-wrap').html(data);
             }
         );
         return false;
@@ -201,7 +193,7 @@ $(function(){
         BLC.ajax({url: $(link).attr('href'),
                 type: "GET"
             }, function(data) {
-                $('.fancybox-inner').html(data);
+                $('.simplemodal-wrap').html(data);
             }
         );
         return false;
@@ -217,7 +209,7 @@ $(function(){
                 if(!extraData.promoAdded) {
                     $("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
                 } else {
-                    $('.fancybox-inner').html(data);
+                    $('.simplemodal-wrap').html(data);
                 }
             }
         );

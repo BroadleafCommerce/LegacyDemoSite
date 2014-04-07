@@ -1,19 +1,10 @@
 /* Operations that deal with checkout */
 $(function(){
-    // The options used for the login/register fancybox modal
-    var fancyCheckoutOptions = {
+    // The options used for the login/register modal
+    var modalCheckoutOptions = {
         maxWidth    : 720,
         maxHeight   : 560,  
-        fitToView   : false,
-        width       : '100%',
-        autoSize    : true,
-        closeClick  : false,
-        topRatio    : 0,
-        openEffect  : 'none',
-        closeEffect : 'none',
-        type        : 'ajax',
-        scrolling   : 'no',
-        padding     : 5
+        position    : ['30px']
     };
     
     function copyShippingForm() {
@@ -39,7 +30,7 @@ $(function(){
                 var showAddAddressUrl = $('a.add-address-link').attr('href');
                 BLC.ajax({url: showAddAddressUrl}, function(data, extraData) {
                     $('#multiship-products').hide();
-                    $('.fancybox-inner').append(data);
+                    $('.simplemodal-wrap').append(data);
                 });
             }
         );
@@ -61,6 +52,26 @@ $(function(){
         $('#paymentOptions dd').css({display:"none"});
         $(this).closest('dt').next().css({display:"block"});
     });
+
+    /* Toggle visibility of promo and credit options */
+    $('body').on('click', 'input#promoCreditOption_credit', function() {
+        $(this).closest('dt').next().toggle();
+    });
+
+    $('body').on('click', 'input#promoCreditOption_promo', function() {
+        $(this).closest('dt').next().toggle();
+    });
+
+    function togglePromoCreditOptions() {
+        $('#promoCreditOptions').children('dd').each(function(){
+            if ($(this).find('span.error').length == 0) {
+                $(this).hide();
+            } else {
+                $(this).prev().find('input[type=checkbox]').prop('checked', true);
+                $(this).show();
+            }
+        })
+    }
 
     /** Helper methods to copy from billing address to shipping address and vice versa based on your layout **/
 
@@ -89,8 +100,9 @@ $(function(){
 
     /* Show or Edit multiship options link was clicked */
     $('body').on('click', 'a#multiship', function() {
-        $.fancybox.open($.extend(fancyCheckoutOptions, { href : $(this).attr('href'), ajax: {cache: false}, afterShow: function() {
-        }}));
+        BLC.ajax({url: $(this).attr('href')}, function(data) {
+            $.modal(data, modalCheckoutOptions);
+        });
         return false;
     });
     
@@ -109,7 +121,7 @@ $(function(){
     
     /* Cancel pressed on multiship */
     $('body').on('click', '#multiship-products a.cancel', function() {
-        $.fancybox.close();
+        $.modal.close();
         return false;
     });
     
@@ -129,9 +141,11 @@ $(function(){
                 data: $form.serialize(),
                 cache: false
             }, function(data, extraData) {
-                $('.fancybox-inner').html(data);
+                $('.simplemodal-wrap').html(data);
             }
         );
         return false;
     });
+
+    togglePromoCreditOptions();
 });

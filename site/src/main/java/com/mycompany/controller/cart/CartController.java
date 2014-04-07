@@ -18,6 +18,7 @@ package com.mycompany.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
+import org.broadleafcommerce.core.inventory.service.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.ProductOptionValidationException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
@@ -86,6 +87,8 @@ public class CartController extends BroadleafCartController {
                 responseMap.put("errorCode", exception.getErrorCode());
                 responseMap.put("errorMessage", exception.getMessage());
                 //blMessages.getMessage(exception.get, lfocale))
+            } else if (e.getCause() instanceof InventoryUnavailableException) {
+                responseMap.put("error", "inventoryUnavailable");
             } else {
                 throw e;
             }
@@ -113,7 +116,23 @@ public class CartController extends BroadleafCartController {
     @RequestMapping("/updateQuantity")
     public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
-        return super.updateQuantity(request, response, model, addToCartItem);
+        try {
+            return super.updateQuantity(request, response, model, addToCartItem);
+        } catch (UpdateCartException e) {
+            if (e.getCause() instanceof InventoryUnavailableException) {
+                // Since there was an exception, the order gets detached from the Hibernate session. This re-attaches it
+                CartState.setCart(orderService.findOrderById(CartState.getCart().getId()));
+                if (isAjaxRequest(request)) {
+                    model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                    return getCartView();
+                } else {
+                    redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
+                    return getCartPageRedirect();
+                }
+            } else {
+                throw e;
+            }
+        }
     }
     
     @Override

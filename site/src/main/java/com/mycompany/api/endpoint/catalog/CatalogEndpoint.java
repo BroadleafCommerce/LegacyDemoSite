@@ -19,6 +19,7 @@ package com.mycompany.api.endpoint.catalog;
 import org.broadleafcommerce.core.web.api.wrapper.CategoriesWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.CategoryAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.CategoryWrapper;
+import org.broadleafcommerce.core.web.api.wrapper.InventoryWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.MediaWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.ProductWrapper;
@@ -215,6 +216,14 @@ public class CatalogEndpoint extends
     public SkuWrapper findSkuById(@Context HttpServletRequest request,
             @PathParam("id") Long id) {
         return super.findSkuById(request, id);
+    }
+    
+    @Override
+    @GET
+    @Path("sku/inventory")
+    public List<InventoryWrapper> findInventoryForSkus(@Context HttpServletRequest request,
+            @QueryParam("id") List<Long> ids) {
+        return super.findInventoryForSkus(request, ids);
     }
 
     @Override

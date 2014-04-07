@@ -32,28 +32,41 @@
                 
                 <div class="product-options" th:substituteby="catalog/partials/productOptions"/>                                
                 
-                <blc:form method="POST" th:action="@{/cart/add}">
-                    <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
-                        <div class="form50">
-                            <label th:text="*{label}"></label>
-                            <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
-                                <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
-                            </select>
+                <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
+                                   availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
+                                   inCart=${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}">
+                    <blc:form method="POST" th:action="@{/cart/add}">
+                        <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
+                            <div class="form50">
+                                <label th:text="*{label}"></label>
+                                <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+                                    <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div th:utext="*{longDescription}" id="description"></div>
-                    
-                    <div th:class="*{'productActions' + id}">
-                        <div class="in_cart" th:classappend="${!cart.containsSku(#object.defaultSku) or !#lists.isEmpty(product.productOptions)}? ' hidden'"><a class="fancycart fancybox.ajax big-button gray-button" th:href="@{/cart}">In Cart!</a></div>
-                        <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}? ' hidden'">
-                            <input type="hidden" name="productId" th:value="*{id}" />
-                            <input type="hidden" name="quantity" value="1" />
-                            <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
+                        
+                        <div th:utext="*{longDescription}" id="description"></div>
+                        
+                        <div id="inventory" th:if="${checkInventory}">
+                            <b>Available inventory:</b> <span th:text="*{defaultSku.quantityAvailable == null ? '0' : defaultSku.quantityAvailable}" />
+                            <div th:if="${!availableInventory}" class="out_of_stock">
+                                <a disabled="disabled" class="big-button gray-button">Out of Stock</a>
+                            </div>
                         </div>
-            <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
-                    </div>
-                </blc:form>
+                        
+                        <div th:class="*{'productActions' + id}">
+                            <div class="in_cart" th:classappend="${!inCart}? ' hidden'">
+                                <a class="modalcart big-button gray-button" th:href="@{/cart}">In Cart!</a>
+                            </div>
+                            <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
+                                <input type="hidden" name="productId" th:value="*{id}" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
+                            </div>
+                            <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
+                        </div>
+                    </blc:form>
+                </th:block>
     
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 

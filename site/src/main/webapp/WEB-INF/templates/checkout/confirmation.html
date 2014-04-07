@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-                <td><img th:src="@{*{product.media['primary'].url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
+                <td><img th:if="*{product.media['primary'] != null}" th:src="@{*{product.media['primary']?.url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
                 <td align="left">
                     <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                     <br/>
@@ -108,29 +108,24 @@
         </div>
         
         <div class="fulfillment_option" th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
-            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
-                <div class="left_content">
-                    <address th:if="*{address.phonePrimary != null}">
-                        [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                        [[*{address.phonePrimary.phoneNumber}]]<br/>
-                        [[*{address.addressLine1}]]<br/>
-                        [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                        [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                    </address>
-                    <address th:if="*{address.phonePrimary == null}">
-                        [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
-                        [[*{address.addressLine1}]]<br/>
-                        [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                        [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                    </address>
-                </div>
-                <div class="right_content">
-                    <h3><span th:text="#{confirmation.shipping.method}">Shipping Method</span></h3>
-                    <b>[[*{fulfillmentOption.name}]]</b><br/>
-                    ([[*{fulfillmentOption.longDescription}]])
-                </div>
-                <div class="clearfix"></div>
+           <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}"> 
+           <div class="left_content">
+                <address>
+                    [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
+                    [[*{address.phonePrimary?.phoneNumber == null ? '' : address.phonePrimary?.phoneNumber}]]<br/>
+                    [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
+                    [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                    [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
+                    [[*{address.country.name == null ? '' : address.country.name}]]<br/>
+                </address>
             </div>
+            <div class="right_content">
+                <h3><span th:text="#{confirmation.shipping.method}">Shipping Method</span></h3>
+                <b>[[*{fulfillmentOption.name}]]</b><br/>
+                ([[*{fulfillmentOption.longDescription}]])
+            </div>
+            <div class="clearfix"></div>
+        </div>
         </div>
 
         <div class="cart_title"><span th:text="#{confirmation.billing.info}">Billing Information</span></div>
@@ -140,41 +135,34 @@
         <div class="payment_method" th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
             <div th:if="${payment.active}" class="left_content">
                 <h3><span th:text="#{confirmation.payment.method}">Payment Method</span></h3>
-                    Payment type: [[*{type.friendlyType}]]<br/>
-                    Amount paid: <span blc:price="*{amount}" />
-                    <div th:if="${payment.initialTransaction != null}">
-                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
-                            <b th:text="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
-                            ****<span th:text="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                            <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{initialTransaction.additionalFields['EXP_DATE']}"/>
-                            <address th:if="*{billingAddress.phonePrimary != null}">
-                                [[*{billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName}]]<br/>
-                                [[*{billingAddress.phonePrimary.phoneNumber}]]<br/>
-                                [[*{billingAddress.addressLine1}]]<br/>
-                                [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                                [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
-                            </address>
-                            <address th:if="*{billingAddress.phonePrimary == null}">
-                                [[*{billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName}]]<br/>
-                                [[*{billingAddress.addressLine1}]]<br/>
-                                [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                                [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
-                            </address>
-                        </div>
-                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
-                            <span th:text="#{cart.accountCredit.accounts}">Accounts</span><br/>
-                            <b th:text="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
-                        </div>
-                        <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
-                            <span th:text="#{cart.giftCardNumber}">Gift Card Number</span><br/>
-                            <b th:text="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
-                        </div>
+                Payment type: [[*{type.friendlyType}]]<br/>
+                Amount paid: <span blc:price="*{amount}" />
+                <div th:if="${payment.initialTransaction != null}">
+                    <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
+                        <b th:text="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
+                        ****<span th:text="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
+                        <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{initialTransaction.additionalFields['EXP_DATE']}"/>
+                        <address>
+                            [[*{billingAddress.firstName == null ? '' : billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName == null ? '' : billingAddress.lastName}]]<br/>
+                            [[*{billingAddress.phonePrimary?.phoneNumber == null ? '' : billingAddress.phonePrimary?.phoneNumber}]]<br/>
+                            [[*{billingAddress.addressLine1 == null ? '' : billingAddress.addressLine1}]]<br/>
+                            [[*{billingAddress.addressLine2 == null ? '' : billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
+                            [[*{billingAddress.city == null ? '' : billingAddress.city}]],&nbsp;[[*{billingAddress.state?.abbreviation == null ? '' : billingAddress.state?.abbreviation}]]&nbsp;[[*{billingAddress.postalCode == null ? '' : billingAddress.postalCode}]]<br/>
+                            [[*{billingAddress.country.name == null ? '' : billingAddress.country.name}]]<br/>
+                        </address>
                     </div>
+                    <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
+                        <span th:text="#{cart.accountCredit.accounts}">Accounts</span><br/>
+                        <b th:text="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                    </div>
+                    <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
+                        <span th:text="#{cart.giftCardNumber}">Gift Card Number</span><br/>
+                        <b th:text="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
-
-
     </div>
 
 </div>
