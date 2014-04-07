@@ -33,7 +33,6 @@
             <sec:filter-chain pattern="/**" filters="
                hiddenHttpMethodFilter,
                blPrecompressedArtifactFilter,
-               blAdminSandBoxFilter,
                blJSCompatibilityRequestFilter"/>
         </sec:filter-chain-map>
     </bean>
