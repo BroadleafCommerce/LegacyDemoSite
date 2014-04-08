@@ -23,17 +23,16 @@
     <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
-               openEntityManagerInViewFilter,
-               blAdminRequestFilter"/>
+               openEntityManagerInViewFilter"/>
         </sec:filter-chain-map>
     </bean>
 
     <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
+               blAdminRequestFilter,
                hiddenHttpMethodFilter,
                blPrecompressedArtifactFilter,
-               blAdminSandBoxFilter,
                blJSCompatibilityRequestFilter"/>
         </sec:filter-chain-map>
     </bean>

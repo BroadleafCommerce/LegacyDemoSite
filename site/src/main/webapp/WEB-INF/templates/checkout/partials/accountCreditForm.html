@@ -1,6 +1,4 @@
-<div th:fragment="account-credit-form" class="left_content">
-    <h3><span th:text="#{cart.payment.accountCredit}">Gift Cards and Customer Credit</span></h3>
-
+<div th:fragment="account-credit-form">
     <blc:form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/null-giftcard/apply}" method="POST" id="applyGiftcard_form">
         <div>
             <div class="form50">

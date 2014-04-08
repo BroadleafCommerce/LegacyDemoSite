@@ -1,6 +1,6 @@
 <div th:fragment="payment-method-form">
 
-    <div class="right_content payment_info"
+    <div class="payment_info"
          th:unless="${showAllPaymentMethods}">
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
@@ -18,7 +18,7 @@
 
     </div>
 
-    <div class="right_content payment_info"
+    <div class="payment_info"
             th:if="${showAllPaymentMethods}">
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
@@ -26,6 +26,7 @@
             <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
             <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
             <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
+            <li><img th:src="@{/img/payment/discover-curved-32px.png}"/></li>
             <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
@@ -41,38 +42,40 @@
                                                   method="POST">
                     <div id="creditCardFields">
 
-                        <div class="form25" style="width: 94%;">
-                            <div style="float: left; width: 70%;">
-                                <label for="cardNumber" class="prompt">
-                                    <span th:text="#{cart.cardNumber}">Card Number</span>
-                                </label>
-                                <div class="element">
-                                    <input type="text"
-                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardNum')}"
-                                           value=""
-                                           id="cardNumber"
-                                           class="field30"
-                                           autocomplete="off"
-                                           style="width: 100%"  />
-                                </div>
-                            </div>
-                            <div style="float: right; padding-right: 2%; width: 16%">
-                                <label class="prompt">
-                                    <span th:text="#{cart.cvv}">CVV</span>
-                                </label>
-                                <div class="element">
-                                    <input type="text"
-                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardCvv')}"
-                                           id="securityCode"
-                                           class="field30"
-                                           autocomplete="off"
-                                           style="width: 100%"  />
-                                </div>
+                        <div class="form50">
+                            <label for="cardNumber" class="prompt">
+                                <span th:text="#{cart.cardNumber}">Card Number</span>
+                            </label>
+                            <div class="element form100">
+                                <input type="text"
+                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardNum')}"
+                                       value=""
+                                       id="cardNumber"
+                                       class="field35"
+                                       autocomplete="off"/>
                             </div>
                         </div>
 
+                        <div class="clearfix"></div>
+
+                        <div class="form50">
+                            <label class="prompt">
+                                <span th:text="#{cart.cvv}">CVV</span>
+                            </label>
+                            <div class="element form100">
+                                <input type="text"
+                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardCvv')}"
+                                       id="securityCode"
+                                       class="field25"
+                                       autocomplete="off"/>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+
                         <blc:credit_card_types>
-                            <div th:if="${paymentGatewayCardTypes != null}" class="form25" style="width: 94%;">
+                            <div th:if="${paymentGatewayCardTypes != null}" class="form50">
                                 <label for="cardType" class="prompt">
                                     <span th:text="#{cart.cardType}">Card Type</span>
                                 </label>
@@ -84,7 +87,9 @@
                             </div>
                         </blc:credit_card_types>
 
-                        <div class="form25" style="width: 94%;">
+                        <div class="clearfix"></div>
+
+                        <div class="form50">
                             <label for="nameOnCard" class="prompt">
                                 <span th:text="#{cart.nameOnCard}">Name on the Card</span>
                             </label>
@@ -92,24 +97,23 @@
                                 <input type="text"
                                        th:name="${#paymentGatewayField.mapName('creditCard.creditCardHolderName')}"
                                        id="nameOnCard"
-                                       class="field30"  />
+                                       class="field35"  />
                             </div>
                         </div>
 
-                        <div class="form25" style="width: 94%;">
-                            <div style="float: left; width: 30%;">
-                                <label for="cardExpDate" class="prompt">
-                                    <span th:text="#{cart.experationDate}">Expiration Date</span>
-                                </label>
-                                <div class="element">
-                                    <input type="text"
-                                           th:name="${#paymentGatewayField.mapName('creditCard.creditCardExpDate')}"
-                                           id="cardExpDate"
-                                           class="field30"
-                                           autocomplete="off"
-                                           placeholder="MM/YY"
-                                           style="width: 100%"  />
-                                </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form25">
+                            <label for="cardExpDate" class="prompt">
+                                <span th:text="#{cart.experationDate}">Expiration Date</span>
+                            </label>
+                            <div class="element form100">
+                                <input type="text"
+                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardExpDate')}"
+                                       id="cardExpDate"
+                                       class="field25"
+                                       autocomplete="off"
+                                       placeholder="MM/YY"/>
                             </div>
                         </div>
 

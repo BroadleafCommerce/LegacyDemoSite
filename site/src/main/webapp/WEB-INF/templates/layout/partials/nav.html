@@ -8,7 +8,7 @@
     <blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="6" />
     
     <ul>
-        <li th:each="category : ${navCategories}">
+        <li th:each="category : ${navCategories}" th:unless="${#strings.isEmpty(category.url)}">
             <a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
         </li>
     </ul>

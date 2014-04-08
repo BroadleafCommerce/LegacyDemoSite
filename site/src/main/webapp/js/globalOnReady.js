@@ -30,7 +30,12 @@ $(function(){
     if (Modernizr.touch) {
         $imgs.swipe(swipeOptions);
     } else {
-        $('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+        $('.jqzoom').jqzoom({
+            zoomType: 'innerzoom',
+            title: false,
+            zoomWidth: 402,
+            zoomHeight: 402
+        });
     }
     
     $('ul#products li .content').dotdotdot(); // trim product descriptions in the small layout
