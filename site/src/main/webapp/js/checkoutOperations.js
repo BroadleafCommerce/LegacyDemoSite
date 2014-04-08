@@ -53,6 +53,26 @@ $(function(){
         $(this).closest('dt').next().css({display:"block"});
     });
 
+    /* Toggle visibility of promo and credit options */
+    $('body').on('click', 'input#promoCreditOption_credit', function() {
+        $(this).closest('dt').next().toggle();
+    });
+
+    $('body').on('click', 'input#promoCreditOption_promo', function() {
+        $(this).closest('dt').next().toggle();
+    });
+
+    function togglePromoCreditOptions() {
+        $('#promoCreditOptions').children('dd').each(function(){
+            if ($(this).find('span.error').length == 0) {
+                $(this).hide();
+            } else {
+                $(this).prev().find('input[type=checkbox]').prop('checked', true);
+                $(this).show();
+            }
+        })
+    }
+
     /** Helper methods to copy from billing address to shipping address and vice versa based on your layout **/
 
     /* Copy Billing Form to Shipping Form Checkbox */
@@ -126,4 +146,6 @@ $(function(){
         );
         return false;
     });
+
+    togglePromoCreditOptions();
 });

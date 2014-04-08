@@ -47,6 +47,7 @@
                 <echo message="${company-name}" />
                 <!-- Move the required files / directories to their new homes -->
                 <move file="site/src/main/java/com/mycompany" tofile="site/src/main/java/${company-tld}/${company-name}" />
+                <move file="core/src/main/java/com/mycompany" tofile="core/src/main/java/${company-tld}/${company-name}" />
                 <!-- Replace the appropriate tokens -->
                 <replace file="pom.xml" token="com.mycompany" value="${maven-group}" summary="yes" excludes="target/" />
                 <replace dir="admin" token="com.mycompany.gwt.mycompanyAdmin" value="${maven-group}.gwt.${company-name}Admin" summary="yes" excludes="target/" />
