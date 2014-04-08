@@ -1,4 +1,4 @@
-\--
+--
 -- The Archetype is configured with "hibernate.hbm2ddl.auto" value="create-drop" in "persistence.xml".
 --
 -- This will cause hibernate to populate the database when the application is started by processing the files that
