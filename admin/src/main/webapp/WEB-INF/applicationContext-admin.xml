@@ -124,6 +124,7 @@
         <property name="handlers">
             <list>
                 <ref bean="blRuleBuilderEnumOptionsResourceHandler" />
+                <ref bean="blBLCJSResourceHandler" />
             </list>
         </property>
         <property name="locations" ref="blJsLocations" />
