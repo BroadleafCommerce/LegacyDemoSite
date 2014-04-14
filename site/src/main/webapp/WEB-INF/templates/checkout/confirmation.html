@@ -41,7 +41,7 @@
                 <td align="center" th:if="*{adjustmentValue.zero}">---</td>
                 <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
                   <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
-                     <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+                     <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"></div>
                 </td>
                 <td align="center" class="value" blc:price="*{totalPrice}"></td>
             </tr>
@@ -109,23 +109,23 @@
         
         <div class="fulfillment_option" th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}"> 
-           <div class="left_content">
-                <address>
-                    [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
-                    [[*{address.phonePrimary?.phoneNumber == null ? '' : address.phonePrimary?.phoneNumber}]]<br/>
-                    [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
-                    [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
-                    [[*{address.country.name == null ? '' : address.country.name}]]<br/>
-                </address>
+               <div class="left_content">
+                    <address>
+                        [[*{address.firstName == null ? '' : address.firstName}]]&nbsp;[[*{address.lastName == null ? '' : address.lastName}]]<br/>
+                        [[*{address.phonePrimary?.phoneNumber == null ? '' : address.phonePrimary?.phoneNumber}]]<br/>
+                        [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
+                        [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
+                        [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
+                        [[*{address.country.name == null ? '' : address.country.name}]]<br/>
+                    </address>
+                </div>
+                <div class="right_content">
+                    <h3><span th:text="#{confirmation.shipping.method}">Shipping Method</span></h3>
+                    <b>[[*{fulfillmentOption.name}]]</b><br/>
+                    ([[*{fulfillmentOption.longDescription}]])
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="right_content">
-                <h3><span th:text="#{confirmation.shipping.method}">Shipping Method</span></h3>
-                <b>[[*{fulfillmentOption.name}]]</b><br/>
-                ([[*{fulfillmentOption.longDescription}]])
-            </div>
-            <div class="clearfix"></div>
-        </div>
         </div>
 
         <div class="cart_title"><span th:text="#{confirmation.billing.info}">Billing Information</span></div>
