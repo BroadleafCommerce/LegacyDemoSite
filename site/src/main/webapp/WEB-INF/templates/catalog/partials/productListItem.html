@@ -27,7 +27,7 @@
     <div th:if="${checkInventory and !availableInventory}" class="out_of_stock">
         <a disabled="disabled" class="inCart">Out of Stock</a>
     </div>
-    <div class="in_cart" th:classappend="${!inCart}? ' hidden'" th:if="${#lists.isEmpty(product.productOptions)}">
+    <div class="in_cart" th:classappend="${!inCart}? ' hidden'" th:if="*{#lists.isEmpty(productOptions)}">
         <a class="modalcart inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
     </div>
 
