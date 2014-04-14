@@ -22,7 +22,7 @@
 <div th:class="*{'productActions productActions' + id}"
      th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
               availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
-              inCart=${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}">
+              inCart=${cart.containsSku(#object.defaultSku)} and *{#lists.isEmpty(productOptions)}">
 
     <div th:if="${checkInventory and !availableInventory}" class="out_of_stock">
         <a disabled="disabled" class="inCart">Out of Stock</a>
