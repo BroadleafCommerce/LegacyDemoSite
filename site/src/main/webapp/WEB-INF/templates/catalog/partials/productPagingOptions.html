@@ -1,4 +1,4 @@
-<div class="pager" th:unless="${#lists.isEmpty(products)}">
+<div class="pager" th:unless="${#lists.isEmpty(products)} and ${#lists.isEmpty(skus)}">
     <span class="heading"><span th:text="#{productPagingOptions.page}">Page:</span></span>
     <ul>
         <li th:each="num : ${#numbers.sequence(1, result.totalPages)}">

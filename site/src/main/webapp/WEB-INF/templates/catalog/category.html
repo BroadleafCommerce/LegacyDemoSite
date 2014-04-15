@@ -31,9 +31,7 @@
                 <li th:each="sku : ${skus}" th:object="${sku.product}" th:include="catalog/partials/productListItem" class="product_container"></li>
             </ul>
             
-            <div th:if="${products}" th:substituteby="catalog/partials/productPagingOptions" />
-            
-            <div th:if="${skus}" th:substituteby="catalog/partials/skuPagingOptions" />
+            <div th:substituteby="catalog/partials/productPagingOptions" />
             
         </section>
     
