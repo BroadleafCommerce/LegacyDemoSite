@@ -26,8 +26,12 @@
                 <div th:substituteby="catalog/partials/productSortOptions"></div>
             </header>
             
-            <ul id="products" class="group">
+            <ul th:if="${products}" id="products" class="group">
                 <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+            </ul>
+            
+            <ul th:if="${skus}" id="products" class="group">
+                <li th:each="sku : ${skus}" th:object="${sku.product}" th:include="catalog/partials/productListItem" class="product_container"></li>
             </ul>
             
             <div th:substituteby="catalog/partials/productPagingOptions" />
