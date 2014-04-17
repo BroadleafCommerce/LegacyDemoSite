@@ -111,22 +111,35 @@
     <!--</bean>-->
 
     <!-- If you want to use a standalone solr server for at least one environment, uncomment the following -->
-    <!-- two beans and set solr.source and solr.source.reindex in the property file for the environment -->
-    <!-- to the URLs of the standalone server. NOTE: solr.url should point to the ROOT of the server, -->
-    <!-- for example: http://localhost:8983/solr. solr.url.reindex should point to the reindex core, -->
-    <!-- for example: http://localhost:8983/solr/reindex. The defaultCoreName property in solr.xml should -->
-    <!-- point to the primary core. solr.source and solr.source.reindex should be set to solrServer and -->
-    <!-- solrReindexServer, respectively. -->
+    <!-- three beans and set solr.source.primary, solr.source.reindex, and solr.source.admin in the property file -->
+    <!-- to be solrServer, solrReindexServer, and solrAdminServer, respectively:
+    <!-- solr.souce.primary=solrServer-->
+    <!-- solr.souce.reindex=solrReindexServer-->
+    <!-- solr.souce.admin=solrAdminServer-->
+    <!-- Then, ensure that the three beans that you just uncommented, below, have their constructor arguments -->
+    <!-- pointing to the correct URLs of the stand alone server(s) -->
+    <!-- NOTE this assumes you are using Solr 4.4. -->
+    <!-- solr.url.admin should point to the ROOT of the server, for example: http://localhost:8983/solr. -->
+    <!-- solr.url.reindex should point to the reindex core, for example: http://localhost:8983/solr/reindex. 
+    <!-- solr.url.primary should point to the primary core, for example, http://localhost:8983/solr/primary.  -->
+    <!-- In version 4.4 and higher of Solr, there is no need to configure the cores or defaultCoreName elements -->
+    <!-- in solr.xml, as Solr cores are auto discoverable as of 4.4 (see Solr documentation).-->
+    <!-- So, for Solr 4.4, in stand-alone mode, you should configure the following 3 HttpSolrServer configurations: -->
     <!--     <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url}"/> -->
+    <!--         <constructor-arg value="${solr.url.primary}"/> -->
     <!--     </bean> -->
     <!--     <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
     <!--         <constructor-arg value="${solr.url.reindex}"/> -->
     <!--     </bean> -->
+    <!--     <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
+    <!--         <constructor-arg value="${solr.url.admin}"/> -->
+    <!--     </bean> -->
     <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
-        <constructor-arg name="solrServer" ref="${solr.source}" />
+        <constructor-arg name="solrServer" ref="${solr.source.primary}" />
         <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
-    </bean> 
+        <constructor-arg name="adminServer" ref="${solr.source.admin}" />
+    </bean>
+    
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
