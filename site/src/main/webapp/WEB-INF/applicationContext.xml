@@ -139,7 +139,6 @@
         <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
         <constructor-arg name="adminServer" ref="${solr.source.admin}" />
     </bean>
-    
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
