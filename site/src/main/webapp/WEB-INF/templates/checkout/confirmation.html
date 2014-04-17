@@ -24,7 +24,14 @@
             </thead>
             <tbody>
             <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-                <td><img th:if="*{product.media['primary'] != null}" th:src="@{*{product.media['primary']?.url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
+                <td>
+                    <th:block th:unless="*{#lists.isEmpty(sku.productOptionValues)}" th:each="optionValue : *{sku.productOptionValues}">
+                    <img th:if="${optionValue.attributeValue == item.sku.skuMedia['primary'].tags}" th:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+                    <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt1'].tags}" th:src="@{*{sku.skuMedia['alt1'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+                    <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt2'].tags}" th:src="@{*{sku.skuMedia['alt2'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+                </th:block>
+                <img th:if="*{#lists.isEmpty(sku.productOptionValues)}" th:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+                </td>
                 <td align="left">
                     <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                     <br/>
