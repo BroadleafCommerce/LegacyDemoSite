@@ -17,8 +17,10 @@
         <section id="left_column" th:object="${sku}">
         
             <div id="product_content" class="product_container">
-                <h2 th:text="*{name}"></h2>
-                <p>HI!!!!!!!!!!!!!!!!</p>
+                <h2 th:inline="text">
+                    [[*{name}]] <span th:each="optionValue : *{productOptionValues}" th:text="${optionValue.attributeValue}"></span>
+                </h2>
+                
                 <div id="maker" th:text="*{product.manufacturer}"></div>
                 
                 <div id="price">
@@ -89,30 +91,21 @@
                 
             </div>
             
-            <div id="product_main_image" th:if="*{skuMedia['primary']}">
-                <a th:href="@{*{#strings.replace(skuMedia['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+            <div id="product_main_image">
+                <th:block th:unless="*{#lists.isEmpty(productOptionValues)}" th:each="optionValue : *{productOptionValues}">
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['primary'].tags}" th:href="@{*{#strings.replace(skuMedia['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                        <img th:src="@{*{skuMedia['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
+                    </a>
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt1'].tags}" th:href="@{*{#strings.replace(skuMedia['alt1'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                        <img th:src="@{*{skuMedia['alt1'].url}+ '?browse'}" alt='' align="left" id="main_image" />
+                    </a>
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt2'].tags}" th:href="@{*{#strings.replace(skuMedia['alt2'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                        <img th:src="@{*{skuMedia['alt2'].url}+ '?browse'}" alt='' align="left" id="main_image" />
+                    </a>
+                </th:block>
+                <a th:if="*{#lists.isEmpty(productOptionValues)}" th:href="@{*{#strings.replace(skuMedia['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
                     <img th:src="@{*{skuMedia['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                 </a>
-            </div>
-            
-            <div id="product_thumbs_container">
-                <ul id="product_thumbs" class="clearfix">
-                    <li>
-                        <a th:if="*{skuMedia['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{skuMedia['primary'].url}+'?browse'}__'', largeimage: ''__@{*{skuMedia['primary'].url}}__'' }'}" th:attr="data-tags=*{skuMedia['primary'].tags}">
-                            <img th:src="@{*{skuMedia['primary'].url}}" alt="Bottle Closeup" />
-                        </a>
-                        <p th:if="*{#maps.size(skuMedia) > 1}" class="thumbs_nav">Swipe to see more... (<span th:text="'1 of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></span>)</p>
-                        
-                    </li>
-                    
-                    <li th:each="media, iterStat : *{skuMedia}" th:unless="${media.key == 'primary'}">
-                        <a href="javascript:;"
-                            th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}+'?browse'}__'', largeimage: ''__@{${media.value.url}}__'' }'}" th:attr="data-tags=${media.value.tags}">
-                            <img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
-                        </a>
-                        <p class="thumbs_nav" th:text="${iterStat.count + 1} + ' of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></p>
-                    </li>
-                </ul>
             </div>
             
             <div class="clearfix"></div>
@@ -213,7 +206,7 @@
             <header>Featured Products</header>
             <div id="options">
                 <div class="section">
-                     <blc:related_products productId="*{product.id}"/>   
+                     <blc:related_products productId="${sku.product.id}"/>   
                     <ul id="featured_products" class="group">
                         <li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" th:include="catalog/partials/productListItem" class="product_container"></li>
                     </ul>
