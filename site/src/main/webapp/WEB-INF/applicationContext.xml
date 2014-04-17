@@ -90,7 +90,7 @@
     <!-- in solr.xml, as Solr cores are auto discoverable as of 4.4 (see Solr documentation).-->
     <!-- So, for Solr 4.4, in stand-alone mode, you should configure the following 3 HttpSolrServer configurations: -->
     <!--     <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url}"/> -->
+    <!--         <constructor-arg value="${solr.url.primary}"/> -->
     <!--     </bean> -->
     <!--     <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
     <!--         <constructor-arg value="${solr.url.reindex}"/> -->
@@ -102,7 +102,7 @@
         <constructor-arg name="solrServer" ref="${solr.source.primary}" />
         <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
         <constructor-arg name="adminServer" ref="${solr.source.admin}" />
-    </bean> 
+    </bean>
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
