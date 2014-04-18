@@ -78,6 +78,9 @@ public class CartController extends BroadleafCartController {
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());
             }
+            if(addToCartItem.getSkuId() != null) {
+                responseMap.put("skuId", addToCartItem.getSkuId());
+            }
         } catch (AddToCartException e) {
             if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
                 responseMap.put("error", "allOptionsRequired");

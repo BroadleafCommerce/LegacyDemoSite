@@ -30,7 +30,7 @@
                 
                 <th:block th:with="checkInventory=*{inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.quantityAvailable != null and #object.quantityAvailable != 0 : true},
-                                   inCart=${cart.containsSku(#object) and #lists.isEmpty(#object.product.productOptions)}">
+                                   inCart=${cart.containsSku(#object)}">
                     <blc:form method="POST" th:action="@{/cart/add}">
                         <div th:utext="*{longDescription}" id="description"></div>
                         
