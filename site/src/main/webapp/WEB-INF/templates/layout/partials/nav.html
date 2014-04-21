@@ -5,11 +5,19 @@
              and building a list of the categories sub-categories.                          
         -->
     </div>
-    <blc:categories resultVar="navCategories" parentCategory="Primary Nav" maxResults="6" />
+    <blc:menu resultVar="headerNav" menuName="Header Nav" />
     
-    <ul>
-        <li th:each="category : ${navCategories}" th:unless="${#strings.isEmpty(category.url)}">
-            <a class="home" th:href="@{${category.url}}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
+    <ul th:if="${headerNav}">
+        <li th:each="menuItem : ${headerNav.menuItems}">
+            <a th:if="${menuItem.menuItemType.type == 'CATEGORY'}" th:href="@{${menuItem.linkedCategory.url}}" th:class="${menuItemStat.first}? 'home'" th:text="${menuItem.linkedCategory.name}"></a>
+
+            <a th:if="${menuItem.menuItemType.type == 'SUBMENU'}" th:href="@{${menuItem.actionUrl}}" th:class="${menuItemStat.first}? 'home'" th:text="${menuItem.label}"></a>
+            <ul th:if="${menuItem.menuItemType.type == 'SUBMENU'}" class="sub-menu">
+                <li th:each="submenuItem : ${menuItem.linkedMenu.menuItems}">
+                    <a th:if="${submenuItem.menuItemType.type == 'CATEGORY'}" th:href="@{${submenuItem.linkedCategory.url}}" th:text="${submenuItem.linkedCategory.name}"></a>
+                </li>
+            </ul>
+
         </li>
     </ul>
 </nav>
