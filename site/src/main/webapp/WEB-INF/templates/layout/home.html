@@ -34,7 +34,7 @@
         </ul>
         
         <ul th:if="${skus}" id="products" class="group">
-            <li th:each="sku : ${skus}" th:object="${sku.product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+            <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
         </ul>
     </div>
     
