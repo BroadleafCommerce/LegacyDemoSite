@@ -39,7 +39,8 @@ INSERT INTO BLC_COUNTRY VALUES ('BF','Burkina Faso');
 INSERT INTO BLC_COUNTRY VALUES ('BI','Burundi');
 INSERT INTO BLC_COUNTRY VALUES ('KH','Cambodia');
 INSERT INTO BLC_COUNTRY VALUES ('CM','Cameroon');
-INSERT INTO BLC_COUNTRY VALUES ('CA','Canada');
+-- Insert if not importing load_code_tables.sql
+-- INSERT INTO BLC_COUNTRY VALUES ('CA','Canada');
 INSERT INTO BLC_COUNTRY VALUES ('CV','Cabo Verde');
 INSERT INTO BLC_COUNTRY VALUES ('KY','Cayman Islands');
 INSERT INTO BLC_COUNTRY VALUES ('CF','Central African Republic');
@@ -143,7 +144,8 @@ INSERT INTO BLC_COUNTRY VALUES ('MQ','Martinique');
 INSERT INTO BLC_COUNTRY VALUES ('MR','Mauritania');
 INSERT INTO BLC_COUNTRY VALUES ('MU','Mauritius');
 INSERT INTO BLC_COUNTRY VALUES ('YT','Mayotte');
-INSERT INTO BLC_COUNTRY VALUES ('MX','Mexico');
+-- Insert if not importing load_code_tables.sql
+-- INSERT INTO BLC_COUNTRY VALUES ('MX','Mexico');
 INSERT INTO BLC_COUNTRY VALUES ('FM','Micronesia');
 INSERT INTO BLC_COUNTRY VALUES ('MD','Moldova');
 INSERT INTO BLC_COUNTRY VALUES ('MC','Monaco');
@@ -235,7 +237,8 @@ INSERT INTO BLC_COUNTRY VALUES ('UG','Uganda');
 INSERT INTO BLC_COUNTRY VALUES ('UA','Ukraine');
 INSERT INTO BLC_COUNTRY VALUES ('AE','United Arab Emirates');
 INSERT INTO BLC_COUNTRY VALUES ('GB','United Kingdom of Great Britain & Northern Ireland');
-INSERT INTO BLC_COUNTRY VALUES ('US','United States of America');
+-- Insert if not importing load_code_tables.sql
+-- INSERT INTO BLC_COUNTRY VALUES ('US','United States of America');
 INSERT INTO BLC_COUNTRY VALUES ('UM','United States Minor Outlying Islands');
 INSERT INTO BLC_COUNTRY VALUES ('VI','United States Virgin Islands');
 INSERT INTO BLC_COUNTRY VALUES ('UY','Uruguay');
