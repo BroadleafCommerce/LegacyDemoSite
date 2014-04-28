@@ -1,4 +1,4 @@
-<nav>   
+<nav>
     <div th:remove="all">
         <!--
              This template displays the navigation of the site by looking up the menu named "headerNav"
@@ -6,15 +6,15 @@
         -->
     </div>
     <blc:menu resultVar="headerNav" menuName="Header Nav" />
-    
     <ul th:if="${headerNav}">
         <li th:each="menuItem : ${headerNav.menuItems}">
-            <a th:if="${menuItem.menuItemType.type == 'CATEGORY'}" th:href="@{${menuItem.linkedCategory.url}}" th:class="${menuItemStat.first}? 'home'" th:text="${menuItem.linkedCategory.name}"></a>
 
-            <a th:if="${menuItem.menuItemType.type == 'SUBMENU'}" th:href="@{${menuItem.actionUrl}}" th:class="${menuItemStat.first}? 'home'" th:text="${menuItem.label}"></a>
-            <ul th:if="${menuItem.menuItemType.type == 'SUBMENU'}" class="sub-menu">
-                <li th:each="submenuItem : ${menuItem.linkedMenu.menuItems}">
-                    <a th:if="${submenuItem.menuItemType.type == 'CATEGORY'}" th:href="@{${submenuItem.linkedCategory.url}}" th:text="${submenuItem.linkedCategory.name}"></a>
+            <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
+                <span th:text="${menuItem.label}"></span>
+            </a>
+            <ul th:if="${#menu.hasSubmenuItems(menuItem)}" class="sub-menu">
+                <li th:each="submenuItem : ${#menu.constructSubmenu(menuItem)}">
+                    <a th:href="@{${submenuItem.url}}" th:text="${submenuItem.label}"></a>
                 </li>
             </ul>
 
