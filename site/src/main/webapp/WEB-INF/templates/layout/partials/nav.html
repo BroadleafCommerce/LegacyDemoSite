@@ -5,15 +5,15 @@
              and building a list of the categories sub-categories menu items.
         -->
     </div>
-    <blc:menu resultVar="headerNav" menuName="Header Nav" />
-    <ul th:if="${headerNav}">
-        <li th:each="menuItem : ${headerNav.menuItems}">
+    <blc:menu resultVar="menuItems" menuName="Header Nav" />
+    <ul th:if="${menuItems}">
+        <li th:each="menuItem : ${menuItems}">
 
             <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
                 <span th:text="${menuItem.label}"></span>
             </a>
-            <ul th:if="${#menu.hasSubmenuItems(menuItem)}" class="sub-menu">
-                <li th:each="submenuItem : ${#menu.constructSubmenu(menuItem)}">
+            <ul th:if="${menuItem.submenu != null}" class="sub-menu">
+                <li th:each="submenuItem : ${menuItem.submenu}">
                     <a th:href="@{${submenuItem.url}}" th:text="${submenuItem.label}"></a>
                 </li>
             </ul>
