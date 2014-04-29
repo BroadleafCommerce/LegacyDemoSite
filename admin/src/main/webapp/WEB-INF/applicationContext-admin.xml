@@ -137,8 +137,8 @@
     <bean id="blJsFileMap" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">
             <map>
-                <entry key="admin.js" value-ref="blJsFileList"/>
-                <entry key="admin.css" value-ref="blCssFileList"/>
+                <entry key="admin/admin.js" value-ref="blJsFileList"/>
+                <entry key="admin/admin.css" value-ref="blCssFileList"/>
             </map>
         </property>  
     </bean>
