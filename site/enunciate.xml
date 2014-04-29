@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<enunciate label="full" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="http://enunciate.codehaus.org/schemas/enunciate-1.28.xsd">
-
-    <modules>
-        <obj-c></obj-c>
-    </modules>
-
-</enunciate>
