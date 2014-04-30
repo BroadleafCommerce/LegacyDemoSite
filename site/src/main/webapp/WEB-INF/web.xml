@@ -129,4 +129,9 @@
         <env-entry-value>mycompanySite</env-entry-value>
     </env-entry>
     
+    <error-page>
+       <error-code>404</error-code>
+       <location>/error</location>
+    </error-page>
+    
 </web-app>
