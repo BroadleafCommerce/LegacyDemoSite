@@ -10,11 +10,11 @@
     <div id="notification_bar"></div>
     <header th:substituteby="layout/partials/header" />
 
-    <div id="content" class="width_setter group" role="main">
+    <div id="content" class="width_setter group" role="main" th:object="${sku}">
     
         <nav th:substituteby="layout/partials/nav" />
         
-        <section id="left_column" th:object="${sku}">
+        <section id="left_column">
         
             <div id="product_content" class="product_container">
                 <h2 th:inline="text">
@@ -226,9 +226,9 @@
             <header>Featured Products</header>
             <div id="options">
                 <div class="section">
-                     <blc:related_products productId="${sku.product.id}"/>   
+                    <blc:related_products productId="*{product.id}" quantity="3"/> 
                     <ul id="featured_products" class="group">
-                        <li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                        <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
                     </ul>
                 </div>                                  
             </div>

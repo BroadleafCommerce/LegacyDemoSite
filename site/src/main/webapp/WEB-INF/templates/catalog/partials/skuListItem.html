@@ -3,9 +3,9 @@
 <div class="image">
     <a th:href="@{*{product.url} + *{#strings.isEmpty(urlKey)? '' : urlKey}}">
         <th:block th:unless="*{#lists.isEmpty(productOptionValues)}" th:each="optionValue : *{productOptionValues}">
-            <img th:if="${optionValue.attributeValue == sku.skuMedia['primary'].tags}" th:src="@{*{skuMedia['primary'].url} + '?browse'}" alt="Sauce Image" />
-            <img th:if="${optionValue.attributeValue == sku.skuMedia['alt1'].tags}" th:src="@{*{skuMedia['alt1'].url} + '?browse'}" alt="Sauce Image" />
-            <img th:if="${optionValue.attributeValue == sku.skuMedia['alt2'].tags}" th:src="@{*{skuMedia['alt2'].url} + '?browse'}" alt="Sauce Image" />
+            <img th:if="${optionValue.attributeValue == #object.skuMedia['primary'].tags}" th:src="@{*{skuMedia['primary'].url} + '?browse'}" alt="Sauce Image" />
+            <img th:if="${optionValue.attributeValue == #object.skuMedia['alt1'].tags}" th:src="@{*{skuMedia['alt1'].url} + '?browse'}" alt="Sauce Image" />
+            <img th:if="${optionValue.attributeValue == #object.skuMedia['alt2'].tags}" th:src="@{*{skuMedia['alt2'].url} + '?browse'}" alt="Sauce Image" />
         </th:block>
         <img th:if="*{#lists.isEmpty(productOptionValues)}" th:src="@{*{skuMedia['primary'].url} + '?browse'}" alt="Sauce Image" />
         <div class="price">
