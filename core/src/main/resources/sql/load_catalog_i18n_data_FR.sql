@@ -111,3 +111,9 @@ INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-394, 2, 'fr', 'FulfillmentOption', 'longDescription', '3 - 5 Journ&eacute;es');
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-395, 3, 'fr', 'FulfillmentOption', 'name', 'Express');
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-396, 3, 'fr', 'FulfillmentOption', 'longDescription', '1 - 2 Journ&eacute;es');
+
+-----------------------------------------------------------------------------------------------------------------------------------
+-- MENU ITEM TRANSLATION
+-----------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME, TRANSLATED_VALUE) VALUES (-397, 5, 'fr', 'MenuItem', 'label', 'Nouveau Hot Sauce?');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME, TRANSLATED_VALUE) VALUES (-398, 6, 'fr', 'MenuItem', 'label', 'FAQ');
