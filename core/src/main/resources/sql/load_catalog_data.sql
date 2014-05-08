@@ -210,78 +210,78 @@ UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 600 WHERE PRODUCT_ID = 600;
 -- All other combinations have no special properties, but we must create them so we can track inventory on a 
 -- per-SKU level. Generally, either you have only a default SKU or SKUs for all permutations of product options
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (114,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (124,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (134,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (214,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (224,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (234,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (314,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (324,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (334,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (414,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (424,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (434,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (514,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (524,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (534,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (614,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (624,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG) VALUES (634,16.99,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (111,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (112,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (113,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (121,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (122,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (123,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (131,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (132,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (133,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (211,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (212,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (213,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (221,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (222,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (223,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (231,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (232,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (233,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (311,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (312,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (313,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (321,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (322,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (323,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (331,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (332,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (333,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (411,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (412,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (413,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (421,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (422,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (423,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (431,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (432,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (433,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (511,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (512,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (513,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (521,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (522,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (523,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (531,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (532,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (533,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (611,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (612,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (613,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (621,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (622,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (623,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (631,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (632,'Y');
-INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (633,'Y');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (114,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (124,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (134,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (214,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (224,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (234,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (314,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (324,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (334,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (414,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (424,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (434,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (514,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (524,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (534,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (614,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/black_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (624,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/red_xl');
+INSERT INTO BLC_SKU (SKU_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (634,16.99,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!','Y','/silver_xl');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (111,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (112,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (113,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (121,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (122,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (123,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (131,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (132,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (133,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (211,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (212,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (213,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (221,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (222,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (223,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (231,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (232,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (233,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','/silver_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (311,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (312,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (313,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (321,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (322,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (323,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (331,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (332,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (333,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','/silver_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (411,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (412,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (413,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (421,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (422,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (423,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (431,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (432,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (433,'Y',CURRENT_TIMESTAMP,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','/silver_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (511,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (512,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (513,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (521,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (522,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (523,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (531,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (532,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (533,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (611,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (612,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (613,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/black_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (621,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (622,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (623,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/red_l');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (631,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_s');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (632,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_m');
+INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,URL_KEY) VALUES (633,'Y',CURRENT_TIMESTAMP,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','/silver_l');
 
 ------------------------------------------------------------------------------------------------------------------
 -- Associate the appropriate option values for the skus
@@ -359,7 +359,6 @@ INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (633, 3), (633, 13);
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (634, 3), (634, 14);
 
-
 ------------------------------------------------------------------------------------------------------------------
 -- Add some heat levels to all the products
 ------------------------------------------------------------------------------------------------------------------
@@ -382,6 +381,29 @@ INSERT INTO BLC_PRODUCT_ATTRIBUTE (PRODUCT_ATTRIBUTE_ID, PRODUCT_ID, NAME, VALUE
 INSERT INTO BLC_PRODUCT_ATTRIBUTE (PRODUCT_ATTRIBUTE_ID, PRODUCT_ID, NAME, VALUE) VALUES (17, 17, 'heatRange', 5);
 INSERT INTO BLC_PRODUCT_ATTRIBUTE (PRODUCT_ATTRIBUTE_ID, PRODUCT_ID, NAME, VALUE) VALUES (18, 18, 'heatRange', 3);
 INSERT INTO BLC_PRODUCT_ATTRIBUTE (PRODUCT_ATTRIBUTE_ID, PRODUCT_ID, NAME, VALUE) VALUES (19, 19, 'heatRange', 1);
+
+------------------------------------------------------------------------------------------------------------------
+-- Add some heat levels to all the hot sauce skus
+------------------------------------------------------------------------------------------------------------------
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (1, 1, 'heatRange', 4);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (2, 2, 'heatRange', 1);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (3, 3, 'heatRange', 2);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (4, 4, 'heatRange', 2);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (5, 5, 'heatRange', 4);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (6, 6, 'heatRange', 4);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (7, 7, 'heatRange', 3);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (8, 8, 'heatRange', 4);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (9, 9, 'heatRange', 5);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (10, 10, 'heatRange', 5);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (11, 11, 'heatRange', 2);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (12, 12, 'heatRange', 1);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (13, 13, 'heatRange', 2);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (14, 14, 'heatRange', 2);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (15, 15, 'heatRange', 1);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (16, 16, 'heatRange', 3);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (17, 17, 'heatRange', 5);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (18, 18, 'heatRange', 3);
+INSERT INTO BLC_SKU_ATTRIBUTE (SKU_ATTR_ID, SKU_ID, NAME, VALUE) VALUES (19, 19, 'heatRange', 1);
 
 ------------------------------------------------------------------------------------------------------------------
 -- Link the non-default SKUs for merchandise
