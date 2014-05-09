@@ -93,13 +93,13 @@
             
             <div id="product_main_image">
                 <th:block th:unless="*{#lists.isEmpty(productOptionValues)}" th:each="optionValue : *{productOptionValues}">
-                    <a th:if="${optionValue.attributeValue == sku.skuMedia['primary'].tags}" th:href="@{*{#strings.replace(skuMedia['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['primary']?.tags}" th:href="@{*{#strings.replace(skuMedia['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
                         <img th:src="@{*{skuMedia['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                     </a>
-                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt1'].tags}" th:href="@{*{#strings.replace(skuMedia['alt1'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt1']?.tags}" th:href="@{*{#strings.replace(skuMedia['alt1'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
                         <img th:src="@{*{skuMedia['alt1'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                     </a>
-                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt2'].tags}" th:href="@{*{#strings.replace(skuMedia['alt2'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
+                    <a th:if="${optionValue.attributeValue == sku.skuMedia['alt2']?.tags}" th:href="@{*{#strings.replace(skuMedia['alt2'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
                         <img th:src="@{*{skuMedia['alt2'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                     </a>
                 </th:block>
