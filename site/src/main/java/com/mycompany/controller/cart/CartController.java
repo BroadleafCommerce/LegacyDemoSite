@@ -28,6 +28,7 @@ import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.core.web.order.model.AddToCartItem;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,6 +47,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/cart")
 public class CartController extends BroadleafCartController {
+    
+    @Value("${solr.index.use.sku}")
+    protected boolean useSku;
     
     @Override
     @RequestMapping("")
@@ -77,6 +81,9 @@ public class CartController extends BroadleafCartController {
                 // We don't want to return a productId to hide actions for when it is a product that has multiple
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());
+            }
+            if(useSku) {
+                responseMap.put("skuId", addToCartItem.getSkuId());
             }
         } catch (AddToCartException e) {
             if (e.getCause() instanceof RequiredAttributeNotProvidedException) {

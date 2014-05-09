@@ -131,7 +131,11 @@ $(function(){
                         } else if (wishlistAdd) {
                             showInCartButton(data.productId, 'wishlist');
                         } else {
-                            showInCartButton(data.productId, 'cart');
+                        	if(data.skuId != null) {
+                        		showInCartButton(data.skuId, 'cart');
+                        	} else {
+                            	showInCartButton(data.productId, 'cart');
+                        	}
                         }
                         
                         if (wishlistAdd) {

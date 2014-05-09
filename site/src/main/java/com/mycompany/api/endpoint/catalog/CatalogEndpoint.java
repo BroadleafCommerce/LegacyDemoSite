@@ -68,23 +68,23 @@ public class CatalogEndpoint extends
 
     @Override
     @GET
-    @Path("search/products")
-    public SearchResultsWrapper findProductsByQuery(@Context HttpServletRequest request,
+    @Path("search")
+    public SearchResultsWrapper findSearchResultsByQuery(@Context HttpServletRequest request,
             @QueryParam("q") String q,
             @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
             @QueryParam("page") @DefaultValue("1") Integer page) {
-        return super.findProductsByQuery(request, q, pageSize, page);
+        return super.findSearchResultsByQuery(request, q, pageSize, page);
     }
 
     @Override
     @GET
-    @Path("search/category/{categoryId}/products")
-    public SearchResultsWrapper findProductsByCategoryAndQuery(@Context HttpServletRequest request,
+    @Path("search/category/{categoryId}")
+    public SearchResultsWrapper findSearchResultsByCategoryAndQuery(@Context HttpServletRequest request,
             @PathParam("categoryId") Long categoryId,
             @QueryParam("q") String q,
             @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
             @QueryParam("page") @DefaultValue("1") Integer page) {
-        return super.findProductsByCategoryAndQuery(request, categoryId, q, pageSize, page);
+        return super.findSearchResultsByCategoryAndQuery(request, categoryId, q, pageSize, page);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class CatalogEndpoint extends
     public List<SkuWrapper> findSkusByProductById(@Context HttpServletRequest request, @PathParam("id") Long id) {
         return super.findSkusByProductById(request, id);
     }
-
+    
     @Override
     @GET
     @Path("product/{id}/defaultSku")

@@ -27,18 +27,22 @@
     <aop:config/>
     
     <!--  Checks for a URL match to a product's SEO URL.   -->
-    <bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
+    <bean class="org.broadleafcommerce.core.web.catalog.SkuHandlerMapping">
       <property name="order" value="2"/>
+    </bean>
+    
+    <bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
+      <property name="order" value="3"/>
     </bean>
     
     <!--  Checks for a URL match to a CMS managed page URL.   -->
     <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
-      <property name="order" value="3"/>
+      <property name="order" value="4"/>
     </bean>
     
     <!--  Checks for a URL match to a category's SEO URL -->
     <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
-      <property name="order" value="4"/>
+      <property name="order" value="5"/>
     </bean>
 
     <!-- Scan for custom controllers -->
