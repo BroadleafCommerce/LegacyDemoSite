@@ -94,11 +94,11 @@
                                             keytool-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [1.2,)
+                                            [1.5,)
                                         </versionRange>
                                         <goals>
                                             <goal>clean</goal>
-                                            <goal>genkey</goal>
+                                            <goal>generateKeyPair</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
