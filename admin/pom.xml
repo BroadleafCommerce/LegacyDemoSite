@@ -36,6 +36,14 @@
                 <configuration>
                     <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
                     <contextPath>/admin</contextPath>
+                    
+                    <!-- !!!!! WARNING !!!!!! -->
+                    <!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
+                        vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
+                        in production -->
+                    <jettyXml>jetty-server.xml</jettyXml>
+                    <!-- !!!!! WARNING !!!!!! -->
+                    
                     <stopPort>9967</stopPort>
                     <stopKey>foo</stopKey>
         
