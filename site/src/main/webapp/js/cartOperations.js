@@ -185,7 +185,6 @@ $(function(){
                 type: "GET"
             }, function(data, extraData) {
                 updateHeaderCartItemsCount(extraData.cartItemCount);
-                showAddToCartButton(extraData.productId, 'cart');               
                 if(extraData.skuId != null) {
                 	showAddToCartButton(extraData.skuId, 'cart');
             	} else {
