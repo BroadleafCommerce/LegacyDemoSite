@@ -11,27 +11,10 @@
 -- SAMPLE PAGE DATA - would typically be entered via the admin
 -----------------------------------------------------------------------------------------------------------------------------------
 
--- Create structured content for locale="es"
--- -- Create an about-us page with "prueba de contenido" as the body of the page.
-INSERT INTO BLC_PAGE (PAGE_ID, DESCRIPTION, PAGE_TMPLT_ID, FULL_URL) VALUES (10, 'Prueba de Contenido', 2, '/about_us');
-
-INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, VALUE) VALUES (10, 'body', 'prueba de contenido');
-INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('body', 10, 10);
-INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, VALUE) VALUES (11, 'title', 'Espa&ntilde;ol G&eacute;nerico');
-INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('title',  11,10);
-
--- -- Create a FAQ for loclale="es"
-INSERT INTO BLC_PAGE (PAGE_ID, DESCRIPTION, PAGE_TMPLT_ID, FULL_URL) VALUES (11, 'FAQ', 2, '/faq');
-
-INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, VALUE) VALUES (12, 'body', '<h2 style="text-align:center;">Este es un ejemplo de una p&aacute;gina de contenido-manejado.</h2><h4 style="text-align:center;">Haga <a href="http://www.broadleafcommerce.com/features/content">click aqu&iacute;</a> para mas informaci&oacute;n.</h4>');
-INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('body', 12, 11);
-
--- -- Create a New To Hot Sauce for loclale="es"
-INSERT INTO BLC_PAGE (PAGE_ID, DESCRIPTION, PAGE_TMPLT_ID, FULL_URL) VALUES (13, 'New to Hot Sauce', 2, '/new-to-hot-sauce');
-
-INSERT INTO BLC_PAGE_FLD(PAGE_FLD_ID, FLD_KEY, VALUE) VALUES (13, 'body', '<h2 style="text-align:center;">Este es un ejemplo de una p&aacute;gina de contenido-manejado.</h2>');
-INSERT INTO BLC_PAGE_FLD_MAP(MAP_KEY, PAGE_FLD_ID, PAGE_ID) VALUES ('body', 13, 13);
-
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-1000, 1, 'es', 'Page', 'pageTemplate|title', 'Espa&ntilde;ol G&eacute;nerico');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-1001, 1, 'es', 'Page', 'pageTemplate|body', 'prueba de contenido');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-1002, 2, 'es', 'Page', 'pageTemplate|body', '<h2 style="text-align:center;">Este es un ejemplo de una p&aacute;gina de contenido-manejado.</h2><h4 style="text-align:center;">Haga <a href="http://www.broadleafcommerce.com/features/content">click aqu&iacute;</a> para mas informaci&oacute;n.</h4>');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-1003, 3, 'es', 'Page', 'pageTemplate|body', '<h2 style="text-align:center;">Este es un ejemplo de una p&aacute;gina de contenido-manejado.</h2>');
 
 -----------------------------------------------------------------------------------------------------------------------------------
 -- SAMPLE STRUCTURED CONTENT DATA  - would typically be entered via the admin
