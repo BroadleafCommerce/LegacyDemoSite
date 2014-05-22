@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+
+
+<!-- !!!!! WARNING !!!!!! -->
+<!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
+    vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
+    in production -->
+<!-- !!!!! WARNING !!!!!! -->
+
+<!-- Overridden in order to resolve hanging startup on some systems where Java cannot get enough entropy for a proper
+    random since it uses java.security.SecureRandom by default.
+    See http://docs.codehaus.org/display/JETTY/Connectors+slow+to+startup for a full description -->
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+    <Set name="sessionIdManager">
+      <New class="org.eclipse.jetty.server.session.HashSessionIdManager">
+        <Arg>
+          <New class="java.util.Random"/>
+        </Arg>
+        <Set name="workerName">node1</Set>
+      </New>
+    </Set>
+</Configure>
