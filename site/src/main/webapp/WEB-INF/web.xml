@@ -117,7 +117,9 @@
     	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.fasterxml.jackson.jaxrs</param-value>
+            <param-value>
+                com.fasterxml.jackson.jaxrs.json
+            </param-value>
         </init-param>
 	</servlet>
 
