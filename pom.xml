@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.11-SNAPSHOT</blc.version>
+        <blc.version>3.0.11-GA</blc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <description>My Company's eCommerce Website</description>
@@ -19,11 +19,6 @@
             <id>public snapshots</id>
             <name>public snapshots</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>public releases</id>
-            <name>public releases</name>
-            <url>http://oss.sonatype.org/content/repositories/orgbroadleafcommerce-1025</url>
         </repository>
     </repositories>
     <build>
