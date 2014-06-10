@@ -54,6 +54,9 @@ public class NullPaymentGatewayConfigurationServiceImpl implements PaymentGatewa
     @Resource(name = "blNullPaymentGatewayTransparentRedirectService")
     protected PaymentGatewayTransparentRedirectService transparentRedirectService;
 
+    @Resource(name = "blNullPaymentGatewayTransactionService")
+    protected PaymentGatewayTransactionService transactionService;
+
     @Resource(name = "blNullPaymentGatewayTRExtensionHandler")
     protected TRCreditCardExtensionHandler creditCardExtensionHandler;
 
@@ -62,10 +65,6 @@ public class NullPaymentGatewayConfigurationServiceImpl implements PaymentGatewa
 
     public PaymentGatewayConfiguration getConfiguration() {
         return configuration;
-    }
-
-    public PaymentGatewayTransactionService getTransactionService() {
-        return null;
     }
 
     public PaymentGatewayTransactionConfirmationService getTransactionConfirmationService() {
@@ -106,6 +105,10 @@ public class NullPaymentGatewayConfigurationServiceImpl implements PaymentGatewa
 
     public PaymentGatewayTransparentRedirectService getTransparentRedirectService() {
         return transparentRedirectService;
+    }
+
+    public PaymentGatewayTransactionService getTransactionService() {
+        return transactionService;
     }
 
     public TRCreditCardExtensionHandler getCreditCardExtensionHandler() {
