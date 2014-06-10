@@ -20,11 +20,6 @@
             <name>public snapshots</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <repository>
-            <id>public releases</id>
-            <name>public releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
-        </repository>
     </repositories>
     <build>
         <pluginManagement>
