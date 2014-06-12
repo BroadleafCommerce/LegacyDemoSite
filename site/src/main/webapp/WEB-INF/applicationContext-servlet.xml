@@ -67,9 +67,7 @@
     </mvc:interceptors>
 
     <!-- Default locale set -->
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <property name="defaultLocale" value="en"/>
-    </bean>
+    <bean id="localeResolver" class="org.broadleafcommerce.common.web.BroadleafCookieLocaleResolver" />
     
     <!-- Tell Spring to not try to map things in these directories to controllers -->
     <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
