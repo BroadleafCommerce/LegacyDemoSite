@@ -98,6 +98,12 @@ $(function(){
             	
             	if ("TEXT" == optionType) {
             		value = $(element).next().find('input').val();
+            	} else if ("TEXTAREA" == optionType) {
+            		value = $(element).next().find('textarea').val();
+            	} else if ("DECIMAL" == optionType) {
+            		value = $(element).next().find('input').val();
+            	} else if ("SELECT" == optionType) {
+            		value = $(element).next().find('select option:checked').val();
             	} else {
             		value = $(element).text();
             	}//need to add other types(date,long, etc) as needed
