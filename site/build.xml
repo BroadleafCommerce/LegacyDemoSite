@@ -91,9 +91,10 @@
     </target>
 
     <target name="start-db">
-        <!-- retrieve the web project pom file and import its jar dependencies -->
-        <artifact:pom id="warPom" file="pom.xml"/>
-        <artifact:dependencies filesetId="warDeps" pomRefId="warPom" useScope="test" />
+        <!-- Grab the HSQLDB jar and add it to the classpath -->
+        <artifact:dependencies filesetId="warDeps">
+            <dependency groupId="org.hsqldb" artifactId="hsqldb" version="2.3.1" />
+        </artifact:dependencies>
         <path id="build.runtime.classpath">
             <fileset refid="warDeps"/>
         </path>
@@ -106,8 +107,10 @@
 
     <target name="stop-db">
         <echo message="Execute SQL on new Data Base..." />
-        <artifact:pom id="warPom" file="pom.xml"/>
-        <artifact:dependencies filesetId="warDeps" pomRefId="warPom" useScope="test" />
+    	<!-- Grab the HSQLDB jar and add it to the classpath -->
+        <artifact:dependencies filesetId="warDeps">
+            <dependency groupId="org.hsqldb" artifactId="hsqldb" version="2.3.1" />
+        </artifact:dependencies>
         <path id="build.runtime.classpath">
             <fileset refid="warDeps"/>
         </path>

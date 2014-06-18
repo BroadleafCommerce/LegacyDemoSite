@@ -38,6 +38,14 @@
                 <configuration>
                     <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
                     <contextPath>/</contextPath>
+                    
+                    <!-- !!!!! WARNING !!!!!! -->
+                    <!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
+                        vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
+                        in production -->
+                    <jettyXml>jetty-server.xml</jettyXml>
+                    <!-- !!!!! WARNING !!!!!! -->
+                    
                     <stopPort>9966</stopPort>
                     <stopKey>foo</stopKey>
                     <connectors>
@@ -62,7 +70,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.5</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -73,9 +81,9 @@
                     </execution>
                     <execution>
                         <phase>generate-resources</phase>
-                        <id>genkey</id>
+                        <id>generateKeyPair</id>
                         <goals>
-                            <goal>genkey</goal>
+                            <goal>generateKeyPair</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -1184,17 +1184,17 @@ li.promotion,  ul.promotion{
     padding: 0px 20px;
 }
 
-ul#payment_methods,
-ul#payment_methods li {
+ul.payment_methods,
+ul.payment_methods li {
       margin: 0;
       padding: 0;
 }
 
-ul#payment_methods li {
+ul.payment_methods li {
       display: inline-block;
 }
 
-#payment_methods ul{
+.payment_methods ul{
     display: inline;
 }
 
