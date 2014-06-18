@@ -64,13 +64,13 @@
                                 [[*{address.phonePrimary.phoneNumber}]]<br/>
                                 [[*{address.addressLine1}]]<br/>
                                 [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                [[*{address.city}]],&nbsp;[[*{address.stateProvinceRegion}]]&nbsp;[[*{address.postalCode}]]<br/>
                             </address>
                             <address th:if="*{address.phonePrimary == null}">
                                 [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                 [[*{address.addressLine1}]]<br/>
                                 [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                                [[*{address.city}]],&nbsp;[[*{address.stateProvinceRegion}]]&nbsp;[[*{address.postalCode}]]<br/>
                             </address>
                         </div>
                         <div class="shipping-type">
@@ -130,13 +130,13 @@
                                     [[*{billingAddress.phonePrimary.phoneNumber}]]<br/>
                                     [[*{billingAddress.addressLine1}]]<br/>
                                     [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                                    [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
+                                    [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.stateProvinceRegion}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
                                 </address>
                                 <address th:if="*{billingAddress.phonePrimary == null}">
                                     [[*{billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName}]]<br/>
                                     [[*{billingAddress.addressLine1}]]<br/>
                                     [[*{billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                                    [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.state.abbreviation}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
+                                    [[*{billingAddress.city}]],&nbsp;[[*{billingAddress.stateProvinceRegion}]]&nbsp;[[*{billingAddress.postalCode}]]<br/>
                                 </address>
                             </div>
                         </div>
