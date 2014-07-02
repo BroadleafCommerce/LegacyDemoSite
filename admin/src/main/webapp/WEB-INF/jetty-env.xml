@@ -19,7 +19,7 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">sa</Set>
                 <Set name="password"></Set>
             </New>
@@ -31,7 +31,7 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">sa</Set>
                 <Set name="password"></Set>
             </New>
@@ -43,7 +43,7 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
+                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">sa</Set>
                 <Set name="password"></Set>
             </New>
