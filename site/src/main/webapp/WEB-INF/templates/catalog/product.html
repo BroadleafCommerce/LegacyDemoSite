@@ -56,7 +56,7 @@
                         
                         <div th:class="*{'productActions' + id}">
                             <div class="in_cart" th:classappend="${!inCart}? ' hidden'">
-                                <a class="modalcart big-button gray-button" th:href="@{/cart}">In Cart!</a>
+                                <a class="modalcart big-button gray-button" th:href="@{/cart}" th:text="#{product.inCart}">In Cart!</a>
                             </div>
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
