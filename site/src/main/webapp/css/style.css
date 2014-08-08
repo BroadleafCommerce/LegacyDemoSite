@@ -2853,7 +2853,6 @@ and (max-width : 480px) {
 
 #review .rate-product {margin-bottom: 30px;}
 #review .rate-product label {display: block; float: none;}
-.rating-cancel {display: none !important;}
 /* =============================================================================
  * Bootstrap v2.0.4
  *
