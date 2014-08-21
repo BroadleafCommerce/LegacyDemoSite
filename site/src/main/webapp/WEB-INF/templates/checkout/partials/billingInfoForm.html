@@ -28,13 +28,13 @@
                 <address th:if="*{address.phonePrimary !=null and address.phonePrimary.phoneNumber != null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
                     [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                    [[*{address.city}]],&nbsp;[[*{address.stateProvinceRegion}]]&nbsp;[[*{address.postalCode}]]<br />
                     [[*{address.phonePrimary.phoneNumber}]]
                 </address>
                 <address th:if="*{address.phonePrimary == null or address.phonePrimary.phoneNumber == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
                     [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                    [[*{address.city}]],&nbsp;[[*{address.stateProvinceRegion}]]&nbsp;[[*{address.postalCode}]]<br />
                 </address>
             </div>
         </div>
@@ -43,7 +43,7 @@
         <div id="billing_info_form"
              th:classappend="${('SAVED' == sectionDTO.state.type or 'INACTIVE' == sectionDTO.state.type) and !#fields.hasErrors('*')} ? 'hide'">
 
-            <input type="hidden" name="address.country" value="US" />
+            <input type="hidden" name="address.isoCountryAlpha2" value="US" />
 
             <div class="form30">
                 <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label>
@@ -100,16 +100,16 @@
             <div class="form30">
                 <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
-                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
-                <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
+                <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
+                <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
                 <input type="text"
                        th:field="*{address.city}"
                        class="field25 required cloneable"
                        th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
 
-                <select id="state" th:field="*{address.state}" size="1" style="width: 48px;"
+                <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;"
                         class="required cloneable"
-                        th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
+                        th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
                     <option value="">--</option>
                     <option th:each="state : ${states}"
                             th:value="${state.abbreviation}"

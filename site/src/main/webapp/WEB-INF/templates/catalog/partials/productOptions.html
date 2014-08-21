@@ -6,14 +6,19 @@
             <label th:text="*{label}"></label>: 
              <span th:id="*{attributeName}" class="option-value" th:attr="data-optiontype=*{type.type}"></span>
              <ul class="cf" th:switch="*{type.type}">
-                <li th:case="'TEXT'">
-                    <input th:name="${'itemAttributes[' + attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" />
+                <li th:case="'TEXT'">                     
+                    <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" />                               
                 </li>
+                <li th:case="'SELECT'">
+                    <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+                        <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:text="*{attributeValue}"></option>
+                    </select> 
+                </li>                             
                 <li th:case="'TEXTAREA'">
-                    <textarea th:name="${'itemAttributes[' + attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
+                    <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
                 </li>
                 <li th:case="'DECIMAL'">
-                    <input th:name="${'itemAttributes[' + attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
+                    <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
                 </li>
                 <li th:case="*" th:remove="tag">
                     <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >

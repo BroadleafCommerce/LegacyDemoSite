@@ -3,7 +3,7 @@
         <div id="addAddressTitle">Add a new address</div>
         <div id="addAddress">
             <blc:form th:object="${addressForm}" th:action="@{/checkout/add-address}" method="post" id="shipping_address">
-                <input type="hidden" name="address.country" value="US" />
+                <input type="hidden" name="address.isoCountryAlpha2" value="US" />
                 
                 <div class="form30">
                     <label for="firstName">First Name</label> 
@@ -30,11 +30,11 @@
                 <div class="form30">
                     <label for="city">City / State</label>
                     <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
-                    <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
-                    <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
+                    <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
+                    <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
                     
                     <input type="text" th:field="*{address.city}" class="field25 required" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
-                    <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
+                    <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;" class="required" th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
                         <option value="">--</option>
                         <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
                     </select>

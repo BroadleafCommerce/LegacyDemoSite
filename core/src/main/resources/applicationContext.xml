@@ -19,10 +19,6 @@
         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
         
     <!-- Shared properties between admin and site go here -->
-
-    <!-- Scan DemoSite Sample Payment Gateway Implementation -->
-    <context:component-scan base-package="com.mycompany.sample" />
-
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">
             <map>
@@ -40,6 +36,9 @@
             </list>
         </property>
     </bean>
+
+    <!-- Scan DemoSite Sample Payment Gateway Implementation -->
+    <context:component-scan base-package="com.mycompany.sample" />
 
     <bean class="com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayType"/>
 

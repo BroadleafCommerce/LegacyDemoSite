@@ -128,8 +128,8 @@
                         [[*{address.phonePrimary?.phoneNumber == null ? '' : address.phonePrimary?.phoneNumber}]]<br/>
                         [[*{address.addressLine1 == null ? '' : address.addressLine1}]]<br/>
                         [[*{address.addressLine2 == null ? '' : address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                        [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.state?.abbreviation == null ? '' : address.state?.abbreviation}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
-                        [[*{address.country.name == null ? '' : address.country.name}]]<br/>
+                        [[*{address.city == null ? '' : address.city}]],&nbsp;[[*{address.stateProvinceRegion == null ? '' : address.stateProvinceRegion}]]&nbsp;[[*{address.postalCode == null ? '' : address.postalCode}]]<br/>
+                        [[*{address.isoCountryAlpha2.name == null ? '' : address.isoCountryAlpha2.name}]]<br/>
                     </address>
                 </div>
                 <div class="right_content">
@@ -160,8 +160,8 @@
                             [[*{billingAddress.phonePrimary?.phoneNumber == null ? '' : billingAddress.phonePrimary?.phoneNumber}]]<br/>
                             [[*{billingAddress.addressLine1 == null ? '' : billingAddress.addressLine1}]]<br/>
                             [[*{billingAddress.addressLine2 == null ? '' : billingAddress.addressLine2}]]<br th:if="!*{#strings.isEmpty(billingAddress.addressLine2)}"/>
-                            [[*{billingAddress.city == null ? '' : billingAddress.city}]],&nbsp;[[*{billingAddress.state?.abbreviation == null ? '' : billingAddress.state?.abbreviation}]]&nbsp;[[*{billingAddress.postalCode == null ? '' : billingAddress.postalCode}]]<br/>
-                            [[*{billingAddress.country.name == null ? '' : billingAddress.country.name}]]<br/>
+                            [[*{billingAddress.city == null ? '' : billingAddress.city}]],&nbsp;[[*{billingAddress.stateProvinceRegion == null ? '' : billingAddress.stateProvinceRegion}]]&nbsp;[[*{billingAddress.postalCode == null ? '' : billingAddress.postalCode}]]<br/>
+                            [[*{billingAddress.isoCountryAlpha2.name == null ? '' : billingAddress.isoCountryAlpha2.name}]]<br/>
                         </address>
                     </div>
                     <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
