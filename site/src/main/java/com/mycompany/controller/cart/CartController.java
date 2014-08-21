@@ -54,7 +54,11 @@ public class CartController extends BroadleafCartController {
     @Override
     @RequestMapping("")
     public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
-        return super.cart(request, response, model);
+        String returnPath = super.cart(request, response, model);
+        if (isAjaxRequest(request)) {
+            returnPath += " :: ajax";
+        }
+        return returnPath;
     }
     
     /*
@@ -124,14 +128,18 @@ public class CartController extends BroadleafCartController {
     public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
         try {
-            return super.updateQuantity(request, response, model, addToCartItem);
+            String returnPath = super.updateQuantity(request, response, model, addToCartItem);
+            if (isAjaxRequest(request)) {
+                returnPath += " :: ajax";
+            }
+            return returnPath;
         } catch (UpdateCartException e) {
             if (e.getCause() instanceof InventoryUnavailableException) {
                 // Since there was an exception, the order gets detached from the Hibernate session. This re-attaches it
                 CartState.setCart(orderService.findOrderById(CartState.getCart().getId()));
                 if (isAjaxRequest(request)) {
                     model.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
-                    return getCartView();
+                    return getCartView() + " :: ajax";
                 } else {
                     redirectAttributes.addAttribute("errorMessage", "Not enough inventory to fulfill your requested amount of " + addToCartItem.getQuantity());
                     return getCartPageRedirect();
@@ -146,7 +154,11 @@ public class CartController extends BroadleafCartController {
     @RequestMapping("/remove")
     public String remove(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, RemoveFromCartException {
-        return super.remove(request, response, model, addToCartItem);
+        String returnPath = super.remove(request, response, model, addToCartItem);
+        if (isAjaxRequest(request)) {
+            returnPath += " :: ajax";
+        }
+        return returnPath;
     }
     
     @Override
@@ -154,21 +166,28 @@ public class CartController extends BroadleafCartController {
     public String empty(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         //return super.empty(request, response, model);
         return "ajaxredirect:/";
-        
     }
     
     @Override
     @RequestMapping("/promo")
     public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam("promoCode") String customerOffer) throws IOException, PricingException {
-        return super.addPromo(request, response, model, customerOffer);
+        String returnPath = super.addPromo(request, response, model, customerOffer);
+        if (isAjaxRequest(request)) {
+            returnPath += " :: ajax";
+        }
+        return returnPath;
     }
     
     @Override
     @RequestMapping("/promo/remove")
     public String removePromo(HttpServletRequest request, HttpServletResponse response, Model model,
             @RequestParam("offerCodeId") Long offerCodeId) throws IOException, PricingException {
-        return super.removePromo(request, response, model, offerCodeId);
+        String returnPath = super.removePromo(request, response, model, offerCodeId);
+        if (isAjaxRequest(request)) {
+            returnPath += " :: ajax";
+        }
+        return returnPath;
     }
     
 }

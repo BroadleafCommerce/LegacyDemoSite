@@ -1,5 +1,7 @@
-<div>
-    <div style="display: none;" th:fragment="title" th:inline="text">Order Confirmation [[${order.orderNumber}]] - Broadleaf Demo - Heat Clinic</div>
+<div layout:decorator="layout/fullPageNoNavLayout" layout:fragment="content">
+    <head>
+        <title th:text="|Order Confirmation ${order.orderNumber}|"></title>
+    </head>
 
     <div id="order_confirmation">
         <h2><span th:text="#{confirmation.success}">Success!</span></h2>

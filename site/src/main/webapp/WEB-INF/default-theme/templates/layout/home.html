@@ -16,12 +16,20 @@
     <div id="content" class="width_setter group" role="main">
     
         <nav th:substituteby="layout/partials/nav" />
+        <blc:content-zone name="Homepage Banner Ad Zone" deepLinks="deepLinks" />
         
-        <div layout:fragment="content" />
-            
+        <blc:content-zone name="Homepage Middle Promo Snippet Zone" deepLinks="deepLinks" />
+
+        <blc:content-zone name="Homepage Featured Products Title Zone" deepLinks="deepLinks" />
+
+        <ul th:if="${products}" id="products" class="group" blc:cache="true" cacheCategory="true">
+            <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+        </ul>
+        
+        <ul th:if="${skus}" id="products" class="group" blc:cache="true" cacheCategory="true">
+            <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
+        </ul>
     </div>
-    
-    <th:block layout:fragment="post-content" />
     
     <footer th:substituteby="layout/partials/footer" />
     

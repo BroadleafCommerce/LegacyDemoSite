@@ -1,11 +1,13 @@
-<div>     
-
-    <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
-        <table th:substituteby="account/partials/wishlistItemsTable"></table>
-    </div>
+<th:block layout:decorator="layout/accountLayout" layout:fragment="content">
+    <div>     
     
-    <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
-        <h3>You do not have any items in your wishlist</h3>
+        <div th:if="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
+            <table th:substituteby="account/partials/wishlistItemsTable"></table>
+        </div>
+        
+        <div th:unless="${wishlist != null and !#lists.isEmpty(wishlist.discreteOrderItems)}">
+            <h3>You do not have any items in your wishlist</h3>
+        </div>
+        
     </div>
-    
-</div>
+</th:block>

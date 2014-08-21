@@ -1,69 +1,62 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<head th:include="/layout/partials/head (pageTitle=${category.name + ' - Broadleaf Demo - Heat Clinic'})"></head>
-
-<body>
-    <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
+<th:block layout:decorator="layout/fullPageLayout">
+	<head>
+        <title th:text="${category.name}"></title>
+    </head>
     
-    <div id="content" class="width_setter group" role="main">
-    
-        <nav th:substituteby="layout/partials/nav" />
-        
-        <section id="left_column">
-    
-            <header>
-                <h1 th:inline="text">
-                    <span th:text="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{category.of}">of</span> [[${result.totalResults}]])
-                </h1>
-                <div th:substituteby="catalog/partials/productSortOptions"></div>
-            </header>
-            
-            <ul th:if="${products}" id="products" class="group">
-                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-            </ul>
-            
-            <ul th:if="${skus}" id="products" class="group">
-                <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
-            </ul>
-            
-            <div th:substituteby="catalog/partials/productPagingOptions" />
-            
-        </section>
-    
-        <section id="right_column">
-            <header><span th:text="#{category.filterResults}">Filter your results</span></header>
-            <div id="options">
-                
-                <div th:substituteby="catalog/partials/facetFilter" />
-                
-                <div th:substituteby="catalog/partials/rightHandBannerAds" />
-                
-                <section id="right_column">
-                    <header><span th:text="#{category.featuredProducts}">Featured Products</span></header>
-                    <div id="options">
-                        <div class="section" th:object="${category}">
-                             <blc:related_products categoryId="*{id}" quantity="3"/>     
-                             <ul th:unless="${skus}" id="featured_products" class="group">
-                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-                             </ul>
-                             <ul th:if="${skus}" id="featured_products" class="group">
-                                <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
-                             </ul>
-                        </div>                                  
-                    </div>
-                </section>  
-                
-            </div>
-        </section>
-            
-    </div>
-    
-    <footer th:substituteby="layout/partials/footer" />
-    
-</body>
-</html>
+	<div layout:fragment="content">
+	    
+	    <div id="content" class="width_setter group" role="main">	        
+	        <section id="left_column">
+	    
+	            <header>
+	                <h1 th:inline="text">
+	                    <span th:text="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{category.of}">of</span> [[${result.totalResults}]])
+	                </h1>
+	                <div th:substituteby="catalog/partials/productSortOptions"></div>
+	            </header>
+	            
+	            <ul th:if="${products}" id="products" class="group">
+	                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+	            </ul>
+	            
+	            <ul th:if="${skus}" id="products" class="group">
+	                <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
+	            </ul>
+	            
+	            <div th:substituteby="catalog/partials/productPagingOptions" />
+	            
+	        </section>
+	    
+	        <section id="right_column">
+	            <header><span th:text="#{category.filterResults}">Filter your results</span></header>
+	            <div id="options">
+	                
+	                <div th:substituteby="catalog/partials/facetFilter" />
+	                
+	                <div th:substituteby="catalog/partials/rightHandBannerAds" />
+	                
+	                <section id="right_column">
+	                    <header><span th:text="#{category.featuredProducts}">Featured Products</span></header>
+	                    <div id="options">
+	                        <div class="section" th:object="${category}">
+	                             <blc:related_products categoryId="*{id}" quantity="3"/>     
+	                             <ul th:unless="${skus}" id="featured_products" class="group">
+	                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+	                             </ul>
+	                             <ul th:if="${skus}" id="featured_products" class="group">
+	                                <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
+	                             </ul>
+	                        </div>                                  
+	                    </div>
+	                </section>  
+	                
+	            </div>
+	        </section>
+	            
+	    </div>
+	    
+    	<footer th:substituteby="layout/partials/footer" />
+	    
+	</div>
+</th:block>
