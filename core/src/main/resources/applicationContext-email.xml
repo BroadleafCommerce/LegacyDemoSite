@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     
     <!-- A dummy mail sender has been set to send emails for testing purposes only
         To view the emails sent use "DevNull SMTP" (download separately) with the following setting: 
@@ -30,7 +30,7 @@
         <property name="cacheTTLMs" value="${cache.page.templates.ttl}" />
     </bean>
 
-    <bean id="blEmailTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+    <bean id="blEmailTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
                 <ref bean="blEmailTemplateResolver" />
@@ -38,7 +38,7 @@
         </property>
         <property name="dialects">
             <set>
-                <bean class="org.thymeleaf.spring3.dialect.SpringStandardDialect" />
+                <bean class="org.thymeleaf.spring4.dialect.SpringStandardDialect" />
                 <ref bean="blDialect" />
             </set>
         </property>
