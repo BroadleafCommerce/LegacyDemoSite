@@ -32,6 +32,12 @@
         <dynamicField name="*_tl" type="tlong" indexed="true" stored="false" />
         <dynamicField name="*_td" type="tdouble" indexed="true" stored="false" />
         <dynamicField name="*_tdt" type="tdate" indexed="true" stored="false" />
+
+        <!-- Both field types required for geolocation searches. First stores the
+            lat and lon components for the "coordinate" FieldType. Second stores
+            the coordinate. -->
+        <dynamicField name="*_coordinate" type="tdouble" indexed="true" stored="false"/>
+        <dynamicField name="*_c"  type="coordinate" indexed="true" stored="false"/> 
     </fields>
     
     <uniqueKey>id</uniqueKey>
@@ -87,6 +93,9 @@
                 <filter class="solr.LowerCaseFilterFactory" />
             </analyzer>
         </fieldType>
+
+        <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
+        <fieldType name="coordinate" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
 
     </types>
 </schema>
