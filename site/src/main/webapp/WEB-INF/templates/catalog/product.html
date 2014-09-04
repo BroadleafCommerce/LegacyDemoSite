@@ -112,7 +112,7 @@
             
             <div id="product_main_image" th:if="*{media['primary']}">
                 <a th:href="@{*{#strings.replace(media['primary'].url + '?browse', 'jpg?browse', 'jpg')}}" class='jqzoom' id='zoom1' rel="gal1">
-                    <img th:src="@{*{media['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
+                    <img blc:src="@{*{media['primary'].url}+ '?browse'}" alt='' align="left" id="main_image" />
                 </a>
             </div>
             
@@ -120,7 +120,7 @@
                 <ul id="product_thumbs" class="clearfix">
                     <li>
                         <a th:if="*{media['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{media['primary'].url}+'?browse'}__'', largeimage: ''__@{*{media['primary'].url}}__'' }'}" th:attr="data-tags=*{media['primary'].tags}">
-                            <img th:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
+                            <img blc:src="@{*{media['primary'].url}}" alt="Bottle Closeup" />
                         </a>
                         <p th:if="*{#maps.size(media) > 1}" class="thumbs_nav">Swipe to see more... (<span th:text="'1 of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></span>)</p>
                         
@@ -129,7 +129,7 @@
                     <li th:each="media, iterStat : *{media}" th:unless="${media.key == 'primary'}">
                         <a href="javascript:;"
                             th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}+'?browse'}__'', largeimage: ''__@{${media.value.url}}__'' }'}" th:attr="data-tags=${media.value.tags}">
-                            <img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
+                            <img blc:src="@{${media.value.url}}" alt="Bottle Closeup" />
                         </a>
                         <p class="thumbs_nav" th:text="${iterStat.count + 1} + ' of ' + *{#maps.size(media) > 3 ? 3 : #maps.size(media)}"></p>
                     </li>

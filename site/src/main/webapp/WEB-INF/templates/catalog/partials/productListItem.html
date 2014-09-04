@@ -2,7 +2,7 @@
 
 <div class="image">
     <a th:href="@{*{url}}">
-    <img th:if="*{media['primary']}" th:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}" />
+    <img th:if="*{media['primary']}" blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}" />
     <div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
         <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
         <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>

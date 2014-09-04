@@ -16,7 +16,7 @@
             
         <blc:content contentType="Homepage Banner Ad" />       
         <div id="banners" th:if="${contentItem !=null and contentItem['targetUrl'] != null and contentItem['imageUrl'] != null}">
-            <a th:href="@{${contentItem['targetUrl']}}"><img th:src="@{${contentItem['imageUrl']}}" /></a>       
+            <a th:href="@{${contentItem['targetUrl']}}"><img blc:src="@{${contentItem['imageUrl']}}" /></a>       
         </div>
         
         <blc:content contentType="Homepage Middle Promo Snippet" /> 

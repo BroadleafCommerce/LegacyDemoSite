@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <tr th:each="item : ${order.discreteOrderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-                <td><img th:if="*{product.media['primary'] != null}" th:src="@{*{product.media['primary']?.url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
+                <td><img th:if="*{product.media['primary'] != null}" blc:src="@{*{product.media['primary']?.url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
                 <td align="left">
                     <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                     <br/>

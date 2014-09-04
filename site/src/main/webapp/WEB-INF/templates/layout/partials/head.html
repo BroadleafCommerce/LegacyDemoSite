@@ -21,6 +21,6 @@
     <link rel="stylesheet" th:unless="${#strings.isEmpty(additionalCss)}" />
     
 
-    <script src="../../js/libs/modernizr-2.5.3.min.js" th:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
+    <script blc:src="@{/js/libs/modernizr-2.5.3.min.js}"></script>
     
     <blc:google_universal_analytics ordernumber="${order?.orderNumber}" />
