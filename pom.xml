@@ -305,6 +305,13 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
+            
+            <!-- Thymeleaf Layout Dialect -->
+            <dependency>
+				<groupId>nz.net.ultraq.thymeleaf</groupId>
+				<artifactId>thymeleaf-layout-dialect</artifactId>
+				<version>1.2.5</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
     <modules>

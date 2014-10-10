@@ -102,6 +102,7 @@ $(function(){
     $('body').on('click', 'a#multiship', function() {
         BLC.ajax({url: $(this).attr('href')}, function(data) {
             $.modal(data, modalCheckoutOptions);
+            $('.simplemodal-container').height('auto').width('auto');
         });
         return false;
     });

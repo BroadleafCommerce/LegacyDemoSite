@@ -1,22 +1,26 @@
-<div>
-    <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
-        <li>
-            <span class="order-number">Order Number</span>
-            <span class="submit-date">Date</span>
-            <span class="status">Status</span>
-            <span class="total">Total</span>
-        </li>
-        <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
-            <div class="order-info-row">
-             <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
-             <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
-             <span class="status" th:text="*{status.friendlyType}">Processing</span>
-             <span class="total" blc:price="*{total}"></span>
-         </div>
-            <div class="order-details"></div>
-        </li>
-    </ul>
-    
-    <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
-
-</div>
+<html lang="en" layout:decorator="layout/accountLayout">
+	<section layout:fragment="content">
+		<div>
+		    <ul id="order-history" th:unless="${#lists.isEmpty(orders)}">
+		        <li>
+		            <span class="order-number">Order Number</span>
+		            <span class="submit-date">Date</span>
+		            <span class="status">Status</span>
+		            <span class="total">Total</span>
+		        </li>
+		        <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
+		            <div class="order-info-row">
+		             <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
+		             <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
+		             <span class="status" th:text="*{status.friendlyType}">Processing</span>
+		             <span class="total" blc:price="*{total}"></span>
+		         </div>
+		            <div class="order-details"></div>
+		        </li>
+		    </ul>
+		    
+		    <h3 th:if="${#lists.isEmpty(orders)}">You have not placed any orders.</h3>
+		
+		</div>
+	</section>
+</html>
