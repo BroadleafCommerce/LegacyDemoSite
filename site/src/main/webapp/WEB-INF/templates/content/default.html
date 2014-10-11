@@ -1,8 +1,7 @@
 <html lang="en" layout:decorator="layout/fullPageLayout">
+	<title layout:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</title>
 	<section layout:fragment="content">
 		<div>
-		    <div style="display:none;" th:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</div>
-		    
 		    <section id="left_column">
 		        <header>
 		            <h1 th:text="${BLC_PAGE.pageFields[title]}"></h1>

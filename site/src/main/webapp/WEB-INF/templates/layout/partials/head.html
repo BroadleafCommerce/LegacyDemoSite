@@ -4,7 +4,7 @@
     <title th:unless="${pageTitle == 'TEMPLATE'}" th:text="${#strings.isEmpty(pageTitle) ? 'Broadleaf Demo - Heat Clinic' : pageTitle}"></title>
     
     <title th:if="${pageTitle == 'TEMPLATE'}" th:remove="tag">
-        <title th:inline="text" th:include="${templateName} :: title" />
+        <title layout:fragment="title"></title>
     </title>
     
     <meta name="description" content="Broadleaf Demo Store" />
