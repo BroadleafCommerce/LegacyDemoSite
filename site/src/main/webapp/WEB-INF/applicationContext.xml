@@ -204,7 +204,13 @@
         </property>
     </bean> 
     -->
-    
+    <bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="additionalDialects">
+			<set>
+				<bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+			</set>
+		</property>
+	</bean>
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->

@@ -1,52 +1,56 @@
-<blc:one_page_checkout orderInfoForm="${orderInfoForm}"
-                       shippingInfoForm="${shippingInfoForm}"
-                       billingInfoForm="${billingInfoForm}"
-                       orderInfoHelpMessage="#{cart.fillOutBasicOrder}"
-                       billingInfoHelpMessage="#{cart.fillOutBillingAddress}"
-                       shippingInfoHelpMessage="#{cart.fillOutShippingAddress}"
-                       th:remove="tag">
-
-    <div id="cart">
-
-        <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
-            <span th:text="#{cart.empty}">Your cart is empty</span>
-            <br/>
-            <a th:href="@{/}"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
-        </div>
-
-        <div th:unless="${#lists.isEmpty(cart.orderItems)}">
-
-            <p th:if="${PAYMENT_PROCESSING_ERROR}" class="payment-error">
-                <span th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="error">...</span>
-            </p>
-
-            <div class="clearfix"></div>
-
-            <div th:replace="checkout/partials/orderSummary :: order-summary"></div>
-
-            <div class="clearfix"></div>
-
-            <div th:each="sectionDTO : ${checkoutSectionDTOs}" th:object="${sectionDTO}">
-                <div th:if="${'ORDER_INFO' == sectionDTO.view.type}">
-                    <div th:replace="checkout/partials/orderInfoForm :: order-info-form"
-                            th:with="${sectionDTO}"></div>
-                </div>
-                <div th:if="${'BILLING_INFO' == sectionDTO.view.type}">
-                    <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
-                            th:with="${sectionDTO}"></div>
-                </div>
-                <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type}">
-                    <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
-                            th:with="${sectionDTO}"></div>
-                </div>
-                <div th:if="${'PAYMENT_INFO' == sectionDTO.view.type}">
-                    <div th:replace="checkout/partials/paymentInfoForm :: payment-info-form"
-                            th:with="${sectionDTO}"></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-        </div>
-    </div>
-
-</blc:one_page_checkout>
+<html lang="en" layout:decorator="layout/checkoutLayout">
+	<section layout:fragment="content">
+		<blc:one_page_checkout orderInfoForm="${orderInfoForm}"
+		                       shippingInfoForm="${shippingInfoForm}"
+		                       billingInfoForm="${billingInfoForm}"
+		                       orderInfoHelpMessage="#{cart.fillOutBasicOrder}"
+		                       billingInfoHelpMessage="#{cart.fillOutBillingAddress}"
+		                       shippingInfoHelpMessage="#{cart.fillOutShippingAddress}"
+		                       th:remove="tag">
+		
+		    <div id="cart">
+		
+		        <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
+		            <span th:text="#{cart.empty}">Your cart is empty</span>
+		            <br/>
+		            <a th:href="@{/}"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
+		        </div>
+		
+		        <div th:unless="${#lists.isEmpty(cart.orderItems)}">
+		
+		            <p th:if="${PAYMENT_PROCESSING_ERROR}" class="payment-error">
+		                <span th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="error">...</span>
+		            </p>
+		
+		            <div class="clearfix"></div>
+		
+		            <div th:replace="checkout/partials/orderSummary :: order-summary"></div>
+		
+		            <div class="clearfix"></div>
+		
+		            <div th:each="sectionDTO : ${checkoutSectionDTOs}" th:object="${sectionDTO}">
+		                <div th:if="${'ORDER_INFO' == sectionDTO.view.type}">
+		                    <div th:replace="checkout/partials/orderInfoForm :: order-info-form"
+		                            th:with="${sectionDTO}"></div>
+		                </div>
+		                <div th:if="${'BILLING_INFO' == sectionDTO.view.type}">
+		                    <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
+		                            th:with="${sectionDTO}"></div>
+		                </div>
+		                <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type}">
+		                    <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
+		                            th:with="${sectionDTO}"></div>
+		                </div>
+		                <div th:if="${'PAYMENT_INFO' == sectionDTO.view.type}">
+		                    <div th:replace="checkout/partials/paymentInfoForm :: payment-info-form"
+		                            th:with="${sectionDTO}"></div>
+		                </div>
+		                <div class="clearfix"></div>
+		            </div>
+		
+		        </div>
+		    </div>
+		
+		</blc:one_page_checkout>
+	</section>
+</html>

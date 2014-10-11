@@ -83,7 +83,7 @@
     </bean>
     
     <!-- Set up the view resolver to be used by Spring -->
-    <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
+    <!-- <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
         <property name="templateEngine" ref="blWebTemplateEngine" />
         <property name="order" value="1" />
         <property name="cache" value="${thymeleaf.view.resolver.cache}" />
@@ -99,8 +99,17 @@
                 <entry key="content/NONE" value="NONE" />
             </map>
         </property>
-    </bean>
+    </bean> -->
     
+   
+	
+    <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver" >
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="order" value="1" />
+        <property name="cache" value="${thymeleaf.view.resolver.cache}" />
+		<property name="templateEngine" ref="blWebTemplateEngine"/>
+	</bean>
+	
     <!-- This validator will additionally require state on shipping addresses -->
     <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
     
