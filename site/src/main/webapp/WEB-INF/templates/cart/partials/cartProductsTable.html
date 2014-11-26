@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
-            <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
+            <td><img th:if="*{product.media['primary']}" blc:src="@{*{product.media['primary'].url} + '?thumbnail'}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
                 <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                 <br/>
