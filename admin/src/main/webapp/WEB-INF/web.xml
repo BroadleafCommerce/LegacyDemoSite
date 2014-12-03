@@ -36,6 +36,8 @@
         <param-name>shutdownHookMethod</param-name>
         <param-value>forceFlush</param-value>
     </context-param>
+
+    <absolute-ordering />
     
     <listener>
         <listener-class>
