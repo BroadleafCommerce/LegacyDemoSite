@@ -34,9 +34,8 @@ INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VAL
 
 -- Field XREF
 -- -- Spanish Banner (locale = "es")
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (151, 51, 'imageUrl');
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (151, 52, 'targetUrl');
-
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID,SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-150, 151, 51, 'imageUrl');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID,SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-151, 151, 52, 'targetUrl');
 
 -- Content Item
 -- -- Spanish Banner (locale = "fr")
@@ -49,8 +48,8 @@ INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VAL
 
 -- Field XREF
 -- -- Spanish Banner (locale = "fr")
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (152, 53, 'imageUrl');
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (152, 54, 'targetUrl');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-152, 152, 53, 'imageUrl');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-153, 152, 54, 'targetUrl');
 
 
 ---------------------------------------------------
@@ -64,7 +63,7 @@ INSERT INTO BLC_SC (SC_ID, CREATED_BY, DATE_CREATED, DATE_UPDATED, UPDATED_BY, C
 INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VALUES (55, CURRENT_TIMESTAMP, 'htmlContent', 1, '<h2>AFICIONADO DE SALSAS PICANTES?</h2> Haga click para unirse a nuerto programa de Cuidades Intensivos de Heat Clinic. El lugar para conseguir las mejores ofertas.');
 
 -- Field XREF
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (153, 55, 'htmlContent');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-154, 153, 55, 'htmlContent');
 
 
 -- -- Create a Home Page Snippet for loclale="fr"
@@ -75,7 +74,7 @@ INSERT INTO BLC_SC (SC_ID, CREATED_BY, DATE_CREATED, DATE_UPDATED, UPDATED_BY, C
 INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VALUES (56, CURRENT_TIMESTAMP, 'htmlContent', 1, '<h2>AFICIONADO SAUCE PIQUANTE?</h2> Cliquez ici pour vous joindre &agrave; notre clinique de chaleur du Programme de soins fr&eacute;quents. L&#39;endroit pour obtenir toutes les offres sur le traitement des br&ucirc;lures.');
 
 -- Field XREF
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (154, 56, 'htmlContent');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-155, 154, 56, 'htmlContent');
 
 ---------------------------------------------------
 -- HOME PAGE FEATURED PRODUCTS MESSAGE
@@ -88,8 +87,7 @@ INSERT INTO BLC_SC (SC_ID, CREATED_BY, DATE_CREATED, DATE_UPDATED, UPDATED_BY, C
 INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VALUES (57, CURRENT_TIMESTAMP, 'messageText', 1, 'Las Salsas M&aacute;s vendidas de Heat Clinic');
 
 -- Field XREF
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (155, 57, 'messageText');
-
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-156, 155, 57, 'messageText');
 
 -- -- Create a Home Page Snippet for loclale="fr"
 -- Content Item
@@ -99,7 +97,7 @@ INSERT INTO BLC_SC (SC_ID, CREATED_BY, DATE_CREATED, DATE_UPDATED, UPDATED_BY, C
 INSERT INTO BLC_SC_FLD (SC_FLD_ID, DATE_CREATED, FLD_KEY, CREATED_BY, VALUE) VALUES (58, CURRENT_TIMESTAMP, 'messageText', 1, 'La Clinique Heat Sauces Meilleures Ventes');
 
 -- Field XREF
-INSERT INTO BLC_SC_FLD_MAP (SC_ID, SC_FLD_ID, MAP_KEY) VALUES (156, 58, 'messageText');
+INSERT INTO BLC_SC_FLD_MAP (BLC_SC_SC_FIELD_ID, SC_ID, SC_FLD_ID, MAP_KEY) VALUES (-157, 156, 58, 'messageText');
 
 
 
