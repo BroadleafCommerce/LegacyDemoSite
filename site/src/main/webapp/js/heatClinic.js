@@ -40,38 +40,40 @@ var HC = (function($) {
             finalMedia.click();
         }
     }
-    
-    function updatePriceDisplay() {
-        var productOptions = getProductOptionData();
 
-        var selectedProductOptions = [];
+    function updatePriceDisplay(myId) {
+        var spo = getSelectedProductOptions();
+        var selectedProductOptions = spo.selectedProductOptions;
+        var changePrice = spo.changePrice;
+        if (changePrice) {
+            selectedProductOptions["productId"] = myId;
+            changeProductPrice(selectedProductOptions);
+        }
+    }
 
-        for (var i = 0; i < productOptions.length; i++) {
-            selectedProductOptions.push(productOptions[i].selectedValue); // add selected value to array
-        }
-        
-        var productOptionPricing = getPricingData();
-        
-        var price;
-        
-        for (var i = 0; i < productOptionPricing.length; i++) {
-            var pricing = productOptionPricing[i];
-            if ($(pricing.selectedOptions).not(selectedProductOptions).length == 0 && $(selectedProductOptions).not(pricing.selectedOptions).length == 0) {
-                price = pricing.price;
-                break;
+    function changeProductPrice(selectedProductOptions) {
+
+        BLC.ajax({
+            url : "/pricing/product",
+            type : "GET",
+            data : selectedProductOptions
+        }, function(data) {
+
+            var skuPrice = data.skuPrice;
+
+            if (skuPrice) {
+                var priceDiv = $('#price div');
+                if (priceDiv.length == 0) {
+                    $('.product-options.modal:visible ul').first().append('<div id="price"><div>' + skuPrice + '</div></div>');
+                }
+                priceDiv.text(skuPrice);
             }
-        }
-        
-        if (price) {
-            $price = $('#price div');
-            if ($price.length != 0) {
-                $price.text(price);
-            } else {
-                $('.product-options.modal:visible ul').first().append('<div id="price"><div>' + price + '</div></div>');
+
+            if(data.error) {
+                //disable add to cart
+                //display error message
             }
-            $('#price div').text(price);
-        }
-        
+        });
     }
     
     function showNotification(notification, delay) {
@@ -85,6 +87,17 @@ var HC = (function($) {
         if (!$option.is('.active')) {
             $option.siblings('.active').removeClass('active');
             $option.toggleClass('active');
+
+            var $productOptions;
+
+            if ($option.parents('.product-options.modal').length == 0) {
+                $productOptions = $option.parents('.product-options');
+            } else {
+                $productOptions = $option.parents('.product-options.modal').children('.product-options');
+            }
+
+            $productOptions.find('.product-option-group li div').addClass("uncombinable");
+
             var selectedOption = $option.data('product-option-value');
             var $optionText = $option.parents('.product-option-group').find('span.option-value');
             $optionText.text(selectedOption.valueName);
@@ -97,18 +110,60 @@ var HC = (function($) {
                     break;
                 }
             }
-            
+
+            var myId;
+            if($option.parents('.product-options').siblings('form').find('[class^="productActions"]').attr('class') != undefined) {
+                myId = $option.parents('.product-options').siblings('form').find('[class^="productActions"]').attr('class').substring('productOptions'.length);
+            } else {
+                myId = $option.parents('.product-options.modal').attr('id').substring('productOptions'.length);
+            }
+            updateSelectableProductOptions(myId, $optionText.attr('data-optiontype'), selectedOption.valueName, $productOptions);
             updateCurrentImage();
-            updatePriceDisplay();
+            updatePriceDisplay(myId);
         }
     }
-    
+
     function getProductOptionData() {
         return $('#product-option-data').data('product-options');
     }
     
-    function getPricingData() {
-        return $('#product-option-data').data('product-option-pricing');
+    function updateSelectableProductOptions(myId, attributeName, attributeValue, $productOptions) {
+
+        var spo = getSelectedProductOptions();
+        var selectedProductOptions = spo.selectedProductOptions;
+
+        selectedProductOptions["productId"] = myId;
+
+        BLC.ajax({
+            url : "/selectable/product",
+            type : "GET",
+            data : selectedProductOptions
+        }, function(data) {
+
+            $.map(data, function(data) {
+                for(var i =0;i < arguments[0].length;i++)
+                {
+                    $productOptions.find('.product-option-group li[data-product-option-value^="{\"optionId\":' + arguments[1] + ',\"valueId\":' + arguments[0][i] + ',"] div').removeClass("uncombinable");
+                }
+            });
+        });
+    }
+
+    function getSelectedProductOptions() {
+        var productOptions = getProductOptionData();
+        var selectedProductOptions = {};
+        var changePrice = true;
+
+        for (var i = 0; i < productOptions.length; i++) {
+            var productOptionType = productOptions[i].type;
+            var productOptionSelectedValue = productOptions[i].selectedValue;
+            if (productOptions[i].required && productOptionSelectedValue != null) {
+                selectedProductOptions[productOptionType] = productOptions[i].values[productOptionSelectedValue];
+            } else if (productOptions[i].required) {
+                changePrice = false;
+            }
+        }
+        return {selectedProductOptions: selectedProductOptions, changePrice: changePrice};
     }
 
     function updateLocaleSelection(){

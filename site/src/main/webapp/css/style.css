@@ -1366,6 +1366,10 @@ ul.payment_methods li {
     text-align: center;
 }
 
+.product-option-group li div.uncombinable {
+    opacity: .5;
+}
+
 #product_thumbs {
     width: 420px;
     margin: 0 0 0 10px;
