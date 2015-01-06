@@ -10,8 +10,8 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.2.0-ALPHA-ENT-25</blc.version>
-        <blc.menu.version>1.0.0-ALPHA-ENT-25</blc.menu.version>
+        <blc.version>3.2.0-ALPHA-ENT-26</blc.version>
+        <blc.menu.version>1.0.0-ALPHA-ENT-26</blc.menu.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <description>My Company's eCommerce Website</description>
