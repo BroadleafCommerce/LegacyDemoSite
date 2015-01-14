@@ -20,24 +20,16 @@ import org.broadleafcommerce.core.web.api.wrapper.FulfillmentGroupItemWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.FulfillmentGroupWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.FulfillmentOptionWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.OrderWrapper;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 /**
  * This is a reference REST API endpoint for fulfillment groups. This can be modified, used as is, or removed. 
@@ -47,65 +39,58 @@ import javax.ws.rs.core.MediaType;
  * @author Kelly Tisdell
  *
  */
-@Component
-@Scope("singleton")
-@Path("/cart/fulfillment/")
-@Produces(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@RestController
+@RequestMapping(value = "/cart/fulfillment/",
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class FulfillmentEndpoint extends org.broadleafcommerce.core.web.api.endpoint.order.FulfillmentEndpoint {
 
     @Override
-    @GET
-    @Path("groups")
-    public List<FulfillmentGroupWrapper> findFulfillmentGroupsForOrder(@Context HttpServletRequest request) {
+    @RequestMapping(value = "groups", method = RequestMethod.GET)
+    public List<FulfillmentGroupWrapper> findFulfillmentGroupsForOrder(HttpServletRequest request) {
         return super.findFulfillmentGroupsForOrder(request);
     }
 
     @Override
-    @DELETE
-    @Path("groups")
-    public OrderWrapper removeAllFulfillmentGroupsFromOrder(@Context HttpServletRequest request,
-            @QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+    @RequestMapping(value = "groups", method = RequestMethod.DELETE)
+    public OrderWrapper removeAllFulfillmentGroupsFromOrder(HttpServletRequest request,
+            @RequestParam(value = "priceOrder", defaultValue = "true") boolean priceOrder) {
         return super.removeAllFulfillmentGroupsFromOrder(request, priceOrder);
     }
 
     @Override
-    @POST
-    @Path("group")
-    public FulfillmentGroupWrapper addFulfillmentGroupToOrder(@Context HttpServletRequest request,
+    @RequestMapping(value = "group", method = RequestMethod.POST)
+    public FulfillmentGroupWrapper addFulfillmentGroupToOrder(HttpServletRequest request,
             FulfillmentGroupWrapper wrapper,
-            @QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+            @RequestParam(value = "priceOrder", defaultValue = "true") boolean priceOrder) {
         return super.addFulfillmentGroupToOrder(request, wrapper, priceOrder);
     }
 
     @Override
-    @PUT
-    @Path("group/{fulfillmentGroupId}")
-    public FulfillmentGroupWrapper addItemToFulfillmentGroup(@Context HttpServletRequest request,
-            @PathParam("fulfillmentGroupId") Long fulfillmentGroupId,
+    @RequestMapping(value = "group/{fulfillmentGroupId}", method = RequestMethod.PUT)
+    public FulfillmentGroupWrapper addItemToFulfillmentGroup(HttpServletRequest request,
+            @PathVariable("fulfillmentGroupId") Long fulfillmentGroupId,
             FulfillmentGroupItemWrapper wrapper,
-            @QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+            @RequestParam(value = "priceOrder", defaultValue = "true") boolean priceOrder) {
         return super.addItemToFulfillmentGroup(request, fulfillmentGroupId, wrapper, priceOrder);
     }
 
 	@Override
-	@PUT
-	@Path("group/{fulfillmentGroupId}/option/{fulfillmentOptionId}")
+	@RequestMapping(value = "group/{fulfillmentGroupId}/option/{fulfillmentOptionId}", method = RequestMethod.PUT)
 	public FulfillmentGroupWrapper addFulfillmentOptionToFulfillmentGroup(
-			@Context HttpServletRequest request, 
-			@PathParam("fulfillmentGroupId") Long fulfillmentGroupId,
-			@PathParam("fulfillmentOptionId") Long fulfillmentOptionId, 
-			@QueryParam("priceOrder") @DefaultValue("true") boolean priceOrder) {
+			HttpServletRequest request, 
+			@PathVariable("fulfillmentGroupId") Long fulfillmentGroupId,
+			@PathVariable("fulfillmentOptionId") Long fulfillmentOptionId, 
+            @RequestParam(value = "priceOrder", defaultValue = "true") boolean priceOrder) {
 		return super.addFulfillmentOptionToFulfillmentGroup(request,
 				fulfillmentGroupId, fulfillmentOptionId, priceOrder);
 	}
 
 	@Override
-	@GET
-	@Path("options")
+    @RequestMapping(value = "options", method = RequestMethod.GET)
 	public List<FulfillmentOptionWrapper> findFulfillmentOptions(
-			@Context HttpServletRequest request, 
-			@QueryParam("fulfillmentType") String fulfillmentType) {
+			HttpServletRequest request, 
+			@RequestParam("fulfillmentType") String fulfillmentType) {
 		return super.findFulfillmentOptions(request, fulfillmentType);
 	}
 
