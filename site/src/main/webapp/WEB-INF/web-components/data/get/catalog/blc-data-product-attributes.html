@@ -1,0 +1,33 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-ajax/core-ajax.html">
+
+<polymer-element name="blc-data-product-attributes" attributes="auto">
+	<template>
+		<core-ajax
+		    auto="{{auto}}"
+		    url="/api/v1/catalog/product/{{productId}}/product-attributes"
+		    contentType="application/json"
+		    handleAs="json"
+		    response="{{productAttributes}}"></core-ajax>
+	</template>
+	<script>
+		Polymer({
+		    auto: true,
+		    go: function() {
+		    	document.querySelector('core-ajax').go();
+		    },
+		    
+			publish: {
+				productId: {
+					value: 1,
+					reflect: true
+				},
+				
+				productAttributes: {
+					value: [],
+					reflect: true
+				}
+			}
+		});
+	</script>
+</polymer-element>

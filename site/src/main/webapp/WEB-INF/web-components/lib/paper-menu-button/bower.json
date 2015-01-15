@@ -1,0 +1,16 @@
+{
+  "name": "paper-menu-button",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "core-a11y-keys": "Polymer/core-a11y-keys#master",
+    "core-collapse": "Polymer/core-collapse#master",
+    "core-dropdown": "Polymer/core-dropdown#master",
+    "core-icons": "Polymer/core-icons#master",
+    "core-menu": "Polymer/core-menu#master",
+    "paper-button": "Polymer/paper-button#master",
+    "paper-dropdown": "Polymer/paper-dropdown#master",
+    "paper-icon-button": "Polymer/paper-icon-button#master",
+    "paper-item": "Polymer/paper-item#master"
+  }
+}

@@ -1,0 +1,76 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<polymer-element name="hc-product">
+	<template>
+		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
+		<blc-data-product-media productId={{productId}} productMedia="{{productMedia}}"></blc-data-product-media>
+		<blc-data-remove-from-cart customerId="200" productId="{{productId}}" quantity="1"></blc-data-add-to-cart>
+		<!-- th:attr="customerId=${'{{' + customerId + '}}'}" -->
+		
+		<div id="container">
+			<core-image id="thumbnail" src="{{productMedia[0].url}}" sizing="cover" preload fade></core-image>
+			
+			<span id="middle-section">
+				<a id="title" href="{{product.url}}">
+					{{product.name}}
+				</a>
+				
+				<span id="quantity">
+				</span>
+				
+				<span id="price">
+				</span>
+				
+				<span id="savings">
+				</span>
+				
+				<span id="total">
+				</span>
+			</span>
+			
+			<paper-icon-button icon="highlight-remove"></paper-icon-button>
+		</div>
+		
+		<style>
+			#thumbnail {
+				width: 80px;
+			}
+			
+			#middle-section {
+				margin: 0;
+			}
+			#title {
+				width: 60%;
+			}
+			#quantity {
+				width: 10%;
+			}
+			#price {
+				width: 10%;
+			}
+			#savings {
+				width:10%;
+			}
+			#total {
+				width:10%;
+			}
+		
+		</style>
+	</template>
+	<script>
+		Polymer({
+			publish: {
+				cartItem: {
+					value: {},
+					reflect: true
+				}
+			},
+			
+			addToCart: function(){
+				this.shadowRoot.querySelector('blc-data-remove-from-cart').go();
+			}
+		});
+	</script>
+</polymer-element>

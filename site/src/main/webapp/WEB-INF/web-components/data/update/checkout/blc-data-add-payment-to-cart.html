@@ -1,0 +1,32 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-ajax/core-ajax.html">
+
+<polymer-element name="blc-data-add-payment-to-cart">
+	<template>
+		<core-ajax
+		    auto="false"
+		    method="POST"
+		    url="/api/v1/cart/checkout/payment?customerId={{customerId}}"
+		    contentType="application/json"
+		    handleAs="json"
+		    body="{{newPayment}}"></core-ajax>
+	</template>
+	<script>
+		Polymer({
+		    go: function() {
+		    	document.querySelector('core-ajax').go();
+		    },
+		    
+			publish: {
+				customerId: {
+					value: 1,
+					reflect: true
+				},
+				newPayment: {
+					value: {},
+					reflect: true
+				}
+			}
+		});
+	</script>
+</polymer-element>

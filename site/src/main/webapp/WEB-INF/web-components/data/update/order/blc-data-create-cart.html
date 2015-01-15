@@ -1,0 +1,40 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-ajax/core-ajax.html">
+
+<polymer-element name="blc-data-create-cart">
+	<template>
+		<core-ajax
+		    auto="false"
+		    method="POST"
+		    url="/api/v1/cart/{{queryParam}}"
+		    contentType="application/json"
+		    handleAs="json"
+		    response="{{newCart}}"></core-ajax>
+	</template>
+	<script>
+		Polymer({
+		    go: function() {
+		    	document.querySelector('core-ajax').go();
+		    },
+		    
+			publish: {
+				customerId: {
+					value: 1,
+					reflect: true
+				},
+		    	anonymousCustomer: {
+		    		value: false,
+		    		reflect: true
+		    	}
+			},
+			
+			get queryParam() {
+				if(this.anonymousCustomer) {
+					return '';
+				} else {
+					return '?customerId=' + customerId;
+				}
+			}
+		});
+	</script>
+</polymer-element>

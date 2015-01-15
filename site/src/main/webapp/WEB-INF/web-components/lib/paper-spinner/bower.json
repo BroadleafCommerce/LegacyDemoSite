@@ -1,0 +1,8 @@
+{
+  "name": "paper-spinner",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "webcomponentsjs": "Polymer/webcomponentsjs#master"
+  }
+}

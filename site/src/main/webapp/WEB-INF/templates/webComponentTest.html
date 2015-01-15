@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>Heat Clinic</title>
+		
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"></meta>
+		
+		<script src="/web-components/lib/webcomponentsjs/webcomponents.js"></script>
+		
+		<link rel="import" href="/web-components/lib/polymer/polymer.html">
+		<link rel="import" href="/web-components/lib/font-roboto/roboto.html">
+		<link rel="import" href="/web-components/lib/core-image/core-image.html">
+		<link rel="import" href="/web-components/lib/core-animated-pages/core-animated-pages.html">
+		<link rel="import" href="/web-components/lib/core-animated-pages/transitions/slide-from-right.html">
+		<link rel="import" href="/web-components/lib/paper-elements/paper-elements.html">
+		
+		<link rel="import" href="/web-components/data/blc-data.html">
+		
+		<link rel="import" href="/web-components/site/views/hc-view-home.html">
+		<link rel="import" href="/web-components/site/views/hc-view-hot-sauces.html">
+		<link rel="import" href="/web-components/site/views/hc-view-merchandise.html">
+		<link rel="import" href="/web-components/site/views/hc-view-clearance.html">
+		<link rel="import" href="/web-components/site/views/hc-view-new-to-hot-sauce.html">
+		<link rel="import" href="/web-components/site/views/hc-view-faq.html">
+		
+		<link rel="import" href="/web-components/site/hc-header-links.html">
+	</head>
+	    
+	<body unresolved>
+		<template id="page" is="auto-binding">
+			<div id="header">
+				<div id="header-content">
+					<core-image id="logo" src="/img/the-heat-clinic-logo-internal.png"></core-image>
+					
+					<hc-header-links></hc-header-links>
+					
+					<paper-tabs selected="{{tab}}">
+						<paper-tab>HOME</paper-tab>
+						<paper-tab>HOT SAUCES</paper-tab>
+						<paper-tab>MERCHANDISE</paper-tab>
+						<paper-tab>CLEARANCE</paper-tab>
+						<paper-tab>NEW TO HOT SAUCE?</paper-tab>
+						<paper-tab>FAQ</paper-tab>
+					</paper-tabs>
+				</div>
+			</div>
+			
+			<div id="main-section">
+				<core-animated-pages  selected="{{tab}}" transitions="slide-from-right">
+					<section>
+						<hc-view-home></hc-view-home>
+					</section>
+					<section layout vertical center-center>
+						<hc-view-hot-sauces></hc-view-hot-sauces>
+					</section>
+					<section layout vertical center-center>
+						<hc-view-merchandise></hc-view-merchandise>
+					</section>
+					<section layout vertical center-center>
+						<hc-view-clearance></hc-view-clearance>
+					</section>
+					<section layout vertical center-center>
+						<hc-view-new-to-hot-sauce></hc-view-new-to-hot-sauce>
+					</section>
+					<section layout vertical center-center>
+						<hc-view-faq></hc-view-faq>
+					</section>
+				</core-animated-pages>
+			</div>
+		</template>
+	</body>	
+	
+	<style>
+		body {
+			margin: 0;
+			background: url(../img/canvas.jpg) repeat;
+		}
+		
+		/* Header */
+		#header {
+			width: 100%;
+			border-top: 15px solid #E40037;
+		}
+		#header-content {
+			width: 980px;
+			margin: 0 auto;
+			position: relative;
+		}
+		
+		#logo {
+			width: 299px;
+			height: 101px;
+			display: block;
+			z-index: 50;
+			position: relative;
+		}
+		
+		hc-cart-info {
+			position:absolute;
+			top:0px;
+			right:0px;
+			color:white;
+		}
+		
+		paper-tabs {
+			background-color: white;
+		}
+		paper-tabs paper-tab::shadow * {
+			font: 'Open Sans', Helvetica, sans-serif;
+			font-size: 16px;
+			font-weight: 600;
+			color: #655c5a;
+		}
+		paper-tabs::shadow #selectionBar {
+			background-color: #C8C3C1;
+		}
+		paper-tabs paper-tab::shadow #ink {
+			color: #C8C3C1;
+		}
+		
+		/* Main Content */
+		core-animated-pages {
+			width: 980px;
+			margin: 0 auto;
+			position: relative;
+			background-color:white;
+			padding:10px 20px;
+			box-sizing: border-box;
+			overflow:hidden;
+		}
+		
+		#main-section core-animated-pages section {
+			position:inherit;
+		}
+		
+		footer {
+		    width: 940px;
+		    background: url(../img/the-heat-clinic-seal.png) top center no-repeat;
+		    margin: 40px auto;
+		    padding: 0 20px;
+		    padding-bottom: 40px;
+		    font: 12px/16px 'Georgia', serif;
+		    color: #655c5a;
+		}
+	
+	    footer #left_content h4, footer #right_content h4 {
+	        font: 12px/17px 'Open Sans', Helvetica, sans-serif;
+	        font-weight: 600;
+	        letter-spacing: 5px;
+	        margin-bottom: 0;
+	        text-transform: uppercase;
+	        color: #262322;
+	    }
+	    
+	    footer #left_content {
+	        width: 405px;
+	        text-align: right;
+	        float: left;
+	    }
+	    
+	    footer #right_content {
+	        width: 400px;
+	        text-align: left;
+	        float: right;
+	    }
+	
+	    footer #blc_brand {
+	        display: block;
+	        height: 60px;
+	        text-align: left;
+	        font: 10px/13px 'Georgia', serif;
+	        padding: 10px 0 0 521px;
+	        margin: 100px 0 0 -200px;
+	
+	    }
+	
+	    footer #blc_brand img {
+	        display: inline-block;
+	    }
+	
+	    footer #blc_brand p {
+	        display: block;
+	        margin: -20px 0 0 100px;
+	    }
+	
+	    footer #blc_brand h4, footer #blc_brand a{
+	        font: 10px/15px 'Open Sans', Helvetica, sans-serif;
+	        font-weight: 600;
+	        letter-spacing: 1px;
+	        text-transform: uppercase;
+	        color: #262322;
+	        text-decoration: none;
+	        display: inline-block;
+	    }
+	</style>
+</html>

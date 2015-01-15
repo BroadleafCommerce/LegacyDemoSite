@@ -25,8 +25,12 @@
     <sec:http pattern="/fonts/**" security="none" />
     <sec:http pattern="/img/**" security="none" />
     <sec:http pattern="/js/**" security="none" />
+    <sec:http pattern="/web-components/**" security="none" />
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />       
+    
+    <!-- REST -->
+    <sec:http pattern="/catalog/**" security="none" /> 
     
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAuthenticationManager" disable-url-rewriting="true">

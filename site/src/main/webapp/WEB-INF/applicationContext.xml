@@ -209,15 +209,16 @@
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
     <!-- in production environments, but likely not in development environments. -->
-    <!-- 
+    
     <bean id="blWebTemplateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
         <property name="suffix" value=".html" />
-        <property name="templateMode" value="HTML5" />
-        <property name="cacheable" value="${cache.page.templates}"/>
+        <property name="templateMode" value="LEGACYHTML5" />
+        <property name="cacheable" value="false"/>
         <property name="cacheTTLMs" value="${cache.page.templates.ttl}" />
         <property name="characterEncoding" value="UTF-8" />
     </bean> 
+    <!--
     <bean id="blEmailTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
         <property name="prefix" value="emailTemplates/" />
         <property name="suffix" value=".html" />
@@ -261,4 +262,24 @@
         <property name="locations" ref="blCssLocations"/>
         <property name="handlers" ref="blCssHandlers" />
     </bean>
+    
+        
+    <bean id="webComponentsLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>/WEB-INF/web-components</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="webComponentsHandlers" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+            </list>
+        </property>
+    </bean>
+    <bean id="blWebComponentsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
+        <property name="locations" ref="webComponentsLocations"/>
+        <property name="handlers" ref="webComponentsHandlers" />
+    </bean>
+    
 </beans>

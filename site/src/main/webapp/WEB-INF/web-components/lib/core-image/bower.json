@@ -1,0 +1,7 @@
+{
+  "name": "core-image",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}

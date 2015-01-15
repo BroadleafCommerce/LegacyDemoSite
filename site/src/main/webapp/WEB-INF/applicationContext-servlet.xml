@@ -69,6 +69,7 @@
     <!-- Order must be set to supercede the handler configured by the mvc:annotation-driven annotation -->
     <mvc:resources order="-10" location="/img/, classpath:/common_style/img/" mapping="/img/**" />
     <mvc:resources order="-10" location="/fonts/, classpath:/common_style/fonts/" mapping="/fonts/**" />
+    <mvc:resources order="-10" location="/web-components/, /WEB-INF/web-components/, classpath:/common_style/web-components/" mapping="/web-components/**" />
     <mvc:resources order="-10" location="WEB-INF/favicon.ico" mapping="/favicon.ico" />
     
     <!-- Map various location URLs to our resource handlers -->
@@ -78,6 +79,7 @@
             <props>
                 <prop key="/js/**">blJsResources</prop>
                 <prop key="/css/**">blCssResources</prop>
+                <prop key="/web-components/**">blWebComponentsResources</prop>
             </props>
         </property>
     </bean>

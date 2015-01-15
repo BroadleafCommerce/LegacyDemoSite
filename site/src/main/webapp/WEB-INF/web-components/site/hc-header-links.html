@@ -1,0 +1,38 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<polymer-element name="hc-header-links">
+	<template>
+		<div id="container">
+			<paper-button>Login</paper-button>
+			<paper-button>Register</paper-button>
+			<paper-button on-click="{{openCart}}">
+				<core-image src="/img/shopping_cart.png"></core-image>
+			</paper-button>
+		</div>
+		
+		<paper-dialog id="cart-dialog" transition="core-transition-center">
+			<hc-cart-info></hc-cart-info>
+		</paper-dialog>
+		
+		
+		<style>
+			#container {
+				background-color:#E40037;
+				position:absolute;
+				top:0px;
+				right:0px;
+				color:white;
+			}
+			
+		</style>
+	</template>
+	<script>
+		Polymer({
+			openCart: function() {
+				this.shadowRoot.querySelector('#cart-dialog').open();
+			}
+		});
+	</script>
+</polymer-element>

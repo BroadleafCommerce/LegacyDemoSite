@@ -1,0 +1,93 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<polymer-element name="hc-product">
+	<template>
+		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
+		<blc-data-product-media productId={{productId}} productMedia="{{productMedia}}"></blc-data-product-media>
+		<blc-data-add-to-cart customerId="200" productId="{{productId}}" quantity="1"></blc-data-add-to-cart>
+		<!-- th:attr="customerId=${'{{' + customerId + '}}'}" -->
+		
+		<div id="container">
+			<a href="{{product.url}}">
+				<core-image id="thumbnail" src="{{productMedia[1].url}}" sizing="cover" preload fade></core-image>
+				<div id="price">${{product.retailPrice.amount}}</div>
+			</a>
+			<div id="text">
+				<div id="title">{{product.name}}</div>
+				<p>{{product.longDescription}}</p>
+			</div>
+			<paper-button id="add-to-cart" raised on-click="{{addToCart}}">BUY NOW!</paper-button>
+		</div>
+		
+		<style>
+			#container {
+				width: 220px;
+				height: 440px;
+				text-align: center;
+				float: left;
+				display: inline;
+				position: relative;
+			}
+			
+			#thumbnail {
+				width: 220px;
+				height: 220px;
+			}
+			
+			#price {
+				position: absolute;
+				background-color: black;
+				color: white;
+				opacity: 0.8;
+				padding: 10px 20px;
+				font: 16px/16px 'Open Sans', Helvetica, sans-serif;
+				font-weight: 600;
+				bottom: 226px;
+				right: 5px;
+			}
+			
+			#text {
+				width: 220px;
+				height: 118px;
+				font: 13px/18px 'Georgia',serif;
+				color: #655c5a;
+				overflow: hidden;
+				max-height: 118px;
+			}
+			#title {
+				width: 220px;
+				font: 18px/21px 'Oxygen', Helvetica, sans-serif;
+				margin-bottom: 7px;
+				color: #262322;
+			}
+			
+			#add-to-cart {
+				background: #E40037;
+				color: white;
+				
+				width:150px;
+				height:45px;
+				margin-top: 10px;
+				font: 16px/16px 'Open Sans', Helvetica, sans-serif;
+				font-weight: 600;
+				line-height:22.6px;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+			addToCart: function(){
+				this.shadowRoot.querySelector('blc-data-add-to-cart').go();
+			},
+			
+			publish: {
+				productId: {
+					value: 1,
+					reflect: true
+				}
+			}
+		});
+	</script>
+</polymer-element>

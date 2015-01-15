@@ -1,0 +1,92 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<link rel="import" href="/web-components/site/hc-product.html">
+
+<polymer-element name="hc-view-home">
+	<template>
+		<blc-data-category categoryId="2001" category="{{category}}" productLimit="4"></blc-data-category>
+	
+		<a href="/merchandise">
+			<img src="/img/banners/shirt-special.jpg">
+		</a>
+		
+		<a id="" style="text-decoration:none" href="/register">
+            <div id="home-feature">
+            	<h2>HOT SAUCE AFICIONADO?</h2> Click to join our Heat Clinic Frequent Care Program. The place to get all the deals on burn treatment.
+           	</div>
+        </a>
+		
+		<div id="title-bar">The Heat Clinic's Top Selling Sauces</div>
+		
+		<ul id="product-list">
+			<!-- TODO: REST API bug -->
+			<!-- 
+			<template repeat="{{product in category.products}}">
+				<li>
+					<hc-product productId="{{product.id}}"></hc-product>
+				</li>
+			</template>
+			-->
+			<li style="margin-right: 20px;">
+				<hc-product productId="3"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="6"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="9"></hc-product>
+			</li>
+			<li>
+				<hc-product productId="12"></hc-product>
+			</li>
+		</ul>
+		
+		<style>
+			#home-feature {
+				width: 900px;
+				padding: 10px 20px;
+				margin: 10px 0px;
+				color: #342020;
+				font: 15px/28px 'Oxygen', Helvetica, sans-serif;
+				text-align: center;
+				background-color: #E7E3E2;
+			}
+			
+			#home-feature h2 {
+				font: 19px/17px 'Open Sans', Helvetica, sans-serif;
+				font-weight: 600;
+				color: #E40037;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#title-bar {
+				width: 940px;
+				font: 14px/17px 'Open Sans', Helvetica, sans-serif;
+				font-weight: 600;
+				color: #342020;
+				text-align: center;
+				margin: 10px 0px;
+				border-top: double #C8C3C1;
+				border-bottom: double #C8C3C1;
+				text-transform: uppercase;
+				padding: 10px 0;
+			}
+			
+			#product-list {
+				padding:0;
+				list-style-type:none;
+				display:inline-block;
+			}
+			#product-list li {
+				float:left;
+				display:inline-block;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+		});
+	</script>
+</polymer-element>

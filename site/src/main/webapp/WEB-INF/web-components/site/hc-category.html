@@ -1,0 +1,82 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<link rel="import" href="/web-components/site/hc-product.html">
+
+<polymer-element name="hc-category">
+	<template>
+		<blc-data-category categoryId="{{categoryId}}" category="{{category}}" productLimit="{{pageSize}}" productOffset="{{currentPage * pageSize}}"></blc-data-category>
+		
+		<h1 id="heading">Viewing {{category.name}} ()</h1>
+		
+		<ul id="product-list">
+			<!-- TODO: REST API bug -->
+			<!-- 
+			<template repeat="{{product in category.products}}">
+				<li>
+					<hc-product productId="{{product.id}}"></hc-product>
+				</li>
+			</template>
+			-->
+			<li style="margin-right: 20px;">
+				<hc-product productId="1"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="2"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="3"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="4"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="5"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="6"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="7"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="8"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="9"></hc-product>
+			</li>
+			<li style="margin-right: 20px;">
+				<hc-product productId="10"></hc-product>
+			</li>
+		</ul>
+		
+		<style>
+			#heading {
+				width: 70%;
+				font: bold 20px/24px Helvetica, sans-serif;
+				color: #262322;
+				float: left;
+			}
+			#product-list {
+				padding:0;
+				list-style-type:none;
+				display:inline-block;
+			}
+			#product-list li {
+				float:left;
+				display:inline-block;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+			publish: {
+				categoryId: {
+					value: 1,
+					reflect: true
+				}
+			}
+		
+		});
+	</script>
+</polymer-element>

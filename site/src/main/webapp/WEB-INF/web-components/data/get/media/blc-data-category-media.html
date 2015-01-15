@@ -1,0 +1,33 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-ajax/core-ajax.html">
+
+<polymer-element name="blc-data-category-media" attributes="auto">
+	<template>
+		<core-ajax
+		    auto="{{auto}}"
+		    url="/api/v1/catalog/category/{{categoryId}}/media"
+		    contentType="application/json"
+		    handleAs="json"
+		    response="{{categoryMedia}}"></core-ajax>
+	</template>
+	<script>
+		Polymer({
+		    auto: true,
+		    go: function() {
+		    	document.querySelector('core-ajax').go();
+		    },
+		    
+			publish: {
+				categoryId: {
+					value: 1,
+					reflect: true
+				},
+				
+				categoryMedia: {
+					value: [],
+					reflect: true
+				}
+			}
+		});
+	</script>
+</polymer-element>
