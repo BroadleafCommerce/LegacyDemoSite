@@ -54,6 +54,7 @@ public class ContactUsController {
 
 	@RequestMapping(value="/contactus")
 	public String index() {
-		return "contactus/contactus";
+		//return "contactus/contactus";
+       return "webComponentTest";
 	}
 }
