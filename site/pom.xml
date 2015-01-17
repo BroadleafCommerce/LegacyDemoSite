@@ -18,6 +18,12 @@
         <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
         <httpsPort>8443</httpsPort> 
         <httpPort>8080</httpPort>
+
+        <runtime.environment>development</runtime.environment>
+        <spring.instrument.path>../lib/spring-instrument-3.2.12.RELEASE.jar</spring.instrument.path>
+
+        <jettyJvmArgs>-XX:MaxPermSize=256M -Xmx512M -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -javaagent:${spring.instrument.path} -Druntime.environment=${runtime.environment}</jettyJvmArgs>
+        <jettyServerProperties>-Djetty.port=${httpPort} -Dhttps.port=${httpsPort} -Djetty.keystore=${webappDirectory}/WEB-INF/blc-example.keystore -Djetty.keystore.password=broadleaf -Djetty.keymanager.password=broadleaf -Djetty.truststore=${webappDirectory}/WEB-INF/blc-example.keystore -Djetty.truststore.password=broadleaf</jettyServerProperties>
     </properties>
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
@@ -32,38 +38,18 @@
             </plugin>
 
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.5.v20120716</version>
+                <version>9.2.6.v20141205</version>
                 <configuration>
-                    <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-                    <contextPath>/</contextPath>
-                    
-                    <!-- !!!!! WARNING !!!!!! -->
-                    <!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
-                        vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
-                        in production -->
-                    <jettyXml>jetty-server.xml</jettyXml>
-                    <!-- !!!!! WARNING !!!!!! -->
-                    
+                    <webApp>
+                        <contextPath>/</contextPath>
+                        <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+                    </webApp>
+                    <jvmArgs>${jettyJvmArgs} ${jettyServerProperties}</jvmArgs>
+                    <jettyXml>jetty.xml,jetty-http.xml,jetty-ssl.xml,jetty-https.xml</jettyXml>
                     <stopPort>9966</stopPort>
                     <stopKey>foo</stopKey>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${httpPort}</port>
-                            
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                        <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
-                            <port>${httpsPort}</port>
-                            <keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
-                            <keyPassword>broadleaf</keyPassword>
-                            <password>broadleaf</password>
-                        </connector>
-                    </connectors>
-                    <webAppConfig>
-                         <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
-                    </webAppConfig>
                 </configuration>
             </plugin>
         

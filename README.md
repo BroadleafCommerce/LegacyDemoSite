@@ -1,3 +1,9 @@
+NOTE: This version is better suitable for Intellij IDEA since there is no need to use ant task *jetty-demo* mentioned in [Getting Started Guide](http://docs.broadleafcommerce.org/current/Getting-Started.html).
+Instead, it is enough to just run maven goal *jetty:run-forked*.
+All configuration was also upgraded to Jetty 9.
+
+Any feedback is appreciated.
+
 ## The New Broadleaf Commerce Demo Site
 
 This Maven project is meant to be used as a solid started project for any [Broadleaf Commerce](http://www.broadleafcommerce.org) application. It has many sensible defaults set up along with examples of how a fully functioning eCommerce site based on Broadleaf might work.
