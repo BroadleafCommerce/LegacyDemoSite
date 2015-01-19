@@ -4,11 +4,14 @@
 
 <polymer-element name="hc-header-links">
 	<template>
+		<blc-data-cart customerId="200" cart="{{cart}}"></blc-data-cart>
+	
 		<div id="container">
 			<paper-button>Login</paper-button>
 			<paper-button>Register</paper-button>
 			<paper-button on-click="{{openCart}}">
 				<core-image src="/img/shopping_cart.png"></core-image>
+				<small>{{cart.orderItems.size}}</small>
 			</paper-button>
 		</div>
 		
