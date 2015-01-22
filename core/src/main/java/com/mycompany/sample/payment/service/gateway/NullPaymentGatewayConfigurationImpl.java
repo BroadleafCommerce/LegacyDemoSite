@@ -52,7 +52,7 @@ public class NullPaymentGatewayConfigurationImpl implements NullPaymentGatewayCo
 
     @Override
     public boolean isPerformAuthorizeAndCapture() {
-        return true;
+        return performAuthorizeAndCapture;
     }
 
     @Override
