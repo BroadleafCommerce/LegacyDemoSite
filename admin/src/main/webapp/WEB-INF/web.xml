@@ -21,8 +21,7 @@
             classpath:/bl-admin-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             classpath:/bl-cms-contentCreator-applicationContext.xml
-            classpath:/bl-menu-applicationContext.xml
-            classpath:/bl-menu-admin-applicationContext.xml
+            classpath*:/blc-config/admin/bl-*-applicationContext.xml
             classpath:/applicationContext.xml
             classpath:/applicationContext-email.xml
             /WEB-INF/applicationContext-datasource.xml
@@ -103,6 +102,7 @@
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 classpath:/applicationContext-servlet-cms-contentCreator.xml
                 classpath:/bl-menu-admin-applicationContext-servlet.xml
+                classpath*:/blc-config/admin/bl-*-admin-applicationContext-servlet.xml
                 /WEB-INF/applicationContext-servlet-admin.xml
             </param-value>
         </init-param>

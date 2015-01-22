@@ -18,7 +18,7 @@
         <param-value>
             classpath:/bl-open-admin-contentClient-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
-            classpath:/bl-menu-applicationContext.xml
+            classpath*:/blc-config/site/bl-*-applicationContext.xml
             classpath:/applicationContext.xml
             classpath:/applicationContext-email.xml
             /WEB-INF/applicationContext-datasource.xml
@@ -98,6 +98,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
+                classpath*:/blc-config/site/bl-*-applicationContext-servlet.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 /WEB-INF/applicationContext-servlet.xml
             </param-value>
