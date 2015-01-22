@@ -91,20 +91,7 @@
         <property name="templateEngine" ref="blWebTemplateEngine" />
         <property name="order" value="1" />
         <property name="cache" value="${thymeleaf.view.resolver.cache}" />
-        <property name="fullPageLayout" value="layout/fullPageLayout" />
         <property name="characterEncoding" value="UTF-8" />
-        <!--
-        <property name="layoutMap">
-            <map>
-                <entry key="account/" value="layout/accountLayout" />
-                <entry key="catalog/" value="NONE" />
-                <entry key="checkout/" value="layout/checkoutLayout" />
-                <entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
-                <entry key="layout/" value="NONE" />
-                <entry key="content/NONE" value="NONE" />
-            </map>
-        </property>
-        -->
     </bean>
     
     <!-- This validator will additionally require state on shipping addresses -->
