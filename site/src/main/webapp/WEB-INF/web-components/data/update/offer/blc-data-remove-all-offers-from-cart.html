@@ -8,12 +8,24 @@
 		    method="DELETE"
 		    url="/api/v1/cart/offers?customerId={{customerId}}&priceOrder={{priceOrder}}"
 		    contentType="application/json"
-		    handleAs="json"></core-ajax>
+		    handleAs="json"
+		    on-core-response="{{onResponse}}"
+		    on-core-error="{{onError}}"
+		    on-core-complete="{{onComplete}}"></core-ajax>
 	</template>
 	<script>
 		Polymer({
 		    go: function() {
-		    	document.querySelector('core-ajax').go();
+		    	this.shadowRoot.querySelector('core-ajax').go();
+		    },
+		    onResponse: function(event) {
+		    	this.fire('response', event);
+		    },
+		    onError: function(event) {
+		    	this.fire('error', event);
+		    },
+		    onComplete: function(event) {
+		    	this.fire('complete', event);
 		    },
 		    
 			publish: {

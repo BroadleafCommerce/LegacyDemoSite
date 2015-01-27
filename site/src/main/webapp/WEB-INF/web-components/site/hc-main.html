@@ -1,0 +1,249 @@
+
+
+<!--  Core Elements -->
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+<link rel="import" href="/web-components/lib/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="/web-components/lib/core-animated-pages/transitions/slide-from-right.html">
+
+<!-- Paper Elements -->
+<link rel="import" href="/web-components/lib/paper-elements/paper-elements.html">
+
+<!-- Third Party -->
+<link rel="import" href="/web-components/lib/flatiron-director/flatiron-director.html">
+
+<!-- BLC Elements -->
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<!-- Views -->
+<link rel="import" href="/web-components/site/views/hc-view-home.html">
+<link rel="import" href="/web-components/site/views/hc-view-hot-sauces.html">
+<link rel="import" href="/web-components/site/views/hc-view-merchandise.html">
+<link rel="import" href="/web-components/site/views/hc-view-clearance.html">
+<link rel="import" href="/web-components/site/views/hc-view-new-to-hot-sauce.html">
+<link rel="import" href="/web-components/site/views/hc-view-faq.html">
+
+<link rel="import" href="/web-components/site/hc-cart.html">
+<link rel="import" href="/web-components/site/hc-register.html">
+
+<polymer-element name="hc-main" on-add-to-cart="{{cartItemAdded}}">
+	<template>
+		<flatiron-director route="{{route}}" autoHash></flatiron-director>
+		
+		<div id="header">
+			<div id="header-content">
+				<core-image id="logo" src="/img/the-heat-clinic-logo-internal.png"></core-image>
+				
+				<div id="header-links">
+					<paper-button on-click="{{openLogin}}">Login</paper-button><span>|</span>
+					<paper-button on-click="{{openRegister}}">Register</paper-button><span>|</span>
+					<paper-button on-click="{{openCart}}">
+						<core-image src="/img/shopping_cart.png"></core-image>
+						<span id="cart-count">{{totalCartItems}} item(s)</span>
+					</paper-button>
+				</div>
+				
+				<!-- Dialogs -->
+				<paper-dialog id="login-dialog" transition="core-transition-center">
+					<hc-login id="login"></hc-login>
+				</paper-dialog>
+				<paper-dialog id="register-dialog" transition="core-transition-center">
+					<hc-register id="register"></hc-register>
+				</paper-dialog>
+				<paper-dialog id="cart-dialog" transition="core-transition-center">
+					<hc-cart id="cart" totalItems="{{totalCartItems}}"></hc-cart>
+				</paper-dialog>
+				
+				<div id="search">
+					<paper-input id="search-input" label="Search..." layout></paper-input>
+					<paper-icon-button id="search-button" icon="search"></paper-icon-button>
+				</div>
+				
+				<paper-tabs selected="{{route}}" style="clear:both">
+					<paper-tab>HOME</paper-tab>
+					<paper-tab>HOT SAUCES</paper-tab>
+					<paper-tab>MERCHANDISE</paper-tab>
+					<paper-tab>CLEARANCE</paper-tab>
+					<paper-tab>NEW TO HOT SAUCE?</paper-tab>
+					<paper-tab>FAQ</paper-tab>
+				</paper-tabs>
+			</div>
+		</div>
+		
+		<div id="main-section">
+			<core-animated-pages  selected="{{route}}" transitions="slide-from-right">
+				<section id="home">
+					<hc-view-home></hc-view-home>
+				</section>
+				<section id="hot-sauces" layout vertical center-center>
+					<hc-view-hot-sauces></hc-view-hot-sauces>
+				</section>
+				<section id="merchandise" layout vertical center-center>
+					<hc-view-merchandise></hc-view-merchandise>
+				</section>
+				<section id="clearance" layout vertical center-center>
+					<hc-view-clearance></hc-view-clearance>
+				</section>
+				<section id="new-to-hot-sauce" layout vertical center-center>
+					<hc-view-new-to-hot-sauce></hc-view-new-to-hot-sauce>
+				</section>
+				<section id="faq" layout vertical center-center>
+					<hc-view-faq></hc-view-faq>
+				</section>
+			</core-animated-pages>
+			
+			<paper-toast text="" duration="3000"></paper-toast>
+		</div>
+		
+		<!-- Global style -->
+		<link rel="stylesheet" href="/css/web-components-global-styles.css">
+		<style>
+			/* Header */
+			#header {
+				width: 100%;
+				border-top: 15px solid #E40037;
+			}
+			#header-content {
+				width: 980px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			#logo {
+				width: 299px;
+				height: 101px;
+				z-index: 50;
+				float:left;
+			}
+			
+			hc-cart-info {
+				position:absolute;
+				top:0px;
+				right:0px;
+				color:white;
+			}
+			
+			#search {
+				float:right;
+				position:relative;
+				top:50px;
+			}
+			#search-input {
+				width:400px;
+				font-size: 15px;
+				padding-right: 5px;
+				vertical-align:top;
+			}
+			#search-button {
+				background-color:#E40037;
+				color:white;
+			}
+			
+			/* Main Content */
+			core-animated-pages {
+				width: 980px;
+				margin: 0 auto;
+				position: relative;
+				background-color:white;
+				padding:10px 20px;
+				box-sizing: border-box;
+				overflow:hidden;
+			}
+			
+			#main-section core-animated-pages section {
+				position:inherit;
+			}
+			
+			footer {
+			    width: 940px;
+			    background: url(../img/the-heat-clinic-seal.png) top center no-repeat;
+			    margin: 40px auto;
+			    padding: 0 20px;
+			    padding-bottom: 40px;
+			    font: 12px/16px 'Georgia', serif;
+			    color: #655c5a;
+			}
+		
+		    footer #left_content h4, footer #right_content h4 {
+		        font: 12px/17px 'Open Sans', Helvetica, sans-serif;
+		        font-weight: 600;
+		        letter-spacing: 5px;
+		        margin-bottom: 0;
+		        text-transform: uppercase;
+		        color: #262322;
+		    }
+		    
+		    footer #left_content {
+		        width: 405px;
+		        text-align: right;
+		        float: left;
+		    }
+		    
+		    footer #right_content {
+		        width: 400px;
+		        text-align: left;
+		        float: right;
+		    }
+		
+		    footer #blc_brand {
+		        display: block;
+		        height: 60px;
+		        text-align: left;
+		        font: 10px/13px 'Georgia', serif;
+		        padding: 10px 0 0 521px;
+		        margin: 100px 0 0 -200px;
+		
+		    }
+		
+		    footer #blc_brand img {
+		        display: inline-block;
+		    }
+		
+		    footer #blc_brand p {
+		        display: block;
+		        margin: -20px 0 0 100px;
+		    }
+		
+		    footer #blc_brand h4, footer #blc_brand a {
+		        font: 10px/15px 'Open Sans', Helvetica, sans-serif;
+		        font-weight: 600;
+		        letter-spacing: 1px;
+		        text-transform: uppercase;
+		        color: #262322;
+		        text-decoration: none;
+		        display: inline-block;
+		    }
+		    
+			#header-links {
+				background-color:#E40037;
+				position:absolute;
+				top:0px;
+				right:0px;
+				color:white;
+			}
+			#header-links * {
+				font-weight: bold;
+			}
+			#cart-count {
+				margin-left:5px;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+			openLogin: function() {
+				this.shadowRoot.querySelector('#login-dialog').open();
+			},
+			openRegister: function() {
+				this.shadowRoot.querySelector('#register-dialog').open();
+			},
+			openCart: function() {
+				this.shadowRoot.querySelector('#cart-dialog').open();
+			},
+			cartItemAdded: function(event, detail) {
+				this.shadowRoot.querySelector('hc-cart').refresh();
+				this.shadowRoot.querySelector('paper-toast').setAttribute('text', detail.product.name + ' was added to your cart!')
+				this.shadowRoot.querySelector('paper-toast').show();
+			}
+		});
+	</script>
+</polymer-element>

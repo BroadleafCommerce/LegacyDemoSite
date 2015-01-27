@@ -1,0 +1,29 @@
+
+/* Buttons */
+paper-button {
+	background: #E40037;
+	color: white;
+	font: 16px/16px 'Open Sans', Helvetica, sans-serif;
+}
+
+/* Input */
+paper-input /deep/ .focused-underline {
+	background-color: #E40037;
+}
+
+/* Tabs */
+paper-tabs {
+	background-color: white;
+}
+paper-tabs paper-tab::shadow * {
+	font: 'Open Sans', Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	color: #655c5a;
+}
+paper-tabs::shadow #selectionBar {
+	background-color: #C8C3C1;
+}
+paper-tabs paper-tab::shadow #ink {
+	color: #C8C3C1;
+}

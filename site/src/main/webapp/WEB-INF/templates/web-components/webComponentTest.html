@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Heat Clinic</title>
+		
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"></meta>
+		
+		<!-- Polymer and polyfill -->
+		<script src="/web-components/lib/webcomponentsjs/webcomponents.js"></script>
+		<link rel="import" href="/web-components/lib/polymer/polymer.html"/>
+
+		<!-- Font -->
+		<link rel="import" href="/web-components/lib/font-roboto/roboto.html"/>
+		
+		<link rel="import" href="/web-components/site/hc-main.html"/>
+		
+		<style>
+			* {
+				font-family: 'Arial'
+			}
+			
+		</style>
+	</head>
+	    
+	<body unresolved="unresolved">
+		<template is="auto-binding">
+			<hc-main></hc-main>
+		</template>
+	</body>
+	
+	<style>
+		body {
+			margin: 0;
+			background: url(../img/canvas.jpg) repeat;
+		}
+	</style>
+</html>

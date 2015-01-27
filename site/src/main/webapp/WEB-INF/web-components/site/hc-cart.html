@@ -1,0 +1,55 @@
+
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+<link rel="import" href="/web-components/lib/core-list/core-list.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<link rel="import" href="/web-components/site/hc-cart-item.html">
+
+<polymer-element name="hc-cart">
+	<template>
+		<blc-data-cart customerId="100" cart="{{cart}}" on-response="{{countTotalItems}}"></blc-data-cart>
+		
+		<ul>
+			<template repeat="{{item in cart.orderItems}}">
+				<li class="cart-item">
+					<hc-cart-item cartItem="{{item}}" on-remove-from-cart="{{refresh}}"></hc-cart-item>
+				</li>
+			</template>
+		</ul>
+			
+		<style>
+			ul {
+				padding: 0;
+				width: 700px;
+				height:400px;
+			}
+			.cart-item {
+				list-style: none;
+				border-bottom: 1px solid lightgrey;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+			refresh: function() {
+				this.shadowRoot.querySelector('blc-data-cart').go();
+			},
+			countTotalItems: function() {
+				var items = this.cart.orderItems;
+				var total = 0;
+				for(var i = 0; i < items.length; i++) {
+					total += items[i].quantity;
+				}
+				this.totalItems = total;
+			},
+			
+			publish: {
+				totalItems: {
+					value: 0,
+					reflect: true
+				}
+			}
+		});
+	</script>
+</polymer-element>

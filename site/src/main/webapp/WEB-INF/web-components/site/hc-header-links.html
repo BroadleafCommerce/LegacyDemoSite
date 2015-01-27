@@ -2,16 +2,18 @@
 <link rel="import" href="/web-components/lib/core-image/core-image.html">
 <link rel="import" href="/web-components/data/blc-data.html">
 
+<link rel="import" href="/web-components/site/hc-cart-info.html">
+
 <polymer-element name="hc-header-links">
 	<template>
-		<blc-data-cart customerId="200" cart="{{cart}}"></blc-data-cart>
+		<blc-data-cart customerId="100" cart="{{cart}}"></blc-data-cart>
 	
 		<div id="container">
-			<paper-button>Login</paper-button>
-			<paper-button>Register</paper-button>
+			<paper-button>Login</paper-button><span>|</span>
+			<paper-button>Register</paper-button><span>|</span>
 			<paper-button on-click="{{openCart}}">
 				<core-image src="/img/shopping_cart.png"></core-image>
-				<small>{{cart.orderItems.size}}</small>
+				<span id="cart-count">{{cart == null ? 0 : cart.orderItems.length}} item(s)</span>
 			</paper-button>
 		</div>
 		
@@ -21,6 +23,11 @@
 		
 		
 		<style>
+			* {
+				font-weight: bold;
+				font-size: 16px;
+				text-transform: none;
+			}
 			#container {
 				background-color:#E40037;
 				position:absolute;
@@ -28,13 +35,21 @@
 				right:0px;
 				color:white;
 			}
-			
+			#cart-count {
+				margin-left:5px;
+			}
 		</style>
 	</template>
 	<script>
 		Polymer({
 			openCart: function() {
 				this.shadowRoot.querySelector('#cart-dialog').open();
+			},
+		
+			publish: {
+				refresh: function() {
+					this.shadowRoot.querySelector('blc-data-cart').go();
+				}
 			}
 		});
 	</script>

@@ -8,13 +8,25 @@
 		    url="/api/v1/catalog/category/{{categoryId}}?productLimit={{productLimit}}&productOffset={{productOffset}}&subcategoryOffset={{subcategoryOffset}}&subcategoryDepth={{subcategoryDepth}}"
 		    contentType="application/json"
 		    handleAs="json"
-		    response="{{category}}"></core-ajax>
+		    response="{{category}}"
+		    on-core-response="{{onResponse}}"
+		    on-core-error="{{onError}}"
+		    on-core-complete="{{onComplete}}"></core-ajax>
 	</template>
 	<script>
 		Polymer({
 		    auto: true,
 		    go: function() {
-		    	document.querySelector('core-ajax').go();
+		    	this.shadowRoot.querySelector('core-ajax').go();
+		    },
+		    onResponse: function(event) {
+		    	this.fire('response', event);
+		    },
+		    onError: function(event) {
+		    	this.fire('error', event);
+		    },
+		    onComplete: function(event) {
+		    	this.fire('complete', event);
 		    },
 		    
 			publish: {
@@ -27,11 +39,11 @@
 					reflect: true
 				},
 				productOffset: {
-					value: 0,
+					value: 1,
 					reflect: true
 				},
 				subcategoryOffset: {
-					value: 0,
+					value: 1,
 					reflect: true
 				},
 				subcategoryDepth: {

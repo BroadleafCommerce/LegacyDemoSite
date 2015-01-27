@@ -93,6 +93,7 @@
         <property name="characterEncoding" value="UTF-8" />
         <property name="layoutMap">
             <map>
+                <entry key="web-components/" value="NONE" />
                 <entry key="account/" value="layout/accountLayout" />
                 <entry key="catalog/" value="NONE" />
                 <entry key="checkout/" value="layout/checkoutLayout" />

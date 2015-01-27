@@ -40,4 +40,16 @@
     <!-- Additional considerations MUST be made for implementations that are allowing external access to APIs. -->
     <bean id="blRestCustomerStateFilter" class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
     
+    <!-- This adds (optional) support for serializing and deserializing Broadleaf extensions.  This can be commented out, especially if specifying 
+-         custom endpoint method signatures. If you've extended BLC API wrapper classes, then class does it's best to serialize the right information.  
+-         Deserialization does not always work, especially when polymorphic possibilities are involved.  In these cases, it is best to explicitly provide 
+-         specific method signatures (URIs) for each polymorphic type that will be deserialized.
+-         This MUST be marked as singleton. -->
+-    <bean class="org.broadleafcommerce.core.web.api.BroadleafMessageBodyReaderWriter" scope="singleton"/>
+-    
+-    <!-- This generic JAX-RS exception mapper can be commented out, and/or can be replaced with a custom 
+-         exception mapper or mappers.
+-         This MUST be marked as singleton. -->
+-    <bean class="org.broadleafcommerce.core.web.api.BroadleafRestExceptionMapper" scope="singleton"/>
+    
 </beans>

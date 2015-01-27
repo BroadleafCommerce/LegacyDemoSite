@@ -2,47 +2,68 @@
 <link rel="import" href="/web-components/lib/core-image/core-image.html">
 <link rel="import" href="/web-components/data/blc-data.html">
 
-<polymer-element name="hc-product">
+<polymer-element name="hc-cart-item">
 	<template>
-		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
-		<blc-data-product-media productId={{productId}} productMedia="{{productMedia}}"></blc-data-product-media>
-		<blc-data-remove-from-cart customerId="200" productId="{{productId}}" quantity="1"></blc-data-add-to-cart>
-		<!-- th:attr="customerId=${'{{' + customerId + '}}'}" -->
+		<blc-data-product productId="{{cartItem.productId}}" product={{product}}></blc-data-product>
+		<blc-data-remove-from-cart customerId="100" itemId="{{cartItem.id}}" quantity="{{cartItem.quantity}}" on-response="{{removeFromCartSuccess}}"></blc-data-remove-from-cart>
 		
 		<div id="container">
-			<core-image id="thumbnail" src="{{productMedia[0].url}}" sizing="cover" preload fade></core-image>
+			<core-image id="thumbnail" src="{{product.mediaItems[0].url}}" sizing="cover" preload fade></core-image>
 			
-			<span id="middle-section">
-				<a id="title" href="{{product.url}}">
+			<div id="title">
+				<a href="{{product.url}}">
 					{{product.name}}
 				</a>
-				
-				<span id="quantity">
-				</span>
-				
-				<span id="price">
-				</span>
-				
-				<span id="savings">
-				</span>
-				
-				<span id="total">
-				</span>
-			</span>
+			</div>
 			
-			<paper-icon-button icon="highlight-remove"></paper-icon-button>
+			<div id="quantity">
+				{{cartItem.quantity}}
+			</div>
+			
+			<div id="price">
+				${{cartItem.retailPrice.amount}}
+			</div>
+			
+			<div id="savings">
+				${{cartItem.retailPrice.amount - cartItem.salePrice.amount}}
+			</div>
+			
+			<div id="total">
+				${{cartItem.salePrice.amount}}
+			</div>
+			
+			<paper-icon-button id="remove-button" icon="highlight-remove" on-click="{{removeFromCart}}"></paper-icon-button>
 		</div>
 		
 		<style>
+			#container {
+				height:50px;
+				padding: 10px;
+			}
+		
 			#thumbnail {
-				width: 80px;
+				width: 50px;
+				height: 50px;
+				float:left;
 			}
 			
-			#middle-section {
-				margin: 0;
+			#container > * {
+				float:left;
+				text-align:center;
+				vertical-align:middle;
+				height:100%;
 			}
 			#title {
-				width: 60%;
+				width: 200px;
+				padding:10px;
+			}
+			#title a {
+				font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+				color: #E40037;
+				text-decoration:none;
+			}
+			#title a:visited {
+				color: #E40037;
 			}
 			#quantity {
 				width: 10%;
@@ -56,6 +77,10 @@
 			#total {
 				width:10%;
 			}
+			
+			#remove-button {
+				float:right;
+			}
 		
 		</style>
 	</template>
@@ -68,8 +93,11 @@
 				}
 			},
 			
-			addToCart: function(){
+			removeFromCart: function(){
 				this.shadowRoot.querySelector('blc-data-remove-from-cart').go();
+			},
+			removeFromCartSuccess: function() {
+				this.fire('remove-from-cart', {itemId: this.cartItem.id})
 			}
 		});
 	</script>

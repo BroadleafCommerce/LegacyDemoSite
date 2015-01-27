@@ -5,19 +5,18 @@
 
 <polymer-element name="hc-category">
 	<template>
-		<blc-data-category categoryId="{{categoryId}}" category="{{category}}" productLimit="{{pageSize}}" productOffset="{{currentPage * pageSize}}"></blc-data-category>
+		<blc-data-category categoryId="{{categoryId}}" category="{{category}}" productLimit="{{pageSize}}" productOffset="{{1 + currentPage * pageSize}}"></blc-data-category>
 		
-		<h1 id="heading">Viewing {{category.name}} ()</h1>
+		<h1 id="heading">Viewing {{category.name}} ({{1 + currentPage * pageSize}} - {{(1 + currentPage * pageSize) + pageSize - 2}})</h1>
 		
 		<ul id="product-list">
-			<!-- TODO: REST API bug -->
-			<!-- 
 			<template repeat="{{product in category.products}}">
-				<li>
+				<li style="margin-right: 20px;">
 					<hc-product productId="{{product.id}}"></hc-product>
 				</li>
 			</template>
-			-->
+			
+			<!-- 
 			<li style="margin-right: 20px;">
 				<hc-product productId="1"></hc-product>
 			</li>
@@ -48,6 +47,7 @@
 			<li style="margin-right: 20px;">
 				<hc-product productId="10"></hc-product>
 			</li>
+			-->
 		</ul>
 		
 		<style>

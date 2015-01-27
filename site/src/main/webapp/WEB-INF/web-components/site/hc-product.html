@@ -5,13 +5,16 @@
 <polymer-element name="hc-product">
 	<template>
 		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
-		<blc-data-product-media productId={{productId}} productMedia="{{productMedia}}"></blc-data-product-media>
-		<blc-data-add-to-cart customerId="200" productId="{{productId}}" quantity="1"></blc-data-add-to-cart>
-		<!-- th:attr="customerId=${'{{' + customerId + '}}'}" -->
+		<blc-data-product-skus productId="{{productId}}" skus="{{skus}}"></blc-data-product-skus>
+		<blc-data-add-to-cart customerId="100" productId="{{productId}}" quantity="1" categoryId="{{product.defaultCategoryId}}" on-response="{{addToCartSuccess}}"></blc-data-add-to-cart>
 		
 		<div id="container">
+			<template if="{{product.id == 9}}">
+				<core-image id="new-badge" src="/img/badge-new.png" sizing="cover" preload></core-image>
+			</template>
+		
 			<a href="{{product.url}}">
-				<core-image id="thumbnail" src="{{productMedia[1].url}}" sizing="cover" preload fade></core-image>
+				<core-image id="thumbnail" src="{{product.mediaItems[1].url}}" sizing="cover" preload fade></core-image>
 				<div id="price">${{product.retailPrice.amount}}</div>
 			</a>
 			<div id="text">
@@ -21,6 +24,8 @@
 			<paper-button id="add-to-cart" raised on-click="{{addToCart}}">BUY NOW!</paper-button>
 		</div>
 		
+		<!-- Global style -->
+		<link rel="stylesheet" href="/css/web-components-global-styles.css">
 		<style>
 			#container {
 				width: 220px;
@@ -30,7 +35,14 @@
 				display: inline;
 				position: relative;
 			}
-			
+			#new-badge {
+				position:absolute;
+				top:-10px;
+				left:-10px;
+				z-index: 20;
+				width:60px;
+				height:60px;
+			}
 			#thumbnail {
 				width: 220px;
 				height: 220px;
@@ -64,15 +76,17 @@
 			}
 			
 			#add-to-cart {
-				background: #E40037;
-				color: white;
-				
 				width:150px;
 				height:45px;
 				margin-top: 10px;
-				font: 16px/16px 'Open Sans', Helvetica, sans-serif;
 				font-weight: 600;
 				line-height:22.6px;
+			}
+			#add-to-cart[disabled] {
+				background: #eaeaea;
+				color: #a8a8a8;
+				cursor: auto;
+				pointer-events: none;
 			}
 		</style>
 	</template>
@@ -80,6 +94,11 @@
 		Polymer({
 			addToCart: function(){
 				this.shadowRoot.querySelector('blc-data-add-to-cart').go();
+			},
+			addToCartSuccess: function() {
+				this.shadowRoot.querySelector('#add-to-cart').setAttribute('disabled', '');
+				this.shadowRoot.querySelector('#add-to-cart').innerHTML = 'In cart!';
+				this.fire('add-to-cart', {product: this.product})
 			},
 			
 			publish: {

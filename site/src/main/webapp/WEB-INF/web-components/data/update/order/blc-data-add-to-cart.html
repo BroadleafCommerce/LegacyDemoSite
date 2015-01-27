@@ -6,14 +6,26 @@
 		<core-ajax
 		    auto="false"
 		    method="POST"
-		    url="/api/v1/cart/{{categoryId}}/{{productId}}/{{skuId}}?customerId={{customerId}}&quantity={{quantity}}&priceOrder={{priceOrder}}"
+		    url="/api/v1/cart/{{productId}}?customerId={{customerId}}&categoryId={{categoryId}}&quantity={{quantity}}&priceOrder={{priceOrder}}"
 		    contentType="application/json"
-		    handleAs="json"></core-ajax>
+		    handleAs="json"
+		    on-core-response="{{onResponse}}"
+		    on-core-error="{{onError}}"
+		    on-core-complete="{{onComplete}}"></core-ajax>
 	</template>
 	<script>
 		Polymer({
 		    go: function() {
 		    	this.shadowRoot.querySelector('core-ajax').go();
+		    },
+		    onResponse: function(event) {
+		    	this.fire('response', event);
+		    },
+		    onError: function(event) {
+		    	this.fire('error', event);
+		    },
+		    onComplete: function(event) {
+		    	this.fire('complete', event);
 		    },
 		    
 			publish: {
@@ -26,10 +38,6 @@
 					reflect: true
 				},
 				productId: {
-					value: 1,
-					reflect: true
-				},
-				skuId: {
 					value: 1,
 					reflect: true
 				},

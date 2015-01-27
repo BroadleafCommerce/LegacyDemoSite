@@ -6,15 +6,27 @@
 		<core-ajax
 		    auto="{{auto}}"
 		    url="/api/v1/catalog/product/{{productId}}"
-		    contentType="application/json"
+		    contentType="application/xml"
 		    handleAs="json"
-		    response="{{product}}"></core-ajax>
+		    response="{{product}}"
+		    on-core-response="{{onResponse}}"
+		    on-core-error="{{onError}}"
+		    on-core-complete="{{onComplete}}"></core-ajax>
 	</template>
 	<script>
 		Polymer({
 		    auto: true,
 		    go: function() {
-		    	document.querySelector('core-ajax').go();
+		    	this.shadowRoot.querySelector('core-ajax').go();
+		    },
+		    onResponse: function(event) {
+		    	this.fire('response', event);
+		    },
+		    onError: function(event) {
+		    	this.fire('error', event);
+		    },
+		    onComplete: function(event) {
+		    	this.fire('complete', event);
 		    },
 		    
 			publish: {
