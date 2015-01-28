@@ -27,3 +27,18 @@ paper-tabs::shadow #selectionBar {
 paper-tabs paper-tab::shadow #ink {
 	color: #C8C3C1;
 }
+
+/* Products */
+.product-list {
+	padding:0;
+	list-style-type:none;
+	display:inline-block;
+}
+.product-list li {
+	float:left;
+	display:inline-block;
+	margin-right:18px;
+}
+.product-list li:nth-child(5n) {
+	margin-right:0px;
+}

@@ -1,0 +1,5 @@
+validators = {
+    email: function(text) {
+        
+    }
+}

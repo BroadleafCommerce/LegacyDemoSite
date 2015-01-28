@@ -4,18 +4,13 @@
 <link rel="import" href="/web-components/lib/core-list/core-list.html">
 <link rel="import" href="/web-components/data/blc-data.html">
 
-<polymer-element name="hc-register">
+<polymer-element name="hc-login">
 	<template>
-		<form>
-			<h1>Register for an Account</h1>
-			<p>Don't have an account yet? Sign up for one now to gain access to all our member tools.</p>
-			<paper-input label="Email" type="email" required></paper-input>
-			<paper-input label="First Name" required></paper-input>
-			<paper-input label="Last Name" required></paper-input>
-			<paper-input label="Password" type="password" required></paper-input>
-			<paper-input label="Confirm Password" type="password" required></paper-input>
-			<paper-button type="submit">Register</paper-button>
-		</form>
+		<h1>Login to Your Account</h1>
+		<p>Already a member? Sign in using the form below.</p>
+		<paper-input label="Email" type="email" required></paper-input>
+		<paper-input label="Password" type="password" required></paper-input>
+		<paper-button>Login</paper-button>
 		
 		<!-- Global style -->
 		<link rel="stylesheet" href="/css/web-components-global-styles.css">
@@ -35,6 +30,9 @@
 	</template>
 	<script>
 		Polymer({
+		    submit: function() {
+		        
+		    },
 		    
 			publish: {
 			}

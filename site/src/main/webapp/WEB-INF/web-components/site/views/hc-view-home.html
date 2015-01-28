@@ -19,29 +19,16 @@
 		
 		<div id="title-bar">The Heat Clinic's Top Selling Sauces</div>
 		
-		<ul id="product-list">
-			<!-- TODO: REST API bug -->
-			<!-- 
+		<ul class="product-list">
 			<template repeat="{{product in category.products}}">
 				<li>
 					<hc-product productId="{{product.id}}"></hc-product>
 				</li>
 			</template>
-			-->
-			<li style="margin-right: 20px;">
-				<hc-product productId="3"></hc-product>
-			</li>
-			<li style="margin-right: 20px;">
-				<hc-product productId="6"></hc-product>
-			</li>
-			<li style="margin-right: 20px;">
-				<hc-product productId="9"></hc-product>
-			</li>
-			<li>
-				<hc-product productId="12"></hc-product>
-			</li>
 		</ul>
 		
+		<!-- Global style -->
+		<link rel="stylesheet" href="/css/web-components-global-styles.css">
 		<style>
 			#home-feature {
 				width: 900px;
@@ -72,16 +59,6 @@
 				border-bottom: double #C8C3C1;
 				text-transform: uppercase;
 				padding: 10px 0;
-			}
-			
-			#product-list {
-				padding:0;
-				list-style-type:none;
-				display:inline-block;
-			}
-			#product-list li {
-				float:left;
-				display:inline-block;
 			}
 		</style>
 	</template>

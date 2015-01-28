@@ -3,20 +3,19 @@
 
 <link rel="import" href="/web-components/site/hc-product.html">
 
-<polymer-element name="hc-category">
+<polymer-element name="hc-view-search">
 	<template>
-		<blc-data-category categoryId="{{categoryId}}" category="{{category}}" productLimit="{{pageSize}}" productOffset="{{1 + currentPage * pageSize}}"></blc-data-category>
-		
-		<h1 id="heading">Viewing {{category.name}} ({{1 + currentPage * pageSize}} - {{(1 + currentPage * pageSize) + pageSize - 2}})</h1>
+		<blc-data-search-products query="{{searchQuery}}" page="{{currentPage}}" pageSize="{{pageSize}}" products="{{results}}"></blc-data-search-products>
+	
+		<h1 id="heading">Search results for "{{searchQuery}}", ({{(currentPage - 1) * pageSize}} - {{(currentPage * pageSize)}})</h1>	
 		
 		<ul class="product-list">
-			<template repeat="{{product in category.products}}">
+			<template repeat="{{product in results.products}}">
 				<li>
 					<hc-product productId="{{product.id}}"></hc-product>
 				</li>
 			</template>
 		</ul>
-		
 		
 		<!-- Global style -->
 		<link rel="stylesheet" href="/css/web-components-global-styles.css">
@@ -31,22 +30,13 @@
 	</template>
 	<script>
 		Polymer({
-			publish: {
-				categoryId: {
-					value: 1,
-					reflect: true
-				},
-				
-				currentPage: {
-					value: 0,
-					reflect: true
-				},
-				pageSize: {
-					value: 20,
-					reflect: true
-				}
-			}
-		
+		    
+		    publish: {
+		        searchQuery: {
+		            value: '',
+		            reflect: true
+		        }
+		    }
 		});
 	</script>
 </polymer-element>

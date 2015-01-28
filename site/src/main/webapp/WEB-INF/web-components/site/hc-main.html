@@ -21,9 +21,11 @@
 <link rel="import" href="/web-components/site/views/hc-view-clearance.html">
 <link rel="import" href="/web-components/site/views/hc-view-new-to-hot-sauce.html">
 <link rel="import" href="/web-components/site/views/hc-view-faq.html">
+<link rel="import" href="/web-components/site/views/hc-view-search.html">
 
-<link rel="import" href="/web-components/site/hc-cart.html">
+<link rel="import" href="/web-components/site/hc-login.html">
 <link rel="import" href="/web-components/site/hc-register.html">
+<link rel="import" href="/web-components/site/hc-cart.html">
 
 <polymer-element name="hc-main" on-add-to-cart="{{cartItemAdded}}">
 	<template>
@@ -53,9 +55,8 @@
 					<hc-cart id="cart" totalItems="{{totalCartItems}}"></hc-cart>
 				</paper-dialog>
 				
-				<div id="search">
-					<paper-input id="search-input" label="Search..." layout></paper-input>
-					<paper-icon-button id="search-button" icon="search"></paper-icon-button>
+				<div id="search-box">
+					<paper-input id="search-input" label="Search..." layout value="{{searchQuery}}" on-click="{{viewSearch}}" on-change="{{viewSearch}}"></paper-input>
 				</div>
 				
 				<paper-tabs selected="{{route}}" style="clear:both">
@@ -89,8 +90,9 @@
 				<section id="faq" layout vertical center-center>
 					<hc-view-faq></hc-view-faq>
 				</section>
-			</core-animated-pages>
-			
+				<section id="search" layout vertical center-center>
+					<hc-view-search searchQuery="{{searchQuery}}"></hc-view-search>
+				</section>
 			<paper-toast text="" duration="3000"></paper-toast>
 		</div>
 		
@@ -122,7 +124,7 @@
 				color:white;
 			}
 			
-			#search {
+			#search-box {
 				float:right;
 				position:relative;
 				top:50px;
@@ -226,6 +228,10 @@
 			#cart-count {
 				margin-left:5px;
 			}
+			
+			core-animated-pages section > * {
+				width:100%;
+			}
 		</style>
 	</template>
 	<script>
@@ -238,6 +244,9 @@
 			},
 			openCart: function() {
 				this.shadowRoot.querySelector('#cart-dialog').open();
+			},
+			viewSearch: function() {
+			    this.shadowRoot.querySelector('core-animated-pages').selected = 6;
 			},
 			cartItemAdded: function(event, detail) {
 				this.shadowRoot.querySelector('hc-cart').refresh();
