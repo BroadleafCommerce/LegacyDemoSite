@@ -1,0 +1,95 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/lib/core-image/core-image.html">
+
+<polymer-element name="hc-footer">
+	<template>
+		<div id="container">
+			<footer class="group">
+			    <div id="left_content">
+			        <h4><span>Delivering Texas Sized Heat</span></h4>
+			        &copy; <span>Copyright 2013 The Heat Clinic</span><br />
+			        <a href=""><span>Privacy Policy</span></a>
+			    </div>
+			    <div id="right_content">
+			        <h4><span>Since Nineteen Seventy Eight</span></h4>
+			        <span>All Rights Reserved</span>.<br />
+			        <a href=""><span>Customer Service</span></a>
+			    </div>
+			    <div id="blc_brand">
+			        <a href="http://www.broadleafcommerce.com"  >
+			            <core-image src="/img/broadleaf-seal.png" alt="Broadleaf Commerce" />
+			            <h4><span>Powered by Broadleaf Commerce</span></h4>
+			            <br />
+			        </a>
+			        <p>&copy; <span>Copyright 2013 Broadleaf Commerce</span><br /></p>
+			    </div>
+			</footer>
+		</div>
+		
+		<style>
+			footer {
+			    width: 940px;
+			    background: url(/img/the-heat-clinic-seal.png) top center no-repeat;
+			    margin: 40px auto;
+			    padding: 0 20px;
+			    padding-bottom: 40px;
+			    font: 12px/16px 'Georgia', serif;
+			    color: #655c5a;
+			}
+		
+		    footer #left_content h4, footer #right_content h4 {
+		        font: 12px/17px 'Open Sans', Helvetica, sans-serif;
+		        font-weight: 600;
+		        letter-spacing: 5px;
+		        margin-bottom: 0;
+		        text-transform: uppercase;
+		        color: #262322;
+		    }
+		    
+		    footer #left_content {
+		        width: 405px;
+		        text-align: right;
+		        float: left;
+		    }
+		    
+		    footer #right_content {
+		        width: 400px;
+		        text-align: left;
+		        float: right;
+		    }
+		
+		    footer #blc_brand {
+		        display: block;
+		        height: 60px;
+		        text-align: left;
+		        font: 10px/13px 'Georgia', serif;
+		        padding: 10px 0 0 521px;
+		        margin: 100px 0 0 -200px;
+		
+		    }
+		
+		    footer #blc_brand img {
+		        display: inline-block;
+		    }
+		
+		    footer #blc_brand p {
+		        display: block;
+		        margin: -20px 0 0 100px;
+		    }
+		
+		    footer #blc_brand h4, footer #blc_brand a {
+		        font: 10px/15px 'Open Sans', Helvetica, sans-serif;
+		        font-weight: 600;
+		        letter-spacing: 1px;
+		        text-transform: uppercase;
+		        color: #262322;
+		        text-decoration: none;
+		        display: inline-block;
+		    }
+		</style>
+	</template>
+	<script>
+		Polymer({
+		});
+	</script>
+</polymer-element>
