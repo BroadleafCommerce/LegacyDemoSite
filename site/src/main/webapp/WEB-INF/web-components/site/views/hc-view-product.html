@@ -1,0 +1,57 @@
+<link rel="import" href="/web-components/lib/polymer/polymer.html">
+<link rel="import" href="/web-components/data/blc-data.html">
+
+<polymer-element name="hc-view-product">
+	<template>
+		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
+		
+		<div id="container">
+			<core-animated-pages id="product-image-carousel" selected="{{currentImage}}" transitions="slide-from-right">
+				<template repeat="{{mediaItem in product.mediaItems}}">
+					<section>
+						<core-image class="image-primary" src="{{mediaItem.url}}" sizing="cover" preload fade></core-image>
+					</section>
+				</template>
+			</core-animated-pages>
+			
+			<template repeat="{{mediaItem, index in product.mediaItems}}">
+				<core-image class="image-thumbnail" src="{{mediaItem.url}}" sizing="cover" preload fade on-click="{{changeImage}}" imageIndex="{{index}}"></core-image>
+			</template>
+		</div>
+		
+		
+		<!-- Global style -->
+		<link rel="stylesheet" href="/css/web-components-global-styles.css">
+		<style>
+			#container {
+				height:600px;
+			}
+			
+			#product-image-carousel {
+				width:450px;
+			}
+			#product-image-carousel .image-primary {
+				width:400px;
+				height:400px;
+			}
+			#product-image-carousel .image-thumbnail {
+				width:100px;
+				height:100px;
+			}
+		</style>
+	</template>
+	<script>
+		Polymer({
+		    changeImage: function(e, detail, sender) {
+		        this.currentImage = sender.getAttribute('imageIndex');
+		    },
+		    
+		    publish: {
+		        productId: {
+		            value: 1,
+		            reflected: true
+		        }
+		    }
+		});
+	</script>
+</polymer-element>
