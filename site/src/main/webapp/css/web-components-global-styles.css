@@ -39,6 +39,6 @@ paper-tabs paper-tab::shadow #ink {
 	display:inline-block;
 	margin-right:18px;
 }
-.product-list li:nth-child(5n) {
+.product-list li:nth-child(4n+1) {
 	margin-right:0px;
 }
