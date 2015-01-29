@@ -7,7 +7,12 @@
 	<template>
 		<blc-data-search-products query="{{searchQuery}}" page="{{currentPage}}" pageSize="{{pageSize}}" products="{{results}}"></blc-data-search-products>
 	
-		<h1 id="heading">Search results for "{{searchQuery}}", ({{(currentPage - 1) * pageSize}} - {{(currentPage * pageSize)}})</h1>	
+		<template if="{{searchQuery != ''}}">
+			<h1 id="heading">Search results for "{{searchQuery}}", ({{(currentPage - 1) * pageSize}} - {{(currentPage * pageSize)}})</h1>
+		</template>
+		<template if="{{searchQuery == ''}}">
+			<h2 id="heading-placeholder">Enter Keywords to Search Our Catalog</h2>
+		</template>
 		
 		<ul class="product-list">
 			<template repeat="{{product in results.products}}">
@@ -21,10 +26,14 @@
 		<link rel="stylesheet" href="/css/web-components-global-styles.css">
 		<style>
 			#heading {
-				width: 70%;
 				font: bold 20px/24px Helvetica, sans-serif;
 				color: #262322;
 				float: left;
+			}
+			#heading-placeholder {
+				display: inline-block;
+				text-align: center;
+				width: 100%;
 			}
 		</style>
 	</template>
