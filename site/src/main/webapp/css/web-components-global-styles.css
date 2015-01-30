@@ -9,6 +9,7 @@ paper-button {
 	background: #E40037;
 	color: white;
 	font: 16px/16px 'Open Sans', Helvetica, sans-serif;
+	text-transform:none;
 }
 
 /* Input */

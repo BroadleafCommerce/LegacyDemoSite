@@ -12,7 +12,7 @@
 <link rel="import" href="/web-components/lib/flatiron-director/flatiron-director.html">
 
 <!-- BLC Elements -->
-<link rel="import" href="/web-components/data/blc-data.html">
+<link rel="import" href="/web-components/blc/data/blc-data.html">
 
 <!-- Views -->
 <link rel="import" href="/web-components/site/views/hc-view-home.html">
@@ -169,9 +169,6 @@
 				right:0px;
 				color:white;
 			}
-			#header-links * {
-				font-weight: bold;
-			}
 			#cart-count {
 				margin-left:5px;
 			}
@@ -183,8 +180,9 @@
 	</template>
 	<script>
 		Polymer({
-		    created: function() {
-		        this.viewIndex = 0;
+		    ready: function() {
+		        console.log('created');
+		        this.viewIndex = '0';
 		    },
 		    
 			openLogin: function() {
