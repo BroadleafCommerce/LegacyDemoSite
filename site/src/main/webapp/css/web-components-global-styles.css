@@ -1,4 +1,9 @@
 
+::selection {
+	color:white;
+	background:#E40037;
+}
+
 /* Buttons */
 paper-button {
 	background: #E40037;
