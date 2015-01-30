@@ -13,7 +13,7 @@
 				<core-image id="new-badge" src="/img/badge-new.png" sizing="cover" preload></core-image>
 			</template>
 		
-			<a href="{{product.url}}">
+			<a href="#7" on-click="{{updateProductDetail}}">
 				<core-image id="thumbnail" src="{{product.mediaItems[1].url}}" sizing="cover" preload fade></core-image>
 				<div id="price">${{product.retailPrice.amount}}</div>
 			</a>
@@ -92,6 +92,9 @@
 	</template>
 	<script>
 		Polymer({
+		    updateProductDetail: function() {
+		        this.fire('product-selected', this.productId);
+		    },
 			addToCart: function(){
 				this.shadowRoot.querySelector('blc-data-add-to-cart').go();
 			},

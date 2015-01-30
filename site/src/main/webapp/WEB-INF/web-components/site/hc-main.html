@@ -22,14 +22,17 @@
 <link rel="import" href="/web-components/site/views/hc-view-new-to-hot-sauce.html">
 <link rel="import" href="/web-components/site/views/hc-view-faq.html">
 <link rel="import" href="/web-components/site/views/hc-view-search.html">
+<link rel="import" href="/web-components/site/views/hc-view-product.html">
+<link rel="import" href="/web-components/site/views/hc-view-checkout.html">
 
+<link rel="import" href="/web-components/site/hc-footer.html">
 <link rel="import" href="/web-components/site/hc-login.html">
 <link rel="import" href="/web-components/site/hc-register.html">
 <link rel="import" href="/web-components/site/hc-cart.html">
 
-<polymer-element name="hc-main" on-add-to-cart="{{cartItemAdded}}">
+<polymer-element name="hc-main" on-add-to-cart="{{cartItemAdded}}" on-product-selected="{{selectProduct}}">
 	<template>
-		<flatiron-director route="{{route}}" autoHash></flatiron-director>
+		<flatiron-director route="{{viewIndex}}" autoHash></flatiron-director>
 		
 		<div id="header">
 			<div id="header-content">
@@ -59,7 +62,7 @@
 					<paper-input id="search-input" label="Search..." layout value="{{searchQuery}}" on-click="{{viewSearch}}" on-change="{{viewSearch}}"></paper-input>
 				</div>
 				
-				<paper-tabs selected="{{route}}" style="clear:both">
+				<paper-tabs selected="{{viewIndex}}" style="clear:both">
 					<paper-tab>HOME</paper-tab>
 					<paper-tab>HOT SAUCES</paper-tab>
 					<paper-tab>MERCHANDISE</paper-tab>
@@ -71,7 +74,7 @@
 		</div>
 		
 		<div id="main-section">
-			<core-animated-pages  selected="{{route}}" transitions="slide-from-right">
+			<core-animated-pages selected="{{viewIndex}}" transitions="slide-from-right">
 				<section id="home">
 					<hc-view-home></hc-view-home>
 				</section>
@@ -94,7 +97,7 @@
 					<hc-view-search searchQuery="{{searchQuery}}"></hc-view-search>
 				</section>
 				<section id="product-detail" layout vertical center-center>
-					<hc-view-product productId="1"></hc-view-product>
+					<hc-view-product productId="{{selectedProduct}}"></hc-view-product>
 				</section>
 				<section id="chekout" layout vertical center-center>
 					<hc-view-checkout></hc-view-checkout>
@@ -180,6 +183,10 @@
 	</template>
 	<script>
 		Polymer({
+		    created: function() {
+		        this.viewIndex = 0;
+		    },
+		    
 			openLogin: function() {
 				this.shadowRoot.querySelector('#login-dialog').open();
 			},
@@ -196,6 +203,9 @@
 				this.shadowRoot.querySelector('hc-cart').refresh();
 				this.shadowRoot.querySelector('paper-toast').setAttribute('text', detail.product.name + ' was added to your cart!')
 				this.shadowRoot.querySelector('paper-toast').show();
+			},
+			selectProduct: function(event, detail) {
+			    this.selectedProduct = detail;
 			}
 		});
 	</script>

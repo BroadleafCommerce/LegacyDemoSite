@@ -4,47 +4,109 @@
 <polymer-element name="hc-view-product">
 	<template>
 		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
+		<blc-data-add-to-cart customerId="100" productId="{{productId}}" quantity="1" categoryId="{{product.defaultCategoryId}}" on-response="{{addToCartSuccess}}"></blc-data-add-to-cart>
 		
 		<div id="container">
-			<core-animated-pages id="product-image-carousel" selected="{{currentImage}}" transitions="slide-from-right">
-				<template repeat="{{mediaItem in product.mediaItems}}">
-					<section>
-						<core-image class="image-primary" src="{{mediaItem.url}}" sizing="cover" preload fade></core-image>
-					</section>
+			<div id="images">
+				<div id="product-image">
+					<template repeat="{{mediaItem, index in product.mediaItems}}">
+						<template if="{{index == currentImage}}">
+							<core-image class="image-primary" src="{{mediaItem.url}}" sizing="cover" preload fade></core-image>
+						</template>
+					</template>
+				</div>
+				
+				<template repeat="{{mediaItem, index in product.mediaItems}}">
+					<core-image class="image-thumbnail" src="{{mediaItem.url}}" sizing="cover" preload fade on-click="{{changeImage}}" imageIndex="{{index}}"></core-image>
 				</template>
-			</core-animated-pages>
+			</div>
 			
-			<template repeat="{{mediaItem, index in product.mediaItems}}">
-				<core-image class="image-thumbnail" src="{{mediaItem.url}}" sizing="cover" preload fade on-click="{{changeImage}}" imageIndex="{{index}}"></core-image>
-			</template>
+			<div id="right-column">
+				<h2>{{product.name}}</h2>
+				<span id="price">${{product.retailPrice.amount}}</span>
+				<p>{{product.longDescription}}</p>
+				<paper-button id="add-to-cart" raised on-click="{{addToCart}}">BUY NOW!</paper-button>
+			</div>
 		</div>
 		
 		
 		<!-- Global style -->
 		<link rel="stylesheet" href="/css/web-components-global-styles.css">
 		<style>
+		
 			#container {
 				height:600px;
 			}
 			
+			#images {
+				float:left;
+				margin-right:20px;
+			}
+			#product-image {
+				position:initial;
+				width:415px;
+				height:415px;
+				margin:0 0 10px 0;
+				overflow:hidden;
+			}
+			
 			#product-image-carousel {
-				width:450px;
 			}
-			#product-image-carousel .image-primary {
-				width:400px;
-				height:400px;
+			.image-primary {
+				width:415px;
+				height:415px;
 			}
-			#product-image-carousel .image-thumbnail {
+			.image-thumbnail {
+				float:left;
 				width:100px;
 				height:100px;
+				margin-right:5px;
+				margin-bottom:7px;
+				-webkit-transition: opacity 0.2s ease-out;
+			}
+			.image-thumbnail:nth-child(4n+2) {
+				margin-right:0px;
+			}
+			.image-thumbnail:nth-child(4n+3) {
+				clear:both;
+			}
+			.image-thumbnail:hover {
+				opacity:0.7;
+			}
+			
+			#right-column {
+				width: 700px;
+			}
+			h2 {
+				font: 30px/30px 'Oxygen', Helvetica, sans-serif;
+				color: #262322;
+				margin-bottom: 15px;
+				display: block;
+			}
+			#price {
+				font: 28px/18px 'Open Sans', Helvetica, sans-serif;
+				font-weight: 600;
+				color: #aea6a3;
 			}
 		</style>
 	</template>
 	<script>
 		Polymer({
+		    created: function() {
+		        this.currentImage = 0;
+		    },
+		    
 		    changeImage: function(e, detail, sender) {
 		        this.currentImage = sender.getAttribute('imageIndex');
 		    },
+			addToCart: function(){
+				this.shadowRoot.querySelector('blc-data-add-to-cart').go();
+			},
+			addToCartSuccess: function() {
+				this.shadowRoot.querySelector('#add-to-cart').setAttribute('disabled', '');
+				this.shadowRoot.querySelector('#add-to-cart').innerHTML = 'In cart!';
+				this.fire('add-to-cart', {product: this.product})
+			},
 		    
 		    publish: {
 		        productId: {
