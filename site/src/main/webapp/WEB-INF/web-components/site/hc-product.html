@@ -4,7 +4,7 @@
 
 <polymer-element name="hc-product">
 	<template>
-		<blc-data-product productId="{{productId}}" product={{product}}></blc-data-product>
+		<blc-data-product productId="{{productId}}" product="{{product}}"></blc-data-product>
 		<blc-data-product-skus productId="{{productId}}" skus="{{skus}}"></blc-data-product-skus>
 		<blc-data-add-to-cart customerId="100" productId="{{productId}}" quantity="1" categoryId="{{product.defaultCategoryId}}" on-response="{{addToCartSuccess}}"></blc-data-add-to-cart>
 		
