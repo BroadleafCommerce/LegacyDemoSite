@@ -5,7 +5,6 @@
 <polymer-element name="hc-product">
 	<template>
 		<blc-data-product productId="{{productId}}" product="{{product}}"></blc-data-product>
-		<blc-data-product-skus productId="{{productId}}" skus="{{skus}}"></blc-data-product-skus>
 		<blc-data-add-to-cart customerId="100" productId="{{productId}}" quantity="1" categoryId="{{product.defaultCategoryId}}" on-response="{{addToCartSuccess}}"></blc-data-add-to-cart>
 		
 		<div id="container">
@@ -28,11 +27,9 @@
 		<link rel="stylesheet" href="/css/web-components-global-styles.css">
 		<style>
 			#container {
-				width: 220px;
 				height: 440px;
 				text-align: center;
 				float: left;
-				display: inline;
 				position: relative;
 			}
 			#new-badge {
@@ -66,18 +63,14 @@
 				font: 13px/18px 'Georgia',serif;
 				color: #655c5a;
 				overflow: hidden;
-				max-height: 118px;
 			}
 			#title {
-				width: 220px;
 				font: 18px/21px 'Oxygen', Helvetica, sans-serif;
-				margin-bottom: 7px;
 				color: #262322;
 			}
 			
 			#add-to-cart {
 				width:150px;
-				height:45px;
 				margin-top: 10px;
 				font-weight: 600;
 				line-height:22.6px;

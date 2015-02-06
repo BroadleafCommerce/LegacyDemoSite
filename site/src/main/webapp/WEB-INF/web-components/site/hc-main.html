@@ -36,7 +36,9 @@
 		
 		<div id="header">
 			<div id="header-content">
-				<core-image id="logo" src="/img/the-heat-clinic-logo-internal.png"></core-image>
+				<a href="#0">
+					<core-image id="logo" src="/img/the-heat-clinic-logo-internal.png"></core-image>
+				</a>
 				
 				<div id="header-links">
 					<paper-button on-click="{{openLogin}}">Login</paper-button><span>|</span>
@@ -113,7 +115,6 @@
 		<style>
 			/* Header */
 			#header {
-				width: 100%;
 				border-top: 15px solid #E40037;
 			}
 			#header-content {
@@ -123,17 +124,7 @@
 			}
 			
 			#logo {
-				width: 299px;
-				height: 101px;
-				z-index: 50;
 				float:left;
-			}
-			
-			hc-cart-info {
-				position:absolute;
-				top:0px;
-				right:0px;
-				color:white;
 			}
 			
 			#search-box {
@@ -151,7 +142,6 @@
 			core-animated-pages {
 				width: 980px;
 				margin: 0 auto;
-				position: relative;
 				background-color:white;
 				padding:10px 20px;
 				box-sizing: border-box;
@@ -163,18 +153,14 @@
 			}
 		    
 			#header-links {
-				background-color:#E40037;
 				position:absolute;
 				top:0px;
 				right:0px;
 				color:white;
+				background-color:#E40037;
 			}
 			#cart-count {
 				margin-left:5px;
-			}
-			
-			core-animated-pages section > * {
-				width:100%;
 			}
 		</style>
 	</template>
