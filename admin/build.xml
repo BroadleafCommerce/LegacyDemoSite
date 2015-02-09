@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="admin" default="build-app" basedir="."
+<project name="admin" basedir="."
     xmlns:artifact="antlib:org.apache.maven.artifact.ant"
     xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
     
@@ -21,7 +21,7 @@
 	
 	<property name="runtime.environment" value="development"/>
 	
-    <target name="jetty-demo">
+    <target name="tomcat">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true" >
             <jvmarg value="-XX:MaxPermSize=512M" />
@@ -32,11 +32,11 @@
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
-            <arg value="jetty:run"/>
+        	<arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
 
-    <target name="jetty-demo-jrebel">
+    <target name="tomcat-jrebel">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true">
             <jvmarg value="-XX:MaxPermSize=256M" />
@@ -51,28 +51,8 @@
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
             <arg value="compile"/>
             <arg value="war:exploded"/>
-            <arg value="jetty:run"/>
+        	<arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
 
-    <target name="jetty-stop">
-        <artifact:mvn mavenHome="${maven.home}" fork="true" >
-            <jvmarg value="-XX:MaxPermSize=256M" />
-            <jvmarg value="-Xmx512M" />
-            <arg value="jetty:stop"/>
-        </artifact:mvn>
-    </target>
-    
-    <!-- Project Reference Targets -->
-    <!-- build the application and create the war artifact -->
-    <target name="build-app">
-        <delete dir="war/WEB-INF/lib"/>
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <arg value="-Dgwt.logLevel=DEBUG"/>
-            <arg value="-Dgwt.compiler.strict=true"/>
-            <arg value="-Dmaven.test.skip=true"/>
-            <arg value="gwt:compile"/>
-            <arg value="install"/>
-        </artifact:mvn>
-    </target>
 </project>
