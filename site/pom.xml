@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.mycompany</groupId>
+        <groupId>com.heatclinic</groupId>
         <artifactId>ecommerce-website</artifactId>
         <version>1.0</version>
     </parent>
@@ -21,8 +21,14 @@
     </properties>
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
-        <finalName>mycompany</finalName>
+        <finalName>heatclinic</finalName>
         <plugins>
+            <!-- Used by embedded Tomcat to move context.xml for JNDI resources -->
+            <!-- Configuration inherited from parent -->            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>        
+        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -93,7 +99,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>com.mycompany</groupId>
+            <groupId>com.heatclinic</groupId>
             <artifactId>core</artifactId>
         </dependency>
         <dependency>

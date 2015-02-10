@@ -21,20 +21,26 @@
 	
 	<property name="runtime.environment" value="development"/>
 	
-
-
     <target name="tomcat">
-        <delete dir="war/sWEB-INF/lib"/>
-        <artifact:mvn mavenHome="${maven.home}" fork="true">
-            <jvmarg value="-XX:MaxPermSize=256M" />
-            <jvmarg value="-Xmx512M" />
+        <delete dir="war/WEB-INF/lib"/>
+        <artifact:mvn mavenHome="${maven.home}" fork="true" >
+            <jvmarg value="-XX:MaxPermSize=512M" />
+            <jvmarg value="-Xmx1024M" />
             <jvmarg value="-Xdebug" />
-            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
             <jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+            <jvmarg value="-Ddatabase.user=${database.user}" />  
+            <jvmarg value="-Ddatabase.password=${database.password}" />  
+            <jvmarg value="-Ddatabase.driver=${database.driver}" />  
+            <jvmarg value="-Ddatabase.url=${database.url}" />  
+            <jvmarg value="-Dregistration.database.user=${database.user}" />  
+            <jvmarg value="-Dregistration.database.password=${database.password}" />  
+            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
+            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
-            <arg value="jetty:run"/>
+            <arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
 
@@ -44,18 +50,64 @@
             <jvmarg value="-XX:MaxPermSize=256M" />
             <jvmarg value="-Xmx512M" />
             <jvmarg value="-Xdebug" />
-            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
             <jvmarg value="-Drebel.root=${project.root}" />
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
+            <jvmarg value="-Drebel.check_class_hash=true" />
             <jvmarg value="-javaagent:${jrebel.path}" />
             <jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+            <jvmarg value="-Ddatabase.user=${database.user}" />  
+            <jvmarg value="-Ddatabase.password=${database.password}" />  
+            <jvmarg value="-Ddatabase.driver=${database.driver}" />  
+            <jvmarg value="-Ddatabase.url=${database.url}" />  
+            <jvmarg value="-Dregistration.database.user=${database.user}" />  
+            <jvmarg value="-Dregistration.database.password=${database.password}" />  
+            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
+            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
-            <arg value="jetty:run"/>
+            <arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
+	
+    <target name="start-db">
+        <!-- Grab the HSQLDB jar and add it to the classpath -->
+        <artifact:dependencies filesetId="warDeps">
+            <dependency groupId="org.hsqldb" artifactId="hsqldb" version="2.3.1" />
+        </artifact:dependencies>
+        <path id="build.runtime.classpath">
+            <fileset refid="warDeps"/>
+        </path>
+
+        <echo message="Starting Data Base..." />
+        <java fork="true"  spawn="true" classname="org.hsqldb.Server" classpathref="build.runtime.classpath">
+            <arg  line="-database.0 file:data/broadleaf -dbname.0 broadleaf"/>
+        </java>
+    </target>
+
+    <target name="stop-db">
+        <echo message="Execute SQL on new Data Base..." />
+    	<!-- Grab the HSQLDB jar and add it to the classpath -->
+        <artifact:dependencies filesetId="warDeps">
+            <dependency groupId="org.hsqldb" artifactId="hsqldb" version="2.3.1" />
+        </artifact:dependencies>
+        <path id="build.runtime.classpath">
+            <fileset refid="warDeps"/>
+        </path>
+        <sql
+            autocommit="true"
+            print="true"
+            classpathref="build.runtime.classpath"
+            driver="org.hsqldb.jdbcDriver"
+            url="jdbc:hsqldb:hsql://localhost/broadleaf;ifexists=true"
+            userid="sa"
+            password="">
+            <transaction>SHUTDOWN</transaction>
+        </sql>
+        <echo message="SQL Executed on data base..." />
+    </target>	
     
 
 </project>

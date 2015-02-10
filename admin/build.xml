@@ -30,9 +30,17 @@
             <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
             <jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+            <jvmarg value="-Ddatabase.user=${database.user}" />  
+            <jvmarg value="-Ddatabase.password=${database.password}" />  
+            <jvmarg value="-Ddatabase.driver=${database.driver}" />  
+            <jvmarg value="-Ddatabase.url=${database.url}" />  
+            <jvmarg value="-Dregistration.database.user=${database.user}" />  
+            <jvmarg value="-Dregistration.database.password=${database.password}" />  
+            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
+            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
-        	<arg value="tomcat7:run"/>
+            <arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
 
@@ -46,12 +54,21 @@
             <jvmarg value="-Drebel.root=${project.root}" />
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
+            <jvmarg value="-Drebel.check_class_hash=true" />
             <jvmarg value="-javaagent:${jrebel.path}" />
             <jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+            <jvmarg value="-Ddatabase.user=${database.user}" />  
+            <jvmarg value="-Ddatabase.password=${database.password}" />  
+            <jvmarg value="-Ddatabase.driver=${database.driver}" />  
+            <jvmarg value="-Ddatabase.url=${database.url}" />  
+            <jvmarg value="-Dregistration.database.user=${database.user}" />  
+            <jvmarg value="-Dregistration.database.password=${database.password}" />  
+            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
+            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
-        	<arg value="tomcat7:run"/>
+            <arg value="tomcat7:run"/>
         </artifact:mvn>
     </target>
 

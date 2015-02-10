@@ -10,7 +10,7 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
     <!-- Add an EnvEntry only valid for this webapp -->
     <New id="appName" class="org.eclipse.jetty.plus.jndi.EnvEntry">
         <Arg>appName</Arg>
-        <Arg type="java.lang.String">mycompany-site</Arg>
+        <Arg type="java.lang.String">heatclinic-site</Arg>
         <Arg type="boolean">true</Arg>
     </New>
     

@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>mycompany</display-name>
+    <display-name>heatclinic</display-name>
 
     <context-param>
         <param-name>webAppRootKey</param-name>
@@ -93,7 +93,7 @@
          from the Broadleaf CMS such as images. It will match on any URL that contains the static asset
          prefix URL in any depth of it. -->
     <servlet>
-        <servlet-name>mycompany</servlet-name>
+        <servlet-name>heatclinic</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -107,7 +107,7 @@
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>mycompany</servlet-name>
+        <servlet-name>heatclinic</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
@@ -127,7 +127,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                com.mycompany.api.RestApiMvcConfiguration
+                com.heatclinic.api.RestApiMvcConfiguration
             </param-value>
         </init-param>
         <init-param>
@@ -145,7 +145,7 @@
     <env-entry>
         <env-entry-name>appName</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>mycompanySite</env-entry-value>
+        <env-entry-value>heatclinicSite</env-entry-value>
     </env-entry>
     
 </web-app>
