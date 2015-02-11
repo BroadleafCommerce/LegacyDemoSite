@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package com.mycompany.sample.vendor.nullPaymentGateway.web.processor;
 
 import org.broadleafcommerce.common.payment.dto.PaymentRequestDTO;
@@ -77,7 +78,7 @@ public class NullPaymentGatewayHostedActionProcessor extends AbstractAttributeMo
         String url = "";
 
         if (requestDTO != null) {
-            if ( element.getAttributeValue("complete_checkout") != null) {
+            if (element.getAttributeValue("complete_checkout") != null) {
                 Boolean completeCheckout = (Boolean) StandardExpressionProcessor.processExpression(arguments,
                         element.getAttributeValue("complete_checkout"));
                 element.removeAttribute("complete_checkout");

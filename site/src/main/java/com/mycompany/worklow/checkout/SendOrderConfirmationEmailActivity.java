@@ -29,7 +29,6 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
-
 /**
  * Send order confirmation email
  *
@@ -42,10 +41,10 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 
     @Resource(name = "blEmailService")
     protected EmailService emailService;
-    
+
     @Resource(name = "blOrderConfirmationEmailInfo")
     protected EmailInfo orderConfirmationEmailInfo;
-    
+
     @Override
     public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
         Order order = context.getSeedData().getOrder();
@@ -62,7 +61,7 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
         }
         return context;
     }
-    
+
     public EmailInfo getOrderConfirmationEmailInfo() {
         return orderConfirmationEmailInfo;
     }
@@ -72,4 +71,3 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
     }
 
 }
-

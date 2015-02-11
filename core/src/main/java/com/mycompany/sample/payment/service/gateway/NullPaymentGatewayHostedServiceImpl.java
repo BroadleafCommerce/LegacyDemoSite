@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package com.mycompany.sample.payment.service.gateway;
 
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;

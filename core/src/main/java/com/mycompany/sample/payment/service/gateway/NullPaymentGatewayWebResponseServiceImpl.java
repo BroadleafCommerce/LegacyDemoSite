@@ -67,7 +67,7 @@ public class NullPaymentGatewayWebResponseServiceImpl implements PaymentGatewayW
                 NullPaymentGatewayType.NULL_GATEWAY)
                 .rawResponse(webResponsePrintService.printRequest(request));
 
-        Map<String,String[]> paramMap = request.getParameterMap();
+        Map<String, String[]> paramMap = request.getParameterMap();
 
         Money amount = Money.ZERO;
         if (paramMap.containsKey(NullPaymentGatewayConstants.TRANSACTION_AMT)) {
@@ -97,25 +97,24 @@ public class NullPaymentGatewayWebResponseServiceImpl implements PaymentGatewayW
                 .responseMap(NullPaymentGatewayConstants.RESULT_MESSAGE,
                         paramMap.get(NullPaymentGatewayConstants.RESULT_MESSAGE)[0])
                 .billTo()
-                    .addressFirstName(paramMap.get(NullPaymentGatewayConstants.BILLING_FIRST_NAME)[0])
-                    .addressLastName(paramMap.get(NullPaymentGatewayConstants.BILLING_LAST_NAME)[0])
-                    .addressLine1(paramMap.get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1)[0])
-                    .addressLine2(paramMap.get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2)[0])
-                    .addressCityLocality(paramMap.get(NullPaymentGatewayConstants.BILLING_CITY)[0])
-                    .addressStateRegion(paramMap.get(NullPaymentGatewayConstants.BILLING_STATE)[0])
-                    .addressPostalCode(paramMap.get(NullPaymentGatewayConstants.BILLING_ZIP)[0])
-                    .addressCountryCode(paramMap.get(NullPaymentGatewayConstants.BILLING_COUNTRY)[0])
-                    .done()
+                .addressFirstName(paramMap.get(NullPaymentGatewayConstants.BILLING_FIRST_NAME)[0])
+                .addressLastName(paramMap.get(NullPaymentGatewayConstants.BILLING_LAST_NAME)[0])
+                .addressLine1(paramMap.get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1)[0])
+                .addressLine2(paramMap.get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2)[0])
+                .addressCityLocality(paramMap.get(NullPaymentGatewayConstants.BILLING_CITY)[0])
+                .addressStateRegion(paramMap.get(NullPaymentGatewayConstants.BILLING_STATE)[0])
+                .addressPostalCode(paramMap.get(NullPaymentGatewayConstants.BILLING_ZIP)[0])
+                .addressCountryCode(paramMap.get(NullPaymentGatewayConstants.BILLING_COUNTRY)[0])
+                .done()
                 .creditCard()
-                    .creditCardHolderName(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_NAME)[0])
-                    .creditCardLastFour(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_LAST_FOUR)[0])
-                    .creditCardType(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_TYPE)[0])
-                    .creditCardExpDate(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_EXP_DATE)[0])
-                    .done();
+                .creditCardHolderName(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_NAME)[0])
+                .creditCardLastFour(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_LAST_FOUR)[0])
+                .creditCardType(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_TYPE)[0])
+                .creditCardExpDate(paramMap.get(NullPaymentGatewayConstants.CREDIT_CARD_EXP_DATE)[0])
+                .done();
 
         return responseDTO;
 
     }
-
 
 }

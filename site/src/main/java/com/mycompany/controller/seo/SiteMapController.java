@@ -1,3 +1,4 @@
+
 package com.mycompany.controller.seo;
 
 import org.broadleafcommerce.common.sitemap.controller.BroadleafSiteMapController;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Controller to generate and retrieve site map files.
  * 
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class SiteMapController extends BroadleafSiteMapController {
-    
+
     /**
      * Retrieves a site map file
      * 

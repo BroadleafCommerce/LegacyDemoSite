@@ -16,7 +16,6 @@
 
 package com.mycompany.controller.cart;
 
-
 import org.broadleafcommerce.core.catalog.domain.Product;
 import org.broadleafcommerce.core.inventory.service.InventoryUnavailableException;
 import org.broadleafcommerce.core.order.service.call.AddToCartItem;
@@ -47,10 +46,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/cart")
 public class CartController extends BroadleafCartController {
-    
+
     @Value("${solr.index.use.sku}")
     protected boolean useSku;
-    
+
     @Override
     @RequestMapping("")
     public String cart(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
@@ -60,7 +59,7 @@ public class CartController extends BroadleafCartController {
         }
         return returnPath;
     }
-    
+
     /*
      * The Heat Clinic does not show the cart when a product is added. Instead, when the product is added via an AJAX
      * POST that requests JSON, we only need to return a few attributes to update the state of the page. The most
@@ -74,7 +73,7 @@ public class CartController extends BroadleafCartController {
         Map<String, Object> responseMap = new HashMap<String, Object>();
         try {
             super.add(request, response, model, addToCartItem);
-            
+
             if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0) {
                 responseMap.put("productId", addToCartItem.getProductId());
             }
@@ -86,7 +85,7 @@ public class CartController extends BroadleafCartController {
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());
             }
-            if(useSku) {
+            if (useSku) {
                 responseMap.put("skuId", addToCartItem.getSkuId());
             }
         } catch (AddToCartException e) {
@@ -104,10 +103,10 @@ public class CartController extends BroadleafCartController {
                 throw e;
             }
         }
-        
+
         return responseMap;
     }
-    
+
     /*
      * The Heat Clinic does not support adding products with required product options from a category browse page
      * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
@@ -123,7 +122,7 @@ public class CartController extends BroadleafCartController {
             return "redirect:" + product.getUrl();
         }
     }
-    
+
     @RequestMapping("/updateQuantity")
     public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
@@ -149,7 +148,7 @@ public class CartController extends BroadleafCartController {
             }
         }
     }
-    
+
     @Override
     @RequestMapping("/remove")
     public String remove(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -160,14 +159,14 @@ public class CartController extends BroadleafCartController {
         }
         return returnPath;
     }
-    
+
     @Override
     @RequestMapping("/empty")
     public String empty(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         //return super.empty(request, response, model);
         return "ajaxredirect:/";
     }
-    
+
     @Override
     @RequestMapping("/promo")
     public String addPromo(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -178,7 +177,7 @@ public class CartController extends BroadleafCartController {
         }
         return returnPath;
     }
-    
+
     @Override
     @RequestMapping("/promo/remove")
     public String removePromo(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -189,5 +188,5 @@ public class CartController extends BroadleafCartController {
         }
         return returnPath;
     }
-    
+
 }

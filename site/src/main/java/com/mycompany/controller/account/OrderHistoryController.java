@@ -40,7 +40,7 @@ public class OrderHistoryController extends BroadleafOrderHistoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewOrderHistory(HttpServletRequest request, Model model) {
-        return super.viewOrderHistory(request, model); 
+        return super.viewOrderHistory(request, model);
     }
 
     @RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)

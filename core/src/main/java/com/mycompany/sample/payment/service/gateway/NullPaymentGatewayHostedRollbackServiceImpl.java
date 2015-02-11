@@ -80,4 +80,3 @@ public class NullPaymentGatewayHostedRollbackServiceImpl implements PaymentGatew
     }
 
 }
-

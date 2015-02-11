@@ -39,45 +39,45 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class ShippingInfoController extends BroadleafShippingInfoController {
 
-    @RequestMapping(value="/checkout/singleship", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkout/singleship", method = RequestMethod.GET)
     public String convertToSingleship(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         return super.convertToSingleship(request, response, model);
     }
 
-    @RequestMapping(value="/checkout/singleship", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkout/singleship", method = RequestMethod.POST)
     public String saveSingleShip(HttpServletRequest request, HttpServletResponse response, Model model,
-                                 @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-                                 @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-                                 @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
-                                 @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-                                 BindingResult result)
+            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            BindingResult result)
             throws PricingException, ServiceException {
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
     @RequestMapping(value = "/checkout/multiship", method = RequestMethod.GET)
     public String showMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
-                                @ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm,
-                                BindingResult result) throws PricingException {
+            @ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm,
+            BindingResult result) throws PricingException {
         return super.showMultiship(request, response, model);
     }
 
     @RequestMapping(value = "/checkout/multiship", method = RequestMethod.POST)
     public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
-                                @ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm,
-                                BindingResult result) throws PricingException, ServiceException {
+            @ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm,
+            BindingResult result) throws PricingException, ServiceException {
         return super.saveMultiship(request, response, model, orderMultishipOptionForm, result);
     }
 
     @RequestMapping(value = "/checkout/add-address", method = RequestMethod.GET)
     public String showMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
-                                          @ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) {
+            @ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) {
         return super.showMultishipAddAddress(request, response, model);
     }
 
     @RequestMapping(value = "/checkout/add-address", method = RequestMethod.POST)
     public String saveMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
-                                          @ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) throws ServiceException {
+            @ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) throws ServiceException {
         return super.saveMultishipAddAddress(request, response, model, addressForm, result);
     }
 

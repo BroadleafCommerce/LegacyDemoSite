@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class RedirectController extends BroadleafRedirectController {
-    
+
     @RequestMapping("/redirect")
     public String redirect(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.redirect(request, response, model);

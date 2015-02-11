@@ -109,37 +109,37 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_FIRST_NAME) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_FIRST_NAME,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_FIRST_NAME).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_FIRST_NAME).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_LAST_NAME) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_LAST_NAME,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_LAST_NAME).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_LAST_NAME).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_CITY) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_CITY,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_CITY).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_CITY).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_STATE) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_STATE,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_STATE).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_STATE).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ZIP) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.BILLING_ZIP,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ZIP).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_ZIP).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.BILLING_COUNTRY) != null) {
@@ -149,37 +149,37 @@ public class NullPaymentGatewayTRExtensionHandler extends AbstractTRCreditCardEx
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_FIRST_NAME).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_LAST_NAME) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_LAST_NAME,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_LAST_NAME).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_LAST_NAME).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE1) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE1,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE1).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE1).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_CITY) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_CITY,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_CITY).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_CITY).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_STATE) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_STATE,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_STATE).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_STATE).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ZIP) != null) {
             hiddenFields.put(NullPaymentGatewayConstants.SHIPPING_ZIP,
-                responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ZIP).toString());
+                    responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_ZIP).toString());
         }
 
         if (responseDTO.getResponseMap().get(NullPaymentGatewayConstants.SHIPPING_COUNTRY) != null) {

@@ -42,5 +42,5 @@ public class ChangePasswordController extends BroadleafChangePasswordController 
     public String processChangePassword(HttpServletRequest request, Model model, @ModelAttribute("changePasswordForm") ChangePasswordForm form, BindingResult result, RedirectAttributes redirectAttributes) throws ServiceException {
         return super.processChangePassword(request, model, form, result, redirectAttributes);
     }
-    
+
 }

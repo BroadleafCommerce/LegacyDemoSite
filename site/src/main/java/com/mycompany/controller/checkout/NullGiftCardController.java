@@ -55,13 +55,13 @@ public class NullGiftCardController extends AbstractCheckoutController {
     protected static final Log LOG = LogFactory.getLog(NullGiftCardController.class);
     protected static final String GATEWAY_CONTEXT_KEY = "null-giftcard";
 
-    @RequestMapping(value="/apply", method = RequestMethod.POST)
+    @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public String applyGiftCard(HttpServletRequest request, HttpServletResponse response, Model model,
-                                @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-                                @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-                                @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-                                @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
-                                BindingResult result){
+            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
+            BindingResult result) {
         Order cart = CartState.getCart();
 
         giftCardInfoFormValidator.validate(giftCardInfoForm, result);

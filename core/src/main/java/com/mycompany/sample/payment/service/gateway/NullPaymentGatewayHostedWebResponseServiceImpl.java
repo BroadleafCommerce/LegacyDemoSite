@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package com.mycompany.sample.payment.service.gateway;
 
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
@@ -49,7 +50,7 @@ public class NullPaymentGatewayHostedWebResponseServiceImpl implements PaymentGa
                 NullPaymentGatewayType.NULL_HOSTED_GATEWAY)
                 .rawResponse(webResponsePrintService.printRequest(request));
 
-        Map<String,String[]> paramMap = request.getParameterMap();
+        Map<String, String[]> paramMap = request.getParameterMap();
 
         Money amount = Money.ZERO;
         if (paramMap.containsKey(NullPaymentGatewayConstants.TRANSACTION_AMT)) {

@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller("blSkuController")
 public class SkuController extends BroadleafSkuController {
-    
+
     @Override
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return super.handleRequest(request, response);

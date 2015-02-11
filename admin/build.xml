@@ -34,10 +34,6 @@
             <jvmarg value="-Ddatabase.password=${database.password}" />  
             <jvmarg value="-Ddatabase.driver=${database.driver}" />  
             <jvmarg value="-Ddatabase.url=${database.url}" />  
-            <jvmarg value="-Dregistration.database.user=${database.user}" />  
-            <jvmarg value="-Dregistration.database.password=${database.password}" />  
-            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
-            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="tomcat7:run"/>
@@ -62,10 +58,6 @@
             <jvmarg value="-Ddatabase.password=${database.password}" />  
             <jvmarg value="-Ddatabase.driver=${database.driver}" />  
             <jvmarg value="-Ddatabase.url=${database.url}" />  
-            <jvmarg value="-Dregistration.database.user=${database.user}" />  
-            <jvmarg value="-Dregistration.database.password=${database.password}" />  
-            <jvmarg value="-Dregistration.database.driver=${database.driver}" />  
-            <jvmarg value="-Dregistration.database.url=${database.url}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="tomcat7:run"/>

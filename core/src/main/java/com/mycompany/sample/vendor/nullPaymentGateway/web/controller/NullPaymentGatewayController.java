@@ -79,7 +79,7 @@ public class NullPaymentGatewayController extends PaymentGatewayAbstractControll
 
     @Override
     public void handleUnsuccessfulTransaction(Model model, RedirectAttributes redirectAttributes,
-                                              PaymentResponseDTO responseDTO) throws PaymentException {
+            PaymentResponseDTO responseDTO) throws PaymentException {
         if (LOG.isTraceEnabled()) {
             LOG.trace("The Transaction was unsuccessful for " + GATEWAY_CONTEXT_KEY +
                     ". Adding Errors to Redirect Attributes.");
@@ -106,18 +106,17 @@ public class NullPaymentGatewayController extends PaymentGatewayAbstractControll
     @Override
     @RequestMapping(value = "/return", method = RequestMethod.POST)
     public String returnEndpoint(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes,
-                                 Map<String, String> pathVars) throws PaymentException {
+            Map<String, String> pathVars) throws PaymentException {
         return super.process(model, request, redirectAttributes);
     }
 
     @Override
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String errorEndpoint(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes,
-                                Map<String, String> pathVars) throws PaymentException {
+            Map<String, String> pathVars) throws PaymentException {
         redirectAttributes.addAttribute(PAYMENT_PROCESSING_ERROR,
                 request.getParameter(PAYMENT_PROCESSING_ERROR));
         return getOrderReviewRedirect();
     }
-
 
 }

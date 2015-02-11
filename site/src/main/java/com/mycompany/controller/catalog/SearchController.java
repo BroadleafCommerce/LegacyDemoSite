@@ -37,7 +37,7 @@ public class SearchController extends BroadleafSearchController {
     @RequestMapping("")
     public String search(Model model, HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value = "q") String q) throws ServletException, IOException, ServiceException {
-        return super.search(model, request,response, q);
+        return super.search(model, request, response, q);
     }
 
 }

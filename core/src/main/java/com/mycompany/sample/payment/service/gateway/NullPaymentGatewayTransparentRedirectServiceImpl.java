@@ -81,7 +81,7 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
                         configuration.getTransparentRedirectUrl());
 
         AddressDTO billTo = requestDTO.getBillTo();
-        if (billTo != null)  {
+        if (billTo != null) {
             responseDTO.responseMap(NullPaymentGatewayConstants.BILLING_FIRST_NAME, billTo.getAddressFirstName())
                     .responseMap(NullPaymentGatewayConstants.BILLING_LAST_NAME, billTo.getAddressLastName())
                     .responseMap(NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1, billTo.getAddressLine1())

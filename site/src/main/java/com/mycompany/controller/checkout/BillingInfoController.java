@@ -40,13 +40,13 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class BillingInfoController extends BroadleafBillingInfoController {
 
-    @RequestMapping(value="/checkout/billing", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkout/billing", method = RequestMethod.POST)
     public String saveBillingAddress(HttpServletRequest request, HttpServletResponse response, Model model,
-                                     @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
-                                     @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
-                                     @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
-                                     @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
-                                     BindingResult result)
+            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("giftCardInfoForm") GiftCardInfoForm giftCardInfoForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            BindingResult result)
             throws PricingException, ServiceException {
         return super.saveBillingAddress(request, response, model, billingForm, result);
     }

@@ -35,37 +35,37 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class LoginController extends BroadleafLoginController {
-    
+
     @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.login(request, response, model);
     }
-    
-    @RequestMapping(value="/login/forgotPassword", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/login/forgotPassword", method = RequestMethod.GET)
     public String forgotPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.forgotPassword(request, response, model);
     }
-    
-    @RequestMapping(value="/login/forgotPassword", method=RequestMethod.POST)
+
+    @RequestMapping(value = "/login/forgotPassword", method = RequestMethod.POST)
     public String processForgotPassword(@RequestParam("emailAddress") String emailAddress, HttpServletRequest request, Model model) {
         return super.processForgotPassword(emailAddress, request, model);
-    }   
+    }
 
-    @RequestMapping(value="/login/resetPassword", method=RequestMethod.GET)
+    @RequestMapping(value = "/login/resetPassword", method = RequestMethod.GET)
     public String resetPassword(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.resetPassword(request, response, model);
-    }   
-    
-    @RequestMapping(value="/login/resetPassword", method=RequestMethod.POST)
+    }
+
+    @RequestMapping(value = "/login/resetPassword", method = RequestMethod.POST)
     public String processResetPassword(@ModelAttribute("resetPasswordForm") ResetPasswordForm resetPasswordForm, HttpServletRequest request, HttpServletResponse response, Model model, BindingResult errors) throws ServiceException {
         return super.processResetPassword(resetPasswordForm, request, response, model, errors);
-    }   
-    
+    }
+
     @Override
-    public String getResetPasswordUrl(HttpServletRequest request) {     
+    public String getResetPasswordUrl(HttpServletRequest request) {
         String url = request.getScheme() + "://" + request.getServerName() + getResetPasswordPort(request, request.getScheme() + "/");
-        
-        if (request.getContextPath() != null && ! "".equals(request.getContextPath())) {
+
+        if (request.getContextPath() != null && !"".equals(request.getContextPath())) {
             url = url + request.getContextPath() + "/login/resetPassword";
         } else {
             url = url + "/login/resetPassword";

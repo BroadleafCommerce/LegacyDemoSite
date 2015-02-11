@@ -84,5 +84,5 @@ public class CheckoutController extends BroadleafCheckoutController {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
     }
-    
+
 }

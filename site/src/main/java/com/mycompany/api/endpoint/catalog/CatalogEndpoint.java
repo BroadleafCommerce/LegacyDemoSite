@@ -48,8 +48,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/catalog/",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 public class CatalogEndpoint extends
         org.broadleafcommerce.core.web.api.endpoint.catalog.CatalogEndpoint {
 
@@ -83,7 +83,7 @@ public class CatalogEndpoint extends
     public List<SkuWrapper> findSkusByProductById(HttpServletRequest request, @PathVariable("id") Long id) {
         return super.findSkusByProductById(request, id);
     }
-    
+
     @Override
     @RequestMapping(value = "product/{id}/defaultSku", method = RequestMethod.GET)
     public SkuWrapper findDefaultSkuByProductId(HttpServletRequest request, @PathVariable("id") Long id) {
@@ -194,7 +194,7 @@ public class CatalogEndpoint extends
             @PathVariable("id") Long id) {
         return super.findSkuById(request, id);
     }
-    
+
     @Override
     @RequestMapping(value = "sku/inventory", method = RequestMethod.GET)
     public List<InventoryWrapper> findInventoryForSkus(HttpServletRequest request,

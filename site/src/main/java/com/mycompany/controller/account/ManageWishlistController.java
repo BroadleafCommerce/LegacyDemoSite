@@ -47,14 +47,14 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
     public String viewAccountWishlist(HttpServletRequest request, HttpServletResponse response, Model model) {
         return super.viewWishlist(request, response, model, WISHLIST_ORDER_NAME);
     }
-    
+
     @RequestMapping(value = "/add", produces = "application/json")
     public @ResponseBody Map<String, Object> addJson(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
         Map<String, Object> responseMap = new HashMap<String, Object>();
         try {
             super.add(request, response, model, addToCartItem, WISHLIST_ORDER_NAME);
-            
+
             responseMap.put("productName", catalogService.findProductById(addToCartItem.getProductId()).getName());
             responseMap.put("quantityAdded", addToCartItem.getQuantity());
             if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0) {
@@ -69,10 +69,10 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
                 throw e;
             }
         }
-        
+
         return responseMap;
     }
-    
+
     /*
      * The Heat Clinic does not support adding products with required product options from a category browse page
      * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
@@ -102,13 +102,13 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
     @RequestMapping(value = "/moveItemToCart", method = RequestMethod.POST)
     public String moveItemToCart(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("itemId") Long itemId) throws IOException, PricingException, AddToCartException, RemoveFromCartException {
-        return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);   
+        return super.moveItemToCart(request, response, model, WISHLIST_ORDER_NAME, itemId);
     }
 
     @RequestMapping(value = "/moveListToCart", method = RequestMethod.POST)
     public String moveListToCart(HttpServletRequest request, HttpServletResponse response, Model model)
             throws IOException, PricingException, AddToCartException, RemoveFromCartException {
-        return super.moveListToCart(request, response, model, WISHLIST_ORDER_NAME);  
+        return super.moveListToCart(request, response, model, WISHLIST_ORDER_NAME);
     }
 
 }

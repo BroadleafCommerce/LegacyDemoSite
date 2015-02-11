@@ -1,3 +1,4 @@
+
 package com.mycompany.sample.payment.service.gateway;
 
 import org.apache.commons.lang.StringUtils;
@@ -91,11 +92,11 @@ public class NullPaymentGatewayTransactionServiceImpl implements PaymentGatewayT
         if (StringUtils.isNotBlank(transactionAmount) &&
                 StringUtils.isNotBlank(creditCardDTO.getCreditCardNum()) &&
                 (StringUtils.isNotBlank(creditCardDTO.getCreditCardExpDate()) ||
-                        (StringUtils.isNotBlank(creditCardDTO.getCreditCardExpMonth()) &&
-                                StringUtils.isNotBlank(creditCardDTO.getCreditCardExpYear())))) {
+                (StringUtils.isNotBlank(creditCardDTO.getCreditCardExpMonth()) &&
+                StringUtils.isNotBlank(creditCardDTO.getCreditCardExpYear())))) {
 
             boolean validCard = false;
-            if (visaValidator.isValid(creditCardDTO.getCreditCardNum())){
+            if (visaValidator.isValid(creditCardDTO.getCreditCardNum())) {
                 validCard = true;
             } else if (amexValidator.isValid(creditCardDTO.getCreditCardNum())) {
                 validCard = true;
@@ -120,7 +121,7 @@ public class NullPaymentGatewayTransactionServiceImpl implements PaymentGatewayT
                 String expMonth = parsedDate[0];
                 String expYear = parsedDate[1];
                 try {
-                    DateTime expirationDate = new DateTime(Integer.parseInt("20"+expYear), Integer.parseInt(expMonth), 1, 0, 0);
+                    DateTime expirationDate = new DateTime(Integer.parseInt("20" + expYear), Integer.parseInt(expMonth), 1, 0, 0);
                     expirationDate = expirationDate.dayOfMonth().withMaximumValue();
                     validDate = expirationDate.isAfterNow();
                     validDateFormat = true;

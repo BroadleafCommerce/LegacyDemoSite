@@ -36,21 +36,21 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/register")
 public class RegisterController extends BroadleafRegisterController {
-    
-    @RequestMapping(method=RequestMethod.GET)
+
+    @RequestMapping(method = RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm) {
         return super.register(registerCustomerForm, request, response, model);
     }
-    
-    @RequestMapping(method=RequestMethod.POST)
+
+    @RequestMapping(method = RequestMethod.POST)
     public String processRegister(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm, BindingResult errors) throws ServiceException, PricingException {
         return super.processRegister(registerCustomerForm, errors, request, response, model);
     }
-    
-    @ModelAttribute("registrationForm") 
+
+    @ModelAttribute("registrationForm")
     public RegisterCustomerForm initCustomerRegistrationForm() {
-        return super.initCustomerRegistrationForm();        
+        return super.initCustomerRegistrationForm();
     }
 }

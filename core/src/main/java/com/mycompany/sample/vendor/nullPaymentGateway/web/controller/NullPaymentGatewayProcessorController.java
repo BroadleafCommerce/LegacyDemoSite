@@ -58,11 +58,11 @@ public class NullPaymentGatewayProcessorController {
     protected NullPaymentGatewayConfiguration paymentGatewayConfiguration;
 
     @RequestMapping(value = "/null-checkout/process", method = RequestMethod.POST)
-    public @ResponseBody String processTransparentRedirectForm(HttpServletRequest request){
-        Map<String,String[]> paramMap = request.getParameterMap();
+    public @ResponseBody String processTransparentRedirectForm(HttpServletRequest request) {
+        Map<String, String[]> paramMap = request.getParameterMap();
 
         String transactionAmount = "";
-        String orderId="";
+        String orderId = "";
         String billingFirstName = "";
         String billingLastName = "";
         String billingAddressLine1 = "";
@@ -209,7 +209,7 @@ public class NullPaymentGatewayProcessorController {
                 StringUtils.isNotBlank(creditCardExpDate)) {
 
             boolean validCard = false;
-            if (visaValidator.isValid(creditCardNumber)){
+            if (visaValidator.isValid(creditCardNumber)) {
                 validCard = true;
                 cardType = "VISA";
             } else if (amexValidator.isValid(creditCardNumber)) {
@@ -230,7 +230,7 @@ public class NullPaymentGatewayProcessorController {
                 String expMonth = parsedDate[0];
                 String expYear = parsedDate[1];
                 try {
-                    DateTime expirationDate = new DateTime(Integer.parseInt("20"+expYear), Integer.parseInt(expMonth), 1, 0, 0);
+                    DateTime expirationDate = new DateTime(Integer.parseInt("20" + expYear), Integer.parseInt(expMonth), 1, 0, 0);
                     expirationDate = expirationDate.dayOfMonth().withMaximumValue();
                     validDate = expirationDate.isAfterNow();
                     validDateFormat = true;
@@ -269,55 +269,55 @@ public class NullPaymentGatewayProcessorController {
                 paymentGatewayConfiguration.getTransparentRedirectReturnUrl() +
                 "\" method=\"POST\" id=\"NullPaymentGatewayRedirectForm\" name=\"NullPaymentGatewayRedirectForm\">");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.TRANSACTION_AMT
-                +"\" value=\"" + transactionAmount + "\"/>");
+                + "\" value=\"" + transactionAmount + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.ORDER_ID
-                +"\" value=\"" + orderId + "\"/>");
+                + "\" value=\"" + orderId + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.GATEWAY_TRANSACTION_ID
-                +"\" value=\"" + gatewayTransactionId + "\"/>");
+                + "\" value=\"" + gatewayTransactionId + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.RESULT_MESSAGE
-                +"\" value=\"" + resultMessage + "\"/>");
+                + "\" value=\"" + resultMessage + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.RESULT_SUCCESS
-                +"\" value=\"" + resultSuccess + "\"/>");
+                + "\" value=\"" + resultSuccess + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_FIRST_NAME
-                +"\" value=\"" + billingFirstName + "\"/>");
+                + "\" value=\"" + billingFirstName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_LAST_NAME
-                +"\" value=\"" + billingLastName + "\"/>");
+                + "\" value=\"" + billingLastName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_ADDRESS_LINE1
-                +"\" value=\"" + billingAddressLine1 + "\"/>");
+                + "\" value=\"" + billingAddressLine1 + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_ADDRESS_LINE2
-                +"\" value=\"" + billingAddressLine2 + "\"/>");
+                + "\" value=\"" + billingAddressLine2 + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_CITY
-                +"\" value=\"" + billingCity + "\"/>");
+                + "\" value=\"" + billingCity + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_STATE
-                +"\" value=\"" + billingState + "\"/>");
+                + "\" value=\"" + billingState + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_ZIP
-                +"\" value=\"" + billingZip + "\"/>");
+                + "\" value=\"" + billingZip + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.BILLING_COUNTRY
-                +"\" value=\"" + billingCountry + "\"/>");
+                + "\" value=\"" + billingCountry + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_FIRST_NAME
-                +"\" value=\"" + shippingFirstName + "\"/>");
+                + "\" value=\"" + shippingFirstName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_LAST_NAME
-                +"\" value=\"" + shippingLastName + "\"/>");
+                + "\" value=\"" + shippingLastName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE1
-                +"\" value=\"" + shippingAddressLine1 + "\"/>");
+                + "\" value=\"" + shippingAddressLine1 + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_ADDRESS_LINE2
-                +"\" value=\"" + shippingAddressLine2 + "\"/>");
+                + "\" value=\"" + shippingAddressLine2 + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_CITY
-                +"\" value=\"" + shippingCity + "\"/>");
+                + "\" value=\"" + shippingCity + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_STATE
-                +"\" value=\"" + shippingState + "\"/>");
+                + "\" value=\"" + shippingState + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_ZIP
-                +"\" value=\"" + shippingZip + "\"/>");
+                + "\" value=\"" + shippingZip + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.SHIPPING_COUNTRY
-                +"\" value=\"" + shippingCountry + "\"/>");
+                + "\" value=\"" + shippingCountry + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_NAME
-                +"\" value=\"" + creditCardName + "\"/>");
+                + "\" value=\"" + creditCardName + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_LAST_FOUR
-                +"\" value=\"" + StringUtils.right(creditCardNumber, 4) + "\"/>");
+                + "\" value=\"" + StringUtils.right(creditCardNumber, 4) + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_TYPE
-                +"\" value=\"" + cardType + "\"/>");
+                + "\" value=\"" + cardType + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.CREDIT_CARD_EXP_DATE
-                +"\" value=\"" + creditCardExpDate + "\"/>");
+                + "\" value=\"" + creditCardExpDate + "\"/>");
 
         response.append("<input type=\"submit\" value=\"Please Click Here To Complete Checkout\"/>");
         response.append("</form>");

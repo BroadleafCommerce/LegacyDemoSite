@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package com.mycompany.sample.vendor.nullPaymentGateway.web.controller;
 
 import com.mycompany.sample.payment.service.gateway.NullPaymentGatewayHostedConfiguration;
@@ -49,12 +50,12 @@ public class NullPaymentGatewayHostedProcessorController {
     protected NullPaymentGatewayHostedConfiguration paymentGatewayConfiguration;
 
     @RequestMapping(value = "/hosted/null-checkout", method = RequestMethod.POST)
-    public @ResponseBody String retrieveHostedEndpoint(HttpServletRequest request){
+    public @ResponseBody String retrieveHostedEndpoint(HttpServletRequest request) {
 
-        Map<String,String[]> paramMap = request.getParameterMap();
+        Map<String, String[]> paramMap = request.getParameterMap();
 
         String transactionAmount = "";
-        String orderId="";
+        String orderId = "";
         String completeCheckoutOnCallback = "true";
         String resultMessage = "Hosted Call Successful";
 
@@ -88,13 +89,13 @@ public class NullPaymentGatewayHostedProcessorController {
                 paymentGatewayConfiguration.getHostedRedirectReturnUrl() +
                 "\" method=\"GET\" id=\"NullPaymentGatewayRedirectForm\" name=\"NullPaymentGatewayRedirectForm\">");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.TRANSACTION_AMT
-                +"\" value=\"" + transactionAmount + "\"/>");
+                + "\" value=\"" + transactionAmount + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.ORDER_ID
-                +"\" value=\"" + orderId + "\"/>");
+                + "\" value=\"" + orderId + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.COMPLETE_CHECKOUT_ON_CALLBACK
-                +"\" value=\"" + completeCheckoutOnCallback + "\"/>");
+                + "\" value=\"" + completeCheckoutOnCallback + "\"/>");
         response.append("<input type=\"hidden\" name=\"" + NullPaymentGatewayConstants.RESULT_MESSAGE
-                +"\" value=\"" + resultMessage + "\"/>");
+                + "\" value=\"" + resultMessage + "\"/>");
 
         response.append("<input type=\"submit\" value=\"Please Click Here To Complete Checkout\"/>");
         response.append("</form>");

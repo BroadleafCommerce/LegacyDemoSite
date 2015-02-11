@@ -41,8 +41,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/cart/fulfillment/",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 public class FulfillmentEndpoint extends org.broadleafcommerce.core.web.api.endpoint.order.FulfillmentEndpoint {
 
     @Override
@@ -75,24 +75,23 @@ public class FulfillmentEndpoint extends org.broadleafcommerce.core.web.api.endp
         return super.addItemToFulfillmentGroup(request, fulfillmentGroupId, wrapper, priceOrder);
     }
 
-	@Override
-	@RequestMapping(value = "group/{fulfillmentGroupId}/option/{fulfillmentOptionId}", method = RequestMethod.PUT)
-	public FulfillmentGroupWrapper addFulfillmentOptionToFulfillmentGroup(
-			HttpServletRequest request, 
-			@PathVariable("fulfillmentGroupId") Long fulfillmentGroupId,
-			@PathVariable("fulfillmentOptionId") Long fulfillmentOptionId, 
+    @Override
+    @RequestMapping(value = "group/{fulfillmentGroupId}/option/{fulfillmentOptionId}", method = RequestMethod.PUT)
+    public FulfillmentGroupWrapper addFulfillmentOptionToFulfillmentGroup(
+            HttpServletRequest request,
+            @PathVariable("fulfillmentGroupId") Long fulfillmentGroupId,
+            @PathVariable("fulfillmentOptionId") Long fulfillmentOptionId,
             @RequestParam(value = "priceOrder", defaultValue = "true") boolean priceOrder) {
-		return super.addFulfillmentOptionToFulfillmentGroup(request,
-				fulfillmentGroupId, fulfillmentOptionId, priceOrder);
-	}
+        return super.addFulfillmentOptionToFulfillmentGroup(request,
+                fulfillmentGroupId, fulfillmentOptionId, priceOrder);
+    }
 
-	@Override
+    @Override
     @RequestMapping(value = "options", method = RequestMethod.GET)
-	public List<FulfillmentOptionWrapper> findFulfillmentOptions(
-			HttpServletRequest request, 
-			@RequestParam("fulfillmentType") String fulfillmentType) {
-		return super.findFulfillmentOptions(request, fulfillmentType);
-	}
+    public List<FulfillmentOptionWrapper> findFulfillmentOptions(
+            HttpServletRequest request,
+            @RequestParam("fulfillmentType") String fulfillmentType) {
+        return super.findFulfillmentOptions(request, fulfillmentType);
+    }
 
-    
 }

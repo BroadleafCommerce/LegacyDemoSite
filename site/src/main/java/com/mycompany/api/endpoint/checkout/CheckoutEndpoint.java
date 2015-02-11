@@ -37,8 +37,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/cart/checkout/",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 public class CheckoutEndpoint extends org.broadleafcommerce.core.web.api.endpoint.checkout.CheckoutEndpoint {
 
     @Override
@@ -50,14 +50,14 @@ public class CheckoutEndpoint extends org.broadleafcommerce.core.web.api.endpoin
     @Override
     @RequestMapping(value = "payment", method = RequestMethod.POST)
     public OrderPaymentWrapper addPaymentToOrder(HttpServletRequest request,
-                                                 OrderPaymentWrapper wrapper) {
+            OrderPaymentWrapper wrapper) {
         return super.addPaymentToOrder(request, wrapper);
     }
 
     @Override
     @RequestMapping(value = "payment", method = RequestMethod.DELETE)
     public OrderWrapper removePaymentFromOrder(HttpServletRequest request,
-                                               OrderPaymentWrapper wrapper) {
+            OrderPaymentWrapper wrapper) {
         return super.removePaymentFromOrder(request, wrapper);
     }
 

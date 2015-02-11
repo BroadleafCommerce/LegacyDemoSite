@@ -42,7 +42,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <path>/admin</path>
+                    <path>/</path>
                     <port>${httpPort}</port>
                     <httpsPort>${httpsPort}</httpsPort>
                 </configuration>
