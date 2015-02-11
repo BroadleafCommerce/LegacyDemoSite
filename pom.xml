@@ -13,21 +13,7 @@
 
         <blc.version>3.2.0-ALPHA-ENT-35</blc.version>
         <blc.menu.version>1.0.0-RC2</blc.menu.version>
-        <broadleaf-multitenant-singleschema.version>1.3.0-ALPHA-ENT-29</broadleaf-multitenant-singleschema.version>
-        <!--<broadleaf-contenttests.version>2.0.0-ALPHA-ENT-14</broadleaf-contenttests.version>-->
-        <broadleaf-theme.version>1.5.0-RC1</broadleaf-theme.version>
-        <broadleaf-pricelist.version>1.3.0-ALPHA-ENT-30</broadleaf-pricelist.version>
-        <broadleaf-custom-field.version>1.2.0-RC1</broadleaf-custom-field.version>
-        <broadleaf-advanced-cms.version>1.5.0-RC2</broadleaf-advanced-cms.version>
-        <broadleaf-advanced-offer.version>1.2.0-RC1</broadleaf-advanced-offer.version>
-        <!--<broadleaf-subscription.version>1.1.0-SNAPSHOT</broadleaf-subscription.version>-->
-        <broadleaf-account-credit.version>2.1.0-RC1</broadleaf-account-credit.version>
-        <broadleaf-advanced-inventory.version>1.2.0-RC2</broadleaf-advanced-inventory.version>
-        <broadleaf-common-modules-enterprise.version>2.0.0-RC1</broadleaf-common-modules-enterprise.version>
-        <broadleaf-i18n-enterprise.version>1.0.0-ALPHA-ENT-30</broadleaf-i18n-enterprise.version>
-        <broadleaf-jobs-events.version>1.1.0-RC3</broadleaf-jobs-events.version>
-        <broadleaf-enterprise.version>1.1.0-ALPHA-ENT-39</broadleaf-enterprise.version>
-        <broadleaf-demo-registration.version>2.3.0-SNAPSHOT</broadleaf-demo-registration.version>
+
 
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
 
