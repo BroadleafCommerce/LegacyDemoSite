@@ -21,7 +21,7 @@
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.service.login"/>
 
     <!-- Scan DemoSite Sample Payment Gateway Implementation -->
-    <context:component-scan base-package="com.heatclinic.sample" />
+    <context:component-scan base-package="com.mycompany.sample" />
 
     <!-- Turn on AOP annotations (required by Broadleaf) -->
     <aop:config/>
@@ -46,7 +46,7 @@
     </bean>
 
     <!-- Scan for custom controllers -->
-    <context:component-scan base-package="com.heatclinic.controller" />
+    <context:component-scan base-package="com.mycompany.controller" />
     
     <!-- Allow annotation driven controllers -->
     <mvc:annotation-driven/>

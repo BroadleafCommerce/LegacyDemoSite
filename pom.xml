@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.heatclinic</groupId>
+    <groupId>com.mycompany</groupId>
     <artifactId>ecommerce-website</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
@@ -295,7 +295,7 @@
             </dependency>
             
             <dependency>
-                <groupId>com.heatclinic</groupId>
+                <groupId>com.mycompany</groupId>
                 <artifactId>core</artifactId>
                 <version>1.0</version>
                 <type>jar</type>
