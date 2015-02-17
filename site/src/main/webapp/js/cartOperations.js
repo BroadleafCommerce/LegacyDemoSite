@@ -222,6 +222,11 @@ $(function(){
             }, function(data, extraData) {
                 if(!extraData.promoAdded) {
                     $("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
+                    $("#simplemodal-container").css("height","auto");
+                    var size = $("#simplemodal-container").height();
+                    if (size > modalCartOptions.maxHeight) {
+                    	$("#simplemodal-container").css("height", modalCartOptions.maxHeight);
+                    }
                 } else {
                     $('.simplemodal-wrap').html(data);
                 }
