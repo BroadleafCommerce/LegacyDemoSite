@@ -33,6 +33,8 @@
         <!-- We handle session fixation protection ourselves  -->
         <sec:session-management session-fixation-protection="none" />
         
+        <sec:csrf request-matcher-ref="blCsrfFilter"/>
+        
         <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
         <sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
         
@@ -64,8 +66,8 @@
         
         <!-- Specify our custom filters -->
         <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
-        <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
-        <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/>
+<!--    <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
+        <sec:custom-filter ref="blSessionFixationProtectionFilter" before="SESSION_MANAGEMENT_FILTER"/> -->
         <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
@@ -85,7 +87,7 @@
         <property name="userPropertyToUse" value="id" />
     </bean>
     
-    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfSecurityRequestMatcher" >
         <property name="excludedRequestPatterns">
             <list>
                 <value>/null-checkout/**</value>

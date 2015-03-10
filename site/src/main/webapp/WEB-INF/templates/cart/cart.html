@@ -31,7 +31,7 @@
         </div>
         <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
         <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
-        <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
+        <form id="cart_promo" method="POST" th:action="@{/cart/promo}">
             <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
             <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" autocomplete="off"/>
             <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
@@ -39,7 +39,7 @@
                 <div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
             </div>
             <div id="cart_promo_error" style="display: none;"></div>
-        </blc:form>
+        </form>
         
         <div id="blc-extra-data" class="hidden" th:utext="${blcextradata}" th:if="${!#strings.isEmpty(blcextradata)}"></div>
     </div>

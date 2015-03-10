@@ -26,7 +26,7 @@
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
                                    inCart=${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}">
-                    <blc:form method="POST" th:action="@{/cart/add}">
+                    <form method="POST" th:action="@{/cart/add}">
                         <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
                             <div class="form50">
                                 <label th:text="*{label}"></label>
@@ -56,12 +56,12 @@
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
                         </div>
-                    </blc:form>
+                    </form>
                 </th:block>
     
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
-                    <blc:form method="POST" th:action="@{/account/wishlist/add}">
+                    <form method="POST" th:action="@{/account/wishlist/add}">
                         <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
                             <div class="form50">
                                 <label th:text="*{label}"></label>
@@ -83,7 +83,7 @@
                                 <input type="submit" class="addToWishlist small dark" value="+ Add to Wishlist" />
                             </div>
                         </div>
-                    </blc:form>
+                    </form>
                 </div>
                     
                 <p>
@@ -133,7 +133,7 @@
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
                         <span class="title">Community Rating</span>
                         <div id="community-rating-container">
-                            <blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
+                            <form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
                                 <input type="radio" class="star {split:4}" /> 
                                 <input type="radio" class="star {split:4}" /> 
                                 <input type="radio" class="star {split:4}" /> 
@@ -154,7 +154,7 @@
                                 <input type="radio" class="star {split:4}" />
                                 <input type="radio" class="star {split:4}" />
                                 <input type="radio" class="star {split:4}" />
-                            </blc:form>
+                            </form>
                             <br/>
                             <div class="total-reviews">
                                 (<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
@@ -168,13 +168,13 @@
                                     <span th:text="*{helpfulCount()}">9</span> of 
                                     <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                 </p>
-                                <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+                                <form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                     <input type="radio" class="star" />
                                     <input type="radio" class="star" />
                                     <input type="radio" class="star"/>
                                     <input type="radio" class="star" />
                                     <input type="radio" class="star" />
-                                </blc:form>
+                                </form>
                                 <span class="reviewer-info">
                                     on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                 </span>
@@ -189,13 +189,13 @@
                                         <span th:text="*{helpfulCount()}">9</span> of 
                                         <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                     </p>
-                                    <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+                                    <form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                         <input type="radio" class="star" />
                                         <input type="radio" class="star" />
                                         <input type="radio" class="star"/>
                                         <input type="radio" class="star" />
                                         <input type="radio" class="star" />
-                                    </blc:form>
+                                    </form>
                                     <span class="reviewer-info">
                                         by <span class="penname" th:text="${review.customer.firstName}">John</span> on  
                                         <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>

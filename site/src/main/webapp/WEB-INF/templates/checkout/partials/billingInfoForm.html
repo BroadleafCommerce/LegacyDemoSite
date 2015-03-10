@@ -15,7 +15,7 @@
         <span th:text="${sectionDTO.helpMessage}"></span>
     </div>
 
-    <blc:form th:object="${billingInfoForm}"
+    <form th:object="${billingInfoForm}"
               th:action="@{/checkout/billing}"
               method="post" id="billing_info"
               novalidate="novalidate">
@@ -133,6 +133,6 @@
             </div>
 
         </div>
-    </blc:form>
+    </form>
 
 </div>

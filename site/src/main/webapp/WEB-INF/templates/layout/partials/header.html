@@ -15,10 +15,13 @@
             </div>
             <div th:unless="${customer.anonymous}" th:remove="tag">
                 <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
-                &nbsp;|&nbsp; 
-                <a th:href="@{/logout}">
-                    <span th:text="#{home.logout}">Logout</span>
-                </a>
+               <!--&nbsp;|&nbsp;--> 
+                <form method="POST" th:action="@{/logout}" action="#">
+                <!--<a th:href="@{/logout}"> -->
+                    <input type="submit" style="background:none;border:none;padding:0" th:value="#{home.logout}"/>
+                <!--<span th:text="#{home.logout}">Logout</span> -->
+                <!--</a>-->
+                </form>
                 &nbsp;|&nbsp; 
             </div>
 
@@ -61,10 +64,10 @@
         <div id="logo"><h1><a th:href="@{/}">The Heat Clinic Home</a></h1></div>
         
         <div id="search">
-            <blc:form th:action="@{/search}" method="GET">
+            <form th:action="@{/search}" method="GET">
             <input type="search" class="search" name="q" th:value="${originalQuery}" />
             <input type="submit" id="search_button" value="go" />
-            </blc:form>
+            </form>
         </div>
     </div>
 </header>

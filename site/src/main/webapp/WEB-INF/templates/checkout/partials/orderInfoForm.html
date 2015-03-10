@@ -26,7 +26,7 @@
                 <a th:href="@{/register(successUrl='/checkout')}"><span th:text="#{cart.registerNewAccount}">register a new account</span></a>.
             </p>
         
-            <blc:form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
+            <form th:object="${orderInfoForm}" th:action="@{/checkout/savedetails}" method="post" id="order_info" novalidate="novalidate">
         
                 <div class="form50">
                     <label for="emailAddress"><span th:text="#{cart.emailAddress}">Email Address</span></label>
@@ -39,7 +39,7 @@
                 <div class="form50 submit-row">
                     <input class="small red" type="submit" th:value="#{cart.checkoutAsGuest}" />
                 </div>
-            </blc:form>
+            </form>
         </div>
     </div>
 

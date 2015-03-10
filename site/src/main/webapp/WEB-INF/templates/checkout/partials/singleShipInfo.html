@@ -1,6 +1,6 @@
 <div th:fragment="singleship-info">
 
-    <blc:form th:object="${shippingInfoForm}"
+    <form th:object="${shippingInfoForm}"
               th:action="@{/checkout/singleship}"
               method="post" id="shipping_info"
               novalidate="novalidate">
@@ -127,6 +127,6 @@
             </div>
         </div>
 
-    </blc:form>
+    </form>
 
 </div>

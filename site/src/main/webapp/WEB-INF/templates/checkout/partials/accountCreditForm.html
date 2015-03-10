@@ -1,5 +1,5 @@
 <div th:fragment="account-credit-form">
-    <blc:form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/null-giftcard/apply}" method="POST" id="applyGiftcard_form">
+    <form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/null-giftcard/apply}" method="POST" id="applyGiftcard_form">
         <div>
             <div class="form50">
                 <label for="giftCardNumber" class="prompt"><span th:text="#{cart.giftCardNumber}">Gift Card Number</span></label>
@@ -13,5 +13,5 @@
                 <input type="submit" class="medium red apply" th:value="#{cart.giftCard.apply}" />
             </div>
         </div>
-    </blc:form>
+    </form>
 </div>

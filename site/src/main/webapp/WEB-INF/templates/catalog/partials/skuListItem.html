@@ -35,12 +35,12 @@
     </div>
 
     <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
-        <blc:form method="POST" th:action="@{/cart/add}">
+        <form method="POST" th:action="@{/cart/add}">
             <input type="hidden" name="productId" th:value="*{product.id}" />
             <input type="hidden" name="skuId" th:value="*{id}" />
             <input type="hidden" name="quantity" value="1" />
             <input type="submit" class="addToCart" th:value="#{product.buyNow}"/>
-        </blc:form>
+        </form>
     </div>
 
 </div>

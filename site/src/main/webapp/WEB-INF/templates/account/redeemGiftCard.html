@@ -9,7 +9,7 @@
             <p><span class="error_long" style="width: auto; margin: 20px 10px;" th:text="#{account.giftCard.already.redeemed}">Gift Card already redeemed</span></p>
         </div>
     
-        <blc:form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/account/giftcard/redeem}" method="post" id="redeem_giftCard_info">
+        <form class="manage-account" th:object="${giftCardInfoForm}" th:action="@{/account/giftcard/redeem}" method="post" id="redeem_giftCard_info">
             <div>
                 <div class="form50">
                     <label for="giftCardNumber" class="prompt"><span th:text="#{cart.giftCardNumber}">Gift Card Number</span></label>
@@ -23,7 +23,7 @@
                     <input type="submit" class="medium red" th:value="#{cart.giftCard.apply}" />
                 </div>
             </div>
-        </blc:form>
+        </form>
     </div>
     
     

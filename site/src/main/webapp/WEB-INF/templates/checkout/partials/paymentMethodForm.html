@@ -22,11 +22,11 @@
 
 
         <div class="form100">
-            <blc:form th:action="@{/checkout/complete}"
+            <form th:action="@{/checkout/complete}"
                       method="POST" id="complete_checkout"
                       novalidate="novalidate">
                 <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
-            </blc:form>
+            </form>
         </div>
 
     </div>
@@ -155,11 +155,11 @@
             </dt>
             <dd>
                 <div>
-                    <blc:form th:action="@{/checkout/cod/complete}"
+                    <form th:action="@{/checkout/cod/complete}"
                               method="POST" id="complete_checkout"
                               novalidate="novalidate">
                         <input type="submit" class="medium red" th:value="#{cart.completOrder}" />
-                    </blc:form>
+                    </form>
                 </div>
             </dd>
         </dl>

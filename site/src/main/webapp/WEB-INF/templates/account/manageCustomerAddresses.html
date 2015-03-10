@@ -16,7 +16,7 @@
             <span th:if="${customerAddressForm.customerAddressId}">&nbsp;&nbsp;- or -&nbsp;&nbsp;<a th:href="@{/account/addresses}" class="medium red">create a new address</a></span>
             <span th:unless="${customerAddressForm.customerAddressId}">&nbsp;&nbsp;- or -&nbsp;&nbsp;create a new address below</span>
         </div>
-        <blc:form class="manage-account" 
+        <form class="manage-account" 
             method="post" 
             th:action="@{'/account/addresses/' + ${customerAddressForm.customerAddressId != null ? customerAddressForm.customerAddressId : ''}}" 
             th:object="${customerAddressForm}">    
@@ -78,6 +78,6 @@
                 <input th:if="*{customerAddressId}" type="submit" name="removeAddress" value="Remove" class="small dark" />
                 <span class="error" th:if="${errorMessage}" th:text="${errorMessage}"></span>
             </div>
-        </blc:form>
+        </form>
     </div>
 </th:block>

@@ -1,5 +1,5 @@
 <div th:fragment="promo-code-form">
-    <blc:form class="manage-promo" method="POST" th:action="@{/cart/promo}">
+    <form class="manage-promo" method="POST" th:action="@{/cart/promo}">
         <div class="form50">
             <label class="prompt" for="checkoutPromo"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
             <div class="form100">
@@ -17,5 +17,5 @@
 
         <div class="clearfix"></div>
 
-    </blc:form>
+    </form>
 </div>

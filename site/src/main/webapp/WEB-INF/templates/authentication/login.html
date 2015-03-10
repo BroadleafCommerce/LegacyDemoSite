@@ -12,7 +12,7 @@
         </span>
 
         <div class="clearfix">
-            <blc:form th:action="@{/login_post.htm}" method="post">
+            <form th:action="@{/login_post.htm}" method="post">
                 <input type="hidden" name="successUrl" th:if="${successUrl}" th:value="${successUrl}"/>
                 
                 <div class="form50">
@@ -34,7 +34,7 @@
                     <br/>
                     <a class="account" th:href="@{/login/forgotPassword}"><span th:text="#{login.forgotPassword}">Forgot Password</span></a>
                 </div>
-            </blc:form>
+            </form>
         </div>
     </div>
 </div>
