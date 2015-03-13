@@ -9,7 +9,7 @@
     <th:block th:replace="/layout/partials/head"></th:block>
 </head>
 
-<body>
+<body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
 
     <header th:substituteby="layout/partials/headerCheckout" />
