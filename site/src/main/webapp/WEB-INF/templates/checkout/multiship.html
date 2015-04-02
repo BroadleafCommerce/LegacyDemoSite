@@ -12,7 +12,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="omo : ${orderMultishipOptions}" th:id="${'productRow' + omo.orderItem.id}">
-                        <td><img th:if="${omo.orderItem.product.media['primary'] != null}" th:src="@{${omo.orderItem.product.media['primary'].url} + '?browse'}" width="60" th:alt="${omo.orderItem.product.name}" /></td>
+                        <td><img th:if="${omo.orderItem.product.media['primary'] != null}" blc:src="@{${omo.orderItem.product.media['primary'].url} + '?browse'}" width="60" th:alt="${omo.orderItem.product.name}" /></td>
                         <td class="name">
                             <a th:href="@{${omo.orderItem.product.url}}" th:text="${omo.orderItem.product.name}"></a>
                             <br/>
