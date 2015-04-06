@@ -27,19 +27,16 @@
     <sec:http pattern="/**/${asset.server.url.prefix.internal}/**" security="none" />
     <sec:http pattern="/favicon.ico" security="none" />
     <sec:http pattern="/robots.txt" security="none" />
-    <!-- <sec:http pattern="/login" security="none" />
+    <sec:http pattern="/login" security="none" />
     <sec:http pattern="/forgotUsername" security="none" />
     <sec:http pattern="/forgotPassword" security="none" />
     <sec:http pattern="/changePassword" security="none" />
     <sec:http pattern="/resetPassword" security="none" />
-    <sec:http pattern="/sendResetPassword" security="none" /> -->
+    <sec:http pattern="/sendResetPassword" security="none" />
     
     <!-- Set up Spring security for the application -->
     <sec:http auto-config="false" authentication-manager-ref="blAdminAuthenticationManager" 
             entry-point-ref="adminAuthenticationEntryPoint" disable-url-rewriting="true">
-        
-	    <sec:csrf request-matcher-ref="blCsrfFilter"/>
-        
         <!-- All admin URLs will be secured with https -->
         <sec:intercept-url pattern="/**" requires-channel="any" />
         <sec:intercept-url pattern="/" requires-channel="any" />
@@ -50,8 +47,6 @@
             authentication-failure-handler-ref="blAdminAuthenticationFailureHandler"
             login-processing-url="/login_admin_post"
         />
-        
-        
         
         <!-- Provide the logout handler -->
         <sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/login"/>
@@ -67,15 +62,12 @@
         
         <!-- Specify our custom filters -->
         <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>
-        <!-- <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
+        <sec:custom-filter ref="blCsrfFilter" before="FORM_LOGIN_FILTER"/>
         <sec:custom-filter ref="blAdminFilterSecurityInterceptor" after="EXCEPTION_TRANSLATION_FILTER"/>
-         -->
         <sec:custom-filter ref="blPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
     </sec:http>
     
-    <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfSecurityRequestMatcher" >
-        
-    </bean>
+    <bean id="blCsrfFilter" class="org.broadleafcommerce.openadmin.web.filter.AdminCsrfFilter" />
 
     <bean id="adminAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <constructor-arg value="/login"/>
