@@ -15,12 +15,9 @@
             </div>
             <div th:unless="${customer.anonymous}" th:remove="tag">
                 <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
-               <!--&nbsp;|&nbsp;--> 
-                <form method="POST" th:action="@{/logout}" action="#">
-                <!--<a th:href="@{/logout}"> -->
-                    <input type="submit" style="background:none;border:none;padding:0" th:value="#{home.logout}"/>
-                <!--<span th:text="#{home.logout}">Logout</span> -->
-                <!--</a>-->
+                &nbsp;|&nbsp;
+                <form style="display:inline;" method="POST" th:action="@{/logout}" action="#">
+                    <input type="submit" style="color:#fff;background:none;border:none;padding:0" th:value="#{home.logout}"/>
                 </form>
                 &nbsp;|&nbsp; 
             </div>
