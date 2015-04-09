@@ -5,7 +5,7 @@
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
         <ul th:if="${orderContainsThirdPartyPayment}" class="payment_methods">
-            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
         <ul th:if="${orderContainsUnconfirmedCreditCard}" class="payment_methods">
@@ -36,11 +36,11 @@
         <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
 
         <ul class="payment_methods">
-            <li><img th:src="@{/img/payment/american-express-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/visa-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/discover-curved-32px.png}"/></li>
-            <li><img th:src="@{/img/payment/paypal-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/american-express-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/visa-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/discover-curved-32px.png}"/></li>
+            <li><img blc:src="@{/img/payment/paypal-curved-32px.png}"/></li>
         </ul>
 
         <dl id="paymentOptions">
@@ -145,7 +145,7 @@
             <dd>
                 <div id="paypalfields">
                     <div class="form100">
-                        <img th:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
+                        <img blc:src="@{/img/paypal.gif}" alt="Pay with Paypal" width="100" />
                     </div>
                 </div>
             </dd>

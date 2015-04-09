@@ -443,6 +443,10 @@ nav {
         background: url('../img/nav-divider.png') top left no-repeat;
     }
     
+    .locale-fr_FR nav ul li a {
+    	padding: 25px 10px;
+    }
+    
     nav ul li a.home {
         background: none;
     }
