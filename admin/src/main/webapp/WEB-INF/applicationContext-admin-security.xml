@@ -77,9 +77,7 @@
     <!-- The BLC Admin authentication manager -->
     <sec:authentication-manager alias="blAdminAuthenticationManager">
         <sec:authentication-provider user-service-ref="blAdminUserDetailsService">
-            <sec:password-encoder ref="blAdminPasswordEncoder">
-                <sec:salt-source ref="blAdminSaltSource"/>
-            </sec:password-encoder>
+            <sec:password-encoder ref="blAdminPasswordEncoder"/>
         </sec:authentication-provider>
     </sec:authentication-manager>
     
