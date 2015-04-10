@@ -72,9 +72,7 @@
     <!--  The BLC Authentication manager.   -->
     <sec:authentication-manager alias="blAuthenticationManager">
         <sec:authentication-provider user-service-ref="blUserDetailsService">
-            <sec:password-encoder ref="blPasswordEncoder">
-                <sec:salt-source ref="blSaltSource" />
-            </sec:password-encoder>
+            <sec:password-encoder ref="blPasswordEncoder" />
         </sec:authentication-provider>
     </sec:authentication-manager>
     
