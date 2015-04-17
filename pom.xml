@@ -11,7 +11,7 @@
     <url>http://www.blc-archetype.com</url>
     <properties>
         <blc.version>4.0.0-SNAPSHOT</blc.version>
-        <blc.menu.version>1.0.0-RC3</blc.menu.version>
+        <blc.menu.version>1.0.0-RC4</blc.menu.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <description>My Company's eCommerce Website</description>
