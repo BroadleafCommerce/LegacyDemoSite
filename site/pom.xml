@@ -24,77 +24,8 @@
         <finalName>mycompany</finalName>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webappDirectory>${webappDirectory}</webappDirectory>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.5.v20120716</version>
-                <configuration>
-                    <webAppSourceDirectory>${webappDirectory}</webAppSourceDirectory>
-                    <contextPath>/</contextPath>
-                    
-                    <!-- !!!!! WARNING !!!!!! -->
-                    <!-- This configuration of Jetty is not as secure as it causes Sessions to use a java.util.Random
-                        vs. java.security.SecureRandom. This speeds up startup times locally but this should not be used
-                        in production -->
-                    <jettyXml>jetty-server.xml</jettyXml>
-                    <!-- !!!!! WARNING !!!!!! -->
-                    
-                    <stopPort>9966</stopPort>
-                    <stopKey>foo</stopKey>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${httpPort}</port>
-                            
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                        <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
-                            <port>${httpsPort}</port>
-                            <keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
-                            <keyPassword>broadleaf</keyPassword>
-                            <password>broadleaf</password>
-                        </connector>
-                    </connectors>
-                    <webAppConfig>
-                         <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
-                    </webAppConfig>
-                </configuration>
-            </plugin>
-        
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>clean</id>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>generateKeyPair</id>
-                        <goals>
-                            <goal>generateKeyPair</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <keystore>${webappDirectory}/WEB-INF/blc-example.keystore</keystore>
-                    <dname>cn=localhost</dname>
-                    <keypass>broadleaf</keypass>
-                    <storepass>broadleaf</storepass>
-                    <alias>broadleaf</alias>
-                    <keyalg>RSA</keyalg>
-                </configuration>
             </plugin>
             
             <plugin>
@@ -114,6 +45,22 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Used by embedded Tomcat to move context.xml for JNDI resources -->
+            <!-- Configuration inherited from parent -->            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <!-- Main configuration inherited from parent -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>/</path>
+                    <port>${httpPort}</port>
+                    <httpsPort>${httpsPort}</httpsPort>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -130,20 +77,8 @@
             <artifactId>broadleaf-framework-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
     </dependencies>
 </project>
