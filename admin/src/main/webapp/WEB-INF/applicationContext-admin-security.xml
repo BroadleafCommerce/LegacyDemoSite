@@ -81,13 +81,6 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
     
-    <!-- Configuration for salting admin passwords. This configuration will use the 'id' property as the salt. If you would
-        like to change this property or generate a random salt to store on a per-user basis then you will need to modify this
-        configuration and likely provide a custom UserDetailsService -->
-    <bean id="blAdminSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-        <property name="userPropertyToUse" value="id" />
-    </bean>
-    
     <!-- The service used by the authentication manager -->
     <bean id="blAdminUserDetailsService" class="org.broadleafcommerce.openadmin.server.security.service.AdminUserDetailsServiceImpl"/>
     
