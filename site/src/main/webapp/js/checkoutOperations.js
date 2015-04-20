@@ -4,6 +4,7 @@ $(function(){
     var modalCheckoutOptions = {
         maxWidth    : 720,
         maxHeight   : 560,  
+        minHeight   : 360,
         position    : ['30px']
     };
     

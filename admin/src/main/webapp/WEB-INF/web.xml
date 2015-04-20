@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+<web-app
+    version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
-         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID">
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <display-name>mycompany-admin</display-name>
 
@@ -19,6 +21,7 @@
             classpath:/bl-admin-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
             classpath:/bl-cms-contentCreator-applicationContext.xml
+            classpath*:/blc-config/admin/bl-*-applicationContext.xml
             classpath:/applicationContext.xml
             classpath:/applicationContext-email.xml
             /WEB-INF/applicationContext-datasource.xml
@@ -32,6 +35,8 @@
         <param-name>shutdownHookMethod</param-name>
         <param-value>forceFlush</param-value>
     </context-param>
+
+    <absolute-ordering />
     
     <listener>
         <listener-class>
@@ -78,7 +83,7 @@
     </listener>
 
     <listener>
-        <listener-class>org.broadleafcommerce.common.web.extensibility.MergeContextLoaderListener</listener-class>
+        <listener-class>org.broadleafcommerce.common.web.extensibility.MergeContextLoader</listener-class>
     </listener>
     
     <listener>
@@ -96,6 +101,8 @@
                 classpath:/applicationContext-servlet-admin.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 classpath:/applicationContext-servlet-cms-contentCreator.xml
+                classpath:/bl-menu-admin-applicationContext-servlet.xml
+                classpath*:/blc-config/admin/bl-*-admin-applicationContext-servlet.xml
                 /WEB-INF/applicationContext-servlet-admin.xml
             </param-value>
         </init-param>

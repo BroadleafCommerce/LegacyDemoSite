@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+    
+    <!-- Add this file to the patchConfigLocation contextParam in the web.xml file to configure REST API security via
+        Spring Security. Also, ensure that the RESTApiServlet and servlet mapping are uncommented and/or configured 
+        in web.xml. -->
+    
+    <!-- For specific controller configuration for the REST APIs, see applicationContext-servlet-rest-api.xml -->
+    
+    <!-- Set up Spring security for the RESTful API -->
+    <sec:http pattern="/api/**" create-session="stateless">
+        <sec:http-basic />
+        <sec:custom-filter ref="blRestPreSecurityFilterChain" before="CHANNEL_FILTER"/>
+        <sec:custom-filter ref="blRestCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
+        <sec:custom-filter ref="blRestPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
+    </sec:http>
+    
+    <!-- Used for REST api calls.   This just takes in the passed in customerId and uses it to establish the customer. -->
+    <!-- Additional considerations MUST be made for implementations that are allowing external access to APIs. -->
+    <bean id="blRestCustomerStateFilter" class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
+    
+</beans>

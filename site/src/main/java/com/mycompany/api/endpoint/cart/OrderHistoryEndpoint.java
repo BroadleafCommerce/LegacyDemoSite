@@ -17,20 +17,15 @@
 package com.mycompany.api.endpoint.cart;
 
 import org.broadleafcommerce.core.web.api.wrapper.OrderWrapper;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 /**
  * This is a reference REST API endpoint for order history. This can be modified, used as is, or removed. 
@@ -40,17 +35,16 @@ import javax.ws.rs.core.MediaType;
  * @author Kelly Tisdell
  *
  */
-@Component
-@Scope("singleton")
-@Path("/orders/")
-@Produces(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@RestController
+@RequestMapping(value = "/orders/",
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class OrderHistoryEndpoint extends org.broadleafcommerce.core.web.api.endpoint.order.OrderHistoryEndpoint {
 
     @Override
-    @GET
-    public List<OrderWrapper> findOrdersForCustomer(@Context HttpServletRequest request,
-            @QueryParam("orderStatus") @DefaultValue("SUBMITTED") String orderStatus) {
+    @RequestMapping(method = RequestMethod.GET)
+    public List<OrderWrapper> findOrdersForCustomer(HttpServletRequest request,
+            @RequestParam(value = "orderStatus", defaultValue = "SUBMITTED") String orderStatus) {
         return super.findOrdersForCustomer(request, orderStatus);
     }
 

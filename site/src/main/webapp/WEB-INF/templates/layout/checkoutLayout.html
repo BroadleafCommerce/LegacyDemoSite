@@ -4,16 +4,19 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<head th:include="/layout/partials/head (pageTitle='Checkout - Broadleaf Demo - Heat Clinic')"></head>
+<head>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic - Checkout</title>
+    <th:block th:replace="/layout/partials/head"></th:block>
+</head>
 
-<body>
+<body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
 
     <header th:substituteby="layout/partials/headerCheckout" />
     
     <div id="checkout_content" class="width_setter group" role="main">
     
-        <div th:substituteby="${templateName}" />
+        <div layout:fragment="content" />
     
     </div>
 
@@ -30,7 +33,7 @@
                     'address.lastName': "required",
                     'address.addressLine1': "required",
                     'address.city': "required",
-                    'address.state': "required",
+                    'address.stateProvinceRegion': "required",
                     'address.emailAddress' : "required"
                 },
                 messages: {
@@ -38,7 +41,7 @@
                     'address.lastName': "Please enter your last name." + "<br/>",
                     'address.addressLine1': "Please enter the actual address." + "<br/>",
                     'address.city': "Please enter the city." + "<br/>",
-                    'address.state': "Please enter the state." + "<br/>",
+                    'address.stateProvinceRegion': "Please enter the state." + "<br/>",
                     'address.emailAddress' : "Please enter a valid email address." + "<br/>"
                 },
                 errorPlacement: function(error, element) {

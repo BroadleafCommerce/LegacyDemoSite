@@ -1,5 +1,5 @@
 <div class="product-options hidden" th:fragment="productOptions">
-    <blc:product_options productId="${product.id}" />
+    <blc:product_options productId="*{id}" />
     <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}" />
     <ul>
         <li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">

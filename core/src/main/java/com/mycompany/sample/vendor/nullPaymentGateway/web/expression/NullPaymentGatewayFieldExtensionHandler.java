@@ -20,6 +20,8 @@
 
 package com.mycompany.sample.vendor.nullPaymentGateway.web.expression;
 
+import org.broadleafcommerce.common.payment.PaymentGatewayType;
+import org.broadleafcommerce.common.payment.service.PaymentGatewayConfiguration;
 import org.broadleafcommerce.common.web.payment.expression.AbstractPaymentGatewayFieldExtensionHandler;
 import org.broadleafcommerce.common.web.payment.expression.PaymentGatewayFieldExtensionManager;
 import com.mycompany.sample.vendor.nullPaymentGateway.service.payment.NullPaymentGatewayConstants;
@@ -50,6 +52,9 @@ public class NullPaymentGatewayFieldExtensionHandler extends AbstractPaymentGate
 
     @Resource(name = "blPaymentGatewayFieldExtensionManager")
     protected PaymentGatewayFieldExtensionManager extensionManager;
+
+    @Resource(name = "blNullPaymentGatewayConfiguration")
+    protected PaymentGatewayConfiguration configuration;
 
     @PostConstruct
     public void init() {
@@ -201,5 +206,10 @@ public class NullPaymentGatewayFieldExtensionHandler extends AbstractPaymentGate
     @Override
     public String getShipToAddressEmail() {
         return null;
+    }
+
+    @Override
+    public PaymentGatewayType getHandlerType() {
+        return configuration.getGatewayType();
     }
 }

@@ -4,9 +4,12 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<head th:include="/layout/partials/head (pageTitle='Account - Broadleaf Demo - Heat Clinic')"></head>
+<head>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic - Account</title>
+    <th:block th:replace="/layout/partials/head"></th:block>
+</head>
 
-<body>
+<body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
     <header th:substituteby="layout/partials/header" />
     
@@ -20,7 +23,7 @@
             
             <ul th:substituteby="account/partials/accountMenu" />
             
-            <div th:substituteby="${templateName}" />
+            <div layout:fragment="content" />
 
         </div>
     </div>

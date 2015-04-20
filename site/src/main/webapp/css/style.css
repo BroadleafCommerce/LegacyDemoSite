@@ -432,6 +432,7 @@ nav {
         margin: 0;
         padding: 0;
         display: inline;
+        float: left;
     }
     
     nav ul li a {
@@ -440,6 +441,10 @@ nav {
         color: #342020;
         padding: 25px 30px;
         background: url('../img/nav-divider.png') top left no-repeat;
+    }
+    
+    .locale-fr_FR nav ul li a {
+    	padding: 25px 10px;
     }
     
     nav ul li a.home {
@@ -459,7 +464,58 @@ nav {
             -o-transition: background-color 0.2s ease-in;  
             transition: background-color 0.2s ease-in; 
         }
-        
+
+    nav ul li:hover .sub-menu {
+        display: block;
+    }
+
+    nav ul li ul.sub-menu {
+        position: absolute;
+        list-style-type: none;
+        background-color: #FFFFFF;
+        z-index: 99999;
+        display: none;
+        width: 174px;
+        top:179px;
+        border-left: 1px solid #C8C3C1;
+        border-bottom: 1px solid #C8C3C1;
+        border-right: 1px solid #C8C3C1;
+    }
+
+    nav ul li ul.sub-menu li {
+        display: block;
+        float: none;
+    }
+
+    nav ul li ul.sub-menu li:hover {
+        background-color: #E7E3E2;
+        -webkit-transition: background-color 0.1s ease-in;
+        -moz-transition: background-color 0.1s ease-in;
+        -o-transition: background-color 0.1s ease-in;
+        transition: background-color 0.1s ease-in;
+    }
+
+    nav ul li ul.sub-menu a {
+        font: 12px/35px 'Open Sans', Helvetica, sans-serif;
+        color: #342020;
+        padding: 10px;
+        background: none;
+    }
+
+    ul.sub-menu li:hover ul.secondary-menu {
+        display: inline;
+    }
+
+    .secondary-menu {
+        position: absolute;
+        list-style-type: none;
+        background-color: #FFFFFF;
+        z-index: 99999;
+        display: none;
+        left: 174px;
+        width: 253px;
+    }
+
 #banners {
     width: 940px;
     margin: 0 0 0 20px;

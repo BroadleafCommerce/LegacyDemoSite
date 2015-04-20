@@ -27,21 +27,16 @@ import org.broadleafcommerce.core.web.api.wrapper.RelatedProductWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SearchResultsWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuAttributeWrapper;
 import org.broadleafcommerce.core.web.api.wrapper.SkuWrapper;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 /**
  * This is a reference REST API endpoint for catalog. This can be modified, used as is, or removed. 
@@ -51,202 +46,180 @@ import javax.ws.rs.core.MediaType;
  * @author Kelly Tisdell
  *
  */
-@Component
-@Scope("singleton")
-@Path("/catalog/")
-@Produces(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Consumes(value = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@RestController
+@RequestMapping(value = "/catalog/",
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class CatalogEndpoint extends
         org.broadleafcommerce.core.web.api.endpoint.catalog.CatalogEndpoint {
 
     @Override
-    @GET
-    @Path("product/{id}")
-    public ProductWrapper findProductById(@Context HttpServletRequest request, @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}", method = RequestMethod.GET)
+    public ProductWrapper findProductById(HttpServletRequest request, @PathVariable("id") Long id) {
         return super.findProductById(request, id);
     }
 
     @Override
-    @GET
-    @Path("search/products")
-    public SearchResultsWrapper findProductsByQuery(@Context HttpServletRequest request,
-            @QueryParam("q") String q,
-            @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
-            @QueryParam("page") @DefaultValue("1") Integer page) {
-        return super.findProductsByQuery(request, q, pageSize, page);
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public SearchResultsWrapper findSearchResultsByQuery(HttpServletRequest request,
+            @RequestParam("q") String q,
+            @RequestParam(value = "pageSize", defaultValue = "15") Integer pageSize,
+            @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        return super.findSearchResultsByQuery(request, q, pageSize, page);
     }
 
     @Override
-    @GET
-    @Path("search/category/{categoryId}/products")
-    public SearchResultsWrapper findProductsByCategoryAndQuery(@Context HttpServletRequest request,
-            @PathParam("categoryId") Long categoryId,
-            @QueryParam("q") String q,
-            @QueryParam("pageSize") @DefaultValue("15") Integer pageSize,
-            @QueryParam("page") @DefaultValue("1") Integer page) {
-        return super.findProductsByCategoryAndQuery(request, categoryId, q, pageSize, page);
+    @RequestMapping(value = "search/category/{categoryId}", method = RequestMethod.GET)
+    public SearchResultsWrapper findSearchResultsByCategoryAndQuery(HttpServletRequest request,
+            @PathVariable("categoryId") Long categoryId,
+            @RequestParam("q") String q,
+            @RequestParam(value = "pageSize", defaultValue = "15") Integer pageSize,
+            @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        return super.findSearchResultsByCategoryAndQuery(request, categoryId, q, pageSize, page);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/skus")
-    public List<SkuWrapper> findSkusByProductById(@Context HttpServletRequest request, @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}/skus", method = RequestMethod.GET)
+    public List<SkuWrapper> findSkusByProductById(HttpServletRequest request, @PathVariable("id") Long id) {
         return super.findSkusByProductById(request, id);
     }
-
+    
     @Override
-    @GET
-    @Path("product/{id}/defaultSku")
-    public SkuWrapper findDefaultSkuByProductId(@Context HttpServletRequest request, @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}/defaultSku", method = RequestMethod.GET)
+    public SkuWrapper findDefaultSkuByProductId(HttpServletRequest request, @PathVariable("id") Long id) {
         return super.findDefaultSkuByProductId(request, id);
     }
 
     @Override
-    @GET
-    @Path("categories")
-    public CategoriesWrapper findAllCategories(@Context HttpServletRequest request,
-            @QueryParam("name") String name,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset) {
+    @RequestMapping(value = "categories", method = RequestMethod.GET)
+    public CategoriesWrapper findAllCategories(HttpServletRequest request,
+            @RequestParam("name") String name,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) {
         return super.findAllCategories(request, name, limit, offset);
     }
 
     @Override
-    @GET
-    @Path("category/{id}/categories")
-    public CategoriesWrapper findSubCategories(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset,
-            @QueryParam("active") @DefaultValue("true") boolean active) {
+    @RequestMapping(value = "category/{id}/categories", method = RequestMethod.GET)
+    public CategoriesWrapper findSubCategories(HttpServletRequest request,
+            @PathVariable("id") Long id,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
+            @RequestParam(value = "active", defaultValue = "true") boolean active) {
         return super.findSubCategories(request, id, limit, offset, active);
     }
 
     @Override
-    @GET
-    @Path("category/{id}/activeSubcategories")
-    public CategoriesWrapper findActiveSubCategories(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset) {
+    @RequestMapping(value = "category/{id}/activeSubcategories", method = RequestMethod.GET)
+    public CategoriesWrapper findActiveSubCategories(HttpServletRequest request,
+            @PathVariable("id") Long id,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) {
         return super.findActiveSubCategories(request, id, limit, offset);
     }
 
     @Override
-    @GET
-    @Path("category/{id}")
-    public CategoryWrapper findCategoryById(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("productLimit") @DefaultValue("20") int productLimit,
-            @QueryParam("productOffset") @DefaultValue("1") int productOffset,
-            @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
-            @QueryParam("subcategoryOffset") @DefaultValue("1") int subcategoryOffset) {
+    @RequestMapping(value = "category/{id}", method = RequestMethod.GET)
+    public CategoryWrapper findCategoryById(HttpServletRequest request,
+            @PathVariable("id") Long id,
+            @RequestParam(value = "productLimit", defaultValue = "20") int productLimit,
+            @RequestParam(value = "productOffset", defaultValue = "0") int productOffset,
+            @RequestParam(value = "subcategoryLimit", defaultValue = "20") int subcategoryLimit,
+            @RequestParam(value = "subcategoryOffset", defaultValue = "0") int subcategoryOffset) {
         return super.findCategoryById(request, id, productLimit, productOffset,
                 subcategoryLimit, subcategoryOffset);
     }
 
     @Override
-    @GET
-    @Path("category")
-    public CategoryWrapper findCategoryByIdOrName(@Context HttpServletRequest request,
-            @QueryParam("searchParameter") String searchParameter,
-            @QueryParam("productLimit") @DefaultValue("20") int productLimit,
-            @QueryParam("productOffset") @DefaultValue("1") int productOffset,
-            @QueryParam("subcategoryLimit") @DefaultValue("20") int subcategoryLimit,
-            @QueryParam("subcategoryOffset") @DefaultValue("1") int subcategoryOffset) {
+    @RequestMapping(value = "category", method = RequestMethod.GET)
+    public CategoryWrapper findCategoryByIdOrName(HttpServletRequest request,
+            @RequestParam("searchParameter") String searchParameter,
+            @RequestParam(value = "productLimit", defaultValue = "20") int productLimit,
+            @RequestParam(value = "productOffset", defaultValue = "0") int productOffset,
+            @RequestParam(value = "subcategoryLimit", defaultValue = "20") int subcategoryLimit,
+            @RequestParam(value = "subcategoryOffset", defaultValue = "0") int subcategoryOffset) {
         return super.findCategoryByIdOrName(request, searchParameter,
                 productLimit, productOffset, subcategoryLimit, subcategoryOffset);
     }
 
     @Override
-    @GET
-    @Path("category/{id}/category-attributes")
-    public List<CategoryAttributeWrapper> findCategoryAttributesForCategory(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "category/{id}/category-attributes", method = RequestMethod.GET)
+    public List<CategoryAttributeWrapper> findCategoryAttributesForCategory(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findCategoryAttributesForCategory(request, id);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/related-products/upsale")
-    public List<RelatedProductWrapper> findUpSaleProductsByProduct(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset) {
+    @RequestMapping(value = "product/{id}/related-products/upsale", method = RequestMethod.GET)
+    public List<RelatedProductWrapper> findUpSaleProductsByProduct(HttpServletRequest request,
+            @PathVariable("id") Long id,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) {
         return super.findUpSaleProductsByProduct(request, id, limit, offset);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/related-products/crosssale")
-    public List<RelatedProductWrapper> findCrossSaleProductsByProduct(@Context HttpServletRequest request,
-            @PathParam("id") Long id,
-            @QueryParam("limit") @DefaultValue("20") int limit,
-            @QueryParam("offset") @DefaultValue("0") int offset) {
+    @RequestMapping(value = "product/{id}/related-products/crosssale", method = RequestMethod.GET)
+    public List<RelatedProductWrapper> findCrossSaleProductsByProduct(HttpServletRequest request,
+            @PathVariable("id") Long id,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset) {
         return super.findCrossSaleProductsByProduct(request, id, limit, offset);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/product-attributes")
-    public List<ProductAttributeWrapper> findProductAttributesForProduct(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}/product-attributes", method = RequestMethod.GET)
+    public List<ProductAttributeWrapper> findProductAttributesForProduct(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findProductAttributesForProduct(request, id);
     }
 
     @Override
-    @GET
-    @Path("sku/{id}/sku-attributes")
-    public List<SkuAttributeWrapper> findSkuAttributesForSku(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "sku/{id}/sku-attributes", method = RequestMethod.GET)
+    public List<SkuAttributeWrapper> findSkuAttributesForSku(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findSkuAttributesForSku(request, id);
     }
 
     @Override
-    @GET
-    @Path("sku/{id}/media")
-    public List<MediaWrapper> findMediaForSku(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "sku/{id}/media", method = RequestMethod.GET)
+    public List<MediaWrapper> findMediaForSku(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findMediaForSku(request, id);
     }
 
     @Override
-    @GET
-    @Path("sku/{id}")
-    public SkuWrapper findSkuById(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "sku/{id}", method = RequestMethod.GET)
+    public SkuWrapper findSkuById(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findSkuById(request, id);
     }
     
     @Override
-    @GET
-    @Path("sku/inventory")
-    public List<InventoryWrapper> findInventoryForSkus(@Context HttpServletRequest request,
-            @QueryParam("id") List<Long> ids) {
+    @RequestMapping(value = "sku/inventory", method = RequestMethod.GET)
+    public List<InventoryWrapper> findInventoryForSkus(HttpServletRequest request,
+            @RequestParam("id") List<Long> ids) {
         return super.findInventoryForSkus(request, ids);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/media")
-    public List<MediaWrapper> findMediaForProduct(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}/media", method = RequestMethod.GET)
+    public List<MediaWrapper> findMediaForProduct(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findMediaForProduct(request, id);
     }
 
     @Override
-    @GET
-    @Path("category/{id}/media")
-    public List<MediaWrapper> findMediaForCategory(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "category/{id}/media", method = RequestMethod.GET)
+    public List<MediaWrapper> findMediaForCategory(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findMediaForCategory(request, id);
     }
 
     @Override
-    @GET
-    @Path("product/{id}/categories")
-    public CategoriesWrapper findParentCategoriesForProduct(@Context HttpServletRequest request,
-            @PathParam("id") Long id) {
+    @RequestMapping(value = "product/{id}/categories", method = RequestMethod.GET)
+    public CategoriesWrapper findParentCategoriesForProduct(HttpServletRequest request,
+            @PathVariable("id") Long id) {
         return super.findParentCategoriesForProduct(request, id);
     }
 }

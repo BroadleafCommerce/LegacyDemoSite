@@ -38,7 +38,14 @@ public class NullPaymentGatewayTransactionServiceImpl implements PaymentGatewayT
 
     @Override
     public PaymentResponseDTO capture(PaymentRequestDTO paymentRequestDTO) throws PaymentException {
-        throw new PaymentException("The capture method is not supported for this module");
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(PaymentType.CREDIT_CARD, NullPaymentGatewayType.NULL_GATEWAY);
+        responseDTO.valid(true)
+                .paymentTransactionType(PaymentTransactionType.CAPTURE)
+                .amount(new Money(paymentRequestDTO.getTransactionTotal()))
+                .rawResponse("Successful Capture")
+                .successful(true);
+
+        return responseDTO;
     }
 
     @Override

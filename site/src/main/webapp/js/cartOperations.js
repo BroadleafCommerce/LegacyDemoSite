@@ -133,7 +133,11 @@ $(function(){
                         } else if (wishlistAdd) {
                             showInCartButton(data.productId, 'wishlist');
                         } else {
-                            showInCartButton(data.productId, 'cart');
+                        	if(data.skuId != null) {
+                        		showInCartButton(data.skuId, 'cart');
+                        	} else {
+                            	showInCartButton(data.productId, 'cart');
+                        	}
                         }
                         
                         if (wishlistAdd) {
@@ -160,7 +164,11 @@ $(function(){
                 if (extraData) {
                     updateHeaderCartItemsCount(extraData.cartItemCount);
                     if ($form.children('input.quantityInput').val() == 0) {
-                        showAddToCartButton(extraData.productId, 'cart');
+                    	if(extraData.skuId != null) {
+                        	showAddToCartButton(extraData.skuId, 'cart');
+                    	} else {
+                    		showAddToCartButton(extraData.productId, 'cart');
+                    	}
                     }
                 }
 
@@ -179,7 +187,11 @@ $(function(){
                 type: "GET"
             }, function(data, extraData) {
                 updateHeaderCartItemsCount(extraData.cartItemCount);
-                showAddToCartButton(extraData.productId, 'cart');
+                if(extraData.skuId != null) {
+                	showAddToCartButton(extraData.skuId, 'cart');
+            	} else {
+            		showAddToCartButton(extraData.productId, 'cart');
+            	}
                 
                 $('.simplemodal-wrap').html(data);
             }
@@ -188,7 +200,7 @@ $(function(){
     });
     
     // Intercept remove from cart operations and perform them via AJAX instead
-    // This will trigger on any link with class "remove_from_cart"
+    // This will trigger on any link with class "remove_promo"
     $('body').on('click', 'a.remove_promo', function() {
         var link = this;
         

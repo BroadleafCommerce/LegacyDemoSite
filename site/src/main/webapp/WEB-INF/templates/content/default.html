@@ -1,5 +1,7 @@
-<div>
-    <div style="display:none;" th:fragment="title" th:inline="text">[[${BLC_PAGE.description}]] - Broadleaf Demo - Heat Clinic</div>
+<th:block layout:decorator="layout/fullPageLayout" layout:fragment="content">
+    <head>
+        <title th:text="${BLC_PAGE.description}"></title>
+    </head>
     
     <section id="left_column">
         <header>
@@ -14,12 +16,13 @@
         <div id="options">
             <div class="section">
                  <blc:related_products categoryId="2001" quantity="3"/>  
-                 <ul id="featured_products" class="group">
+                 <ul th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" id="featured_products" class="group">
                     <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                 </ul>
+                 <ul th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" id="featured_products" class="group">
+                    <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
                  </ul>
             </div>                                  
         </div>
     </section>  
-</div>
-        
-            
+</th:block>
