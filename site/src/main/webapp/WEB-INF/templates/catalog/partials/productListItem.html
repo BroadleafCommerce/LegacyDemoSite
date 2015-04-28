@@ -45,5 +45,5 @@
 <div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
     <h3 th:text="*{name}"></h3>
     <div class="product-options" th:substituteby="catalog/partials/productOptions"/>
-    <input type="button" class="addToCart" th:value="#{product.buyNow}" />
+    <input type="button" class="addToCart" th:value="#{product.select}" />
 </div>
