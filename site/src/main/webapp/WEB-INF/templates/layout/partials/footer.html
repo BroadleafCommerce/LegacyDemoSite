@@ -1,21 +1,21 @@
 <footer class="group">
     <div id="left_content">
-        <h4><span th:text="#{footer.delivering}">Delivering Texas Sized Heat</span></h4>
-        &copy; <span th:text="#{footer.copyrightHC}">Copyright 2013 The Heat Clinic</span><br />
-        <a href=""><span th:text="#{footer.privacyPolicy}">Privacy Policy</span></a>
+        <h4><span th:utext="#{footer.delivering}">Delivering Texas Sized Heat</span></h4>
+        &copy; <span th:utext="#{footer.copyrightHC}">Copyright 2013 The Heat Clinic</span><br />
+        <a href=""><span th:utext="#{footer.privacyPolicy}">Privacy Policy</span></a>
     </div>
     <div id="right_content">
-        <h4><span th:text="#{footer.since1978}">Since Nineteen Seventy Eight</span></h4>
-        <span th:text="#{footer.allRights}">All Rights Reserved</span>.<br />
-        <a href=""><span th:text="#{footer.customerService}">Customer Service</span></a>
+        <h4><span th:utext="#{footer.since1978}">Since Nineteen Seventy Eight</span></h4>
+        <span th:utext="#{footer.allRights}">All Rights Reserved</span>.<br />
+        <a href=""><span th:utext="#{footer.customerService}">Customer Service</span></a>
     </div>
     <div id="blc_brand">
         <a href="http://www.broadleafcommerce.com"  >
             <img blc:src="@{/img/broadleaf-seal.png}" alt="Broadleaf Commerce" />
-            <h4><span th:text="#{footer.branding.poweredByBLC}">Powered by Broadleaf Commerce</span></h4>
+            <h4><span th:utext="#{footer.branding.poweredByBLC}">Powered by Broadleaf Commerce</span></h4>
             <br />
         </a>
-        <p>&copy; <span th:text="#{footer.branding.copyrightBLC}">Copyright 2013 Broadleaf Commerce</span><br /></p>
+        <p>&copy; <span th:utext="#{footer.branding.copyrightBLC}">Copyright 2013 Broadleaf Commerce</span><br /></p>
     </div>
 
     <div th:remove="all">

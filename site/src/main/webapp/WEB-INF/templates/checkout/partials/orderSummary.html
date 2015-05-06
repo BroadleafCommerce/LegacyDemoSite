@@ -1,19 +1,19 @@
 <div th:fragment="order-summary">
     <div class="cart_title">
-        <span th:text="#{cart.orderSummary}">Order Summary</span>
+        <span th:utext="#{cart.orderSummary}">Order Summary</span>
         <a id="cartLink" class="modalcart refreshonclose" th:href="@{/cart}">
-            <span th:text="#{cart.edit}">Edit</span>
+            <span th:utext="#{cart.edit}">Edit</span>
         </a>
     </div>
     <table id="cart_summary" class="order_summary">
         <thead>
         <tr>
             <th>&nbsp;</th>
-            <th align="left"><span th:text="#{cart.item}">Item</span></th>
-            <th><span th:text="#{cart.quantity}">Quantity</span></th>
-            <th> <span th:text="#{cart.price}">Price</span></th>
-            <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
-            <th><span th:text="#{cart.total}">Total</span></th>
+            <th align="left"><span th:utext="#{cart.item}">Item</span></th>
+            <th><span th:utext="#{cart.quantity}">Quantity</span></th>
+            <th> <span th:utext="#{cart.price}">Price</span></th>
+            <th> <span th:utext="#{cart.totalSavings}">Total Savings</span></th>
+            <th><span th:utext="#{cart.total}">Total</span></th>
         </tr>
         </thead>
         <tbody>
@@ -27,26 +27,26 @@
                 <img th:if="*{#lists.isEmpty(sku.productOptionValues)}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
             </td>
             <td align="left">
-                <a th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                <a th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" th:href="@{*{product.url}}" th:utext="*{product.name}"></a>
                 <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and *{sku.urlKey}" th:href="@{*{product.url} + *{sku.urlKey}}" th:inline="text">
-                   [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:text="${optionValue.attributeValue}"></span>
+                   [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
                 </a>
                 <a th:if="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')} and !*{sku.urlKey}" th:href="@{*{product.url}}" th:inline="text">
-                   [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:text="${optionValue.attributeValue}"></span>
+                   [[*{sku.name}]] <span th:each="optionValue : *{sku.productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
                 </a>
                 <br/>
                 <blc:product_option_display orderItem="${item}" >
                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
                         <li th:each="entry: ${productOptionDisplayValues}">
-                            <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                            <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
                         </li>
                     </ul>
                 </blc:product_option_display>
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
-                    <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
+                    <li th:each="doi : *{discreteOrderItems}" th:utext="${doi.quantity + ' x ' + doi.name}" />
                 </ul>
             </td>
-            <td align="center" th:text="*{quantity}"></td>
+            <td align="center" th:utext="*{quantity}"></td>
             <td align="center" blc:price="*{price}"></td>
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
 

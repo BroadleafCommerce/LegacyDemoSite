@@ -2,7 +2,7 @@
 
     <div class="payment_info"
          th:unless="${showAllPaymentMethods}">
-        <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
+        <h3><span th:utext="#{cart.paymentMethod}">Payment Method</span></h3>
 
         <ul th:if="${orderContainsThirdPartyPayment}" class="payment_methods">
             <li><img blc:src="@{/img/payment/paypal-curved-32px.png}"/></li>
@@ -12,10 +12,10 @@
             <li><img src="https://www.mastercard.com/mc_us/wallet/img/en/US/mp_mc_acc_034px_gif.gif"/></li>
             <div th:if="${unconfirmedCC.initialTransaction != null}">
                 <div th:if="!${#strings.isEmpty(unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE'])}">
-                    <b th:text="${unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
-                    <span th:text="${unconfirmedCC.initialTransaction.additionalFields['NAME_ON_CARD']}"></span><br/>
-                    ****<span th:text="${unconfirmedCC.initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                    <span th:text="#{confirmation.exp}">exp.</span> <span th:text="${unconfirmedCC.initialTransaction.additionalFields['EXP_DATE']}"/>
+                    <b th:utext="${unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
+                    <span th:utext="${unconfirmedCC.initialTransaction.additionalFields['NAME_ON_CARD']}"></span><br/>
+                    ****<span th:utext="${unconfirmedCC.initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
+                    <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="${unconfirmedCC.initialTransaction.additionalFields['EXP_DATE']}"/>
                 </div>
             </div>
         </ul>
@@ -33,7 +33,7 @@
 
     <div class="payment_info"
             th:if="${showAllPaymentMethods}">
-        <h3><span th:text="#{cart.paymentMethod}">Payment Method</span></h3>
+        <h3><span th:utext="#{cart.paymentMethod}">Payment Method</span></h3>
 
         <ul class="payment_methods">
             <li><img blc:src="@{/img/payment/american-express-curved-32px.png}"/></li>
@@ -46,7 +46,7 @@
         <dl id="paymentOptions">
             <dt>
                 <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
-                <label for="paymentMethod_cc"><span th:text="#{cart.creditCard}">Credit Card</span></label>
+                <label for="paymentMethod_cc"><span th:utext="#{cart.creditCard}">Credit Card</span></label>
             </dt>
             <dd>
                 <blc:transparent_credit_card_form paymentRequestDTO="${paymentRequestDTO}"
@@ -57,7 +57,7 @@
 
                         <div class="form50">
                             <label for="cardNumber" class="prompt">
-                                <span th:text="#{cart.cardNumber}">Card Number</span>
+                                <span th:utext="#{cart.cardNumber}">Card Number</span>
                             </label>
                             <div class="element form100">
                                 <input type="text"
@@ -73,7 +73,7 @@
 
                         <div class="form50">
                             <label class="prompt">
-                                <span th:text="#{cart.cvv}">CVV</span>
+                                <span th:utext="#{cart.cvv}">CVV</span>
                             </label>
                             <div class="element form100">
                                 <input type="text"
@@ -90,11 +90,11 @@
                         <blc:credit_card_types>
                             <div th:if="${paymentGatewayCardTypes != null}" class="form50">
                                 <label for="cardType" class="prompt">
-                                    <span th:text="#{cart.cardType}">Card Type</span>
+                                    <span th:utext="#{cart.cardType}">Card Type</span>
                                 </label>
                                 <div class="form100">
                                     <select id="cardType" th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
-                                        <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                                        <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:utext="${entry.value}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
 
                         <div class="form50">
                             <label for="nameOnCard" class="prompt">
-                                <span th:text="#{cart.nameOnCard}">Name on the Card</span>
+                                <span th:utext="#{cart.nameOnCard}">Name on the Card</span>
                             </label>
                             <div class="form100">
                                 <input type="text"
@@ -118,7 +118,7 @@
 
                         <div class="form25">
                             <label for="cardExpDate" class="prompt">
-                                <span th:text="#{cart.experationDate}">Expiration Date</span>
+                                <span th:utext="#{cart.experationDate}">Expiration Date</span>
                             </label>
                             <div class="element form100">
                                 <input type="text"
@@ -140,7 +140,7 @@
             </dd>
             <dt>
                 <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />
-                <label for="paymentMethod_paypal"><span th:text="#{cart.payPal}">PayPal</span></label>
+                <label for="paymentMethod_paypal"><span th:utext="#{cart.payPal}">PayPal</span></label>
             </dt>
             <dd>
                 <div id="paypalfields">
@@ -151,7 +151,7 @@
             </dd>
             <dt>
                 <input type="radio" name="paymentMethod" value="cod" id="paymentMethod_cod" />
-                <label for="paymentMethod_cod"><span th:text="#{cart.collectOnDelivery}">Collect On Delivery</span></label>
+                <label for="paymentMethod_cod"><span th:utext="#{cart.collectOnDelivery}">Collect On Delivery</span></label>
             </dt>
             <dd>
                 <div>

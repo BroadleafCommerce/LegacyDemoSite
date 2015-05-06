@@ -1,6 +1,6 @@
 <th:block layout:decorator="layout/fullPageLayout">
     <head>
-        <title th:text="${sku.name}"></title>
+        <title th:utext="${sku.name}"></title>
     </head>
 
     <div layout:fragment="content">
@@ -9,10 +9,10 @@
         
             <div id="product_content" class="product_container">
                 <h2 th:inline="text">
-                    [[*{name}]] <span th:each="optionValue : *{productOptionValues}" th:text="${optionValue.attributeValue}"></span>
+                    [[*{name}]] <span th:each="optionValue : *{productOptionValues}" th:utext="${optionValue.attributeValue}"></span>
                 </h2>
                 
-                <div id="maker" th:text="*{product.manufacturer}"></div>
+                <div id="maker" th:utext="*{product.manufacturer}"></div>
                 
                 <div id="price">
                     <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{onSale}? 'sale'"></div>
@@ -26,7 +26,7 @@
                         <div th:utext="*{longDescription}" id="description"></div>
                         
                         <div id="inventory" th:if="${checkInventory}">
-                            <b>Available inventory:</b> <span th:text="*{quantityAvailable == null ? '0' : quantityAvailable}" />
+                            <b>Available inventory:</b> <span th:utext="*{quantityAvailable == null ? '0' : quantityAvailable}" />
                             <div th:if="${!availableInventory}" class="out_of_stock">
                                 <a disabled="disabled" class="big-button gray-button">Out of Stock</a>
                             </div>
@@ -42,7 +42,7 @@
                                 <input type="hidden" name="quantity" value="1" />
                                 <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
                             </div>
-                            <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
+                            <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
                         </div>
                     </blc:form>
                 </th:block>
@@ -105,7 +105,7 @@
                         <a th:if="*{skuMedia['primary']}" href="javascript:;" class="zoomThumbActive" th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{*{skuMedia['primary'].url}+'?browse'}__'', largeimage: ''__@{*{skuMedia['primary'].url}}__'' }'}" th:attr="data-tags=*{skuMedia['primary'].tags}">
                             <img th:src="@{*{skuMedia['primary'].url}}" alt="Bottle Closeup" />
                         </a>
-                        <p th:if="*{#maps.size(skuMedia) > 1}" class="thumbs_nav">Swipe to see more... (<span th:text="'1 of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></span>)</p>
+                        <p th:if="*{#maps.size(skuMedia) > 1}" class="thumbs_nav">Swipe to see more... (<span th:utext="'1 of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></span>)</p>
                         
                     </li>
                     
@@ -114,7 +114,7 @@
                             th:rel="${'{ gallery: ''gal1'', smallimage: ''__@{${media.value.url}+'?browse'}__'', largeimage: ''__@{${media.value.url}}__'' }'}" th:attr="data-tags=${media.value.tags}">
                             <img th:src="@{${media.value.url}}" alt="Bottle Closeup" />
                         </a>
-                        <p class="thumbs_nav" th:text="${iterStat.count + 1} + ' of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></p>
+                        <p class="thumbs_nav" th:utext="${iterStat.count + 1} + ' of ' + *{#maps.size(skuMedia) > 3 ? 3 : #maps.size(skuMedia)}"></p>
                     </li>
                 </ul>
             </div>
@@ -149,7 +149,7 @@
                             </blc:form>
                             <br/>
                             <div class="total-reviews">
-                                (<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
+                                (<span th:utext="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -157,8 +157,8 @@
                             <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
                                 <h4>Your Review</h4>
                                 <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
-                                    <span th:text="*{helpfulCount()}">9</span> of 
-                                    <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                    <span th:utext="*{helpfulCount()}">9</span> of
+                                    <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                 </p>
                                 <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                     <input type="radio" class="star" />
@@ -168,18 +168,18 @@
                                     <input type="radio" class="star" />
                                 </blc:form>
                                 <span class="reviewer-info">
-                                    on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+                                    on <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                 </span>
                                 <div class="clearfix"></div>
-                                <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>                         
+                                <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:utext="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
                             </div>
                         <div class="helpful-reviews">
                             <h4>Customer Reviews</h4>
                             <ul class="customer-reviews">
                                 <li th:each="review, iterStat : *{reviews}" th:object="${review}" th:if="${iterStat.count} lt 4">
                                     <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
-                                        <span th:text="*{helpfulCount()}">9</span> of 
-                                        <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                        <span th:utext="*{helpfulCount()}">9</span> of
+                                        <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                     </p>
                                     <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                         <input type="radio" class="star" />
@@ -189,11 +189,11 @@
                                         <input type="radio" class="star" />
                                     </blc:form>
                                     <span class="reviewer-info">
-                                        by <span class="penname" th:text="${review.customer.firstName}">John</span> on  
-                                        <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+                                        by <span class="penname" th:utext="${review.customer.firstName}">John</span> on
+                                        <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                     </span>
                                     <div class="clearfix"></div>
-                                    <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
+                                    <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:utext="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
                                 </li>
                             </ul>
                         </div>

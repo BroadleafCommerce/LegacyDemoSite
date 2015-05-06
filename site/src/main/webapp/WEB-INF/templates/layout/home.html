@@ -28,7 +28,7 @@
 
         
         <blc:content contentType="Homepage Featured Products Title" />    
-        <div th:if="${contentItem !=null and contentItem['messageText'] !=null}" class="title_bar" th:text="${contentItem['messageText']}"></div>
+        <div th:if="${contentItem !=null and contentItem['messageText'] !=null}" class="title_bar" th:utext="${contentItem['messageText']}"></div>
         
         <ul th:if="${products}" id="products" class="group">
             <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>

@@ -1,10 +1,10 @@
 <div th:fragment="billing-info-form">
 
     <div class="cart_title">
-        <span th:text="#{cart.billingInformation}">Billing Information</span>
+        <span th:utext="#{cart.billingInformation}">Billing Information</span>
         <a th:if="${'SAVED' == sectionDTO.state.type}"
            th:href="@{/checkout(edit-billing='true')}">
-            <span th:text="#{cart.edit}">Edit</span>
+            <span th:utext="#{cart.edit}">Edit</span>
         </a>
     </div>
 
@@ -12,7 +12,7 @@
 
     <div class="checkout_warning"
          th:if="${'INACTIVE' == sectionDTO.state.type}">
-        <span th:text="${sectionDTO.helpMessage}"></span>
+        <span th:utext="${sectionDTO.helpMessage}"></span>
     </div>
 
     <blc:form th:object="${billingInfoForm}"
@@ -24,7 +24,7 @@
                         and !#fields.hasErrors('*')}"
              th:inline="text" class="clearfix">
             <div class="group shipping-info-read-only">
-                <h3><span th:text="#{cart.billingAddress}">Billing Address</span></h3>
+                <h3><span th:utext="#{cart.billingAddress}">Billing Address</span></h3>
                 <address th:if="*{address.phonePrimary !=null and address.phonePrimary.phoneNumber != null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
                     [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
@@ -46,7 +46,7 @@
             <input type="hidden" name="address.isoCountryAlpha2" value="US" />
 
             <div class="form30">
-                <label for="firstName"><span th:text="#{cart.firstName}">First Name</span></label>
+                <label for="firstName"><span th:utext="#{cart.firstName}">First Name</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.firstName')}" th:errors="*{address.firstName}"></span>
                 <input type="text" th:field="*{address.firstName}"
                        class="field30 required cloneable"
@@ -54,7 +54,7 @@
             </div>
 
             <div class="form30 margin20">
-                <label for="lastName"><span th:text="#{cart.lastName}">Last Name</span></label>
+                <label for="lastName"><span th:utext="#{cart.lastName}">Last Name</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.lastName')}" th:errors="*{address.lastName}"></span>
                 <input type="text"
                        th:field="*{address.lastName}"
@@ -63,7 +63,7 @@
             </div>
 
             <div class="form30 margin20">
-                <label for="phone"><span th:text="#{cart.phone}">Phone</span></label>
+                <label for="phone"><span th:utext="#{cart.phone}">Phone</span></label>
                 <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
                 <input type="tel"
                        id="address.phonePrimary"
@@ -80,7 +80,7 @@
             <div class="clearfix"></div>
 
             <div class="form50">
-                <label for="address1"><span th:text="#{cart.address}">Address</span></label>
+                <label for="address1"><span th:utext="#{cart.address}">Address</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.addressLine1')}" th:errors="*{address.addressLine1}"></span>
                 <input type="text"
                        th:field="*{address.addressLine1}"
@@ -89,7 +89,7 @@
             </div>
 
             <div class="form50 margin20">
-                <label for="address2"><span th:text="#{cart.address2}">Address 2</span></label>
+                <label for="address2"><span th:utext="#{cart.address2}">Address 2</span></label>
                 <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
                 <input type="text"
                        th:field="*{address.addressLine2}" class="field50 cloneable" />
@@ -98,7 +98,7 @@
             <div class="clearfix"></div>
 
             <div class="form30">
-                <label for="city"><span th:text="#{cart.cityState}">City / State</span></label>
+                <label for="city"><span th:utext="#{cart.cityState}">City / State</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
                 <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.stateProvinceRegion')}"/>
                 <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
@@ -113,14 +113,14 @@
                     <option value="">--</option>
                     <option th:each="state : ${states}"
                             th:value="${state.abbreviation}"
-                            th:text="${state.abbreviation}">
+                            th:utext="${state.abbreviation}">
 
                      </option>
                 </select>
             </div>
 
             <div class="form25 margin20">
-                <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label>
+                <label for="postal_code"><span th:utext="#{cart.postalCode}">Postal Code</span></label>
                 <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
                 <input type="text"
                        th:field="*{address.postalCode}"

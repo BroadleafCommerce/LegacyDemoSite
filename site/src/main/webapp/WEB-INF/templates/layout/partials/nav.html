@@ -10,11 +10,11 @@
         <li th:each="menuItem : ${menuItems}">
 
             <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
-                <span th:text="${menuItem.label}"></span>
+                <span th:utext="${menuItem.label}"></span>
             </a>
             <ul th:if="${menuItem.submenu != null}" class="sub-menu">
                 <li th:each="submenuItem : ${menuItem.submenu}">
-                    <a th:href="@{${submenuItem.url}}" th:text="${submenuItem.label}"></a>
+                    <a th:href="@{${submenuItem.url}}" th:utext="${submenuItem.label}"></a>
                 </li>
             </ul>
 

@@ -9,10 +9,10 @@
 	    
 	            <header>
 	                <h1 th:unless="${#strings.isEmpty(originalQuery)}" th:inline="text">
-	                    <span th:text="#{search.results}">Search Results for</span> [[${originalQuery}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{search.of}">of</span> [[${result.totalResults}]])
+	                    <span th:utext="#{search.results}">Search Results for</span> [[${originalQuery}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:utext="#{search.of}">of</span> [[${result.totalResults}]])
 	                </h1>
 	                <h1 th:if="${#strings.isEmpty(originalQuery)}">
-	                    <span th:text="#{search.resultsFor}">Search Results for</span> (0)
+	                    <span th:utext="#{search.resultsFor}">Search Results for</span> (0)
 	                </h1>
 	                <div th:substituteby="catalog/partials/productSortOptions"></div>
 	            </header>
@@ -30,7 +30,7 @@
 	        </section>
 	    
 	        <section id="right_column">
-	            <header><span th:text="#{search.filterSearch}">Filter your search</span></header>
+	            <header><span th:utext="#{search.filterSearch}">Filter your search</span></header>
 	            <div id="options">
 	            
 	                <div th:substituteby="catalog/partials/facetFilter" />
@@ -38,7 +38,7 @@
 	                <div th:substituteby="catalog/partials/rightHandBannerAds" />
 	                
 	                <section id="right_column" th:unless="${#lists.isEmpty(products)} and ${#lists.isEmpty(skus)}">
-	                    <header><span th:text="#{search.featuredProducts}">Featured Products</span></header>
+	                    <header><span th:utext="#{search.featuredProducts}">Featured Products</span></header>
 	                    <div id="options">
 	                        <div class="section">
 	                            <th:block th:unless="${skus}">

@@ -4,22 +4,22 @@
             <table id="cart_products">
                 <thead>
                     <tr>
-                        <th colspan="2"><span th:text="#{cart.item}">Item</span></th>
-                        <th><span th:text="#{cart.quantity}">Quantity</span></th>
-                        <th><span th:text="#{cart.address}">Address</span></th>
-                        <th><span th:text="#{cart.method}">Method</span></th>
+                        <th colspan="2"><span th:utext="#{cart.item}">Item</span></th>
+                        <th><span th:utext="#{cart.quantity}">Quantity</span></th>
+                        <th><span th:utext="#{cart.address}">Address</span></th>
+                        <th><span th:utext="#{cart.method}">Method</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="omo : ${orderMultishipOptions}" th:id="${'productRow' + omo.orderItem.id}">
                         <td><img th:if="${omo.orderItem.product.media['primary'] != null}" blc:src="@{${omo.orderItem.product.media['primary'].url} + '?browse'}" width="60" th:alt="${omo.orderItem.product.name}" /></td>
                         <td class="name">
-                            <a th:href="@{${omo.orderItem.product.url}}" th:text="${omo.orderItem.product.name}"></a>
+                            <a th:href="@{${omo.orderItem.product.url}}" th:utext="${omo.orderItem.product.name}"></a>
                             <br/>
                              <blc:product_option_display orderItem="${omo.orderItem}" >
                                <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
                                    <li th:each="entry: ${productOptionDisplayValues}">
-                                     <span  th:text="${entry.key} + ': ' + ${entry.value}"></span>
+                                     <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
                                    </li>
                                </ul>
                             </blc:product_option_display>
@@ -35,9 +35,9 @@
                                     <option value="">--</option>
                                     <option th:each="customerAddress : ${customerAddresses}" 
                                             th:value="${customerAddress.address.id}" 
-                                            th:text="${customerAddress}"
+                                            th:utext="${customerAddress}"
                                             th:selected="${customerAddress.address.equals(omo.address)}"></option>
-                                    <option value="addNewAddress"><span th:text="#{cart.addNewAddress}">Add New Address...</span></option>
+                                    <option value="addNewAddress"><span th:utext="#{cart.addNewAddress}">Add New Address...</span></option>
                             </select>
                         </td>
                         <td align="center">
@@ -47,7 +47,7 @@
                                     <option value="">--</option>
                                     <option th:each="fulfillmentOption : ${fulfillmentOptions}" 
                                             th:value="${fulfillmentOption.id}" 
-                                            th:text="${fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"
+                                            th:utext="${fulfillmentOption.name + ' (' + fulfillmentOption.longDescription + ')'}"
                                             th:selected="${fulfillmentOption.equals(omo.fulfillmentOption)}"></option>
                             </select>
                         </td>
@@ -62,8 +62,8 @@
             
         <div id="multiship-actions">
             <input type="submit" class="save medium red" value="Save" />
-            <a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}"><span th:text="#{cart.addAddress}">Add New Address</span></a>
-            <a th:href="@{/checkout}" class="cancel small-button gray-button"><span th:text="#{cart.cancel}">Cancel</span></a>
+            <a class="add-address-link small-button dark-button" th:href="@{/checkout/add-address}"><span th:utext="#{cart.addAddress}">Add New Address</span></a>
+            <a th:href="@{/checkout}" class="cancel small-button gray-button"><span th:utext="#{cart.cancel}">Cancel</span></a>
         </div>
     </blc:form>
 </div>
