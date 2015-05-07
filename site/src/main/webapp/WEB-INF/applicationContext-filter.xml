@@ -17,6 +17,8 @@
 
     <bean id="openEntityManagerInViewFilter" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter"/>
 
+    <bean id="resourceUrlEncodingFilter" class="org.springframework.web.servlet.resource.ResourceUrlEncodingFilter"/>
+
     <bean id="blPreSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">        
             <sec:filter-chain pattern="/**" filters="
@@ -28,6 +30,7 @@
     <bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map request-matcher="ant">
             <sec:filter-chain pattern="/**" filters="
+               resourceUrlEncodingFilter,
                blRequestFilter,
                blCustomerStateFilter,
                blTranslationFilter,
