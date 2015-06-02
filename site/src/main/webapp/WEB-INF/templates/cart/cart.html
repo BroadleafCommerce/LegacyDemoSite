@@ -7,15 +7,15 @@
         <table th:substituteby="cart/partials/cartProductsTable"></table>
     
         <div id="cart_total" class="group">
-            <h3><span th:text="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
+            <h3><span th:utext="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>
             <div id="subtotal" th:unless="${cart.subTotal?.zero}" blc:price="${cart.subTotal?.subtract(cart.orderAdjustmentsValue)}"></div>
             <div id="orderDiscounts" th:unless="${cart.orderAdjustmentsValue.zero}">
-                <span th:text="#{cart.orderDiscount}">Order Discount</span>: <span blc:price="${cart.orderAdjustmentsValue}" />
+                <span th:utext="#{cart.orderDiscount}">Order Discount</span>: <span blc:price="${cart.orderAdjustmentsValue}" />
             </div>
-            <p><span th:text="#{cart.subtotalDisclaimer}">Subtotal does not yet include applicable tax or shipping and handling charges</span>.</p>
+            <p><span th:utext="#{cart.subtotalDisclaimer}">Subtotal does not yet include applicable tax or shipping and handling charges</span>.</p>
             <div id="checkout">
                 <a th:href="@{/checkout}" target="_top" class="big-button red-button">
-                    <span th:text="#{cart.checkout}">Checkout</span>
+                    <span th:utext="#{cart.checkout}">Checkout</span>
                 </a>
             </div>
             <p>
@@ -26,17 +26,17 @@
                     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" alt="Submit Form" />
                 </form>
                 <div class="clearfix"></div>
-                <a th:href="@{/}" target="_top">&laquo; <span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
+                <a th:href="@{/}" target="_top">&laquo; <span th:utext="#{cart.continueShopping}">Continue Shopping</span></a>
             </p>
         </div>
-        <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
-        <p class="error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+        <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
+        <p class="error" th:if="${errorMessage}" th:utext="${errorMessage}"></p>
         <blc:form id="cart_promo" method="POST" th:action="@{/cart/promo}">
-            <label for="promoCode"><span th:text="#{cart.promoCode}">Promo Code</span>:</label>
+            <label for="promoCode"><span th:utext="#{cart.promoCode}">Promo Code</span>:</label>
             <input id="promoCode" name="promoCode" type="text" th:value="*{promoCode}" value="" autocomplete="off"/>
             <input type="submit" id="addPromo" name="addPromo" th:value="#{cart.applyDiscount}" class="small red" />
             <div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
-                <div class="promo"><span th:text="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
+                <div class="promo"><span th:utext="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
             </div>
             <div id="cart_promo_error" style="display: none;"></div>
         </blc:form>

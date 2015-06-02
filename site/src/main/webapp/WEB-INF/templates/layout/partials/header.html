@@ -5,19 +5,19 @@
             <div th:if="${customer.anonymous}"  th:remove="tag">
 
                 <a class="account" th:href="@{/login}">
-                    <span th:text="#{home.login}">Login</span>
+                    <span th:utext="#{home.login}">Login</span>
                 </a>
                 &nbsp;|&nbsp; 
                 <a class="account" th:href="@{/register}">
-                    <span th:text="#{home.register}">Register</span>
+                    <span th:utext="#{home.register}">Register</span>
                 </a>
                 &nbsp;|&nbsp; 
             </div>
             <div th:unless="${customer.anonymous}" th:remove="tag">
-                <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
+                <span><span th:utext="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:utext="${customer.firstName}"></a></span>
                 &nbsp;|&nbsp; 
                 <a th:href="@{/logout}">
-                    <span th:text="#{home.logout}">Logout</span>
+                    <span th:utext="#{home.logout}">Logout</span>
                 </a>
                 &nbsp;|&nbsp; 
             </div>
@@ -26,16 +26,16 @@
             <a id="cartLink" class="modalcart" th:href="@{/cart}">
                 <img blc:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
                 &nbsp; 
-                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:text="#{home.item}" />
-                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:text="#{home.items}" />
-                <span class="headerCartItemsCount" th:text="${cart.itemCount}" />
-                <span class="headerCartItemsCountWord" th:text="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
+                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
+                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
+                <span class="headerCartItemsCount" th:utext="${cart.itemCount}" />
+                <span class="headerCartItemsCountWord" th:utext="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
             </a>
 
         </div>
 
         <div id="languages">
-            <span id="selectedLocale" th:text="${session.blLocale.localeCode}" style="display: none" />
+            <span id="selectedLocale" th:utext="${session.blLocale.localeCode}" style="display: none" />
 
             <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'en_US')">
                 <img id="en_US" src="img/flags/United-States.png" blc:src="@{/img/flags/United-States.png}" alt="United States" title="English" />

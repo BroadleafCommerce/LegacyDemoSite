@@ -54,12 +54,6 @@
 
     <!-- Disable caching for any non-resource. This prevents the header from becoming stagnant -->
     <mvc:interceptors>
-        <bean id="webContentInterceptor" class="org.broadleafcommerce.core.web.interceptor.NonResourceWebContentInterceptor">
-            <property name="cacheSeconds" value="0"/>
-            <property name="useExpiresHeader" value="true"/>
-            <property name="useCacheControlHeader" value="true"/>
-            <property name="useCacheControlNoStore" value="true"/>
-        </bean>
         <!-- Interceptor for blLocalCode-->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="blLocaleCode"/>

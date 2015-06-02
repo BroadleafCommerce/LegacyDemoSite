@@ -12,7 +12,7 @@
                    <div th:each="orderItem : *{orderItems}" th:object="${orderItem}" th:remove="tag">
                    <tr >
                     
-                        <td class="label" th:text="${orderItem.quantity} + ' of ' + ${orderItem.name}"></td>
+                        <td class="label" th:utext="${orderItem.quantity} + ' of ' + ${orderItem.name}"></td>
                         <td class="price" blc:price="${orderItem.totalPrice}"></td>
                         
                     </tr>
@@ -54,7 +54,7 @@
     
         <li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
             <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
-                <h3>Shipment<span th:if="*{status}" th:text="' : ' + *{status}"></span></h3>
+                <h3>Shipment<span th:if="*{status}" th:utext="' : ' + *{status}"></span></h3>
                 <div class="details">
                     <div class="shipping-information">
                         <div class="fulfillment-group-address" th:inline="text">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="shipping-type">
                             <h4>Shipping Speed</h4>
-                            <div th:text="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
+                            <div th:utext="*{fulfillmentOption.name} + ': ' + *{fulfillmentOption.longDescription}"></div>
                         </div>
                     </div>
                     <table class="order-items">
@@ -86,7 +86,7 @@
                        <div th:each="fulfillmentGroupItem, iterStat : *{fulfillmentGroupItems}" th:object="${fulfillmentGroupItem}" th:remove="tag">
                        <tr >
                         
-                            <td class="label" th:text="${fulfillmentGroupItem.quantity} + ' of ' + ${fulfillmentGroupItem.orderItem.name}"></td>
+                            <td class="label" th:utext="${fulfillmentGroupItem.quantity} + ' of ' + ${fulfillmentGroupItem.orderItem.name}"></td>
                            <!--   <td class="price" blc:price="${fulfillmentGroupItem.orderItem.price}"></td>-->
                             
                         </tr>
@@ -112,17 +112,17 @@
                         Amount paid: <span blc:price="*{amount}" />
                         <div th:if="${payment.initialTransaction != null}">
                             <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
-                            <b th:text="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
-                            ****<span th:text="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                            <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{initialTransaction.additionalFields['EXP_DATE']}"/>
+                            <b th:utext="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
+                            ****<span th:utext="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
+                            <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="*{initialTransaction.additionalFields['EXP_DATE']}"/>
                             </div>
                             <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
-                                <span th:text="#{cart.accountCredit.accounts}">Accounts</span><br/>
-                                <b th:text="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                                <span th:utext="#{cart.accountCredit.accounts}">Accounts</span><br/>
+                                <b th:utext="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
                             </div>
                             <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
-                                <span th:text="#{cart.giftCardNumber}">Gift Card Number</span><br/>
-                                <b th:text="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
+                                <span th:utext="#{cart.giftCardNumber}">Gift Card Number</span><br/>
+                                <b th:utext="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
                             </div>
                              <div class="billing-address" th:if="*{type.type == 'CREDIT_CARD'}">
                                 <address th:if="*{billingAddress.phonePrimary != null}">

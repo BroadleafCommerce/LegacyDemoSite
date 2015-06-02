@@ -1,7 +1,7 @@
 
 <th:block layout:decorator="layout/fullPageLayout">
 	<head>
-        <title th:text="${category.name}"></title>
+        <title th:utext="${category.name}"></title>
     </head>
     
 	<div layout:fragment="content">
@@ -11,7 +11,7 @@
 	    
 	            <header>
 	                <h1 th:inline="text">
-	                    <span th:text="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:text="#{category.of}">of</span> [[${result.totalResults}]])
+	                    <span th:utext="#{category.viewing}">Viewing</span> [[${category.name}]] ([[${result.startResult}]] - [[${result.endResult}]] <span th:utext="#{category.of}">of</span> [[${result.totalResults}]])
 	                </h1>
 	                <div th:substituteby="catalog/partials/productSortOptions"></div>
 	            </header>
@@ -29,7 +29,7 @@
 	        </section>
 	    
 	        <section id="right_column">
-	            <header><span th:text="#{category.filterResults}">Filter your results</span></header>
+	            <header><span th:utext="#{category.filterResults}">Filter your results</span></header>
 	            <div id="options">
 	                
 	                <div th:substituteby="catalog/partials/facetFilter" />
@@ -37,7 +37,7 @@
 	                <div th:substituteby="catalog/partials/rightHandBannerAds" />
 	                
 	                <section id="right_column">
-	                    <header><span th:text="#{category.featuredProducts}">Featured Products</span></header>
+	                    <header><span th:utext="#{category.featuredProducts}">Featured Products</span></header>
 	                    <div id="options">
 	                        <div class="section" th:object="${category}">
 	                             <blc:related_products categoryId="*{id}" quantity="3"/>     

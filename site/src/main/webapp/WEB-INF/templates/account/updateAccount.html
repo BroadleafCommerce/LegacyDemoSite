@@ -1,7 +1,7 @@
 <th:block layout:decorator="layout/accountLayout" layout:fragment="content">
     <div class="manage-account-form-wrapper">
     
-        <p class="success" th:if="${successMessage}" th:text="${successMessage}"></p>
+        <p class="success" th:if="${successMessage}" th:utext="${successMessage}"></p>
         
         <h2>Update Account Information</h2>
             <blc:form class="manage-account" action="#" th:action="@{/account}" th:object="${updateAccountForm}" method="POST" style="width: 400px;">

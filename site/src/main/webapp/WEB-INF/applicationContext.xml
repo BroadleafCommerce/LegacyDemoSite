@@ -251,14 +251,8 @@
         <property name="collectionRef" value="cssLocations" />
         <property name="targetRef" value="blCssLocations" />
     </bean>
-    
-    <bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="locations" ref="blJsLocations"/>
-        <property name="handlers" ref="blJsHandlers" />
-    </bean>
-    
-    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="locations" ref="blCssLocations"/>
-        <property name="handlers" ref="blCssHandlers" />
-    </bean>
+
+    <bean id="blJsResources" parent="siteJsResourceRequestHandlerBase" />
+
+    <bean id="blCssResources" parent="siteCssResourceRequestHandlerBase" />
 </beans>

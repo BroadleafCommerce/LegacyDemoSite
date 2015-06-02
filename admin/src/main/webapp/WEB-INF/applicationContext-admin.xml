@@ -119,20 +119,23 @@
             </list>
         </property>
     </bean>
-	
-	<bean id="blJsResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="handlers">
+
+    <bean id="blJsResources" parent="adminJsResourceHttpRequestHandlerBase" />
+
+    <bean id="cssLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
             <list>
-                <ref bean="blRuleBuilderEnumOptionsResourceHandler" />
-                <ref bean="blBLCJSResourceHandler" />
+                <value>/css/</value>
             </list>
         </property>
-        <property name="locations" ref="blJsLocations" />
     </bean>
-    
-    <bean id="blCssResources" class="org.broadleafcommerce.common.web.resource.BroadleafResourceHttpRequestHandler">
-        <property name="locations" ref="blCssLocations"/>
+
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="cssLocations" />
+        <property name="targetRef" value="blCssLocations" />
     </bean>
+
+    <bean id="blCssResources" parent="adminCssResourceHttpRequestHandlerBase" />
     
     <bean id="blJsFileMap" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">

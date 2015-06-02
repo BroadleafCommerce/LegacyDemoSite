@@ -1,6 +1,6 @@
 <th:block layout:decorator="layout/accountLayout" layout:fragment="content">
     <div class="manage-account-form-wrapper">
-        <p class="success" th:if="${successMessage}" th:text="${successMessage}"></p>
+        <p class="success" th:if="${successMessage}" th:utext="${successMessage}"></p>
         <h2>Address Book</h2>
         <p th:if="${#lists.isEmpty(customerAddresses)}" style="margin: 20px 10px;">
             You have not yet added any addresses to your account. Start by adding one below. 
@@ -10,7 +10,7 @@
             <select onchange="location.href=this.options[selectedIndex].value">
                 <option>Choose an address to update...</option>
                 <option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="@{'/account/addresses/' + *{id}}">
-                    <span th:text="*{!#strings.isEmpty(addressName) ? addressName + ' (' + address.addressLine1 + ')' : address.addressLine1}"></span>
+                    <span th:utext="*{!#strings.isEmpty(addressName) ? addressName + ' (' + address.addressLine1 + ')' : address.addressLine1}"></span>
                 </option>
             </select>
             <span th:if="${customerAddressForm.customerAddressId}">&nbsp;&nbsp;- or -&nbsp;&nbsp;<a th:href="@{/account/addresses}" class="medium red">create a new address</a></span>
@@ -54,7 +54,7 @@
                     <input type="text" th:field="*{address.city}" class="field25 required cloneable" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
                     <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;" class="required cloneable" th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
                         <option value="">--</option>
-                        <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
+                        <option th:each="state : ${states}" th:value="${state.abbreviation}" th:utext="${state.abbreviation}"></option>
                     </select>
                 </div>
                 <div class="form25 margin20">
@@ -76,7 +76,7 @@
             <div>
                 <input type="submit" th:value="*{customerAddressId != null ? 'Update Address' : 'Create New Address'}" class="medium red" />
                 <input th:if="*{customerAddressId}" type="submit" name="removeAddress" value="Remove" class="small dark" />
-                <span class="error" th:if="${errorMessage}" th:text="${errorMessage}"></span>
+                <span class="error" th:if="${errorMessage}" th:utext="${errorMessage}"></span>
             </div>
         </blc:form>
     </div>

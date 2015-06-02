@@ -1,11 +1,11 @@
 <th:block layout:decorator="layout/fullPageLayout" layout:fragment="content">
     <head>
-        <title th:text="${BLC_PAGE.description}"></title>
+        <title th:utext="${BLC_PAGE.description}"></title>
     </head>
     
     <section id="left_column">
         <header>
-            <h1 th:text="${BLC_PAGE.pageFields[title]}"></h1>
+            <h1 th:utext="${BLC_PAGE.pageFields[title]}"></h1>
         </header>
         <div class="clearfix"></div>
         <div th:utext="${BLC_PAGE.pageFields[body]}"/>

@@ -9,9 +9,9 @@
             </li>
             <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
                 <div class="order-info-row">
-                 <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:text="*{orderNumber}"></a></span>
-                 <span class="submit-date" th:text="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
-                 <span class="status" th:text="*{status.friendlyType}">Processing</span>
+                 <span class="order-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:utext="*{orderNumber}"></a></span>
+                 <span class="submit-date" th:utext="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
+                 <span class="status" th:utext="*{status.friendlyType}">Processing</span>
                  <span class="total" blc:price="*{total}"></span>
              </div>
                 <div class="order-details"></div>

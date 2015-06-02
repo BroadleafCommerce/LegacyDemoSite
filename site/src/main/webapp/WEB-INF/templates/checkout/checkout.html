@@ -10,19 +10,19 @@
         <div id="cart">
 
             <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
-                <span th:text="#{cart.empty}">Your cart is empty</span>
+                <span th:utext="#{cart.empty}">Your cart is empty</span>
                 <br/>
-                <a th:href="@{/}"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
+                <a th:href="@{/}"><span th:utext="#{cart.continueShopping}">Continue Shopping</span></a>
             </div>
 
         <div th:if="${cartRequiresLock != null}" class="checkout_warning">
-            <span th:text="#{csr_lockCartBeforeCheckout}" />
+            <span th:utext="#{csr_lockCartBeforeCheckout}" />
         </div>
 
         <div th:unless="${#lists.isEmpty(cart.orderItems) or cartRequiresLock != null}">
 
                 <p th:if="${PAYMENT_PROCESSING_ERROR}" class="payment-error">
-                    <span th:text="#{${PAYMENT_PROCESSING_ERROR}}" class="error">...</span>
+                    <span th:utext="#{${PAYMENT_PROCESSING_ERROR}}" class="error">...</span>
                 </p>
 
                 <div class="clearfix"></div>

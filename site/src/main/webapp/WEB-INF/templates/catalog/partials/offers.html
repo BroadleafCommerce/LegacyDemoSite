@@ -2,7 +2,7 @@
              <ul th:if="*{#lists.size(orderItemPriceDetails)>=1}" class="promotion" >
                   <div th:remove="tag" th:each="orderItemPriceDetail : *{orderItemPriceDetails}" th:object="${orderItemPriceDetail}">
                    <li  class="promotion" th:each="orderItemPriceDetailAdjustment : ${orderItemPriceDetail.orderItemPriceDetailAdjustments}" th:object="${orderItemPriceDetailAdjustment}" >                   
-                    <span th:text="*{offerName}"></span>
+                    <span th:utext="*{offerName}"></span>
                     </li>
                     </div>
                 </ul>
@@ -12,7 +12,7 @@
              <ul th:if="${#lists.size(orderItem.orderItemPriceDetails)>=1}" class="promotion" >
                   <div th:remove="tag" th:each="orderItemPriceDetail : ${orderItem.orderItemPriceDetails}" th:object="${orderItemPriceDetail}">
                    <li  class="promotion" th:each="orderItemPriceDetailAdjustment : ${orderItemPriceDetail.orderItemPriceDetailAdjustments}" th:object="${orderItemPriceDetailAdjustment}" >                   
-                    <span th:text="'Promotion Applied: ' + *{offerName}"></span>
+                    <span th:utext="'Promotion Applied: ' + *{offerName}"></span>
                     </li>
                     </div>
                 </ul>

@@ -15,7 +15,7 @@
 </div>
 
 <div class="content">
-    <div class="title" th:text="*{name}"></div>
+    <div class="title" th:utext="*{name}"></div>
     <p th:utext="*{longDescription}"></p>
 </div>
 
@@ -28,7 +28,7 @@
         <a disabled="disabled" class="inCart">Out of Stock</a>
     </div>
     <div class="in_cart" th:classappend="${!inCart}? ' hidden'" th:if="*{#lists.isEmpty(productOptions)}">
-        <a class="modalcart inCart" th:href="@{/cart}"><span th:text="#{product.inCart}">In Cart!</span></a>
+        <a class="modalcart inCart" th:href="@{/cart}"><span th:utext="#{product.inCart}">In Cart!</span></a>
     </div>
 
     <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
@@ -43,7 +43,7 @@
 </div>
 
 <div style="display: none;" th:id="*{'productOptions' + id}" class="product-options modal">
-    <h3 th:text="*{name}"></h3>
+    <h3 th:utext="*{name}"></h3>
     <div class="product-options" th:substituteby="catalog/partials/productOptions"/>
     <input type="button" class="addToCart" th:value="#{product.buyNow}" />
 </div>
