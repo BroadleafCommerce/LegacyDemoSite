@@ -20,6 +20,11 @@
                 <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                 <input type="text" name="lastName" id="lastName" th:field="*{lastName}" class="field50" th:classappend="${#fields.hasErrors('lastName')}? 'fieldError'"/>
             </div>
+            <div class="form100">
+                <label for="password">Password:</label>
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <input type="password" name="password" id="password" th:field="*{password}" class="field50" th:classappend="${#fields.hasErrors('password')}? 'fieldError'"/>
+            </div>
             <input type="submit" class="medium red" value="Submit" />
         </blc:form>
     </div>
