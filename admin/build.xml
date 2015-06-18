@@ -27,6 +27,7 @@
             <jvmarg value="-XX:MaxPermSize=256M" />
             <jvmarg value="-Xmx512M" />
             <jvmarg value="-Xdebug" />
+        	<jvmarg value="-Dmaven.multiModuleProjectDirectory=${maven.home}" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
             <jvmarg value="-javaagent:${spring.instrument.path}" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />
@@ -47,6 +48,7 @@
             <jvmarg value="-XX:MaxPermSize=256M" />
             <jvmarg value="-Xmx1024M" />
             <jvmarg value="-Xdebug" />
+        	<jvmarg value="-Dmaven.multiModuleProjectDirectory=${maven.home}" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
             <jvmarg value="-Drebel.root=${project.root}" />
             <jvmarg value="-noverify" />
@@ -68,6 +70,7 @@
         <artifact:mvn mavenHome="${maven.home}" fork="true" >
             <jvmarg value="-XX:MaxPermSize=256M" />
             <jvmarg value="-Xmx512M" />
+        	<jvmarg value="-Dmaven.multiModuleProjectDirectory=${maven.home}" />
             <arg value="tomcat7:shutdown"/>
         </artifact:mvn>
     </target>
