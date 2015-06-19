@@ -24,7 +24,7 @@ INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, D
 -- Add in any applicable search facets for the given category
 INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (1, 'PRODUCT', 'manufacturer', 'mfg', TRUE, 's');
 INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (2, 'PRODUCT', 'productAttributes(heatRange).value', 'heatRange', FALSE, 'i');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (3, 'PRODUCT', 'defaultSku.retailPrice', 'price', FALSE, 'p');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (3, 'PRODUCT', 'retailPrice', 'price', FALSE, 'p');
 INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, TRANSLATABLE, FACET_FIELD_TYPE) VALUES (4, 'PRODUCT', 'defaultSku.name', 'name', TRUE, TRUE, 's');
 INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (5, 'PRODUCT', 'model', 'model', TRUE, 's');
 INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, TRANSLATABLE) VALUES (6, 'PRODUCT', 'defaultSku.description', 'desc', TRUE, TRUE);
@@ -60,11 +60,11 @@ INSERT INTO BLC_SEARCH_FACET_RANGE (SEARCH_FACET_RANGE_ID, SEARCH_FACET_ID, MIN_
 INSERT INTO BLC_SEARCH_FACET_RANGE (SEARCH_FACET_RANGE_ID, SEARCH_FACET_ID, MIN_VALUE, MAX_VALUE) VALUES (4, 3, 15, null);
 
 ------------------------------------------------------------------------------------------------------------------
--- Inserting products manually involves five steps which are outlined below.   Typically, products are loaded 
--- up front in the project and then managed via the Broadleaf Commerce admin.   
+-- Inserting products manually involves five steps which are outlined below.   Typically, products are loaded
+-- up front in the project and then managed via the Broadleaf Commerce admin.
 --
 -- Loading through this script is a convenient way to get started when prototyping and can be useful in development
--- as a way to share data-setup without requiring a shared DB connection. 
+-- as a way to share data-setup without requiring a shared DB connection.
 ------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------------
@@ -150,8 +150,8 @@ INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRIC
 INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (19,19,'Roasted Red Pepper & Chipotle Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,4.09,'Y','Y',CURRENT_TIMESTAMP);
 
 ------------------------------------------------------------------------------------------------------------------
--- Some SKUs (such as merchandise) may be product options based on one product. For example, there may be a 
--- "Men's Hand drawn Heat Clinic Shirt" product that has up to 12 SKUs showing the options of 
+-- Some SKUs (such as merchandise) may be product options based on one product. For example, there may be a
+-- "Men's Hand drawn Heat Clinic Shirt" product that has up to 12 SKUs showing the options of
 -- Red/Black/Silver, and Small/Medium/Large/X-Large
 ------------------------------------------------------------------------------------------------------------------
 INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, REQUIRED) VALUES (1, 'COLOR', 'COLOR', 'Shirt Color', TRUE);
@@ -208,7 +208,7 @@ UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 600 WHERE PRODUCT_ID = 600;
 
 ------------------------------------------------------------------------------------------------------------------
 -- Create non-default SKUs for some merchandise. In this case, we're stating that all XL shirts are $1.00 more
--- All other combinations have no special properties, but we must create them so we can track inventory on a 
+-- All other combinations have no special properties, but we must create them so we can track inventory on a
 -- per-SKU level. Generally, either you have only a default SKU or SKUs for all permutations of product options
 ------------------------------------------------------------------------------------------------------------------
 INSERT INTO BLC_SKU (SKU_ID,ADDL_PRODUCT_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (114,100,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/black_xl');
