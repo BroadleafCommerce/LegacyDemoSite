@@ -24,7 +24,7 @@
                     <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt1']?.tags}" blc:src="@{*{sku.skuMedia['alt1'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
                     <img th:if="${optionValue.attributeValue == item.sku.skuMedia['alt2']?.tags}" blc:src="@{*{sku.skuMedia['alt2'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
                 </th:block>
-                <img th:if="*{#lists.isEmpty(sku.productOptionValues)}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
+                <img th:if="*{#lists.isEmpty(sku.productOptionValues) and sku.skuMedia['primary'] != null}" blc:src="@{*{sku.skuMedia['primary'].url} + '?thumbnail'}" width="60" th:alt="*{sku.name}" />
             </td>
             <td align="left">
                 <a th:unless="${@blSystemPropertiesService.resolveBooleanSystemProperty('solr.index.use.sku')}" th:href="@{*{product.url}}" th:utext="*{product.name}"></a>
