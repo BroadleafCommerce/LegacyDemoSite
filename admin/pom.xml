@@ -97,10 +97,10 @@
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-common</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>core</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
