@@ -18,7 +18,7 @@
     </properties>
     <description>My Company's eCommerce Website</description>
     <repositories>
-        <repository>
+        <!--<repository>
             <id>public snapshots</id>
             <name>public snapshots</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
@@ -27,6 +27,12 @@
             <id>public releases</id>
             <name>public releases</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
+        </repository>-->
+        <repository>
+            <id>triptiny-nexus</id>
+            <!--<username>deployment</username>-->
+            <!--<password>Test.1234</password>-->
+            <url>http://nexus.triptiny.com:8081/nexus/content/groups/public</url>
         </repository>
     </repositories>
     <build>
