@@ -6,15 +6,21 @@
         -->
     </div>
     <blc:menu resultVar="menuItems" menuName="Header Nav" />
-    <ul th:if="${menuItems}">
+    <ul th:if="${not #lists.isEmpty(menuItems)}">
         <li th:each="menuItem : ${menuItems}">
 
             <a th:href="@{${menuItem.url}}" th:class="${menuItemStat.first}? 'home'">
                 <span th:utext="${menuItem.label}"></span>
             </a>
-            <ul th:if="${menuItem.submenu != null}" class="sub-menu">
+            <ul th:if="${not #lists.isEmpty(menuItem.submenu)}" class="sub-menu">
                 <li th:each="submenuItem : ${menuItem.submenu}">
-                    <a th:href="@{${submenuItem.url}}" th:utext="${submenuItem.label}"></a>
+                    <a th:href="@{${submenuItem.url}}" th:utext="${submenuItem.label}"  class="sub-menu"></a>
+
+                    <ul th:if="${not #lists.isEmpty(submenuItem.submenu)}" class="secondary-sub-menu">
+                        <li th:each="submenuItem1 : ${submenuItem.submenu}">
+                            <a th:href="@{${submenuItem1.url}}" th:utext="${submenuItem1.label}"></a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
