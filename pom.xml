@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>4.0.1-SNAPSHOT</blc.version>
+        <blc.version>4.0.5-GA</blc.version>
         <blc.menu.version>1.0.0-GA</blc.menu.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         
