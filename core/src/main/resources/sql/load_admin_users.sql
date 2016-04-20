@@ -13,12 +13,12 @@
 --
 -- Sample admin users
 --
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-1,'admin@yourdomain.com','admin','Administrator','admin', true);
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-2,'merchandise@yourdomain.com','merchandise','Merchandise Manager','admin', true);
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-3,'promo@yourdomain.com','promo','Promotion Manager','admin', true);
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-4,'csr@yourdomain.com','csr','CSR','admin', true);
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-5,'cms_edit@yourdomain.com','cmsEditor','CMS Editor','admin', true);
-INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG) VALUES (-6,'cms_approver@yourdomain.com','cmsApprover','CMS Approver','admin', true);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-1,'admin@yourdomain.com','admin','Administrator','admin', true, CURRENT_TIMESTAMP);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-2,'merchandise@yourdomain.com','merchandise','Merchandise Manager','admin', true, CURRENT_TIMESTAMP);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-3,'promo@yourdomain.com','promo','Promotion Manager','admin', true, CURRENT_TIMESTAMP);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-4,'csr@yourdomain.com','csr','CSR','admin', true, CURRENT_TIMESTAMP);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-5,'cms_edit@yourdomain.com','cmsEditor','CMS Editor','admin', true, CURRENT_TIMESTAMP);
+INSERT INTO BLC_ADMIN_USER (ADMIN_USER_ID, EMAIL, LOGIN, NAME, PASSWORD, ACTIVE_STATUS_FLAG, DATE_UPDATED) VALUES (-6,'cms_approver@yourdomain.com','cmsApprover','CMS Approver','admin', true, CURRENT_TIMESTAMP);
 
 -- Sample data for use with the org.springframework.security.authentication.encoding.ShaPasswordEncoder which is
 -- configured OOB in the 'production' environment. This is the password 'admin' salted with the user's primary key

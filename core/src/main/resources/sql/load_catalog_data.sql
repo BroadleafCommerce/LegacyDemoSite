@@ -9,47 +9,67 @@
 --
 
 -- Custom store navigation (default template uses these for the header navigation)
+INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,ACTIVE_START_DATE) VALUES (-99999,'blcRootCategory','blcRootCategory',CURRENT_TIMESTAMP);
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE, DISPLAY_TEMPLATE) VALUES (2001,'Home','Home','/',CURRENT_TIMESTAMP, 'layout/home');
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE) VALUES (2002,'Hot Sauces','Hot Sauces','/hot-sauces',CURRENT_TIMESTAMP);
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE) VALUES (2003,'Merchandise','Merchandise','/merchandise',CURRENT_TIMESTAMP);
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE) VALUES (2004,'Clearance','Clearance','/clearance',CURRENT_TIMESTAMP);
 
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (2001,2001,-99999,-5.000000,TRUE);
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (2002,2002,-99999,-4.000000,TRUE);
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (2003,2003,-99999,-3.000000,TRUE);
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (2004,2004,-99999,-2.000000,TRUE);
+
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE) VALUES (2007,'Mens','Mens','/mens',CURRENT_TIMESTAMP);
 INSERT INTO BLC_CATEGORY (CATEGORY_ID,DESCRIPTION,NAME,URL,ACTIVE_START_DATE) VALUES (2008,'Womens','Womens','/womens',CURRENT_TIMESTAMP);
 
 -- Builds the category hierarchy (simple in this case) - Merchandise --> Mens/Womens
-INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (8,2007,2003,1,TRUE);
-INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (9,2008,2003,2,TRUE);
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (8,2007,2003,-7.000000,TRUE);
+INSERT INTO BLC_CATEGORY_XREF (CATEGORY_XREF_ID, SUB_CATEGORY_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (9,2008,2003,-6.000000,TRUE);
 
 -- Add in any applicable search facets for the given category
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (1, 'PRODUCT', 'manufacturer', 'mfg', TRUE, 's');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (2, 'PRODUCT', 'productAttributes(heatRange).value', 'heatRange', FALSE, 'i');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (3, 'PRODUCT', 'defaultSku.retailPrice', 'price', FALSE, 'p');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, TRANSLATABLE, FACET_FIELD_TYPE) VALUES (4, 'PRODUCT', 'defaultSku.name', 'name', TRUE, TRUE, 's');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (5, 'PRODUCT', 'model', 'model', TRUE, 's');
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, TRANSLATABLE) VALUES (6, 'PRODUCT', 'defaultSku.description', 'desc', TRUE, TRUE);
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, ABBREVIATION, SEARCHABLE, TRANSLATABLE) VALUES (7, 'PRODUCT', 'defaultSku.longDescription', 'ldesc', TRUE, TRUE);
-INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION, SEARCHABLE, FACET_FIELD_TYPE) VALUES (8, 'PRODUCT', 'productOptionValuesMap(COLOR)', 'Color', 'color', TRUE, 'ss');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (1, 'PRODUCT', 'manufacturer', 'Manufacturer', 'mfg');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (2, 'PRODUCT', 'productAttributes(heatRange).value', 'Heat Range', 'heatRange');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (3, 'PRODUCT', 'retailPrice', 'Retail Price', 'price');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION, TRANSLATABLE) VALUES (4, 'PRODUCT', 'defaultSku.name', 'Product Name', 'name', TRUE);
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (5, 'PRODUCT', 'model', 'Model', 'model');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION, TRANSLATABLE) VALUES (6, 'PRODUCT', 'defaultSku.description', 'Description', 'desc', TRUE);
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION, TRANSLATABLE) VALUES (7, 'PRODUCT', 'defaultSku.longDescription', 'Long Description', 'ldesc', TRUE);
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (8, 'PRODUCT', 'productOptionValuesMap(COLOR)', 'Color', 'color');
+INSERT INTO BLC_FIELD (FIELD_ID, ENTITY_TYPE, PROPERTY_NAME, FRIENDLY_NAME, ABBREVIATION) VALUES (9, 'PRODUCT', 'margin', 'Margin', 'margin');
 
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (1, 't');
--- Note that we are don't search on heat range
--- Note that we are don't search on price
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (4, 't');
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (5, 't');
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (6, 't');
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (7, 't');
-INSERT INTO BLC_FIELD_SEARCH_TYPES (FIELD_ID, SEARCHABLE_FIELD_TYPE) VALUES (8, 'ss');
+-- All of the above BLC_FIELD entries also happen to be indexable (added to the search index)
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (1, 1, TRUE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (2, 2, FALSE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (3, 3, FALSE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (4, 4, TRUE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (5, 5, TRUE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (6, 6, TRUE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (7, 7, TRUE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (8, 8, FALSE);
+INSERT INTO BLC_INDEX_FIELD (INDEX_FIELD_ID, FIELD_ID, SEARCHABLE) VALUES (9, 9, FALSE);
 
-INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, FIELD_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY) VALUES (1, 1, 'Manufacturer', FALSE, TRUE, 0);
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (1, 1, 't');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (2, 1, 's');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (3, 2, 'i');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (4, 3, 'p');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (5, 4, 't');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (6, 5, 't');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (7, 6, 't');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (8, 7, 't');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (9, 8, 'ss');
+INSERT INTO BLC_INDEX_FIELD_TYPE (INDEX_FIELD_TYPE_ID, INDEX_FIELD_ID, FIELD_TYPE) VALUES (10, 9, 'p');
+
+INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY, INDEX_FIELD_TYPE_ID, NAME, USE_FACET_RANGES) VALUES (1, 'Manufacturer', FALSE, TRUE, 0, 2, 'Manufacturer Facet', FALSE);
 INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (1, 2002, 1, 1);
 
-INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, FIELD_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY) VALUES (2, 2, 'Heat Range', FALSE, TRUE, 0);
+INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY, INDEX_FIELD_TYPE_ID, NAME, USE_FACET_RANGES) VALUES (2, 'Heat Range', FALSE, TRUE, 0, 3, 'Heat Range Facet', FALSE);
 INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (2, 2002, 2, 2);
 
-INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, FIELD_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY) VALUES (4, 8, 'Color', TRUE, TRUE, 0);
-INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (4,2003, 4, 1);
+INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY, INDEX_FIELD_TYPE_ID, NAME, USE_FACET_RANGES) VALUES (4, 'Color', TRUE, TRUE, 0, 9, 'Color Facet', FALSE);
+INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (4, 2003, 4, 1);
 
-INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, FIELD_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY) VALUES (3, 3, 'Price', TRUE, TRUE, 1);
+INSERT INTO BLC_SEARCH_FACET (SEARCH_FACET_ID, LABEL, SHOW_ON_SEARCH, MULTISELECT, SEARCH_DISPLAY_PRIORITY, INDEX_FIELD_TYPE_ID, NAME, USE_FACET_RANGES) VALUES (3, 'Price', TRUE, TRUE, 1, 4, 'Price Facet', TRUE);
 INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (5, 2002, 3, 3);
 INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (6, 2003, 3, 3);
 INSERT INTO BLC_CAT_SEARCH_FACET_XREF (CATEGORY_SEARCH_FACET_ID, CATEGORY_ID, SEARCH_FACET_ID, SEQUENCE) VALUES (7, 2004, 3, 3);
@@ -60,11 +80,11 @@ INSERT INTO BLC_SEARCH_FACET_RANGE (SEARCH_FACET_RANGE_ID, SEARCH_FACET_ID, MIN_
 INSERT INTO BLC_SEARCH_FACET_RANGE (SEARCH_FACET_RANGE_ID, SEARCH_FACET_ID, MIN_VALUE, MAX_VALUE) VALUES (4, 3, 15, null);
 
 ------------------------------------------------------------------------------------------------------------------
--- Inserting products manually involves five steps which are outlined below.   Typically, products are loaded 
--- up front in the project and then managed via the Broadleaf Commerce admin.   
+-- Inserting products manually involves five steps which are outlined below.   Typically, products are loaded
+-- up front in the project and then managed via the Broadleaf Commerce admin.
 --
 -- Loading through this script is a convenient way to get started when prototyping and can be useful in development
--- as a way to share data-setup without requiring a shared DB connection. 
+-- as a way to share data-setup without requiring a shared DB connection.
 ------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------------
@@ -92,21 +112,18 @@ INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALU
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (18,'/hot-sauces/hurtin_jalepeno_hot_sauce','Dave''s Gourmet',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (19,'/hot-sauces/roasted_red_pepper_chipotle_hot_sauce','Dave''s Gourmet',FALSE);
 
--- Merchandise (products with options)
+-- sample bundles...
+INSERT INTO BLC_PRODUCT (PRODUCT_ID,  URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (20,'/bundle1','Bundle Maker', FALSE);
+INSERT INTO BLC_PRODUCT_BUNDLE (AUTO_BUNDLE,BUNDLE_PROMOTABLE,ITEMS_PROMOTABLE,PRICING_MODEL,BUNDLE_PRIORITY,PRODUCT_ID) VALUES (false,false,false,'ITEM_SUM',99,20);
+INSERT INTO BLC_PRODUCT (PRODUCT_ID,  URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (21,'/bundle2','Bundle Maker', FALSE);
+INSERT INTO BLC_PRODUCT_BUNDLE (AUTO_BUNDLE,BUNDLE_PROMOTABLE,ITEMS_PROMOTABLE,PRICING_MODEL,BUNDLE_PRIORITY,PRODUCT_ID) VALUES (false,false,false,'BUNDLE',99,21);
+
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (100,'/merchandise/hawt_like_a_habanero_mens','The Heat Clinic',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (200,'/merchandise/hawt_like_a_habanero_womens','The Heat Clinic',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (300,'/merchandise/heat_clinic_hand-drawn_mens','The Heat Clinic',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (400,'/merchandise/heat_clinic_hand-drawn_womens','The Heat Clinic',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (500,'/merchandise/heat_clinic_mascot_mens','The Heat Clinic',FALSE);
 INSERT INTO BLC_PRODUCT (PRODUCT_ID, URL, MANUFACTURE, IS_FEATURED_PRODUCT) VALUES (600,'/merchandise/heat_clinic_mascot_womens','The Heat Clinic',FALSE);
-
--- Bundles
-INSERT INTO BLC_PRODUCT (PRODUCT_ID,ARCHIVED,CAN_SELL_WITHOUT_OPTIONS,DISPLAY_TEMPLATE,IS_FEATURED_PRODUCT,MANUFACTURE,MODEL,URL,URL_KEY) VALUES (992,'N',false,null,false,null,null,'/bundle1',null);
-INSERT INTO BLC_PRODUCT_BUNDLE (AUTO_BUNDLE,BUNDLE_PROMOTABLE,ITEMS_PROMOTABLE,PRICING_MODEL,BUNDLE_PRIORITY,PRODUCT_ID) VALUES (false,false,false,'ITEM_SUM',99,992);
-INSERT INTO BLC_PRODUCT (PRODUCT_ID,ARCHIVED,CAN_SELL_WITHOUT_OPTIONS,DISPLAY_TEMPLATE,IS_FEATURED_PRODUCT,MANUFACTURE,MODEL,URL,URL_KEY) VALUES (993,'N',false,null,false,null,null,'/bundle2',null);
-INSERT INTO BLC_PRODUCT_BUNDLE (AUTO_BUNDLE,BUNDLE_PROMOTABLE,ITEMS_PROMOTABLE,PRICING_MODEL,BUNDLE_PRIORITY,PRODUCT_ID) VALUES (false,false,false,'BUNDLE',99,993);
-
-
 
 ------------------------------------------------------------------------------------------------------------------
 -- Load Catalog - Step 2:  Create "default" SKUs
@@ -115,48 +132,47 @@ INSERT INTO BLC_PRODUCT_BUNDLE (AUTO_BUNDLE,BUNDLE_PROMOTABLE,ITEMS_PROMOTABLE,P
 -- a product only has one SKU.    SKUs hold the pricing information for the product and are the actual entity
 -- that is added to the cart.    Inventory, Pricing, and Fulfillment concerns are done at the SKU level
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (1,1,'Sudden Death Sauce','As my Chilipals know, I am never one to be satisfied. Hence, the creation of Sudden Death. When you need to go beyond... Sudden Death will deliver! ',10.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (2,2,'Sweet Death Sauce','The perfect topper for chicken, fish, burgers or pizza. A great blend of Habanero, Mango, Passion Fruit and more make this Death Sauce an amazing tropical treat.',10.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (3,3,'Hoppin'' Hot Sauce','Tangy, ripe cayenne peppes flow together with garlic, onion, tomato paste and a hint of cane sugar to make this a smooth sauce with a bite.  Wonderful on eggs, poultry, pork, or fish, this sauce blends to make rich marinades and soups.',4.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (4,4,'Day of the Dead Chipotle Hot Sauce','When any pepper is dried and smoked, it is referred to as a Chipotle. Usually with a wrinkled, drak brown appearance, the Chipotle delivers a smokey, sweet flavor which is generally used for adding a smokey, roasted flavor to salsas, stews and marinades.',6.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (5,5,'Day of the Dead Habanero Hot Sauce','If you want hot, this is the chile to choose. Native to the Carribean, Yucatan and Northern Coast of South America, the Habanero presents itself in a variety of colors ranging from light green to a bright red. The Habanero''s bold heat, unique flavor and aroma has made it the favorite of chile lovers.',6.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (6,6,'Day of the Dead Scotch Bonnet Hot Sauce','Often mistaken for the Habanero, the Scotch Bonnet has a deeply inverted tip as opposed to the pointed end of the Habanero. Ranging in many colors from green to yellow-orange, the Scotch Bonnet is a staple in West Indies and Barbados style pepper sauces.',6.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (7,7,'Green Ghost','Made with Naga Bhut Jolokia, the World''s Hottest pepper.',11.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (8,8,'Blazin'' Saddle XXX Hot Habanero Pepper Sauce','You bet your boots, this hot sauce earned its name from folks that appreciate an outstanding hot sauce. What you''ll find here is a truly original zesty flavor, not an overpowering pungency that is found in those ordinary Tabasco pepper sauces - even though the pepper used in this product was tested at 285,000 Scoville units. So, saddle up for a ride to remember. To make sure we brought you only the finest Habanero pepper sauce, we went to the foothills of the Mayan mountains in Belize, Central America. This product is prepared entirely by hand using only fresh vegetables and all natural ingredients.',4.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (9,9,'Armageddon The Hot Sauce To End All','All Hell is breaking loose, fire &amp; brimstone rain down? prepare to meet your maker.',12.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (10,10,'Dr. Chilemeister''s Insane Hot Sauce','Here is the Prescription for those who enjoy intolerable heat. Dr. Chilemeister''s sick and evil deadly brew should be used with caution. Pain can become addictive!',12.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (11,11,'Bull Snort Cowboy Cayenne Pepper Hot Sauce','Been there, roped that. Hotter than a buckin'' mare in heat! Sprinkle on meat entrees, seafood and vegetables. Use as additive in barbecue sauce or any food that needs a spicy flavor. Start with a few drops and work up to the desired flavor.',3.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (12,12,'Cafe Louisiane Sweet Cajun Blackening Sauce','One of the more unusual sauces we sell. The original was an old style Cajun sauce and this is it''s updated blackening version. It''s sweet but you get a great hit of cinnamon and cloves with a nice kick of cayenne heat. Use on all foods to give that Cajun flair!',4.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (13,13,'Bull Snort Smokin'' Toncils Hot Sauce','Everything is bigger in Texas, even the burn of a Bull Snortin'' Hot Sauce! shower on that Texas sized steak they call the Ole 96er or your plane Jane vegetables. If you are a fan on making BBQ sauce from scratch like I am, you can use Bull Snort Smokin'' Tonsils Hot Sauce as an additive. Red hot habaneros and cayenne peppers give this tonsil tingler it''s famous flavor and red hot heat. Bull Snort Smokin'' Tonsils Hot Sauce''ll have your bowels buckin'' with just a drop!',3.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (14,14,'Cool Cayenne Pepper Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (15,15,'Roasted Garlic Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (16,16,'Scotch Bonnet Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,'Y','Y',CURRENT_TIMESTAMP);
-
---bundle1 Skus
-INSERT INTO BLC_SKU (SKU_ID,ACTIVE_END_DATE,ACTIVE_START_DATE,AVAILABLE_FLAG,DESCRIPTION,CONTAINER_SHAPE,DEPTH,DIMENSION_UNIT_OF_MEASURE,GIRTH,HEIGHT,CONTAINER_SIZE,WIDTH,DISCOUNTABLE_FLAG,FULFILLMENT_TYPE,INVENTORY_TYPE,IS_MACHINE_SORTABLE,LONG_DESCRIPTION,NAME,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,WEIGHT,WEIGHT_UNIT_OF_MEASURE,DEFAULT_PRODUCT_ID) VALUES (9992,{ts '2099-04-05 00:00:00'},{ts '2001-02-24 00:00:00'},null,null,null,null,null,null,null,null,null,null,null,null,true,null,'bundle1',13,3,null,null,null,992);
-INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,ITEM_SALE_PRICE,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-100,null,1,992,1);
-INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,ITEM_SALE_PRICE,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-101,null,1,992,2);
-
----bundle2 Skus
-INSERT INTO BLC_SKU (SKU_ID,ACTIVE_END_DATE,ACTIVE_START_DATE,AVAILABLE_FLAG,DESCRIPTION,CONTAINER_SHAPE,DEPTH,DIMENSION_UNIT_OF_MEASURE,GIRTH,HEIGHT,CONTAINER_SIZE,WIDTH,DISCOUNTABLE_FLAG,FULFILLMENT_TYPE,INVENTORY_TYPE,IS_MACHINE_SORTABLE,LONG_DESCRIPTION,NAME,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,WEIGHT,WEIGHT_UNIT_OF_MEASURE,DEFAULT_PRODUCT_ID) VALUES (9993,{ts '2099-01-06 00:00:00'},{ts '2001-02-24 00:00:00'},null,null,null,null,null,null,null,null,null,null,null,null,true,null,'bundle2',12.00,2.00,null,null,null,993);
-INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,ITEM_SALE_PRICE,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-102,null,1,993,1);
-INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,ITEM_SALE_PRICE,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-103,null,1,993,2);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE, INVENTORY_TYPE) VALUES (1,1,'Sudden Death Sauce','As my Chilipals know, I am never one to be satisfied. Hence, the creation of Sudden Death. When you need to go beyond... Sudden Death will deliver! ',10.99,3.89,'Y','Y',CURRENT_TIMESTAMP, 'CHECK_QUANTITY');
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE, INVENTORY_TYPE) VALUES (2,2,'Sweet Death Sauce','The perfect topper for chicken, fish, burgers or pizza. A great blend of Habanero, Mango, Passion Fruit and more make this Death Sauce an amazing tropical treat.',10.99,3.79,'Y','Y',CURRENT_TIMESTAMP, 'CHECK_QUANTITY');
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (3,3,'Hoppin'' Hot Sauce','Tangy, ripe cayenne peppes flow together with garlic, onion, tomato paste and a hint of cane sugar to make this a smooth sauce with a bite.  Wonderful on eggs, poultry, pork, or fish, this sauce blends to make rich marinades and soups.',4.99,3.00,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (4,4,'Day of the Dead Chipotle Hot Sauce','When any pepper is dried and smoked, it is referred to as a Chipotle. Usually with a wrinkled, drak brown appearance, the Chipotle delivers a smokey, sweet flavor which is generally used for adding a smokey, roasted flavor to salsas, stews and marinades.',6.99,4.50,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (5,5,'Day of the Dead Habanero Hot Sauce','If you want hot, this is the chile to choose. Native to the Carribean, Yucatan and Northern Coast of South America, the Habanero presents itself in a variety of colors ranging from light green to a bright red. The Habanero''s bold heat, unique flavor and aroma has made it the favorite of chile lovers.',6.99,5.50,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (6,6,'Day of the Dead Scotch Bonnet Hot Sauce','Often mistaken for the Habanero, the Scotch Bonnet has a deeply inverted tip as opposed to the pointed end of the Habanero. Ranging in many colors from green to yellow-orange, the Scotch Bonnet is a staple in West Indies and Barbados style pepper sauces.',6.99,5.40,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (7,7,'Green Ghost','Made with Naga Bhut Jolokia, the World''s Hottest pepper.',11.99,8.10,9.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (8,8,'Blazin'' Saddle XXX Hot Habanero Pepper Sauce','You bet your boots, this hot sauce earned its name from folks that appreciate an outstanding hot sauce. What you''ll find here is a truly original zesty flavor, not an overpowering pungency that is found in those ordinary Tabasco pepper sauces - even though the pepper used in this product was tested at 285,000 Scoville units. So, saddle up for a ride to remember. To make sure we brought you only the finest Habanero pepper sauce, we went to the foothills of the Mayan mountains in Belize, Central America. This product is prepared entirely by hand using only fresh vegetables and all natural ingredients.',4.99,3.99,3.00,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (9,9,'Armageddon The Hot Sauce To End All','All Hell is breaking loose, fire &amp; brimstone rain down? prepare to meet your maker.',12.99,5.30,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (10,10,'Dr. Chilemeister''s Insane Hot Sauce','Here is the Prescription for those who enjoy intolerable heat. Dr. Chilemeister''s sick and evil deadly brew should be used with caution. Pain can become addictive!',12.99,10.99,6.89,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (11,11,'Bull Snort Cowboy Cayenne Pepper Hot Sauce','Been there, roped that. Hotter than a buckin'' mare in heat! Sprinkle on meat entrees, seafood and vegetables. Use as additive in barbecue sauce or any food that needs a spicy flavor. Start with a few drops and work up to the desired flavor.',3.99,2.99,2.29,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (12,12,'Cafe Louisiane Sweet Cajun Blackening Sauce','One of the more unusual sauces we sell. The original was an old style Cajun sauce and this is it''s updated blackening version. It''s sweet but you get a great hit of cinnamon and cloves with a nice kick of cayenne heat. Use on all foods to give that Cajun flair!',4.99,3.09,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (13,13,'Bull Snort Smokin'' Toncils Hot Sauce','Everything is bigger in Texas, even the burn of a Bull Snortin'' Hot Sauce! shower on that Texas sized steak they call the Ole 96er or your plane Jane vegetables. If you are a fan on making BBQ sauce from scratch like I am, you can use Bull Snort Smokin'' Tonsils Hot Sauce as an additive. Red hot habaneros and cayenne peppers give this tonsil tingler it''s famous flavor and red hot heat. Bull Snort Smokin'' Tonsils Hot Sauce''ll have your bowels buckin'' with just a drop!',3.99,2.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (14,14,'Cool Cayenne Pepper Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,3.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (15,15,'Roasted Garlic Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,4.29,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (16,16,'Scotch Bonnet Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,2.89,'Y','Y',CURRENT_TIMESTAMP);
 
 ------------------------------------------------------------------------------------------------------------------
 -- Give some of the SKUs a sale price
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (17,17,'Insanity Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,4.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (18,18,'Hurtin'' Jalepeno Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,4.49,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (19,19,'Roasted Red Pepper & Chipotle Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,4.09,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (17,17,'Insanity Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,3.50,4.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (18,18,'Hurtin'' Jalapeno Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,3.25,4.49,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,SALE_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (19,19,'Roasted Red Pepper & Chipotle Hot Sauce','This sauce gets its great flavor from aged peppers and cane vinegar. It will enhance the flavor of most any meal.',5.99,2.59,4.09,'Y','Y',CURRENT_TIMESTAMP);
+
+--bundle1
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (20,20,'bundle1','',5.99,4.29,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-100, 1, 20, 1);
+INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-101, 1, 20, 2);
+--bundle2
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (21,21,'bundle2','',5.99,3.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-102, 1, 21, 1);
+INSERT INTO BLC_SKU_BUNDLE_ITEM (SKU_BUNDLE_ITEM_ID,QUANTITY,PRODUCT_BUNDLE_ID,SKU_ID) VALUES (-103, 1, 21, 2);
 
 ------------------------------------------------------------------------------------------------------------------
--- Some SKUs (such as merchandise) may be product options based on one product. For example, there may be a 
--- "Men's Hand drawn Heat Clinic Shirt" product that has up to 12 SKUs showing the options of 
+-- Some SKUs (such as merchandise) may be product options based on one product. For example, there may be a
+-- "Men's Hand drawn Heat Clinic Shirt" product that has up to 12 SKUs showing the options of
 -- Red/Black/Silver, and Small/Medium/Large/X-Large
 ------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, REQUIRED) VALUES (1, 'COLOR', 'COLOR', 'Shirt Color', TRUE);
-INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, REQUIRED) VALUES (2, 'SIZE', 'SIZE', 'Shirt Size', TRUE);
-INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, REQUIRED,USE_IN_SKU_GENERATION,VALIDATION_TYPE,VALIDATION_STRING,ERROR_MESSAGE,ERROR_CODE) VALUES (3, 'TEXT', 'NAME', 'Personalized Name', FALSE,FALSE,'REGEX','[a-zA-Z ]{0,30}','Name must be less than 30 characters, with only letters and spaces','INVALID_NAME');
+INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, NAME, REQUIRED, VALIDATION_STRATEGY_TYPE) VALUES (1, 'COLOR', 'COLOR', 'Shirt Color', 'Shirt Color', TRUE, 'NONE');
+INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, NAME, REQUIRED, VALIDATION_STRATEGY_TYPE) VALUES (2, 'SIZE', 'SIZE', 'Shirt Size', 'Shirt Size', TRUE, 'NONE');
+INSERT INTO BLC_PRODUCT_OPTION (PRODUCT_OPTION_ID, OPTION_TYPE, ATTRIBUTE_NAME, LABEL, NAME, REQUIRED, USE_IN_SKU_GENERATION, VALIDATION_STRATEGY_TYPE, VALIDATION_TYPE, VALIDATION_STRING, ERROR_MESSAGE, ERROR_CODE) VALUES (3, 'TEXT', 'NAME', 'Personalized Name', 'Personalized Name', FALSE, FALSE, 'SUBMIT_ORDER', 'REGEX', '[a-zA-Z ]{0,30}', 'Name must be less than 30 characters, with only letters and spaces', 'INVALID_NAME');
 
 INSERT INTO BLC_PRODUCT_OPTION_VALUE (PRODUCT_OPTION_VALUE_ID, ATTRIBUTE_VALUE, DISPLAY_ORDER, PRODUCT_OPTION_ID) VALUES (1, 'Black', 1, 1);
 INSERT INTO BLC_PRODUCT_OPTION_VALUE (PRODUCT_OPTION_VALUE_ID, ATTRIBUTE_VALUE, DISPLAY_ORDER, PRODUCT_OPTION_ID) VALUES (2, 'Red', 2, 1);
@@ -166,12 +182,12 @@ INSERT INTO BLC_PRODUCT_OPTION_VALUE (PRODUCT_OPTION_VALUE_ID, ATTRIBUTE_VALUE, 
 INSERT INTO BLC_PRODUCT_OPTION_VALUE (PRODUCT_OPTION_VALUE_ID, ATTRIBUTE_VALUE, DISPLAY_ORDER, PRODUCT_OPTION_ID) VALUES (13, 'L', 3, 2);
 INSERT INTO BLC_PRODUCT_OPTION_VALUE (PRODUCT_OPTION_VALUE_ID, ATTRIBUTE_VALUE, DISPLAY_ORDER, PRODUCT_OPTION_ID) VALUES (14, 'XL', 4, 2);
 
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (100,100,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (200,200,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (300,300,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (400,400,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (500,500,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','Y',CURRENT_TIMESTAMP);
-INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (600,600,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (100,100,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,4.99,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (200,200,'Hawt Like a Habanero Shirt (Women''s)','Women''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.',14.99,4.69,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (300,300,'Heat Clinic Hand-Drawn (Men''s)','This hand-drawn logo shirt for men features a regular fit in three different colors',15.99,5.29,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (400,400,'Heat Clinic Hand-Drawn (Women''s)','This hand-drawn logo shirt for women features a regular fit in three different colors',15.99,5.49,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (500,500,'Heat Clinic Mascot (Men''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,4.89,'Y','Y',CURRENT_TIMESTAMP);
+INSERT INTO BLC_SKU (SKU_ID,DEFAULT_PRODUCT_ID,NAME,LONG_DESCRIPTION,RETAIL_PRICE,COST,TAXABLE_FLAG,DISCOUNTABLE_FLAG,ACTIVE_START_DATE) VALUES (600,600,'Heat Clinic Mascot (Women''s)','Don''t you just love our mascot? Get your very own shirt today!',15.99,4.99,'Y','Y',CURRENT_TIMESTAMP);
 
 ------------------------------------------------------------------------------------------------------------------
 -- Update the DEFAULT_SKU_ID on the products
@@ -195,6 +211,8 @@ UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 16 WHERE PRODUCT_ID = 16;
 UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 17 WHERE PRODUCT_ID = 17;
 UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 18 WHERE PRODUCT_ID = 18;
 UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 19 WHERE PRODUCT_ID = 19;
+UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 20 WHERE PRODUCT_ID = 20;
+UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 21 WHERE PRODUCT_ID = 21;
 
 UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 9992 WHERE PRODUCT_ID = 992;
 UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 9993 WHERE PRODUCT_ID = 993;
@@ -208,7 +226,7 @@ UPDATE BLC_PRODUCT SET DEFAULT_SKU_ID = 600 WHERE PRODUCT_ID = 600;
 
 ------------------------------------------------------------------------------------------------------------------
 -- Create non-default SKUs for some merchandise. In this case, we're stating that all XL shirts are $1.00 more
--- All other combinations have no special properties, but we must create them so we can track inventory on a 
+-- All other combinations have no special properties, but we must create them so we can track inventory on a
 -- per-SKU level. Generally, either you have only a default SKU or SKUs for all permutations of product options
 ------------------------------------------------------------------------------------------------------------------
 INSERT INTO BLC_SKU (SKU_ID,ADDL_PRODUCT_ID,RETAIL_PRICE,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,NAME,LONG_DESCRIPTION,TAXABLE_FLAG,URL_KEY) VALUES (114,100,16.99,'Y',CURRENT_TIMESTAMP,'Hawt Like a Habanero Shirt (Men''s)','Men''s Habanero collection standard short sleeve screen-printed tee shirt in soft 30 singles cotton in regular fit.','Y','/black_xl');
@@ -287,7 +305,6 @@ INSERT INTO BLC_SKU (SKU_ID,ADDL_PRODUCT_ID,DISCOUNTABLE_FLAG,ACTIVE_START_DATE,
 ------------------------------------------------------------------------------------------------------------------
 -- Associate the appropriate option values for the skus
 ------------------------------------------------------------------------------------------------------------------
-
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_OPTION_VALUE_XREF_ID, SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (1, 111, 1), (2, 111, 11);
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_OPTION_VALUE_XREF_ID, SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (3, 112, 1), (4, 112, 12);
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_OPTION_VALUE_XREF_ID, SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (5, 113, 1), (6, 113, 13);
@@ -456,11 +473,11 @@ INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY
 INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (23,12,2001,4);
 
 -- clearance items
-INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (24,7,2004,1);
-INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (25,8,2004,2);
-INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (26,10,2004,3);
-INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (27,11,2004,4);
-INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER) VALUES (28,18,2004,5);
+INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID) VALUES (24,7,2004);
+INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID) VALUES (25,8,2004);
+INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID) VALUES (26,10,2004);
+INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID) VALUES (27,11,2004);
+INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID) VALUES (28,18,2004);
 
 -- merchandise items
 INSERT INTO BLC_CATEGORY_PRODUCT_XREF (CATEGORY_PRODUCT_ID, PRODUCT_ID, CATEGORY_ID, DISPLAY_ORDER, DEFAULT_REFERENCE) VALUES (29,100,2003,1,TRUE);
@@ -612,6 +629,7 @@ INSERT INTO BLC_SKU_MEDIA_MAP (SKU_MEDIA_ID, BLC_SKU_SKU_ID, MEDIA_ID, MAP_KEY) 
 INSERT INTO BLC_SKU_MEDIA_MAP (SKU_MEDIA_ID, BLC_SKU_SKU_ID, MEDIA_ID, MAP_KEY) VALUES (-42,500,50002,'alt2');
 INSERT INTO BLC_SKU_MEDIA_MAP (SKU_MEDIA_ID, BLC_SKU_SKU_ID, MEDIA_ID, MAP_KEY) VALUES (-41,600,60003,'alt2');
 
+
 ------------------------------------------------------------------------------------------------------------------
 -- Load Catalog - Step 5: Asset Items (media)
 -- ========================================================
@@ -679,9 +697,6 @@ INSERT INTO BLC_STATIC_ASSET (STATIC_ASSET_ID, MIME_TYPE, STORAGE_TYPE, FULL_URL
 INSERT INTO BLC_STATIC_ASSET (STATIC_ASSET_ID, MIME_TYPE, STORAGE_TYPE, FULL_URL, NAME) VALUES (60003,'image/jpg','FILESYSTEM','/img/merch/heat_clinic_mascot_womens_silver.jpg','Heat Clinic Mascot Women''s Silver');
 
 
-
-
-
 ------------------------------------------------------------------------------------------------------------------
 -- End of Catalog load
 -- ========================================================
@@ -692,25 +707,32 @@ INSERT INTO BLC_URL_HANDLER(URL_HANDLER_ID, INCOMING_URL, NEW_URL, URL_REDIRECT_
 INSERT INTO BLC_URL_HANDLER(URL_HANDLER_ID, INCOMING_URL, NEW_URL, URL_REDIRECT_TYPE) VALUES (3, '/insanity', '/hot-sauces/insanity_sauce', 'FORWARD');
 INSERT INTO BLC_URL_HANDLER(URL_HANDLER_ID, INCOMING_URL, NEW_URL, URL_REDIRECT_TYPE) VALUES (4, '/jalepeno', '/hot-sauces/hurtin_jalepeno_hot_sauce', 'REDIRECT_TEMP');
 
-INSERT INTO BLC_SEARCH_INTERCEPT(SEARCH_REDIRECT_ID, PRIORITY,SEARCH_TERM, URL) VALUES (1,1, 'insanity', '/hot-sauces/insanity_sauce');
-INSERT INTO BLC_SEARCH_INTERCEPT(SEARCH_REDIRECT_ID,PRIORITY, SEARCH_TERM, URL,ACTIVE_START_DATE,ACTIVE_END_DATE) VALUES (2,-10, 'new york', '/search?q=pace picante','1992-10-15 14:28:36','1999-10-15 21:28:36');
+INSERT INTO BLC_SEARCH_INTERCEPT(SEARCH_REDIRECT_ID, PRIORITY,SEARCH_TERM, URL) VALUES (-1,1, 'insanity', '/hot-sauces/insanity_sauce');
+INSERT INTO BLC_SEARCH_INTERCEPT(SEARCH_REDIRECT_ID, PRIORITY, SEARCH_TERM, URL) VALUES (-2,-10, 'sale', '/clearance');
 
 -----------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
 -- RELATED PRODUCT - DATA (featured products for right-hand side display)
 -----------------------------------------------------------------------------------------------------------------------------------
+-- Adding to home category
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (1, 1, 2001, 18);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (2, 2, 2001, 15);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (3, 3, 2001, 200);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (4, 4, 2001, 100);
+
 -- Adding to merchandise category
-INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (5, 1, 2003, 4);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (5, 1, 2003, 500);
 
 -- Adding to hot-sauces category
-INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, sequence, CATEGORY_ID, PRODUCT_ID)  VALUES (8, 1, 2002, 500);
-INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (9, 2, 2002, 200);
-INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (10, 3, 2002, 300);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (8, 1, 2002, 4);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (9, 2, 2002, 5);
+INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (10, 3, 2002, 3);
 
 -- Adding a 20% off sale to Merchandise category to fit the Shirts Special Homepage Banner
-INSERT INTO BLC_OFFER (OFFER_ID, APPLIES_TO_RULES, OFFER_NAME, START_DATE, END_DATE, OFFER_TYPE, OFFER_DISCOUNT_TYPE, OFFER_VALUE, OFFER_DELIVERY_TYPE, STACKABLE, COMBINABLE_WITH_OTHER_OFFERS, OFFER_PRIORITY, APPLY_OFFER_TO_MARKED_ITEMS, APPLY_TO_SALE_PRICE, USES, MAX_USES) VALUES (1,NULL, 'Shirts Special',CURRENT_DATE,'2020-01-01 00:00:00','ORDER_ITEM','PERCENT_OFF',20,'AUTOMATIC',TRUE,TRUE,10,FALSE,FALSE,0,0);
+INSERT INTO BLC_OFFER (OFFER_ID, APPLIES_TO_RULES, OFFER_NAME, START_DATE, END_DATE, OFFER_TYPE, OFFER_DISCOUNT_TYPE, OFFER_VALUE, OFFER_DELIVERY_TYPE, STACKABLE, COMBINABLE_WITH_OTHER_OFFERS, APPLY_OFFER_TO_MARKED_ITEMS, APPLY_TO_SALE_PRICE, USES, MAX_USES, STACKABLE_WITH_OTHER_OFFERS, OFFER_ITEM_TARGET_RULE) VALUES (1,NULL, 'Shirts Special',CURRENT_DATE,'2020-01-01 00:00:00','ORDER_ITEM','PERCENT_OFF',20,'AUTOMATIC',TRUE,TRUE,FALSE,FALSE,0,0, 'NO', 'NONE');
 
-INSERT INTO BLC_OFFER_ITEM_CRITERIA (OFFER_ITEM_CRITERIA_ID, ORDER_ITEM_MATCH_RULE, QUANTITY) VALUES (1, 'MVEL.eval("toUpperCase()",discreteOrderItem.category.name)==MVEL.eval("toUpperCase()","merchandise")', 1);
+INSERT INTO BLC_OFFER_ITEM_CRITERIA (OFFER_ITEM_CRITERIA_ID, ORDER_ITEM_MATCH_RULE, QUANTITY) VALUES (1, 'MvelHelper.toUpperCase(orderItem.?category.?name)==MvelHelper.toUpperCase("merchandise")', 1);
+-- INSERT INTO BLC_OFFER_ITEM_CRITERIA (OFFER_ITEM_CRITERIA_ID, ORDER_ITEM_MATCH_RULE, QUANTITY) VALUES (1, 'CollectionUtils.intersection(orderItem.category, [\"2003\"]).size()>0', 1);
 
 INSERT INTO BLC_TAR_CRIT_OFFER_XREF (OFFER_TAR_CRIT_ID, OFFER_ITEM_CRITERIA_ID, OFFER_ID) VALUES (-100, 1, 1);
 
