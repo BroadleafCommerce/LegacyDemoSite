@@ -11,24 +11,26 @@
         <field name="category" type="long" indexed="true" stored="false" multiValued="true" />
         <field name="explicitCategory" type="long" indexed="true" stored="false" multiValued="true" />
         <field name="searchable" type="text_general" indexed="true" stored="false" />
-        
-        <dynamicField name="*_searchable" type="text_general" indexed="true" stored="false" />
-        <dynamicField name="*_i" type="int" indexed="true" stored="false" />
-        <dynamicField name="*_is" type="int" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_s" type="string" indexed="true" stored="false" />
-        <dynamicField name="*_ss" type="string" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_l" type="long" indexed="true" stored="false" />
-        <dynamicField name="*_ls" type="long" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_t" type="text_general" indexed="true" stored="false" />
-        <dynamicField name="*_txt" type="text_general" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_b" type="boolean" indexed="true" stored="false" />
-        <dynamicField name="*_bs" type="boolean" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_d" type="double" indexed="true" stored="false" />
-        <dynamicField name="*_ds" type="double" indexed="true" stored="false" multiValued="true" />
-        <dynamicField name="*_p" type="double" indexed="true" stored="false" />
 
-        <dynamicField name="*_dt" type="date" indexed="true" stored="false" />
-        <dynamicField name="*_dts" type="date" indexed="true" stored="false" multiValued="true" />
+        <dynamicField name="*_searchable" type="text_general" indexed="true" stored="true" />
+        <dynamicField name="*_i" type="int" indexed="true" stored="true" docValues="true"/>
+        <dynamicField name="*_is" type="int" indexed="true" stored="true" multiValued="true" docValues="true"/>
+        <dynamicField name="*_s" type="string" indexed="true" stored="true" docValues="true" />
+        <dynamicField name="*_ss" type="string" indexed="true" stored="true" multiValued="true" docValues="true" />
+        <dynamicField name="*_l" type="long" indexed="true" stored="true" docValues="true"/>
+        <dynamicField name="*_ls" type="long" indexed="true" stored="true" multiValued="true" docValues="true"/>
+        <dynamicField name="*_t" type="text_general" indexed="true" stored="true" />
+        <dynamicField name="*_txt" type="text_general" indexed="true" stored="true" multiValued="true" />
+        <dynamicField name="*_b" type="boolean" indexed="true" stored="true" />
+        <dynamicField name="*_bs" type="boolean" indexed="true" stored="true" multiValued="true" />
+        <dynamicField name="*_d" type="double" indexed="true" stored="true" docValues="true" />
+        <dynamicField name="*_ds" type="double" indexed="true" stored="true" multiValued="true" docValues="true"/>
+        <dynamicField name="*_sort" type="double" indexed="true" stored="true" docValues="true" sortMissingLast="true"/>
+
+        <dynamicField name="*_p" type="tdouble" indexed="true" stored="true" docValues="true" />
+
+        <dynamicField name="*_dt" type="date" indexed="true" stored="true" docValues="true"/>
+        <dynamicField name="*_dts" type="date" indexed="true" stored="true" multiValued="true" docValues="true"/>
 
         <!-- some trie-coded dynamic fields for faster range queries -->
         <dynamicField name="*_ti" type="tint" indexed="true" stored="false" />
