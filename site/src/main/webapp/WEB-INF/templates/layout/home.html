@@ -15,20 +15,21 @@
     
     <div id="content" class="width_setter group" role="main">
         <nav th:substituteby="layout/partials/nav" />
-        <blc:content contentType="Homepage Banner Ad" />       
-        <div id="banners" th:if="${contentItem !=null and contentItem['targetUrl'] != null and contentItem['imageUrl'] != null}">
-            <a th:href="@{${contentItem['targetUrl']}}"><img blc:src="@{${contentItem['imageUrl']}}" /></a>       
+
+        <div id="banners">
+            <a th:href="@{/merchandise}"><img blc:src="@{/img/banners/shirt-special.jpg}" /></a>
         </div>
         
-        <blc:content contentType="Homepage Middle Promo Snippet" /> 
-        
-        <a th:href="@{/register}" th:if="${contentItem !=null and contentItem['htmlContent'] !=null}" style="text-decoration:none">
-            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
+        <a th:href="@{/register}" style="text-decoration:none">
+            <div id="home_feature">
+                <h2>HOT SAUCE AFICIONADO?</h2> Click to join our Heat Clinic Frequent Care Program. The place to get all the deals on burn treatment.
+            </div>
         </a>
 
         
-        <blc:content contentType="Homepage Featured Products Title" />    
-        <div th:if="${contentItem !=null and contentItem['messageText'] !=null}" class="title_bar" th:utext="${contentItem['messageText']}"></div>
+        <div class="title_bar">
+            The Heat Clinic's Top Selling Sauces
+        </div>
         
         <ul th:if="${products}" id="products" class="group">
             <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
