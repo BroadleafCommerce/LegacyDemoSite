@@ -10,8 +10,10 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>4.0.5-GA</blc.version>
-        <blc.menu.version>1.0.0-GA</blc.menu.version>
+        <blc.version>5.0.0-SNAPSHOT</blc.version>
+        <blc.menu.version>2.0.0-SNAPSHOT</blc.menu.version>
+        <broadleaf-null-payment-gateway.version>1.1.0-SNAPSHOT</broadleaf-null-payment-gateway.version>
+
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,6 +29,16 @@
             <id>public releases</id>
             <name>public releases</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>framework-5-releases</id>
+            <name>framework-5-releases</name>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/framework-5-releases/</url>
+        </repository>
+        <repository>
+            <id>menu-releases</id>
+            <name>menu-releases</name>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/menu-releases/</url>
         </repository>
     </repositories>
     <build>
@@ -239,11 +251,9 @@
                     <dependencies>
                         <!-- Other dependencies -->
                         <dependency>
-                            <groupId>org.hsqldb</groupId>
-                            <artifactId>hsqldb</artifactId>
-                            <version>2.3.1</version>
-                            <type>jar</type>
-                            <scope>compile</scope>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>5.1.32</version>
                         </dependency>
                         <dependency>
                             <groupId>commons-dbcp</groupId>
@@ -333,18 +343,27 @@
             </dependency>
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-menu</artifactId>
-                <version>${blc.menu.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
                 <artifactId>integration</artifactId>
                 <version>${blc.version}</version>
                 <type>jar</type>
                 <classifier>tests</classifier>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.broadleafcommerce</groupId>
+                <artifactId>broadleaf-menu</artifactId>
+                <version>${blc.menu.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.broadleafcommerce</groupId>
+                <artifactId>broadleaf-null-payment-gateway</artifactId>
+                <version>${broadleaf-null-payment-gateway.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
             </dependency>
 
             <dependency>
