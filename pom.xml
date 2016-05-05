@@ -23,22 +23,12 @@
         <repository>
             <id>public snapshots</id>
             <name>public snapshots</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/community-snapshots/</url>
         </repository>
         <repository>
             <id>public releases</id>
             <name>public releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>framework-5-releases</id>
-            <name>framework-5-releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/framework-5-releases/</url>
-        </repository>
-        <repository>
-            <id>menu-releases</id>
-            <name>menu-releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/menu-releases/</url>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/community-releases/</url>
         </repository>
     </repositories>
     <build>
