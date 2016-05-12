@@ -3,31 +3,32 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.mycompany</groupId>
+        <groupId>com.mycompany-community</groupId>
         <artifactId>ecommerce-website</artifactId>
-        <version>1.0</version>
+        <version>5.0</version>
     </parent>
     <artifactId>site</artifactId>
     <packaging>war</packaging>
     <name>site</name>
     <description>Web Module For Broadleaf Commerce Based ECommerce Site</description>
     <properties>
-        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- httpsPort and httpPort are used by embeded jetty server.-->
-        <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
+        <!-- httpsPort and httpPort are used by embedded Tomcat server.-->
         <httpsPort>8443</httpsPort> 
         <httpPort>8080</httpPort>
+        <path>/</path>
     </properties>
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
         <finalName>mycompany</finalName>
         <plugins>
+            
+            <!-- Generate the SSL keystore -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
             </plugin>
             
+            <!-- Generate JRebel's rebel.xml -->
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
@@ -46,26 +47,29 @@
                 </executions>
             </plugin>
             
+            <!-- Copy the spring instrument jar -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            
+            <!-- Grab the database properties file and interpret it as Maven properties to pass
+                 to context.xml --> 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+            </plugin>
+
             <!-- Used by embedded Tomcat to move context.xml for JNDI resources -->
             <!-- Configuration inherited from parent -->            
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
-            <!-- Main configuration inherited from parent -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <configuration>
-                    <path>/</path>
-                    <port>${httpPort}</port>
-                    <httpsPort>${httpsPort}</httpsPort>
-                </configuration>
-            </plugin>
+            
         </plugins>
     </build>
     <dependencies>
         <dependency>
-            <groupId>com.mycompany</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>core</artifactId>
         </dependency>
         <dependency>

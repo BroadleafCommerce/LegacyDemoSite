@@ -3,30 +3,33 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.mycompany</groupId>
+        <groupId>com.mycompany-community</groupId>
         <artifactId>ecommerce-website</artifactId>
-        <version>1.0</version>
+        <version>5.0</version>
     </parent>
     <artifactId>admin</artifactId>
     <packaging>war</packaging>
     <name>admin</name>
     <description>Web Module For Customized Broadleaf Commerce Admin</description>
     <properties>
-        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <!-- httpsPort and httpPort are used by embeded jetty server.-->
         <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
         <httpsPort>8444</httpsPort> 
         <httpPort>8081</httpPort>
+        <path>/admin</path>
     </properties>
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
         <finalName>admin</finalName>
         <plugins>
+        
+            <!-- Generate the SSL keystore -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>keytool-maven-plugin</artifactId>
             </plugin>
             
+            <!-- Generate JRebel's rebel.xml -->
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
@@ -45,42 +48,31 @@
                 </executions>
             </plugin>
             
+            <!-- Copy the spring instrument jar -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            
+            <!-- Grab the database properties file and interpret it as Maven properties to pass
+                 to context.xml --> 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+            </plugin>
+
             <!-- Used by embedded Tomcat to move context.xml for JNDI resources -->
             <!-- Configuration inherited from parent -->            
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
-            <!-- Main configuration inherited from parent -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <configuration>
-                    <path>/admin</path>
-                    <port>${httpPort}</port>
-                    <httpsPort>${httpsPort}</httpsPort>
-                </configuration>
-            </plugin>
             
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>timestamp-property</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>timestamp-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>clientBuildDate</name>
-                            <pattern>yyyy-MM-dd HH:mm:ss</pattern>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-admin-module</artifactId>
@@ -96,10 +88,6 @@
         <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>core</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

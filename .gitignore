@@ -11,9 +11,12 @@ test-output
 *.ipr
 bin/
 site/data/
+data/
 .svn
 site/solrhome
+site/src/main/resources/webapp
 combined/data/
 combined/solrhome
 *.error
-local-dev
+.DS_Store
+.vagrant
