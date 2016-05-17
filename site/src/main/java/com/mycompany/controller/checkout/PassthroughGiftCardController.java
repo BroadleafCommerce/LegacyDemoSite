@@ -48,12 +48,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Elbert Bautista (elbertbautista)
  */
-@Controller("blNullPaymentGatewayGiftCardController")
-@RequestMapping("/" + NullGiftCardController.GATEWAY_CONTEXT_KEY)
-public class NullGiftCardController extends AbstractCheckoutController {
+@Controller("blPassthroughPaymentGatewayGiftCardController")
+@RequestMapping("/" + PassthroughGiftCardController.GATEWAY_CONTEXT_KEY)
+public class PassthroughGiftCardController extends AbstractCheckoutController {
 
-    protected static final Log LOG = LogFactory.getLog(NullGiftCardController.class);
-    protected static final String GATEWAY_CONTEXT_KEY = "null-giftcard";
+    protected static final Log LOG = LogFactory.getLog(PassthroughGiftCardController.class);
+    protected static final String GATEWAY_CONTEXT_KEY = "passthrough-giftcard";
 
     @RequestMapping(value="/apply", method = RequestMethod.POST)
     public String applyGiftCard(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -81,6 +81,7 @@ public class NullGiftCardController extends AbstractCheckoutController {
         return getCheckoutView();
     }
 
+    @Override
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);

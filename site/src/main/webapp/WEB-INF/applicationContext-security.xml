@@ -41,8 +41,8 @@
         <sec:intercept-url pattern="/login*/**" requires-channel="https" />
         <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
-        <sec:intercept-url pattern="/null-checkout/**" requires-channel="https" />
-        <sec:intercept-url pattern="/null-giftcard/**" requires-channel="https" />
+        <sec:intercept-url pattern="/passthrough-checkout/**" requires-channel="https" />
+        <sec:intercept-url pattern="/passthrough-giftcard/**" requires-channel="https" />
         <sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
@@ -86,9 +86,9 @@
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
         <property name="excludedRequestPatterns">
             <list>
-                <value>/null-checkout/**</value>
-                <value>/null-giftcard/**</value>
-                <value>/hosted/null-checkout/**</value>
+                <value>/passthrough-checkout/**</value>
+                <value>/passthrough-giftcard/**</value>
+                <value>/hosted/passthrough-checkout/**</value>
             </list>
         </property>
     </bean>
