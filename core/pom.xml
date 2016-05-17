@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>org.broadleafcommerce</groupId>
-            <artifactId>broadleaf-passthrough-payment-gateway</artifactId>
+            <artifactId>broadleaf-sample-payment-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

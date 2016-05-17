@@ -48,12 +48,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Elbert Bautista (elbertbautista)
  */
-@Controller("blPassthroughPaymentGatewayGiftCardController")
-@RequestMapping("/" + PassthroughGiftCardController.GATEWAY_CONTEXT_KEY)
-public class PassthroughGiftCardController extends AbstractCheckoutController {
+@Controller("blSamplePaymentGatewayGiftCardController")
+@RequestMapping("/" + SampleGiftCardController.GATEWAY_CONTEXT_KEY)
+public class SampleGiftCardController extends AbstractCheckoutController {
 
-    protected static final Log LOG = LogFactory.getLog(PassthroughGiftCardController.class);
-    protected static final String GATEWAY_CONTEXT_KEY = "passthrough-giftcard";
+    protected static final Log LOG = LogFactory.getLog(SampleGiftCardController.class);
+    protected static final String GATEWAY_CONTEXT_KEY = "sample-giftcard";
 
     @RequestMapping(value="/apply", method = RequestMethod.POST)
     public String applyGiftCard(HttpServletRequest request, HttpServletResponse response, Model model,
