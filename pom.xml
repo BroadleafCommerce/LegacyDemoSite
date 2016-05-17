@@ -10,8 +10,8 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>5.0.0-SNAPSHOT</blc.version>
-        <blc.menu.version>2.0.0-SNAPSHOT</blc.menu.version>
+        <blc.version>5.0.0-GA</blc.version>
+        <blc.menu.version>2.0.0-GA</blc.menu.version>
         <broadleaf-null-payment-gateway.version>1.1.0-SNAPSHOT</broadleaf-null-payment-gateway.version>
 
         <!-- WARNING: HSQLDB version 2.3.3 does not work, 2.3.2 is verified to work with Broadleaf -->
