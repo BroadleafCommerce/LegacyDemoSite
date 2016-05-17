@@ -26,12 +26,12 @@
         <repository>
             <id>public snapshots</id>
             <name>public snapshots</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/community-snapshots/</url>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/groups/community-snapshots/</url>
         </repository>
         <repository>
             <id>public releases</id>
             <name>public releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/community-releases/</url>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/groups/community-releases/</url>
         </repository>
     </repositories>
     <build>
