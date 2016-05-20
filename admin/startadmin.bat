@@ -1,34 +1,34 @@
-#!/bin/bash
+@echo off
+REM ## Startup script variables that you can/should change:
+REM # JREBEL_PATH - local path to your jrebel dylib to be passed as -agentpath
+REM #           example - /Users/you/jrebel/lib/libjrebel64.dylib
+REM # DEBUG_PORT - defaults to 8001
+REM # TOMCAT_MEMORY - Defaults to -Xmx1536
 
-## Startup script variables that you can/should change:
-# JREBEL_PATH - local path to your jrebel dylib to be passed as -agentpath
-#           example - /Users/you/jrebel/lib/libjrebel64.dylib
-# DEBUG_PORT - defaults to 8000
-# TOMCAT_MEMORY - Defaults to -Xmx1536
+set cwd=%cd%
 
-cwd=$(pwd)
-
-# Do an install of the core jar in case anything changed since the last restart and we're not using jrebel
+REM # Do an install of the core jar in case anything changed since the last restart and we're not using jrebel
 cd ../core
-mvn install
+call mvn install
 
-# Go back to where we just were to get ready to run the Tomcat Maven plugin
-cd $cwd
+REM # Go back to where we just were to get ready to run the Tomcat Maven plugin
+cd %cwd%
 
-# Ensure that the spring-instrument jar gets downloaded and moved into target
-mvn dependency:copy@copy-agent
+REM # Ensure that the spring-instrument jar gets downloaded and moved into target
+call mvn dependency:copy@copy-agent
 
-# Start up the embedded HSQLDB database in the background. If it's already started this won't do anything
-mvn antrun:run@hsqldb-start &
+REM # Start up the embedded HSQLDB database in the background. If it's already started this won't do anything
+call mvn antrun:run@hsqldb-start
 
-# grab the path to the JRebel agent and set up a JREBEL_AGENT variable to pass to the JVM
-if [ -z ${JREBEL_PATH+x} ]; then JREBEL_AGENT=""; else JREBEL_AGENT="-agentpath:$JREBEL_PATH"; fi
+REM # grab the path to the JRebel agent and set up a JREBEL_AGENT variable to pass to the JVM
+IF "%JREBEL_PATH%"=="" (SET JREBEL_AGENT=) ELSE (SET JREBEL_AGENT=-agentpath:%JREBEL_PATH%)
 
-# Figure out a debug port
-if [ -z ${DEBUG_PORT+x} ]; then DEBUG_PORT="8000"; fi
+REM # Figure out a debug port
+IF "%DEBUG_PORT%"=="" SET DEBUG_PORT=8001
 
-if [ -z ${TOMCAT_MEMORY+x} ]; then TOMCAT_MEMORY="-Xmx1536"; fi
+IF "%TOMCAT_MEMORY%"=="" SET TOMCAT_MEMORY=-Xmx1536
 
-export BROADLEAF_OPTS="-Xmx1536M -Xdebug -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n -javaagent:target/agents/spring-instrument.jar $JREBEL_AGENT"
+SET BROADLEAF_OPTS=%TOMCAT_MEMORY% -Xdebug -Xrunjdwp:transport=dt_socket,address=%DEBUG_PORT%,server=y,suspend=n -javaagent:target/agents/spring-instrument.jar %JREBEL_AGENT%
 
-MAVEN_OPTS="$MAVEN_OPTS $BROADLEAF_OPTS" mvn tomcat7:run-war
+SET MAVEN_OPTS=%MAVEN_OPTS% %BROADLEAF_OPTS%
+call mvn tomcat7:run-war
