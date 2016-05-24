@@ -27,8 +27,8 @@ if [ -z ${JREBEL_PATH+x} ]; then JREBEL_AGENT=""; else JREBEL_AGENT="-agentpath:
 # Figure out a debug port
 if [ -z ${DEBUG_PORT+x} ]; then DEBUG_PORT="8000"; fi
 
-if [ -z ${TOMCAT_MEMORY+x} ]; then TOMCAT_MEMORY="-Xmx1536"; fi
+if [ -z ${TOMCAT_MEMORY+x} ]; then TOMCAT_MEMORY="-Xmx1536M -XX:MaxPermSize=512M"; fi
 
-export BROADLEAF_OPTS="-Xmx1536M -Xdebug -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n -javaagent:target/agents/spring-instrument.jar $JREBEL_AGENT"
+export BROADLEAF_OPTS="$TOMCAT_MEMORY -Xdebug -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n -javaagent:target/agents/spring-instrument.jar $JREBEL_AGENT"
 
 MAVEN_OPTS="$MAVEN_OPTS $BROADLEAF_OPTS" mvn tomcat7:run-war
