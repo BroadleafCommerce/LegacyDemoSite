@@ -35,22 +35,6 @@
         </property>
     </bean>
     
-    <!-- Set up the view resolver to be used by Spring -->
-    <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
-        <property name="templateEngine" ref="blAdminWebTemplateEngine" />
-        <property name="order" value="1" />
-        <property name="cache" value="${thymeleaf.view.resolver.cache}" />
-        <property name="characterEncoding" value="UTF-8" />
-        <property name="fullPageLayout" value="layout/fullPageLayout" />
-        <property name="layoutMap">
-            <map>
-                <entry key="login/" value="layout/loginLayout" />
-                <entry key="views/" value="NONE" />
-                <entry key="modules/modalContainer" value="NONE" />
-            </map>
-        </property>
-    </bean>
-
     <mvc:interceptors>
         <!-- Interceptor for locale-->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">

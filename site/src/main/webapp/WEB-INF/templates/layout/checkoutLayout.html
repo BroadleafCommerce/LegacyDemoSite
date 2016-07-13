@@ -12,15 +12,15 @@
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
 
-    <header th:substituteby="layout/partials/headerCheckout" />
+    <header th:substituteby="layout/partials/headerCheckout" ></header>
     
     <div id="checkout_content" class="width_setter group" role="main">
     
-        <div layout:fragment="content" />
+        <div layout:fragment="content" ></div>
     
     </div>
 
-    <footer th:substituteby="layout/partials/footer" />
+    <footer th:substituteby="layout/partials/footer" ></footer>
 
     <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/

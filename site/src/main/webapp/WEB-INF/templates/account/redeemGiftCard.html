@@ -36,7 +36,7 @@
         </li>
         <li class="giftcard">
             <div class="giftcard-info-row">
-                <span class="giftcard-number" th:utext="*{accountNumber}"/>
+                <span class="giftcard-number" th:utext="*{accountNumber}"></span>
                 <span class="submit-date" th:utext="${#dates.format(responseEvent.eventDate, 'MM-dd-yyyy')}"></span>
                 <span class="status" th:utext="${responseEvent.reasonDesc}">Pending</span>
                 <span class="balance" blc:price="${responseEvent.amount}"></span>

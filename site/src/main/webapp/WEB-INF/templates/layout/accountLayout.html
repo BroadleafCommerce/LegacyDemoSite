@@ -11,24 +11,24 @@
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
+    <header th:substituteby="layout/partials/header" ></header>
     
     <div id="content" class="width_setter group" role="main">   
 
-        <nav th:substituteby="layout/partials/nav" />
+        <nav th:substituteby="layout/partials/nav" ></nav>
 
         <div class="manage-account-container clearfix">
 
             <h1>Account Options</h1>
             
-            <ul th:substituteby="account/partials/accountMenu" />
+            <ul th:substituteby="account/partials/accountMenu" ></ul>
             
-            <div layout:fragment="content" />
+            <div layout:fragment="content" ></div>
 
         </div>
     </div>
     
-    <footer th:substituteby="layout/partials/footer" />
+    <footer th:substituteby="layout/partials/footer" ></footer>
     
 </body>
 </html>

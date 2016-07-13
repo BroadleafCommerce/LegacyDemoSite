@@ -5,7 +5,8 @@
 
     <div id="order_confirmation">
         <h2><span th:utext="#{confirmation.success}">Success!</span></h2>
-        <h3><span th:utext="#{confirmation.orderNum}">Order Confirmation #</span> - <span th:utext="${order.orderNumber}"/></h3>
+        <h3><span th:utext="#{confirmation.orderNum}">Order Confirmation #</span> - <span th:utext="${order.orderNumber}"></span>
+</h3>
         <p class="confirmation-note"><span th:utext="#{confirmation.confirmEmail.toBeSent}">A confirmation email will be sent to</span> <span th:utext="${order.emailAddress}"></span>.</p>
     </div>
 
@@ -151,12 +152,14 @@
             <div th:if="${payment.active}" class="left_content">
                 <h3><span th:utext="#{confirmation.payment.method}">Payment Method</span></h3>
                 Payment type: [[*{type.friendlyType}]]<br/>
-                Amount paid: <span blc:price="*{amount}" />
+                Amount paid: <span blc:price="*{amount}" ></span>
                 <div th:if="${payment.initialTransaction != null}">
                     <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
-                        <b th:utext="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
-                        ****<span th:utext="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                        <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="*{initialTransaction.additionalFields['EXP_DATE']}"/>
+                        <b th:utext="*{initialTransaction.additionalFields['CARD_TYPE']}"></b>
+<br/>
+                        ****<span th:utext="*{initialTransaction.additionalFields['LAST_FOUR']}"></span>
+<br/>
+                        <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="*{initialTransaction.additionalFields['EXP_DATE']}"></span>
                         <address>
                             [[*{billingAddress.firstName == null ? '' : billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName == null ? '' : billingAddress.lastName}]]<br/>
                             [[*{billingAddress.phonePrimary?.phoneNumber == null ? '' : billingAddress.phonePrimary?.phoneNumber}]]<br/>
@@ -168,11 +171,13 @@
                     </div>
                     <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
                         <span th:utext="#{cart.accountCredit.accounts}">Accounts</span><br/>
-                        <b th:utext="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                        <b th:utext="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"></b>
+<br/>
                     </div>
                     <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
                         <span th:utext="#{cart.giftCardNumber}">Gift Card Number</span><br/>
-                        <b th:utext="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
+                        <b th:utext="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"></b>
+<br/>
                     </div>
                 </div>
             </div>

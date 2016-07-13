@@ -26,16 +26,16 @@
             <a id="cartLink" class="modalcart" th:href="@{/cart}">
                 <img blc:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
                 &nbsp; 
-                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
-                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" />
-                <span class="headerCartItemsCount" th:utext="${cart.itemCount}" />
-                <span class="headerCartItemsCountWord" th:utext="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" />
+                <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" ></span>
+                <span id="headerCartItemWordPlural_i18n" style="display: none;" th:utext="#{home.items}" ></span>
+                <span class="headerCartItemsCount" th:utext="${cart.itemCount}" ></span>
+                <span class="headerCartItemsCountWord" th:utext="${cart.itemCount == 1} ? #{home.item} :  #{home.items}" ></span>
             </a>
 
         </div>
 
         <div id="languages">
-            <span id="selectedLocale" th:utext="${session.blLocale.localeCode}" style="display: none" />
+            <span id="selectedLocale" th:utext="${session.blLocale.localeCode}" style="display: none" ></span>
 
             <a href="javascript:;" onclick="BLC.addUrlParam(document.location.search, 'blLocaleCode', 'en_US')">
                 <img id="en_US" src="img/flags/United-States.png" blc:src="@{/img/flags/United-States.png}" alt="United States" title="English" />

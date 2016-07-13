@@ -106,15 +106,17 @@
                     <tr th:each="fulfillmentOption : ${fulfillmentOptions}">
                         <td><input class="shipping_method_option" type="radio" th:field="*{fulfillmentOptionId}" th:value="${fulfillmentOption.id}" /></td>
                         <td>
-                            <span th:utext="${fulfillmentOption.name}"/>&nbsp;(<span th:utext="${fulfillmentOption.longDescription}"/>)
-                            <span th:if="${estimateResponse != null}" blc:price="${estimateResponse.fulfillmentOptionPrices.get(fulfillmentOption)}"/>
+                            <span th:utext="${fulfillmentOption.name}"></span>
+&nbsp;(<span th:utext="${fulfillmentOption.longDescription}"></span>
+)
+                            <span th:if="${estimateResponse != null}" blc:price="${estimateResponse.fulfillmentOptionPrices.get(fulfillmentOption)}"></span>
                         </td>
                     </tr>
                 </table>
                 <br />
                 <div th:if="${validShipping}">
                     <h3><span th:utext="#{cart.shppingTotal}">Shipping Total</span></h3>
-                    <div id="shipping_total" blc:price="${cart.totalShipping}" />
+                    <div id="shipping_total" blc:price="${cart.totalShipping}" ></div>
                 </div>
 
                 <div>

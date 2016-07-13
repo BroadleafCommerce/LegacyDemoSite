@@ -16,7 +16,7 @@
             </div>
 
         <div th:if="${cartRequiresLock != null}" class="checkout_warning">
-            <span th:utext="#{csr_lockCartBeforeCheckout}" />
+            <span th:utext="#{csr_lockCartBeforeCheckout}" ></span>
         </div>
 
         <div th:unless="${#lists.isEmpty(cart.orderItems) or cartRequiresLock != null}">

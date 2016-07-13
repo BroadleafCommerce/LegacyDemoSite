@@ -21,7 +21,7 @@
                     <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
                 </div>
                 
-                <div class="product-options" th:substituteby="catalog/partials/productOptions"/>                                
+                <div class="product-options" th:substituteby="catalog/partials/productOptions"></div>                                
                 
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
@@ -39,7 +39,7 @@
                         <div th:utext="*{longDescription}" id="description"></div>
                         
                         <div id="inventory" th:if="${checkInventory}">
-                            <b>Available inventory:</b> <span th:utext="*{defaultSku.quantityAvailable == null ? '0' : defaultSku.quantityAvailable}" />
+                            <b>Available inventory:</b> <span th:utext="*{defaultSku.quantityAvailable == null ? '0' : defaultSku.quantityAvailable}" ></span>
                             <div th:if="${!availableInventory}" class="out_of_stock">
                                 <a disabled="disabled" class="big-button gray-button">Out of Stock</a>
                             </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div th:class="${'productActions' + product.id}">
 
-                            <blc:named_order orderVar="wishlist" orderName="wishlist" />
+                            <blc:named_order orderVar="wishlist" orderName="wishlist" ></blc:named_order>
 
                             <div class="in_wishlist" th:classappend="${!wishlist.containsSku(product.defaultSku)}? ' hidden'">
                                 <a class="inWishlist small-button gray-button" th:href="@{/account/wishlist}">In Wishlist!</a>
@@ -87,7 +87,7 @@
                 </div>
                     
                 <p>
-                    Share this Sauce:
+                    Share this Sauce: </p>
                     <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                         <a class="addthis_button_preferred_1"></a>
                         <a class="addthis_button_preferred_2"></a>
@@ -97,7 +97,6 @@
                         <a class="addthis_counter addthis_bubble_style"></a>
                     </div>
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
-                </p>
                 
             </div>
             
@@ -129,7 +128,7 @@
             
             <div class="clearfix"></div>
                 <div id="customer-reviews-container">
-                    <blc:ratings itemId="${product.id}" />
+                    <blc:ratings itemId="${product.id}" ></blc:ratings>
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
                         <span class="title">Community Rating</span>
                         <div id="community-rating-container">
@@ -161,7 +160,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                            <blc:ratings itemId="${product.id}" />
+                            <blc:ratings itemId="${product.id}" ></blc:ratings>
                             <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
                                 <h4>Your Review</h4>
                                 <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
@@ -225,7 +224,8 @@
             <header>Featured Products</header>
             <div id="options">
                 <div class="section">
-                     <blc:related_products productId="${product.id}"/>   
+                     <blc:related_products productId="${product.id}"></blc:related_products>
+   
                     <ul id="featured_products" class="group">
                         <li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" th:include="catalog/partials/productListItem" class="product_container"></li>
                     </ul>

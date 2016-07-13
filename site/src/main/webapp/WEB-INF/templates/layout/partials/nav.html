@@ -5,7 +5,7 @@
              and building a list of the categories sub-categories menu items.
         -->
     </div>
-    <blc:menu resultVar="menuItems" menuName="Header Nav" />
+    <blc:menu resultVar="menuItems" menuName="Header Nav" ></blc:menu>
     <ul th:if="${not #lists.isEmpty(menuItems)}">
         <li th:each="menuItem : ${menuItems}">
 

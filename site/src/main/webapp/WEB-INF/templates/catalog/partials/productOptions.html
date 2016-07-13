@@ -1,6 +1,6 @@
 <div class="product-options hidden" th:fragment="productOptions">
-    <blc:product_options productId="*{id}" />
-    <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}" />
+    <blc:product_options productId="*{id}" ></blc:product_options>
+    <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}"></div>
     <ul>
         <li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
             <label th:utext="*{label}"></label>:
@@ -15,18 +15,18 @@
                     </select> 
                 </li>                             
                 <li th:case="'TEXTAREA'">
-                    <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
+                    <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" ></textarea>
                 </li>
                 <li th:case="'DECIMAL'">
                     <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
                 </li>
-                <li th:case="*" th:remove="tag">
+                <th:block th:case="*" th:remove="tag">
                     <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
                         <div>
                             <a href="#" class="option-label" th:utext="*{attributeValue}"  ></a>
                         </div>
                     </li>
-                </li>
+                </th:block>
             </ul>       
         </li>
     </ul>

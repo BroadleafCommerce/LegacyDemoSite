@@ -12,10 +12,12 @@
             <li><img src="https://www.mastercard.com/mc_us/wallet/img/en/US/mp_mc_acc_034px_gif.gif"/></li>
             <div th:if="${unconfirmedCC.initialTransaction != null}">
                 <div th:if="!${#strings.isEmpty(unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE'])}">
-                    <b th:utext="${unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
+                    <b th:utext="${unconfirmedCC.initialTransaction.additionalFields['CARD_TYPE']}"></b>
+<br/>
                     <span th:utext="${unconfirmedCC.initialTransaction.additionalFields['NAME_ON_CARD']}"></span><br/>
-                    ****<span th:utext="${unconfirmedCC.initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                    <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="${unconfirmedCC.initialTransaction.additionalFields['EXP_DATE']}"/>
+                    ****<span th:utext="${unconfirmedCC.initialTransaction.additionalFields['LAST_FOUR']}"></span>
+<br/>
+                    <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="${unconfirmedCC.initialTransaction.additionalFields['EXP_DATE']}"></span>
                 </div>
             </div>
         </ul>
