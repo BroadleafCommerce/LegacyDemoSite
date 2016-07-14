@@ -19,6 +19,6 @@ public class TLTestController {
     public String test(Model model) {
         Product product = catalogService.findProductById(1L);
         model.addAttribute("product", product);
-        return "/test";
+        return "test";
     }
 }
