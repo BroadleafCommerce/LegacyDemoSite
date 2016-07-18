@@ -19,4 +19,23 @@
     <blc:form th:method="${(true) ? 'GET' : 'POST'}" th:action="@{/test}">
         <input type="submit" />
     </blc:form>
+    
+    <blc:bundle name="lib.js" 
+                mapping-prefix="/js/"
+                async="true"
+                files="plugins.js,
+                       libs/jquery.MetaData.js,
+                       libs/jquery.rating.pack.js,
+                       libs/jquery.dotdotdot-1.5.1.js" />
+    
+    <blc:bundle name="heatclinic.js" 
+                mapping-prefix="/js/"
+                files="BLC.js,
+                       heatClinic.js,
+                       cartOperations.js,
+                       checkoutOperations.js,
+                       globalOnReady.js,
+                       manageAccountOperations.js,
+                       reviewOperations.js" />
+    
 </th:block>
