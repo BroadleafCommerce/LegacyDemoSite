@@ -2,4 +2,21 @@
     <h1 th:text="*{name}"></h1>
     <h1 th:text="${#blc.getCurrentUrl()}"></h1>
     <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
+    
+    <blc:form method="POST" action="/test">
+        <input type="submit" />
+    </blc:form>
+    
+    
+    <blc:form enctype="multipart/form-data" method="POST" th:action="@{/test}">
+        <input type="submit" />
+    </blc:form>
+    
+    <blc:form enctype="multipart/form-data" method="POST" action="/test">
+        <input type="submit" />
+    </blc:form>
+    
+    <blc:form th:method="${(true) ? 'GET' : 'POST'}" th:action="@{/test}">
+        <input type="submit" />
+    </blc:form>
 </th:block>
