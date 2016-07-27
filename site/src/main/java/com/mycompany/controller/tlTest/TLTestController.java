@@ -17,7 +17,7 @@ public class TLTestController {
 
     @RequestMapping
     public String test(Model model) {
-        Product product = catalogService.findProductById(1L);
+        Product product = catalogService.findProductById(100L);
         model.addAttribute("product", product);
         return "test";
     }

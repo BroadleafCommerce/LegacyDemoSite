@@ -1,41 +1,148 @@
-<th:block th:object="${product.defaultSku}">
-    <h1 th:text="*{name}"></h1>
-    <h1 th:text="${#blc.getCurrentUrl()}"></h1>
-    <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
-    
-    <blc:form method="POST" action="/test">
-        <input type="submit" />
-    </blc:form>
-    
-    
-    <blc:form enctype="multipart/form-data" method="POST" th:action="@{/test}">
-        <input type="submit" />
-    </blc:form>
-    
-    <blc:form enctype="multipart/form-data" method="POST" action="/test">
-        <input type="submit" />
-    </blc:form>
-    
-    <blc:form th:method="${(true) ? 'GET' : 'POST'}" th:action="@{/test}">
-        <input type="submit" />
-    </blc:form>
-    
-    <blc:bundle name="lib.js" 
-                mapping-prefix="/js/"
-                async="true"
-                files="plugins.js,
-                       libs/jquery.MetaData.js,
-                       libs/jquery.rating.pack.js,
-                       libs/jquery.dotdotdot-1.5.1.js" />
-    
-    <blc:bundle name="heatclinic.js" 
-                mapping-prefix="/js/"
-                files="BLC.js,
-                       heatClinic.js,
-                       cartOperations.js,
-                       checkoutOperations.js,
-                       globalOnReady.js,
-                       manageAccountOperations.js,
-                       reviewOperations.js" />
-    
+<th:block layout:decorator="layout/fullPageLayout">
+    <div layout:fragment="content" style="padding-left:15px">
+        <th:block th:object="${product.defaultSku}">
+            <h1 th:text="*{name}"></h1>
+            <div>
+                <h2>VariableExpression Tests</h2>
+                <h3>Gets value for the property "solr.source.primary" using the PropertiesVariableExpression</h3>
+                <span th:text="${#props.get('solr.source.primary')}"></span>
+            </div>
+            <div>
+                <h2>PriceTextDisplayProcessor Tests</h2>
+                <th:block blc:price="*{retailPrice}"></th:block>
+                <div blc:price="*{retailPrice}" th:remove="tag"></div>
+                <div blc:price="*{retailPrice}"></div>
+            </div>
+            <div>
+                <h2>ConfigVariableProcessor Tests</h2>
+                <blc:config resultVar="solr" name="solr.source.primary">
+                    <h3>Testing local eval of "solr.source.primary" works</h3>
+                    <h5 th:text="${solr}"></h5>
+                </blc:config>
+                <h3>Testing global eval of "solr.source.primary" works</h3>
+                <h5 th:text="${solr}"></h5>
+                <blc:config resultVar="solr" name="solr.index.start.delay">
+                    <h3>Testing that local changed to eval "solr.index.start.delay"</h3>
+                    <h5 th:text="${solr}"></h5>
+                </blc:config>
+                <h3>Testing that global changed to eval "solr.index.start.delay"</h3>
+                <h5 th:text="${solr}"></h5>
+            </div>
+            <div>
+                <h2>CreditCardTypesProcessor Tests</h2>
+                <blc:credit_card_types>
+                    <div th:if="${paymentGatewayCardTypes != null}" class="form-group">
+                        <label for="cardNumber">Card Type</label>
+                        <select th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
+                            <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                        </select>
+                    </div>
+                </blc:credit_card_types>
+            </div>
+            <div>
+                <h2>Legacy Google Analytics Tests</h2>
+                <blc:googleanalytics ordernumber="${order?.orderNumber}"/>
+                <script th:utext="${analytics}"/>
+                <span>*note* the head tests the non-legacy version of this</span>
+            </div>
+            <div>
+                <h2>CatalogRelativeHrefProcessor Test</h2>            
+                <a blc:rhref=${product}>Product Url</a>
+            </div>
+            <div>
+                <h2>UrlRewriteProcessor Test</h2>
+                <img blc:src="@{${product.media['primary'].url} + '?browse'}" th:alt="${product.name}" />
+            </div>
+            <div>
+                <h2>HrefUrlRewrteProcessor Test</h2>
+                <link blc:href="@{${product.media['primary'].url} + '?browse'}">Link tag</link>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}" useCDN="true">Use CDN</a>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}" useCDN="false">Don't Use CDN</a>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}">No CDN attribute</a>
+            </div>
+            <div>
+                <h2>PaginationSizeLinkProcessor Test</h2>
+                <a blc:pagination-size-link="30">Set Page size to 30</a>
+            </div>
+            <div>
+                <h2>PaginationPageLinkProcessor Tests</h2>
+                <th:block th:each="num : ${#numbers.sequence(1,5)}">
+                    <a blc:paginationpagelink="${num}" th:text="${num}"></a>
+                </th:block>
+            </div>
+            <div>
+                <h2>PaginationSortLinkProcessor Tests</h2>
+                <a blc:pagination-sort-link="black">Sort by black</a>
+                <a blc:pagination-sort-link="red">Sort by red</a>
+            </div>
+            <div>
+                <h2>ProductOptionDisplayProcessor Tests</h2>
+                <h3 th:if="${#lists.isEmpty(cart.orderItems)}">Add something with product options to your cart to test this</h3>
+                <ul th:unless="${#lists.isEmpty(cart.orderItems)}">
+                    <li th:each="item : ${cart.orderItems}">
+                        <blc:product_option_display orderItem="${item}" >
+                            <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                <li th:each="entry: ${productOptionDisplayValues}">
+                                    <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+                                </li>
+                            </ul>
+                        </blc:product_option_display> 
+                    </li>
+                </ul>
+            </div>
+            <div th:object="${product}">
+                <h2>ProductOptionsProcessor Test</h2>
+                <blc:product_options productId="*{id}" />
+                <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}"></div>
+                <ul>
+                    <li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
+                        <label th:utext="*{label}"></label>:
+                         <span th:id="*{attributeName}" class="option-value" th:attr="data-optiontype=*{type.type}"></span>
+                         <ul class="cf" th:switch="*{type.type}">
+                            <li th:case="'TEXT'">                     
+                                <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" />                               
+                            </li>
+                            <li th:case="'SELECT'">
+                                <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+                                    <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:utext="*{attributeValue}"></option>
+                                </select> 
+                            </li>                             
+                            <li th:case="'TEXTAREA'">
+                                <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
+                            </li>
+                            <li th:case="'DECIMAL'">
+                                <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
+                            </li>
+                            <th:block th:case="*">
+                                <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
+                                    <div>
+                                        <a href="#" class="option-label" th:utext="*{attributeValue}"  ></a>
+                                    </div>
+                                </li>
+                            </th:block>
+                        </ul>       
+                    </li>
+                </ul>
+                <span class="productOptionsSpan centered" style="display: none;"><span th:utext="#{product.productOptionValidationError}">Product Option Validation Failed</span></span>
+                <span class="error centered" style="display: none;"><span th:utext="#{product.allOptionsRequired}">All options are required</span></span>
+                <span class="error errorMessage" style="display: none;"></span>
+            </div>
+            <div>
+                <h2>FormProcessor Tests</h2>
+                <blc:form method="POST" action="/test">
+                    <input type="submit" />
+                </blc:form>
+                <blc:form enctype="multipart/form-data" method="POST" th:action="@{/test}">
+                    <input type="submit" />
+                </blc:form>
+                <blc:form enctype="multipart/form-data" method="POST" action="/test">
+                    <input type="submit" />
+                </blc:form>
+                <blc:form th:method="${(true) ? 'GET' : 'POST'}" th:action="@{/test}">
+                    <input type="submit" />
+                </blc:form>
+            </div>
+        </th:block>
+    </div>
 </th:block>
+
