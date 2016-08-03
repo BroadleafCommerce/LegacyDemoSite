@@ -2,6 +2,7 @@
     <div layout:fragment="content" style="padding-left:15px">
         <th:block th:object="${product.defaultSku}">
             <h1 th:text="*{name}"></h1>
+            <div th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></div>
             <div>
                 <h2>VariableExpression Tests</h2>
                 <h3>Gets value for the property "solr.source.primary" using the PropertiesVariableExpression</h3>
@@ -273,6 +274,10 @@
                 <ul id="featured_products" class="group">
                     <li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" th:include="catalog/partials/productListItem" class="product_container"></li>
                 </ul>
+            </div>
+            <div>
+                <h2>th:inline Test</h2>
+                <span th:inline="text">[[${product.id}]]</span>
             </div>
         </th:block>
     </div>
