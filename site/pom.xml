@@ -84,7 +84,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-framework-thymeleaf</artifactId>
             <version>2.0.0-SNAPSHOT</version>
@@ -93,11 +93,6 @@
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-contentmanagement-thymeleaf</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <version>2.4.6</version>
         </dependency>
     </dependencies>
 </project>
