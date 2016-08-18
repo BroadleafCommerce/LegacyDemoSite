@@ -84,10 +84,10 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
-        <dependency>
+<!--         <dependency>
             <groupId>org.broadleafcommerce</groupId>
-            <artifactId>broadleaf-thymeleaf3-presentation</artifactId>
+            <artifactId>broadleaf-thymeleaf2-presentation</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+        </dependency> -->
     </dependencies>
 </project>
