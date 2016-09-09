@@ -210,7 +210,7 @@
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
     <!-- in production environments, but likely not in development environments. -->
     <!-- 
-    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafServletTemplateResolver">
+    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafThemeAwareTemplateResolver">
         <property name="prefix" value="/WEB-INF/" />
         <property name="templateFolder" value="${theme.templates.folder}" />
         <property name="suffix" value=".html" />
