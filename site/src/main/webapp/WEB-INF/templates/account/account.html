@@ -1,4 +1,4 @@
-<th:block layout:decorator="layout/accountLayout" layout:fragment="content">
+<th:block layout:decorate="~{layout/accountLayout}" layout:fragment="content">
     <blc:form class="manage-account" action="#" th:action="@{/account/myaccount}" th:object="${updateAccountForm}" method="POST">
         <div class="form50">
             <label for="emailAddress">Email Address:</label>

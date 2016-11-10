@@ -1,4 +1,4 @@
-<th:block layout:decorator="layout/fullPageLayout">
+<th:block layout:decorate="~{layout/fullPageLayout}">
     <div layout:fragment="content" style="padding-left:15px">
         <th:block th:object="${product.defaultSku}">
             <h1 th:text="*{name}"></h1>

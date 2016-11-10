@@ -52,7 +52,7 @@
 
             <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
                 <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
-                <div class="productOptions" th:replace="catalog/partials/offers :: offers"></div>
+                <div class="productOptions" th:replace="~{catalog/partials/offers :: offers}"></div>
 
             </td>
             <td align="center" class="value" blc:price="*{totalPrice}"></td>

@@ -1,4 +1,4 @@
-<div layout:decorator="layout/checkoutLayout" layout:fragment="content">
+<div layout:decorate="~{layout/checkoutLayout}" layout:fragment="content">
     <blc:one_page_checkout orderInfoForm="${orderInfoForm}"
                            shippingInfoForm="${shippingInfoForm}"
                            billingInfoForm="${billingInfoForm}"
@@ -27,27 +27,27 @@
 
                 <div class="clearfix"></div>
 
-                <div th:replace="checkout/partials/orderSummary :: order-summary"></div>
+                <div th:replace="~{checkout/partials/orderSummary :: order-summary}"></div>
 
                 <div class="clearfix"></div>
 
             <div th:each="sectionDTO : ${checkoutSectionDTOs}" th:object="${sectionDTO}" th:remove="tag">
                 <div th:if="${'ORDER_INFO' == sectionDTO.view.type}" th:remove="tag">
-                    <div th:replace="checkout/partials/orderInfoForm :: order-info-form"
+                    <div th:replace="~{checkout/partials/orderInfoForm :: order-info-form}"
                             th:with="${sectionDTO}"></div>
                     <div class="clearfix"></div>
                 </div>
                 <div th:if="${'BILLING_INFO' == sectionDTO.view.type}" th:remove="tag">
-                    <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
+                    <div th:replace="~{checkout/partials/billingInfoForm :: billing-info-form}"
                             th:with="${sectionDTO}"></div>
                 </div>
                 <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type}" th:remove="tag">
-                    <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
+                    <div th:replace="~{checkout/partials/shippingInfoForm :: shipping-info-form}"
                             th:with="${sectionDTO}"></div>
                 </div>
                 <div th:if="${'PAYMENT_INFO' == sectionDTO.view.type}" th:remove="tag">
                     <div class="clearfix"></div>
-                    <div th:replace="checkout/partials/paymentInfoForm :: payment-info-form"
+                    <div th:replace="~{checkout/partials/paymentInfoForm :: payment-info-form}"
                             th:with="${sectionDTO}"></div>
                 </div>
             </div>
