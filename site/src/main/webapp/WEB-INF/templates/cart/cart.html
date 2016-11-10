@@ -4,7 +4,7 @@
     </head>
 
     <div id="cart" class="cart_modal" layout:fragment="content" th:fragment="ajax">
-        <table th:substituteby="cart/partials/cartProductsTable"></table>
+        <table th:replace="cart/partials/cartProductsTable"></table>
     
         <div id="cart_total" class="group">
             <h3><span th:utext="#{cart.currentSubtotal}">Your Current Subtotal</span></h3>

@@ -19,7 +19,7 @@
                     <tr >
                       <td>
                         <div th:object="${orderItem}" th:remove="tag">
-                            <div class="productOptions" th:substituteby="catalog/partials/offers :: orderDetails"></div>
+                            <div class="productOptions" th:replace="catalog/partials/offers :: orderDetails"></div>
                           
                          </div>
                       </td>

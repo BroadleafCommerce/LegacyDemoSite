@@ -11,7 +11,7 @@
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" ></header>
+    <header th:replace="layout/partials/header" ></header>
     
     <div id="content" class="width_setter group" role="main">
     
@@ -19,7 +19,7 @@
             
     </div>
     
-    <footer th:substituteby="layout/partials/footer" ></footer>
+    <footer th:replace="layout/partials/footer" ></footer>
     
 </body>
 </html>

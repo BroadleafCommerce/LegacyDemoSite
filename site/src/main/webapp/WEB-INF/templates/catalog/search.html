@@ -14,7 +14,7 @@
 	                <h1 th:if="${#strings.isEmpty(originalQuery)}">
 	                    <span th:utext="#{search.resultsFor}">Search Results for</span> (0)
 	                </h1>
-	                <div th:substituteby="catalog/partials/productSortOptions"></div>
+	                <div th:replace="catalog/partials/productSortOptions"></div>
 	            </header>
 	            
 	            <ul th:if="${products}" id="products" class="group">
@@ -25,7 +25,7 @@
 	                <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
 	            </ul>
 	            
-	            <div th:substituteby="catalog/partials/productPagingOptions" ></div>
+	            <div th:replace="catalog/partials/productPagingOptions" ></div>
 	            
 	        </section>
 	    
@@ -33,9 +33,9 @@
 	            <header><span th:utext="#{search.filterSearch}">Filter your search</span></header>
 	            <div id="options">
 	            
-	                <div th:substituteby="catalog/partials/facetFilter" ></div>
+	                <div th:replace="catalog/partials/facetFilter" ></div>
 	                
-	                <div th:substituteby="catalog/partials/rightHandBannerAds" ></div>
+	                <div th:replace="catalog/partials/rightHandBannerAds" ></div>
 	                
 	                <section id="right_column" th:unless="${#lists.isEmpty(products)} and ${#lists.isEmpty(skus)}">
 	                    <header><span th:utext="#{search.featuredProducts}">Featured Products</span></header>
