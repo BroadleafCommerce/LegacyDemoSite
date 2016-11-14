@@ -195,15 +195,15 @@
             <bean class="com.mycompany.common.web.processor.MyProcessor" />
           </set>
         </property>     
-    </bean> 
+    </bean>
+    -->
     <bean id="blWebTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="dialects">
             <set>
-                <ref bean="myDialect" />
+                <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
             </set>
         </property>
     </bean> 
-    -->
     
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
