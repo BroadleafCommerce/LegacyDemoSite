@@ -31,7 +31,7 @@
             <li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'" th:if="${!facetDto.showQuantity or facetValue.quantity > 0}">
                 <a blc:togglefacetlink="${facetValue}" class="maker">
                     
-                    <span th:substituteby="catalog/partials/facetFilter :: facet-value-display" />
+                    <span th:replace="~{catalog/partials/facetFilter :: facet-value-display}" ></span>
                 
                     <span class="facetCount" th:if="${facetDto.showQuantity and !facetDto.active}" th:utext="${facetValue.quantity}"></span>
                     <i th:if="${facetValue.active}" class="icon-remove"></i>
@@ -58,7 +58,7 @@
                         th:checked="${facetValue.active}" />
                         
                     <label th:for="${facetDto.facet.field.abbreviation + '-' + facetValue.valueKey}">
-                        <span th:substituteby="catalog/partials/facetFilter :: facet-value-display" />
+                        <span th:replace="~{catalog/partials/facetFilter :: facet-value-display}" ></span>
                     </label>
                 </li>
                 

@@ -5,30 +5,30 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <head>
-    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic - Account</title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic - Account</title>
     <th:block th:replace="/layout/partials/head"></th:block>
 </head>
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
+    <header th:replace="layout/partials/header" ></header>
     
     <div id="content" class="width_setter group" role="main">   
 
-        <nav th:substituteby="layout/partials/nav" />
+        <nav th:replace="layout/partials/nav" ></nav>
 
         <div class="manage-account-container clearfix">
 
             <h1>Account Options</h1>
             
-            <ul th:substituteby="account/partials/accountMenu" />
+            <ul th:replace="account/partials/accountMenu" ></ul>
             
-            <div layout:fragment="content" />
+            <div layout:fragment="content" ></div>
 
         </div>
     </div>
     
-    <footer th:substituteby="layout/partials/footer" />
+    <footer th:replace="layout/partials/footer" ></footer>
     
 </body>
 </html>

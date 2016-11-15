@@ -20,18 +20,18 @@
                 <span th:utext="#{cart.payment.accountCredit}">Gift Cards and Customer Credit</span>
             </dt>
             <dd>
-                <div th:replace="checkout/partials/accountCreditForm :: account-credit-form"></div>
+                <div th:replace="~{checkout/partials/accountCreditForm :: account-credit-form}"></div>
             </dd>
             <dt>
                 <input type="checkbox" id="promoCreditOption_promo" />
                 <span th:utext="#{cart.payment.promo}">Promotion Codes</span>
             </dt>
             <dd>
-                <div th:replace="checkout/partials/promoCodes :: promo-code-form"></div>
+                <div th:replace="~{checkout/partials/promoCodes :: promo-code-form}"></div>
             </dd>
         </dl>
 
-        <div th:replace="checkout/partials/paymentMethodForm :: payment-method-form"></div>
+        <div th:replace="~{checkout/partials/paymentMethodForm :: payment-method-form}"></div>
 
         <div class="clearfix"></div>
 

@@ -1,4 +1,4 @@
-<th:block layout:decorator="layout/fullPageLayout">
+<th:block layout:decorate="~{layout/fullPageLayout}">
     <head>
         <title th:utext="${sku.name}"></title>
     </head>
@@ -26,7 +26,7 @@
                         <div th:utext="*{longDescription}" id="description"></div>
                         
                         <div id="inventory" th:if="${checkInventory}">
-                            <b>Available inventory:</b> <span th:utext="*{quantityAvailable == null ? '0' : quantityAvailable}" />
+                            <b>Available inventory:</b> <span th:utext="*{quantityAvailable == null ? '0' : quantityAvailable}" ></span>
                             <div th:if="${!availableInventory}" class="out_of_stock">
                                 <a disabled="disabled" class="big-button gray-button">Out of Stock</a>
                             </div>
@@ -52,7 +52,7 @@
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">
                         <div th:class="*{'productActions' + product.id}">
 
-                            <blc:named_order orderVar="wishlist" orderName="wishlist" />
+                            <blc:named_order orderVar="wishlist" orderName="wishlist" ></blc:named_order>
 
                             <div class="in_wishlist" th:classappend="${!wishlist.containsSku(#object)}? ' hidden'">
                                 <a class="inWishlist small-button gray-button" th:href="@{/account/wishlist}">In Wishlist!</a>
@@ -121,7 +121,7 @@
             
             <div class="clearfix"></div>
                 <div id="customer-reviews-container">
-                    <blc:ratings itemId="*{id}" />
+                    <blc:ratings itemId="*{id}" ></blc:ratings>
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
                         <span class="title">Community Rating</span>
                         <div id="community-rating-container">
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                            <blc:ratings itemId="*{product.id}" />
+                            <blc:ratings itemId="*{product.id}" ></blc:ratings>
                             <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
                                 <h4>Your Review</h4>
                                 <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
@@ -217,7 +217,8 @@
             <header>Featured Products</header>
             <div id="options">
                 <div class="section">
-                    <blc:related_products productId="*{product.id}" quantity="3"/> 
+                    <blc:related_products productId="*{product.id}" quantity="3"></blc:related_products>
+ 
                     <ul id="featured_products" class="group">
                         <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
                     </ul>

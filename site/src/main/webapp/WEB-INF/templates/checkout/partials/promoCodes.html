@@ -5,7 +5,8 @@
             <div class="form100">
                 <input id="checkoutPromo" name="promoCode" class="field35" type="text" value="" autocomplete="off"/>
                 <div th:each="promo : ${cart.addedOfferCodes}" th:object="${promo}" th:remove="tag">
-                    <div class="promo"><span th:utext="*{offerCode}" th:remove="tag"/> <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
+                    <div class="promo"><span th:utext="*{offerCode}" th:remove="tag"></span>
+ <a class="remove_promo" th:href="@{/cart/promo/remove(offerCodeId=*{id})}"><i class="icon-remove"></i></a></div>
                 </div>
                 <div id="cart_promo_error" class="checkout_promo" style="display: none;"></div>
             </div>

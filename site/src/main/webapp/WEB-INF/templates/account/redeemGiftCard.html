@@ -1,4 +1,4 @@
-<th:block layout:decorator="layout/accountLayout" layout:fragment="content">
+<th:block layout:decorate="~{layout/accountLayout}" layout:fragment="content">
     <div th:unless="${responseEvent}" class="manage-account-form-wrapper">
     
         <h2><span th:utext="#{account.giftCard.title}">Enter Gift Card Number:</span></h2>
@@ -36,7 +36,7 @@
         </li>
         <li class="giftcard">
             <div class="giftcard-info-row">
-                <span class="giftcard-number" th:utext="*{accountNumber}"/>
+                <span class="giftcard-number" th:utext="*{accountNumber}"></span>
                 <span class="submit-date" th:utext="${#dates.format(responseEvent.eventDate, 'MM-dd-yyyy')}"></span>
                 <span class="status" th:utext="${responseEvent.reasonDesc}">Pending</span>
                 <span class="balance" blc:price="${responseEvent.amount}"></span>

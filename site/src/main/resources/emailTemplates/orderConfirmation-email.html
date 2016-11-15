@@ -16,7 +16,8 @@
                     </tr>
                     <tr>
                         <td style="font: 16px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                            Thank you for your order<span th:unless="${customer.anonymous}" th:utext="${', ' + customer.firstName + ' ' + customer.lastName}" />!
+                            Thank you for your order<span th:unless="${customer.anonymous}" th:utext="${', ' + customer.firstName + ' ' + customer.lastName}" ></span>
+!
                         </td>
                     </tr>
                     <tr>   <!-- Order summary table -->
@@ -77,7 +78,8 @@
                                         </h3>
                                         <div style="font: 32px/28px 'Oxygen', Helvetica, sans-serif;" blc:price="${order.total}"></div>
                                         <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 10px 0 5px 0;padding: 0;">
-                                            Order number  <b><span th:utext="${orderNumber}" /></b>
+                                            Order number  <b><span th:utext="${orderNumber}" ></span>
+</b>
                                         </h3>
                                     </td>
                                 </tr>
@@ -196,12 +198,14 @@
                                                         Payment Method
                                                     </h3>          
                                                     Payment type: [[*{type.friendlyType}]]<br/>
-                                                    Amount paid: <span blc:price="*{amount}" />
+                                                    Amount paid: <span blc:price="*{amount}" ></span>
                                                     <div th:if="${payment.initialTransaction != null}">
                                                         <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['CARD_TYPE'])}">
-                                                            <b th:utext="*{initialTransaction.additionalFields['CARD_TYPE']}"/><br/>
-                                                            ****<span th:utext="*{initialTransaction.additionalFields['LAST_FOUR']}"/><br/>
-                                                            <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="*{initialTransaction.additionalFields['EXP_DATE']}"/>
+                                                            <b th:utext="*{initialTransaction.additionalFields['CARD_TYPE']}"></b>
+<br/>
+                                                            ****<span th:utext="*{initialTransaction.additionalFields['LAST_FOUR']}"></span>
+<br/>
+                                                            <span th:utext="#{confirmation.exp}">exp.</span> <span th:utext="*{initialTransaction.additionalFields['EXP_DATE']}"></span>
                                                             <address>
                                                                 [[*{billingAddress.firstName == null ? '' : billingAddress.firstName}]]&nbsp;[[*{billingAddress.lastName == null ? '' : billingAddress.lastName}]]<br/>
                                                                 [[*{billingAddress.phonePrimary?.phoneNumber == null ? '' : billingAddress.phonePrimary?.phoneNumber}]]<br/>
@@ -214,11 +218,13 @@
                                                         </div>
                                                         <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM'])}">
                                                             <span th:utext="#{cart.accountCredit.accounts}">Accounts</span><br/>
-                                                            <b th:utext="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"/><br/>
+                                                            <b th:utext="*{initialTransaction.additionalFields['ACCOUNT_CREDIT_NUM']}"></b>
+<br/>
                                                         </div>
                                                         <div th:if="!*{#strings.isEmpty(initialTransaction.additionalFields['GIFT_CARD_NUM'])}">
                                                             <span th:utext="#{cart.giftCardNumber}">Gift Card Number</span><br/>
-                                                            <b th:utext="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"/><br/>
+                                                            <b th:utext="*{initialTransaction.additionalFields['GIFT_CARD_NUM']}"></b>
+<br/>
                                                         </div>
                                                     </div>
                                                 </td>

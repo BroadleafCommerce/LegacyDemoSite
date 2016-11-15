@@ -35,7 +35,7 @@
                      </ul>
                 </blc:product_option_display> 
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
-                    <li th:each="doi : *{discreteOrderItems}" th:utext="${doi.quantity + ' x ' + doi.name}" />
+                    <li th:each="doi : *{discreteOrderItems}" th:utext="${doi.quantity + ' x ' + doi.name}" ></li>
                 </ul>
             </td>
             <td align="center">
@@ -54,7 +54,7 @@
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
             <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
             <span  blc:price="*{totalAdjustmentValue}" ></span>
-                 <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
+                 <div class="productOptions" th:replace="~{catalog/partials/offers :: offers}"></div>
              </td>
             <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>
             <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>

@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <head>
-    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic</title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic</title>
     <th:block th:replace="/layout/partials/head"></th:block>
 </head>
 
 <body th:class="${'locale-' + session.blLocale.localeCode}">
     <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
+    <header th:replace="layout/partials/header" ></header>
     
     <div id="content" class="width_setter group" role="main">
-        <nav th:substituteby="layout/partials/nav" />
+        <nav th:replace="layout/partials/nav" ></nav>
 
         <div id="banners">
             <a th:href="@{/merchandise}"><img blc:src="@{/img/banners/shirt-special.jpg}" /></a>
@@ -40,7 +40,7 @@
         </ul>
     </div>
     
-    <footer th:substituteby="layout/partials/footer" />
+    <footer th:replace="layout/partials/footer" ></footer>
     
 </body>
 </html>

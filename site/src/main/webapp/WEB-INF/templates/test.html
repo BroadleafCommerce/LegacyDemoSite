@@ -1,0 +1,288 @@
+<th:block layout:decorate="~{layout/fullPageLayout}">
+    <div layout:fragment="content" style="padding-left:15px">
+        <th:block th:object="${product.defaultSku}">
+            <h1 th:text="*{name}"></h1>
+            <div th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></div>
+            <div>
+                <h2>VariableExpression Tests</h2>
+                <h3>Gets value for the property "solr.source.primary" using the PropertiesVariableExpression</h3>
+                <span th:text="${#props.get('solr.source.primary')}"></span>
+            </div>
+            <div>
+                <h2>PriceTextDisplayProcessor Tests</h2>
+                <th:block blc:price="*{retailPrice}"></th:block>
+                <div blc:price="*{retailPrice}" th:remove="tag"></div>
+                <div blc:price="*{retailPrice}"></div>
+            </div>
+            <div>
+                <h2>ConfigVariableProcessor Tests</h2>
+                <blc:config resultVar="solr" name="solr.source.primary">
+                    <h3>Testing local eval of "solr.source.primary" works</h3>
+                    <h5 th:text="${solr}"></h5>
+                </blc:config>
+                <h3>Testing global eval of "solr.source.primary" works</h3>
+                <h5 th:text="${solr}"></h5>
+                <blc:config resultVar="solr" name="solr.index.start.delay">
+                    <h3>Testing that local changed to eval "solr.index.start.delay"</h3>
+                    <h5 th:text="${solr}"></h5>
+                </blc:config>
+                <h3>Testing that global changed to eval "solr.index.start.delay"</h3>
+                <h5 th:text="${solr}"></h5>
+            </div>
+            <div>
+                <h2>CreditCardTypesProcessor Tests</h2>
+                <blc:credit_card_types>
+                    <div th:if="${paymentGatewayCardTypes != null}" class="form-group">
+                        <label for="cardNumber">Card Type</label>
+                        <select th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
+                            <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                        </select>
+                    </div>
+                </blc:credit_card_types>
+            </div>
+            <div>
+                <h2>Legacy Google Analytics Tests</h2>
+                <blc:googleanalytics ordernumber="${order?.orderNumber}"></blc:googleanalytics>
+                <script th:utext="${analytics}"></script>
+                <span>*note* the head tests the non-legacy version of this</span>
+            </div>
+            <div>
+                <h2>CatalogRelativeHrefProcessor Test</h2>            
+                <a blc:rhref="${product}">Product Url</a>
+            </div>
+            <div>
+                <h2>UrlRewriteProcessor Test</h2>
+                <img blc:src="@{${product.media['primary'].url} + '?browse'}" th:alt="${product.name}" />
+            </div>
+            <div>
+                <h2>HrefUrlRewrteProcessor Test</h2>
+                <link blc:href="@{${product.media['primary'].url} + '?browse'}">Link tag</link>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}" useCDN="true">Use CDN</a>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}" useCDN="false">Don't Use CDN</a>
+                <a blc:href="@{${product.media['primary'].url} + '?browse'}">No CDN attribute</a>
+            </div>
+            <div>
+                <h2>PaginationSizeLinkProcessor Test</h2>
+                <a blc:pagination-size-link="30">Set Page size to 30</a>
+            </div>
+            <div>
+                <h2>PaginationPageLinkProcessor Tests</h2>
+                <th:block th:each="num : ${#numbers.sequence(1,5)}">
+                    <a blc:paginationpagelink="${num}" th:text="${num}"></a>
+                </th:block>
+            </div>
+            <div>
+                <h2>PaginationSortLinkProcessor Tests</h2>
+                <a blc:pagination-sort-link="black">Sort by black</a>
+                <a blc:pagination-sort-link="red">Sort by red</a>
+            </div>
+            <div>
+                <h2>ProductOptionDisplayProcessor Tests</h2>
+                <h3 th:if="${#lists.isEmpty(cart.orderItems)}">Add something with product options to your cart to test this</h3>
+                <ul th:unless="${#lists.isEmpty(cart.orderItems)}">
+                    <li th:each="item : ${cart.orderItems}">
+                        <blc:product_option_display orderItem="${item}" >
+                            <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
+                                <li th:each="entry: ${productOptionDisplayValues}">
+                                    <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+                                </li>
+                            </ul>
+                        </blc:product_option_display> 
+                    </li>
+                </ul>
+            </div>
+            <div th:object="${product}">
+                <h2>ProductOptionsProcessor Test</h2>
+                <blc:product_options productId="*{id}" ></blc:product_options>
+                <div id="product-option-data" hidden="hidden" th:attr="data-product-option-pricing=${skuPricing}, data-product-options=${allProductOptions}"></div>
+                <ul>
+                    <li th:each="productOption : *{productOptions}" th:object="${productOption}" class="product-option-group cf" th:classappend="*{type.type == 'COLOR'}? 'colors'">
+                        <label th:utext="*{label}"></label>:
+                         <span th:id="*{attributeName}" class="option-value" th:attr="data-optiontype=*{type.type}"></span>
+                         <ul class="cf" th:switch="*{type.type}">
+                            <li th:case="'TEXT'">                     
+                                <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" />                               
+                            </li>
+                            <li th:case="'SELECT'">
+                                <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">
+                                    <option th:each="optionValue : *{allowedValues}" th:object="${optionValue}" th:utext="*{attributeValue}"></option>
+                                </select> 
+                            </li>                             
+                            <li th:case="'TEXTAREA'">
+                                <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" ></textarea>
+                            </li>
+                            <li th:case="'DECIMAL'">
+                                <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />
+                            </li>
+                            <th:block th:case="*">
+                                <li th:each="optionValue : *{allowedValues}" blc:product_option_value="${optionValue}" th:object="${optionValue}" th:classappend="${productOption.type.type == 'COLOR'}? ${optionValue.attributeValue}" >
+                                    <div>
+                                        <a href="#" class="option-label" th:utext="*{attributeValue}"  ></a>
+                                    </div>
+                                </li>
+                            </th:block>
+                        </ul>       
+                    </li>
+                </ul>
+                <span class="productOptionsSpan centered" style="display: none;"><span th:utext="#{product.productOptionValidationError}">Product Option Validation Failed</span></span>
+                <span class="error centered" style="display: none;"><span th:utext="#{product.allOptionsRequired}">All options are required</span></span>
+                <span class="error errorMessage" style="display: none;"></span>
+            </div>
+            <div>
+                <h2>FormProcessor Tests</h2>
+                <blc:form method="POST" action="/test">
+                    <span th:text="*{id}"></span>
+                    <input type="submit" />
+                </blc:form>
+                <blc:form enctype="multipart/form-data" method="POST" th:action="@{/test}">
+                    <input type="submit" />
+                </blc:form>
+                <blc:form enctype="multipart/form-data" method="POST" action="/test">
+                    <input type="submit" />
+                </blc:form>
+                <blc:form th:method="${(true) ? 'GET' : 'POST'}" th:action="@{/test}">
+                    <input type="submit" />
+                </blc:form>
+            </div>
+            <div>
+                <h2>AddSortLinkProcessor Test</h2>
+                <span class="heading"><span th:utext="#{productSortOptions.sortBy}">Sort by:</span></span>
+                <a blc:addsortlink="price"><span th:utext="#{productSortOptions.price}">Price</span></a>
+                | 
+                <a blc:addsortlink="name"><span th:utext="#{productSortOptions.name}">Name</span></a>
+            </div>
+            <div>
+                <h2>RemoveFacetValuesLinkProcessor and ToggleFacetLinkProcessor Test</h2>
+                <span>This should just be tested using the search page because it's tough to mockup</span>
+                <a target="_blank" href="/search?q=shirt">Search for shirts</a>              
+            </div>
+            <div>
+                <h2>RatingsProcessor Test</h2>
+                <div id="customer-reviews-container">
+                    <blc:ratings itemId="${product.id}" ></blc:ratings>
+                    <div th:if="${ratingSummary}" th:object="${ratingSummary}">
+                        <span class="title">Community Rating</span>
+                        <div id="community-rating-container">
+                            <blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
+                                <input type="radio" class="star {split:4}" /> 
+                                <input type="radio" class="star {split:4}" /> 
+                                <input type="radio" class="star {split:4}" /> 
+                                <input type="radio" class="star {split:4}" /> 
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                                <input type="radio" class="star {split:4}" />
+                            </blc:form>
+                            <br/>
+                            <div class="total-reviews">
+                                (<span th:utext="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                            <blc:ratings itemId="${product.id}" ></blc:ratings>
+                            <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
+                                <h4>Your Review</h4>
+                                <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
+                                    <span th:utext="*{helpfulCount()}">9</span> of
+                                    <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                </p>
+                                <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+                                    <input type="radio" class="star" />
+                                    <input type="radio" class="star" />
+                                    <input type="radio" class="star"/>
+                                    <input type="radio" class="star" />
+                                    <input type="radio" class="star" />
+                                </blc:form>
+                                <span class="reviewer-info">
+                                    on <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+                                </span>
+                                <div class="clearfix"></div>
+                                <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:utext="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
+                            </div>
+                        <div class="helpful-reviews">
+                            <h4>Customer Reviews</h4>
+                            <ul class="customer-reviews">
+                                <li th:each="review, iterStat : *{reviews}" th:object="${review}" th:if="${iterStat.count} lt 4">
+                                    <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
+                                        <span th:utext="*{helpfulCount()}">9</span> of
+                                        <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                    </p>
+                                    <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
+                                        <input type="radio" class="star" />
+                                        <input type="radio" class="star" />
+                                        <input type="radio" class="star"/>
+                                        <input type="radio" class="star" />
+                                        <input type="radio" class="star" />
+                                    </blc:form>
+                                    <span class="reviewer-info">
+                                        by <span class="penname" th:utext="${review.customer.firstName}">John</span> on
+                                        <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+                                    </span>
+                                    <div class="clearfix"></div>
+                                    <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:utext="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div th:if="${customer.loggedIn}">
+                        <div th:if="${ratingSummary}">
+                            <a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
+                        </div>
+                        <div th:unless="${ratingSummary}">
+                            <a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Be the first to write a review!</a>
+                        </div>
+                    </div>
+                    <div th:unless="${customer.loggedIn}">
+                        <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Login to create a review</a>
+                        <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Login and be the first to write a review!</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>CategoriesProcessor Test</h2>
+                <blc:categories resultVar="categories" parentCategory="Merchandise" ></blc:categories>
+                <ul>
+                    <li th:each="cat : ${categories}">
+                        <span th:text="${cat.name}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2>NamedOrderProcessor Test</h2>
+                <blc:named_order orderVar="wishlist" orderName="wishlist" ></blc:named_order>
+                <ul th:unless="${#lists.isEmpty(wishlist.orderItems)}">
+                    <li th:each="orderItem : ${wishlist.orderItems}">
+                        <span th:text="${orderItem.name}"></span>
+                    </li>
+                </ul>
+                <span th:if="${#lists.isEmpty(wishlist.orderItems)}">Add something to your wishlist</span>
+            </div>
+            <div>
+                <h2>RelatedProductProcessor Test</h2>
+                <blc:related_products productId="${product.id}"></blc:related_products>
+   
+                <ul id="featured_products" class="group">
+                    <li th:each="relatedProduct : ${relatedProducts}" th:object="${relatedProduct.relatedProduct}" th:include="catalog/partials/productListItem" class="product_container"></li>
+                </ul>
+            </div>
+            <div>
+                <h2>th:inline Test</h2>
+                <span th:inline="text">[[${product.id}]]</span>
+                <span>[[${product.id}]]</span>
+            </div>
+        </th:block>
+    </div>
+</th:block>
+
