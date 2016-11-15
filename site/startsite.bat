@@ -8,8 +8,8 @@ REM # TOMCAT_MEMORY - Defaults to -Xmx1536M -XX:MaxPermSize=512M
 set cwd=%cd%
 
 REM # Do an install of the core jar in case anything changed since the last restart and we're not using jrebel
-cd ../core
-call mvn install
+cd ..
+call mvn -pl site -am clean install
 
 REM # Go back to where we just were to get ready to run the Tomcat Maven plugin
 cd %cwd%
