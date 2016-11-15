@@ -9,8 +9,8 @@
 cwd=$(pwd)
 
 # Do an install of the core jar in case anything changed since the last restart and we're not using jrebel
-cd ../core
-mvn install
+cd ..
+mvn -pl site -am clean install
 
 # Go back to where we just were to get ready to run the Tomcat Maven plugin
 cd $cwd
