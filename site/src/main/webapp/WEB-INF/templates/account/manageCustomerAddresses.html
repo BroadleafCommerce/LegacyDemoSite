@@ -9,8 +9,8 @@
             Options:
             <select onchange="location.href=this.options[selectedIndex].value">
                 <option>Choose an address to update...</option>
-                <option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="@{'/account/addresses/' + *{id}}">
-                    <span th:utext="*{!#strings.isEmpty(addressName) ? addressName + ' (' + address.addressLine1 + ')' : address.addressLine1}"></span>
+                <option th:each="entry : ${customerAddresses}" th:value="@{'/account/addresses/' + ${entry.key.id}}">
+                    <span th:utext="*{!#strings.isEmpty(entry.key.addressName) ? entry.key.addressName + ' (' + entry.value.addressLine1 + ')' : entry.value.addressLine1}"></span>
                 </option>
             </select>
             <span th:if="${customerAddressForm.customerAddressId}">&nbsp;&nbsp;- or -&nbsp;&nbsp;<a th:href="@{/account/addresses}" class="medium red">create a new address</a></span>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="form25 margin20">
                     <label>&nbsp;</label>
-                    <input type="checkbox" th:field="*{address.default}" class="field25" style="width:22px;" /> Make Default
+                    <input type="checkbox" th:field="*{default}" class="field25" style="width:22px;" /> Make Default
                 </div>                      
                 <div class="form100">
                     <label for="address_name">Address Name</label>

@@ -19,6 +19,7 @@ package com.mycompany.controller.account;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.web.controller.account.BroadleafManageCustomerAddressesController;
 import org.broadleafcommerce.core.web.controller.account.CustomerAddressForm;
+import org.broadleafcommerce.profile.core.domain.Address;
 import org.broadleafcommerce.profile.core.domain.Country;
 import org.broadleafcommerce.profile.core.domain.CustomerAddress;
 import org.broadleafcommerce.profile.core.domain.State;
@@ -33,9 +34,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/account/addresses")
@@ -57,7 +59,7 @@ public class ManageCustomerAddressesController extends BroadleafManageCustomerAd
     }
     
     @ModelAttribute("customerAddresses")
-    protected List<CustomerAddress> populateCustomerAddresses() {
+    protected Map<CustomerAddress, Address> populateCustomerAddresses() {
         return super.populateCustomerAddresses();
     }
     
