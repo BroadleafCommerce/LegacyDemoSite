@@ -16,12 +16,18 @@
 
 package com.mycompany.api.endpoint.checkout;
 
-import org.broadleafcommerce.core.web.api.wrapper.OrderPaymentWrapper;
-import org.broadleafcommerce.core.web.api.wrapper.OrderWrapper;
+
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.broadleafcommerce.rest.api.wrapper.OrderPaymentWrapper;
+import com.broadleafcommerce.rest.api.wrapper.OrderWrapper;
+import com.broadleafcommerce.rest.api.wrapper.PaymentTransactionWrapper;
 
 import java.util.List;
 
@@ -36,35 +42,58 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @RestController
-@RequestMapping(value = "/cart/checkout/",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-public class CheckoutEndpoint extends org.broadleafcommerce.core.web.api.endpoint.checkout.CheckoutEndpoint {
+@RequestMapping(value = "/cart/checkout",
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+public class CheckoutEndpoint extends com.broadleafcommerce.rest.api.endpoint.checkout.CheckoutEndpoint {
 
     @Override
-    @RequestMapping(value = "payments", method = RequestMethod.GET)
-    public List<OrderPaymentWrapper> findPaymentsForOrder(HttpServletRequest request) {
-        return super.findPaymentsForOrder(request);
+    @RequestMapping(value = "/payments", method = RequestMethod.GET)
+    public List<OrderPaymentWrapper> findPaymentsForOrder(HttpServletRequest request,
+                                                          @RequestParam("cartId") Long cartId) {
+        return super.findPaymentsForOrder(request, cartId);
     }
 
     @Override
-    @RequestMapping(value = "payment", method = RequestMethod.POST)
+    @RequestMapping(value = "/payment", method = RequestMethod.POST,
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public OrderPaymentWrapper addPaymentToOrder(HttpServletRequest request,
-                                                 OrderPaymentWrapper wrapper) {
-        return super.addPaymentToOrder(request, wrapper);
+                                                 @RequestBody OrderPaymentWrapper wrapper,
+                                                 @RequestParam("cartId") Long cartId) {
+        return super.addPaymentToOrder(request, wrapper, cartId);
     }
-
+    
     @Override
-    @RequestMapping(value = "payment", method = RequestMethod.DELETE)
-    public OrderWrapper removePaymentFromOrder(HttpServletRequest request,
-                                               OrderPaymentWrapper wrapper) {
-        return super.removePaymentFromOrder(request, wrapper);
+    @RequestMapping(value = "/payment/{customerPaymentId}", method = RequestMethod.POST)
+    public OrderPaymentWrapper addPaymentToOrderById(HttpServletRequest request,
+                                                     @RequestParam("amount") Double amount,
+                                                     @RequestParam("currency") String currencyCode,
+                                                     @PathVariable("customerPaymentId") Long customerPaymentId,
+                                                     @RequestParam("cartId") Long cartId) {
+        return super.addPaymentToOrderById(request, amount, currencyCode, customerPaymentId, cartId);
+    }
+    
+    @Override
+    @RequestMapping(value = "/payment/{paymentId}/transaction", method = RequestMethod.PUT)
+    public OrderPaymentWrapper addOrderPaymentTransaction(HttpServletRequest request, 
+                                                          @PathVariable("paymentId") Long orderPaymentId,
+                                                          @RequestParam PaymentTransactionWrapper wrapper,
+                                                          @RequestParam("cartId") Long cartId) {
+        return super.addOrderPaymentTransaction(request, orderPaymentId, wrapper, cartId);
+    }
+    
+    @Override
+    @RequestMapping(value = "/payment/{paymentId}", method = RequestMethod.DELETE)
+    public OrderWrapper removePaymentFromOrderById(HttpServletRequest request,
+                                               @PathVariable("paymentId") Long paymentId,
+                                               @RequestParam("cartId") Long cartId) {
+        return super.removePaymentFromOrderById(request, paymentId, cartId);
     }
 
     @Override
     @RequestMapping(method = RequestMethod.POST)
-    public OrderWrapper performCheckout(HttpServletRequest request) {
-        return super.performCheckout(request);
+    public OrderWrapper performCheckout(HttpServletRequest request,
+            @RequestParam("cartId") Long cartId) {
+        return super.performCheckout(request, cartId);
     }
 
 }
