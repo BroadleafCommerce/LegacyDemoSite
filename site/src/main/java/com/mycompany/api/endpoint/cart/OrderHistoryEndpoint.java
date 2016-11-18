@@ -16,12 +16,14 @@
 
 package com.mycompany.api.endpoint.cart;
 
-import org.broadleafcommerce.core.web.api.wrapper.OrderWrapper;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.broadleafcommerce.rest.api.wrapper.OrderWrapper;
 
 import java.util.List;
 
@@ -36,16 +38,35 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @RestController
-@RequestMapping(value = "/orders/",
+@RequestMapping(value = "/orders",
     produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
     consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-public class OrderHistoryEndpoint extends org.broadleafcommerce.core.web.api.endpoint.order.OrderHistoryEndpoint {
+public class OrderHistoryEndpoint extends com.broadleafcommerce.rest.api.endpoint.order.OrderHistoryEndpoint {
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
     public List<OrderWrapper> findOrdersForCustomer(HttpServletRequest request,
-            @RequestParam(value = "orderStatus", defaultValue = "SUBMITTED") String orderStatus) {
+                                                    @RequestParam(value = "orderStatus", defaultValue = "SUBMITTED") String orderStatus) {
         return super.findOrdersForCustomer(request, orderStatus);
     }
+    
+    @Override
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
+    public List<OrderWrapper> findAllOrdersForCustomer(HttpServletRequest request) {
+        return super.findAllOrdersForCustomer(request);
+    }
+    
+    @Override
+    @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
+    public OrderWrapper findOrderById(HttpServletRequest request, @PathVariable("orderId") Long orderId) {
+        return super.findOrderById(request, orderId);
+    }
 
+    @Override
+    @RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
+    public OrderWrapper findOrderByOrderNumber(HttpServletRequest request, @PathVariable String orderNumber) {
+        OrderWrapper order = super.findOrderByOrderNumber(request, orderNumber);
+        return order;
+    }
+    
 }
