@@ -5,12 +5,12 @@
 
     <groupId>com.mycompany-community</groupId>
     <artifactId>ecommerce-website</artifactId>
-    <version>5.1</version>
+    <version>5.2</version>
     <packaging>pom</packaging>
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>5.1.0-SNAPSHOT</blc.version>
+        <blc.version>5.2.0-SNAPSHOT</blc.version>
         <broadleaf-rest-api.version>2.1.0-SNAPSHOT</broadleaf-rest-api.version>
         <blc.menu.version>2.1.0-SNAPSHOT</blc.menu.version>
         <broadleaf-sample-payment-gateway.version>2.1.0-SNAPSHOT</broadleaf-sample-payment-gateway.version>
