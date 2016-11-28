@@ -185,25 +185,19 @@
         </property>
     </bean>    
     
-    <!-- This is an example of a custom dialect definition that uses a custom processor -->
-    <!-- The second bean registers the dialct to the blWebTemplateEngine -->
-    <!-- Note that the same thing could be done for the blEmailTemplateEngine -->
-    <!-- 
-    <bean id="myDialect" class="com.mycompany.common.web.dialect.MyDialect">
-        <property name="processors">
-          <set>
-            <bean class="com.mycompany.common.web.processor.MyProcessor" />
-          </set>
-        </property>     
-    </bean>
-    -->
-    <bean id="blWebTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="dialects">
+    <!-- This is an example of a custom dialect definition that uses a custom processor hooked up to the blWebTemplateEngine-->
+    <!-- Note that the same thing could be done for the blEmailTemplateEngine using the blEmailDialects -->
+    <bean id="siteWebDialects" class="org.springframework.beans.factory.config.SetFactoryBean">
+        <property name="sourceSet">
             <set>
                 <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
             </set>
         </property>
-    </bean> 
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="siteWebDialects" />
+        <property name="targetRef" value="blWebDialects" />
+    </bean>
     
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
