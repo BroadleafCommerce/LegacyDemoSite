@@ -210,7 +210,7 @@
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
     <!-- in production environments, but likely not in development environments. -->
     <!-- 
-    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafThemeAwareTemplateResolver">
+    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.presentation.resolver.BroadleafThemeAwareTemplateResolver">
         <property name="prefix" value="/WEB-INF/" />
         <property name="templateFolder" value="${theme.templates.folder}" />
         <property name="suffix" value=".html" />
@@ -219,7 +219,7 @@
         <property name="characterEncoding" value="UTF-8" />
         <property name="order" value="200"/>
     </bean>
-    <bean id="blEmailClasspathTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafClasspathTemplateResolver">
+    <bean id="blEmailClasspathTemplateResolver" class="org.broadleafcommerce.presentation.resolver.BroadleafClasspathTemplateResolver">
         <property name="prefix" value="emailTemplates/" />
         <property name="suffix" value=".html" />
         <property name="cacheable" value="${cache.page.templates}"/>

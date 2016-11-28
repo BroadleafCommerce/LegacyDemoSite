@@ -44,56 +44,9 @@
         </property>
     </bean>
 
-    <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.ThymeleafMessageCreator">
+    <bean id="blMessageCreator" class="org.broadleafcommerce.presentation.thymeleaf3.BroadleafThymeleaf3MessageCreator">
         <constructor-arg ref="blEmailTemplateEngine"/>
         <constructor-arg ref="blMailSender"/>
-    </bean>
-    -->
-    
-    <!--
-    <bean id="blVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-        <property name="resourceLoaderPath" value="/WEB-INF/emailTemplates/" />
-        <property name="velocityProperties">
-            <value>
-                resource.loader=file,class
-                class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-                runtime.references.strict = false
-            </value>
-        </property>
-    </bean>
-
-    <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.VelocityMessageCreator">
-        <constructor-arg ref="blVelocityEngine" />
-        <constructor-arg ref="blMailSender" />
-        <constructor-arg>
-            <map>
-                <entry key="number">
-                    <bean class="org.apache.velocity.tools.generic.NumberTool" scope="prototype" />
-                </entry>
-                <entry key="date">
-                    <bean class="org.apache.velocity.tools.generic.ComparisonDateTool" scope="prototype" />
-                </entry>
-                <entry key="list">
-                    <bean class="org.apache.velocity.tools.generic.ListTool" scope="prototype" />
-                </entry>
-                <entry key="math">
-                    <bean class="org.apache.velocity.tools.generic.MathTool" scope="prototype" />
-                </entry>
-                <entry key="iterator">
-                    <bean class="org.apache.velocity.tools.generic.IteratorTool" scope="prototype" />
-                </entry>
-                <entry key="alternator">
-                    <bean class="org.apache.velocity.tools.generic.AlternatorTool" scope="prototype" />
-                </entry>
-                <entry key="sorter">
-                    <bean class="org.apache.velocity.tools.generic.SortTool" scope="prototype" />
-                </entry>
-                <entry key="esc">
-                    <bean class="org.apache.velocity.tools.generic.EscapeTool" scope="prototype" />
-                </entry>
-                <entry key="serverInfo" value-ref="blServerInfo" />
-            </map>
-        </constructor-arg>
     </bean>
     -->
     
