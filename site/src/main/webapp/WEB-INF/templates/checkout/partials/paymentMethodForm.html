@@ -1,5 +1,7 @@
 <div th:fragment="payment-method-form">
-
+    <head>
+        <script src="https://secure.vindicia.com/ws/vindicia.js"></script>
+    </head>
     <div class="payment_info"
          th:unless="${showAllPaymentMethods}">
         <h3><span th:utext="#{cart.paymentMethod}">Payment Method</span></h3>
@@ -51,94 +53,119 @@
                 <label for="paymentMethod_cc"><span th:utext="#{cart.creditCard}">Credit Card</span></label>
             </dt>
             <dd>
-                <blc:transparent_credit_card_form paymentRequestDTO="${paymentRequestDTO}"
-                                                  action="#"
-                                                  role="form"
-                                                  method="POST">
-                    <div id="creditCardFields">
-
-                        <div class="form50">
-                            <label for="cardNumber" class="prompt">
-                                <span th:utext="#{cart.cardNumber}">Card Number</span>
-                            </label>
-                            <div class="element form100">
-                                <input type="text"
-                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardNum')}"
-                                       value=""
-                                       id="cardNumber"
-                                       class="field35"
-                                       autocomplete="off"/>
-                            </div>
+                <div>
+                    <form id="complete_checkout" name="complete_checkout" action="https://secure.prodtest.sj.vindicia.com/vws"
+                        method="post" novalidate="novalidate">
+                        <input type="hidden" name="vin_WebSession_version" value="20.0.0" />
+                        <input type="hidden" name="vin_WebSession_vid" th:value="${#vindicia.initializeWebSession(#request.getRemoteAddr(),customer.customerAttributes.get('VINDICIA_ACCOUNT').getValue(),'Transaction_Auth')}" />
+                        <input type="hidden" name="vin_PaymentMethod_type" value="CreditCard" />
+                        <input type="hidden" name="vin_Account_merchantAccountId" th:value="${customer.customerAttributes.get('VINDICIA_ACCOUNT').getValue()}" />
+                        <div th:object="${billingInfoForm}">
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_addr1" th:value="*{address.addressLine1}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_addr2" th:value="*{address.addressLine2}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_city" th:value="*{address.city}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_country" th:value="USA" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_district" th:value="*{address.stateProvinceRegion}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_name" th:value="*{address.firstName + ' ' + address.lastName}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_phone" th:value="*{address.phonePrimary.phoneNumber}" />
+                            <input type="hidden" name="vin_PaymentMethod_billingAddress_postalCode" th:value="*{address.postalCode}" />
+                            <input type="hidden" name="vin_PaymentMethod_accountHolderName" th:value="*{address.firstName + ' ' + address.lastName}" />
                         </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="form50">
-                            <label class="prompt">
-                                <span th:utext="#{cart.cvv}">CVV</span>
-                            </label>
-                            <div class="element form100">
-                                <input type="text"
-                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardCvv')}"
-                                       id="securityCode"
-                                       class="field25"
-                                       autocomplete="off"/>
-                            </div>
+                        <input type="hidden" name="vin_order_id" th:value="${cart.getId()}" />
+                        <input type="hidden" name="vin_Transaction_amount" th:value="${cart.getTotal().doubleValue()}" />
+                        <div th:object="${shippingInfoForm}">
+                            <input type="hidden" name="vin_Transaction_shippingAddress_addr1" th:value="*{address.addressLine1}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_addr2" th:value="*{address.addressLine2}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_city" th:value="*{address.city}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_country" th:value="USA" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_district" th:value="*{address.stateProvinceRegion}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_name" th:value="*{address.firstName + ' ' + address.lastName}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_phone" th:value="*{address.phonePrimary.phoneNumber}" />
+                            <input type="hidden" name="vin_Transaction_shippingAddress_postalCode" th:value="*{address.postalCode}" />
                         </div>
-
-                        <div class="clearfix"></div>
-
-
-                        <blc:credit_card_types>
-                            <div th:if="${paymentGatewayCardTypes != null}" class="form50">
-                                <label for="cardType" class="prompt">
-                                    <span th:utext="#{cart.cardType}">Card Type</span>
-                                </label>
-                                <div class="form100">
-                                    <select id="cardType" th:name="${#paymentGatewayField.mapName('creditCard.creditCardType')}">
-                                        <option th:each="entry : ${paymentGatewayCardTypes}" th:value="${entry.key}" th:utext="${entry.value}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </blc:credit_card_types>
-
-                        <div class="clearfix"></div>
-
-                        <div class="form50">
-                            <label for="nameOnCard" class="prompt">
-                                <span th:utext="#{cart.nameOnCard}">Name on the Card</span>
-                            </label>
-                            <div class="form100">
-                                <input type="text"
-                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardHolderName')}"
-                                       id="nameOnCard"
-                                       class="field35"  />
-                            </div>
+                        <div th:each="item, iterStat: ${cart.orderItems}" th:object="${item}">
+                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_name'" th:value="*{sku.name}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_price'" th:value="*{quantity}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_quantity'" th:value="*{getPriceBeforeAdjustments(true).doubleValue()}" />
                         </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="form25">
-                            <label for="cardExpDate" class="prompt">
-                                <span th:utext="#{cart.experationDate}">Expiration Date</span>
-                            </label>
-                            <div class="element form100">
-                                <input type="text"
-                                       th:name="${#paymentGatewayField.mapName('creditCard.creditCardExpDate')}"
-                                       id="cardExpDate"
-                                       class="field25"
-                                       autocomplete="off"
-                                       placeholder="MM/YY"/>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <input type="submit" class="medium red" value="Checkout" />
-
-                </blc:transparent_credit_card_form>
-
+                        <div id="vin_PaymentMethod_creditCard_account"></div>
+                        <div id="vin_PaymentMethod_creditCard_expirationDate"></div>
+                        <div id="vin_PaymentMethod_creditCard_cvn"></div>
+                        <input type="submit" class="medium red" value="Checkout" />
+                    </form>
+                    <script type="text/javascript">
+                    vindicia.setup({
+                        formId:"complete_checkout",
+                        vindiciaServer: "secure.prodtest.sj.vindicia.com",
+                        hostedFields: {
+                            cardNumber: {
+                                selector: "#vin_PaymentMethod_creditCard_account",
+                                placeholder: "Enter Credit Card Number" // optional field
+                            },
+                            expirationDate: { // required field or use expirationMonth and expirationYear
+                                selector: "#vin_PaymentMethod_creditCard_expirationDate",
+                                placeholder: "Expiration Date MM/YY", // optional field
+                                format: "MM/YY" // optional, default is MM/YY
+                            },
+                            cvn: {
+                                selector: "#vin_PaymentMethod_creditCard_cvn",
+                                placeholder: "Enter CVV" // optional field
+                            },
+                            styles: { // optional
+                                "input": {
+                                    "width": "100%",
+                                    "font-family": "'Helvetica Neue',Helvetica,Arial,sans-serif",
+                                    "font-size": "14px",
+                                    "color": "#555",
+                                    "height": "34px",
+                                    "padding": "6px 12px",
+                                    "margin": "5px 0px",
+                                    "line-height": "1.42857",
+                                    "border": "1px solid #ccc",
+                                    "border-radius": "4px",
+                                    "box-shadow": "0px 1px 1px rgba(0,0,0,0.075) inset",
+                                    "-webkit-transition": "border-color 0.15s ease-in-out 0s, boxshadow 0.15s ease-in-out 0s",
+                                    "transition": "border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s",
+                                },
+                                "select": {
+                                    "width": "100%",
+                                    "font-family": "'Helvetica Neue',Helvetica,Arial,sans-serif",
+                                    "font-size": "14px",
+                                    "color": "#555",
+                                    "height": "34px",
+                                    "padding": "6px 12px",
+                                    "margin": "5px 0px",
+                                    "line-height": "1.42857",
+                                    "border": "1px solid #ccc",
+                                    "border-radius": "4px",
+                                    "box-shadow": "0px 1px 1px rgba(0,0,0,0.075) inset",
+                                    "-webkit-transition": "border-color 0.15s ease-in-out 0s, boxshadow 0.15s ease-in-out 0s",
+                                    "transition": "border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s",
+                                },
+                                ":focus": { // optional
+                                    "border-color": "#66afe9",
+                                    "outline": "0",
+                                    "-webkit-box-shadow": "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)",
+                                    "box-shadow": "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)"
+                                },
+                                ".valid": { // optional
+                                    "border-color": "#228B22",
+                                },
+                                ".notValid": { // optional
+                                    "border-color": "#ff0000",
+                                }, 
+                                    // custom width
+                                "@media (min-width: 600px) and (max-width: 800px)": {
+                                    "input": {
+                                        "font-size": "16pt"
+                                    }
+                                }
+                            },
+                        },
+                        iframeHeightPadding: 2 //optional
+                    });
+                    </script>
+                </div>
             </dd>
             <dt>
                 <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod_paypal" />

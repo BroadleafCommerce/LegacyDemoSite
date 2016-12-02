@@ -16,7 +16,13 @@
 
 package com.mycompany.controller.checkout;
 
+import org.apache.commons.lang3.StringUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
+import org.broadleafcommerce.common.payment.dto.PaymentResponseDTO;
+import org.broadleafcommerce.common.payment.service.PaymentGatewayCustomerService;
+import org.broadleafcommerce.common.vendor.service.exception.PaymentException;
+import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.payment.service.OrderToPaymentRequestDTOService;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.GiftCardInfoForm;
@@ -24,6 +30,10 @@ import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafShippingInfoController;
+import org.broadleafcommerce.core.web.order.CartState;
+import org.broadleafcommerce.profile.core.domain.CustomerAttribute;
+import org.broadleafcommerce.profile.core.domain.CustomerAttributeImpl;
+import org.broadleafcommerce.profile.core.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,12 +43,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.broadleafcommerce.payment.service.gateway.ExternalCallVindiciaService;
+import com.broadleafcommerce.vendor.vindicia.service.payment.VindiciaFields;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class ShippingInfoController extends BroadleafShippingInfoController {
 
+    @Resource(name = "blExternalCallVindiciaService")
+    protected ExternalCallVindiciaService vindiciaService;
+    
+    @Resource(name = "blCustomerService")
+    protected CustomerService customerService;
+    
+    @Resource(name = "blOrderToPaymentRequestDTOService")
+    protected OrderToPaymentRequestDTOService orderToPaymentRequestDTOService;
+    
+    @Resource(name = "blVindiciaGatewayCustomerService")
+    protected PaymentGatewayCustomerService vindiciaCustomerService;
+    
+    @Override
     @RequestMapping(value="/checkout/singleship", method = RequestMethod.GET)
     public String convertToSingleship(HttpServletRequest request, HttpServletResponse response, Model model) throws PricingException {
         return super.convertToSingleship(request, response, model);
@@ -52,6 +79,7 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
                                  @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
                                  BindingResult result)
             throws PricingException, ServiceException {
+        prepareVindiciaCustomerAccount();
         return super.saveSingleShip(request, response, model, shippingForm, result);
     }
 
@@ -62,10 +90,12 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
         return super.showMultiship(request, response, model);
     }
 
+    @Override
     @RequestMapping(value = "/checkout/multiship", method = RequestMethod.POST)
     public String saveMultiship(HttpServletRequest request, HttpServletResponse response, Model model,
                                 @ModelAttribute("orderMultishipOptionForm") OrderMultishipOptionForm orderMultishipOptionForm,
                                 BindingResult result) throws PricingException, ServiceException {
+        prepareVindiciaCustomerAccount();
         return super.saveMultiship(request, response, model, orderMultishipOptionForm, result);
     }
 
@@ -75,15 +105,35 @@ public class ShippingInfoController extends BroadleafShippingInfoController {
         return super.showMultishipAddAddress(request, response, model);
     }
 
+    @Override
     @RequestMapping(value = "/checkout/add-address", method = RequestMethod.POST)
     public String saveMultishipAddAddress(HttpServletRequest request, HttpServletResponse response, Model model,
                                           @ModelAttribute("addressForm") ShippingInfoForm addressForm, BindingResult result) throws ServiceException {
         return super.saveMultishipAddAddress(request, response, model, addressForm, result);
     }
 
+    @Override
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         super.initBinder(request, binder);
+    }
+    
+    protected void prepareVindiciaCustomerAccount() {
+        Order cart = CartState.getCart();
+        try {
+            PaymentResponseDTO response = vindiciaCustomerService.createGatewayCustomer(orderToPaymentRequestDTOService.translateOrder(cart));
+            if (cart.getCustomer().getCustomerAttributes().get(VindiciaFields.VINDICIA_ACCOUNT) == null || StringUtils.isEmpty(cart.getCustomer().getCustomerAttributes().get(VindiciaFields.VINDICIA_ACCOUNT).getValue())) {
+                CustomerAttribute attribute = new CustomerAttributeImpl();
+                attribute.setCustomer(cart.getCustomer());
+                attribute.setName(VindiciaFields.VINDICIA_ACCOUNT);
+                attribute.setValue((String) response.getCustomer().getAdditionalFields().get(VindiciaFields.VINDICIA_ACCOUNT));
+                cart.getCustomer().getCustomerAttributes().put(VindiciaFields.VINDICIA_ACCOUNT, attribute);
+                customerService.saveCustomer(cart.getCustomer());
+            }
+        } catch (PaymentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }
