@@ -85,8 +85,8 @@
                         </div>
                         <div th:each="item, iterStat: ${cart.orderItems}" th:object="${item}">
                             <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_name'" th:value="*{sku.name}" />
-                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_price'" th:value="*{quantity}" />
-                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_quantity'" th:value="*{getPriceBeforeAdjustments(true).doubleValue()}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_quantity'" th:value="*{quantity}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_price'" th:value="*{getPriceBeforeAdjustments(true).doubleValue()}" />
                         </div>
                         <div id="vin_PaymentMethod_creditCard_account"></div>
                         <div id="vin_PaymentMethod_creditCard_expirationDate"></div>
