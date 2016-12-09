@@ -83,10 +83,17 @@
                             <input type="hidden" name="vin_Transaction_shippingAddress_phone" th:value="*{address.phonePrimary.phoneNumber}" />
                             <input type="hidden" name="vin_Transaction_shippingAddress_postalCode" th:value="*{address.postalCode}" />
                         </div>
+                        <div>
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_0_name'" th:value="Shipping" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_0_sku'" th:value="-99999999" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_0_quantity'" th:value="1" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_0_price'" th:value="${cart.getTotalFulfillmentCharges().doubleValue()}" />
+                        </div>
                         <div th:each="item, iterStat: ${cart.orderItems}" th:object="${item}">
-                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_name'" th:value="*{sku.name}" />
-                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_quantity'" th:value="*{quantity}" />
-                            <input type="hidden" th:name="'vin_Transaction_transactionItem_' + ${iterStat.count} + '_transactionItem_price'" th:value="*{getPriceBeforeAdjustments(true).doubleValue()}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_' + ${iterStat.count} + '_name'" th:value="*{sku.name}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_' + ${iterStat.count} + '_sku'" th:value="*{sku.id}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_' + ${iterStat.count} + '_quantity'" th:value="*{quantity}" />
+                            <input type="hidden" th:name="'vin_Transaction_transactionItems_' + ${iterStat.count} + '_price'" th:value="*{getPriceBeforeAdjustments(true).doubleValue()}" />
                         </div>
                         <div id="vin_PaymentMethod_creditCard_account"></div>
                         <div id="vin_PaymentMethod_creditCard_expirationDate"></div>
