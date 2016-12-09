@@ -5,15 +5,13 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task-4.1.xsd">
+        http://www.springframework.org/schema/task/spring-task.xsd">
 
     <task:annotation-driven />
-
-    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <!-- Set up Broadleaf messaging -->
     <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
@@ -24,24 +22,19 @@
         </property>
     </bean>
     
-    <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
-    <bean id="blMergedEntityContexts" class="org.springframework.beans.factory.config.ListFactoryBean">
-        <property name="sourceList">
-            <list>
-                <value>classpath:applicationContext-entity.xml</value>
-            </list>
-        </property>
-    </bean>
-    
     <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
     <!-- as it will allow changes made in the admin or directly on the database to be reflected -->
     <!-- immediately. However, caching is obviously beneficial in production. -->
-    <bean id="blMergedCacheConfigLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <bean id="blMergedCacheConfigLocations-site" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
                 <value>classpath:bl-override-ehcache.xml</value>
             </list>
         </property>
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.EarlyStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="blMergedCacheConfigLocations-site"/>
+        <property name="targetRef" value="blMergedCacheConfigLocations"/>
     </bean>
     
     <!-- Delete this section to disable the embedded solr search service. Although this will result in a smaller -->
@@ -160,8 +153,8 @@
     
     <!--  Broaldeaf Commerce comes with an Image Server that allows you to manipulate images.   For example, the 
           demo includes a high resolution image for each product that is reduced in size for browsing operations -->
-    <bean id="blStaticMapNamedOperationComponent" class="org.broadleafcommerce.cms.file.service.operation.StaticMapNamedOperationComponent">
-        <property name="namedOperations">
+    <bean id="blStaticMapNamedOperations-site" class="org.springframework.beans.factory.config.MapFactoryBean">
+        <property name="sourceMap">
             <map>
                 <entry key="browse">
                     <map>
@@ -183,7 +176,11 @@
                 </entry>  
             </map>
         </property>
-    </bean>    
+    </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="blStaticMapNamedOperations-site" />
+        <property name="targetRef" value="blStaticMapNamedOperations" />
+    </bean>
     
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
@@ -197,20 +194,25 @@
         </property>     
     </bean>
     -->
-    <bean id="blWebTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="dialects">
+    <bean id="blWebTemplateDialects-site" class="org.springframework.beans.factory.config.SetFactoryBean">
+        <property name="sourceSet">
             <set>
                 <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
             </set>
         </property>
     </bean> 
     
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="blWebTemplateDialects-site" />
+        <property name="targetRef" value="blWebTemplateDialects" />
+    </bean>
+    
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
     <!-- in production environments, but likely not in development environments. -->
     <!-- 
-    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafThemeAwareTemplateResolver">
+    <bean id="blWebTemplateResolver" class="org.broadleafcommerce.presentation.resolver.BroadleafThemeAwareTemplateResolver">
         <property name="prefix" value="/WEB-INF/" />
         <property name="templateFolder" value="${theme.templates.folder}" />
         <property name="suffix" value=".html" />
@@ -219,7 +221,7 @@
         <property name="characterEncoding" value="UTF-8" />
         <property name="order" value="200"/>
     </bean>
-    <bean id="blEmailClasspathTemplateResolver" class="org.broadleafcommerce.common.web.resolver.BroadleafClasspathTemplateResolver">
+    <bean id="blEmailClasspathTemplateResolver" class="org.broadleafcommerce.presentation.resolver.BroadleafClasspathTemplateResolver">
         <property name="prefix" value="emailTemplates/" />
         <property name="suffix" value=".html" />
         <property name="cacheable" value="${cache.page.templates}"/>

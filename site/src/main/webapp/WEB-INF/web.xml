@@ -14,10 +14,8 @@
     </context-param>
 
     <context-param>
-        <param-name>patchConfigLocation</param-name>
+        <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:/bl-open-admin-contentClient-applicationContext.xml
-            classpath:/bl-cms-contentClient-applicationContext.xml
             classpath*:/blc-config/site/bl-*-applicationContext.xml
             classpath:/applicationContext.xml
             classpath:/applicationContext-email.xml
@@ -82,7 +80,7 @@
     </listener>
 
     <listener>
-        <listener-class>org.broadleafcommerce.common.web.extensibility.MergeContextLoader</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     
     <listener>
@@ -99,7 +97,6 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 classpath*:/blc-config/site/bl-*-applicationContext-servlet.xml
-                classpath:/applicationContext-servlet-cms-contentClient.xml
                 /WEB-INF/applicationContext-servlet.xml
             </param-value>
         </init-param>
