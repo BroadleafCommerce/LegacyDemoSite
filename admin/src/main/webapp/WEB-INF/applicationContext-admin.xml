@@ -49,7 +49,7 @@
 
     <bean id="blPrecompressedArtifactFilter" class="org.broadleafcommerce.common.web.util.PrecompressedArtifactFilter"/>
 
-    <bean id="blMessageSourceBaseNames-admin" class="org.springframework.beans.factory.config.ListFactoryBean" scope="prototype">
+    <bean id="blMessageSourceBaseNames-admin" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
                 <value>classpath:messages-admin</value>
