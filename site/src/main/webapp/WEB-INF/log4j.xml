@@ -8,7 +8,7 @@
         </layout>
     </appender>
 
-    <logger name="org.broadleafcommerce"> <level value="warn" /> </logger>
+    <logger name="org.broadleafcommerce"> <level value="info" /> </logger>
     <logger name="org.hibernate"> <level value="warn" /> </logger>
     <logger name="org.springframework"> <level value="warn" /> </logger>
     <logger name="org.springframework.web"> <level value="warn" /> </logger>

@@ -8,15 +8,15 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
         http://www.springframework.org/schema/jee
-        http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+        http://www.springframework.org/schema/jee/spring-jee.xsd
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
         
     <!-- Shared properties between admin and site go here -->
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
@@ -29,11 +29,30 @@
         </property>
     </bean>
 
-    <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <bean id="blMergedPersistenceXmlLocations-core" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
                 <value>classpath*:/META-INF/persistence-core.xml</value>
             </list>
         </property>
     </bean>
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.EarlyStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="blMergedPersistenceXmlLocations-core"/>
+        <property name="targetRef" value="blMergedPersistenceXmlLocations"/>
+    </bean>
+    
+    <!-- Set up custom entity overrides. These are defined in core/src/main/resources -->
+    <bean id="blMergedEntityContexts-core" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath:applicationContext-entity.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.EarlyStageMergeBeanPostProcessor">
+        <property name="collectionRef" value="blMergedEntityContexts-core"/>
+        <property name="targetRef" value="blMergedEntityContexts"/>
+    </bean>
+    
 </beans>

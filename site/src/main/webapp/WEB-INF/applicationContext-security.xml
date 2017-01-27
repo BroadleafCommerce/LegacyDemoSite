@@ -8,13 +8,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
-        http://www.springframework.org/schema/security/spring-security-3.2.xsd
+        http://www.springframework.org/schema/security/spring-security.xsd
         http://www.springframework.org/schema/util
-        http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+        http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
@@ -33,13 +33,15 @@
         <!-- We handle session fixation protection ourselves  -->
         <sec:session-management session-fixation-protection="none" />
         
+        <sec:csrf disabled="true"/>
+        
         <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
-        <sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
+        <sec:intercept-url pattern="/account/wishlist/**" access="isAuthenticated()" requires-channel="any" />
         
         <!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
         <sec:intercept-url pattern="/register*" requires-channel="https" />
         <sec:intercept-url pattern="/login*/**" requires-channel="https" />
-        <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
+        <sec:intercept-url pattern="/account/**" access="isAuthenticated()" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/sample-checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/sample-giftcard/**" requires-channel="https" />
@@ -75,13 +77,6 @@
             <sec:password-encoder ref="blPasswordEncoder" />
         </sec:authentication-provider>
     </sec:authentication-manager>
-    
-    <!-- Configuration for salting user passwords. If you would like to change this property or generate a random salt to store
-        on a per-customer basis or if you need to allow users to change their password then you will need to modify this
-        configuration and likely provide a custom UserDetailsService. -->
-    <bean id="blSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-        <property name="userPropertyToUse" value="id" />
-    </bean>
     
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" >
         <property name="excludedRequestPatterns">
