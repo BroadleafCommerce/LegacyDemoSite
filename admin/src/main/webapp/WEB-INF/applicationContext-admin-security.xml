@@ -38,9 +38,13 @@
             disable-url-rewriting="true">
         
         <sec:csrf disabled="true"/>
-        
-        <sec:intercept-url pattern="/login" access="permitAll" />
-        <sec:intercept-url pattern="/**" access="isAuthenticated()" requires-channel="any" />
+
+        <sec:intercept-url pattern="/sendResetPassword" access="permitAll"/>
+        <sec:intercept-url pattern="/forgotUsername" access="permitAll"/>
+        <sec:intercept-url pattern="/forgotPassword" access="permitAll"/>
+        <sec:intercept-url pattern="/resetPassword" access="permitAll"/>
+        <sec:intercept-url pattern="/login" access="permitAll"/>
+        <sec:intercept-url pattern="/**" access="isAuthenticated()"  requires-channel="any" />
         
         <!-- Define the login form along with the success and failure handlers -->
         <sec:form-login 
@@ -51,8 +55,10 @@
         />
         
         <!-- Provide the logout handler -->
-        <sec:logout invalidate-session="true" logout-url="/adminLogout.htm" logout-success-url="/login"/>
-        
+        <sec:logout invalidate-session="true"
+                    logout-url="/adminLogout.htm"
+                    logout-success-url="/login"/>
+
         <!-- Since we run this alongside the site, we need to set up the special port mapping -->
         <!-- This isn't necessary for site becauase it utilizes a default mapping -->
         <!-- Note that since we are providing a special mapping, we must repeat the default ones -->
