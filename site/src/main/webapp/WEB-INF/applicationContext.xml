@@ -59,7 +59,7 @@
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
     </bean> 
-    <bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
         <property name="jobDetail" ref="rebuildIndexJobDetail" />
         <property name="startDelay" value="${solr.index.start.delay}" />
         <property name="repeatInterval" value="${solr.index.repeat.interval}" />
