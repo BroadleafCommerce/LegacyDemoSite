@@ -13,6 +13,7 @@
 
     <task:annotation-driven />
 
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
 
     <!-- Set up Broadleaf messaging -->
     <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
