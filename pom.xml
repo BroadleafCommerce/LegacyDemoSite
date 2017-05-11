@@ -10,7 +10,9 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.0-GA-ETS</blc.version>
+        <blc.version>3.0.0-SNAPSHOT-ETS</blc.version>
+        <blc.oms.version>1.0.0-M3</blc.oms.version>
+        <gwt.version>2.4.0</gwt.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -330,6 +332,13 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>com.broadleafcommerce</groupId>
+                <artifactId>broadleaf-oms</artifactId>
+                <version>${blc.oms.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.broadleafcommerce</groupId>
                 <artifactId>integration</artifactId>
                 <version>${blc.version}</version>
@@ -344,6 +353,11 @@
                 <version>3.0.1</version>
                 <type>jar</type>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -42,10 +42,18 @@
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-profile</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce</groupId>
+            <artifactId>broadleaf-oms</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
         </dependency>
     </dependencies>
 </project>

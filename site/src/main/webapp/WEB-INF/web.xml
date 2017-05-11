@@ -18,6 +18,7 @@
         <param-value>
             classpath:/bl-open-admin-contentClient-applicationContext.xml
             classpath:/bl-cms-contentClient-applicationContext.xml
+            classpath:/bl-oms-applicationContext.xml
             classpath:/applicationContext.xml
             /WEB-INF/applicationContext-datasource.xml
             /WEB-INF/applicationContext-email.xml
