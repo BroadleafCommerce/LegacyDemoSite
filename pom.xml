@@ -12,6 +12,7 @@
     <properties>
         <blc.version>3.0.0-SNAPSHOT-ETS</blc.version>
         <blc.oms.version>1.0.0-M3</blc.oms.version>
+        <blc.pricelist.version>1.0.0-M2</blc.pricelist.version>
         <gwt.version>2.4.0</gwt.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -335,6 +336,13 @@
                 <groupId>com.broadleafcommerce</groupId>
                 <artifactId>broadleaf-oms</artifactId>
                 <version>${blc.oms.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.broadleafcommerce</groupId>
+                <artifactId>broadleaf-pricelist</artifactId>
+                <version>${blc.pricelist.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
