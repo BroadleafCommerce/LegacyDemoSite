@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.0-SNAPSHOT-ETS</blc.version>
+        <blc.version>3.0.0-GA-ETS-SPRING-4</blc.version>
         <blc.oms.version>1.0.0-M3</blc.oms.version>
         <blc.pricelist.version>1.0.0-M2</blc.pricelist.version>
         <gwt.version>2.4.0</gwt.version>
