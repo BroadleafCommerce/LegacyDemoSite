@@ -50,6 +50,10 @@
             <groupId>com.broadleafcommerce</groupId>
             <artifactId>broadleaf-pricelist</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce</groupId>
+            <artifactId>broadleaf-cybersource-silentpost</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

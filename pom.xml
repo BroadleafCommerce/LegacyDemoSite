@@ -10,9 +10,10 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.0-GA-ETS-SPRING-4</blc.version>
+        <blc.version>3.0.0-GA-ETS-SPRING-4-M1</blc.version>
         <blc.oms.version>1.0.0-M3</blc.oms.version>
         <blc.pricelist.version>1.0.0-M2</blc.pricelist.version>
+        <blc.cybersource.version>2.4.0-M1</blc.cybersource.version>
         <gwt.version>2.4.0</gwt.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +29,11 @@
             <id>public releases</id>
             <name>public releases</name>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>broadleaf-thirdparty-releases</id>
+            <name>broadleaf-thirdparty-releases</name>
+            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/thirdparty-integration-commercial-releases/</url>
         </repository>
     </repositories>
     <build>
@@ -345,6 +351,19 @@
                 <version>${blc.pricelist.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.broadleafcommerce</groupId>
+                <artifactId>broadleaf-cybersource-silentpost</artifactId>
+                <version>${blc.cybersource.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-aop</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.broadleafcommerce</groupId>
