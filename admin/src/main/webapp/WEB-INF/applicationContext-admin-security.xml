@@ -16,9 +16,6 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
-    <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
-
     <!-- Resources do not need security -->
     <sec:http pattern="/**/*.css" security="none" />
     <sec:http pattern="/**/*.js" security="none" />
@@ -38,6 +35,9 @@
             disable-url-rewriting="true">
         
         <sec:csrf disabled="true"/>
+        <sec:headers>
+            <sec:frame-options disabled="true"/>
+        </sec:headers>
 
         <sec:intercept-url pattern="/sendResetPassword" access="permitAll"/>
         <sec:intercept-url pattern="/forgotUsername" access="permitAll"/>

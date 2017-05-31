@@ -46,6 +46,4 @@
         <property name="defaultLocale" value="en"/>
     </bean>
 
-    <mvc:default-servlet-handler/>
-
 </beans>
