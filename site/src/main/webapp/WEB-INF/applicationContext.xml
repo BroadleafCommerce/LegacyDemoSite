@@ -41,14 +41,6 @@
         <property name="collectionRef" value="blMergedCacheConfigLocations-site"/>
         <property name="targetRef" value="blMergedCacheConfigLocations"/>
     </bean>
-    
-    <!-- Delete this section to disable the embedded solr search service. Although this will result in a smaller -->
-    <!-- application footprint, it will default the search service to use the database implementation, which  -->
-    <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
-    <!-- majority of cases. -->
-    <bean id="solrEmbedded" class="java.lang.String">
-        <constructor-arg value="solrhome"/>
-    </bean>
 
     <!--A simple quartz jobs for enabling cart and customer purge functionality. Uncomment the following quartz configurations-->
     <!--to activate this functionality (Also, uncomment the 'purgeCartTrigger' and 'purgeCustomerTrigger' configured under SchedulerFactoryBean.-->
@@ -108,10 +100,33 @@
         <!--<property name="repeatInterval" value="86400000" />-->
     <!--</bean>-->
 
+    <bean id="blDefaultSolrProperties" class="com.broadleafcommerce.solr.autoconfigure.SolrProperties"/>
+
+    <bean id="blSolrServerSetup" class="com.broadleafcommerce.solr.autoconfigure.SolrServer">
+        <constructor-arg name="solrProperties" ref="blDefaultSolrProperties"/>
+    </bean>
+
+    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl"/>
+
+    <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.primary}"/>
+    </bean>
+    <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.reindex}"/>
+    </bean>
+    <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.admin}"/>
+    </bean>
+    <bean id="blCatalogSolrConfiguration" class="org.broadleafcommerce.core.search.service.solr.SolrConfiguration">
+        <constructor-arg name="solrServer" ref="${solr.source.primary}" />
+        <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
+        <constructor-arg name="adminServer" ref="${solr.source.admin}" />
+    </bean>
+
     <!-- When the Private Demo starts up with DDL set to create or create-drop, we need to make sure that we -->
     <!-- rebuild the Solr index. Otherwise, it will be out of sync and cause errors for people. -->
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="blSearchService" />
+        <property name="targetObject" ref="blSolrIndexService" />
         <property name="targetMethod" value="rebuildIndex" />
     </bean> 
     <bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
