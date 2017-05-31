@@ -103,35 +103,6 @@
         <!--<property name="repeatInterval" value="86400000" />-->
     <!--</bean>-->
 
-    <!-- If you want to use a standalone solr server for at least one environment, uncomment the following -->
-    <!-- three beans and set solr.source.primary, solr.source.reindex, and solr.source.admin in the property file -->
-    <!-- to be solrServer, solrReindexServer, and solrAdminServer, respectively: -->
-    <!-- solr.souce.primary=solrServer-->
-    <!-- solr.souce.reindex=solrReindexServer-->
-    <!-- solr.souce.admin=solrAdminServer-->
-    <!-- Then, ensure that the three beans that you just uncommented, below, have their constructor arguments -->
-    <!-- pointing to the correct URLs of the stand alone server(s) -->
-    <!-- NOTE this assumes you are using Solr 4.4. -->
-    <!-- solr.url.admin should point to the ROOT of the server, for example: http://localhost:8983/solr. -->
-    <!-- solr.url.reindex should point to the reindex core, for example: http://localhost:8983/solr/reindex. -->
-    <!-- solr.url.primary should point to the primary core, for example, http://localhost:8983/solr/primary.  -->
-    <!-- In version 4.4 and higher of Solr, there is no need to configure the cores or defaultCoreName elements -->
-    <!-- in solr.xml, as Solr cores are auto discoverable as of 4.4 (see Solr documentation).-->
-    <!-- So, for Solr 4.4, in stand-alone mode, you should configure the following 3 HttpSolrServer configurations: -->
-    <!--     <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.primary}"/> -->
-    <!--     </bean> -->
-    <!--     <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.reindex}"/> -->
-    <!--     </bean> -->
-    <!--     <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.admin}"/> -->
-    <!--     </bean> -->
-    <bean id="blCatalogSolrConfiguration" class="org.broadleafcommerce.core.search.service.solr.SolrConfiguration">
-        <constructor-arg name="solrServer" ref="${solr.source.primary}" />
-    </bean>
-    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl"/>
-
     <!-- When the Private Demo starts up with DDL set to create or create-drop, we need to make sure that we -->
     <!-- rebuild the Solr index. Otherwise, it will be out of sync and cause errors for people. -->
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
