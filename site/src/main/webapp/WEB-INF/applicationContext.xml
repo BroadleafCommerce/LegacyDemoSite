@@ -14,12 +14,17 @@
     <task:annotation-driven />
 
     <!-- Set up Broadleaf messaging -->
-    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
-        <property name="basenames">
+    <bean id="customMessages" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
             <list>
                 <value>classpath:messages</value>
             </list>
         </property>
+    </bean>
+
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="sourceRef" value="customMessages" />
+        <property name="targetRef" value="blMessageSourceBaseNames" />
     </bean>
     
     <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
@@ -215,8 +220,4 @@
         <property name="collectionRef" value="cssLocations" />
         <property name="targetRef" value="blCssLocations" />
     </bean>
-
-    <bean id="blJsResources" parent="siteJsResourceRequestHandlerBase" />
-
-    <bean id="blCssResources" parent="siteCssResourceRequestHandlerBase" />
 </beans>
