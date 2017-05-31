@@ -62,15 +62,6 @@
         <property name="targetRef" value="blMessageSourceBaseNames" />
     </bean>
 
-    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
-        <!-- Fallback to use the default message in the admin. This will ensure that client-specific friendly
-            names are not required to appear in an internationalized properties file -->
-        <property name="useCodeAsDefaultMessage" value="${messages.useCodeAsDefaultMessage}" />
-        <property name="cacheSeconds" value="${messages.cacheSeconds}" />
-    </bean>
-
-    <bean id="blJsResources" parent="adminJsResourceHttpRequestHandlerBase" />
-
     <bean id="cssLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
         <property name="sourceList">
             <list>
@@ -83,8 +74,6 @@
         <property name="collectionRef" value="cssLocations" />
         <property name="targetRef" value="blCssLocations" />
     </bean>
-
-    <bean id="blCssResources" parent="adminCssResourceHttpRequestHandlerBase" />
     
     <bean id="blJsFileMap" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">

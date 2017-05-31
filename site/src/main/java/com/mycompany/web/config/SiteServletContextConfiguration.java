@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * @author Brandon Hines (bhines@broadleafcommerce.com)
+ * @author Brandon Hines
  */
 @Configuration
 @EnableBroadleafSiteServletAutoConfiguration
