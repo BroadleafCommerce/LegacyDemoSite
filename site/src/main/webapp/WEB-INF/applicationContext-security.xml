@@ -15,10 +15,6 @@
         http://www.springframework.org/schema/security/spring-security.xsd
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
-
-    <context:component-scan base-package="org.broadleafcommerce.common.web.security"/>
-    <context:component-scan base-package="org.broadleafcommerce.profile.web.core.security"/>
-    <context:component-scan base-package="org.broadleafcommerce.core.web.order.security"/>
     
     <!-- Resources do not need security -->
     <sec:http pattern="/css/**" security="none" />
@@ -34,6 +30,9 @@
         <sec:session-management session-fixation-protection="none" />
         
         <sec:csrf disabled="true"/>
+        <sec:headers>
+            <sec:frame-options disabled="true"/>
+        </sec:headers>
         
         <!-- Wishlist modifications live under /account, but we don't need HTTPS -->
         <sec:intercept-url pattern="/account/wishlist/**" access="isAuthenticated()" requires-channel="any" />
@@ -52,7 +51,7 @@
         
         <!-- All URLs not explicitly specified as https will be served under http -->
         <sec:intercept-url pattern="/" requires-channel="http"/>
-        <sec:intercept-url pattern="/**" requires-channel="http"/>
+        <sec:intercept-url pattern="/**" requires-channel="https"/>
         
         <!-- Define the login form along with the success and failure handlers -->
         <sec:form-login login-page='/login'

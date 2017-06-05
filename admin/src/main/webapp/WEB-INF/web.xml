@@ -15,15 +15,15 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath*:/blc-config/admin/bl-*-applicationContext.xml
-            classpath:/applicationContext.xml
-            classpath:/applicationContext-email.xml
-            /WEB-INF/applicationContext-datasource.xml
-            /WEB-INF/applicationContext-admin-security.xml
-            /WEB-INF/applicationContext-admin-filter.xml
-            /WEB-INF/applicationContext-admin.xml
-        </param-value>
+        <param-value>com.mycompany.config.AdminRootConfiguration</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextInitializerClasses</param-name>
+        <param-value>org.broadleafcommerce.common.config.BroadleafEnvironmentConfiguringApplicationListener</param-value>
     </context-param>
 
     <context-param>
@@ -90,10 +90,15 @@
         <servlet-name>admin</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                classpath*:/blc-config/admin/bl-*-admin-applicationContext-servlet.xml
-                /WEB-INF/applicationContext-servlet-admin.xml
+                com.mycompany.web.config.AdminServletContextConfiguration
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

@@ -10,15 +10,11 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>5.2.0-SNAPSHOT</blc.version>
-        <broadleaf-rest-api.version>2.2.0-SNAPSHOT</broadleaf-rest-api.version>
-        <blc.menu.version>2.2.0-SNAPSHOT</blc.menu.version>
-        <broadleaf-sample-payment-gateway.version>2.1.0-SNAPSHOT</broadleaf-sample-payment-gateway.version>
-        <broadleaf-thymeleaf3-presentation.version>1.1.0-SNAPSHOT</broadleaf-thymeleaf3-presentation.version>
+        <broadleaf.bom.version>5.2.0-SNAPSHOT</broadleaf.bom.version>
 
         <!-- WARNING: HSQLDB version 2.3.3 does not work, 2.3.2 is verified to work with Broadleaf -->
         <hsqldb.version>2.3.2</hsqldb.version>
-        <spring.instrument.version>4.1.9.RELEASE</spring.instrument.version>
+        <spring.instrument.version>4.3.8.RELEASE</spring.instrument.version>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -412,98 +408,11 @@
 
             <!--Broadleaf libraries -->
             <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-common</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-profile</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-profile-web</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-framework</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-framework-web</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-admin-module</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-contentmanagement-module</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-open-admin-platform</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>integration</artifactId>
-                <version>${blc.version}</version>
-                <type>jar</type>
-                <classifier>tests</classifier>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>com.broadleafcommerce</groupId>
-                <artifactId>broadleaf-rest-api</artifactId>
-                <version>${broadleaf-rest-api.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-menu</artifactId>
-                <version>${blc.menu.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-thymeleaf3-presentation</artifactId>
-                <version>${broadleaf-thymeleaf3-presentation.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.broadleafcommerce</groupId>
-                <artifactId>broadleaf-sample-payment-gateway</artifactId>
-                <version>${broadleaf-sample-payment-gateway.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
+                <artifactId>broadleaf-enterprise-bom</artifactId>
+                <version>${broadleaf.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>

@@ -15,17 +15,16 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath*:/blc-config/site/bl-*-applicationContext.xml
-            classpath:/applicationContext.xml
-            classpath:/applicationContext-email.xml
-            /WEB-INF/applicationContext-datasource.xml
-            /WEB-INF/applicationContext-rest-api-security.xml
-            /WEB-INF/applicationContext-security.xml
-            /WEB-INF/applicationContext-filter.xml
-            /WEB-INF/applicationContext-workflow.xml
-            /WEB-INF/applicationContext.xml
-        </param-value>
+        <param-value>com.mycompany.config.SiteRootConfiguration</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>contextInitializerClasses</param-name>
+        <param-value>org.broadleafcommerce.common.config.BroadleafEnvironmentConfiguringApplicationListener</param-value>
     </context-param>
 
     <context-param>
@@ -86,18 +85,20 @@
     <listener>
         <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
     </listener>
-    
-    <!-- Note: The applicationContext-servlet-cms-contentClient.xml file is used to load static assets
-         from the Broadleaf CMS such as images. It will match on any URL that contains the static asset
-         prefix URL in any depth of it. -->
+
     <servlet>
         <servlet-name>mycompany</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                classpath*:/blc-config/site/bl-*-applicationContext-servlet.xml
-                /WEB-INF/applicationContext-servlet.xml
+                com.mycompany.web.config.SiteServletContextConfiguration
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

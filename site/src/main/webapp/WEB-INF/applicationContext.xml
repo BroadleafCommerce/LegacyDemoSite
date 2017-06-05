@@ -14,12 +14,17 @@
     <task:annotation-driven />
 
     <!-- Set up Broadleaf messaging -->
-    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
-        <property name="basenames">
+    <bean id="customMessages" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
             <list>
                 <value>classpath:messages</value>
             </list>
         </property>
+    </bean>
+
+    <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+        <property name="sourceRef" value="customMessages" />
+        <property name="targetRef" value="blMessageSourceBaseNames" />
     </bean>
     
     <!-- Delete this bean to enable caching - leaving it on for development is recommended -->
@@ -35,14 +40,6 @@
     <bean class="org.broadleafcommerce.common.extensibility.context.merge.EarlyStageMergeBeanPostProcessor">
         <property name="collectionRef" value="blMergedCacheConfigLocations-site"/>
         <property name="targetRef" value="blMergedCacheConfigLocations"/>
-    </bean>
-    
-    <!-- Delete this section to disable the embedded solr search service. Although this will result in a smaller -->
-    <!-- application footprint, it will default the search service to use the database implementation, which  -->
-    <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
-    <!-- majority of cases. -->
-    <bean id="solrEmbedded" class="java.lang.String">
-        <constructor-arg value="solrhome"/>
     </bean>
 
     <!--A simple quartz jobs for enabling cart and customer purge functionality. Uncomment the following quartz configurations-->
@@ -103,39 +100,33 @@
         <!--<property name="repeatInterval" value="86400000" />-->
     <!--</bean>-->
 
-    <!-- If you want to use a standalone solr server for at least one environment, uncomment the following -->
-    <!-- three beans and set solr.source.primary, solr.source.reindex, and solr.source.admin in the property file -->
-    <!-- to be solrServer, solrReindexServer, and solrAdminServer, respectively: -->
-    <!-- solr.souce.primary=solrServer-->
-    <!-- solr.souce.reindex=solrReindexServer-->
-    <!-- solr.souce.admin=solrAdminServer-->
-    <!-- Then, ensure that the three beans that you just uncommented, below, have their constructor arguments -->
-    <!-- pointing to the correct URLs of the stand alone server(s) -->
-    <!-- NOTE this assumes you are using Solr 4.4. -->
-    <!-- solr.url.admin should point to the ROOT of the server, for example: http://localhost:8983/solr. -->
-    <!-- solr.url.reindex should point to the reindex core, for example: http://localhost:8983/solr/reindex. -->
-    <!-- solr.url.primary should point to the primary core, for example, http://localhost:8983/solr/primary.  -->
-    <!-- In version 4.4 and higher of Solr, there is no need to configure the cores or defaultCoreName elements -->
-    <!-- in solr.xml, as Solr cores are auto discoverable as of 4.4 (see Solr documentation).-->
-    <!-- So, for Solr 4.4, in stand-alone mode, you should configure the following 3 HttpSolrServer configurations: -->
-    <!--     <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.primary}"/> -->
-    <!--     </bean> -->
-    <!--     <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.reindex}"/> -->
-    <!--     </bean> -->
-    <!--     <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer"> -->
-    <!--         <constructor-arg value="${solr.url.admin}"/> -->
-    <!--     </bean> -->
+    <bean id="blDefaultSolrProperties" class="com.broadleafcommerce.solr.autoconfigure.SolrProperties"/>
+
+    <bean id="blSolrServerSetup" class="com.broadleafcommerce.solr.autoconfigure.SolrServer">
+        <constructor-arg name="solrProperties" ref="blDefaultSolrProperties"/>
+    </bean>
+
+    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl"/>
+
+    <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.primary}"/>
+    </bean>
+    <bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.reindex}"/>
+    </bean>
+    <bean id="solrAdminServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+        <constructor-arg value="${solr.url.admin}"/>
+    </bean>
     <bean id="blCatalogSolrConfiguration" class="org.broadleafcommerce.core.search.service.solr.SolrConfiguration">
         <constructor-arg name="solrServer" ref="${solr.source.primary}" />
+        <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
+        <constructor-arg name="adminServer" ref="${solr.source.admin}" />
     </bean>
-    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl"/>
 
     <!-- When the Private Demo starts up with DDL set to create or create-drop, we need to make sure that we -->
     <!-- rebuild the Solr index. Otherwise, it will be out of sync and cause errors for people. -->
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="blSearchService" />
+        <property name="targetObject" ref="blSolrIndexService" />
         <property name="targetMethod" value="rebuildIndex" />
     </bean> 
     <bean id="rebuildIndexTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
@@ -244,8 +235,4 @@
         <property name="collectionRef" value="cssLocations" />
         <property name="targetRef" value="blCssLocations" />
     </bean>
-
-    <bean id="blJsResources" parent="siteJsResourceRequestHandlerBase" />
-
-    <bean id="blCssResources" parent="siteCssResourceRequestHandlerBase" />
 </beans>
