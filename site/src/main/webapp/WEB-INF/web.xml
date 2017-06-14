@@ -23,6 +23,7 @@
             classpath:/applicationContext.xml
             /WEB-INF/applicationContext-datasource.xml
             /WEB-INF/applicationContext-email.xml
+            /WEB-INF/applicationContext-rest-easy.xml
             /WEB-INF/applicationContext-security.xml
             /WEB-INF/applicationContext-filter.xml
             /WEB-INF/applicationContext.xml          
@@ -59,6 +60,10 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
+    
+    <listener>
+      <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+   </listener>
 
     <listener>
         <listener-class>org.broadleafcommerce.common.web.extensibility.MergeContextLoader</listener-class>
@@ -67,6 +72,23 @@
     <listener>
         <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
     </listener>
+    
+    <servlet>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+    </servlet>
+
+    <context-param>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/rest</param-value>
+    </context-param>
+    
+    <servlet-mapping>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
     
     <!-- Note: The applicationContext-servlet-cms-contentClient.xml file is used to load static assets
          from the Broadleaf CMS such as images. It will match on any URL that contains the static asset

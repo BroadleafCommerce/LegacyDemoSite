@@ -11,6 +11,14 @@
     <packaging>war</packaging>
     <name>site</name>
     <description>Web Module For Broadleaf Commerce Based ECommerce Site</description>
+    
+    <repositories>
+        <repository>
+            <id>JBoss repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+    </repositories>
+    
     <properties>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,6 +72,17 @@
         </plugins>
     </build>
     <dependencies>
+        <!-- JBoss RESTEasy -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>3.0.6.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-spring</artifactId>
+            <version>3.0.6.Final</version>
+        </dependency>
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>core</artifactId>
