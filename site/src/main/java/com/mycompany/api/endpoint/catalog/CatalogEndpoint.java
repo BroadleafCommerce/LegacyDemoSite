@@ -66,8 +66,10 @@ public class CatalogEndpoint extends
     public SearchResultsWrapper findSearchResultsByQuery(HttpServletRequest request,
             @RequestParam("q") String q,
             @RequestParam(value = "pageSize", defaultValue = "15") Integer pageSize,
-            @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        return super.findSearchResultsByQuery(request, q, pageSize, page);
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "includePromotionMessages", required = false) Boolean includePromotionMessages,
+            @RequestParam(value = "includePriceData", required = false) Boolean includePriceData) {
+        return super.findSearchResultsByQuery(request, q, pageSize, page, includePromotionMessages, includePriceData);
     }
 
     @Override
@@ -76,8 +78,10 @@ public class CatalogEndpoint extends
             @PathVariable("categoryId") Long categoryId,
             @RequestParam(value = "q", required = false) String q,
             @RequestParam(value = "pageSize", required = false, defaultValue = "15") Integer pageSize,
-            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
-        return super.findSearchResultsByCategoryAndQuery(request, categoryId, q, pageSize, page);
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "includePromotionMessages", required = false) Boolean includePromotionMessages,
+            @RequestParam(value = "includePriceData", required = false) Boolean includePriceData) {
+        return super.findSearchResultsByCategoryAndQuery(request, categoryId, q, pageSize, page, includePromotionMessages, includePriceData);
     }
     
     @Override

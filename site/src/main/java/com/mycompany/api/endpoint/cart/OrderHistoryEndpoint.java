@@ -46,8 +46,9 @@ public class OrderHistoryEndpoint extends com.broadleafcommerce.rest.api.endpoin
     @Override
     @RequestMapping(method = RequestMethod.GET)
     public List<OrderWrapper> findOrdersForCustomer(HttpServletRequest request,
-                                                    @RequestParam(value = "orderStatus", defaultValue = "SUBMITTED") String orderStatus) {
-        return super.findOrdersForCustomer(request, orderStatus);
+                                                    @RequestParam(value = "orderStatus", defaultValue = "SUBMITTED") String orderStatus,
+                                                    @RequestParam(value = "orderNumber", required = false) String orderNumber) {
+        return super.findOrdersForCustomer(request, orderStatus, orderNumber);
     }
     
     @Override
