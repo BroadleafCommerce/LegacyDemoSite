@@ -44,8 +44,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/shipping/",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class FulfillmentEndpoint extends com.broadleafcommerce.rest.api.endpoint.order.FulfillmentEndpoint {
 
     @Override
@@ -85,7 +84,8 @@ public class FulfillmentEndpoint extends com.broadleafcommerce.rest.api.endpoint
     }
     
     @Override
-    @RequestMapping(value = "{cartId}/{fulfillmentGroupId}/address", method = RequestMethod.PUT)
+    @RequestMapping(value = "{cartId}/{fulfillmentGroupId}/address", method = RequestMethod.PUT,
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public FulfillmentGroupWrapper updateFulfillmentGroupAddress(HttpServletRequest request,
                                                                  @PathVariable("fulfillmentGroupId") Long fulfillmentGroupId,
                                                                  @PathVariable("cartId") Long cartId,
