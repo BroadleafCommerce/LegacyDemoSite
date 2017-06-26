@@ -72,7 +72,8 @@ public class CartEndpoint extends com.broadleafcommerce.rest.api.endpoint.order.
         return super.findCartById(request, cartId);
     }
 
-    @RequestMapping(value = "/{cartId}/item", method = RequestMethod.POST)
+    @RequestMapping(value = "/{cartId}/item", method = RequestMethod.POST,
+            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public OrderWrapper addItemToOrder(HttpServletRequest request,
                                           @PathVariable("cartId") Long cartId,
                                           @RequestParam(value = "priceOrder", required = false, defaultValue = "true") Boolean priceOrder,

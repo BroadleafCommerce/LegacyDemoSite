@@ -39,8 +39,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping(value = "/orders",
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class OrderHistoryEndpoint extends com.broadleafcommerce.rest.api.endpoint.order.OrderHistoryEndpoint {
 
     @Override
