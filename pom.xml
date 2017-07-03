@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>5.0.10-GA</blc.version>
+        <blc.version>5.0.11-SNAPSHOT</blc.version>
         <blc.menu.version>2.0.1-GA</blc.menu.version>
         <broadleaf-sample-payment-gateway.version>2.0.0-GA</broadleaf-sample-payment-gateway.version>
 
