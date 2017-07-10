@@ -1,4 +1,8 @@
-## The New Broadleaf Commerce Demo Site
+# The Old Broadleaf Commerce Demo Site
+
+# This Repository is deprecated
+
+The new starting point for Broadleaf Commerce projects is via our Spring Boot project located at https://github.com/BroadleafCommece/CommunityDemo.
 
 This Maven project is meant to be used as a solid started project for any [Broadleaf Commerce](http://www.broadleafcommerce.org) application. It has many sensible defaults set up along with examples of how a fully functioning eCommerce site based on Broadleaf might work.
 
