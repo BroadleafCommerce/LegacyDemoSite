@@ -29,6 +29,7 @@
             <jvmarg value="-Xdebug" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8001" />
             <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+        	<jvmarg value="-Dmaven.multiModuleProjectDirectory=${maven.home}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
@@ -46,7 +47,8 @@
             <jvmarg value="-Dlogs.dir=${logs.dir}" />
             <jvmarg value="-noverify" />
             <jvmarg value="-javaagent:${jrebel.path}" />
-            <jvmarg value="-Druntime.environment=${runtime.environment}" />  
+            <jvmarg value="-Druntime.environment=${runtime.environment}" />
+        	<jvmarg value="-Dmaven.multiModuleProjectDirectory=${maven.home}" />
             <arg value="compile"/>
             <arg value="war:exploded"/>
             <arg value="jetty:run"/>
