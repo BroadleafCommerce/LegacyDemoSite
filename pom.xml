@@ -166,7 +166,7 @@
             <dependency>
                 <groupId>com.mycompany</groupId>
                 <artifactId>core</artifactId>
-                <version>1.0</version>
+                <version>3.0.1-GA-NBME-SPRING-4-SNAPSHOT</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
