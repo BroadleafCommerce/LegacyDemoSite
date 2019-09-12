@@ -5,12 +5,12 @@
 
     <groupId>com.mycompany</groupId>
     <artifactId>ecommerce-website</artifactId>
-    <version>1.0</version>
+    <version>3.0.1-GA-NBME-SPRING-4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.1-GA</blc.version>
+        <blc.version>3.0.1-GA-NBME-SPRING-4-SNAPSHOT</blc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <description>My Company's eCommerce Website</description>
