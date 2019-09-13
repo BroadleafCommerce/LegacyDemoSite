@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>3.0.0-GA-ETS</blc.version>
+        <blc.version>3.0.0-GA-ETS-SPRING-4-SNAPSHOT</blc.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
